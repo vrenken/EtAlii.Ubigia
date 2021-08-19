@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -136,7 +136,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.

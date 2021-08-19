@@ -2,12 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class TraversalContextOptionsUseTraversalProfiling
     {
         public static TFunctionalOptions UseTraversalProfiling<TFunctionalOptions>(this TFunctionalOptions options)
             where TFunctionalOptions : IFunctionalOptions
         {
-            options.Use(new IFunctionalExtension[]
+            options.Use(new IExtension[]
             {
                 new ProfilingPathParserExtension(),
                 new ProfilingTraversalContextExtension(),

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LoggingGraphContextExtension : IFunctionalExtension
+    public class LoggingGraphContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

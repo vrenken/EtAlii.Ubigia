@@ -9,6 +9,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using System.Reflection;
     using EtAlii.Ubigia.Api.Functional.Antlr;
+    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -105,10 +107,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var configurationRoot = new ConfigurationBuilder()
                     .Build();
 
+                var logicalOptions = new LogicalContextOptions(configurationRoot);
+                var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+
                 var options = new FunctionalOptions(configurationRoot)
+                    .UseLogicalContext(logicalContext)
                     .UseAntlrParsing();
 
-                _schemaParser = Factory.Create<ISchemaParser, IFunctionalExtension>(options);
+                _schemaParser = Factory.Create<ISchemaParser, IExtension>(options);
             }
             catch (Exception e)
             {

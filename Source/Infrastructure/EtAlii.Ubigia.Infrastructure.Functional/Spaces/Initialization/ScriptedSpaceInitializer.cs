@@ -8,7 +8,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Logical;
     using Microsoft.Extensions.Configuration;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
     {
@@ -27,13 +29,16 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
-            var options = new FunctionalOptions(_configurationRoot)
+            var logicalOptions = new LogicalContextOptions(_configurationRoot)
+                .Use(spaceConnection)
+                .UseTraversalCaching(true);
+            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+
+            var functionalOptions = new FunctionalOptions(_configurationRoot)
                 .UseAntlrParsing()
                 .UseCaching(true)
-                .UseTraversalCaching(true)
-                .Use(spaceConnection);
-
-            var scriptContext = Factory.Create<ITraversalContext, IFunctionalExtension>(options);
+                .UseLogicalContext(logicalContext);
+            var scriptContext = Factory.Create<ITraversalContext, IExtension>(functionalOptions);
 
             var rootsToCreate = template.RootsToCreate;
 

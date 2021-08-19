@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingFunctionalExtension2 : IFunctionalExtension
+    public class ProfilingFunctionalExtension2 : IExtension
     {
         private readonly IProfiler _profiler;
 

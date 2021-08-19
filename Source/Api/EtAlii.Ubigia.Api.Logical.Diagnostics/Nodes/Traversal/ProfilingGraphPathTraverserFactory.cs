@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.Ubigia.Diagnostics.Profiling;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingGraphPathTraverserFactory : IGraphPathTraverserFactory
     {

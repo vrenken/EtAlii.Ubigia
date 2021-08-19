@@ -26,7 +26,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var locationPath = await _testContext.Logical.AddContinentCountryRegionCityLocation(logicalContext).ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -47,7 +49,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var locationPath = await _testContext.Logical.AddContinentCountryRegionCityLocation(logicalContext).ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -69,7 +73,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var locationPath = await _testContext.Logical.AddContinentCountryRegionCityLocation(logicalContext).ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectQueryParts = selectQuery.Split(new[] {'/'});
@@ -98,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -137,7 +143,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -174,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -206,7 +212,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -244,7 +250,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -281,7 +287,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -322,7 +328,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")
@@ -362,7 +368,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Person")

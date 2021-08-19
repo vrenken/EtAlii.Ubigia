@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
@@ -17,5 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
         bool CachingEnabled { get; }
+
+        ILogicalContext LogicalContext { get; }
     }
 }

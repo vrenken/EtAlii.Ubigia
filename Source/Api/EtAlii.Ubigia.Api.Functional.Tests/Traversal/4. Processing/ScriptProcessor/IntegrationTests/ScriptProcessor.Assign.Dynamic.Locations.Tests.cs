@@ -48,7 +48,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
@@ -96,7 +98,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
@@ -142,7 +146,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
@@ -194,7 +200,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
@@ -247,7 +255,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
@@ -300,7 +310,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContextWithConnection(true)
+                .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.

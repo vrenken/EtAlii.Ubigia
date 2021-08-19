@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using Microsoft.Extensions.Configuration;
     using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
 
-    public class ProfilingGraphContextExtension : IFunctionalExtension
+    public class ProfilingGraphContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

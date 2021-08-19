@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class FabricContextConfigurationUseDiagnostics
     {
         public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextOptions options)

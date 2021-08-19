@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
 
     public static class LogicalContextDiagnosticsExtension

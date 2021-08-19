@@ -4,14 +4,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.xTechnology.MicroContainer;
 
-    public static class TraversalContextOptionsDiagnosticsExtension
+    public static class FunctionalOptionsUseDiagnosticsExtension
     {
-        public static TFunctionalOptions UseFunctionalDiagnostics<TFunctionalOptions>(this TFunctionalOptions options, bool alsoUseForDeeperDiagnostics = true)
+        public static TFunctionalOptions UseFunctionalDiagnostics<TFunctionalOptions>(this TFunctionalOptions options)
             where TFunctionalOptions : FunctionalOptions
         {
-            var extensions = new IFunctionalExtension[]
+            var extensions = new IExtension[]
             {
 
                 new DiagnosticsScriptParserExtension(options.ConfigurationRoot),
@@ -25,13 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 new ProfilingGraphContextExtension(options.ConfigurationRoot),
             };
 
-            options = options.Use(extensions);
-            if (alsoUseForDeeperDiagnostics)
-            {
-                options = options.UseLogicalDiagnostics();
-            }
-
-            return options;
+            return options.Use(extensions);
         }
     }
 }

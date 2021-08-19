@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "/Time";
             var script = _parser.Parse(query, scope).Script;
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= /Time",
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= /\"Time\"",
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -154,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location += {continent}",
@@ -182,7 +182,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -209,7 +209,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location += {continent}",

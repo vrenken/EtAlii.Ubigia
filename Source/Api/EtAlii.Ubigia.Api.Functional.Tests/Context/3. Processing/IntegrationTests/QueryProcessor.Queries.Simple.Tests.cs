@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             var (graphContext, traversalContext) = _testContext.CreateComponent<IGraphContext, ITraversalContext>(_options);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _options.Connection
+            await _options.LogicalContext.Options.Connection
                 .Close()
                 .ConfigureAwait(false);
             _options = null;
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Arrange.
 
             // Act.
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Assert.
             Assert.NotNull(processor);
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var query = _context.Parse(queryText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -167,7 +167,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -215,7 +215,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -248,7 +248,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -285,7 +285,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -320,7 +320,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor
@@ -367,7 +367,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
+            var processor = _testContext.CreateSchemaProcessor(_options.LogicalContext);
 
             // Act.
             var results = await processor

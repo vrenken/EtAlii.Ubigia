@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {

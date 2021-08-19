@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class SpaceConnectionOptionsDiagnosticsExtension
     {
         public static SpaceConnectionOptions UseTransportDiagnostics(this SpaceConnectionOptions options)

@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query, scope).Script;
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:time <= Time";
             var script = _parser.Parse(query, scope).Script;
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query, scope).Script;
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= Time";
             var script = _parser.Parse(query, scope).Script;
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
             var script = _parser.Parse(query, scope).Script;
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "root:projects <= Object";
             var script = _parser.Parse(query, scope).Script;

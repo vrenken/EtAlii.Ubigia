@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public static class InfrastructureOptionsUseInfrastructureDiagnostics

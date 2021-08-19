@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class ProfilingSchemaProcessorExtension : IFunctionalExtension
+    public class ProfilingSchemaProcessorExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
@@ -111,11 +112,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
+            var logicalOptions = new LogicalContextOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection);
+            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
-            var context = _testContext.CreateComponent<ITraversalContext>(options);
+            var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseLogicalContext(logicalContext);
+
+            var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 
             var addQueries = new[]
             {
@@ -157,11 +162,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
+            var logicalOptions = new LogicalContextOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection);
+            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
-            var context = _testContext.CreateComponent<ITraversalContext>(options);
+            var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseLogicalContext(logicalContext);
+
+            var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 
             var selectQuery = "<= /Person";
 

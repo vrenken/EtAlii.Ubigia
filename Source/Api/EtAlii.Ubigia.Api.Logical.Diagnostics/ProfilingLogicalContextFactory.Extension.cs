@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class ProfilingLogicalContextFactoryExtension
     {
         public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalContextOptions options)

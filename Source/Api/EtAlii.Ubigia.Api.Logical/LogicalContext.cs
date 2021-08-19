@@ -46,6 +46,7 @@ namespace EtAlii.Ubigia.Api.Logical
             if (disposing)
             {
                 // Dispose any relevant resources.
+                // Maybe the connection should be disposed here?
             }
 
         }

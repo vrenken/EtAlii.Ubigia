@@ -3,9 +3,11 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport;
     using Microsoft.Extensions.Configuration;
 
     public class LogicalTestContext : ILogicalTestContext
@@ -20,12 +22,29 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Fabric = fabric;
         }
 
-        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
+        public ILogicalContext CreateLogicalContextWithoutConnection()
+        {
+            var options = new LogicalContextOptions(ClientConfiguration)
+                .UseLogicalDiagnostics();
+
+            return new LogicalContextFactory().Create(options);
+        }
+
+        public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
         {
             var options = await new LogicalContextOptions(ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .UseDataConnectionToNewSpace(Fabric, openOnCreation)
                 .ConfigureAwait(false);
+
+            return new LogicalContextFactory().Create(options);
+        }
+
+        public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
+        {
+            var options = new LogicalContextOptions(ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .Use(dataConnection);
 
             return new LogicalContextFactory().Create(options);
         }

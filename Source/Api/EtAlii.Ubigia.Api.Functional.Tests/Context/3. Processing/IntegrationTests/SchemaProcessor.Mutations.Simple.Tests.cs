@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             var (graphContext, traversalContext) = _testContext.CreateComponent<IGraphContext, ITraversalContext>(_options);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _options.Connection
+            await _options.LogicalContext.Options.Connection
                 .Close()
                 .ConfigureAwait(false);
             _options = null;

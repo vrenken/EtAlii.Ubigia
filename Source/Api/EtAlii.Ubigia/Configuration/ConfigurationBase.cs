@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
@@ -15,7 +14,7 @@ namespace EtAlii.Ubigia
         /// <summary>
         /// The extensions added to this configuration.
         /// </summary>
-        protected IExtension[] Extensions { get; private set; }
+        public IExtension[] Extensions { get; private set; }
 
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
@@ -26,13 +25,6 @@ namespace EtAlii.Ubigia
         protected ConfigurationBase()
         {
             Extensions = Array.Empty<IExtension>();
-        }
-
-        /// <inheritdoc/>
-        public TExtension[] GetExtensions<TExtension>()
-            where TExtension : IExtension
-        {
-            return Extensions.OfType<TExtension>().ToArray();
         }
     }
 }

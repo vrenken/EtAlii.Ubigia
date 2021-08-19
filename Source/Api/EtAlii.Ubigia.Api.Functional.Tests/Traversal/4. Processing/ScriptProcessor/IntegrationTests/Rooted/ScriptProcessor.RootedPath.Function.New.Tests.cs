@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\n<= Person:Doe/John/Visits += new()";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new('Vacation')";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new(\"Vacation\")";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);

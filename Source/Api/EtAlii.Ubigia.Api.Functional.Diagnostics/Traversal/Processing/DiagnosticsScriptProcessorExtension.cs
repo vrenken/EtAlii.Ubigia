@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsScriptProcessorExtension : IFunctionalExtension
+    public class DiagnosticsScriptProcessorExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingPathParserExtension : IFunctionalExtension
+    public class ProfilingPathParserExtension : IExtension
     {
         public void Initialize(IRegisterOnlyContainer container)
         {

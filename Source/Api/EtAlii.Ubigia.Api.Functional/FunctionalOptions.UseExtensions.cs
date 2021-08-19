@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical;
 
     /// <summary>
     /// The UseExtensions class provides methods with which options specific settings can be added without losing the options type.
@@ -32,8 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public static TFunctionalOptions Use<TFunctionalOptions>(this TFunctionalOptions options, FunctionalOptions otherOptions)
             where TFunctionalOptions : FunctionalOptions
         {
-            // ReSharper disable once RedundantCast
-            options.Use((LogicalContextOptions)otherOptions); // This cast is needed!
+            //options.Use((LogicalContextOptions)otherOptions); // This cast is needed!
 
             var editableOptions = (IEditableFunctionalOptions) options;
 

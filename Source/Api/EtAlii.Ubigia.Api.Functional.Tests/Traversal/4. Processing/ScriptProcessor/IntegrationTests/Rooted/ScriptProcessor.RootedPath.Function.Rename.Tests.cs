@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John\r\n$path <= Person:Doe/John\r\nrename($path, 'Jane')";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John\r\n$path <= Person:Doe/John\r\nrename(Person:Doe/John, 'Jane')";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John\r\n$jane <= 'Jane'\r\n$path <= Person:Doe/John\r\nrename(Person:Doe/John, $jane)";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John\r\n$jane <= 'Jane'\r\n$path <= Person:Doe/John\r\nrename($path, $jane)";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);

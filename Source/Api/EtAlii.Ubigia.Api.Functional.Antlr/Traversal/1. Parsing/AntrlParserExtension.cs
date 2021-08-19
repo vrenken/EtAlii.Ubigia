@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntrlParserExtension : IFunctionalExtension
+    internal class AntrlParserExtension : IExtension
     {
         public void Initialize(IRegisterOnlyContainer container)
         {

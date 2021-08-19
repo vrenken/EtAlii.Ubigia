@@ -4,10 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class CommonFunctionalExtension : IFunctionalExtension
+    internal class CommonFunctionalExtension : IExtension
     {
         private readonly FunctionalOptions _options;
 
@@ -29,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
             container.Register(() => _options.ConfigurationRoot);
-            container.Register(() => new LogicalContextFactory().Create(_options));
+            container.Register(() => _options.LogicalContext);
             container.Register<IFunctionalOptions>(() => _options);
 
             container.Register<IGraphContext, GraphContext>();

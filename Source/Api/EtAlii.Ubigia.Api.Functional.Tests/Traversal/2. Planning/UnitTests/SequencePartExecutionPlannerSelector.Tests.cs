@@ -29,10 +29,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task SequenceExecutionPlanner_Create()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
 
             // Act.
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
@@ -46,10 +46,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner += Tanja", scope);
 
@@ -67,10 +67,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner += Tanja", scope);
 
@@ -88,10 +88,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner -= Tanja", scope);
 
@@ -110,10 +110,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= { Gender:'Female'}", scope);
 
@@ -131,10 +131,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2", scope);
 
@@ -152,10 +152,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2 --These are comments", scope);
 
@@ -173,10 +173,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner += Tanja", scope);
 
@@ -194,10 +194,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner -= NoOne", scope);
 
@@ -215,10 +215,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner -= NoOne --These are comments", scope);
 
@@ -236,10 +236,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("--These are comments", scope);
 
@@ -256,10 +256,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var sequencePartExecutionPlannerSelector = await TestSequencePartExecutionPlannerSelector
-                .Create(_testContext.Logical)
+            var sequencePartExecutionPlannerSelector = await _testContext
+                .CreateSequencePartExecutionPlannerSelector()
                 .ConfigureAwait(false);
-            var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
+            var executionPlanCombinerSelector = _testContext.CreateExecutionPlanCombinerSelector(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("--These are comments", scope);
 

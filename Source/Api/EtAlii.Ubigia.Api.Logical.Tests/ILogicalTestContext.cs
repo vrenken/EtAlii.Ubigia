@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -14,7 +15,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         IConfigurationRoot ClientConfiguration { get; }
         IConfigurationRoot HostConfiguration { get; }
 
-        Task<ILogicalContext> CreateLogicalContext(bool openOnCreation);
+        ILogicalContext CreateLogicalContextWithoutConnection();
+        Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation);
+        ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection);
+
         Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, params string[] hierarchy);
 
         Task<LocationAddResult> AddContinentCountry(ILogicalContext context);

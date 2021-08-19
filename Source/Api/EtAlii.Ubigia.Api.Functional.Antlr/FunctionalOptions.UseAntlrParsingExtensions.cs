@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+    using EtAlii.xTechnology.MicroContainer;
 
     public static class GraphContextOptionsUseAntlrParsingExtension
     {
@@ -15,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         public static TFunctionalOptions UseAntlrParsing<TFunctionalOptions>(this TFunctionalOptions options)
             where TFunctionalOptions : FunctionalOptions
         {
-            options.Use(new IFunctionalExtension[]
+            options.Use(new IExtension[]
             {
                 new AntrlParserExtension()
             });

@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
             var traversalContext = _testContext.CreateComponent<ITraversalContext>(_options);
@@ -52,7 +52,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _options.Connection.Close().ConfigureAwait(false);
+            await _options.LogicalContext.Options.Connection
+                .Close()
+                .ConfigureAwait(false);
             _options = null;
 
             _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));

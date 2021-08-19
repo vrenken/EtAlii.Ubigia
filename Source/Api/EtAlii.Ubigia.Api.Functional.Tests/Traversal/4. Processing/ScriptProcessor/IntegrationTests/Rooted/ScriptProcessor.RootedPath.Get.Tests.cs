@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
 
             const string query = "Time:";
             var script = _parser.Parse(query, scope).Script;
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= Time:",
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var continent = "Europe";
 
             using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var queries = new[]
             {
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var continent = "Europe";
 
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -165,7 +165,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var continent = "Europe";
 
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var continent = "Europe";
 
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -228,7 +228,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var continent = "Europe";
 
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -257,7 +257,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var continent = "Europe";
 
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -285,7 +285,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var continent = "Europe";
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"Location: += {continent}",
@@ -313,7 +313,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var now = DateTime.Now;
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "Time:+={0:yyyy}",
@@ -342,7 +342,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var now = DateTime.Now;
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= Time:{0:yyyy}{0:MM}{0:dd}{0:HH}{0:mm}{0:ss}{0:fff}",
@@ -371,7 +371,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var scope = new ExecutionScope();
             var past = DateTime.Now.Subtract(TimeSpan.FromSeconds(5));
             var now = DateTime.Now;
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "Time:{1:yyyy}{1:MM}{1:dd}{1:HH}{1:mm}{1:ss}{1:fff}", // This should not have any impact.
@@ -399,7 +399,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var now = DateTime.Now;
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "Time: += {0:yyyy}",
@@ -427,7 +427,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var now = DateTime.Now;
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "Time: += {0:yyyy}",

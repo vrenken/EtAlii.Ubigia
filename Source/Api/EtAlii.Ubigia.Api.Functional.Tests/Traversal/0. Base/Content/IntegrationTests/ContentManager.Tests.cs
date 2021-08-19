@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -185,7 +185,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -249,7 +249,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -284,7 +284,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
@@ -319,7 +319,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
-                .CreateLogicalContext(true)
+                .CreateLogicalContextWithConnection(true)
                 .ConfigureAwait(false);
             var root = await logicalContext.Roots
                 .Get("Hierarchy")
