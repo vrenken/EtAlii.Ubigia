@@ -5,10 +5,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
 
-    public static class LogicalTestContextUseDataConnectionToNewSpaceExtension
+    public static class LogicalOptionsUseDataConnectionToNewSpaceExtension
     {
-        public static async Task<TLogicalContextOptions> UseDataConnectionToNewSpace<TLogicalContextOptions>(this TLogicalContextOptions options, ILogicalTestContext testContext, bool openOnCreation)
-            where TLogicalContextOptions : LogicalContextOptions, ILogicalContextOptions
+        public static async Task<TLogicalOptions> UseDataConnectionToNewSpace<TLogicalOptions>(this TLogicalOptions options, ILogicalTestContext testContext, bool openOnCreation)
+            where TLogicalOptions : LogicalOptions, ILogicalOptions
         {
             var connection = await testContext.Fabric.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)
@@ -17,8 +17,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return options;
         }
 
-        public static async Task<TLogicalContextOptions> UseDataConnectionToNewSpace<TLogicalContextOptions>(this TLogicalContextOptions options, LogicalUnitTestContext unitTestContext, bool openOnCreation)
-            where TLogicalContextOptions : LogicalContextOptions, ILogicalContextOptions
+        public static async Task<TLogicalOptions> UseDataConnectionToNewSpace<TLogicalOptions>(this TLogicalOptions options, LogicalUnitTestContext unitTestContext, bool openOnCreation)
+            where TLogicalOptions : LogicalOptions, ILogicalOptions
         {
             var connection = await unitTestContext.Fabric.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)

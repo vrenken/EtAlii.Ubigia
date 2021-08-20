@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var configurationRoot = new ConfigurationBuilder()
                     .Build();
 
-                var logicalOptions = new LogicalContextOptions(configurationRoot);
+                var logicalOptions = new LogicalOptions(configurationRoot);
                 var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
                 var options = new FunctionalOptions(configurationRoot)

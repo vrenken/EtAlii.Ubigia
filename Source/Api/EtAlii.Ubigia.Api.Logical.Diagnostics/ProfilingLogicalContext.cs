@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         public IProfiler Profiler { get; }
 
-        public LogicalContextOptions Options => _decoree.Options;
+        public LogicalOptions Options => _decoree.Options;
         public ILogicalNodeSet Nodes => _decoree.Nodes;
         public ILogicalRootSet Roots => _decoree.Roots;
         public IContentManager Content => _decoree.Content;

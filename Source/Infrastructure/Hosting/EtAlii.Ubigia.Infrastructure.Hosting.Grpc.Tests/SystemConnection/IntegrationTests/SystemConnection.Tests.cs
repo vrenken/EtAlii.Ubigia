@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var logicalOptions = new LogicalContextOptions(_testContext.ClientConfiguration)
+            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection);
             var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var logicalOptions = new LogicalContextOptions(_testContext.ClientConfiguration)
+            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection);
             var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 

@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
-            var logicalOptions = new LogicalContextOptions(_configurationRoot)
+            var logicalOptions = new LogicalOptions(_configurationRoot)
                 .Use(spaceConnection)
                 .UseTraversalCaching(true);
             var logicalContext = new LogicalContextFactory().Create(logicalOptions);

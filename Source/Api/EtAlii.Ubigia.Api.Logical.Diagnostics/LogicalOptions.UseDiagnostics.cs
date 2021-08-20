@@ -5,10 +5,10 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
 
-    public static class LogicalContextDiagnosticsExtension
+    public static class LogicalOptionsUseDiagnosticsExtension
     {
-        public static TLogicalContextOptions UseLogicalDiagnostics<TLogicalContextOptions>(this TLogicalContextOptions options, bool alsoUseForDeeperDiagnostics = true)
-            where TLogicalContextOptions : LogicalContextOptions
+        public static TLogicalOptions UseLogicalDiagnostics<TLogicalOptions>(this TLogicalOptions options, bool alsoUseForDeeperDiagnostics = true)
+            where TLogicalOptions : LogicalOptions
         {
             var extensions = new ILogicalContextExtension[]
             {

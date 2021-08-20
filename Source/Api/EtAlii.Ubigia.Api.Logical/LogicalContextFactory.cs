@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class LogicalContextFactory : Factory<ILogicalContext, LogicalContextOptions, ILogicalContextExtension>
+    public class LogicalContextFactory : Factory<ILogicalContext, LogicalOptions, ILogicalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(LogicalContextOptions options)
+        protected override IScaffolding[] CreateScaffoldings(LogicalOptions options)
         {
             return new IScaffolding[]
             {

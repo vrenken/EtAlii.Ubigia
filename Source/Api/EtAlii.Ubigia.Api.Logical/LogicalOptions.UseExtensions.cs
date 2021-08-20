@@ -8,24 +8,24 @@ namespace EtAlii.Ubigia.Api.Logical
     /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing options type.
     /// This comes in very handy during the fluent method chaining involved.
     /// </summary>
-    public static class LogicalContextOptionsUseExtensions
+    public static class LogicalOptionsUseExtensions
     {
 
-        public static TLogicalContextOptions UseCaching<TLogicalContextOptions>(this TLogicalContextOptions options, bool cachingEnabled)
-            where TLogicalContextOptions: LogicalContextOptions
+        public static TLogicalOptions UseCaching<TLogicalOptions>(this TLogicalOptions options, bool cachingEnabled)
+            where TLogicalOptions: LogicalOptions
         {
-            ((IEditableLogicalContextOptions)options).CachingEnabled = cachingEnabled;
+            ((IEditableLogicalOptions)options).CachingEnabled = cachingEnabled;
             return options;
         }
 
 
-        public static TLogicalContextOptions Use<TLogicalContextOptions>(this TLogicalContextOptions options, LogicalContextOptions otherOptions)
-            where TLogicalContextOptions: LogicalContextOptions
+        public static TLogicalOptions Use<TLogicalOptions>(this TLogicalOptions options, LogicalOptions otherOptions)
+            where TLogicalOptions: LogicalOptions
         {
             // ReSharper disable once RedundantCast
             options.Use((FabricContextOptions)otherOptions); // This cast is needed!
 
-            ((IEditableLogicalContextOptions)options).CachingEnabled = otherOptions.CachingEnabled;
+            ((IEditableLogicalOptions)options).CachingEnabled = otherOptions.CachingEnabled;
             return options;
         }
     }

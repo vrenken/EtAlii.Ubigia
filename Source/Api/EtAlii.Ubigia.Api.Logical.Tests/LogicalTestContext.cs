@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public ILogicalContext CreateLogicalContextWithoutConnection()
         {
-            var options = new LogicalContextOptions(ClientConfiguration)
+            var options = new LogicalOptions(ClientConfiguration)
                 .UseLogicalDiagnostics();
 
             return new LogicalContextFactory().Create(options);
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
         {
-            var options = await new LogicalContextOptions(ClientConfiguration)
+            var options = await new LogicalOptions(ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .UseDataConnectionToNewSpace(Fabric, openOnCreation)
                 .ConfigureAwait(false);
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
         {
-            var options = new LogicalContextOptions(ClientConfiguration)
+            var options = new LogicalOptions(ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(dataConnection);
 

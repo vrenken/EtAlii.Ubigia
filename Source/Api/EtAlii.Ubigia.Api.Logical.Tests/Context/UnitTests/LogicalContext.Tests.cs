@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Create()
         {
             // Arrange.
-            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+            var options = await new LogicalOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Dispose()
         {
             // Arrange.
-            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+            var options = await new LogicalOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Create_Check_Components()
         {
             // Arrange.
-            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+            var options = await new LogicalOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
