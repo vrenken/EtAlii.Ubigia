@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
 
-            return new LogicalContextFactory().Create(options);
+            return Factory.Create<ILogicalContext>(options);
         }
 
         public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .UseDataConnectionToNewSpace(this, openOnCreation)
                 .ConfigureAwait(false);
 
-            return new LogicalContextFactory().Create(options);
+            return Factory.Create<ILogicalContext>(options);
         }
 
         public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
 
-            return new LogicalContextFactory().Create(options);
+            return Factory.Create<ILogicalContext>(options);
         }
 
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)

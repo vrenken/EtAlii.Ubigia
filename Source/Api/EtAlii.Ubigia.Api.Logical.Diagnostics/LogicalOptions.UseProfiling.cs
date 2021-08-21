@@ -4,16 +4,15 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public static class ProfilingLogicalContextFactoryExtension
+    public static class LogicalOptionsUseProfilingExtension
     {
-        public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalOptions options)
+        public static LogicalOptions UseProfiling(this LogicalOptions options)
         {
-            options.Use(new []
+            return options.Use(new []
             {
                 new ProfilingLogicalContextExtension(options.ConfigurationRoot),
             });
 
-            return (IProfilingLogicalContext)logicalContextFactory.Create(options);
         }
     }
 }

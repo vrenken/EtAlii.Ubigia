@@ -3,10 +3,9 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.MicroContainer;
 
     public abstract class InfrastructureUnitTestContextBase
     {
-        public T CreateComponent<T>(FunctionalOptions options) => Factory.Create<T, IExtension>(options);
+        public TInstance CreateComponent<TInstance>(FunctionalOptions options) => Factory.Create<TInstance>(options);
     }
 }

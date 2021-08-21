@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
-            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 
             // Functional.
             var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
-            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 
             // Functional.
             var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)

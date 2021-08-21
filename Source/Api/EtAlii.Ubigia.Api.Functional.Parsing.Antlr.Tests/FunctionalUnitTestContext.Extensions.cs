@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.xTechnology.MicroContainer;
 
     public static class FunctionalUnitTestContextExtensions
     {
@@ -18,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
                 .UseLogicalContext(context, true)
                 .ConfigureAwait(false);
 
-            return Factory.Create<TFirstInstance, TSecondInstance, IExtension>(options);
+            return Factory.Create<TFirstInstance, TSecondInstance>(options);
         }
 
         public static async Task<TInstance> CreateComponentOnNewSpace<TInstance>(this FunctionalUnitTestContext context)
@@ -28,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
                 .UseLogicalContext(context, true)
                 .ConfigureAwait(false);
 
-            return Factory.Create<TInstance, IExtension>(options);
+            return Factory.Create<TInstance>(options);
         }
 
         public static IScriptParser CreateScriptParser(this FunctionalUnitTestContext context)
@@ -38,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
                 .UseDiagnostics()
                 .UseLogicalContext(context);
 
-            return Factory.Create<IScriptParser, IExtension>(options);
+            return Factory.Create<IScriptParser>(options);
         }
 
         public static ISchemaParser CreateSchemaParser(this FunctionalUnitTestContext context)
@@ -48,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
                 .UseDiagnostics()
                 .UseLogicalContext(context);
 
-            return Factory.Create<ISchemaParser, IExtension>(options);
+            return Factory.Create<ISchemaParser>(options);
         }
     }
 }

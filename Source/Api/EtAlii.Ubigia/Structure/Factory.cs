@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia
 
     public static class Factory
     {
-        public static TInstance Create<TInstance, TExtension>(IExtensible options)
-            where TExtension : IExtension
+        public static TInstance Create<TInstance>(IExtensible options)
         {
             var container = new Container();
 
-            foreach (var extension in options.GetExtensions<TExtension>())
+            foreach (var extension in options.Extensions)
             {
                 extension.Initialize(container);
             }
@@ -19,12 +18,11 @@ namespace EtAlii.Ubigia
             return container.GetInstance<TInstance>();
         }
 
-        public static (TFirstInstance, TSecondInstance) Create<TFirstInstance, TSecondInstance, TExtension>(IExtensible options)
-            where TExtension : IExtension
+        public static (TFirstInstance, TSecondInstance) Create<TFirstInstance, TSecondInstance>(IExtensible options)
         {
             var container = new Container();
 
-            foreach (var extension in options.GetExtensions<TExtension>())
+            foreach (var extension in options.Extensions)
             {
                 extension.Initialize(container);
             }

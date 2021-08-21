@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Xunit;
 
@@ -44,10 +43,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Functional = null;
         }
 
-        public TInstance CreateComponent<TInstance>(FunctionalOptions options) => Factory.Create<TInstance, IExtension>(options);
+        public TInstance CreateComponent<TInstance>(FunctionalOptions options) => Factory.Create<TInstance>(options);
 
-        public (TFirstInstance, TSecondInstance) CreateComponent<TFirstInstance, TSecondInstance>(FunctionalOptions options) => Factory.Create<TFirstInstance, TSecondInstance, IExtension>(options);
+        public (TFirstInstance, TSecondInstance) CreateComponent<TFirstInstance, TSecondInstance>(FunctionalOptions options) => Factory.Create<TFirstInstance, TSecondInstance>(options);
 
-        public ISchemaProcessor CreateSchemaProcessor(FunctionalOptions options) => Factory.Create<ISchemaProcessor, IExtension>(options);
+        public ISchemaProcessor CreateSchemaProcessor(FunctionalOptions options) => Factory.Create<ISchemaProcessor>(options);
     }
 }

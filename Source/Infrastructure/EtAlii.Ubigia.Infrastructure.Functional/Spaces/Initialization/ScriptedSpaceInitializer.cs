@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Microsoft.Extensions.Configuration;
-    using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
     {
@@ -44,14 +43,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 .UseFabricContext(fabricContext)
                 .Use(fabricOptions)
                 .UseDiagnostics();
-            var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 
             // Functional.
             var functionalOptions = new FunctionalOptions(_configurationRoot)
                 .UseAntlrParsing()
                 .UseLogicalContext(logicalContext)
                 .UseDiagnostics();
-            var scriptContext = Factory.Create<ITraversalContext, IExtension>(functionalOptions);
+            var scriptContext = Factory.Create<ITraversalContext>(functionalOptions);
 
             var rootsToCreate = template.RootsToCreate;
 

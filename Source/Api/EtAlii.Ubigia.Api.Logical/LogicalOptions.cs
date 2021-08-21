@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             ConfigurationRoot = configurationRoot;
 
-            Extensions = Array.Empty<IExtension>();
+            Extensions = new IExtension[] { new CommonLogicalExtension(this) };
         }
 
         public LogicalOptions UseFabricContext(IFabricContext fabricContext)

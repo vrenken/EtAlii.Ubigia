@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -122,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var logicalOptions = new LogicalOptions(configurationRoot)
                     .UseFabricContext(fabricContext)
                     .UseDiagnostics();
-                var logicalContext = new LogicalContextFactory().Create(logicalOptions);
+                using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 
                 // Functional.
                 var options = new FunctionalOptions(configurationRoot)
@@ -130,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     .UseAntlrParsing()
                     .UseDiagnostics();
 
-                _schemaParser = Factory.Create<ISchemaParser, IExtension>(options);
+                _schemaParser = Factory.Create<ISchemaParser>(options);
             }
             catch (Exception e)
             {

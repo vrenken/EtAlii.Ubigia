@@ -34,11 +34,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var options = await new LogicalOptions(clientConfiguration)
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics()
+                .UseProfiling()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -62,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -85,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);

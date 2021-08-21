@@ -28,9 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
             ConfigurationRoot = configurationRoot;
             FunctionHandlersProvider = Traversal.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = Traversal.RootHandlerMappersProvider.Empty;
-            Extensions = Array.Empty<IExtension>();
-
-            this.Use(new IExtension[] { new CommonFunctionalExtension(this) });
+            Extensions = new IExtension[] { new CommonFunctionalExtension(this) };
         }
 
         public FunctionalOptions UseLogicalContext(ILogicalContext logicalContext)

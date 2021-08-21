@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            var context = new LogicalContextFactory().Create(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().Create(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            var context = new LogicalContextFactory().Create(options);
+            using var context = Factory.Create<ILogicalContext>(options);
 
             // Assert.
             Assert.NotNull(context);
