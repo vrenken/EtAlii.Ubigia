@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     {
         public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextOptions options)
         {
-            options.Use(new IFabricContextExtension[]
+            options.Use(new IExtension[]
             {
                 new LoggingFabricContextExtension(options.ConfigurationRoot),
                 new ProfilingFabricContextExtension(options.ConfigurationRoot),

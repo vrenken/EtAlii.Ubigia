@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Register(IRegisterOnlyContainer container)
         {
-            if (_options.InjectLogging) // logging is enabled.
+            if (_options?.InjectLogging ?? false) // logging is enabled.
             {
                 container.RegisterDecorator<IScriptParser, LoggingScriptParser>();
                 container.RegisterDecorator<IPathParser, LoggingPathParser>();

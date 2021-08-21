@@ -132,7 +132,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\ObservableExceptionAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\RootHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestFunctionHandler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\ParserOptions.UseTestParsing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">

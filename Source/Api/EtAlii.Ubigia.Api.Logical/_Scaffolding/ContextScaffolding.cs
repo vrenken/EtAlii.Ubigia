@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<ILogicalOptions>(() => _options);
             container.Register(() => _options.ConfigurationRoot);
 
-            container.Register(() => new FabricContextFactory().Create(_options));
+            container.Register(() => _options.FabricContext);
             container.Register<ILogicalNodeSet, LogicalNodeSet>();
             container.Register<ILogicalRootSet, LogicalRootSet>();
 

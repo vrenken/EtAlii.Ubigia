@@ -11,10 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         /// Add Antlr GCL/GTL parsing to the options.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TFunctionalOptions UseAntlrParsing<TFunctionalOptions>(this TFunctionalOptions options)
-            where TFunctionalOptions : FunctionalOptions
+        public static FunctionalOptions UseAntlrParsing(this FunctionalOptions options)
         {
             options.Use(new IExtension[]
             {

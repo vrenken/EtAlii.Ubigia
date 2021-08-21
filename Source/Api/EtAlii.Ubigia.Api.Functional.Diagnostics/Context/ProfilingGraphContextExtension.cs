@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectProfiling)
+            if (options?.InjectProfiling ?? false)
             {
                 container.RegisterDecorator<IGraphContext, ProfilingGraphContext>();
 

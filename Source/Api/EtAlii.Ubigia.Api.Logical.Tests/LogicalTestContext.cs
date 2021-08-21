@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
@@ -24,17 +25,27 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public ILogicalContext CreateLogicalContextWithoutConnection()
         {
+            var fabricOptions = new FabricContextOptions(ClientConfiguration)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = new LogicalOptions(ClientConfiguration)
-                .UseLogicalDiagnostics();
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
 
             return new LogicalContextFactory().Create(options);
         }
 
         public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
         {
+            var fabricOptions = new FabricContextOptions(ClientConfiguration)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = await new LogicalOptions(ClientConfiguration)
-                .UseLogicalDiagnostics()
-                .UseDataConnectionToNewSpace(Fabric, openOnCreation)
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics()
+                .UseDataConnectionToNewSpace(this, openOnCreation)
                 .ConfigureAwait(false);
 
             return new LogicalContextFactory().Create(options);
@@ -42,9 +53,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
         {
+            var fabricOptions = new FabricContextOptions(ClientConfiguration)
+                .Use(dataConnection)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = new LogicalOptions(ClientConfiguration)
-                .UseLogicalDiagnostics()
-                .Use(dataConnection);
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
 
             return new LogicalContextFactory().Create(options);
         }

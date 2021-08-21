@@ -18,6 +18,10 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// </summary>
         IConfigurationRoot ConfigurationRoot { get; }
 
-        bool TraversalCachingEnabled { get; }
+        /// <summary>
+        /// Set this property to true to enable client-side caching. It makes sure that the immutable entries
+        /// and relations are kept on the client.This reduces network traffic but requires more local memory.
+        /// </summary>
+        bool CachingEnabled { get; }
     }
 }

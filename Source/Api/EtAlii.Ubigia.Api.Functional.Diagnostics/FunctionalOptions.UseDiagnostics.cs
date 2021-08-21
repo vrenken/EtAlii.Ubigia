@@ -8,8 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public static class FunctionalOptionsUseDiagnosticsExtension
     {
-        public static TFunctionalOptions UseFunctionalDiagnostics<TFunctionalOptions>(this TFunctionalOptions options)
-            where TFunctionalOptions : FunctionalOptions
+        public static FunctionalOptions UseDiagnostics(this FunctionalOptions options)
         {
             var extensions = new IExtension[]
             {

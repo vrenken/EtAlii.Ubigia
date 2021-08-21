@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- TODO: This reference should not be in here -->
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />

@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class FabricContextFactory : Factory<IFabricContext, FabricContextOptions, IFabricContextExtension>
+    public class FabricContextFactory : Factory<IFabricContext, FabricContextOptions, IExtension>
     {
         protected override IScaffolding[] CreateScaffoldings(FabricContextOptions options)
         {
             return new IScaffolding[]
             {
                 new ContextScaffolding(options),
-                new EntryContextScaffolding(options.TraversalCachingEnabled),
-                new ContentContextScaffolding(options.TraversalCachingEnabled),
-                new PropertyContextScaffolding(options.TraversalCachingEnabled),
+                new EntryContextScaffolding(options.CachingEnabled),
+                new ContentContextScaffolding(options.CachingEnabled),
+                new PropertyContextScaffolding(options.CachingEnabled),
                 new RootContextScaffolding(),
             };
         }

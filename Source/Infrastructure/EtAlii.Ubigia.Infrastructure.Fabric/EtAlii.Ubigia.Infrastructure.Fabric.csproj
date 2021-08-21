@@ -6,10 +6,8 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Frameworks\HashLib\HashLib\HashLib.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj" />
   </ItemGroup>

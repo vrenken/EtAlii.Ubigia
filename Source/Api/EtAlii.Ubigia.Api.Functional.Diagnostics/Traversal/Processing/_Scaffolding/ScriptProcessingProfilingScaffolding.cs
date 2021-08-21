@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Register(IRegisterOnlyContainer container)
         {
-            if (_options.InjectProfiling) // profiling is enabled
+            if (_options?.InjectProfiling ?? false) // profiling is enabled
             {
                 container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
                 container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));

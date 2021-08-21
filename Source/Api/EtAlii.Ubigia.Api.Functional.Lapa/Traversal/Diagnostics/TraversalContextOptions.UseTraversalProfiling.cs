@@ -6,8 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public static class TraversalContextOptionsUseTraversalProfiling
     {
-        public static TFunctionalOptions UseTraversalProfiling<TFunctionalOptions>(this TFunctionalOptions options)
-            where TFunctionalOptions : IFunctionalOptions
+        public static FunctionalOptions UseTraversalProfiling(this FunctionalOptions options)
         {
             options.Use(new IExtension[]
             {

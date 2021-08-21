@@ -8,10 +8,9 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class FunctionalOptions : IFunctionalOptions, IEditableFunctionalOptions
+    public sealed class FunctionalOptions : IExtensible
     {
         public IConfigurationRoot ConfigurationRoot { get; }
-        public bool CachingEnabled { get; private set; }
 
         public ILogicalContext LogicalContext { get; private set; }
 
@@ -20,16 +19,13 @@ namespace EtAlii.Ubigia.Api.Functional
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
 
-        IFunctionHandlersProvider IEditableFunctionalOptions.FunctionHandlersProvider { get => FunctionHandlersProvider; set => FunctionHandlersProvider = value; }
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
-        IRootHandlerMappersProvider IEditableFunctionalOptions.RootHandlerMappersProvider { get => RootHandlerMappersProvider; set => RootHandlerMappersProvider = value; }
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
         public FunctionalOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            CachingEnabled = true;
             FunctionHandlersProvider = Traversal.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = Traversal.RootHandlerMappersProvider.Empty;
             Extensions = Array.Empty<IExtension>();
@@ -37,16 +33,31 @@ namespace EtAlii.Ubigia.Api.Functional
             this.Use(new IExtension[] { new CommonFunctionalExtension(this) });
         }
 
-
-        public FunctionalOptions UseCaching(bool cachingEnabled)
-        {
-            CachingEnabled = cachingEnabled;
-            return this;
-        }
-
         public FunctionalOptions UseLogicalContext(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext ?? throw new ArgumentException("No logical context specified", nameof(logicalContext));
+
+            return this;
+        }
+
+        public FunctionalOptions Use(IFunctionHandlersProvider functionHandlersProvider)
+        {
+            FunctionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, FunctionHandlersProvider.FunctionHandlers);
+
+            return this;
+        }
+
+        public FunctionalOptions Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
+        {
+            RootHandlerMappersProvider = rootHandlerMappersProvider;
+
+            return this;
+        }
+
+        public FunctionalOptions Use(FunctionalOptions otherOptions)
+        {
+            FunctionHandlersProvider = otherOptions.FunctionHandlersProvider;
+            RootHandlerMappersProvider = otherOptions.RootHandlerMappersProvider;
 
             return this;
         }

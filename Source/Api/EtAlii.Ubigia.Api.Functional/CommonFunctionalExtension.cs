@@ -29,7 +29,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
             container.Register(() => _options.ConfigurationRoot);
             container.Register(() => _options.LogicalContext);
-            container.Register<IFunctionalOptions>(() => _options);
 
             container.Register<IGraphContext, GraphContext>();
             container.Register<ITraversalContext, TraversalContext>();

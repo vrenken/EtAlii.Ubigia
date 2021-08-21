@@ -3,6 +3,8 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using Xunit;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Tests;
@@ -21,8 +23,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Create()
         {
             // Arrange.
+            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = await new LogicalOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics()
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -37,8 +44,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Dispose()
         {
             // Arrange.
+            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = await new LogicalOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics()
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -53,8 +65,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public async Task LogicalContext_Create_Check_Components()
         {
             // Arrange.
+            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
             var options = await new LogicalOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics()
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 

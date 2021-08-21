@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Register(IRegisterOnlyContainer container)
         {
-            if (_options.InjectDebugging) // debugging is enabled
+            if (_options?.InjectDebugging ?? false) // debugging is enabled
             {
                 // Add registrations needed for debugging.
             }

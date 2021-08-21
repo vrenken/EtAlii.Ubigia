@@ -44,10 +44,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Functional = null;
         }
 
-        public TInstance CreateComponent<TInstance>(IFunctionalOptions options) => Factory.Create<TInstance, IExtension>(options);
+        public TInstance CreateComponent<TInstance>(FunctionalOptions options) => Factory.Create<TInstance, IExtension>(options);
 
-        public (TFirstInstance, TSecondInstance) CreateComponent<TFirstInstance, TSecondInstance>(IFunctionalOptions options) => Factory.Create<TFirstInstance, TSecondInstance, IExtension>(options);
+        public (TFirstInstance, TSecondInstance) CreateComponent<TFirstInstance, TSecondInstance>(FunctionalOptions options) => Factory.Create<TFirstInstance, TSecondInstance, IExtension>(options);
 
-        public ISchemaProcessor CreateSchemaProcessor(IFunctionalOptions options) => Factory.Create<ISchemaProcessor, IExtension>(options);
+        public ISchemaProcessor CreateSchemaProcessor(FunctionalOptions options) => Factory.Create<ISchemaProcessor, IExtension>(options);
     }
 }

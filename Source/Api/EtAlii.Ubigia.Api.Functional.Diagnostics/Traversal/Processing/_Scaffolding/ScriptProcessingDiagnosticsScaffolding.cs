@@ -17,9 +17,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Register(IRegisterOnlyContainer container)
         {
-            if (_options.InjectDebugging ||
-                _options.InjectLogging ||
-                _options.InjectProfiling)
+            if ((_options?.InjectDebugging ?? false) ||
+                (_options?.InjectLogging ?? false) ||
+                (_options?.InjectProfiling ?? false))
             {
                 container.Register<IContextCorrelator, ContextCorrelator>();
             }

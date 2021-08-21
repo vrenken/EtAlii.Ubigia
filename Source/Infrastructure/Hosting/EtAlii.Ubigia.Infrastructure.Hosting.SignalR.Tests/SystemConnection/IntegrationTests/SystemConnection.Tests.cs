@@ -7,9 +7,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
@@ -91,18 +93,28 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
+            // Transport.
             var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
-
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
+            // Fabric.
+            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+                .Use(dataConnection)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
+            // Logical.
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .Use(dataConnection);
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
+            // Functional.
             var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseLogicalContext(logicalContext)
-                .UseTestParsing();
+                .UseTestParsing()
+                .UseDiagnostics();
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 
@@ -141,18 +153,28 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
+            // Transport.
             var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
-
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
+            // Fabric.
+            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+                .Use(dataConnection)
+                .UseDiagnostics();
+            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
+            // Logical.
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .Use(dataConnection);
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
+            // Functional.
             var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseLogicalContext(logicalContext)
-                .UseTestParsing();
+                .UseTestParsing()
+                .UseDiagnostics();
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 

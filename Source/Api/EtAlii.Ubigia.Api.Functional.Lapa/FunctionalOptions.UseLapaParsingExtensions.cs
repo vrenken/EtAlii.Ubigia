@@ -11,10 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional
         /// Add Lapa GCL/GTL parsing to the options.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TFunctionalOptions UseLapaParsing<TFunctionalOptions>(this TFunctionalOptions options)
-            where TFunctionalOptions : FunctionalOptions
+        public static FunctionalOptions UseLapaParsing(this FunctionalOptions options)
         {
             return options.Use(new IExtension[]
             {

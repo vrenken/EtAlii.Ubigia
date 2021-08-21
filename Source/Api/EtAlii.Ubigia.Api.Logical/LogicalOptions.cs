@@ -2,26 +2,37 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
+    using System;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     /// <summary>
     /// This are the options for a LogicalContext instance. It provides all settings and extensions
     ///to facilitate configurable logical graph querying and traversal.
     /// </summary>
-    public class LogicalOptions : FabricContextOptions, ILogicalOptions, IEditableLogicalOptions
+    public sealed class LogicalOptions : ILogicalOptions
     {
-        /// <summary>
-        /// Set this property to true to enable client-side caching. It makes sure that the immutable entries
-        /// and relations are kept on the client.This reduces network traffic but requires more local memory.
-        /// </summary>
-        bool IEditableLogicalOptions.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
-        public bool CachingEnabled { get; protected set; }
+        public IConfigurationRoot ConfigurationRoot { get; }
+
+        public IFabricContext FabricContext { get; private set; }
+
+        public IExtension[] Extensions { get; private set; }
+
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
 
         public LogicalOptions(IConfigurationRoot configurationRoot)
-            : base(configurationRoot)
         {
-            CachingEnabled = true;
+            ConfigurationRoot = configurationRoot;
+
+            Extensions = Array.Empty<IExtension>();
+        }
+
+        public LogicalOptions UseFabricContext(IFabricContext fabricContext)
+        {
+            FabricContext = fabricContext ?? throw new ArgumentException("No fabric context specified", nameof(fabricContext));
+            return this;
         }
     }
 }

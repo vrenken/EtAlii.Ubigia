@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseLapaParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(context);
 
             return Factory.Create<IScriptParser, IExtension>(options);
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseLapaParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(context);
 
             return Factory.Create<ISchemaParser, IExtension>(options);

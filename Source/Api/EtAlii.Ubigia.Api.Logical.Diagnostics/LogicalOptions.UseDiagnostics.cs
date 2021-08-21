@@ -3,23 +3,17 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
 
     public static class LogicalOptionsUseDiagnosticsExtension
     {
-        public static TLogicalOptions UseLogicalDiagnostics<TLogicalOptions>(this TLogicalOptions options, bool alsoUseForDeeperDiagnostics = true)
-            where TLogicalOptions : LogicalOptions
+        public static LogicalOptions UseDiagnostics(this LogicalOptions options)
         {
-            var extensions = new ILogicalContextExtension[]
+            var extensions = new []
             {
                 new DiagnosticsLogicalContextExtension(options.ConfigurationRoot),
             };
 
             options = options.Use(extensions);
-            if (alsoUseForDeeperDiagnostics)
-            {
-                options = options.UseFabricDiagnostics();
-            }
 
             return options;
         }

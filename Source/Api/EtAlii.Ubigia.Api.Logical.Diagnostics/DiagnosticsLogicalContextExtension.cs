@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsLogicalContextExtension : ILogicalContextExtension
+    public class DiagnosticsLogicalContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
                 .GetSection("Api:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectLogging)
+            if (options?.InjectLogging ?? false)
             {
                 // Doesn't this pattern break with the general scaffolding principles?
                 // More details can be found in the GitHub issue below:

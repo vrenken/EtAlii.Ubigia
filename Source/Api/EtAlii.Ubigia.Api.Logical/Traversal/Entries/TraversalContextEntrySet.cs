@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public TraversalContextEntrySet(IFabricContext context)
         {
             _context = context;
-            if (context.Options.TraversalCachingEnabled)
+            if (context.Options.CachingEnabled)
             {
                 _cachingEnabled = true;
                 _cache = new Dictionary<Identifier, IReadOnlyEntry>();

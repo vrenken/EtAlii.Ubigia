@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalOptions options)
         {
-            options.Use(new ILogicalContextExtension[]
+            options.Use(new []
             {
                 new ProfilingLogicalContextExtension(options.ConfigurationRoot),
             });

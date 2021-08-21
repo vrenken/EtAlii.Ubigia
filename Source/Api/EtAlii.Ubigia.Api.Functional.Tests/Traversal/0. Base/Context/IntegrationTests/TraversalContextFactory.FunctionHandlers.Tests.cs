@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);

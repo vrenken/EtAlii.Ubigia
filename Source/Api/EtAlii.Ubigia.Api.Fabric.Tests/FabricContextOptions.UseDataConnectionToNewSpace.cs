@@ -6,8 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
     public static class FabricTestContextUseDataConnectionToNewSpaceExtension
     {
-        public static async Task<TFabricContextOptions> UseDataConnectionToNewSpace<TFabricContextOptions>(this TFabricContextOptions options, FabricUnitTestContext unitTestContext, bool openOnCreation)
-            where TFabricContextOptions : FabricContextOptions
+        public static async Task<FabricContextOptions> UseDataConnectionToNewSpace(this FabricContextOptions options, FabricUnitTestContext unitTestContext, bool openOnCreation)
         {
             var connection = await unitTestContext.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)
@@ -16,8 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             return options;
         }
 
-        public static async Task<TFabricContextOptions> UseDataConnectionToNewSpace<TFabricContextOptions>(this TFabricContextOptions options, IFabricTestContext testContext, bool openOnCreation)
-            where TFabricContextOptions : FabricContextOptions
+        public static async Task<FabricContextOptions> UseDataConnectionToNewSpace(this FabricContextOptions options, IFabricTestContext testContext, bool openOnCreation)
         {
             var connection = await testContext.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)

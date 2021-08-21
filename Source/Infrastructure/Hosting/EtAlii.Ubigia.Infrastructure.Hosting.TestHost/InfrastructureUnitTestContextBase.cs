@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
     public abstract class InfrastructureUnitTestContextBase
     {
-        public T CreateComponent<T>(IFunctionalOptions options) => Factory.Create<T, IExtension>(options);
+        public T CreateComponent<T>(FunctionalOptions options) => Factory.Create<T, IExtension>(options);
     }
 }

@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _options.LogicalContext.Options.Connection
+            await _options.LogicalContext.Options.FabricContext.Options.Connection
                 .Close()
                 .ConfigureAwait(false);
             _options = null;
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(_options.LogicalContext);
             var processor = _testContext.CreateSchemaProcessor(options);
 

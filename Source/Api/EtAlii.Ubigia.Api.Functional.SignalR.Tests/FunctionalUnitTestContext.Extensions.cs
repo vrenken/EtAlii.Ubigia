@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(logicalContext);
 
             return Factory.Create<ISchemaProcessor, IExtension>(options);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(context);
 
             return Factory.Create<IScriptParser, IExtension>(options);
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(logicalContext);
 
             return Factory.Create<IScriptProcessor, IExtension>(options);
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var options = await new FunctionalOptions(context.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(context, true)
                 .ConfigureAwait(false);
 
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var options = new FunctionalOptions(context.ClientConfiguration)
                 .UseTestParsing()
-                .UseFunctionalDiagnostics()
+                .UseDiagnostics()
                 .UseLogicalContext(context);
 
 

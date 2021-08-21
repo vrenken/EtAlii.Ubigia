@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             var fabricContextOptions = new FabricContextOptions(ClientConfiguration)
                 .Use(connection)
-                .UseFabricDiagnostics();
+                .UseDiagnostics();
             return new FabricContextFactory().Create(fabricContextOptions);
         }
 

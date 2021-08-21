@@ -14,6 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
@@ -79,7 +81,9 @@
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" PrivateAssets="all">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
 
     <!--    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" PrivateAssets="all">-->
 <!--      <GeneratePathProperty>true</GeneratePathProperty>-->
@@ -99,9 +103,12 @@
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia\$(OutDir)\EtAlii.Ubigia.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Fabric\$(OutDir)\EtAlii.Ubigia.Api.Fabric.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical\$(OutDir)\EtAlii.Ubigia.Api.Logical.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Logical.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional\$(OutDir)\EtAlii.Ubigia.Api.Functional.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Functional.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Transport\$(OutDir)\EtAlii.Ubigia.Api.Transport.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Diagnostics\$(OutDir)\EtAlii.Ubigia.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\$(OutDir)\EtAlii.xTechnology.Threading.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\$(OutDir)\EtAlii.xTechnology.Diagnostics.dll" IncludeRuntimeDependency="false" />
@@ -121,8 +128,8 @@
 
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration)\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration_Binder)\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Primitives)\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll" IncludeRuntimeDependency="false" />
-
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />

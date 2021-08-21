@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectLogging)
+            if (options?.InjectLogging ?? false)
             {
                 // Register all logging related DI mappings.
             }

@@ -6,6 +6,5 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface ILogicalOptions : IExtensible
     {
-        bool CachingEnabled { get; }
     }
 }

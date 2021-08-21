@@ -8,8 +8,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
@@ -107,12 +109,26 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var configurationRoot = new ConfigurationBuilder()
                     .Build();
 
-                var logicalOptions = new LogicalOptions(configurationRoot);
+                _logger.Debug("Configuration root {configurationRoot}", configurationRoot);
+
+                // Fabric and logical layers are not really needed here.
+                // We just use the parsing capabilities in the functional layer.
+
+                // Fabric.
+                var fabricOptions = new FabricContextOptions(configurationRoot);
+                var fabricContext = new FabricContextFactory().Create(fabricOptions);
+
+                // Logical.
+                var logicalOptions = new LogicalOptions(configurationRoot)
+                    .UseFabricContext(fabricContext)
+                    .UseDiagnostics();
                 var logicalContext = new LogicalContextFactory().Create(logicalOptions);
 
+                // Functional.
                 var options = new FunctionalOptions(configurationRoot)
                     .UseLogicalContext(logicalContext)
-                    .UseAntlrParsing();
+                    .UseAntlrParsing()
+                    .UseDiagnostics();
 
                 _schemaParser = Factory.Create<ISchemaParser, IExtension>(options);
             }
