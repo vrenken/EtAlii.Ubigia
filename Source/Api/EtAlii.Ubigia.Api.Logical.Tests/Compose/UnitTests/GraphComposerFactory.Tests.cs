@@ -3,7 +3,9 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
     using EtAlii.Ubigia.Tests;
     using Microsoft.Extensions.Configuration;
@@ -15,12 +17,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public void GraphComposerFactory_New()
         {
             // Arrange.
-            IFabricContext fabric = null;
             var configurationRoot = new ConfigurationBuilder().Build();
 
-            var options = new GraphPathTraverserOptions(configurationRoot).Use(fabric);
-            var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var traverser = graphPathTraverserFactory.Create(options);
+            var fabricOptions = new FabricOptions(configurationRoot)
+                .UseDiagnostics();
+            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
+
+            var logicalOptions = new LogicalOptions(configurationRoot)
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
+            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
 
             // Act.
             var factory = new GraphComposerFactory(traverser);

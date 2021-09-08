@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
                 container.RegisterDecorator<ILogicalNodeSet, ProfilingLogicalNodeSet>();
                 container.RegisterDecorator<IContentManager, ProfilingContentManager>();
 
-                container.RegisterDecorator<IGraphPathTraverserFactory, ProfilingGraphPathTraverserFactory>();
+                container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
 
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Logical.Context));
             }

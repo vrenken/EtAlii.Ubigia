@@ -8,9 +8,10 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         public static LogicalOptions UseProfiling(this LogicalOptions options)
         {
-            return options.Use(new []
+            return options.Use(new IExtension[]
             {
                 new ProfilingLogicalContextExtension(options.ConfigurationRoot),
+                new ProfilingGraphPathTraverserExtension(),
             });
 
         }

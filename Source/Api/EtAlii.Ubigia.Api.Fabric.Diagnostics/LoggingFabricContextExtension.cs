@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
                 .GetSection("Api:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectLogging)
+            if (options?.InjectLogging ?? false)
             {
                 container.RegisterDecorator<IEntryContext, LoggingEntryContext>();
             }

@@ -23,21 +23,28 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _storeHandler.Handle(identifier, properties, scope).ConfigureAwait(false);
+            await _storeHandler
+                .Handle(identifier, properties, scope)
+                .ConfigureAwait(false);
         }
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            return await _retrieveHandler.Handle(identifier, scope).ConfigureAwait(false);
+            return await _retrieveHandler
+                .Handle(identifier, scope)
+                .ConfigureAwait(false);
         }
 
+        // TODO: These events should be converted into a true OO oriented pub-sub pattern.
         public event Action<Identifier> Stored = delegate { };
 
         private void OnStored(Identifier identifier)
         {
             var task = Task.Run(async () =>
             {
-                await _storeHandler.Handle(identifier).ConfigureAwait(false);
+                await _storeHandler
+                    .Handle(identifier)
+                    .ConfigureAwait(false);
             });
             task.Wait();
             Stored(identifier);

@@ -153,10 +153,6 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Analyzer</OutputItemType>
     </ProjectReference>
-    <!--<Content Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\$(OutDir)*.dll" OutputItemType="Analyzer" />-->
-    <!-- <Content Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\4. CodeGeneration\Build\*">
-        <Link>\%(Filename)%(Extension)</Link>
-      </Content>-->
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.props" />
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.targets" />

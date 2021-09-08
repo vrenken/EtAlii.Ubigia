@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     [CorrelateUnitTests]
     public class FabricContextContentTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
-        private IFabricContext _fabric;
+        private IFabricContext _fabricContext;
         private readonly FabricUnitTestContext _testContext;
 
         public FabricContextContentTests(FabricUnitTestContext testContext)
@@ -21,16 +21,16 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task InitializeAsync()
         {
             var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-            var fabricContextOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(connection)
                 .UseDiagnostics();
-            _fabric = new FabricContextFactory().Create(fabricContextOptions);
+            _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
         public Task DisposeAsync()
         {
-            _fabric.Dispose();
-            _fabric = null;
+            _fabricContext.Dispose();
+            _fabricContext = null;
             return Task.CompletedTask;
         }
 
@@ -39,12 +39,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabricContext.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create();
 
             // Act.
-            await _fabric.Content.Store(entry.Id, content).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, content).ConfigureAwait(false);
 
             // Assert.
             Assert.True(content.Stored);
@@ -55,23 +55,23 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabricContext.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
 
             var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(datas);
-            await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
+            await _fabricContext.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create(3);
             var contentParts = _testContext.TestContentFactory.CreateParts(datas);
 
             // Act.
-            await _fabric.Content.Store(entry.Id, content).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, content).ConfigureAwait(false);
             foreach (var contentPart in contentParts)
             {
-                await _fabric.Content.Store(entry.Id, contentPart).ConfigureAwait(false);
+                await _fabricContext.Content.Store(entry.Id, contentPart).ConfigureAwait(false);
             }
 
-            var retrievedContent = await _fabric.Content.Retrieve(entry.Id).ConfigureAwait(false);
+            var retrievedContent = await _fabricContext.Content.Retrieve(entry.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(content.TotalParts, retrievedContent.Summary.TotalParts);
@@ -83,34 +83,34 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabricContext.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(datas);
-            await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
+            await _fabricContext.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create(3);
             var contentPartFirst = _testContext.TestContentFactory.CreatePart(datas[0]);
             var contentPartSecond = _testContext.TestContentFactory.CreatePart(datas[1], 1);
             var contentPartThird = _testContext.TestContentFactory.CreatePart(datas[2], 2);
 
             // Act.
-            await _fabric.Content.Store(entry.Id, content).ConfigureAwait(false);
-            await _fabric.Content.Store(entry.Id, contentPartFirst).ConfigureAwait(false);
-            var retrievedContent = await _fabric.Content.Retrieve(entry.Id).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, content).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, contentPartFirst).ConfigureAwait(false);
+            var retrievedContent = await _fabricContext.Content.Retrieve(entry.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.False(retrievedContent.Summary.IsComplete);
 
             // Act.
-            await _fabric.Content.Store(entry.Id, contentPartSecond).ConfigureAwait(false);
-            retrievedContent = await _fabric.Content.Retrieve(entry.Id).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, contentPartSecond).ConfigureAwait(false);
+            retrievedContent = await _fabricContext.Content.Retrieve(entry.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.False(retrievedContent.Summary.IsComplete);
 
             // Act.
-            await _fabric.Content.Store(entry.Id, contentPartThird).ConfigureAwait(false);
-            retrievedContent = await _fabric.Content.Retrieve(entry.Id).ConfigureAwait(false);
+            await _fabricContext.Content.Store(entry.Id, contentPartThird).ConfigureAwait(false);
+            retrievedContent = await _fabricContext.Content.Retrieve(entry.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(content.TotalParts, retrievedContent.Summary.TotalParts);

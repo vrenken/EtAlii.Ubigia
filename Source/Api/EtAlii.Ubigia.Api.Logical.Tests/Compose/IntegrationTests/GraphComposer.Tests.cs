@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
@@ -20,12 +21,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task GraphComposer_Create()
         {
             // Arrange.
-            using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration).Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(options);
+            using var fabricContext = await _testContext.Fabric
+                .CreateFabricContext(true)
+                .ConfigureAwait(false);
+            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
+            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
 
             // Act.
-            var composer = new GraphComposerFactory(traverser).Create(fabric);
+            var composer = new GraphComposerFactory(traverser).Create(fabricContext);
 
             // Assert.
             Assert.NotNull(composer);

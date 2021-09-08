@@ -32,16 +32,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricContextOptions(_configurationRoot)
+            var fabricOptions = new FabricOptions(_configurationRoot)
                 .UseCaching(true)
                 .Use(spaceConnection)
                 .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
             // Logical.
             var logicalOptions = new LogicalOptions(_configurationRoot)
                 .UseFabricContext(fabricContext)
-                .Use(fabricOptions)
                 .UseDiagnostics();
             using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 

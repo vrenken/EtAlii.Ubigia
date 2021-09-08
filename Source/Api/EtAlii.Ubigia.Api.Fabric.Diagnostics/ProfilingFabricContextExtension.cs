@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
                 .GetSection("Api:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectProfiling)
+            if (options?.InjectProfiling ?? false)
             {
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
                 container.RegisterDecorator<IFabricContext, ProfilingFabricContext>();

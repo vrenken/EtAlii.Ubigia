@@ -25,44 +25,50 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public ILogicalContext CreateLogicalContextWithoutConnection()
         {
-            var fabricOptions = new FabricContextOptions(ClientConfiguration)
+            var fabricOptions = new FabricOptions(ClientConfiguration)
                 .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
+            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
+#pragma warning restore CA2000
 
-            var options = new LogicalOptions(ClientConfiguration)
+            var logicalOptions = new LogicalOptions(ClientConfiguration)
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
 
-            return Factory.Create<ILogicalContext>(options);
+            return Factory.Create<ILogicalContext>(logicalOptions);
         }
 
         public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
         {
-            var fabricOptions = new FabricContextOptions(ClientConfiguration)
-                .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
-
-            var options = await new LogicalOptions(ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var fabricOptions = await new FabricOptions(ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(this, openOnCreation)
                 .ConfigureAwait(false);
+#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
+            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
+#pragma warning restore CA2000
 
-            return Factory.Create<ILogicalContext>(options);
+            var logicalOptions = new LogicalOptions(ClientConfiguration)
+                .UseFabricContext(fabricContext)
+                .UseDiagnostics();
+
+            return Factory.Create<ILogicalContext>(logicalOptions);
         }
 
         public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
         {
-            var fabricOptions = new FabricContextOptions(ClientConfiguration)
+            var fabricOptions = new FabricOptions(ClientConfiguration)
                 .Use(dataConnection)
                 .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
+            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
+#pragma warning restore CA2000
 
-            var options = new LogicalOptions(ClientConfiguration)
+            var logicalOptions = new LogicalOptions(ClientConfiguration)
                 .UseFabricContext(fabricContext)
                 .UseDiagnostics();
 
-            return Factory.Create<ILogicalContext>(options);
+            return Factory.Create<ILogicalContext>(logicalOptions);
         }
 
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)

@@ -99,10 +99,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection)
                 .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
             // Logical.
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
@@ -158,10 +158,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection)
                 .UseDiagnostics();
-            var fabricContext = new FabricContextFactory().Create(fabricOptions);
+            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
             // Logical.
             var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)

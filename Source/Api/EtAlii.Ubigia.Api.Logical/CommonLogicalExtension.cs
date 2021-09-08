@@ -17,6 +17,8 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             new ContextScaffolding(_options).Register(container);
             new GraphScaffolding().Register(container);
+            new TraversalScaffolding().Register(container);
+            new TraversalContextScaffolding().Register(container);
         }
     }
 }

@@ -6,19 +6,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class TraversalScaffolding : IScaffolding
     {
-        private readonly IGraphPathTraverserOptions _options;
-        //private readonly bool _useParallelization = false
-
-        public TraversalScaffolding(IGraphPathTraverserOptions options)
-        {
-            _options = options;
-        }
-
         public void Register(IRegisterOnlyContainer container)
         {
-            container.Register(() => _options.FabricContext);
-            container.Register(() => _options.ConfigurationRoot);
-            container.Register<IGraphPathTraverser, GraphPathTraverser>();
+            //container.Register<IGraphPathTraverser, GraphPathTraverser>();
             container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 
             container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
@@ -60,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             container.Register<ITemporalGraphPathWeaver, TemporalGraphPathWeaver>();
 
-            container.Register<IPathTraversalContextFactory, PathTraversalContextFactory>();
+            container.Register<IPathTraversalContext, PathTraversalContext>();
         }
     }
 }

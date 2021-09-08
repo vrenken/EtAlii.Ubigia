@@ -32,6 +32,7 @@
         }
 
 
+        // TODO: I've seen this test fail. How can we make sure it won't fail sporadically?
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_Guid_ToString_ToGuid()
         {

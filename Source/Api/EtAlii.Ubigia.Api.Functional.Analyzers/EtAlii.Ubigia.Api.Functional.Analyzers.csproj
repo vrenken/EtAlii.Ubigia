@@ -102,6 +102,7 @@
     <ItemGroup>
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia\$(OutDir)\EtAlii.Ubigia.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Fabric\$(OutDir)\EtAlii.Ubigia.Api.Fabric.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Fabric.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Fabric.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical\$(OutDir)\EtAlii.Ubigia.Api.Logical.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Logical.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional\$(OutDir)\EtAlii.Ubigia.Api.Functional.dll" IncludeRuntimeDependency="false" />
@@ -133,8 +134,6 @@
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />
-
-
     </ItemGroup>
   </Target>
 </Project>

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsGraphPathTraverserExtension : IGraphPathTraverserExtension
+    public class DiagnosticsGraphPathTraverserExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
                 .GetSection("Api:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
-            if (options.InjectLogging)
+            if (options?.InjectLogging ?? false)
             {
                 // Do stuff...
             }

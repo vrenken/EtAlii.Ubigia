@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public static class FabricContextConfigurationUseDiagnostics
+    public static class FabricOptionsUseProfilingExtension
     {
-        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextOptions options)
+        public static FabricOptions UseProfiling(this FabricOptions options)
         {
             options.Use(new IExtension[]
             {
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
                 new ProfilingFabricContextExtension(options.ConfigurationRoot),
             });
 
-            return (IProfilingFabricContext)fabricContextFactory.Create(options);
+            return options;//(IProfilingFabricContext)fabricContextFactory.Create(options)
         }
     }
 }

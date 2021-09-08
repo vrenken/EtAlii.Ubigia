@@ -31,3 +31,16 @@ TODO
 nbgv prepare-release
 ```
 
+## Architecture Decision Log
+
+- **[< 2021] SOLID and DRY should be aimed for wherever pragmatically possible.**
+
+- **[< 2021] Strong separation between logic and state.**
+
+  TODO: Talk about the _Model folders.
+
+
+- **[< 2021] All unit tests will be structured according to the triple-A Arrange/Act/Assert pattern.**
+
+  TODO: elaborate
+

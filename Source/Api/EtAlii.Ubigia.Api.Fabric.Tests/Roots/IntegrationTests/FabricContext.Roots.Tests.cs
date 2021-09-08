@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     [CorrelateUnitTests]
     public sealed class FabricContextRootsTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
-        private IFabricContext _fabric;
+        private IFabricContext _fabricContext;
         private readonly FabricUnitTestContext _testContext;
 
         public FabricContextRootsTests(FabricUnitTestContext testContext)
@@ -24,16 +24,16 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task InitializeAsync()
         {
             var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-            var fabricContextOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(connection)
                 .UseDiagnostics();
-            _fabric = new FabricContextFactory().Create(fabricContextOptions);
+            _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
         public Task DisposeAsync()
         {
-            _fabric.Dispose();
-            _fabric = null;
+            _fabricContext.Dispose();
+            _fabricContext = null;
             return Task.CompletedTask;
         }
 
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -61,9 +61,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             // Act.
             var action = await ActionAssert
                 .RaisesAsync<Guid>(
-                m => _fabric.Roots.Added += m,
-                m => _fabric.Roots.Added -= m,
-                async () => root = await _fabric.Roots.Add(name).ConfigureAwait(false))
+                m => _fabricContext.Roots.Added += m,
+                m => _fabricContext.Roots.Added -= m,
+                async () => root = await _fabricContext.Roots.Add(name).ConfigureAwait(false))
                 .ConfigureAwait(false);
 
             // Assert.
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 var name = Guid.NewGuid().ToString();
 
                 // Act.
-                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+                var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(root);
@@ -95,10 +95,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
 
             // Act.
-            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -110,10 +110,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
 
             // Act.
-            root = await _fabric.Roots.Get(root.Name).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -127,10 +127,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
-                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+                var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
 
                 // Act.
-                root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+                root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(root);
@@ -146,7 +146,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
-                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+                var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
                 Assert.NotNull(root);
                 Assert.Equal(name, root.Name);
                 roots.Add(root);
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             foreach (var root in roots)
             {
                 // Act.
-                var retrievedRoot = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+                var retrievedRoot = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedRoot);
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             // Arrange.
 
             // Act.
-            var retrievedRoots = await _fabric.Roots
+            var retrievedRoots = await _fabricContext.Roots
                 .GetAll()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -187,14 +187,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             {
                 var name = Guid.NewGuid().ToString();
 
-                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+                var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
                 Assert.NotNull(root);
                 Assert.Equal(name, root.Name);
                 roots.Add(root);
             }
 
             // Act.
-            var retrievedRoots = await _fabric.Roots
+            var retrievedRoots = await _fabricContext.Roots
                 .GetAll()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -215,21 +215,21 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             // Arrange.
             var name = Guid.NewGuid().ToString();
 
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
             name = Guid.NewGuid().ToString();
 
             // Act.
-            root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Change(root.Id, name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
         }
@@ -240,15 +240,15 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
             name = Guid.NewGuid().ToString();
 
             // Act.
             var action = await ActionAssert
                 .RaisesAsync<Guid>(
-                    m => _fabric.Roots.Changed += m,
-                    m => _fabric.Roots.Changed -= m,
-                    async () => root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false))
+                    m => _fabricContext.Roots.Changed += m,
+                    m => _fabricContext.Roots.Changed -= m,
+                    async () => root = await _fabricContext.Roots.Change(root.Id, name).ConfigureAwait(false))
                 .ConfigureAwait(false);
 
             // Assert.
@@ -263,17 +263,17 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
 
             // Act.
-            await _fabric.Roots.Remove(root.Id).ConfigureAwait(false);
+            await _fabricContext.Roots.Remove(root.Id).ConfigureAwait(false);
 
             // Assert.
-            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.Null(root);
         }
 
@@ -302,7 +302,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Remove(id).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabricContext.Roots.Remove(id).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
@@ -316,7 +316,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Change(id, name).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabricContext.Roots.Change(id, name).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
@@ -408,11 +408,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Add(name).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabricContext.Roots.Add(name).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);

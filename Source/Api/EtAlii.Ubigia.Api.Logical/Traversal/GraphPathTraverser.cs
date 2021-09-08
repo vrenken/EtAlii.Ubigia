@@ -9,18 +9,18 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public class GraphPathTraverser : IGraphPathTraverser
     {
-        private readonly IPathTraversalContextFactory _pathTraversalContextFactory;
+        private readonly IPathTraversalContext _pathTraversalContext;
         private readonly IBreadthFirstTraversalAlgorithm _breadthFirstTraversalAlgorithm;
         private readonly IDepthFirstTraversalAlgorithm _depthFirstTraversalAlgorithm;
         private readonly ITemporalGraphPathWeaver _temporalGraphPathWeaver;
 
         public GraphPathTraverser(
-            IPathTraversalContextFactory pathTraversalContextFactory,
+            IPathTraversalContext pathTraversalContext,
             IBreadthFirstTraversalAlgorithm breadthFirstTraversalAlgorithm,
             IDepthFirstTraversalAlgorithm depthFirstTraversalAlgorithm,
             ITemporalGraphPathWeaver temporalGraphPathWeaver)
         {
-            _pathTraversalContextFactory = pathTraversalContextFactory;
+            _pathTraversalContext = pathTraversalContext;
             _breadthFirstTraversalAlgorithm = breadthFirstTraversalAlgorithm;
             _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
             _temporalGraphPathWeaver = temporalGraphPathWeaver;
@@ -43,18 +43,15 @@ namespace EtAlii.Ubigia.Api.Logical
                 path = _temporalGraphPathWeaver.Weave(path);
             }
 
-            // We want a traversal context per traverse action.
-            var context = _pathTraversalContextFactory.Create();
-
             var innerObservable = Observable.Create<Identifier>(async innerObserver =>
             {
                 var results = traversal switch
                 {
                     Traversal.DepthFirst => _depthFirstTraversalAlgorithm
-                        .Traverse(path, Identifier.Empty, context, scope)
+                        .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
                         .ConfigureAwait(false),
                     Traversal.BreadthFirst => _breadthFirstTraversalAlgorithm
-                        .Traverse(path, Identifier.Empty, context, scope)
+                        .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
                         .ConfigureAwait(false),
                     _ => throw new InvalidOperationException($"Traversal request not understood: {traversal}")
                 };
@@ -77,7 +74,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var entry = await context.Entries.Get(o, scope).ConfigureAwait(false);
+                    var entry = await _pathTraversalContext.Entries
+                        .Get(o, scope)
+                        .ConfigureAwait(false);
                     output.OnNext(entry);
                 });
         }

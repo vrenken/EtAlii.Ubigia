@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
     public static class FabricOptionsDiagnosticsExtension
     {
-        public static FabricContextOptions UseDiagnostics(this FabricContextOptions options)
+        public static FabricOptions UseDiagnostics(this FabricOptions options)
         {
             var extensions = new IExtension[]
             {

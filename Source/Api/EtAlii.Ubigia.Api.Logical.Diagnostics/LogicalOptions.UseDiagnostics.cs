@@ -8,8 +8,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         public static LogicalOptions UseDiagnostics(this LogicalOptions options)
         {
-            var extensions = new []
+            var extensions = new IExtension[]
             {
+                new DiagnosticsGraphPathTraverserExtension(options.ConfigurationRoot),
                 new DiagnosticsLogicalContextExtension(options.ConfigurationRoot),
             };
 

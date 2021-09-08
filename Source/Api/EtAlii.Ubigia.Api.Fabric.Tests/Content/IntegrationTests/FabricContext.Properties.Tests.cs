@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     [CorrelateUnitTests]
     public class FabricContextPropertiesTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
-        private IFabricContext _fabric;
+        private IFabricContext _fabricContext;
         private readonly FabricUnitTestContext _testContext;
 
         public FabricContextPropertiesTests(FabricUnitTestContext testContext)
@@ -20,16 +20,16 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task InitializeAsync()
         {
             var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-            var fabricContextOptions = new FabricContextOptions(_testContext.ClientConfiguration)
+            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(connection)
                 .UseDiagnostics();
-            _fabric = new FabricContextFactory().Create(fabricContextOptions);
+            _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
         public Task DisposeAsync()
         {
-            _fabric.Dispose();
-            _fabric = null;
+            _fabricContext.Dispose();
+            _fabricContext = null;
             return Task.CompletedTask;
         }
 
@@ -39,12 +39,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabricContext.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
-            await _fabric.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
+            await _fabricContext.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.True(properties.Stored);
@@ -55,13 +55,13 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
+            var root = await _fabricContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabricContext.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
-            await _fabric.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
+            await _fabricContext.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
 
             // Act.
-            var retrievedProperties = await _fabric.Properties.Retrieve(entry.Id, scope).ConfigureAwait(false);
+            var retrievedProperties = await _fabricContext.Properties.Retrieve(entry.Id, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));

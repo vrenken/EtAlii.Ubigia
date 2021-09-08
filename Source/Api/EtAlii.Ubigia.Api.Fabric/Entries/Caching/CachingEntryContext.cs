@@ -38,29 +38,38 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            return await _changeHandler.Handle(entry, scope).ConfigureAwait(false);
+            return await _changeHandler
+                .Handle(entry, scope)
+                .ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope)
         {
-            return await _getHandler.Handle(root.Identifier, scope).ConfigureAwait(false);
+            return await _getHandler
+                .Handle(root.Identifier, scope)
+                .ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier identifier, ExecutionScope scope)
         {
-            return await _getHandler.Handle(identifier, scope).ConfigureAwait(false);
+            return await _getHandler
+                .Handle(identifier, scope)
+                .ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            return _getHandler.Handle(identifiers, scope);
+            return _getHandler
+                .Handle(identifiers, scope);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
-            return _getRelatedHandler.Handle(identifier, relations, scope);
+            return _getRelatedHandler
+                .Handle(identifier, relations, scope);
         }
 
+        // TODO: These events should be converted into a true OO oriented pub-sub pattern.
         public event Action<Identifier> Prepared = delegate { };
         public event Action<Identifier> Stored = delegate { };
 

@@ -2,22 +2,21 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingGraphPathTraverserExtension : IGraphPathTraverserExtension
+    public class ProfilingGraphPathTraverserExtension : IExtension
     {
-        private readonly IProfiler _profiler;
-
-        public ProfilingGraphPathTraverserExtension(IProfiler profiler)
-        {
-            _profiler = profiler;
-        }
+        // private readonly IProfiler _profiler;
+        //
+        // public ProfilingGraphPathTraverserExtension(IProfiler profiler)
+        // {
+        //     _profiler = profiler;
+        // }
 
         public void Initialize(IRegisterOnlyContainer container)
         {
             container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
-            container.Register<IProfiler>(() => new Profiler(_profiler, ProfilingAspects.Logical.Traversal));
+            //container.Register<IProfiler>(() => new Profiler(_profiler, ProfilingAspects.Logical.Traversal));
 
             container.RegisterDecorator<ITemporalGraphPathWeaver, ProfilingTemporalGraphPathWeaver>();
 
