@@ -83,7 +83,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            var connection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
+            var connection = await systemConnection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -110,26 +112,24 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var spaceName = Guid.NewGuid().ToString();
 
             // Transport.
-            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
-            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            await _testContext.Host
+                .AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName })
+                .ConfigureAwait(false);
+            var dataConnection = await systemConnection
+                .OpenSpace(accountName, spaceName)
+                .ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
+            var functionalOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection)
-                .UseDiagnostics();
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            // Logical.
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-
-            // Functional.
-            var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseDiagnostics()
+                .UseLogicalContext() // Logical.
+                .UseDiagnostics()
+                .UseFunctionalContext() // Functional.
                 .UseTestParsing()
-                .UseLogicalContext(logicalContext)
                 .UseDiagnostics();
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
@@ -170,26 +170,24 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var spaceName = Guid.NewGuid().ToString();
 
             // Transport.
-            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
-            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            await _testContext.Host
+                .AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName })
+                .ConfigureAwait(false);
+            var dataConnection = await systemConnection
+                .OpenSpace(accountName, spaceName)
+                .ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
+            var functionalOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(dataConnection)
-                .UseDiagnostics();
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            // Logical.
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-
-            // Functional.
-            var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseDiagnostics()
+                .UseLogicalContext() // Logical.
+                .UseDiagnostics()
+                .UseFunctionalContext() // Functional.
                 .UseTestParsing()
-                .UseLogicalContext(logicalContext)
                 .UseDiagnostics();
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);

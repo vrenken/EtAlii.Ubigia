@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -16,7 +17,15 @@ namespace EtAlii.Ubigia
         /// </summary>
         public ClientCache Cache { get; } = new ();
 
-        private readonly Dictionary<string, Regex> _regexes = new();
+        public IDictionary<Identifier, PropertyDictionary> PropertyCache { get; } = new Dictionary<Identifier, PropertyDictionary>();
+
+        public IDictionary<string, Root> RootCache { get; } = new Dictionary<string, Root>();
+
+        public IDictionary<Identifier, IReadOnlyEntry> EntryCache { get; } = new Dictionary<Identifier, IReadOnlyEntry>();
+
+        public IDictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>> EntryRelationCache { get; } = new Dictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>>();
+
+        private readonly Dictionary<string, Regex> _regexes = new ();
 
         public Dictionary<string, ScopeVariable> Variables { get; } = new ();
 

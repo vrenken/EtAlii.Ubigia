@@ -25,8 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Host.CreateHandler);
 
 		    var options = new DataConnectionOptions(Host.ClientConfiguration)
-			    //.Use(SignalRTransportProvider.Create(signalRHttpClient))
-			    .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
+                .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
 			    .Use(address)
 			    .Use(accountName, spaceName, accountPassword)
 			    .UseTransportDiagnostics();
@@ -51,7 +50,6 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Host.CreateHandler);
 
 			var options = new DataConnectionOptions(Host.ClientConfiguration)
-	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
 	            .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
@@ -70,14 +68,12 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
         {
 	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Host.CreateHandler);
 
-			var options = new ManagementConnectionOptions(Host.ClientConfiguration)
-				//.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
-				//.Use(SignalRStorageTransportProvider.Create())
+			var connectionOptions = new ManagementConnectionOptions(Host.ClientConfiguration)
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
 				.Use(address)
                 .Use(account, password)
                 .UseTransportManagementDiagnostics();
-            var connection = new ManagementConnectionFactory().Create(options);
+            var connection = new ManagementConnectionFactory().Create(connectionOptions);
             if (openOnCreation)
             {
                 await connection.Open().ConfigureAwait(false);

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     {
         public static InfrastructureOptions UseInfrastructureDiagnostics(this InfrastructureOptions options)
         {
-            var extensions = new IInfrastructureExtension[]
+            var extensions = new IExtension[]
             {
                 new DiagnosticsInfrastructureExtension(options.ConfigurationRoot),
             };

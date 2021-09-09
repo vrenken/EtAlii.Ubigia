@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 onError: e => parameters.Output.OnError(e),
                 onNext: async _ =>
                 {
-                    var root = await parameters.Context.Roots.Get(rootName).ConfigureAwait(false);
+                    var root = await parameters.Context.Roots.Get(rootName, parameters.Scope).ConfigureAwait(false);
                     parameters.Output.OnNext(root.Identifier);
                     parameters.Output.OnCompleted();
                 },
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var rootStartNode = (GraphRootStartNode) part;
             var rootName = rootStartNode.Root;
-            var root = await context.Roots.Get(rootName).ConfigureAwait(false);
+            var root = await context.Roots.Get(rootName, scope).ConfigureAwait(false);
 
             yield return root.Identifier;
         }

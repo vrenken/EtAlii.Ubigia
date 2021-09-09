@@ -2,12 +2,18 @@
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
+    using System;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class StorageConnectionOptions : ConfigurationBase, IStorageConnectionOptions, IEditableStorageConnectionOptions
+    public class StorageConnectionOptions : IStorageConnectionOptions, IEditableStorageConnectionOptions
     {
         /// <inheritdoc />
         public IConfigurationRoot ConfigurationRoot { get; }
+
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         /// <inheritdoc />
         IStorageTransport IEditableStorageConnectionOptions.Transport { get => Transport; set => Transport = value; }
@@ -18,6 +24,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public StorageConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
+            _extensions = Array.Empty<IExtension>();
         }
     }
 }

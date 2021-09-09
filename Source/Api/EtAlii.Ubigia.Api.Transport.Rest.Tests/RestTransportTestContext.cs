@@ -68,12 +68,12 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
         {
 	        var client = Host.CreateRestInfrastructureClient();
 
-            var options = new ManagementConnectionOptions(Host.ClientConfiguration)
+            var connectionOptions = new ManagementConnectionOptions(Host.ClientConfiguration)
 	            .Use(RestStorageTransportProvider.Create(client))
                 .Use(address)
                 .Use(account, password)
                 .UseTransportManagementDiagnostics();
-            var connection = new ManagementConnectionFactory().Create(options);
+            var connection = new ManagementConnectionFactory().Create(connectionOptions);
             if (openOnCreation)
             {
                 await connection

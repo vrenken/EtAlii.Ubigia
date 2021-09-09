@@ -3,12 +3,17 @@
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class ManagementConnectionOptions : ConfigurationBase, IManagementConnectionOptions
+    public class ManagementConnectionOptions : IExtensible, IManagementConnectionOptions
     {
         /// <inheritdoc />
         public IConfigurationRoot ConfigurationRoot { get; }
+
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         /// <inheritdoc />
         public IStorageTransportProvider TransportProvider { get; private set; }
@@ -28,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public ManagementConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
+            _extensions = Array.Empty<IExtension>();
         }
 
         /// <inheritdoc />

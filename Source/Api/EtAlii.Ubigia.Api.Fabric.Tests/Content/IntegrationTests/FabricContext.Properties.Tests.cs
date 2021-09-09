@@ -19,7 +19,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
+            var connection = await _testContext.Transport
+                .CreateDataConnectionToNewSpace()
+                .ConfigureAwait(false);
+
             var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
                 .Use(connection)
                 .UseDiagnostics();

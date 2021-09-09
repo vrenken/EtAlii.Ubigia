@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <summary>
         /// The Options used to instantiate this DataConnection.
         /// </summary>
-        public IDataConnectionOptions Options { get; }
+        public DataConnectionOptions Options { get; }
 
         /// <inheritdoc />
         public Task Open()

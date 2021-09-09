@@ -2,8 +2,6 @@
 
 namespace EtAlii.xTechnology.MicroContainer
 {
-    using System.Linq;
-
     /// <summary>
     /// Use this interface to extend configurations, options etc.
     /// Don't use this outside .Use methods as else the user could get confused - The fluent builder pattern
@@ -15,16 +13,5 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Gets or sets the extensions assigned to the extensible instance.
         /// </summary>
         IExtension[] Extensions { get; set; }
-
-        /// <summary>
-        /// Returns the extensions of the type specified by TExtension.
-        /// </summary>
-        /// <typeparam name="TExtension"></typeparam>
-        /// <returns></returns>
-        TExtension[] GetExtensions<TExtension>()
-            where TExtension : IExtension
-        {
-            return Extensions.OfType<TExtension>().ToArray();
-        }
     }
 }

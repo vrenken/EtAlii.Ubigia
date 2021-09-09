@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class InfrastructureOptions : ConfigurationBase, IInfrastructureOptions, IEditableInfrastructureOptions
+    public class InfrastructureOptions : IExtensible, IInfrastructureOptions, IEditableInfrastructureOptions
     {
         /// <inheritdoc />
         public IConfigurationRoot ConfigurationRoot { get; }
@@ -17,6 +17,10 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         /// <inheritdoc />
         public ILogicalContext Logical { get; private set; }
+
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         /// <inheritdoc />
         string IEditableInfrastructureOptions.Name { get => Name; set => Name = value; }
@@ -44,6 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
+            _extensions = Array.Empty<IExtension>();
         }
     }
 }

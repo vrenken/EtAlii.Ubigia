@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     public class ProfilingFabricContext : IProfilingFabricContext
     {
         private readonly IFabricContext _decoree;
-        public IFabricContextOptions Options => _decoree.Options;
+        public FabricOptions Options => _decoree.Options;
         public IDataConnection Connection => _decoree.Connection;
         public IRootContext Roots => _decoree.Roots;
         public IEntryContext Entries => _decoree.Entries;

@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface ITraversalContextRootSet
     {
-        Task<Root> Get(string name);
+        Task<Root> Get(string name, ExecutionScope scope);
     }
 }

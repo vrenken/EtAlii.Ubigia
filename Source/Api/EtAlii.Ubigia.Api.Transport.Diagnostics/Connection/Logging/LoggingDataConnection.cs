@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         public bool IsConnected => _decoree.IsConnected;
 
         /// <inheritdoc />
-        public IDataConnectionOptions Options => _decoree.Options;
+        public DataConnectionOptions Options => _decoree.Options;
 
         /// <inheritdoc />
         public async Task Open()

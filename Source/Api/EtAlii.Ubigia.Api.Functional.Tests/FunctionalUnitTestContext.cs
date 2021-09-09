@@ -2,9 +2,11 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using Microsoft.Extensions.Configuration;
@@ -41,6 +43,24 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             await Functional.Stop().ConfigureAwait(false);
             Functional = null;
+        }
+
+        public async Task<Root> GetRoot(LogicalOptions logicalOptions, string rootName)
+        {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+
+            return await logicalContext.Roots.GetAll()
+                .SingleOrDefaultAsync(r => r.Name == rootName)
+                .ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyEntry> GetEntry(LogicalOptions logicalOptions, Identifier identifier, ExecutionScope scope)
+        {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+
+            return await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(identifier), scope)
+                .ConfigureAwait(false);
         }
 
         public TInstance CreateComponent<TInstance>(FunctionalOptions options) => Factory.Create<TInstance>(options);

@@ -23,11 +23,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
 
             const string query = "root:time <= ";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             const string arrangeQuery = "root:time <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery, scope).Script;
             var lastSequence = await processor.Process(arrangeScript, scope);
@@ -48,11 +50,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
 
             const string query = "root:specialtime <= ";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             const string arrangeQuery = "root:specialtime <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery, scope).Script;
             var lastSequence = await processor.Process(arrangeScript, scope);
@@ -73,11 +77,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
 
             const string query = "root:projects <= ";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             const string arrangeQuery = "root:projects <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery, scope).Script;
             var lastSequence = await processor.Process(arrangeScript, scope);

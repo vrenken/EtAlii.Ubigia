@@ -22,14 +22,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             Transport = transport;
         }
-
-        public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
+        
+        public async Task<FabricOptions> CreateFabricOptions(bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             var fabricOptions = new FabricOptions(ClientConfiguration)
                 .Use(connection)
                 .UseDiagnostics();
-            return Factory.Create<IFabricContext>(fabricOptions);
+            return fabricOptions;
         }
 
         public async Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth)//, out string[] hierarchy)

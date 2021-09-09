@@ -18,13 +18,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope();
-            using var fabricContext = await _testContext.Fabric
-                .CreateFabricContext(true)
+            var fabricOptions = await _testContext.Fabric
+                .CreateFabricOptions(true)
                 .ConfigureAwait(false);
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
             var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+            var fabricContext = logicalOptions.FabricContext;
             var composer = new GraphComposerFactory(traverser).Create(fabricContext);
 
             var communicationsRoot = await fabricContext.Roots.Get("Communication").ConfigureAwait(false);
@@ -81,10 +82,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope();
-            using var fabricContext = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseDiagnostics()
-                .UseFabricContext(fabricContext);
+            var fabricOptions = await _testContext.Fabric
+                .CreateFabricOptions(true)
+                .ConfigureAwait(false);
+
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
+                .UseDiagnostics();
+            var fabricContext = logicalOptions.FabricContext;
             var graphPathTraverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabricContext);
 
@@ -117,11 +122,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope();
-            using var fabricContext = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var fabricOptions = await _testContext.Fabric
+                .CreateFabricOptions(true)
+                .ConfigureAwait(false);
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
             var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+            var fabricContext = logicalOptions.FabricContext;
             var composer = new GraphComposerFactory(traverser).Create(fabricContext);
 
             var communicationsRoot = await fabricContext.Roots.Get("Communication").ConfigureAwait(false);

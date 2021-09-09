@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class FabricContextDiagnosticsExtension : IFabricContextExtension
+    public class FabricContextDiagnosticsExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

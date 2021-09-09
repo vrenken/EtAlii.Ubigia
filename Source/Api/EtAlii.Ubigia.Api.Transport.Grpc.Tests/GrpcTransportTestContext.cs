@@ -78,12 +78,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
         {
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
-            var options = new ManagementConnectionOptions(Host.ClientConfiguration)
+            var connectionOptions = new ManagementConnectionOptions(Host.ClientConfiguration)
 				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory, contextCorrelator))
 				.Use(address)
                 .Use(account, password)
                 .UseTransportManagementDiagnostics();
-            var connection = new ManagementConnectionFactory().Create(options);
+            var connection = new ManagementConnectionFactory().Create(connectionOptions);
             if (openOnCreation)
             {
                 await connection.Open().ConfigureAwait(false);

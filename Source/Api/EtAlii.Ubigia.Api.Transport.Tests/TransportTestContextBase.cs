@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         private readonly IHostTestContextFactory _testHostFactory;
         private readonly IContextCorrelator _contextCorrelator;
 
-        protected TransportTestContextBase()//IHostTestContextFactory testHostFactory)
+        protected TransportTestContextBase()
         {
             _testHostFactory = new HostTestContextFactory();
             _contextCorrelator = new ContextCorrelator();
@@ -35,10 +35,6 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         public Task<IDataConnection> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
         {
             return CreateDataConnectionToNewSpace(Host.ServiceDetails.DataAddress, accountName, accountPassword, openOnCreation, _contextCorrelator, spaceTemplate);
-        }
-        public Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
-        {
-            return CreateDataConnectionToNewSpace(address, accountName, accountPassword, openOnCreation, _contextCorrelator, spaceTemplate);
         }
 
         protected abstract Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, IContextCorrelator contextCorrelator, SpaceTemplate spaceTemplate = null);

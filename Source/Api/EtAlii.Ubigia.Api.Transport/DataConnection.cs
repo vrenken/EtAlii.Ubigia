@@ -30,14 +30,14 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <summary>
         /// The Options used to instantiate this DataConnection.
         /// </summary>
-        public IDataConnectionOptions Options { get; }
+        public DataConnectionOptions Options { get; }
 
         /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
 
         private ISpaceConnection _connection;
 
-        public DataConnection(IDataConnectionOptions options)
+        public DataConnection(DataConnectionOptions options)
         {
             Options = options;
         }

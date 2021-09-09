@@ -8,19 +8,19 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     {
         public static FunctionalOptions UseLogicalContext(this FunctionalOptions options, FunctionalUnitTestContext context)
         {
-            var logicalContext = context.Logical
-                .CreateLogicalContextWithoutConnection();
+            var logicalOptions = context.Logical
+                .CreateLogicalOptionsWithoutConnection();
 
-            return options.UseLogicalContext(logicalContext);
+            return options.UseLogicalOptions(logicalOptions);
         }
 
         public static async Task<FunctionalOptions> UseLogicalContext(this FunctionalOptions options, FunctionalUnitTestContext context, bool openOnCreation)
         {
-            var logicalContext = await context.Logical
-                .CreateLogicalContextWithConnection(openOnCreation)
+            var logicalOptions = await context.Logical
+                .CreateLogicalOptionsWithConnection(openOnCreation)
                 .ConfigureAwait(false);
 
-            return options.UseLogicalContext(logicalContext);
+            return options.UseLogicalOptions(logicalOptions);
         }
     }
 }

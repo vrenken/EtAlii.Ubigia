@@ -7,23 +7,25 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     internal class ContextScaffolding : IScaffolding
     {
-        private readonly IFabricContextOptions _options;
+        private readonly FabricOptions _options;
 
-        public ContextScaffolding(IFabricContextOptions options)
+        public ContextScaffolding(FabricOptions options)
         {
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
-// #if DEBUG
-//             if [_options.Connection eq null]
-//             [
-//                 throw new InvalidOperationException["No Connection provided"]
-//             ]
-// #endif
-            container.Register<IFabricContext, FabricContext>();
-            container.Register(() => _options);
+            container.Register<IFabricContext>(serviceCollection =>
+            {
+                var entryContext = serviceCollection.GetInstance<IEntryContext>();
+                var rootContext = serviceCollection.GetInstance<IRootContext>();
+                var contentContext = serviceCollection.GetInstance<IContentContext>();
+                var dataConnection = serviceCollection.GetInstance<IDataConnection>();
+                var propertiesContext = serviceCollection.GetInstance<IPropertiesContext>();
+
+                return new FabricContext(_options, entryContext, rootContext, contentContext, dataConnection, propertiesContext);
+            });
             container.Register(() => _options.ConfigurationRoot);
 
             // We want to be able to instantiate parts of the DI hierarchy also without a connection.

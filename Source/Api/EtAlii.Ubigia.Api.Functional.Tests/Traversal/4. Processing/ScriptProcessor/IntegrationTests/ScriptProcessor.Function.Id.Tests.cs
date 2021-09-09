@@ -37,10 +37,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id('First') <= /Time";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -59,10 +59,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id('First', 'Second') <= /Time";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -79,10 +79,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id($path, 'First', 'Second')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -100,10 +100,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id($path, 'First')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -121,10 +121,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id(\"/Hierarchy\", 'First', 'Second')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -141,10 +141,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id(\"/Hierarchy\", 'First')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -161,10 +161,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id('/Hierarchy', 'First', 'Second')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.
@@ -181,10 +181,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             const string text = "id('/Hierarchy', 'First')";
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
             var parseResult = _parser.Parse(text, scope);
 
             // Act.

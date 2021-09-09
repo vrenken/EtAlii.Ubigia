@@ -3,10 +3,9 @@
 namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public interface IInfrastructureOptions : IExtensible
+    public interface IInfrastructureOptions
     {
         /// <summary>
         /// The host configuration root instance for the current application.

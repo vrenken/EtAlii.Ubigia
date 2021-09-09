@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in options.GetExtensions<ISystemConnectionExtension>())
+            foreach (var extension in ((IExtensible)options).Extensions)
             {
                 extension.Initialize(container);
             }

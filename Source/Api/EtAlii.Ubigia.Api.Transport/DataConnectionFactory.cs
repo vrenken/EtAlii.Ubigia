@@ -6,13 +6,13 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public sealed class DataConnectionFactory
     {
-        public IDataConnection Create(IDataConnectionOptions options)
+        public IDataConnection Create(DataConnectionOptions options)
         {
             var factoryMethod = options.FactoryExtension ?? (() => CreateInternal(options));
             return factoryMethod();
         }
 
-        private IDataConnection CreateInternal(IDataConnectionOptions options)
+        private IDataConnection CreateInternal(DataConnectionOptions options)
         {
             var hasTransportProvider = options.TransportProvider != null;
             if (!hasTransportProvider)
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in options.GetExtensions<IDataConnectionExtension>())
+            foreach (var extension in ((IExtensible)options).Extensions)
             {
                 extension.Initialize(container);
             }

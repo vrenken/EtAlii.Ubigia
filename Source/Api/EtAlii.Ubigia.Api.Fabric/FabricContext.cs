@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Fabric
     public class FabricContext : IFabricContext
     {
         /// <inheritdoc/>
-        public IFabricContextOptions Options { get; }
+        public FabricOptions Options { get; }
 
         /// <inheritdoc/>
         public IDataConnection Connection { get; }
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         public IPropertiesContext Properties { get; }
 
         public FabricContext(
-            IFabricContextOptions options,
+            FabricOptions options,
             IEntryContext entries,
             IRootContext roots,
             IContentContext content,

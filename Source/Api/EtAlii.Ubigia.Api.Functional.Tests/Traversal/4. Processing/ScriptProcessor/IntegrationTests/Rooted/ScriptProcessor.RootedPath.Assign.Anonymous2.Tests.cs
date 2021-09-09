@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person" }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -72,8 +72,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -120,8 +120,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person", Code = "ABC" }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -170,8 +170,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -189,7 +189,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person", Code = "ABC" }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -219,8 +219,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -238,7 +238,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -269,8 +269,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -288,7 +288,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family", }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -320,8 +320,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -339,7 +339,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = (string)null, Code = (string)null }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = (string)null, Code = (string)null }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -372,8 +372,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -391,7 +391,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "TEST", Code = (string)null }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "TEST", Code = (string)null }, "Variable"));
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();

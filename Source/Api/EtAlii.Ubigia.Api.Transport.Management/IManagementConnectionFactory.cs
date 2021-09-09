@@ -2,8 +2,11 @@
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
+    using System;
+
+    [Obsolete]
     public interface IManagementConnectionFactory
     {
-        IManagementConnection Create(IManagementConnectionOptions options);
+        IManagementConnection Create(ManagementConnectionOptions options);
     }
 }

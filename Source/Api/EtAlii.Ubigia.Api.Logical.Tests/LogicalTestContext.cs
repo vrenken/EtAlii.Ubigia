@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport;
     using Microsoft.Extensions.Configuration;
 
     public class LogicalTestContext : ILogicalTestContext
@@ -23,56 +22,32 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Fabric = fabric;
         }
 
-        public ILogicalContext CreateLogicalContextWithoutConnection()
+        public LogicalOptions CreateLogicalOptionsWithoutConnection()
         {
-            var fabricOptions = new FabricOptions(ClientConfiguration)
+            return new FabricOptions(ClientConfiguration)
+                .UseDiagnostics()
+                .UseLogicalContext()
                 .UseDiagnostics();
-#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
-            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-#pragma warning restore CA2000
-
-            var logicalOptions = new LogicalOptions(ClientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-
-            return Factory.Create<ILogicalContext>(logicalOptions);
         }
 
-        public async Task<ILogicalContext> CreateLogicalContextWithConnection(bool openOnCreation)
+        public async Task<LogicalOptions> CreateLogicalOptionsWithConnection(bool openOnCreation)
         {
             var fabricOptions = await new FabricOptions(ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(this, openOnCreation)
                 .ConfigureAwait(false);
-#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
-            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-#pragma warning restore CA2000
 
-            var logicalOptions = new LogicalOptions(ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
 
-            return Factory.Create<ILogicalContext>(logicalOptions);
+            return logicalOptions;
         }
 
-        public ILogicalContext CreateLogicalContextWithConnection(IDataConnection dataConnection)
+        public async Task<LocationAddResult> AddContinentCountry(LogicalOptions logicalOptions)
         {
-            var fabricOptions = new FabricOptions(ClientConfiguration)
-                .Use(dataConnection)
-                .UseDiagnostics();
-#pragma warning disable CA2000 // The fabric context is consumed by the other context instances.
-            var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-#pragma warning restore CA2000
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 
-            var logicalOptions = new LogicalOptions(ClientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-
-            return Factory.Create<ILogicalContext>(logicalOptions);
-        }
-
-        public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)
-        {
             var scope = new ExecutionScope();
             // Root.
             // Location.
@@ -81,19 +56,21 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // [LINK]
             // mm
 
-            var locationRoot = await context.Roots.Get("Location").ConfigureAwait(false);
+            var locationRoot = await logicalContext.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
 
-            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
-            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
+            var continentEntry = await logicalContext.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
+            var countryEntry = (IEditableEntry)await logicalContext.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
             var path = $"/Location/{continent}/{country}";
             return new LocationAddResult(path, countryEntry);
         }
 
-        public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
+        public async Task<string> AddContinentCountryRegionCityLocation(LogicalOptions logicalOptions)
         {
-            var locationRoot = await context.Roots.Get("Location").ConfigureAwait(false);
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+
+            var locationRoot = await logicalContext.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -102,26 +79,35 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var scope = new ExecutionScope();
 
-            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
-            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
-            var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope).ConfigureAwait(false);
-            var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope).ConfigureAwait(false);
-            await context.Nodes.Add(cityEntry.Id, location, scope).ConfigureAwait(false);
+            var continentEntry = await logicalContext.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
+            var countryEntry = (IEditableEntry)await logicalContext.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
+            var regionEntry = (IEditableEntry)await logicalContext.Nodes.Add(countryEntry.Id, region, scope).ConfigureAwait(false);
+            var cityEntry = (IEditableEntry)await logicalContext.Nodes.Add(regionEntry.Id, city, scope).ConfigureAwait(false);
+            await logicalContext.Nodes.Add(cityEntry.Id, location, scope).ConfigureAwait(false);
             return $"/Location/{continent}/{country}/{region}/{city}/{location}";
         }
 
-        public async Task AddRegions(ILogicalContext context, IEditableEntry countryEntry, int regions)
+        public async Task AddRegions(LogicalOptions logicalOptions, IEditableEntry countryEntry, int regions)
         {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+            var scope = new ExecutionScope();
+
             for (var i = 1; i <= regions; i++)
             {
-                await CreateHierarchy(context, countryEntry, $"Overijssel_{i:00}").ConfigureAwait(false);
+                await CreateHierarchy(logicalContext, countryEntry, scope, $"Overijssel_{i:00}").ConfigureAwait(false);
             }
         }
 
-        public async Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, params string[] hierarchy)
+        public Task<IEditableEntry> CreateHierarchy(LogicalOptions logicalOptions, IEditableEntry parent, params string[] hierarchy)
         {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
             var scope = new ExecutionScope();
 
+            return CreateHierarchy(logicalContext, parent, scope, hierarchy);
+        }
+
+        private async Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, ExecutionScope scope, params string[] hierarchy)
+        {
             var result = parent;
             foreach (var element in hierarchy)
             {

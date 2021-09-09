@@ -7,9 +7,8 @@ namespace EtAlii.xTechnology.MicroContainer
 
     public static class ExtensibleUseExtension
     {
-        public static TExtensible Use<TExtensible, TExtension>(this TExtensible extensible, TExtension[] extensions)
+        public static TExtensible Use<TExtensible>(this TExtensible extensible, IExtension[] extensions)
             where TExtensible: IExtensible
-            where TExtension : IExtension
         {
             if (extensions == null)
             {
@@ -17,7 +16,7 @@ namespace EtAlii.xTechnology.MicroContainer
             }
 
             extensible.Extensions = extensible.Extensions
-                .Concat(extensions.Cast<IExtension>()) // TODO: This cast feels not needed.
+                .Concat(extensions)
                 .Distinct()
                 .ToArray();
             return extensible;

@@ -4,20 +4,33 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Fabric;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LogicalContextOptions : ConfigurationBase, ILogicalContextOptions
+    public class LogicalContextOptions : IExtensible, ILogicalContextOptions
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The host configuration root that will be used to configure the logical context.
+        /// </summary>
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The fabric that should be used by the logical context.
+        /// </summary>
         public IFabricContext Fabric { get; private set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
+
+        /// <summary>
+        /// The name of the Ubigia storage.
+        /// </summary>
         public string Name { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The address (schema+host) at which the storage can be found.
+        /// </summary>
         public Uri StorageAddress { get; private set; }
 
         public LogicalContextOptions(IConfigurationRoot configurationRoot)
@@ -30,6 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
             StorageAddress = storageAddress ?? throw new ArgumentNullException(nameof(storageAddress));
+            _extensions = Array.Empty<IExtension>();
 
             return this;
         }

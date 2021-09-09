@@ -17,12 +17,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configurationRoot = new ConfigurationBuilder().Build();
-            var fabricOptions = new FabricOptions(configurationRoot)
-                .UseDiagnostics();
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            var logicalOptions = new LogicalOptions(configurationRoot)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = new FabricOptions(configurationRoot)
+                .UseDiagnostics()
+                .UseLogicalContext()
                 .UseDiagnostics();
 
             // Act.

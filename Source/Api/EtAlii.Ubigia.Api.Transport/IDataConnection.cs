@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <summary>
         /// The Options used to instantiate this DataConnection.
         /// </summary>
-        IDataConnectionOptions Options { get; }
+        DataConnectionOptions Options { get; }
 
         /// <summary>
         /// Connect to the specified storage/space using the given credentials.

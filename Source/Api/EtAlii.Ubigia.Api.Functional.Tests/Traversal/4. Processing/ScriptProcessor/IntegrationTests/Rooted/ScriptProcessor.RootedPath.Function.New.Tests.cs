@@ -23,10 +23,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\n<= Person:Doe/John/Visits += new()";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -45,10 +47,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new('Vacation')";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -67,10 +71,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new(\"Vacation\")";
             var script = _parser.Parse(query, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);

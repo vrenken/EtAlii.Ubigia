@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class FabricContextFactory : Factory<IFabricContext, FabricContextOptions, IFabricContextExtension>// IFabricContextFactory
+    public class FabricContextFactory : Factory<IFabricContext, FabricContextOptions>
     {
         /// <inheritdoc />
         protected override IScaffolding[] CreateScaffoldings(FabricContextOptions options)

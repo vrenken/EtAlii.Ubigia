@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in ((IExtensible)options).GetExtensions<IInfrastructureExtension>())
+            foreach (var extension in ((IExtensible)options).Extensions)
             {
                 extension.Initialize(container);
             }

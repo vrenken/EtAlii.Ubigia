@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
     {
         public static ManagementConnectionOptions UseTransportManagementDiagnostics(this ManagementConnectionOptions options)
         {
-            var extensions = new IManagementConnectionExtension[]
+            var extensions = new IExtension[]
             {
                 new DiagnosticsManagementConnectionExtension(options.ConfigurationRoot),
             };

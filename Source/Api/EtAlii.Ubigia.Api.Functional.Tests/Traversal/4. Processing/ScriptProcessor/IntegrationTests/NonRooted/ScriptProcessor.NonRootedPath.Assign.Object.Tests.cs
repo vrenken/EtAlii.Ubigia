@@ -24,7 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -41,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery, scope).Script;
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -65,7 +67,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -82,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery, scope).Script;
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -105,7 +109,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -123,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -146,7 +152,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -164,7 +172,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -187,7 +195,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -205,7 +215,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -229,7 +239,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -247,7 +259,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -270,7 +282,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -288,7 +302,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -309,7 +323,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -327,7 +343,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -350,7 +366,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -370,7 +388,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -401,7 +419,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -421,7 +441,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -455,7 +475,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -475,7 +497,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -509,7 +531,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -529,7 +553,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -561,7 +585,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -581,7 +607,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);
@@ -614,7 +640,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -629,7 +657,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -658,7 +686,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -673,7 +703,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -702,7 +732,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -717,7 +749,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -748,7 +780,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -763,7 +797,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -793,7 +827,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -808,7 +844,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
@@ -839,7 +875,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -854,7 +892,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2, scope).Script;
             var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();

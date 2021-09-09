@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsSpaceConnectionExtension : ISpaceConnectionExtension
+    public class DiagnosticsSpaceConnectionExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

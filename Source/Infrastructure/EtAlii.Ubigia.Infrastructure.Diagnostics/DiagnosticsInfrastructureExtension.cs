@@ -2,12 +2,11 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsInfrastructureExtension : IInfrastructureExtension
+    public class DiagnosticsInfrastructureExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

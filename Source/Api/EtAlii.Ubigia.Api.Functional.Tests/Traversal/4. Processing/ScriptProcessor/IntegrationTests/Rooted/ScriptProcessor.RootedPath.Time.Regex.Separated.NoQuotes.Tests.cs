@@ -24,7 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical.CreateLogicalContextWithConnection(true).ConfigureAwait(false);
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "time:2016",
@@ -38,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
             var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
             var lastSequence = await processor.Process(addScript, scope);

@@ -49,14 +49,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var root = await logicalContext.Roots
-                .Get("Hierarchy")
+
+            var root = await _testContext
+                .GetRoot(logicalOptions, "Hierarchy")
                 .ConfigureAwait(false);
-            var entry = await logicalContext.Nodes
-                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+            var entry = await _testContext
+                .GetEntry(logicalOptions, root.Identifier, scope)
                 .ConfigureAwait(false);
             var folderName = Guid.NewGuid().ToString();
             var hierarchicalContentManager = new HierarchicalContentManager();
@@ -77,14 +78,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var root = await logicalContext.Roots
-                .Get("Hierarchy")
+
+            var root = await _testContext
+                .GetRoot(logicalOptions, "Hierarchy")
                 .ConfigureAwait(false);
-            var entry = await logicalContext.Nodes
-                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+            var entry = await _testContext
+                .GetEntry(logicalOptions, root.Identifier, scope)
                 .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
 
@@ -100,14 +102,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContextWithConnection(true)
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
-            var root = await logicalContext.Roots
-                .Get("Hierarchy")
+
+            var root = await _testContext
+                .GetRoot(logicalOptions, "Hierarchy")
                 .ConfigureAwait(false);
-            var entry = await logicalContext.Nodes
-                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+            var entry = await _testContext
+                .GetEntry(logicalOptions, root.Identifier, scope)
                 .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
             var retrievedFolderPath = ContentTestHelper.CreateTemporaryFolderName();

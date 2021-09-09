@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     {
                         if (start == Identifier.Empty)
                         {
-                            var root = await parameters.Context.Roots.Get(name).ConfigureAwait(false);
+                            var root = await parameters.Context.Roots.Get(name, parameters.Scope).ConfigureAwait(false);
                             parameters.Output.OnNext(root.Identifier);
                         }
                         else
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (start == Identifier.Empty)
             {
-                var root = await context.Roots.Get(name).ConfigureAwait(false);
+                var root = await context.Roots.Get(name, scope).ConfigureAwait(false);
                 yield return root.Identifier;
             }
             else

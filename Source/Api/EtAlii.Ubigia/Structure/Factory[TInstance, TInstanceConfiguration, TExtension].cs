@@ -13,9 +13,8 @@ namespace EtAlii.Ubigia
         category: "Sonar Code Smell",
         checkId: "S2436:Reduce the number of generic parameters in the 'Factory' class to no more than the 2 authorized",
         Justification = "We cannot make this helper factory with less than 3 generic methods. Currently the change is too invasive to apply as all layers use this abstract class.")]
-    public abstract class Factory<TInstance, TInstanceConfiguration, TExtension>
+    public abstract class Factory<TInstance, TInstanceConfiguration>
         where TInstanceConfiguration : IExtensible
-        where TExtension: IExtension
     {
         /// <summary>
         /// Create a new TInstance factory instance for the given configuration.
@@ -36,7 +35,7 @@ namespace EtAlii.Ubigia
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.GetExtensions<TExtension>())
+            foreach (var extension in configuration.Extensions)
             {
                 extension.Initialize(container);
             }

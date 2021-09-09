@@ -6,18 +6,17 @@ namespace EtAlii.Ubigia.Api.Transport
 
     internal class DataConnectionScaffolding : IScaffolding
     {
-        private readonly IDataConnectionOptions _options;
+        private readonly DataConnectionOptions _options;
 
-        public DataConnectionScaffolding(IDataConnectionOptions options)
+        public DataConnectionScaffolding(DataConnectionOptions options)
         {
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
-            container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);
-            container.Register<IDataConnection, DataConnection>();
+            container.Register<IDataConnection>(() => new DataConnection(_options));
         }
     }
 }

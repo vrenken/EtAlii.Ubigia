@@ -27,14 +27,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
-            var options = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
 
             // Act.
-            using var context = Factory.Create<ILogicalContext>(options);
+            using var context = Factory.Create<ILogicalContext>(logicalOptions);
 
             // Assert.
             Assert.NotNull(context);
@@ -48,10 +47,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
 
             // Act.
@@ -69,10 +67,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
 
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = fabricOptions
+                .UseLogicalContext()
                 .UseDiagnostics();
 
             // Act.
