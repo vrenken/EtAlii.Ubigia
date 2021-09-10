@@ -9,7 +9,6 @@
 // 	using EtAlii.Ubigia.Api.Transport.Rest;
 // 	using Xunit;
 //
-// 	[Trait("Technology", "SignalR")]
 // 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
 //     {
 //         private readonly InfrastructureUnitTestContext _testContext;
@@ -19,7 +18,7 @@
 //             _testContext = testContext;
 //         }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser()
 // 	    {
 // 		    // Arrange.
@@ -36,7 +35,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_System()
 // 	    {
 // 		    // Arrange.
@@ -53,7 +52,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin()
 // 	    {
 // 		    // Arrange.
@@ -70,7 +69,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_TestUser()
 // 	    {
 // 		    // Arrange.
@@ -87,7 +86,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System()
 // 	    {
 // 		    // Arrange.
@@ -104,7 +103,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 		[Fact, Trait("Category", TestAssembly.Category)]
+// 		[Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin()
 // 	    {
 // 		    // Arrange.
@@ -121,7 +120,7 @@
 // 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 // 	    }
 //
-// 		[Fact, Trait("Category", TestAssembly.Category)]
+// 		[Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Password()
 // 	    {
 // 		    // Arrange.
@@ -138,7 +137,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Password()
 // 	    {
 // 		    // Arrange.
@@ -155,7 +154,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Password()
 // 	    {
 // 		    // Arrange.
@@ -172,7 +171,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Password()
 // 	    {
 // 		    // Arrange.
@@ -188,7 +187,7 @@
 // 		    // Assert.
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
 // 	    {
 // 		    // Arrange.
@@ -205,7 +204,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 		[Fact, Trait("Category", TestAssembly.Category)]
+// 		[Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Account()
 // 	    {
 // 		    // Arrange.
@@ -222,7 +221,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Account()
 // 	    {
 // 		    // Arrange.
@@ -239,7 +238,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Account()
 // 	    {
 // 		    // Arrange.
@@ -256,7 +255,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Account()
 // 	    {
 // 		    // Arrange.
@@ -273,7 +272,7 @@
 // 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 // 	    }
 //
-// 	    [Fact, Trait("Category", TestAssembly.Category)]
+// 	    [Fact]
 // 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Account()
 // 	    {
 // 		    // Arrange.

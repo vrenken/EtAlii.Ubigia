@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class AzureStorageTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureStorage_Create()
         {
             // Arrange.

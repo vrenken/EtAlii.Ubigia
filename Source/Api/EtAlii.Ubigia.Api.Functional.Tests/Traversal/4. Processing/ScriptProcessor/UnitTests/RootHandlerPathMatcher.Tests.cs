@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     public partial class RootHandlerPathMatcherTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootHandlerPathMatcher_New()
         {
             // Arrange.

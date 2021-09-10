@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public partial class RootHandlerPathMatcherTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_07()
         {
             // Arrange.
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_08()
         {
             // Arrange.
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_09()
         {
             // Arrange.
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/0", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_100_False()
         {
             // Arrange.
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_101_False()
         {
             // Arrange.
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_102_False()
         {
             // Arrange.
@@ -174,7 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_103_False()
         {
             // Arrange.
@@ -202,7 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_104_False()
         {
             // Arrange.
@@ -229,7 +229,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_11_False()
         {
             // Arrange.
@@ -257,7 +257,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Typed_FirstNameLastName_12_False()
         {
             // Arrange.

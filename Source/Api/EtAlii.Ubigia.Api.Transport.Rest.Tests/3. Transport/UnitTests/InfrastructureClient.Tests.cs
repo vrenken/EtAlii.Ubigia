@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using EtAlii.xTechnology.Threading;
@@ -22,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void InfrastructureClient_New()
         {
             // Arrange.
@@ -36,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             Assert.NotNull(client);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void InfrastructureClient_New_Has_No_AuthenticationToken()
         {
             // Arrange.

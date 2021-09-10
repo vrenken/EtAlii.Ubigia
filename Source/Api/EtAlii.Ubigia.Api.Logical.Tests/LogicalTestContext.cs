@@ -32,14 +32,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<LogicalOptions> CreateLogicalOptionsWithConnection(bool openOnCreation)
         {
-            var fabricOptions = await new FabricOptions(ClientConfiguration)
+            var logicalOptions = await new FabricOptions(ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(this, openOnCreation)
-                .ConfigureAwait(false);
-
-            var logicalOptions = fabricOptions
                 .UseLogicalContext()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             return logicalOptions;
         }

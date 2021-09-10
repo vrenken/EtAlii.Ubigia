@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Single_Line_01()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Single_Line_02()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 1);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines_RN_01()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines_RN_02()
         {
             // Arrange.
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines_N_01()
         {
             // Arrange.
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines_N_02()
         {
             // Arrange.
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Additional_Newline()
         {
             // Arrange.
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(3, script.Sequences.Count());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_01()
         {
             // Arrange.
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_02()
         {
             // Arrange.
@@ -165,7 +165,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 3);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_01()
         {
             // Arrange.
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_02()
         {
             // Arrange.
@@ -196,7 +196,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 3);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_01()
         {
             // Arrange.
@@ -213,7 +213,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_02()
         {
             // Arrange.
@@ -228,7 +228,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(script.Sequences.Count() == 3);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_01()
         {
             // Arrange.
@@ -244,7 +244,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(script);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_02()
         {
             // Arrange.

@@ -25,11 +25,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Add_Single_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -47,11 +47,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(account.Id, space.AccountId);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Add_Multiple_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -74,11 +74,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Get_Single_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -102,11 +102,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(account.Id, space.AccountId);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Get_Multiple_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -128,11 +128,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Get_First_Configuration_Full_Add()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -166,11 +166,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Get_No_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -189,11 +189,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(2, retrievedSpaces.Count());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Get_All_Configurations()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -234,11 +234,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Change_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -282,11 +282,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Delete_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport
@@ -313,11 +313,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(space);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Delete_Non_Existing_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var id = Guid.NewGuid();
@@ -331,11 +331,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Change_Non_Existing_Configuration()
         {
             // Arrange.
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var id = Guid.NewGuid();
@@ -348,12 +348,12 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Spaces_Add_Already_Existing_Configuration()
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var connection = await _testContext.Transport
+            var (connection, _) = await _testContext.Transport
                 .CreateManagementConnection()
                 .ConfigureAwait(false);
             var account = await _testContext.Transport

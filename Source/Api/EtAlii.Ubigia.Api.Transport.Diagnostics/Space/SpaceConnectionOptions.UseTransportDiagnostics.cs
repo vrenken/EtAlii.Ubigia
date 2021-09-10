@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     public static class SpaceConnectionOptionsDiagnosticsExtension
     {
-        public static SpaceConnectionOptions UseTransportDiagnostics(this SpaceConnectionOptions options)
+        public static ISpaceConnectionOptions UseTransportDiagnostics(this ISpaceConnectionOptions options)
         {
-            var extensions = new ISpaceConnectionExtension[]
+            var extensions = new IExtension[]
             {
                 new DiagnosticsSpaceConnectionExtension(options.ConfigurationRoot),
             };

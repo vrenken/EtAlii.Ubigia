@@ -5,7 +5,7 @@
 
     public class Base36ConvertGuidTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Guid_ToString()
         {
             // Arrange.
@@ -18,7 +18,7 @@
             Assert.Equal("7hk7hh29c2fdxr8dobzecx5x0", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Guid_ToGuid()
         {
             // Arrange.
@@ -33,7 +33,7 @@
 
 
         // TODO: I've seen this test fail. How can we make sure it won't fail sporadically?
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Guid_ToString_ToGuid()
         {
             // Arrange.

@@ -5,7 +5,7 @@
 
     public class EntryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Create_1()
         {
             // Arrange.
@@ -17,14 +17,14 @@
             Assert.NotNull(entry);
             Assert.Equal(Identifier.Empty, entry.Id);
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Create_2()
         {
             // Arrange.
             var id = new TestIdentifierFactory().Create();
             var otherId = new TestIdentifierFactory().Create();
             var relation = Relation.NewRelation(otherId);
-            
+
             // Act.
             var entry = Entry.NewEntry(id, relation);
 
@@ -35,7 +35,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_CreateRoot_With_Storage_Account_Space()
         {
             var storage = Guid.NewGuid();
@@ -65,7 +65,7 @@
 
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Create_With_Previous()
         {
             var storage = Guid.NewGuid();
@@ -83,7 +83,7 @@
             Assert.NotEqual(ulong.MinValue, entry.Id.Moment);// The entry.Id.Period property is incorrect.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Based_On_Storage_Account_Space_Are_Equal()
         {
             var storage = Guid.NewGuid();
@@ -95,7 +95,7 @@
             Assert.Equal(first, second);// The two identical entries do not match.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_Using_Equals_Operator()
         {
             // Arrange.
@@ -113,7 +113,7 @@
             Assert.False(equals, "Two different entries do match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_Using_Equals_Operator_With_Left_Null()
         {
             // Arrange.
@@ -129,7 +129,7 @@
             Assert.False(equals, "A entry matches with null");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_Using_Equals_Operator_With_Right_Null()
         {
             // Arrange.
@@ -145,7 +145,7 @@
             Assert.False(equals, "A entry matches with null");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_Using_Equals_Operator_With_Null()
         {
             // Arrange.
@@ -159,7 +159,7 @@
             Assert.True(equals, "Two null entry should match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_With_Object()
         {
             // Arrange.
@@ -177,7 +177,7 @@
             Assert.False(equals, "The two identical entries don't match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Compare_With_Self()
         {
             // Arrange.
@@ -193,7 +193,7 @@
             Assert.True(equals, "The same entry should match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Get_Hash()
         {
             // Arrange.
@@ -209,7 +209,7 @@
             Assert.NotEqual(0, hash);// The entry has no hash.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Based_On_Storage_Account_Space_Compare_As_Equal()
         {
             var storage = Guid.NewGuid();
@@ -221,7 +221,7 @@
             Assert.True(first == second, "The two identical entries do not match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Entry_Based_On_Storage_Account_Space_Do_Not_Compare_As_Equal()
         {
             var firstStorage = Guid.NewGuid();

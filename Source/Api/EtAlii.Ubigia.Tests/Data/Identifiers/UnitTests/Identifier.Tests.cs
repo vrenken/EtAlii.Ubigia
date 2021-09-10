@@ -5,7 +5,7 @@
 
     public class IdentifierTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Empty_DefaultValues()
         {
             Assert.Equal(Guid.Empty, Identifier.Empty.Storage);// The Identifier.Empty.Storage property is incorrect.
@@ -15,7 +15,7 @@
             Assert.Equal(ulong.MinValue, Identifier.Empty.Moment);// The Identifier.Empty.Moment property is incorrect.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_CreateRoot()
         {
             var storage = Guid.NewGuid();
@@ -28,7 +28,7 @@
             Assert.Equal(space, identifier.Space);// The identifier.Space property is incorrect.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Create_With_Storage_Account_Space_Period_Moment()
         {
             var storage = Guid.NewGuid();
@@ -46,7 +46,7 @@
             Assert.Equal(moment, identifier.Moment);// The identifier.Moment property is incorrect.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Empty_ToString()
         {
             // Arrange.
@@ -58,7 +58,7 @@
             Assert.Equal("Identifier.Empty", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Account_Space_Are_Equal()
         {
             var storage = Guid.NewGuid();
@@ -70,7 +70,7 @@
             Assert.Equal(first, second);// The two identical root identifiers do not match.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Era_Is_Not_Equal()
         {
             // Arrange.
@@ -92,7 +92,7 @@
             Assert.False(result, "The two identifiers should not be equal");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Account_Space_Period_Moment_Are_Equal()
         {
             var storage = Guid.NewGuid();
@@ -107,7 +107,7 @@
             Assert.Equal(first, second);// The two identical identifiers do not match.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Account_Space_Period_Compare_As_Equal()
         {
             // Arrange.
@@ -124,7 +124,7 @@
             Assert.True(result, "The two identical root identifiers do not match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Comparison_With_Right_Null()
         {
             // Arrange.
@@ -140,7 +140,7 @@
             Assert.False(result, "A identifier should not match with null");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Comparison_With_Self()
         {
             // Arrange.
@@ -157,7 +157,7 @@
             Assert.True(result, "A identifier should also match with itselve wrapped as object.");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Account_Space_Period_Moment_Compare_As_Equal()
         {
             var storage = Guid.NewGuid();
@@ -172,7 +172,7 @@
             Assert.True(first == second, "The two identical identifiers do not match");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Identifier_Based_On_Storage_Account_Space_Period_Moment_Do_Not_Compare_As_Equal()
         {
             var firstStorage = Guid.NewGuid();

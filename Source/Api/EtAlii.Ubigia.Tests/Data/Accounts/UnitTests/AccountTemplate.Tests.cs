@@ -4,7 +4,7 @@
 
     public class AccountTemplateTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AccountTemplate_Get_All()
         {
             // Arrange.
@@ -15,7 +15,7 @@
             // Assert.
             Assert.NotEmpty(all);
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AccountTemplate_Administrator()
         {
             // Arrange.

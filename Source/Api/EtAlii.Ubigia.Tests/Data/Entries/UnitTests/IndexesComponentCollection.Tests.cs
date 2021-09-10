@@ -5,13 +5,13 @@
     public class IndexesComponentCollectionTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
-        
+
         public IndexesComponentCollectionTests()
         {
             _testIdentifierFactory = new TestIdentifierFactory();
 
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Create()
         {
             // Arrange.
@@ -25,7 +25,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Relation_Add()
         {
             // Arrange.
@@ -38,7 +38,7 @@
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Relation_Contains_Fail()
         {
             // Arrange.
@@ -52,7 +52,7 @@
             Assert.False(collection.Contains(identifier));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Relation_Contains_Single()
         {
             // Arrange.
@@ -67,7 +67,7 @@
             Assert.True(collection.Contains(identifier));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Relation_Contains_Multiple()
         {
             // Arrange.
@@ -89,7 +89,7 @@
             Assert.True(collection.Contains(second));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Relation_Contains_Multiple_Fail()
         {
             // Arrange.
@@ -110,7 +110,7 @@
             Assert.False(collection.Contains(second));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Identifier_Add()
         {
             // Arrange.
@@ -123,7 +123,7 @@
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Identifier_Contains_Fail()
         {
             // Arrange.
@@ -137,7 +137,7 @@
             Assert.False(collection.Contains(identifier));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Identifier_Contains_Single()
         {
             // Arrange.
@@ -152,7 +152,7 @@
             Assert.True(collection.Contains(identifier));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Identifier_Contains_Multiple()
         {
             // Arrange.
@@ -171,7 +171,7 @@
             Assert.True(collection.Contains(second));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexesComponentCollection_Add_Identifier_Contains_Multiple_Fail()
         {
             // Arrange.

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     [CorrelateUnitTests]
     public class RootDataClientStubTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDataClientStub_Create()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.NotNull(rootDataClientStub);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Add()
         {
             // Arrange.
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Change()
         {
             // Arrange.
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Connect()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Disconnect()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Get_By_Name()
         {
             // Arrange.
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.Null(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Get_By_Guid()
         {
             // Arrange.
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.Null(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_GetAll()
         {
             // Arrange.
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.Empty(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootDataClientStub_Remove()
         {
             // Arrange.

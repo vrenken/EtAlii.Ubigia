@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class InMemoryStorageTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void InMemoryStorage_Create()
         {
             // Arrange.

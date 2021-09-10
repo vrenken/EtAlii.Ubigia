@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     public class ScopeVariableTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScopeVariable_New()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(typeof(string), await variable.Value.Select(v => v.GetType()).SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScopeVariable_New_From_Null()
         {
             // Arrange.
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Null(variable);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScopeVariable_New_From_Observable_String()
         {
             // Arrange.
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(typeof(string), await variable.Value.Select(v => v.GetType()).SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScopeVariable_New_From_Observable_Int()
         {
             // Arrange.

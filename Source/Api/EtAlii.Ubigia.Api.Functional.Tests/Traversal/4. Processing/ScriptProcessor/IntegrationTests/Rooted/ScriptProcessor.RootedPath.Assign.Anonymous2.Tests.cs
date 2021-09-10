@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Update_01()
         {
             // Arrange.
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Not_Update_01()
         {
             // Arrange.
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Update_02()
         {
             // Arrange.
@@ -165,7 +165,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Update_03()
         {
             // Arrange.
@@ -214,7 +214,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Not_Update_02()
         {
             // Arrange.
@@ -264,7 +264,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Not_Update_03()
         {
             // Arrange.
@@ -315,7 +315,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Not_Update_04()
         {
             // Arrange.
@@ -367,7 +367,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Anonymous_Should_Not_Update_05()
         {
             // Arrange.

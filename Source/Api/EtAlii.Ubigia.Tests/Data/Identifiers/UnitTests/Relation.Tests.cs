@@ -5,7 +5,7 @@
 
     public class RelationTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_ToString()
         {
             // Arrange.
@@ -25,7 +25,7 @@
             Assert.Equal(expectedResult, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_01_Same()
         {
             // Arrange.
@@ -46,7 +46,7 @@
             Assert.True(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_02_Same()
         {
             // Arrange.
@@ -67,7 +67,7 @@
             Assert.True(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_03_Same()
         {
             // Arrange.
@@ -88,7 +88,7 @@
             Assert.True(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_04_Differ()
         {
             // Arrange.
@@ -111,7 +111,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_05_Differ()
         {
             // Arrange.
@@ -134,7 +134,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_06_Differ()
         {
             // Arrange.
@@ -158,7 +158,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_07_Differ_Null()
         {
             // Arrange.
@@ -178,7 +178,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_08_Differ_Null()
         {
             // Arrange.
@@ -198,7 +198,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_Equal_09_Differ_Null()
         {
             // Arrange.
@@ -218,7 +218,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Relation_None_ToString()
         {
             // Arrange.

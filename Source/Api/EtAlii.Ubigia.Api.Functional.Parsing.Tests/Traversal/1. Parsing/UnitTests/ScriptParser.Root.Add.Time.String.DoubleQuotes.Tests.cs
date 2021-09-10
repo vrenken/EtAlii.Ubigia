@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_String_DoubleQuotes_Absolute()
         {
             // Arrange.
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/12/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_String_DoubleQuotes_Relative()
         {
             // Arrange.
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("12/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_DDHHMMSS_String_DoubleQuotes_Absolute()
         {
             // Arrange.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_DDHHMMSS_String_DoubleQuotes_Relative()
         {
             // Arrange.
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_SS_String_DoubleQuotes_Absolute()
         {
             // Arrange.
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_SS_String_DoubleQuotes_Relative()
         {
             // Arrange.

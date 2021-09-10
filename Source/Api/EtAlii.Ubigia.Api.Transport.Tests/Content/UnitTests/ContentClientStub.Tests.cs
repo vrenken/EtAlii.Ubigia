@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     [CorrelateUnitTests]
     public class ContentDataClientStubTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDataClientStub_Create()
         {
             // Arrange.
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.NotNull(contentDataClientStub);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Connect()
         {
             // Arrange.
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Disconnect()
         {
             // Arrange.
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Retrieve()
         {
             // Arrange.
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.Null(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Store_ContentPart()
         {
             // Arrange.
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await contentDataClientStub.Store(Identifier.Empty, (ContentPart)null).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Store_ContentDefinition()
         {
             // Arrange.
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDataClientStub_Store_ContentDefinitionPart()
         {
             // Arrange.

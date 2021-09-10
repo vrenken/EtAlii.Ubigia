@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_Path_Absolute()
         {
             // Arrange.
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/12/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_Path_Relative()
         {
             // Arrange.
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("12/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_DDHHMMSS_Path_Absolute()
         {
             // Arrange.
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/04/13/38/22", pathSubject.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Add_Time_DDHHMMSS_Path_Relative()
         {
             // Arrange.

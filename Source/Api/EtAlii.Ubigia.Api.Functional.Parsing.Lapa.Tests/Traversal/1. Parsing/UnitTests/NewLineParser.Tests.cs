@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     [CorrelateUnitTests]
     public class NewLineParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Create()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(parser);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Single_Newline()
         {
             // Arrange.
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Single_Newline_With_Leading_Space()
         {
             // Arrange.
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Single_Newline_With_Following_Space()
         {
             // Arrange.
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Single_Newline_With_Leading_And_Following_Space()
         {
             // Arrange.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NewLineParser_Single_Newline_Multiple()
         {
             // Arrange.
@@ -98,8 +98,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void NewLineParser_Single_Newline_Multiple_With_Space_Inbetween()
+        [Fact]
+        public void NewLineParser_Single_Newline_Multiple_With_Space_InBetween()
         {
             // Arrange.
             var whitespaceParser = new WhitespaceParser();
@@ -112,8 +112,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(result.Success);
             Assert.Equal(string.Empty, result.Rest.ToString());
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void NewLineParser_Single_Newline_Multiple_With_Tab_Inbetween()
+        [Fact]
+        public void NewLineParser_Single_Newline_Multiple_With_Tab_InBetween()
         {
             // Arrange.
             var whitespaceParser = new WhitespaceParser();

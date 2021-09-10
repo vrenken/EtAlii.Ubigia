@@ -3,12 +3,19 @@
 namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class SpaceConnectionOptions : ConfigurationBase, ISpaceConnectionOptions
+    public class SpaceConnectionOptions : ISpaceConnectionOptions
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The client configuration root used to instantiate the space connection.
+        /// </summary>
         public IConfigurationRoot ConfigurationRoot { get; }
+
+        /// <inheritdoc/>
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         /// <inheritdoc />
         public ISpaceTransport Transport { get; private set; }
@@ -19,6 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public SpaceConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
+            _extensions = Array.Empty<IExtension>();
         }
 
         /// <inheritdoc />

@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
         {
             // Arrange.

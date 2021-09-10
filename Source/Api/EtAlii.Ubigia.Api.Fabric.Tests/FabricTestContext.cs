@@ -22,13 +22,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             Transport = transport;
         }
-        
+
         public async Task<FabricOptions> CreateFabricOptions(bool openOnCreation)
         {
-            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
-            var fabricOptions = new FabricOptions(ClientConfiguration)
-                .Use(connection)
-                .UseDiagnostics();
+            var fabricOptions = await Transport
+                .CreateDataConnectionToNewSpace(openOnCreation)
+                .UseFabricContext()
+                .UseDiagnostics()
+                .ConfigureAwait(false);
             return fabricOptions;
         }
 

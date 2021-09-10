@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RemoveItem_Without_File()
         {
             // Arrange.
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Images", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RemoveItem_Quoted()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Images", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RemoveItem_Rooted()
         {
             // Arrange.

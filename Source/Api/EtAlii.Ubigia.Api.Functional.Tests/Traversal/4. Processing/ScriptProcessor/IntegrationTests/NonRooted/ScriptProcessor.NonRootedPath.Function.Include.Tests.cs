@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_01()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_02()
         {
             // Arrange.
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("02", result.Cast<IReadOnlyEntry>().Skip(2).First().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_03()
         {
             // Arrange.
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("123", result.Cast<IReadOnlyEntry>().Skip(2).First().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_04()
         {
             // Arrange.
@@ -142,7 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("02", result.Cast<IReadOnlyEntry>().Skip(2).First().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_05()
         {
             // Arrange.

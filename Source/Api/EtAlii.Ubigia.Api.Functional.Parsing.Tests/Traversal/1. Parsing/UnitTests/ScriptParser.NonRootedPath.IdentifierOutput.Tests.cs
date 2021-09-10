@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserNonRootedPathTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_IdentifierOutput_Uppercase_Separated()
         {
             // Arrange.
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_IdentifierOutput_Uppercase_Not_Separated()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_IdentifierOutput_Lowercase_Separated()
         {
             // Arrange.
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_IdentifierOutput_Lowercase_Not_Separated()
         {
             // Arrange.

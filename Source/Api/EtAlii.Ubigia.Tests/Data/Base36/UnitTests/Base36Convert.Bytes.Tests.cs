@@ -7,7 +7,7 @@
 
     public class Base36ConvertBytesTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0x00()
         {
             // Arrange.
@@ -20,7 +20,7 @@
             Assert.Equal("0", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0x01()
         {
             // Arrange.
@@ -33,7 +33,7 @@
             Assert.Equal("1", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0x10()
         {
             // Arrange.
@@ -46,7 +46,7 @@
             Assert.Equal("a", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0x11()
         {
             // Arrange.
@@ -59,7 +59,7 @@
             Assert.Equal("b", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0xffff()
         {
             // Arrange.
@@ -72,7 +72,7 @@
             Assert.Equal("1ekf", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_0x0fffff()
         {
             // Arrange.
@@ -85,9 +85,9 @@
             Assert.Equal("mh33", result);
         }
 
-        
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+
+        [Fact]
         public void Base36Convert_Bytes_ToString_abcd()
         {
             // Arrange.
@@ -100,7 +100,7 @@
             Assert.Equal("xxp", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_2fj6n()
         {
             // Arrange.
@@ -116,7 +116,7 @@
             Assert.Equal(0xdf, result[2]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_2fj6n()
         {
             // Arrange.
@@ -129,7 +129,7 @@
             Assert.Equal("2fj6n", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_2dqf()
         {
             // Arrange.
@@ -145,7 +145,7 @@
             Assert.Equal(0x07, result[2]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_2dqf_ToString()
         {
             // Arrange.
@@ -161,7 +161,7 @@
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_0()
         {
             // Arrange.
@@ -175,7 +175,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_1()
         {
             // Arrange.
@@ -189,7 +189,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_Timed_1000()
         {
             // Arrange.
@@ -228,7 +228,7 @@
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToString_Timed_1000000()
         {
             // Arrange.
@@ -261,14 +261,14 @@
             AssertEqual(iterations, convertedBytes, originalBytes);
         }
 
-        private static readonly char[] _alphabet = 
+        private static readonly char[] _alphabet =
         {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
-            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
             'w', 'x', 'y', 'z'
         };
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_Timed_1000()
         {
             // Arrange.
@@ -303,7 +303,7 @@
             AssertEqual(iterations, convertedStrings, originalStrings);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_Bytes_ToBytes_Timed_1000000()
         {
             // Arrange.
@@ -363,7 +363,7 @@
 
         private void AreEqual(IReadOnlyList<byte> expected, IReadOnlyList<byte> actual)
         {
-            var sameLength = expected.Count == actual.Count; 
+            var sameLength = expected.Count == actual.Count;
             Assert.True(sameLength);
             for (var i = 0; i < expected.Count; i++)
             {

@@ -50,12 +50,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             return Factory.Create<IScriptParser>(options);
         }
 
-        public static IScriptProcessor CreateScriptProcessor(this FunctionalUnitTestContext context, ILogicalContext logicalContext)
+        public static IScriptProcessor CreateScriptProcessor(this FunctionalUnitTestContext context, LogicalOptions logicalOptions)
         {
-            var options = new FunctionalOptions(context.ClientConfiguration)
+            var options = logicalOptions
+                .UseFunctionalContext()
                 .UseTestParsing()
-                .UseDiagnostics()
-                .UseLogicalContext(logicalContext);
+                .UseDiagnostics();
 
             return Factory.Create<IScriptProcessor>(options);
         }

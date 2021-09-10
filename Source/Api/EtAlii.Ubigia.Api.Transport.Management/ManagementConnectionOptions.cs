@@ -6,44 +6,64 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class ManagementConnectionOptions : IExtensible, IManagementConnectionOptions
+    public class ManagementConnectionOptions : IExtensible
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The client configuration root that will be used to configure the management connection.
+        /// </summary>
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
         private IExtension[] _extensions;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The storage transport provider used to create the transport layer components of this management connection.
+        /// </summary>
         public IStorageTransportProvider TransportProvider { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The factory extension method that is used to extend the connection creation and instantiation.
+        /// One example is a popup dialog that allows for (re)configuration of the credentials/addresses etc.
+        /// </summary>
         public Func<IManagementConnection> FactoryExtension { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The address to which this management connection should connect.
+        /// </summary>
         public Uri Address { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The account name to be used when connecting.
+        /// </summary>
         public string AccountName { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The account password to be used when connecting.
+        /// </summary>
         public string Password { get; private set; }
 
         public ManagementConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = Array.Empty<IExtension>();
+            _extensions = new IExtension[]
+            {
+                new CommonManagementConnectionExtension(this)
+            };
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Configures the factory extension method that is used to extend the connection creation and instantiation.
+        /// </summary>
         public ManagementConnectionOptions Use(Func<IManagementConnection> factoryExtension)
         {
             FactoryExtension = factoryExtension;
             return this;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Configures the storage transport provider that should be used to provide the transport layer components of this management connection.
+        /// </summary>
         public ManagementConnectionOptions Use(IStorageTransportProvider transportProvider)
         {
             if (TransportProvider != null)
@@ -56,7 +76,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             return this;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Configures the address that should be used when connecting.
+        /// </summary>
         public ManagementConnectionOptions Use(Uri address)
         {
 			if (Address != null)
@@ -68,7 +90,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             return this;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Configures both the account name and account password that should be used when connecting.
+        /// </summary>
         public ManagementConnectionOptions Use(string accountName, string password)
         {
             if (string.IsNullOrWhiteSpace(accountName))

@@ -4,7 +4,7 @@
 
     public class TypeComponentTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeComponent_Create()
         {
             // Arrange.
@@ -17,7 +17,7 @@
             Assert.Null(typeComponent.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeComponent_Create_With_Type()
         {
             // Arrange.
@@ -31,13 +31,13 @@
             Assert.Equal(type, typeComponent.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentPart_Empty_Check()
         {
             Assert.NotNull(ContentPart.Empty);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentPart_Empty_Check_Data()
         {
             Assert.NotNull(ContentPart.Empty.Data);

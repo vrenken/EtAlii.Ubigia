@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     [CorrelateUnitTests]
     public class GraphPathBuilderTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Create()
         {
             // Arrange.
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.NotNull(builder);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Node()
         {
             // Arrange.
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Relation()
         {
             // Arrange.
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Node_ToPath()
         {
             // Arrange.
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.IsAssignableFrom<GraphNode>(path[0]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Relation_ToPath()
         {
             // Arrange.
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.IsAssignableFrom<GraphRelation>(path[0]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Node_And_Relation_ToPath()
         {
             // Arrange.
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.IsAssignableFrom<GraphRelation>(path[1]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathBuilder_Add_Node_And_Relation_Clear()
         {
             // Arrange.

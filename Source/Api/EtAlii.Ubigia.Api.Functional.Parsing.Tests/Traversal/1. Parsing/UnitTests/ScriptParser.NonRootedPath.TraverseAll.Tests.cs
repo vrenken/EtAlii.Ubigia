@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserNonRootedPathTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Hierarchical_Childs()
         {
             // Arrange.
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<AllParentsPathSubjectPart>(subject.Parts.Skip(6).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Hierarchical_Parents()
         {
             // Arrange.
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Sequential_Next()
         {
             // Arrange.
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<AllNextPathSubjectPart>(subject.Parts.Skip(10).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Sequential_Previous()
         {
             // Arrange.

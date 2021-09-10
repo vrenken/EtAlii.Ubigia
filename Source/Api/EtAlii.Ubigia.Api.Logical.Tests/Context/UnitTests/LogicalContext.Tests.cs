@@ -19,18 +19,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
             _testContext = testContext;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task LogicalContext_Create()
         {
             // Arrange.
-            var fabricOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
-
-            var logicalOptions = fabricOptions
                 .UseLogicalContext()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             // Act.
             using var context = Factory.Create<ILogicalContext>(logicalOptions);
@@ -39,18 +37,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
             Assert.NotNull(context);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task LogicalContext_Dispose()
         {
             // Arrange.
-            var fabricOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
-
-            var logicalOptions = fabricOptions
                 .UseLogicalContext()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             // Act.
             using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
@@ -59,18 +55,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
             Assert.NotNull(logicalContext);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task LogicalContext_Create_Check_Components()
         {
             // Arrange.
-            var fabricOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
-
-            var logicalOptions = fabricOptions
                 .UseLogicalContext()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             // Act.
             using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);

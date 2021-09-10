@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class AzureStorageExtensionTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureStorageExtension_Create()
         {
             // Arrange.
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.NotNull(extension);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureStorageExtension_Initialize()
         {
             // Arrange.

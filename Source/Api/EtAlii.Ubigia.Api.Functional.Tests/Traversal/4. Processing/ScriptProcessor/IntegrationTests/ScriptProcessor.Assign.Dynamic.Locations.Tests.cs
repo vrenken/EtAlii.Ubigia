@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.NotEqual(updateResult.Id, selectResult.Id)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Empty()
         {
             // Arrange.
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced()
         {
             // Arrange.
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Local()
         {
             // Arrange.
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind);// "Kind"
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Utc()
         {
             // Arrange.
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind); // "Kind"
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Unspecified()
         {
             // Arrange.

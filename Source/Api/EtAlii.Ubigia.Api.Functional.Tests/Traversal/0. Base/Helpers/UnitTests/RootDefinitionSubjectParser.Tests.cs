@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDefinitionSubject_Parse_01()
         {
             // Arrange.
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDefinitionSubject_Parse_02()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(text, result.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDefinitionSubject_Parse_03()
         {
             // Arrange.
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(text, result.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDefinitionSubject_Parse_04()
         {
             // Arrange.
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(schema.ToUpper(), result.Schema.ToString())
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RootDefinitionSubject_Parse_05()
         {
             // Arrange.

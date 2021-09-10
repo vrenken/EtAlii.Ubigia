@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     [CorrelateUnitTests]
     public class ContentPartCalculatorTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_Create()
         {
             // Arrange.
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.NotNull(partCalculator);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetRequiredParts_For_One_GigaByte()
         {
             // Arrange.
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)1024, parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetRequiredParts_For_One_GigaByte_Plus_One_Byte()
         {
             // Arrange.
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)1025, parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetRequiredParts_For_One_GigaByte_Minus_One_Byte()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 , parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetRequiredParts_For_A_Half_MegaByte()
         {
             // Arrange.
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)1, parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetRequiredParts_For_No_Bytes()
         {
             // Arrange.
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)0, parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetPart_For_First_Byte()
         {
             // Arrange.
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)0, part);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetPart_For_First_Byte_In_SecondMegaByte()
         {
             // Arrange.
@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)1, part);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetPart_For_Second_Byte_In_SecondMegaByte()
         {
             // Arrange.
@@ -136,7 +136,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal((ulong)1, part);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PartCalculator_GetPart_For_Last_Byte_In_FirstMegaByte()
         {
             // Arrange.

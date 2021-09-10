@@ -12,11 +12,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    [Trait("Technology", "Grpc")]
     public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -26,13 +26,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             _testContext = testContext;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_Create()
         {
             // Arrange.
 
             // Act.
-            var connection = await _testContext.Host
+            var (connection, _) = await _testContext.Host
                 .CreateSystemConnection()
                 .ConfigureAwait(false);
 
@@ -40,22 +40,20 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(connection);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_Create_DataConnection()
         {
             // Arrange.
             var userName = "TestUser";
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.Host
+            var (systemConnection, _) = await _testContext.Host
                 .CreateSystemConnection()
-                .ConfigureAwait(false);
-            await _testContext.Host
-                .AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName })
+                .AddUserAccountAndSpaces(userName, password, new[] { spaceName })
                 .ConfigureAwait(false);
 
             // Act.
-            var connection = await systemConnection
+            var (connection, _) = await systemConnection
                 .OpenSpace("TestUser", "TestSpace")
                 .ConfigureAwait(false);
 
@@ -68,18 +66,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(spaceName, connection.Space.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_Create_ManagementConnection()
         {
             // Arrange.
             var userName = Guid.NewGuid().ToString();// "TestUser"
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.Host
+            var (systemConnection, _) = await _testContext.Host
                 .CreateSystemConnection()
-                .ConfigureAwait(false);
-            await _testContext.Host
-                .AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName })
+                .AddUserAccountAndSpaces(userName, password, new[] { spaceName })
                 .ConfigureAwait(false);
 
             // Act.
@@ -102,7 +98,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(spaceName, space.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_Advanced_Operation_Single_Space_01()
         {
             // Arrange.
@@ -112,25 +108,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var spaceName = Guid.NewGuid().ToString();
 
             // Transport.
-            var systemConnection = await _testContext.Host
+            var functionalOptions = await _testContext.Host
                 .CreateSystemConnection()
-                .ConfigureAwait(false);
-            await _testContext.Host
-                .AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName })
-                .ConfigureAwait(false);
-            var dataConnection = await systemConnection
+                .AddUserAccountAndSpaces(accountName, password, new[] { spaceName })
                 .OpenSpace(accountName, spaceName)
-                .ConfigureAwait(false);
-
-            // Fabric.
-            var functionalOptions = new FabricOptions(_testContext.ClientConfiguration)
-                .Use(dataConnection)
+                .UseFabricContext() // Fabric.
                 .UseDiagnostics()
                 .UseLogicalContext() // Logical.
                 .UseDiagnostics()
                 .UseFunctionalContext() // Functional.
                 .UseTestParsing()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 
@@ -159,7 +148,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(3, personsAfter.Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_Advanced_Operation_Single_Space_02()
         {
             // Arrange.
@@ -168,26 +157,19 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
-            // Transport.
-            var systemConnection = await _testContext.Host
-                .CreateSystemConnection()
-                .ConfigureAwait(false);
-            await _testContext.Host
-                .AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName })
-                .ConfigureAwait(false);
-            var dataConnection = await systemConnection
-                .OpenSpace(accountName, spaceName)
-                .ConfigureAwait(false);
 
-            // Fabric.
-            var functionalOptions = new FabricOptions(_testContext.ClientConfiguration)
-                .Use(dataConnection)
+            var functionalOptions = await _testContext.Host
+                .CreateSystemConnection() // Transport.
+                .AddUserAccountAndSpaces(accountName, password, new[] { spaceName })
+                .OpenSpace(accountName, spaceName)
+                .UseFabricContext() // Fabric.
                 .UseDiagnostics()
                 .UseLogicalContext() // Logical.
                 .UseDiagnostics()
                 .UseFunctionalContext() // Functional.
                 .UseTestParsing()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
 
             var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
 

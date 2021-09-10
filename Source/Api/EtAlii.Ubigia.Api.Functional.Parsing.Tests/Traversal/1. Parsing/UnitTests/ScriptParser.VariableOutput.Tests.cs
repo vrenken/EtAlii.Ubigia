@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableOutput()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", ((VariableSubject)sequence.Parts.Skip(1).First()).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableOutput_Without_Spaces()
         {
             // Arrange.

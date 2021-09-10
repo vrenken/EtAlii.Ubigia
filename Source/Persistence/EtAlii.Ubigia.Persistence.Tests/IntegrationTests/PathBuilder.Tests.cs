@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PathBuilder_GetFileNameWithoutExtension()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(fileName, fileNameWithoutExtension);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PathBuilder_GetFolder()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(expectedFolder, folder);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PathBuilder_GetDirectoryName()
         {
             // Arrange.

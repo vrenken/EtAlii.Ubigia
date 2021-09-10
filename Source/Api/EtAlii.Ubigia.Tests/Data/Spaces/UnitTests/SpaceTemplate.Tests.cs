@@ -4,7 +4,7 @@
 
     public class SpaceTemplateTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SpaceTemplate_Get_All()
         {
             // Arrange.

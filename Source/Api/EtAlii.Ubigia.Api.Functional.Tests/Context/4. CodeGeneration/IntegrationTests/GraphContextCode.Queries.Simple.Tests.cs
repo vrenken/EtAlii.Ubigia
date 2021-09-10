@@ -82,11 +82,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var query = _context.Parse(queryText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+            var functionalOptions = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseDiagnostics()
                 .UseLogicalContext(_options.LogicalContext);
-            var processor = _testContext.CreateSchemaProcessor(options);
+            var processor = _testContext.CreateSchemaProcessor(functionalOptions);
 
             // Act.
             var results = await processor

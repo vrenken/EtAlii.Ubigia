@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeValueParser_Parse_01()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(text, result);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void TypeValueParser_Parse_02()
         //[
         //    // Arrange.
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
         //]
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeValueParser_Parse_03()
         {
             // Arrange.
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(text, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeValueParser_Parse_04()
         {
             // Arrange.
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(text, result);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void TypeValueParser_Parse_05()
         //[
         //    // Arrange.
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void TypeValueParser_Parse_06()
         //[
         //    // Arrange.
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
         //]
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeValueParser_Parse_07()
         {
             // Arrange.
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void TypeValueParser_Parse_08()
         //[
         //    // Arrange.
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
         //]
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypeValueParser_Parse_09()
         {
             // Arrange.

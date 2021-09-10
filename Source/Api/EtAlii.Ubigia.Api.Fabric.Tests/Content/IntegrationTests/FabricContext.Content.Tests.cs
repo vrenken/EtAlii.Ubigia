@@ -20,10 +20,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-            var fabricOptions = connection
-                .UseFabricContext(_testContext.ClientConfiguration)
-                .UseDiagnostics();
+            var fabricOptions = await _testContext.Transport
+                .CreateDataConnectionToNewSpace()
+                .UseFabricContext()
+                .UseDiagnostics()
+                .ConfigureAwait(false);
+
             _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
@@ -34,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Content_Store()
         {
             // Arrange.
@@ -50,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(content.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Content_Retrieve_Complete()
         {
             // Arrange.
@@ -78,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(retrievedContent.Summary.IsComplete);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Content_Retrieve_Incomplete()
         {
             // Arrange.
@@ -117,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(retrievedContent.Summary.IsComplete);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Size()
         //[
         //    var connection = CreateFabricContext()
@@ -132,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Checksum()
         //[
         //    var connection = CreateFabricContext()
@@ -147,7 +149,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Parts()
         //[
         //    var connection = CreateFabricContext()

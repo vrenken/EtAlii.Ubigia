@@ -5,7 +5,7 @@
 
     public class UpdatesComponentCollectionTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void UpdatesComponentCollection_Create()
         {
             // Arrange.
@@ -17,7 +17,7 @@
             Assert.NotNull(updatesComponentCollection);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void UpdatesComponentCollection_Add()
         {
             // Arrange.
@@ -30,7 +30,7 @@
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void UpdatesComponentCollection_Add_Identifier_Empty()
         {
             // Arrange.
@@ -43,7 +43,7 @@
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void UpdatesComponentCollection_Add_Relation_Empty()
         {
             // Arrange.

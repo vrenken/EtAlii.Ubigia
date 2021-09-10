@@ -26,13 +26,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await _testContext.Transport.Stop().ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Information_Get_ConnectivityDetails()
         {
             // Arrange.
 
             // Act.
-            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection.Details.ManagementAddress);

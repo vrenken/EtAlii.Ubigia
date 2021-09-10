@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_01()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_02()
         {
             // Arrange.
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_03()
         {
             // Arrange.
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_04()
         {
             // Arrange.
@@ -153,7 +153,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(new DateTime(1977, 06, 27), conditionalPathSubjectPart.Conditions[1].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_05()
         {
             // Arrange.
@@ -186,7 +186,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_06()
         {
             // Arrange.
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_07()
         {
             // Arrange.
@@ -248,7 +248,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_01()
         {
             // Arrange.
@@ -282,7 +282,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_02()
         {
             // Arrange.
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_03()
         {
             // Arrange.
@@ -353,7 +353,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_04()
         {
             // Arrange.
@@ -387,7 +387,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_11()
         {
             // Arrange.
@@ -421,7 +421,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_12()
         {
             // Arrange.
@@ -455,7 +455,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_13()
         {
             // Arrange.
@@ -489,7 +489,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_14()
         {
             // Arrange.
@@ -523,7 +523,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_15()
         {
             // Arrange.
@@ -557,7 +557,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Conditional_16()
         {
             // Arrange.

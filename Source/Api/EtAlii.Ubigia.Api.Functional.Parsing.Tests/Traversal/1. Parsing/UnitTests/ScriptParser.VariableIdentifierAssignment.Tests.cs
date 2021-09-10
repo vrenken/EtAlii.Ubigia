@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_With_Variable_Separated()
         {
             // Arrange.
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_With_Path_Uppercase_Not_Separated()
         {
             // Arrange.
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_With_Path_Uppercase()
         {
             // Arrange.
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_With_Path_Lowercase_Separated()
         {
             // Arrange.
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_With_Path_Lowercase_Not_Separated()
         {
             // Arrange.
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal((ulong)40, identifierPart.Identifier.Moment);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableIdentifierAssignment_Based_On_Values()
         {
             // Arrange.

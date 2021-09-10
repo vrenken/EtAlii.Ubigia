@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public static class LogicalOptionsUseDiagnosticsExtension
@@ -17,6 +18,13 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             options = options.Use(extensions);
 
             return options;
+        }
+
+        public static async Task<LogicalOptions> UseDiagnostics(this Task<LogicalOptions> optionsTask)
+        {
+            var options = await optionsTask.ConfigureAwait(false);
+
+            return options.UseDiagnostics();
         }
     }
 }

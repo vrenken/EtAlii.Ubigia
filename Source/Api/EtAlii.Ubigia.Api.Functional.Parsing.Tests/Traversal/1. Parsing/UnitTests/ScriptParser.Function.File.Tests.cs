@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     public class ScriptParserFunctionFileTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_File_Add()
         {
             // Arrange.

@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FolderManager_Exists()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(exists);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FolderManager_Create()
         {
             // Arrange.
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(_testContext.Storage.FolderManager.Exists(folder));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FolderManager_SaveToFolder_No_Folder_Exists()
         {
             // Arrange.
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<InvalidOperationException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FolderManager_Delete()
         {
             // Arrange.

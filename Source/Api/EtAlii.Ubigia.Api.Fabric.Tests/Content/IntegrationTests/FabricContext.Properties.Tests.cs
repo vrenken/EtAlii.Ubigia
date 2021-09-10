@@ -19,13 +19,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.Transport
+            var fabricOptions = await _testContext.Transport
                 .CreateDataConnectionToNewSpace()
+                .UseFabricContext()
+                .UseDiagnostics()
                 .ConfigureAwait(false);
-
-            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
-                .Use(connection)
-                .UseDiagnostics();
             _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
@@ -37,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Properties_Store()
         {
             // Arrange.
@@ -53,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(properties.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Properties_Retrieve()
         {
             // Arrange.

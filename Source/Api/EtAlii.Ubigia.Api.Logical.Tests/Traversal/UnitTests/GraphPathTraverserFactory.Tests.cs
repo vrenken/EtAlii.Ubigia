@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     [CorrelateUnitTests]
     public class GraphPathTraverserFactoryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphPathTraverser_Create()
         {
             // Arrange.

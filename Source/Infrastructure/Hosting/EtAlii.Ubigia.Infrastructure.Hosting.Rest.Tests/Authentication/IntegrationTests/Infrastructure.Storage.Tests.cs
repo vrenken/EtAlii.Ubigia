@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    [Trait("Technology", "NetCore")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
@@ -23,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	        _testContext = testContext;
         }
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
 			// Arrange.
@@ -44,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_Admin_With_Authentication()
 		{
 			// Arrange.
@@ -65,7 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_System_With_Authentication()
 		{
 			// Arrange.
@@ -86,7 +85,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
 		{
 			// Arrange.
@@ -102,7 +101,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Accounts_Without_Authentication()
 		{
 			// Arrange.
@@ -118,7 +117,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
@@ -140,7 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
@@ -162,7 +161,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
@@ -184,7 +183,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotNull(storage);
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
         public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
         {
 			// Arrange.

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     [CorrelateUnitTests]
     public class ContentCacheHelperTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentCacheHelper_Create()
         {
             // Arrange.

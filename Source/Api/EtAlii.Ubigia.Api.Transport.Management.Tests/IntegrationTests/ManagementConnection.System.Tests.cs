@@ -25,11 +25,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_System_Account()
         {
             // Arrange.
-            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
             var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
@@ -38,11 +38,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.NotNull(systemAccount);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_System_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
 
             // Act.
@@ -57,12 +57,12 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.True(spaces.SingleOrDefault(s => s.Name == "System") != null, "System space not found");
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Metrics") != null, "Metrics space not found");
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
 
         public async Task ManagementConnection_Administrator_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var administratorAccount = await connection.Accounts.Get("Administrator").ConfigureAwait(false);
 
             // Act.

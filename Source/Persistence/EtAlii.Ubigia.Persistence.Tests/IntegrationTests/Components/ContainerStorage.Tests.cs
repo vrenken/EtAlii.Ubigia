@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Prepare_Container()
         {
             // Arrange.
@@ -102,7 +102,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             await Assert.ThrowsAsync<StorageException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_Entry()
         {
             // Arrange.
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_Entry()
         {
             // Arrange.
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalEntry.Id, retrievedEntry.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_ChildrenComponent()
         {
             // Arrange.
@@ -166,7 +166,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         /*
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_Retrieve_ChildrenComponent_Twice()
         {
             var storageId = Guid.NewGuid();
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
         */
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_ParentComponent()
         {
             // Arrange.
@@ -221,7 +221,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalParent.Relation, retrievedParent.Relation);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_NextComponent()
         {
             // Arrange.
@@ -244,7 +244,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalNext.Relation, retrievedNext.Relation);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_PreviousComponent()
         {
             // Arrange.
@@ -267,7 +267,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalPrevious.Relation, retrievedPrevious.Relation);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_UpdateComponent()
         {
             // Arrange.
@@ -293,7 +293,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalUpdates.Relations.First(), retrievedUpdates.Relations.First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_DowndateComponent()
         {
             // Arrange.
@@ -316,7 +316,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalDowndate.Relation, retrievedDowndate.Relation);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_PreviousComponent_Twice()
         {
             // Arrange.
@@ -338,7 +338,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<StorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_NextComponent_Twice()
         {
             // Arrange.
@@ -360,7 +360,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<StorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_DowndateComponent_Twice()
         {
             // Arrange.
@@ -379,7 +379,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<StorageException>(act);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void ComponentStorage_Store_UpdateComponent_Twice()
         //{
         //    // TODO: This test should fail!
@@ -402,7 +402,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         //    Assert.Throws<StorageException>(act);
         //}
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentStorage_Store_ParentComponent_Twice()
         {
             // Arrange.
@@ -421,7 +421,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<StorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_TypeComponent()
         {
             // Arrange.
@@ -443,7 +443,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(originalType.Type, retrievedType.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ComponentStorage_Store_Retrieve_TagComponent()
         {
             // Arrange.

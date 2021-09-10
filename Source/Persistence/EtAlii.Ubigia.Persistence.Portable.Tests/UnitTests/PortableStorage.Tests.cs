@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class PortableStorageTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PortableStorage_Create()
         {
             // Arrange.

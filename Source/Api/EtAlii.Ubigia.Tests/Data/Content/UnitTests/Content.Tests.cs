@@ -4,7 +4,7 @@
 
     public class ContentTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_Create()
         {
             // Arrange.
@@ -16,7 +16,7 @@
             Assert.NotNull(content);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_Stored_Defaults_To_False()
         {
             // Arrange.
@@ -28,7 +28,7 @@
             Assert.False(content.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_Summary_Defaults_To_Null()
         {
             // Arrange.
@@ -40,7 +40,7 @@
             Assert.Null(content.Summary);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_TotalParts_Defaults_To_0()
         {
             // Arrange.

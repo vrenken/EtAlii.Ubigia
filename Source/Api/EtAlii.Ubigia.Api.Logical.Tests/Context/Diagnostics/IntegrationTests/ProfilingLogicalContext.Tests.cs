@@ -27,16 +27,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var fabricOptions = await new FabricOptions(clientConfiguration)
+            var logicalOptions = await new FabricOptions(clientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            var logicalOptions = new LogicalOptions(clientConfiguration)
-                .UseFabricContext(fabricContext)
+                .UseLogicalContext()
                 .UseDiagnostics()
-                .UseProfiling();
+                .UseProfiling()
+                .ConfigureAwait(false);
 
             // Act.
             using var context = Factory.Create<ILogicalContext>(logicalOptions);
@@ -51,19 +48,15 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var fabricOptions = await new FabricOptions(clientConfiguration)
+            var logicalOptions = await new FabricOptions(clientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext()
+                .UseDiagnostics()
                 .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            var options = new LogicalOptions(clientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-
 
             // Act.
-            using var context = Factory.Create<ILogicalContext>(options);
+            using var context = Factory.Create<ILogicalContext>(logicalOptions);
 
             // Assert.
             Assert.NotNull(context);
@@ -75,15 +68,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var fabricOptions = await new FabricOptions(clientConfiguration)
+            var logicalOptions = await new FabricOptions(clientConfiguration)
                 .UseDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
+                .UseLogicalContext()
+                .UseDiagnostics()
                 .ConfigureAwait(false);
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            var logicalOptions = new LogicalOptions(clientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
 
             // Act.
             using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);

@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Root_UnAssign_Time_Root()
         {
             // Arrange.
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Empty(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Root_UnAssign_Time_Root_Under_Other_Name()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Empty(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Root_UnAssign_Object_Root()
         {
             // Arrange.

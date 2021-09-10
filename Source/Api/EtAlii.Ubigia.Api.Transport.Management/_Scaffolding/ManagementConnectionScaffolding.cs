@@ -6,18 +6,23 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     public class ManagementConnectionScaffolding : IScaffolding
     {
-        private readonly IManagementConnectionOptions _options;
+        private readonly ManagementConnectionOptions _options;
 
-        public ManagementConnectionScaffolding(IManagementConnectionOptions options)
+        public ManagementConnectionScaffolding(ManagementConnectionOptions options)
         {
+            var hasTransportProvider = options.TransportProvider != null;
+            if (!hasTransportProvider)
+            {
+                throw new InvalidInfrastructureOperationException("Error creating management connection: No TransportProvider provided.");
+            }
+
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
-            container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);
-            container.Register<IManagementConnection, ManagementConnection>();
+            container.Register<IManagementConnection>(() => new ManagementConnection(_options));
         }
     }
 }

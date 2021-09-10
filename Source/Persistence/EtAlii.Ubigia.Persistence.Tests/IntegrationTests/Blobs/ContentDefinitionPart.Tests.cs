@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinitionPart_Store()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Id()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(contentDefinitionPart.Id, retrievedContentDefinitionPart.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Size()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(contentDefinitionPart.Size, retrievedContentDefinitionPart.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Checksum()
         {
             // Arrange.
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(contentDefinitionPart.Checksum, retrievedContentDefinitionPart.Checksum);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinitionPart_Store_Twice()
         {
             // Arrange.
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinitionPart_Store_Same()
         {
             // Arrange.
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<BlobStorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ContentDefinitionPart_Retrieve_None_Existing()
         {
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();

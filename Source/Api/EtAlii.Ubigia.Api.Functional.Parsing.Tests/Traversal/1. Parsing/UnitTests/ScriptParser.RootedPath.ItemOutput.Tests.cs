@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserRootedPathTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Variable_Name()
         {
             // Arrange.
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", sequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.Skip(2).Cast<VariablePathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Component_Count_1()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(5, ((RootedPathSubject)sequence.Parts.ElementAt(1)).Parts.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Quoted_Name()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third is cool", ((RootedPathSubject)sequence.Parts.ElementAt(1)).Parts.Skip(2).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Quoted_Name_Special_Characters()
         {
             // Arrange.
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Component_Count_2()
         {
             // Arrange.
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(secondSequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Component_Name_1()
         {
             // Arrange.
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Fourth", ((ConstantPathSubjectPart)((RootedPathSubject)sequence.Parts.ElementAt(1)).Parts.Skip(4).First()).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Component_Name_2()
         {
             // Arrange.
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Fourth", sequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.Skip(0).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_ItemOutput_With_Variable()
         {
             // Arrange.

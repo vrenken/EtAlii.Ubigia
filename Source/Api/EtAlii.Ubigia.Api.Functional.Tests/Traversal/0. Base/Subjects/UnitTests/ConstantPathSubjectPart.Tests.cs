@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public class ConstantPathSubjectPartTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ConstantPathSubjectPart_ToString()
         {
             // Arrange.

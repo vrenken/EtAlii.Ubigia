@@ -5,7 +5,7 @@
 
     public class ContentDefinitionTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Create()
         {
             // Arrange.
@@ -18,7 +18,7 @@
             Assert.Equal((ulong)0, content.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Equals()
         {
             // Arrange.
@@ -32,7 +32,7 @@
             Assert.True(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Create_ReadOnly()
         {
             // Arrange.
@@ -45,7 +45,7 @@
             Assert.Equal((ulong)0, content.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Add_Part()
         {
             // Arrange.
@@ -64,7 +64,7 @@
             Assert.Equal((ulong)0, content.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Add_Part_ReadOnly()
         {
             // Arrange.
@@ -83,7 +83,7 @@
             Assert.Equal((ulong)0, content.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Equality_Operator_By_Checksum()
         {
             // Arrange.
@@ -97,7 +97,7 @@
             Assert.True(first == second);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_InEquality_Operator_By_Checksum()
         {
             // Arrange.
@@ -111,7 +111,7 @@
             Assert.False(first != second);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Equality_By_Checksum()
         {
             // Arrange.
@@ -125,7 +125,7 @@
             Assert.True(first.Equals(second));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Equality_Operator_By_Size()
         {
             // Arrange.
@@ -139,7 +139,7 @@
             Assert.True(first == second);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_InEquality_Operator_By_Size()
         {
             // Arrange.
@@ -153,7 +153,7 @@
             Assert.False(first != second);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Equality_By_Size()
         {
             // Arrange.
@@ -167,7 +167,7 @@
             Assert.True(first.Equals(second));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Stored_Defaults_To_False()
         {
             // Arrange.
@@ -179,7 +179,7 @@
             Assert.False(contentDefinition.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Size_Defaults_To_0()
         {
             // Arrange.
@@ -191,7 +191,7 @@
             Assert.Equal((ulong)0, contentDefinition.Size);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Checksum_Defaults_To_0()
         {
             // Arrange.
@@ -203,7 +203,7 @@
             Assert.Equal((ulong)0, contentDefinition.Checksum);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Null()
         {
             // Arrange.
@@ -216,7 +216,7 @@
             Assert.False(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Null_Object()
         {
             // Arrange.
@@ -229,7 +229,7 @@
             Assert.False(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Self()
         {
             // Arrange.
@@ -242,7 +242,7 @@
             Assert.True(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Self_Object()
         {
             // Arrange.
@@ -255,7 +255,7 @@
             Assert.True(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Other_Size()
         {
             // Arrange.
@@ -270,7 +270,7 @@
             Assert.False(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Other_Checksum()
         {
             // Arrange.
@@ -285,11 +285,11 @@
             Assert.False(equals);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Other_Parts()
         {
             // Arrange.
-            var first = new ContentDefinition 
+            var first = new ContentDefinition
             {
                 Parts = new []
                 {
@@ -313,7 +313,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Compare_With_Other_Object()
         {
             // Arrange.
@@ -329,7 +329,7 @@
         }
 
 
-        [Fact(Skip = "The new HashCode uses random seeds to calculate in-process hashes"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "The new HashCode uses random seeds to calculate in-process hashes")]
         public void ContentDefinition_Get_Hash_For_Empty()
         {
             // Arrange.
@@ -342,7 +342,7 @@
             Assert.Equal(0, hash);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentDefinition_Get_Hash()
         {
             // Arrange.

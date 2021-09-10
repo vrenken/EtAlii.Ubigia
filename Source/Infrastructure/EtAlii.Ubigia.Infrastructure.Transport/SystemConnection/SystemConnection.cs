@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         }
 
         /// <inheritdoc />
-        public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
+        public async Task<(IDataConnection, DataConnectionOptions)> OpenSpace(string accountName, string spaceName)
         {
             var serviceDetails = _options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
@@ -30,12 +30,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .UseTransport(_options.TransportProvider)
                 .Use(address)
                 .Use(accountName, spaceName, null);
-            var dataConnection = new DataConnectionFactory()
-                .Create(options);
+            var dataConnection = Factory.Create<IDataConnection>(options);
             await dataConnection
                 .Open()
                 .ConfigureAwait(false);
-            return dataConnection;
+            return (dataConnection, options);
         }
 
         /// <inheritdoc />
@@ -48,8 +47,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 	        var connectionOptions = new ManagementConnectionOptions(_options.ConfigurationRoot)
                 .Use(_options.TransportProvider)
                 .Use(address);
-            var managementConnection = new ManagementConnectionFactory()
-                .Create(connectionOptions);
+            var managementConnection = Factory.Create<IManagementConnection>(connectionOptions);
             await managementConnection
                 .Open()
                 .ConfigureAwait(false);

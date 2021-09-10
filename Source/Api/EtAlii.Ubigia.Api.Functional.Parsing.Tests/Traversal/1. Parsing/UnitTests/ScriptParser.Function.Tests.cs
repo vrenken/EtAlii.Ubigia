@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Function()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(part.Arguments);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Invalid_01()
         {
             // Arrange.
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Invalid_02()
         {
             // Arrange.
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Invalid_03()
         {
             // Arrange.
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_SingleQuoted()
         {
             // Arrange.
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted()
         {
             // Arrange.
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_SingleQuoted_Special_Characters()
         {
             // Arrange.
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Special_Characters()
         {
             // Arrange.
@@ -180,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_SingleQuoted_Invalid_01()
         {
             // Arrange.
@@ -195,7 +195,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_SingleQuoted_Invalid_02()
         {
             // Arrange.
@@ -209,7 +209,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_SingleQuoted_Invalid_03()
         {
             // Arrange.
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_01()
         {
             // Arrange.
@@ -237,7 +237,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_02()
         {
             // Arrange.
@@ -251,7 +251,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_03()
         {
             // Arrange.
@@ -265,7 +265,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_Special_Characters_01()
         {
             // Arrange.
@@ -279,7 +279,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_Special_Characters_02()
         {
             // Arrange.
@@ -293,7 +293,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Single_DoubleQuoted_Invalid_Special_Characters_03()
         {
             // Arrange.
@@ -309,7 +309,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Multiple_SingleQuoted()
         {
             // Arrange.
@@ -336,7 +336,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Multiple_DoubleQuoted()
         {
             // Arrange.
@@ -363,7 +363,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Multiple_SingleQuoted_Special_Characters()
         {
             // Arrange.
@@ -390,7 +390,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Constant_Parameter_Multiple_DoubleQuoted_Special_Characters()
         {
             // Arrange.
@@ -417,7 +417,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment()
         {
             // Arrange.
@@ -438,7 +438,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(part.Arguments);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Single_SingleQuoted()
         {
             // Arrange.
@@ -461,7 +461,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Single_DoubleQuoted()
         {
             // Arrange.
@@ -484,7 +484,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Multiple_SingleQuoted()
         {
             // Arrange.
@@ -511,7 +511,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Multiple_SingleQuoted_Special_Characters()
         {
             // Arrange.
@@ -538,7 +538,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Multiple_DoubleQuoted()
         {
             // Arrange.
@@ -565,7 +565,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Assignment_Constant_Parameter_Multiple_DoubleQuoted_Special_Characters()
         {
             // Arrange.
@@ -593,7 +593,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Process()
         {
             // Arrange.
@@ -614,7 +614,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(part.Arguments);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Process_Constant_Parameter_Single_SingleQuoted()
         {
             // Arrange.
@@ -637,7 +637,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Process_Constant_Parameter_Single_DoubleQuoted()
         {
             // Arrange.
@@ -660,7 +660,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Process_Constant_Parameter_Multiple_SingleQuoted()
         {
             // Arrange.
@@ -687,7 +687,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Process_Constant_Parameter_Multiple_DoubleQuoted()
         {
             // Arrange.
@@ -714,7 +714,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantFunctionSubjectArgument)part.Arguments[2]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Single()
         {
             // Arrange.
@@ -737,7 +737,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", ((VariableFunctionSubjectArgument)part.Arguments[0]).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Single_Invalid_01()
         {
             // Arrange.
@@ -751,7 +751,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Single_Invalid_02()
         {
             // Arrange.
@@ -765,7 +765,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Single_Invalid_03()
         {
             // Arrange.
@@ -779,7 +779,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Single_Invalid_04()
         {
             // Arrange.
@@ -793,7 +793,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple()
         {
             // Arrange.
@@ -818,7 +818,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var2", ((VariableFunctionSubjectArgument)part.Arguments[1]).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_01()
         {
             // Arrange.
@@ -832,7 +832,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_02()
         {
             // Arrange.
@@ -846,7 +846,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_03()
         {
             // Arrange.
@@ -860,7 +860,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_04()
         {
             // Arrange.
@@ -874,7 +874,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_05()
         {
             // Arrange.
@@ -888,7 +888,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_06()
         {
             // Arrange.
@@ -902,7 +902,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_07()
         {
             // Arrange.
@@ -916,7 +916,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_08()
         {
             // Arrange.
@@ -930,7 +930,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_09()
         {
             // Arrange.
@@ -944,7 +944,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_10()
         {
             // Arrange.
@@ -958,7 +958,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_11()
         {
             // Arrange.
@@ -972,7 +972,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_12()
         {
             // Arrange.
@@ -986,7 +986,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_13()
         {
             // Arrange.
@@ -1000,7 +1000,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_14()
         {
             // Arrange.
@@ -1014,7 +1014,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_15()
         {
             // Arrange.
@@ -1028,7 +1028,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_16()
         {
             // Arrange.
@@ -1042,7 +1042,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_17()
         {
             // Arrange.
@@ -1056,7 +1056,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_18()
         {
             // Arrange.
@@ -1070,7 +1070,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Parse_Function_Variable_Parameter_Multiple_Invalid_19()
         {
             // Arrange.

@@ -5,7 +5,7 @@
 
     public class ComponentEditableEntryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Id()
         {
             // Arrange.
@@ -23,7 +23,7 @@
             Assert.Equal(otherId, entry.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Parent()
         {
             // Arrange.
@@ -40,7 +40,7 @@
             Assert.Equal(relation, entry.Parent);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Parent2()
         {
             // Arrange.
@@ -57,7 +57,7 @@
             Assert.Equal(relation, entry.Parent2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Previous()
         {
             // Arrange.
@@ -75,7 +75,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Next()
         {
             // Arrange.
@@ -92,7 +92,7 @@
             Assert.Equal(relation, entry.Next);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Downdate()
         {
             // Arrange.
@@ -109,7 +109,7 @@
             Assert.Equal(relation, entry.Downdate);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Indexed()
         {
             // Arrange.
@@ -126,7 +126,7 @@
             Assert.Equal(relation, entry.Indexed);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Type()
         {
             // Arrange.
@@ -142,7 +142,7 @@
             Assert.Equal(type, entry.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentEditableEntry_Set_And_Get_Tag()
         {
             // Arrange.

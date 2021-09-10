@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_String_To_Variable()
         {
             // Arrange.
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Time", await scope.Variables["var1"].Value.SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_String_To_Variable_Via_Variable()
         {
             // Arrange.
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Time", await scope.Variables["var2"].Value.SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_String_To_Variable_Via_Variable_With_Replace()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Time", await scope.Variables["var2"].Value.SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_String_To_Variable_Via_Variable_With_Clear()
         {
             // Arrange.
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(scope.Variables.ContainsKey("var1"));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Assign_String_To_Variable_Via_Variable_With_Empty_String()
         {
             // Arrange.

@@ -5,7 +5,7 @@
 
     public class SpaceTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Space_Create()
         {
             // Arrange.

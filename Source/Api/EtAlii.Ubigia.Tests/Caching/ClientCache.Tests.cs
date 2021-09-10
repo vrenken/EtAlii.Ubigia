@@ -6,7 +6,7 @@
     [CorrelateUnitTests]
     public class ClientCacheTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Cache_Create()
         {
             // Arrange.
@@ -18,7 +18,7 @@
             Assert.NotNull(cache);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task Cache_Create_Null()
         {
             // Arrange.

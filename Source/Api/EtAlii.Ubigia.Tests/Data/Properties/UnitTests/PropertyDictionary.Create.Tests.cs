@@ -5,7 +5,7 @@
 
     public class PropertyDictionaryCreateTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create()
         {
             // Arrange.
@@ -18,7 +18,7 @@
             Assert.Equal(string.Empty, properties.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_String()
         {
             // Arrange.
@@ -32,7 +32,7 @@
             Assert.Equal(value, properties["Key"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Integer()
         {
             // Arrange.
@@ -46,7 +46,7 @@
             Assert.Equal(value, properties["Key"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Double()
         {
             // Arrange.
@@ -62,7 +62,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Two_Doubles()
         {
             // Arrange.
@@ -81,7 +81,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Two_Integers()
         {
             // Arrange.
@@ -98,7 +98,7 @@
             Assert.Equal(value2, properties["Key2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Two_Strings()
         {
             // Arrange.
@@ -115,7 +115,7 @@
             Assert.Equal(value2, properties["Key2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Create_With_Two_Strings_From_Other_Dictionary()
         {
             // Arrange.

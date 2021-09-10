@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    [Trait("Technology", "Grpc")]
     public sealed class ContentDefinitionRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

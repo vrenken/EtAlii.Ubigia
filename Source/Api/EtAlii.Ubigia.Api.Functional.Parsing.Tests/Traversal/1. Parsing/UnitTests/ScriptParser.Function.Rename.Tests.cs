@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Rename()
         {
             // Arrange.

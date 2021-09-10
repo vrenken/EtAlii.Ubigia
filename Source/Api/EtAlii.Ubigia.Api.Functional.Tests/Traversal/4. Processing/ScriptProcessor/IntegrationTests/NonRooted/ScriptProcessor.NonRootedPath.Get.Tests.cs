@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItem()
         {
             // Arrange.
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Single(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_1()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Time", result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_2()
         {
             // Arrange.
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Time", result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_1()
         {
             // Arrange.
@@ -128,7 +128,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_2()
         {
             // Arrange.
@@ -158,7 +158,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_Spaced()
         {
             // Arrange.
@@ -188,7 +188,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable()
         {
             // Arrange.
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable_Spaced()
         {
             // Arrange.

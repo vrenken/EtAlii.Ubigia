@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _output = output;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_Random()
         {
             // Arrange.
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_01()
         {
             // Arrange.
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_02()
         {
             // Arrange.
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_03()
         {
             // Arrange.
@@ -161,7 +161,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_04()
         {
             // Arrange.
@@ -192,7 +192,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/03/04/05", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_05()
         {
             // Arrange.
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_06()
         {
             // Arrange.
@@ -252,7 +252,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/1/2/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_07()
         {
             // Arrange.
@@ -283,7 +283,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/1/2/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_08()
         {
             // Arrange.
@@ -309,7 +309,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_09()
         {
             // Arrange.
@@ -333,7 +333,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_10()
         {
             // Arrange.
@@ -357,7 +357,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_11()
         {
             // Arrange.
@@ -381,7 +381,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_12()
         {
             // Arrange.
@@ -405,7 +405,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_13()
         {
             // Arrange.
@@ -429,7 +429,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_14()
         {
             // Arrange.
@@ -453,7 +453,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_15()
         {
             // Arrange.
@@ -477,7 +477,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task RootHandlerPathMatcher_Time_16()
         {
             // Arrange.

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class BlobStorageExceptionTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobStorageException_Create_1()
         {
             // Arrange.
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(innerException, exception.InnerException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobStorageException_Create_2()
         {
             // Arrange.

@@ -4,7 +4,7 @@
 
     public class ComponentHelperTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentHelper_CompositeComponent_GetName()
         {
             var component = new ChildrenComponent();
@@ -12,14 +12,14 @@
             Assert.Equal(@"Children", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentHelper_Generic_CompositeComponent_GetName()
         {
             var name = ComponentHelper.GetName<ChildrenComponent>();
             Assert.Equal(@"Children", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentHelper_NonCompositeComponent_GetName()
         {
             var component = new ParentComponent();
@@ -27,7 +27,7 @@
             Assert.Equal(@"Parent", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ComponentHelper_Generic_NonCompositeComponent_GetName()
         {
             var name = ComponentHelper.GetName<ParentComponent>();

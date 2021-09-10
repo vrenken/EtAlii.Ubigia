@@ -4,7 +4,7 @@
 
     public class TagComponentTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TagComponent_Create()
         {
             // Arrange.
@@ -17,7 +17,7 @@
             Assert.Null(tagComponent.Tag);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TagComponent_Create_With_Type()
         {
             // Arrange.

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     public class LpDateTimeTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_TimeSpan_00()
         {
             // Arrange.
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(0, 23, 1, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_TimeSpan_01()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(0, 23, 1, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_TimeSpan_02()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(-new TimeSpan(0, 23, 1, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_TimeSpan_03()
         {
             // Arrange.
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(2, 23, 01, 20, 123), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_00()
         {
             // Arrange.
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new DateTime(2015, 07, 28), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_01()
         {
             // Arrange.
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new DateTime(2015, 07, 28, 11, 09, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_02()
         {
             // Arrange.
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new DateTime(2015, 07, 28, 11, 09, 28), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_03()
         {
             // Arrange.
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new DateTime(2015, 07, 28, 11, 09, 28, 123), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_04()
         {
             // Arrange.
@@ -161,7 +161,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new DateTime(2015, 07, 28, 11, 09, 28, 123), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LpDateTime_Parse_DateTime_05()
         {
             // Arrange.

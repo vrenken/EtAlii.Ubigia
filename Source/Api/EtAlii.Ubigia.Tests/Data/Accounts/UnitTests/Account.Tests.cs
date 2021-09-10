@@ -5,7 +5,7 @@
 
     public class AccountTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Account_Create()
         {
             // Arrange.
@@ -24,7 +24,7 @@
                 Name = name,
                 Password = password,
                 Roles = roles,
-                Updated = updated, 
+                Updated = updated,
             };
 
             // Assert.

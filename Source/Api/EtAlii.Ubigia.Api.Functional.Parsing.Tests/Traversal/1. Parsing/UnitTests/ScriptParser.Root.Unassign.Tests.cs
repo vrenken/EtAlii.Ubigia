@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_UnAssign_Time_Root()
         {
             // Arrange.
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(2,sequence.Parts.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_UnAssign_Time_Root_Under_Other_Name()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(2, sequence.Parts.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_UnAssign_Object_Root()
         {
             // Arrange.

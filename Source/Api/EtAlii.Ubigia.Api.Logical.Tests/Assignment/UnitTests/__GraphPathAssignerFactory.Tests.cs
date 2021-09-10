@@ -7,7 +7,7 @@
 
 //    public class GraphPathAssignerFactoryTests
 //    [
-//        [Fact, Trait("Category", TestAssembly.Category)]
+//        [Fact]
 //        public void GraphPathAssignerFactory_New()
 //        [
 //            // Arrange.
@@ -18,7 +18,7 @@
 //            // Assert.
 //            Assert.NotNull(factory)
 //        ]
-//        [Fact, Trait("Category", TestAssembly.Category)]
+//        [Fact]
 //        public void GraphPathAssignerFactory_Create()
 //        [
 //            // Arrange.

@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_01()
         {
             // Arrange.
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_02()
         {
             // Arrange.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_03()
         {
             // Arrange.
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_04()
         {
             // Arrange.
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_05()
         {
             // Arrange.
@@ -158,7 +158,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_06()
         {
             // Arrange.
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_07()
         {
             // Arrange.
@@ -208,7 +208,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_08()
         {
             // Arrange.
@@ -233,7 +233,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_09()
         {
             // Arrange.
@@ -258,7 +258,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_10()
         {
             // Arrange.
@@ -285,7 +285,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_11()
         {
             // Arrange.
@@ -310,7 +310,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_12()
         {
             // Arrange.
@@ -335,7 +335,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_13()
         {
             // Arrange.
@@ -360,7 +360,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Wildcard_14()
         {
             // Arrange.

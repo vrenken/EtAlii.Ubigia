@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     public class VariablePathSubjectPartTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void VariablePathSubjectPart_ToString()
         {
             // Arrange.

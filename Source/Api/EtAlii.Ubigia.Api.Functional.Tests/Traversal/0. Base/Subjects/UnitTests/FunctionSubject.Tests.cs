@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     public class FunctionSubjectTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FunctionSubject_Create()
         {
             // Arrange.
@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(subject);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FunctionSubject_Create_One_Constant_Parameter()
         {
             // Arrange.
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(subject);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FunctionSubject_Create_Two_Constant_Parameters()
         {
             // Arrange.
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FunctionSubject_Create_Two_Variable_Parameters()
         {
             // Arrange.

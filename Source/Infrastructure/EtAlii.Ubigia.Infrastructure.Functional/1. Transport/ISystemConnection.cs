@@ -8,8 +8,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Api.Transport.Management;
 
     public interface ISystemConnection : IDisposable
-    { 
-        Task<IDataConnection> OpenSpace(string accountName, string spaceName);
+    {
+        Task<(IDataConnection, DataConnectionOptions)> OpenSpace(string accountName, string spaceName);
 
         Task<IManagementConnection> OpenManagementConnection();
     }

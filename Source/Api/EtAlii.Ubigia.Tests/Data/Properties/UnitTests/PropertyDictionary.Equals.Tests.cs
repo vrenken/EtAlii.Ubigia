@@ -5,7 +5,7 @@
 
     public class PropertyDictionaryEquals2Tests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Same()
         {
             // Arrange.
@@ -27,7 +27,7 @@
             Assert.True(result1 == result2, "result2");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Name()
         {
             // Arrange.
@@ -49,7 +49,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Same_With_PropertyDictionaryComparer()
         {
             // Arrange.
@@ -69,7 +69,7 @@
             Assert.True(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Name_With_PropertyDictionaryComparer()
         {
             // Arrange.
@@ -89,7 +89,7 @@
             Assert.False(areEqual);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Value()
         {
             // Arrange.
@@ -108,7 +108,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Birthdate_Future()
         {
             // Arrange.
@@ -129,7 +129,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Birthdate_Past()
         {
             // Arrange.
@@ -151,7 +151,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Int_And_Float()
         {
             // Arrange.
@@ -169,7 +169,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Float_And_Int()
         {
             // Arrange.
@@ -187,7 +187,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Int_And_String()
         {
             // Arrange.
@@ -205,7 +205,7 @@
             Assert.False(result1);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_String_And_Int()
         {
             // Arrange.
@@ -223,7 +223,7 @@
             Assert.False(result1);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Int_And_Null()
         {
             // Arrange.
@@ -242,7 +242,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Null_And_Int()
         {
             // Arrange.
@@ -260,7 +260,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_String_And_Null()
         {
             // Arrange.
@@ -278,7 +278,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_With_Different_Typed_Values_Null_And_String()
         {
             // Arrange.
@@ -296,7 +296,7 @@
             Assert.False(result2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_Null()
         {
             // Arrange.
@@ -311,7 +311,7 @@
             Assert.False(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_DateTime_MilliSeconds()
         {
             // Arrange.
@@ -330,7 +330,7 @@
             Assert.False(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_DateTime_Seconds()
         {
             // Arrange.
@@ -349,7 +349,7 @@
             Assert.False(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyDictionary_Equals_Different_DateTime_Utc_Local()
         {
             // Arrange.

@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_New_Blank()
         {
             // Arrange.
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_New_Argument_01()
         {
             // Arrange.
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Vacation", argument.Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_New_Argument_02()
         {
             // Arrange.

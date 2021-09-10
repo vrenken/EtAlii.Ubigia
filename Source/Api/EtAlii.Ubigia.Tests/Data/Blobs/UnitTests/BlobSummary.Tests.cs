@@ -5,7 +5,7 @@
 
     public class BlobSummaryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobSummary_Create_From_Blob()
         {
             // Arrange.
@@ -15,10 +15,10 @@
             var isComplete = availableParts.Length > 0;
 
             // Act.
-            var summary = new BlobSummary 
+            var summary = new BlobSummary
             {
-                IsComplete = isComplete, 
-                TotalParts = blob.TotalParts, 
+                IsComplete = isComplete,
+                TotalParts = blob.TotalParts,
                 AvailableParts = availableParts
             };
 
@@ -27,7 +27,7 @@
             Assert.Equal(availableParts, summary.AvailableParts);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobSummary_Create_From_TotalParts()
         {
             // Arrange.
@@ -39,8 +39,8 @@
             // Act.
             var summary = new BlobSummary
             {
-                IsComplete = isComplete, 
-                TotalParts = parts, 
+                IsComplete = isComplete,
+                TotalParts = parts,
                 AvailableParts = availableParts
             };
 

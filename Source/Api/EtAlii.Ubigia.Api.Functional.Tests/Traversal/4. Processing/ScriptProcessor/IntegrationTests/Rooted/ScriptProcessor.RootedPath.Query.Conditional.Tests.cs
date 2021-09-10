@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_01()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Johnny", second.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_02()
         {
             // Arrange.
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(false, fourth.IsMale);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_03()
         {
             // Arrange.
@@ -177,7 +177,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(false, fourth.IsMale);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_04()
         {
             // Arrange.
@@ -229,7 +229,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_DateTime_01()
         {
             // Arrange.

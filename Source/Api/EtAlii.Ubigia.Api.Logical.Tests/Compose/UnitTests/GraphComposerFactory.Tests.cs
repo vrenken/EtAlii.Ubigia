@@ -13,18 +13,15 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     [CorrelateUnitTests]
     public class GraphComposerFactoryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void GraphComposerFactory_New()
         {
             // Arrange.
             var configurationRoot = new ConfigurationBuilder().Build();
 
-            var fabricOptions = new FabricOptions(configurationRoot)
-                .UseDiagnostics();
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            var logicalOptions = new LogicalOptions(configurationRoot)
-                .UseFabricContext(fabricContext)
+            var logicalOptions = new FabricOptions(configurationRoot)
+                .UseDiagnostics()
+                .UseLogicalContext()
                 .UseDiagnostics();
             var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
 

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <summary>
         /// The Options used to instantiate this ManagementConnection.
         /// </summary>
-        IManagementConnectionOptions Options { get; }
+        ManagementConnectionOptions Options { get; }
 
         /// <summary>
         /// Additional details about the storage connection.

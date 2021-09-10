@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserRootedPathTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path()
         {
             // Arrange.
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(script.Sequences);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Query()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Typed_Word()
         {
             // Arrange.
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(4));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Typed_word()
         {
             // Arrange.
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(4));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Typed_WORD()
         {
             // Arrange.
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Typed_NUMBER()
         {
             // Arrange.
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(4));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Typed_BaadFood()
         {
             // Arrange.
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Path_With_Query_And_VariableAssignment()
         {
             // Arrange.
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<RootedPathSubject>(script.Sequences.ElementAt(1).Parts.ElementAt(2));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Path_With_Separator_Error()
         {
             // Arrange.
@@ -170,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Path_With_No_Separator_Error()
         {
             // Arrange.
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.DoesNotContain(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Unquoted_Path_With_Normal_Characters()
         {
             // Arrange.
@@ -207,7 +207,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotEqual(0, count);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Quoted_Path_With_Normal_Characters()
         {
             // Arrange.
@@ -232,7 +232,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Quoted_Path_With_Special_Characters()
         {
             // Arrange.
@@ -258,7 +258,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Unquoted_Path_With_Special_Characters()
         {
             // Arrange.
@@ -280,7 +280,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Query_Unquoted_Path_With_Quoted_Special_Characters()
         {
             // Arrange.

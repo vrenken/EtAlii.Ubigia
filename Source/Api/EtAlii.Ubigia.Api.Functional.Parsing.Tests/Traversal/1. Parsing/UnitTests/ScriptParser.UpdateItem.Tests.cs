@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem()
         {
             // Arrange.
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", sequence.Parts.Skip(2).Cast<VariableSubject>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem_Without_Spaces()
         {
             // Arrange.
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", sequence.Parts.Skip(2).Cast<VariableSubject>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem_Based_On_Identifier()
         {
             // Arrange.
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", variableSubject.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem_Based_On_Identifier_Without_Spaces()
         {
             // Arrange.
@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", variableSubject.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem_Based_On_Identifier_In_Variable()
         {
             // Arrange.
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("var1", variableSubject.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_UpdateItem_Based_On_Identifier_In_Variable_Without_Spaces()
         {
             // Arrange.

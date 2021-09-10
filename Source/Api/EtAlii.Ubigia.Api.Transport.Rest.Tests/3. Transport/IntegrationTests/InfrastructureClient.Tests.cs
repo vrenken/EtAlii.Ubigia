@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
     using System;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
     {
         private readonly Uri _url = new("http://api.openkeyval.org/", UriKind.Absolute);
 
-        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason")]
         public async Task InfrastructureClient_Post()
         {
             // Arrange.
@@ -37,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             // Assert.
         }
 
-        [Fact(Skip="Not working (yet)"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip="Not working (yet)")]
         public async Task InfrastructureClient_Get()
         {
             if (IsConnectedToInternet())
@@ -67,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             return InternetGetConnectedState(out var _, 0);
         }
 
-        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason")]
         public async Task InfrastructureClient_Post_Get_Result()
         {
             // Arrange.
@@ -92,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             //Assert.Equal(result.Value, testMessage.Value)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task InfrastructureClient_Get_Null()
         {
             // Arrange.

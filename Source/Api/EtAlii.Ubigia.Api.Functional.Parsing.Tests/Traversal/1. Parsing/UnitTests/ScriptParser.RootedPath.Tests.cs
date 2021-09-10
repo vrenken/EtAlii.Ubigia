@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse()
         {
             // Arrange.
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Newline_N_01()
         {
             // Arrange.
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Newline_N_02()
         {
             // Arrange.
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Newline_N_03()
         {
             // Arrange.
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(5, script.Sequences.Count());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Newline_N_Invalid_Script()
         {
             // Arrange.
@@ -132,7 +132,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Newline_RN()
         {
             // Arrange.
@@ -149,7 +149,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_VariableAssignment_With_Path_Error()
         {
             // Arrange.
@@ -162,7 +162,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_VariableAssignment_With_Separator_Error()
         {
             // Arrange.
@@ -175,7 +175,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Comment_3()
         {
             // Arrange.
@@ -194,7 +194,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Comment_4()
         {
             // Arrange.
@@ -212,7 +212,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<RootedPathSubject>(script.Sequences.ElementAt(1).Parts.Skip(1).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Comment_5()
         {
             // Arrange.
@@ -227,7 +227,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<Comment>(script.Sequences.ElementAt(0).Parts.Skip(2).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Comment_6()
         {
             // Arrange.
@@ -242,7 +242,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<Comment>(script.Sequences.ElementAt(0).Parts.Skip(2).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_RootedPath_Parse_Comment_7()
         {
             // Arrange.

@@ -23,10 +23,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-            var fabricOptions = new FabricOptions(_testContext.ClientConfiguration)
-                .Use(connection)
-                .UseDiagnostics();
+            var fabricOptions = await _testContext.Transport
+                .CreateDataConnectionToNewSpace()
+                .UseFabricContext()
+                .UseDiagnostics()
+                .ConfigureAwait(false);
             _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
@@ -37,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Add()
         {
             // Arrange.
@@ -51,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(name, root.Name);
         }
 
-        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason")]
         public async Task FabricContext_Roots_Event_Added()
         {
             // Arrange.
@@ -73,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.NotEqual(Guid.Empty, addedId);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Add_Multiple()
         {
             for (var i = 0; i < 10; i++)
@@ -90,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_By_Id()
         {
             // Arrange.
@@ -105,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(name, root.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_By_Name()
         {
             // Arrange.
@@ -120,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(name, root.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_Multiple()
         {
             for (var i = 0; i < 10; i++)
@@ -138,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_Multiple_First_Full_Add()
         {
             // Arrange.
@@ -162,7 +163,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 Assert.Equal(root.Name, retrievedRoot.Name);
             }
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_No_Roots()
         {
             // Arrange.
@@ -178,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Count());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Get_All()
         {
             // Arrange.
@@ -209,7 +210,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Change()
         {
             // Arrange.
@@ -235,7 +236,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
 
         // TODO: The roots changed event should be raised, right?
-        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason")]
         public async Task FabricContext_Roots_Event_Changed()
         {
             // Arrange.
@@ -258,7 +259,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Remove()
         {
             // Arrange.
@@ -277,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Null(root);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_Event_Removed()
         //[
         //    var name = Guid.NewGuid().ToString()
@@ -295,7 +296,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    Assert.NotEqual(Guid.Empty, removedId)
         //    Assert.NotEqual(root.Id, removedId)
         //]
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Delete_Non_Existing()
         {
             // Arrange.
@@ -308,7 +309,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Change_Non_Existing()
         {
             // Arrange.
@@ -322,7 +323,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_Add_With_Closed_Connection()
         //[
         //    // Arrange.
@@ -339,7 +340,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_Get_With_Closed_Connection()
         //[
         //    // Arrange.
@@ -355,7 +356,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_Remove_With_Closed_Connection()
         //[
         //    // Arrange.
@@ -371,7 +372,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_GetAll_With_Closed_Connection()
         //[
         //    // Arrange.
@@ -387,7 +388,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_Roots_Change_With_Closed_Connection()
         //[
         //    // Arrange.
@@ -403,7 +404,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
         //]
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_Roots_Add_Already_Existing_Storage()
         {
             // Arrange.

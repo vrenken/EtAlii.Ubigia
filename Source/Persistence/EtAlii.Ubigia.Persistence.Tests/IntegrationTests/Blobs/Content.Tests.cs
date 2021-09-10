@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_Store()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task Content_Store_And_Retrieve_Check_Parts()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             AssertData.AreEqual(content, retrievedContent, false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Content_Store_Twice()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<BlobStorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task Content_Retrieve_None_Existing()
         {
             // Arrange.

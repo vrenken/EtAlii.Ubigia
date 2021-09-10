@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     [CorrelateUnitTests]
     public class TypedPathSubjectPartParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_Create()
         {
             // Arrange.
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(parser);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_Words_Valid()
         {
             // Arrange.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("[Words]", result.Match.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_words_Valid()
         {
             // Arrange.
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_WORDS_Valid()
         {
             // Arrange.
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_Word_Valid()
         {
             // Arrange.
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("[Word]", result.Match.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_word_Valid()
         {
             // Arrange.
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_WORD_Valid()
         {
             // Arrange.
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("[WORD]", result.Match.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_WORDS_InValid()
         {
             // Arrange.
@@ -130,7 +130,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("[ WORDS]", result.Rest.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TypedPathSubjectPartParser_WORD_InValid()
         {
             // Arrange.

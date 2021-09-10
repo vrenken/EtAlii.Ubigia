@@ -4,7 +4,7 @@
 
     public class ExecutionScopeTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ExecutionScope_Create_Cache_Enabled()
         {
             // Arrange.
@@ -16,7 +16,7 @@
             Assert.NotNull(scope);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ExecutionScope_Create_Cache_Disabled()
         {
             // Arrange.
@@ -28,7 +28,7 @@
             Assert.NotNull(scope);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ExecutionScope_GetWildCardRegex()
         {
             // Arrange.

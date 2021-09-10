@@ -26,11 +26,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public IStorageConnectionDetails Details => _connection?.Details;
 
         /// <inheritdoc />
-        public IManagementConnectionOptions Options { get; }
+        public ManagementConnectionOptions Options { get; }
 
         private IStorageConnection _connection;
 
-        public ManagementConnection(IManagementConnectionOptions options)
+        public ManagementConnection(ManagementConnectionOptions options)
         {
             Options = options;
         }
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
                 .UseTransport(Options.TransportProvider)
                 .Use(address)
                 .Use(accountName, spaceName, null);
-            var dataConnection = new DataConnectionFactory().Create(options);
+            var dataConnection = Factory.Create<IDataConnection>(options);
             await dataConnection
                 .Open()
                 .ConfigureAwait(false);

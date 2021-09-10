@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public class DowndateOfPathSubjectPartTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PreviousSubjectPart_ToString()
         {
             // Arrange.

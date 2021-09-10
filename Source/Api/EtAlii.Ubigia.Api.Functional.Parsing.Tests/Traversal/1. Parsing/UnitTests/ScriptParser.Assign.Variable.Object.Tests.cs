@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_Empty()
         {
             // Arrange.
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Blank_SingleQuotes()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Blank_DoubleQuotes()
         {
             // Arrange.
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key()
         {
             // Arrange.
@@ -102,7 +102,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Datetime_01()
         {
             // Arrange.
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(new DateTime(1977, 06, 27), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Datetime_02()
         {
             // Arrange.
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_01()
         {
             // Arrange.
@@ -172,7 +172,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_01()
         {
             // Arrange.
@@ -193,7 +193,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_02()
         {
             // Arrange.
@@ -214,7 +214,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_03()
         {
             // Arrange.
@@ -235,7 +235,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_04()
         {
             // Arrange.
@@ -256,7 +256,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_05()
         {
             // Arrange.
@@ -277,7 +277,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_06()
         {
             // Arrange.
@@ -298,7 +298,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_07()
         {
             // Arrange.
@@ -319,7 +319,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_08()
         {
             // Arrange.
@@ -340,7 +340,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_02()
         {
             // Arrange.
@@ -362,7 +362,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_03()
         {
             // Arrange.
@@ -383,7 +383,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_Quoted_Key_DoubleQuotes()
         {
             // Arrange.
@@ -404,7 +404,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_Quoted_Key_SingleQuotes_1()
         {
             // Arrange.
@@ -425,7 +425,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_MultiLine_Quoted_Key_SingleQuotes_2()
         {
             // Arrange.
@@ -450,7 +450,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_NonQuoted_Key()
         {
             // Arrange.
@@ -468,7 +468,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_Quoted_Key_DoubleQuotes()
         {
             // Arrange.
@@ -486,7 +486,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_Quoted_Key_SingleQuotes_1()
         {
             // Arrange.
@@ -504,7 +504,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_Quoted_Key_SingleQuotes_2()
         {
             // Arrange.
@@ -522,7 +522,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_NonQuoted_Key_DateTime_01()
         {
             // Arrange.
@@ -542,7 +542,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Variable_From_Object_SingleLine_NonQuoted_Key_DateTime_02()
         {
             // Arrange.

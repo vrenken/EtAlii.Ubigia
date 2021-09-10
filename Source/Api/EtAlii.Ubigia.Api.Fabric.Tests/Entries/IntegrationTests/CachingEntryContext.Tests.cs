@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     [CorrelateUnitTests]
     public class CachingEntryContextTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void CachingEntryContext_Create()
         {
             // Arrange.

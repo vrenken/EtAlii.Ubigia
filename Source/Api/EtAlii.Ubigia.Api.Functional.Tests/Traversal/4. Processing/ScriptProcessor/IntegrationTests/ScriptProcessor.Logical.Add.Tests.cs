@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Location_Add()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(selectQuery.Split(new[] { '/' }).Last(), locationEntry.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Get_Time()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Time_Add_With_Variable()
         {
             // Arrange.
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_1()
         {
             // Arrange.
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_2()
         {
             // Arrange.
@@ -182,7 +182,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_Empty_Item_2()
         {
             // Arrange.
@@ -215,7 +215,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_3()
         {
             // Arrange.
@@ -254,7 +254,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_4()
         {
             // Arrange.
@@ -292,7 +292,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_With_Variable_1()
         {
             // Arrange.
@@ -334,7 +334,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_With_Variable_2()
         {
             // Arrange.
@@ -375,7 +375,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Add_With_Variable_3()
         {
             // Arrange.

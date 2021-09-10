@@ -4,7 +4,7 @@
 
     public class BlobHelperTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobHelper_GetName_ContentDefinition()
         {
             var blob = new ContentDefinition();
@@ -12,14 +12,14 @@
             Assert.Equal(@"ContentDefinition", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobHelper_GetName_ContentDefinition_Generic()
         {
             var name = Blob.GetName<ContentDefinition>();
             Assert.Equal(@"ContentDefinition", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobHelper_GetName_Content()
         {
             var blob = new Content();
@@ -27,7 +27,7 @@
             Assert.Equal(@"Content", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobHelper_GetName_Content_Generic()
         {
             var name = Blob.GetName<Content>();

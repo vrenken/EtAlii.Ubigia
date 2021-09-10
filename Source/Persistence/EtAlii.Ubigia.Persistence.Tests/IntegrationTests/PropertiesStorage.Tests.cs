@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyStorage_Store_SimpleTestProperties()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyStorage_Store_1000_SimpleTestProperties()
         {
             // Arrange.
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(delta < TimeSpan.FromSeconds(80), $"delta={delta}");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyStorage_Store_Retrieve_SimpleTestProperties()
         {
             // Arrange.
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(properties["Value"], retrievedProperties["Value"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PropertyStorage_Store_Retrieve_1000_SimpleTestProperties()
         {
             // Arrange.

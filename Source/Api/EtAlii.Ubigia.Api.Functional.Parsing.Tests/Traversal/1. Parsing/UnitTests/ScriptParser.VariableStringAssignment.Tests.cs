@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment()
         {
             // Arrange.
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Test", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment_Without_Spaces()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Test", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment_Next()
         {
             // Arrange.
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Test", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment_Next_Without_Spaces()
         {
             // Arrange.
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Test", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment_Middle()
         {
             // Arrange.
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Test", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_VariableStringAssignment_Middle_Without_Spaces()
         {
             // Arrange.

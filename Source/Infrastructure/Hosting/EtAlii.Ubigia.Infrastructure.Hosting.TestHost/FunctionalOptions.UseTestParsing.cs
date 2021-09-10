@@ -3,6 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Antlr;
 
     /// <summary>
@@ -19,6 +20,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <returns></returns>
         public static FunctionalOptions UseTestParsing(this FunctionalOptions options)
         {
+#if USE_LAPA_PARSING_IN_TESTS
+            return options.UseLapaParsing();
+#else
+            return options.UseAntlrParsing();
+#endif
+        }
+
+        /// <summary>
+        /// Use the text parser configured for testing.
+        /// </summary>
+        /// <param name="optionsTask"></param>
+        /// <returns></returns>
+        public static async Task<FunctionalOptions> UseTestParsing(this Task<FunctionalOptions> optionsTask)
+        {
+            var options = await optionsTask.ConfigureAwait(false);
 #if USE_LAPA_PARSING_IN_TESTS
             return options.UseLapaParsing();
 #else

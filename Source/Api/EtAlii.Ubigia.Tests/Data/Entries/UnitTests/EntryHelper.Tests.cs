@@ -6,7 +6,7 @@
 
     public class EntryHelperTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Compose_Identifier()
         {
             // Arrange.
@@ -26,7 +26,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Compose_Identifier_And_Parent()
         {
             // Arrange.
@@ -49,7 +49,7 @@
             Assert.Equal(parentIdentifier, entry.Parent.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Decompose_Identifier_And_Parent()
         {
             // Arrange.
@@ -73,7 +73,7 @@
             Assert.Equal(parentIdentifier, decomposedComponents.OfType<ParentComponent>().Single().Relation.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Compose_Identifier_And_Tag()
         {
             // Arrange.
@@ -96,7 +96,7 @@
             Assert.Equal(tag, entry.Tag);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Decompose_Identifier_And_Tag()
         {
             // Arrange.
@@ -120,7 +120,7 @@
             Assert.Equal(tag, decomposedComponents.OfType<TagComponent>().Single().Tag);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Compose_Identifier_And_Type()
         {
             // Arrange.
@@ -143,7 +143,7 @@
             Assert.Equal(type, entry.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void EntryHelper_Decompose_Identifier_And_Type()
         {
             // Arrange.

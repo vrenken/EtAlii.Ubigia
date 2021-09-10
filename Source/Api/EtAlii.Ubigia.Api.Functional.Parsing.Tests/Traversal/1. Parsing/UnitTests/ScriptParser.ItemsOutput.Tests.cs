@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Variable_Name()
         {
             // Arrange.
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(5).Cast<VariablePathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Component_Count_1()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(9, sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Quoted_Name()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third is cool", sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(5).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Quoted_Name_Special_Characters()
         {
             // Arrange.
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Component_Count_2()
         {
             // Arrange.
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(5, secondSequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Component_Name_1()
         {
             // Arrange.
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Fourth", sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(7).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Component_Name_2()
         {
             // Arrange.
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Fourth", sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Variable()
         {
             // Arrange.
@@ -148,7 +148,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<VariablePathSubjectPart>(sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(5).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier()
         {
             // Arrange.
@@ -166,7 +166,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<VariablePathSubjectPart>(sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Skip(3).First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier_Invalid_Storage_Additional_Character()
         {
             // Arrange.
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier_Invalid_With_Two_Identifiers()
         {
             // Arrange.
@@ -192,7 +192,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier_Invalid_Storage_Invalid_Letter()
         {
             // Arrange.
@@ -205,7 +205,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier_Invalid_Storage_Invalid_Character()
         {
             // Arrange.
@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_ItemsOutput_With_Identifier_Invalid_Structure()
         {
             // Arrange.

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public class ParentPathSubjectPartTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ParentPathSubjectPart_ToString()
         {
             // Arrange.

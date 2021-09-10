@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobSummaryCalculator_Create()
         {
             // Arrange.
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.NotNull(blobSummaryCalculator);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task BlobSummaryCalculator_Calculate()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.NotNull(summary);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task BlobSummaryCalculator_Calculate_With_All_Parts()
         {
             // Arrange.
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task BlobSummaryCalculator_Calculate_With_Some_Parts()
         {
             // Arrange.

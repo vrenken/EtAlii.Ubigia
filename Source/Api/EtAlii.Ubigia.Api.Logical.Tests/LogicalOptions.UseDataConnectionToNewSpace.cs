@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     {
         public static async Task<FabricOptions> UseDataConnectionToNewSpace(this FabricOptions options, ILogicalTestContext testContext, bool openOnCreation)
         {
-            var connection = await testContext.Fabric.Transport
+            var (connection, _) = await testContext.Fabric.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)
                 .ConfigureAwait(false);
 
@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public static async Task<FabricOptions> UseDataConnectionToNewSpace(this FabricOptions options, LogicalUnitTestContext unitTestContext, bool openOnCreation)
         {
-            var connection = await unitTestContext.Fabric.Transport
+            var (connection, _) = await unitTestContext.Fabric.Transport
                 .CreateDataConnectionToNewSpace(openOnCreation)
                 .ConfigureAwait(false);
 

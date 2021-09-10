@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_01()
         {
             // Arrange.
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(123.456f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_02()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(-123.456f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_03()
         {
             // Arrange.
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(0.0f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_04()
         {
             // Arrange.
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(0.0f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_05()
         {
             // Arrange.
@@ -116,7 +116,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(0.0f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_06()
         {
             // Arrange.
@@ -135,7 +135,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(0.0f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_07()
         {
             // Arrange.
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_08()
         {
             // Arrange.
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_09()
         {
             // Arrange.
@@ -197,7 +197,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_10()
         {
             // Arrange.
@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_11()
         {
             // Arrange.
@@ -239,7 +239,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_12()
         {
             // Arrange.
@@ -258,7 +258,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(+123.456f, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_13()
         {
             // Arrange.
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_14()
         {
             // Arrange.
@@ -298,7 +298,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FloatValueParser_Parse_15()
         {
             // Arrange.

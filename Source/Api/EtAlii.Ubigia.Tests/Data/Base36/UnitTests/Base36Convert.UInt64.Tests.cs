@@ -4,7 +4,7 @@
 
     public class Base36ConvertUInt64Tests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_0()
         {
             // Arrange.
@@ -17,7 +17,7 @@
             Assert.Equal("0", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_1()
         {
             // Arrange.
@@ -30,7 +30,7 @@
             Assert.Equal("1", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_10()
         {
             // Arrange.
@@ -43,7 +43,7 @@
             Assert.Equal("a", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_11()
         {
             // Arrange.
@@ -56,7 +56,7 @@
             Assert.Equal("b", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_111111()
         {
             // Arrange.
@@ -69,7 +69,7 @@
             Assert.Equal("2dqf", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_11111111111111111111()
         {
             // Arrange.
@@ -82,7 +82,7 @@
             Assert.Equal("2cf0g61r42wnb", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToString_UInt64_MaxValue()
         {
             // Arrange.
@@ -97,7 +97,7 @@
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_0()
         {
             // Arrange.
@@ -111,7 +111,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_00()
         {
             // Arrange.
@@ -124,7 +124,7 @@
             Assert.Equal((ulong)0, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_1()
         {
             // Arrange.
@@ -138,7 +138,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_01()
         {
             // Arrange.
@@ -151,7 +151,7 @@
             Assert.Equal((ulong)1, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_10()
         {
             // Arrange.
@@ -165,7 +165,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_11()
         {
             // Arrange.
@@ -179,7 +179,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_111111()
         {
             // Arrange.
@@ -193,7 +193,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUInt64_0002dqf()
         {
             // Arrange.
@@ -206,7 +206,7 @@
             Assert.Equal((ulong)111111, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_11111111111111111111()
         {
             // Arrange.
@@ -220,7 +220,7 @@
             Assert.Equal(value, result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void Base36Convert_UInt64_ToUint64_UInt64_MaxValue()
         {
             // Arrange.

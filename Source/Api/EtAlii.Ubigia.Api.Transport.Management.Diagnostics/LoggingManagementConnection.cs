@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
         public IStorageConnectionDetails Details => _decoree.Details;
 
         /// <inheritdoc />
-        public IManagementConnectionOptions Options => _decoree.Options;
+        public ManagementConnectionOptions Options => _decoree.Options;
 
         public LoggingManagementConnection(IManagementConnection decoree)
         {

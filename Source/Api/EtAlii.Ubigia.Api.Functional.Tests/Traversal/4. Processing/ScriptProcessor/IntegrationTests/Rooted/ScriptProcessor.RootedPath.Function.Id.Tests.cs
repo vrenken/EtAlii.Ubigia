@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Assign()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_01()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.IsType<Identifier>(result.Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_02()
         {
             // Arrange.
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_Variable()
         {
             // Arrange.
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.IsType<Identifier>(result.Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_01()
         {
             // Arrange.
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.IsType<Identifier>(result.Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_02()
         {
             // Arrange.
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal((await scope.Variables["var1"].Value.Cast<Node>().SingleAsync()).Id, await scope.Variables["var2"].Value.Cast<Identifier>().SingleAsync());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_03()
         {
             // Arrange.
@@ -184,7 +184,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(personsAfter);
             Assert.Equal(3, personsAfter.Length);
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_04()
         {
             // Arrange.

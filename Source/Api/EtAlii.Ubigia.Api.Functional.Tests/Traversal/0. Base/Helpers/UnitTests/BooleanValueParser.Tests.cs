@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_01()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.True(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_02()
         {
             // Arrange.
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.True(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_03()
         {
             // Arrange.
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_04()
         {
             // Arrange.
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_05()
         {
             // Arrange.
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_06()
         {
             // Arrange.
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_07()
         {
             // Arrange.
@@ -158,7 +158,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_08()
         {
             // Arrange.
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_09()
         {
             // Arrange.
@@ -200,7 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BooleanValueParser_Parse_10()
         {
             // Arrange.

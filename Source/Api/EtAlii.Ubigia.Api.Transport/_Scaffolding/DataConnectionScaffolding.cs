@@ -10,13 +10,21 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public DataConnectionScaffolding(DataConnectionOptions options)
         {
+            var hasTransportProvider = options.TransportProvider != null;
+            if (!hasTransportProvider)
+            {
+                throw new InvalidInfrastructureOperationException("Error creating data connection: No TransportProvider provided.");
+            }
+
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
+            var factoryMethod = _options.FactoryExtension ?? (() => new DataConnection(_options));
+
             container.Register(() => _options.ConfigurationRoot);
-            container.Register<IDataConnection>(() => new DataConnection(_options));
+            container.Register(() => factoryMethod());
         }
     }
 }

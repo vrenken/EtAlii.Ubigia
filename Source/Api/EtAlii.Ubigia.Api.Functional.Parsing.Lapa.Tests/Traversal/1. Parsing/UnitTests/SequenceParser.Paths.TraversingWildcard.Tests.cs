@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_01()
         {
             // Arrange.
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<TraversingWildcardPathSubjectPart>().First().Limit == 0);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_02()
         {
             // Arrange.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_03()
         {
             // Arrange.
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.True(pathSubject.Parts.Skip(5).Cast<TraversingWildcardPathSubjectPart>().First().Limit == 2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_04()
         {
             // Arrange.
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_05()
         {
             // Arrange.
@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_TraversingWildcard_06()
         {
             // Arrange.

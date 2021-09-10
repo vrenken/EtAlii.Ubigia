@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     [CorrelateUnitTests]
     public class RegexPathSubjectPartParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RegexPathSubjectPartParser_Create()
         {
             // Arrange.
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(parser);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RegexPathSubjectPartParser_Pattern_SingleQuoted_01()
         {
             // Arrange.
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(wrappedPattern, result.Match.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RegexPathSubjectPartParser_Pattern_DoubleQuoted_01()
         {
             // Arrange.
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RegexPathSubjectPartParser_Pattern_DoubleQuoted_02()
         {
             // Arrange.
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(wrappedPattern, result.Match.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void RegexPathSubjectPartParser_Pattern_SingleQuoted_02()
         {
             // Arrange.

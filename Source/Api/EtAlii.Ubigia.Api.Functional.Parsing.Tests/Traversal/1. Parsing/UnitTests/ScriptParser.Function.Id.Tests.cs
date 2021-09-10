@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Assign()
         {
             // Arrange.
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Variable()
         {
             // Arrange.
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("path", ((VariableFunctionSubjectArgument)part.Arguments[0]).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Constant_SingleQuoted()
         {
             // Arrange.
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/Hierarchy", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Constant_SingleQuoted_Special_Characters()
         {
             // Arrange.
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Constant_DoubleQuoted()
         {
             // Arrange.
@@ -142,7 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("/Hierarchy", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Constant_DoubleQuoted_Special_Characters()
         {
             // Arrange.
@@ -166,7 +166,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_01()
         {
             // Arrange.
@@ -191,7 +191,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_02()
         {
             // Arrange.
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Child", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_03()
         {
             // Arrange.
@@ -248,7 +248,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_04()
         {
             // Arrange.
@@ -271,7 +271,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("now", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_05()
         {
             // Arrange.
@@ -295,7 +295,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Function_Id_Path_06()
         {
             // Arrange.

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         private readonly TestIdentifierFactory _testIdentifierFactory = new();
         private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIds()
         {
             // Arrange.
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(4, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_Without_EraPeriodMoment()
         {
             // Arrange.
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_With_EraPeriodMoment()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings()
         {
             // Arrange.
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings_Partially()
         {
             // Arrange.
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_NotEquals_True()
         {
             // Arrange.
@@ -128,7 +128,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(firstContainerIdentifier != secondContainerIdentifier);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_NotEquals_False()
         {
             // Arrange.
@@ -143,7 +143,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(firstContainerIdentifier != secondContainerIdentifier);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Equals_True()
         {
             // Arrange.
@@ -158,7 +158,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(firstContainerIdentifier == secondContainerIdentifier);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Equals_False()
         {
             // Arrange.
@@ -173,7 +173,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(firstContainerIdentifier == secondContainerIdentifier);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_TrimTime_True()
         {
             // Arrange.
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(4, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromIdentifier_TrimTime_False()
         {
             // Arrange.
@@ -210,7 +210,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_FromEmptyPaths_ToString()
         {
             // Arrange.
@@ -222,7 +222,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal($"{nameof(ContainerIdentifier)}.Empty", containerId.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Single_Id_ToString()
         {
             // Arrange.
@@ -236,7 +236,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(id, containerId.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Multiple_Ids_ToString()
         {
             // Arrange.
@@ -250,7 +250,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(string.Join(Path.DirectorySeparatorChar, first, second), containerId.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Paths()
         {
             // Arrange.
@@ -265,7 +265,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(second, containerId.Paths[1]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Combine()
         {
             // Arrange.
@@ -281,7 +281,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Empty_ToString()
         {
             // Arrange.
@@ -294,7 +294,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Comparison_With_Right_Null()
         {
             // Arrange.
@@ -308,7 +308,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(result, "A ContainerIdentifier should not match with null");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AzureContainerProvider_Comparison_With_Self()
         {
             // Arrange.

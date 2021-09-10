@@ -19,7 +19,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    [Trait("Technology", "Grpc")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
@@ -43,7 +42,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			return headers;
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
 			// Arrange.
@@ -63,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_Admin_With_Authentication()
 		{
 			// Arrange.
@@ -83,7 +82,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Local_Admin_System_With_Authentication()
 		{
 			// Arrange.
@@ -103,7 +102,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
 			// Arrange.
@@ -118,7 +117,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
         }
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact(Skip = "Not working (yet)")]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
@@ -139,7 +138,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact(Skip = "Not working (yet)")]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
@@ -160,7 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact(Skip = "Not working (yet)")]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
@@ -181,7 +180,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
 		{
 			// Arrange.
@@ -197,7 +196,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
 		}
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
 		{
 			// Arrange.

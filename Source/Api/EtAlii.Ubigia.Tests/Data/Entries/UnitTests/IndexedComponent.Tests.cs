@@ -4,7 +4,7 @@
 
     public class IndexedComponentTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IndexedComponent_Create()
         {
             // Arrange.

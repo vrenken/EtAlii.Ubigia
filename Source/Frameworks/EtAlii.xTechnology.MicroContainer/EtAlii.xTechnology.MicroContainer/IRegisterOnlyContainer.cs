@@ -10,6 +10,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Register an concrete implementation type to be instantiated wherever the service interface is being used as
         /// a constructor parameter.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
@@ -21,6 +23,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Register an object instantiation function that will be used to provide the concrete instance wherever the service interface is being used as
         /// a constructor parameter.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
@@ -32,6 +36,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Register an object instantiation function that will be used to provide the concrete instance wherever the service interface is being used as
         /// a constructor parameter.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
@@ -43,6 +49,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Register an object instantiation function that will be used to provide an instance wherever the service interface is being used as
         /// a constructor parameter.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <typeparam name="TService"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
         void Register<TService>(Func<IServiceCollection, TService> constructMethod)
@@ -52,6 +60,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Register an object instantiation function that will be used to provide an instance wherever the service interface is being used as
         /// a constructor parameter.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <typeparam name="TService"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
         void Register<TService>(Func<TService> constructMethod)
@@ -61,6 +71,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Registers a decorator that will wrap the concrete instance. This is very useful for conditional logic and
         /// 'meta-behavior' like conditional profiling/logging/debugging.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <exception cref="InvalidOperationException">In case the decorator type has already been registered, does not have a service instance constructor parameter or when the service type is not an interface.</exception>
         void RegisterDecorator<TService, TDecorator>()
             where TService : class
@@ -73,6 +85,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Registers an initializer that will be called right after an object has been constructed.
         /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <param name="initializer"></param>
         /// <typeparam name="TService"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type is not an interface.</exception>
@@ -82,6 +96,8 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Registers an initializer that will be called right after an object has been constructed.
         /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.
         /// </summary>
+        /// <remarks>In contrast with the 'default' Microsoft DI patterns this container enforces registrations to be made on interfaces. Additionally (and intentionally) the container also only
+        /// allows singleton registrations. Scoped and transient registrations are not possible.</remarks>
         /// <param name="initializer"></param>
         /// <typeparam name="TService"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type is not an interface.</exception>

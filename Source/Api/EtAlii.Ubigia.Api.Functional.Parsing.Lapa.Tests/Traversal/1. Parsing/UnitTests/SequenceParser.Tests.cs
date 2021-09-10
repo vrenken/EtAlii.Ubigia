@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Constants_01()
         {
             // Arrange.
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Constants_02()
         {
             // Arrange.
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Constants_03()
         {
             // Arrange.
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_01()
         {
             // Arrange.
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<StringConstantSubject>(sequence.Parts.ElementAt(2));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_02()
         {
             // Arrange.
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<StringConstantSubject>(sequence.Parts.ElementAt(4));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_03_Invalid()
         {
             // Arrange.
@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_03()
         {
             // Arrange.
@@ -162,7 +162,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<VariableSubject>(sequence.Parts.ElementAt(2));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_04_Invalid()
         {
             // Arrange.
@@ -180,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_Variable_04()
         {
             // Arrange.

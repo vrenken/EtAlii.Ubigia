@@ -6,7 +6,7 @@
 
     public class EditableEntryTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Previous()
         {
             // Arrange.
@@ -23,7 +23,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Previous);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Next()
         {
             // Arrange.
@@ -40,7 +40,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Next);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Downdate()
         {
             // Arrange.
@@ -57,7 +57,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Downdate);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Parent()
         {
             // Arrange.
@@ -74,7 +74,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Parent);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Parent2()
         {
             // Arrange.
@@ -91,7 +91,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Parent2);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Indexed()
         {
             // Arrange.
@@ -108,7 +108,7 @@
             Assert.Equal(relation, ((IEditableEntry)entry).Indexed);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Children()
         {
             // Arrange.
@@ -125,7 +125,7 @@
             Assert.Equal(otherId, ((IEditableEntry)entry).Children.Single().Relations.Single().Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Children2()
         {
             // Arrange.
@@ -142,7 +142,7 @@
             Assert.Equal(otherId, ((IEditableEntry)entry).Children2.Single().Relations.Single().Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Updates()
         {
             // Arrange.
@@ -159,7 +159,7 @@
             Assert.Equal(otherId, ((IEditableEntry)entry).Updates.Single().Relations.Single().Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Indexes()
         {
             // Arrange.
@@ -176,7 +176,7 @@
             Assert.Equal(otherId, ((IEditableEntry)entry).Indexes.Single().Relations.Single().Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Type()
         {
             // Arrange.
@@ -191,7 +191,7 @@
             Assert.Equal(type, entry.Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void IEditableEntry_Set_And_Get_Tag()
         {
             // Arrange.

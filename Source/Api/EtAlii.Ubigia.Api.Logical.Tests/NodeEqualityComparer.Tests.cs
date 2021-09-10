@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     [CorrelateUnitTests]
     public class NodeEqualityComparerTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Create()
         {
             // Arrange.
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.NotNull(comparer);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Default()
         {
             // Arrange.
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_Null_00()
         {
             // Arrange.
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.True(equal);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_Null_01()
         {
             // Arrange.
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_Null_02()
         {
             // Arrange.
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_Null_03()
         {
             // Arrange.
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.False(equal);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_NotNull()
         {
             // Arrange.
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_Compare_Same_Reference_Type()
         {
             // Arrange.
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.True(equal);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void NodeEqualityComparer_GetHashCode()
         {
             // Arrange.

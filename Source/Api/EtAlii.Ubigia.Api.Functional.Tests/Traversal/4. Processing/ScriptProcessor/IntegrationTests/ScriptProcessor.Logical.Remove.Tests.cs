@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Remove_1()
         {
             // Arrange.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Null(afterResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Remove_2()
         {
             // Arrange.
@@ -94,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Null(afterResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Remove_With_Variable_1()
         {
             // Arrange.
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Null(afterResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Remove_With_Variable_2()
         {
             // Arrange.
@@ -172,7 +172,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Null(afterResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Logical_Remove_With_Variable_3()
         {
             // Arrange.

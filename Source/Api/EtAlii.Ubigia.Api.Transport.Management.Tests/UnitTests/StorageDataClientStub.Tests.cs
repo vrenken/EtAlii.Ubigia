@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     [CorrelateUnitTests]
     public class StorageDataClientStubTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void StorageDataClientStub_Create()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.NotNull(storageDataClientStub);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Add()
         {
             // Arrange.
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(storage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Change()
         {
             // Arrange.
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(storage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Connect()
         {
             // Arrange.
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Disconnect()
         {
             // Arrange.
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Get_By_Id()
         {
             // Arrange.
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(storage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Get_By_Name()
         {
             // Arrange.
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(storage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_GetAll()
         {
             // Arrange.
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Empty(storages);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task StorageDataClientStub_Remove()
         {
             // Arrange.

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     public interface IHostTestContext : EtAlii.xTechnology.Hosting.IHostTestContext
     {
         /// <summary>
-        /// The details of the service current under test. 
+        /// The details of the service current under test.
         /// </summary>
         ServiceDetails ServiceDetails { get; }
         string SystemAccountName { get; }
@@ -24,9 +24,5 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         string AdminAccountPassword { get; }
 
         string HostName { get; }
-
-        System.Threading.Tasks.Task<ISystemConnection> CreateSystemConnection();
-
-        System.Threading.Tasks.Task AddUserAccountAndSpaces(ISystemConnection connection, string accountName, string password, string[] spaceNames);
     }
 }

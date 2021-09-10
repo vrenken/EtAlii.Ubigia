@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_01()
         {
             // Arrange.
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_02()
         {
             // Arrange.
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_03()
         {
             // Arrange.
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_04()
         {
             // Arrange.
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_05()
         {
             // Arrange.
@@ -163,7 +163,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_06()
         {
             // Arrange.
@@ -189,7 +189,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_07()
         {
             // Arrange.
@@ -209,7 +209,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_08()
         {
             // Arrange.
@@ -228,7 +228,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_01()
         {
             // Arrange.
@@ -253,7 +253,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_02()
         {
             // Arrange.
@@ -279,7 +279,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_03()
         {
             // Arrange.
@@ -305,7 +305,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_04()
         {
             // Arrange.
@@ -331,7 +331,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_05()
         {
             // Arrange.
@@ -357,7 +357,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_07()
         {
             // Arrange.
@@ -382,7 +382,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<AllUpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_08()
         {
             // Arrange.
@@ -400,7 +400,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Update_09()
         {
             // Arrange.

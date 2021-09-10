@@ -12,12 +12,14 @@ namespace EtAlii.Ubigia.Api.Tests
     public interface ITransportTestContext
     {
         IHostTestContext Host { get; }
-        Task<IDataConnection> CreateDataConnectionToNewSpace(bool openOnCreation = true);
-        Task<IDataConnection> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
-        Task<IDataConnection> CreateDataConnectionToExistingSpace(string accountName, string accountPassword, string spaceName, bool openOnCreation);
+        Task<(IDataConnection, DataConnectionOptions)> CreateDataConnectionToNewSpace(bool openOnCreation = true);
 
-        Task<IManagementConnection> CreateManagementConnection(Uri address, string accountName, string password, bool openOnCreation);
-        Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true);
+        Task<(IDataConnection, DataConnectionOptions)> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
+
+        Task<(IDataConnection, DataConnectionOptions)> CreateDataConnectionToExistingSpace(string accountName, string accountPassword, string spaceName, bool openOnCreation);
+
+        Task<(IManagementConnection, ManagementConnectionOptions)> CreateManagementConnection(Uri address, string accountName, string password, bool openOnCreation);
+        Task<(IManagementConnection, ManagementConnectionOptions)> CreateManagementConnection(bool openOnCreation = true);
 
         Task<Account> AddUserAccount(IManagementConnection connection);
 

@@ -9,9 +9,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using System.Reflection;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -110,26 +112,20 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
                 _logger.Debug("Configuration root {configurationRoot}", configurationRoot);
 
-                // Fabric and logical layers are not really needed here.
+                // Fabric and logical and transport layers are not really needed here.
                 // We just use the parsing capabilities in the functional layer.
 
-                // Fabric.
-                var fabricOptions = new FabricContextOptions(configurationRoot);
-                var fabricContext = new FabricContextFactory().Create(fabricOptions);
-
-                // Logical.
-                var logicalOptions = new LogicalOptions(configurationRoot)
-                    .UseFabricContext(fabricContext)
-                    .UseDiagnostics();
-                using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-
-                // Functional.
-                var options = new FunctionalOptions(configurationRoot)
-                    .UseLogicalContext(logicalContext)
+                var functionalOptions = new DataConnectionOptions(configurationRoot) // Transport.
+                    .UseStubbedConnection()
+                    .UseFabricContext() // Fabric.
+                    .UseDiagnostics()
+                    .UseLogicalContext() // Logical.
+                    .UseDiagnostics()
+                    .UseFunctionalContext() // Functional.
                     .UseAntlrParsing()
                     .UseDiagnostics();
 
-                _schemaParser = Factory.Create<ISchemaParser>(options);
+                _schemaParser = Factory.Create<ISchemaParser>(functionalOptions);
             }
             catch (Exception e)
             {

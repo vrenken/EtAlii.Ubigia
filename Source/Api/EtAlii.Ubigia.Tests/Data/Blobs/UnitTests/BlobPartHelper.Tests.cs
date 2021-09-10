@@ -6,7 +6,7 @@
     public class BlobPartHelperTests
     {
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobPartHelper_GetName_ContentDefinitionPart()
         {
             var blob = new ContentDefinitionPart();
@@ -14,14 +14,14 @@
             Assert.Equal(@"ContentDefinition", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobPartHelper_GetName_ContentDefinitionPart_Generic()
         {
             var name = BlobPart.GetName<ContentDefinitionPart>();
             Assert.Equal(@"ContentDefinition", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobPartHelper_GetName_ContentPart()
         {
             var blobPart = new ContentPart();
@@ -29,7 +29,7 @@
             Assert.Equal(@"Content", name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobPartHelper_SetId_ContentPart()
         {
             // Arrange.
@@ -42,7 +42,7 @@
             Assert.Equal(id, blobPart.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BlobPartHelper_GetName_ContentPart_Generic()
         {
             var name = BlobPart.GetName<ContentPart>();

@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
@@ -27,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AddressFactory_Create()
         {
             // Arrange.
@@ -39,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             Assert.Equal(BaseAddress + UriHelper.Delimiter + "test", address.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AddressFactory_Create_With_Parameters()
         {
             // Arrange.
@@ -51,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             Assert.Equal(BaseAddress + UriHelper.Delimiter + "test?firstkey=firstvalue&secondKey=secondvalue", address.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AddressFactory_Create_With_Special_Parameters()
         {
             // Arrange.
@@ -63,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             Assert.Equal(BaseAddress + UriHelper.Delimiter + "test?firstkey=first%3Dvalue&secondKey=second%26value", address.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AddressFactory_Create_Storage_Is_Null()
         {
             // Arrange.
@@ -75,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             Assert.Throws<NullReferenceException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void AddressFactory_Create_Path_Is_Null()
         {
             // Arrange.

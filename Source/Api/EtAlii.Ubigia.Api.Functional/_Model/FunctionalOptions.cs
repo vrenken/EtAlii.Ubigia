@@ -12,12 +12,12 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        public ILogicalContext LogicalContext { get; private set; }
-
-        public IExtension[] Extensions { get; private set; }
+        public ILogicalContext LogicalContext => _logicalContext.Value;
+        private Lazy<ILogicalContext> _logicalContext;
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
@@ -28,13 +28,28 @@ namespace EtAlii.Ubigia.Api.Functional
             ConfigurationRoot = configurationRoot;
             FunctionHandlersProvider = Traversal.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = Traversal.RootHandlerMappersProvider.Empty;
-            Extensions = new IExtension[] { new CommonFunctionalExtension(this) };
+            _extensions = new IExtension[] { new CommonFunctionalExtension(this) };
         }
 
         public FunctionalOptions UseLogicalContext(ILogicalContext logicalContext)
         {
-            LogicalContext = logicalContext ?? throw new ArgumentException("No logical context specified", nameof(logicalContext));
+            if (logicalContext == null)
+            {
+                throw new ArgumentNullException(nameof(logicalContext));
+            }
 
+            _logicalContext = new Lazy<ILogicalContext>(logicalContext);
+            return this;
+        }
+
+        internal FunctionalOptions UseLogicalOptions(LogicalOptions logicalOptions)
+        {
+            if (logicalOptions == null)
+            {
+                throw new ArgumentNullException(nameof(logicalOptions));
+            }
+
+            _logicalContext = new Lazy<ILogicalContext>(() => Factory.Create<ILogicalContext>(logicalOptions));
             return this;
         }
 

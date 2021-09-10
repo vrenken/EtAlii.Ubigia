@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     {
         public static IStorageConnectionOptions UseTransportDiagnostics(this IStorageConnectionOptions options)
         {
-            var extensions = new IStorageConnectionExtension[]
+            var extensions = new IExtension[]
             {
                 new DiagnosticsStorageConnectionExtension(options.ConfigurationRoot),
             };

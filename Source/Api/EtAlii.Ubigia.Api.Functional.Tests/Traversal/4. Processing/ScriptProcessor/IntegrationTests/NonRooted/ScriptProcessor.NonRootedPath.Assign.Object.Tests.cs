@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_String()
         {
             // Arrange.
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Int()
         {
             // Arrange.
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(12, selectResult.IntValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_True()
         {
             // Arrange.
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(true, selectResult.BoolValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False()
         {
             // Arrange.
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(false, selectResult.BoolValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Capitals()
         {
             // Arrange.
@@ -234,7 +234,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Camel()
         {
             // Arrange.
@@ -277,7 +277,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(false, selectResult.BoolValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Empty()
         {
             // Arrange.
@@ -318,7 +318,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Spaced()
         {
             // Arrange.
@@ -361,7 +361,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(12, selectResult.IntValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_01()
         {
             // Arrange.
@@ -414,7 +414,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(13, selectResult2.IntValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_02()
         {
             // Arrange.
@@ -470,7 +470,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(true, selectResult2.BoolValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_03()
         {
             // Arrange.
@@ -526,7 +526,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear()
         {
             // Arrange.
@@ -580,7 +580,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear_Incorrect()
         {
             // Arrange.
@@ -635,7 +635,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("12", selectResult2.IntValue);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_01()
         {
             // Arrange.
@@ -681,7 +681,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_01()
         {
             // Arrange.
@@ -727,7 +727,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_02()
         {
             // Arrange.
@@ -775,7 +775,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_03()
         {
             // Arrange.
@@ -822,7 +822,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_02()
         {
             // Arrange.
@@ -870,7 +870,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_03()
         {
             // Arrange.

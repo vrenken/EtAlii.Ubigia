@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             _testIdentifierFactory = new TestIdentifierFactory();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Create()
         {
             // Arrange.
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.NotNull(hierarchicalRelationDuplicator);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Duplicate_Children_10()
         {
             var count = 10;
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Duplicate_Children2_10()
         {
             var count = 10;
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Duplicate_Children_10_Exclude()
         {
             var count = 10;
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Duplicate_Children2_10_Exclude()
         {
             var count = 10;
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void HierarchicalRelationDuplicator_Duplicate_And_Children2_10()
         {
             var count = 10;

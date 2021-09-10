@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
     // TODO: Move all instances of this test class to single testproject
     [CorrelateUnitTests]
-    [Trait("Technology", "SignalR")]
     public class AesTest
     {
         [Fact]

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             _testIdentifierFactory = new TestIdentifierFactory();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TemporalGraphPathWeaver_Create()
         {
             // Arrange.
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.NotNull(weaver);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TemporalGraphPathWeaver_Weave_01()
         {
             // Arrange.
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Assert.Equal(GraphRelation.Final, result[13]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TemporalGraphPathWeaver_Weave_02()
         {
             // Arrange.

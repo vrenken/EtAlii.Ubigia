@@ -7,7 +7,7 @@
 
 //    public class GraphPathAssignerTests
 //    [
-//        [Fact, Trait("Category", TestAssembly.Category)]
+//        [Fact]
 //        public void GraphPathAssigner_Create()
 //        [
 //            // Arrange.

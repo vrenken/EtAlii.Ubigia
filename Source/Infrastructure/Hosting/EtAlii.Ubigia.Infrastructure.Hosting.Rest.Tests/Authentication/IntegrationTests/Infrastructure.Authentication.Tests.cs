@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-	[Trait("Technology", "NetCore")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -21,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             _testContext = testContext;
         }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser()
 	    {
 		    // Arrange.
@@ -38,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_System()
 	    {
 		    // Arrange.
@@ -55,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin()
 	    {
 		    // Arrange.
@@ -72,7 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_TestUser()
 	    {
 		    // Arrange.
@@ -89,7 +88,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System()
 	    {
 		    // Arrange.
@@ -106,7 +105,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin()
 	    {
 		    // Arrange.
@@ -123,7 +122,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Password()
 	    {
 		    // Arrange.
@@ -140,7 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Password()
 	    {
 		    // Arrange.
@@ -157,7 +156,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Password()
 	    {
 		    // Arrange.
@@ -174,7 +173,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Password()
 	    {
 		    // Arrange.
@@ -190,7 +189,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
 	    {
 		    // Arrange.
@@ -207,7 +206,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-		[Fact, Trait("Category", TestAssembly.Category)]
+		[Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Account()
 	    {
 		    // Arrange.
@@ -224,7 +223,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Account()
 	    {
 		    // Arrange.
@@ -241,7 +240,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Account()
 	    {
 		    // Arrange.
@@ -258,7 +257,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Account()
 	    {
 		    // Arrange.
@@ -275,7 +274,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
-	    [Fact, Trait("Category", TestAssembly.Category)]
+	    [Fact]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Account()
 	    {
 		    // Arrange.

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     [CorrelateUnitTests]
     public class DiagnosticsTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void LoggingBlobPartRetriever_Create()
         {
             // Arrange.

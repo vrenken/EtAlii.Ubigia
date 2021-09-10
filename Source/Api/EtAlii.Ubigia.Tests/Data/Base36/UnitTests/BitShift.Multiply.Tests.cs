@@ -6,7 +6,7 @@
 
     public class BitShiftAndTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_10110_And_1101_Is_100011110()
         {
             // Arrange.
@@ -21,7 +21,7 @@
             Assert.Equal("100011110", result); // 286
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_000_And_001_Is_000()
         {
             // Arrange.
@@ -36,7 +36,7 @@
             Assert.Equal("000", result); // 1
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_001_And_001_Is_001()
         {
             // Arrange.
@@ -51,7 +51,7 @@
             Assert.Equal("001", result); // 1
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_001_And_010_Is_010()
         {
             // Arrange.
@@ -66,7 +66,7 @@
             Assert.Equal("0010", result); // 2
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_010_And_010_Is_0100()
         {
             // Arrange.
@@ -81,7 +81,7 @@
             Assert.Equal("0100", result); // 2
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_0010_And_010_Is_00100()
         {
             // Arrange.
@@ -97,7 +97,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_010_And_0010_Is_0100()
         {
             // Arrange.
@@ -112,7 +112,7 @@
             Assert.Equal("0100", result); // 2
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_111_And_001_Is_111()
         {
             // Arrange.
@@ -127,7 +127,7 @@
             Assert.Equal("111", result); // 7
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_111_And_010_is_1110()
         {
             // Arrange.
@@ -142,7 +142,7 @@
             Assert.Equal("1110", result); // 14
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_111_And_100_Is_11100()
         {
             // Arrange.
@@ -153,11 +153,11 @@
             BitShift.Multiply(ref bits, multiplication);
             var result = string.Concat(bits.ToArray().Select(c => c ? "1" : "0"));
 
-            // Assert. 
+            // Assert.
             Assert.Equal("11100", result); // 28
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Multiply_1100010101_And_111001000_Is_1010111110101101000()
         {
             // Arrange.

@@ -4,6 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
     using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
@@ -78,6 +81,25 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 File.Delete(TestFile100MRaw);
             }
         }
+
+        public async Task<Root> GetRoot(LogicalOptions logicalOptions, string rootName)
+        {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+
+            return await logicalContext.Roots.GetAll()
+                .SingleOrDefaultAsync(r => r.Name == rootName)
+                .ConfigureAwait(false);
+        }
+
+        public async Task<IReadOnlyEntry> GetEntry(LogicalOptions logicalOptions, Identifier identifier, ExecutionScope scope)
+        {
+            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+
+            return await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(identifier), scope)
+                .ConfigureAwait(false);
+        }
+
         public void Dispose()
         {
             RemoveTestFiles();

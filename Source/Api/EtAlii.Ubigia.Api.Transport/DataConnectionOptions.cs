@@ -17,30 +17,49 @@ namespace EtAlii.Ubigia.Api.Transport
         IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
         private IExtension[] _extensions;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The transport provider used to create the transport layer components of this data connection.
+        /// </summary>
         public ITransportProvider TransportProvider { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The factory extension method that is used to extend the connection creation and instantiation.
+        /// One example is a popup dialog that allows for (re)configuration of the credentials/addresses etc.
+        /// </summary>
         public Func<IDataConnection> FactoryExtension { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The address to which this management connection should connect.
+        /// </summary>
         public Uri Address { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The account name to be used when connecting.
+        /// </summary>
         public string AccountName { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The account password to be used when connecting.
+        /// </summary>
         public string Password { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The space to connect to.
+        /// </summary>
         public string Space { get; private set; }
 
         public DataConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = Array.Empty<IExtension>();
+            _extensions = new IExtension[]
+            {
+                new CommonDataConnectionExtension(this)
+            };
         }
 
+        /// <summary>
+        /// Configures the transport provider that should be used to provide the transport layer components of this data connection.
+        /// </summary>
         public DataConnectionOptions UseTransport(ITransportProvider transportProvider)
         {
             if (TransportProvider != null)
@@ -54,12 +73,18 @@ namespace EtAlii.Ubigia.Api.Transport
             return this;
         }
 
+        /// <summary>
+        /// Configures the factory extension method that is used to extend the connection creation and instantiation.
+        /// </summary>
         public DataConnectionOptions Use(Func<IDataConnection> factoryExtension)
         {
             FactoryExtension = factoryExtension;
             return this;
         }
 
+        /// <summary>
+        /// Configures the address that should be used when connecting.
+        /// </summary>
         public DataConnectionOptions Use(Uri address)
         {
             if (Address != null)
@@ -71,6 +96,9 @@ namespace EtAlii.Ubigia.Api.Transport
             return this;
         }
 
+        /// <summary>
+        /// Configures both the account name, account password and space that should be used when connecting.
+        /// </summary>
         public DataConnectionOptions Use(string accountName, string space, string password)
         {
             if (string.IsNullOrWhiteSpace(accountName))
@@ -98,6 +126,16 @@ namespace EtAlii.Ubigia.Api.Transport
             Password = password;
             Space = space;
             return this;
+        }
+
+        /// <summary>
+        /// This allows the creation of a DataConnectionOptions instance that never will produce a real connection. It is useful in cases the more high-level layers are needed but without connectivity.
+        /// </summary>
+        /// <returns></returns>
+        public DataConnectionOptions UseStubbedConnection()
+        {
+            return Use(() => new DataConnectionStub())
+                .UseTransport(new StubbedTransportProvider());
         }
     }
 }

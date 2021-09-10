@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SpaceConnectionFactory : ISpaceConnectionFactory
+    public class SpaceConnectionFactory
     {
         public ISpaceConnection Create(ISpaceConnectionOptions options)
         {

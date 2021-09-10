@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     [CorrelateUnitTests]
     public class ContentNotificationClientStubTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentNotificationClientStub_Create()
         {
             // Arrange.
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             Assert.NotNull(contentNotificationClientStub);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentNotificationClientStub_Connect()
         {
             // Arrange.
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ContentNotificationClientStub_Disconnect()
         {
             // Arrange.

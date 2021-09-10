@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     public partial class ScriptParserTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Time_Root()
         {
             // Arrange.
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("EtAlii.Ubigia.Roots.Time", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Time_Root_And_Using_Short_RootType()
         {
             // Arrange.
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Time", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Time_Root_Under_Other_Name()
         {
             // Arrange.
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("EtAlii.Ubigia.Roots.Time", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Time_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Time", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name()
         {
             // Arrange.
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Object", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name_And_Schema()
         {
             // Arrange.

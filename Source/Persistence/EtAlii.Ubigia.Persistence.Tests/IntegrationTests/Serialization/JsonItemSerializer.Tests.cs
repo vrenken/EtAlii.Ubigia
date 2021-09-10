@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void JsonItemSerializer_Create()
         {
             // Arrange.
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.NotNull(storageSerializer);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void JsonItemSerializer_Serialize_Item()
         {
             // Arrange.
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task JsonItemSerializer_Deserialize_Item()
         {
             // Arrange.
@@ -94,7 +94,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void JsonItemSerializer_Serialize_Properties()
         {
             // Arrange.
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]//, ExpectedException(typeof(AssertFailedException), "JSON support should be disabled")]
+        [Fact]//, ExpectedException(typeof(AssertFailedException), "JSON support should be disabled")]
         public void JsonItemSerializer_Deserialize_Properties()
         {
             // Arrange.

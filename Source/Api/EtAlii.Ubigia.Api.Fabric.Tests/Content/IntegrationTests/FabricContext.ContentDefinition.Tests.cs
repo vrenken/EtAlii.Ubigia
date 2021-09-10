@@ -22,11 +22,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
-
-            var fabricOptions = connection
-                .UseFabricContext(_testContext.ClientConfiguration)
-                .UseDiagnostics();
+            var fabricOptions = await _testContext.Transport
+                .CreateDataConnectionToNewSpace()
+                .UseFabricContext()
+                .UseDiagnostics()
+                .ConfigureAwait(false);
             _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store()
         {
             // Arrange.
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(contentDefinition.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Null()
         {
             // Arrange.
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Part()
         {
             // Arrange.
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(contentDefinitionPart.Stored);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Part_Outside_Bounds()
         {
             // Arrange.
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Part_At_Bounds()
         {
             // Arrange.
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Part_Before_ContentDefinition()
         {
             // Arrange.
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Existing_Part()
         {
             // Arrange.
@@ -163,7 +163,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Invalid_Part()
         {
             // Arrange.
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Store_Part_Null()
         {
             // Arrange.
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Retrieve() // Last exception 2019-04-06.
         {
             // Arrange.
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.True(retrievedContentDefinition.Summary.IsComplete);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Retrieve_Incomplete_1()
         {
             // Arrange.
@@ -240,7 +240,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal((ulong)1, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FabricContext_ContentDefinition_Retrieve_Incomplete_2()
         {
             // Arrange.
@@ -263,7 +263,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal((ulong)2, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public async Task FabricContext_ContentDefinition_Store_And_Retrieve_Check_Size()
         //[
         //    var connection = CreateFabricContext()
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Checksum()
         //[
         //    var connection = CreateFabricContext()
@@ -293,7 +293,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum)
         //]
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        //[Fact]
         //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Parts()
         //[
         //    var connection = CreateFabricContext()

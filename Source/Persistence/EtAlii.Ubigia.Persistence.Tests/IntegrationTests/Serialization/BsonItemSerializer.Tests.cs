@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BsonItemSerializer_Create()
         {
             // Arrange.
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.NotNull(storageSerializer);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BsonItemSerializer_Serialize_Item()
         {
             // Arrange.
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task BsonItemSerializer_Deserialize_Item()
         {
             // Arrange.
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BsonItemSerializer_Serialize_Properties()
         {
             // Arrange.
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.DeleteFileWhenNeeded(fileName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BsonItemSerializer_Deserialize_Properties()
         {
             // Arrange.

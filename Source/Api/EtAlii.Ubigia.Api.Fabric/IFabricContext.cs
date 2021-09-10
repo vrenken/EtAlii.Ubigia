@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// <summary>
         /// The Options used to instantiate this Context.
         /// </summary>
-        IFabricContextOptions Options { get; }
+        FabricOptions Options { get; }
 
         /// <summary>
         /// The Connection property provides access to the connection used to communicate with the backend.

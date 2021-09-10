@@ -27,11 +27,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Add()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
@@ -45,11 +45,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(address, storage.Address);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Add_Multiple()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             for(var i=0; i<10; i++)
             {
@@ -66,11 +66,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
@@ -86,11 +86,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(address, storage.Address);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
             await connection.Storages.Add(name, address).ConfigureAwait(false);
@@ -102,11 +102,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(nonExistingStorage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_Multiple()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
@@ -124,11 +124,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_First_Full_Add()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var storages = new List<Storage>();
 
             for (var i = 0; i < 10; i++)
@@ -156,14 +156,14 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_None()
         {
             // Arrange.
             var expectedStorageAddress = new Uri($"{_testContext.Host.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Host.ServiceDetails.ManagementAddress.Host}/").ToString();
 
             // Act.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var retrievedStorage = await connection.Storages
                 .GetAll()
                 .SingleOrDefaultAsync()
@@ -175,11 +175,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(_testContext.Host.HostName, retrievedStorage.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_All()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var storages = new List<Storage>();
             for (var i = 0; i < 10; i++)
@@ -212,11 +212,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             }
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Change()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 	        var index = 10;
             var name = Guid.NewGuid().ToString();
             var address = $"https://www.host{++index}.com";
@@ -248,11 +248,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(address, storage.Address);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Delete()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
@@ -273,11 +273,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(nonExistingStorage);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Delete_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
 
             // Act.
@@ -287,11 +287,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Change_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
@@ -303,11 +303,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Add_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
@@ -317,11 +317,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Get(Guid.NewGuid()))
@@ -331,11 +331,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Remove_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Remove(Guid.NewGuid()))
@@ -345,11 +345,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Get_All_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.GetAll())
@@ -359,11 +359,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Change_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
@@ -374,11 +374,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ManagementConnection_Storages_Add_Already_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
             var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);

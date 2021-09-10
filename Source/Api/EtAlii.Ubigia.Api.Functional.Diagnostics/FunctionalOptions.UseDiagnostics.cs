@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
@@ -25,6 +26,13 @@ namespace EtAlii.Ubigia.Api.Functional
             };
 
             return options.Use(extensions);
+        }
+
+        public static async Task<FunctionalOptions> UseDiagnostics(this Task<FunctionalOptions> optionsTask)
+        {
+            var options = await optionsTask.ConfigureAwait(false);
+
+            return options.UseDiagnostics();
         }
     }
 }

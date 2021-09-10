@@ -6,7 +6,7 @@
 
     public class BitShiftAddTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_001_And_001_Is_010()
         {
             // Arrange.
@@ -21,7 +21,7 @@
             Assert.Equal("010", result); // 2
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_0001_And_001_Is_0010()
         {
             // Arrange.
@@ -36,7 +36,7 @@
             Assert.Equal("0010", result); // 2
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_001_And_0001_Is_0010()
         {
             // Arrange.
@@ -52,7 +52,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_011_And_001_Is_100()
         {
             // Arrange.
@@ -67,7 +67,7 @@
             Assert.Equal("100", result); // 4
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_1100010101_And_101101_Is_1101000010()
         {
             // Arrange.
@@ -84,7 +84,7 @@
             Assert.Equal("1101000010", result); // 834
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_1100010101_And_111001000_Is_10011011101()
         {
             // Arrange.
@@ -99,7 +99,7 @@
             Assert.Equal("10011011101", result); // 1245
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_1001001001_And_101010101_Is_1110011110()
         {
             // Arrange.
@@ -114,7 +114,7 @@
             Assert.Equal("1110011110", result); // 926
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_111001000_And_1100010101_Is_10011011101()
         {
             // Arrange.
@@ -130,7 +130,7 @@
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_1111111111111111_And_111111111111_Is_10000111111111110()
         {
             // Arrange.
@@ -145,7 +145,7 @@
             Assert.Equal("10000111111111110", result); // 69630
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_111111111111_And_1111111111111111_Is_10000111111111110()
         {
             // Arrange.
@@ -160,7 +160,7 @@
             Assert.Equal("10000111111111110", result); // 69630
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void BitShift_Add_1111111111111111_And_1111111111111111_Is_11111111111111110()
         {
             // Arrange.

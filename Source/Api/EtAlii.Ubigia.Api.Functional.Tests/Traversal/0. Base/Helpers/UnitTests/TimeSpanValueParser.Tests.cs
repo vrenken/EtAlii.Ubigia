@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_01()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(23, 01, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_02()
         {
             // Arrange.
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(0, 01, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_03()
         {
             // Arrange.
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
         // Only positive timespans for now.
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_04()
         {
             // Arrange.
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(-23, -01, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_05()
         {
             // Arrange.
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(27, 68, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_06()
         {
             // Arrange.
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(27, 68, 69), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_07()
         {
             // Arrange.
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(0, 27, 68, 69, 896), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_08()
         {
             // Arrange.
@@ -175,7 +175,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(201, 27, 68, 69, 896), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_09()
         {
             // Arrange.
@@ -194,7 +194,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(new TimeSpan(201, 27, 68, 69, 0), result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void TimeSpanValueParser_Parse_10()
         {
             // Arrange.

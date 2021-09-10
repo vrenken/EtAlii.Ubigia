@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_Empty()
         {
             // Arrange.
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(0, sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values.Count);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_Blank_DoubleQuotes()
         {
             // Arrange.
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_Blank_SingleQuotes()
         {
             // Arrange.
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_Space_Newline_Space_Newline()
         {
             // Arrange.
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key()
         {
             // Arrange.
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Blank_Value()
         {
             // Arrange.
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_01()
         {
             // Arrange.
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_01_Blank_Value()
         {
             // Arrange.
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_01()
         {
             // Arrange.
@@ -211,7 +211,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_02()
         {
             // Arrange.
@@ -232,7 +232,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_03()
         {
             // Arrange.
@@ -253,7 +253,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_04()
         {
             // Arrange.
@@ -274,7 +274,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_05()
         {
             // Arrange.
@@ -295,7 +295,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_06()
         {
             // Arrange.
@@ -316,7 +316,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_07()
         {
             // Arrange.
@@ -337,7 +337,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_08()
         {
             // Arrange.
@@ -358,7 +358,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_02()
         {
             // Arrange.
@@ -380,7 +380,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Newlines_03()
         {
             // Arrange.
@@ -401,7 +401,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_Quoted_Key_DoubleQuotes()
         {
             // Arrange.
@@ -422,7 +422,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_Quoted_Key_SingleQuotes_1()
         {
             // Arrange.
@@ -443,7 +443,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_Quoted_Key_SingleQuotes_2()
         {
             // Arrange.
@@ -468,7 +468,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_NonQuoted_Key()
         {
             // Arrange.
@@ -486,7 +486,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_NonQuoted_Key_Blank_Value()
         {
             // Arrange.
@@ -503,7 +503,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Quoted_Key_DoubleQuotes()
         {
             // Arrange.
@@ -521,7 +521,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Quoted_Key_SingleQuotes_1()
         {
             // Arrange.
@@ -539,7 +539,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Quoted_Key_SingleQuotes_2()
         {
             // Arrange.
@@ -562,7 +562,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         // Type checks.
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_String()
         {
             // Arrange.
@@ -580,7 +580,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["StringValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Int()
         {
             // Arrange.
@@ -598,7 +598,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(22, sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["IntValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Int_Positive()
         {
             // Arrange.
@@ -616,7 +616,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(22, sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["IntValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Int_Negative()
         {
             // Arrange.
@@ -637,7 +637,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Float()
         {
             // Arrange.
@@ -655,7 +655,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(22.22f, sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FloatValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Float_Positive()
         {
             // Arrange.
@@ -673,7 +673,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(22.22f, sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FloatValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Float_Negative()
         {
             // Arrange.
@@ -693,7 +693,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_SingleLine_Value_Bool()
         {
             // Arrange.
@@ -711,7 +711,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Spaced()
         {
             // Arrange.
@@ -731,7 +731,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Special_01()
         {
             // Arrange.
@@ -751,7 +751,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Special_02()
         {
             // Arrange.
@@ -770,7 +770,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool) sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Special_03()
         {
             // Arrange.
@@ -789,7 +789,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Special_04()
         {
             // Arrange.
@@ -808,7 +808,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Key_Special_05()
         {
             // Arrange.
@@ -827,7 +827,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Value_Special_01()
         {
             // Arrange.
@@ -847,7 +847,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Value_Special_02()
         {
             // Arrange.
@@ -866,7 +866,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Value_Special_03()
         {
             // Arrange.
@@ -885,7 +885,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Value_Special_04()
         {
             // Arrange.
@@ -904,7 +904,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.False((bool)sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["BoolValue2"]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ScriptParser_Assign_Path_From_Object_With_Quoted_Value_Special_05()
         {
             // Arrange.

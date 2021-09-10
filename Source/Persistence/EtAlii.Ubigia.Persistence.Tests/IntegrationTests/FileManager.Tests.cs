@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FileManager_Exists()
         {
             // Arrange.
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(exists);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FileManager_SaveToFile_String()
         {
             // Arrange.
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(_testContext.Storage.FileManager.Exists(file));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FileManager_SaveToFile_Ulong()
         {
             // Arrange.
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(_testContext.Storage.FileManager.Exists(file));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FileManager_LoadFromFile_String()
         {
             // Arrange.
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(file, loadedFile);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FileManager_LoadFromFile_Ulong()
         {
             // Arrange.
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(startPackage.Value, resultPackage.Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FileManager_Delete()
         {
             // Arrange.
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void FileManager_SaveToFile_Ulong_LongFilename()
         {
             // Arrange.
@@ -142,7 +142,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(_testContext.Storage.FileManager.Exists(file));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task FileManager_LoadFromFile_Ulong_LongFilename()
         {
             // Arrange.

@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Assign_Invalid_Faulty_Argument()
         {
             // Arrange.
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Assign_Invalid_Faulty_Arguments()
         {
             // Arrange.
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Variable_Invalid_Faulty_Arguments()
         {
             // Arrange.
@@ -94,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Variable_Invalid_Faulty_Argument()
         {
             // Arrange.
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Constant_DoubleQuoted_Invalid_Faulty_Arguments()
         {
             // Arrange.
@@ -135,7 +135,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Constant_DoubleQuoted_Invalid_Faulty_Argument()
         {
             // Arrange.
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Constant_SingleQuoted_Invalid_Faulty_Arguments()
         {
             // Arrange.
@@ -175,7 +175,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_Function_Id_Constant_SingleQuoted_Invalid_Faulty_Argument()
         {
             // Arrange.

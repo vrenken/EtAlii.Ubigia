@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     [CorrelateUnitTests]
     public class SpaceDataClientStubTests
     {
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SpaceDataClientStub_Create()
         {
             // Arrange.
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.NotNull(spaceDataClientStub);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Add()
         {
             // Arrange.
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(space);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Change()
         {
             // Arrange.
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(space);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Connect()
         {
             // Arrange.
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Disconnect()
         {
             // Arrange.
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Get()
         {
             // Arrange.
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(space);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_Get_By_Account()
         {
             // Arrange.
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Null(space);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SpaceDataClientStub_GetAll()
         {
             // Arrange.

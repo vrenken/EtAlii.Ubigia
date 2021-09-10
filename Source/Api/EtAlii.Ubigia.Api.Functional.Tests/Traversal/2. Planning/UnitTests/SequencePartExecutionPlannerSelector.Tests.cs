@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             GC.SuppressFinalize(this);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Create()
         {
             // Arrange.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(sequencePlanner);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Add()
         {
             // Arrange.
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Add_With_Variable()
         {
             // Arrange.
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("$var1 <= /Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Remove_With_Variable()
         {
             // Arrange.
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable()
         {
             // Arrange.
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("$var1 <= /Person/Banner/Tanja <= Gender: Female", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable_From_Variable()
         {
             // Arrange.
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("$var1 <= /Person/Banner/Tanja <= $var2", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable_From_Variable_With_Comments()
         {
             // Arrange.
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("$var1 <= /Person/Banner/Tanja <= $var2", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Add_To_Path()
         {
             // Arrange.
@@ -189,7 +189,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Remove_From_Path()
         {
             // Arrange.
@@ -210,7 +210,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/Person/Banner -= \"NoOne\"", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Simple_Remove_From_Path_With_Comments()
         {
             // Arrange.
@@ -231,7 +231,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("/Person/Banner -= \"NoOne\"", executionPlan.ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Only_Comments()
         {
             // Arrange.
@@ -251,7 +251,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(SequenceExecutionPlan.Empty, executionPlan);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SequenceExecutionPlanner_Plan_Only_Comments_With_Leading_Space()
         {
             // Arrange.

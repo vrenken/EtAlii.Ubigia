@@ -7,11 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public interface ISpaceConnectionOptions : IExtensible
     {
-        /// <summary>
-        /// The client configuration root used to instantiate the space connection.
-        /// </summary>
         IConfigurationRoot ConfigurationRoot { get; }
-
         ISpaceTransport Transport { get; }
 
         string Space { get; }

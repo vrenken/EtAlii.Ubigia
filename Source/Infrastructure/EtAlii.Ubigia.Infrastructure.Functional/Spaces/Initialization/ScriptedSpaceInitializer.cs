@@ -28,26 +28,22 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             // Transport.
             var systemConnection = _systemConnectionCreationProxy.Request();
-            var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
-            var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
+            var managementConnection = await systemConnection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
+            var spaceConnection = await managementConnection
+                .OpenSpace(space)
+                .ConfigureAwait(false);
 
             // Fabric.
-            var fabricOptions = new FabricOptions(_configurationRoot)
+            var functionalOptions = new FabricOptions(_configurationRoot)
                 .UseCaching(true)
                 .Use(spaceConnection)
-                .UseDiagnostics();
-            using var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
-
-            // Logical.
-            var logicalOptions = new LogicalOptions(_configurationRoot)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-
-            // Functional.
-            var functionalOptions = new FunctionalOptions(_configurationRoot)
+                .UseDiagnostics()
+                .UseLogicalContext() // Logical.
+                .UseDiagnostics()
+                .UseFunctionalContext() // Functional.
                 .UseAntlrParsing()
-                .UseLogicalContext(logicalContext)
                 .UseDiagnostics();
             var scriptContext = Factory.Create<ITraversalContext>(functionalOptions);
 

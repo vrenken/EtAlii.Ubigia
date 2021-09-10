@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(addResult.Id, secondResult.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Should_Not_Clear_Children()
         {
             // Arrange.
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Parent_Should_Return_Same_Node()
         {
             // Arrange.
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_01()
         {
             // Arrange.
@@ -229,7 +229,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(firstResult.Id, secondResult.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_02()
         {
             // Arrange.
@@ -273,7 +273,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_03()
         {
             // Arrange.
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(firstResult[2].Id, secondResult[2].Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_04()
         {
             // Arrange.
@@ -361,7 +361,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(firstResult[2].Id, secondResult[2]);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Assign_Special_Characters()
         {
             // Arrange.
@@ -402,7 +402,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Jöhnny", result.Skip(4).First().ToString());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
@@ -451,7 +451,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Move_Child()
         {
             // Arrange.
@@ -525,7 +525,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
@@ -649,7 +649,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.

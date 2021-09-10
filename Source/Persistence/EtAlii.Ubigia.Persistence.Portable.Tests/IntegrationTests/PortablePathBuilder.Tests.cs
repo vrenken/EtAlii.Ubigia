@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PortablePathBuilder_GetDirectoryName_Simple()
         {
             // Arrange.
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(expectedDirectoryName, directoryName);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void PortablePathBuilder_GetDirectoryName_Complex()
         {
             // Arrange.

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Count_01()
         {
             // Arrange.
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(3, personsAfter.Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Count_02()
         {
             // Arrange.
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ScriptProcessor_NonRootedPath_Function_Count_03()
         {
             // Arrange.

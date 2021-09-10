@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    [Trait("Technology", "Grpc")]
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -32,8 +32,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString()
             };
-            _systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.Host.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames ).ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .AddUserAccountAndSpaces(_accountName, _password, _spaceNames )
+                .ConfigureAwait(false);
+            _systemConnection = connection;
         }
 
         public Task DisposeAsync()
@@ -45,13 +48,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_DataConnection_Open()
         {
             // Arrange.
 
             // Act.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
+            var (connection, _) = await _systemConnection
+                .OpenSpace(_accountName, _spaceNames[0])
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -62,11 +67,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(_spaceNames[0], connection.Space.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_DataConnection_Open_And_Close_01()
         {
             // Arrange.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
+            var (connection, _) = await _systemConnection
+                .OpenSpace(_accountName, _spaceNames[0])
+                .ConfigureAwait(false);
 
             // Act.
             await connection.Close().ConfigureAwait(false);
@@ -78,11 +85,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Null(connection.Space);//, "connection.Space")
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_DataConnection_Open_And_Close_And_Open_01()
         {
             // Arrange.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
+            var (connection, _) = await _systemConnection
+                .OpenSpace(_accountName, _spaceNames[0])
+                .ConfigureAwait(false);
 
             // Act.
             await connection.Close().ConfigureAwait(false);
@@ -104,14 +113,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
 
             // Act.
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(managementConnection);
@@ -119,17 +132,23 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.User)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -137,17 +156,23 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(accountName, account.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.Administrator)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -155,19 +180,27 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(accountName, account.Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.User)
+                .ConfigureAwait(false);
 
             // Act.
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await managementConnection.Spaces
+                .Add(account.Id, spaceName, SpaceTemplate.Data)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -176,19 +209,25 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(account.Id, space.AccountId);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var managementConnection = await _testContext.Host
+                .CreateSystemConnection()
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.Administrator)
+                .ConfigureAwait(false);
 
             // Act.
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await managementConnection.Spaces
+                .Add(account.Id, spaceName, SpaceTemplate.Data)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -198,20 +237,30 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.User)
+                .ConfigureAwait(false);
+            var space = await managementConnection.Spaces
+                .Add(account.Id, spaceName, SpaceTemplate.Data)
+                .ConfigureAwait(false);
 
             // Act.
-            var spaceConnection = await connection.OpenSpace(accountName, space.Name).ConfigureAwait(false);
+            var (spaceConnection, _) = await connection
+                .OpenSpace(accountName, space.Name)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(spaceConnection);
@@ -219,20 +268,30 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.Equal(space.Id, spaceConnection.Space.Id);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
+            var (connection, _) = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            var managementConnection = await connection
+                .OpenManagementConnection()
+                .ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
+            var account = await managementConnection.Accounts
+                .Add(accountName, password, AccountTemplate.Administrator)
+                .ConfigureAwait(false);
+            var space = await managementConnection.Spaces
+                .Add(account.Id, spaceName, SpaceTemplate.Data)
+                .ConfigureAwait(false);
 
             // Act.
-            var spaceConnection = await connection.OpenSpace(accountName, space.Name).ConfigureAwait(false);
+            var (spaceConnection, _) = await connection
+                .OpenSpace(accountName, space.Name)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(spaceConnection);

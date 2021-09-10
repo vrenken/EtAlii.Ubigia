@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             return Task.CompletedTask;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_01()
         {
             // Arrange.
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_03()
         {
             // Arrange.
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_04()
         {
             // Arrange.
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart) pathSubject.Parts.ElementAt(5)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_01()
         {
             // Arrange.
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_02()
         {
             // Arrange.
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_03()
         {
             // Arrange.
@@ -180,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_04()
         {
             // Arrange.
@@ -214,7 +214,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_05()
         {
             // Arrange.
@@ -247,7 +247,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart)pathSubject.Parts.ElementAt(5)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_01()
         {
             // Arrange.
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart)relativePathSubject.Parts.ElementAt(4)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_02()
         {
             // Arrange.
@@ -312,7 +312,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_03()
         {
             // Arrange.
@@ -343,7 +343,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart)relativePathSubject.Parts.ElementAt(4)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_04()
         {
             // Arrange.
@@ -376,7 +376,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_05()
         {
             // Arrange.
@@ -407,7 +407,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart)relativePathSubject.Parts.ElementAt(4)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_06()
         {
             // Arrange.
@@ -438,7 +438,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Third", ((ConstantPathSubjectPart)relativePathSubject.Parts.ElementAt(4)).Name);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_07_Blank_SingleQuotes()
         {
             // Arrange.
@@ -461,7 +461,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", stringConstantSubject.Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Relative_Quoted_07_Blank_DoubleQuotes()
         {
             // Arrange.
@@ -484,7 +484,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("", stringConstantSubject.Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Point_01()
         {
             // Arrange.
@@ -504,7 +504,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Point_02()
         {
             // Arrange.
@@ -529,7 +529,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Point_03()
         {
             // Arrange.
@@ -553,7 +553,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Point_04()
         {
             // Arrange.
@@ -587,7 +587,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Point_05()
         {
             // Arrange.
@@ -621,7 +621,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Empty_Path_01()
         {
             // Arrange.
@@ -640,7 +640,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Empty_Path_02()
         {
             // Arrange.
@@ -658,7 +658,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Empty_Path_03()
         {
             // Arrange.
@@ -676,7 +676,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Throws<ScriptParserException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Quoted_With_Empty_Path_04()
         {
             // Arrange.
@@ -695,7 +695,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Parent_Child_Parent()
         {
             // Arrange.
@@ -714,7 +714,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ChildrenPathSubjectPart>(path.Parts.Skip(6).Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Parent_Child_Parent_With_Condition_bool()
         {
             // Arrange.
@@ -733,7 +733,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ChildrenPathSubjectPart>(path.Parts.Skip(6).Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Parent_Child_Parent_With_Condition_DateTime()
         {
             // Arrange.
@@ -752,7 +752,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.IsType<ChildrenPathSubjectPart>(path.Parts.Skip(6).Single());
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void SequenceParser_Parse_PathSubject_Absolute_Parent_Child_Parent_With_Condition_Float()
         {
             // Arrange.

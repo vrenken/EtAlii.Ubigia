@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(scriptContext);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(scriptContext);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create_With_FunctionHandler_Single()
         {
             // Arrange.
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(scriptContext);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create_With_FunctionHandler_Single_Invalid()
         {
             // Arrange.
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Throws<InvalidOperationException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple()
         {
             // Arrange.
@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(scriptContext);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
         {
             // Arrange.

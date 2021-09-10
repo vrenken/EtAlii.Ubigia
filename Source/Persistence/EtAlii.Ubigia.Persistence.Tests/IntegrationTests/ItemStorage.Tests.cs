@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext = null;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ItemStorage_Store_SimpleTestItem()
         {
             // Arrange.
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Throws<StorageException>(act);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public void ItemStorage_Store_1000_SimpleTestItem()
         {
             // Arrange.
@@ -163,7 +163,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.True(delta < TimeSpan.FromSeconds(35), $"delta={delta}");
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ItemStorage_Store_Retrieve_SimpleTestItem()
         {
             // Arrange.
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(item.Value, retrievedItem.Value);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact]
         public async Task ItemStorage_Store_Retrieve_1000_SimpleTestItems()
         {
             // Arrange.
