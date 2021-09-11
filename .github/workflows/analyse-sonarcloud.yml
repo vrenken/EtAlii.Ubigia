@@ -12,6 +12,12 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true   # Stop wasting time caching packages
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
+  UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
+  UBIGIA_PROJECTNAME: EtAlii.Ubigia
+  SONAR_COVERAGE_EXCLUSIONS: >
+    **\*.Tests\**,
+    **\Frameworks\HashLib\**,
+    **\Frameworks\Moppet.Lappa\**
 
 jobs:
   sonar_cloud:
@@ -68,7 +74,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          dotnet test --verbosity quiet .\Source\EtAlii.Ubigia.sln --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
-          dotnet build .\Source\EtAlii.Ubigia.sln
+          dotnet test --verbosity quiet ${{ env.UBIGIA_SOLUTION }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
+          dotnet build ${{ env.UBIGIA_SOLUTION }}
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
