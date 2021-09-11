@@ -3,6 +3,7 @@ description: "Test the solutions on a Ubuntu container"
 runs:
   using: composite
   steps:
+
     # Setup .NET
     - name: 'Setup .NET'
       uses: actions/setup-dotnet@v1

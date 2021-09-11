@@ -15,27 +15,21 @@ env:
 jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
-    env:
-      CONFIGURATION: 'Release-Ubuntu'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
 
   build-on-windows:
     runs-on: windows-latest
-    env:
-      CONFIGURATION: 'Release'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: Build on Windows
         uses: ./.github/actions/build-windows
 
@@ -47,7 +41,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
 
@@ -59,7 +52,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: Test on Windows
         uses: ./.github/actions/test-windows
 
@@ -71,7 +63,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud
 
@@ -83,6 +74,33 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
+
+  nuget-publish:
+    runs-on: windows-latest
+    needs:
+      - codeql-analysis
+      - sonarcloud-analysis
+      - test-on-windows
+      - test-on-ubuntu
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+      - name: Nuget publish
+        uses: ./.github/actions/publish-nuget
+
+  docker-publish:
+    runs-on: windows-latest
+    needs:
+      - codeql-analysis
+      - sonarcloud-analysis
+      - test-on-windows
+      - test-on-ubuntu
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+      - name: Docker publish
+        uses: ./.github/actions/publish-docker

@@ -1,8 +1,47 @@
 name: "Publish NuGet"
-description: "Receives file and generates output"
+description: "Create NuGet packages and publish them to nuget.org"
 runs:
   using: composite
   steps:
-    - name: NoOp
+
+    # Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+    # Versioning.
+    - name: Versioning
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    # Pack.
+    - name: Pack NuGet packages
       shell: powershell
-      run: "echo NoOp"
+      run: >
+        dotnet pack
+        ${{ env.UBIGIA_SOLUTION }}
+        --no-restore
+        /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
+        /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
+        /p:RepositoryType=git
+
+
+    # Publish NuGet packages.
+    - name: Publish EtAlii.xTechnology NuGet packages
+      shell: powershell
+      run: >
+        dotnet nuget push
+        .\Source\**\EtAlii.xTechnology.*.nupkg
+        --skip-duplicate
+        --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
+        --source https://api.nuget.org/v3/index.json
+
+    - name: Publish EtAlii.Ubigia NuGet packages
+      shell: powershell
+      run: >
+        dotnet nuget push
+        .\Source\**\EtAlii.Ubigia.*.nupkg
+        --skip-duplicate
+        --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+        --source https://api.nuget.org/v3/index.json

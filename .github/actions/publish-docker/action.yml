@@ -1,5 +1,5 @@
-name: "Publish NuGet"
-description: "Receives file and generates output"
+name: "Publish Docker"
+description: "Create docker image and publish it to dockerhub.com"
 runs:
   using: composite
   steps:
