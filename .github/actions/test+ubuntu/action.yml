@@ -1,8 +1,33 @@
-name: "Publish NuGet"
-description: "Receives file and generates output"
+name: "Test on Ubuntu"
+description: "Test the solutions on a Ubuntu container"
 runs:
   using: composite
   steps:
-    - name: NoOp
-      shell: powershell
-      run: "echo NoOp"
+    # Setup .NET
+    - name: 'Setup .NET'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: ubuntu-build
+
+    - name: 'Test'
+      shell: bash
+      run: >
+        dotnet test
+        --configuration $CONFIGURATION
+        --no-build
+        --verbosity normal
+        --logger "trx;LogFileName=report.xunit.trx"
+        ./Source/EtAlii.Ubigia.sln
+
+    - name: 'Publish test results'
+      uses: dorny/test-reporter@v1
+      if: always()                          # run this step even if previous step failed
+      with:
+        name: 'Test report (Ubuntu-latest)' # Name of the check run which will be created
+        path: '**/*.trx'                    # Path to test results
+        reporter: dotnet-trx                # Format of test results
+

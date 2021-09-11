@@ -1,8 +1,32 @@
-name: "Publish NuGet"
-description: "Receives file and generates output"
+name: "Test on Windows"
+description: "Test the solutions on a Windows container"
 runs:
   using: composite
   steps:
-    - name: NoOp
+    # Setup .NET
+    - name: 'Setup .NET'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: windows-build
+
+    - name: Test
       shell: powershell
-      run: "echo NoOp"
+      run: >
+        dotnet test
+        --no-build
+        --verbosity normal
+        --logger "trx;LogFileName=report.xunit.trx"
+        .\Source\EtAlii.Ubigia.sln
+
+    - name: 'Publish test results'
+      uses: dorny/test-reporter@v1
+      if: always()                           # run this step even if previous step failed
+      with:
+        name: 'Test report (Windows-latest)' # Name of the check run which will be created
+        path: '**/*.trx'                     # Path to test results
+        reporter: dotnet-trx                 # Format of test results
+

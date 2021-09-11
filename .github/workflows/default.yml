@@ -32,3 +32,17 @@ jobs:
     steps:
       - name: Build on Windows
         uses: ./.github/actions/build-windows
+
+  test-on-ubuntu:
+    runs-on: ubuntu-latest
+    needs: build-on-ubuntu
+    steps:
+      - name: Test on Ubuntu
+        uses: ./.github/actions/test-ubuntu
+
+  test-on-windows:
+    runs-on: windows-latest
+    needs: build-on-windows
+    steps:
+      - name: Test on Windows
+        uses: ./.github/actions/test-windows
