@@ -1,5 +1,10 @@
 name: "Build on Windows"
 description: "Build the solutions on a Windows container"
+inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: false
+    default: 'Release'
 runs:
   using: composite
   steps:
@@ -29,7 +34,7 @@ runs:
         dotnet build
         .\Source\EtAlii.Ubigia.sln
         --no-restore
-        --configuration $CONFIGURATION
+        --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
     - uses: actions/upload-artifact@v2
