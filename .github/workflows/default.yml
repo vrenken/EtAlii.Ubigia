@@ -62,3 +62,27 @@ jobs:
 
       - name: Test on Windows
         uses: ./.github/actions/test-windows
+
+  sonarcloud-analysis:
+    runs-on: windows-latest
+    needs: build-on-windows
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+
+      - name: SonarCloud analysis
+        uses: ./.github/actions/analyse-sonarcloud
+
+  codeql-analysis:
+    runs-on: windows-latest
+    needs: build-on-windows
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+
+      - name: CodeQL analysis
+        uses: ./.github/actions/analyse-codeql
