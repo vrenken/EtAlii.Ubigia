@@ -2729,6 +2729,7 @@ Global
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Release-Ubuntu|Any CPU.ActiveCfg = Release-Ubuntu|Any CPU
 		{E895A45E-0B7F-4F33-993E-494D2BC78219}.Release-Ubuntu|Any CPU.ActiveCfg = Release-Ubuntu|Any CPU
+		{E895A45E-0B7F-4F33-993E-494D2BC78219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
