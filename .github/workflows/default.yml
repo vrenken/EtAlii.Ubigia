@@ -79,11 +79,8 @@ jobs:
 
   nuget-publish:
     runs-on: windows-latest
-    needs:
-      - codeql-analysis
-      - sonarcloud-analysis
-      - test-on-windows
-      - test-on-ubuntu
+    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -93,11 +90,8 @@ jobs:
 
   docker-publish:
     runs-on: windows-latest
-    needs:
-      - codeql-analysis
-      - sonarcloud-analysis
-      - test-on-windows
-      - test-on-ubuntu
+    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
