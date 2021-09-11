@@ -3,6 +3,8 @@ Ubigia is a philosophy and corresponding family of technologies and applications
 It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Status
+[![Dockerhub Image](https://img.shields.io/docker/v/ubigia/storage?label=docker%20image)](https://hub.docker.com/r/ubigia/storage/tags)
+
 [![Build+Test-Ubuntu](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml)
 [![Build+Test-Windows](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml)
 [![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml)
