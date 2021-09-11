@@ -1,11 +1,20 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build-env
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+COPY EtAlii.CryptoMagic/bin/Release/net5.0/publish/ cryptomagic/
+WORKDIR /ubigia
 
-COPY . ./
-RUN dotnet publish Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost -c Release -o out
+#Network related settings.
+EXPOSE 64000 tcp
+ENV UBIGIA_DATA_DATA_PORT_INTERFACE         = 'http://+'
+ENV UBIGIA_DATA_DATA_PORT                   = 64000
+EXPOSE 64001 tcp
+ENV UBIGIA_DATA_MANAGEMENT_PORT_INTERFACE   = 'http://+'
+ENV UBIGIA_DATA_MANAGEMENT_PORT             = 64001
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0
-WORKDIR /app
-COPY --from=build-env /app/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/out .
+# Storage related settings.
+VOLUME ["/ubigia/data"]
+ENV UBIGIA_DATA_LOCATION = '/ubigia/data'
+
+# Diagnostics related settings.
+ENV SERILOG_SERVER_URL = 'http://seq.avalon:5341'
 
 ENTRYPOINT ["dotnet", "EtAlii.Ubigia.Infrastructure.Hosting.DockerHost.dll"]
