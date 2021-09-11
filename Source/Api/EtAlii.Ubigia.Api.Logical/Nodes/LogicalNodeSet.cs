@@ -60,7 +60,9 @@ namespace EtAlii.Ubigia.Api.Logical
         public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(_fabric);
-            return await assigner.AssignProperties(location, properties, scope).ConfigureAwait(false);
+            return await assigner
+                .AssignProperties(location, properties, scope)
+                .ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope)

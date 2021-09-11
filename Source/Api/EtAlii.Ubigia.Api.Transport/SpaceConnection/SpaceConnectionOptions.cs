@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class SpaceConnectionOptions : ISpaceConnectionOptions
+    public class SpaceConnectionOptions : IExtensible
     {
         /// <summary>
         /// The client configuration root used to instantiate the space connection.
@@ -17,20 +17,26 @@ namespace EtAlii.Ubigia.Api.Transport
         IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
         private IExtension[] _extensions;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The space transport that should be used to create the connection.
+        /// </summary>
         public ISpaceTransport Transport { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// The space that should be connected to.
+        /// </summary>
         public string Space { get; private set; }
 
         public SpaceConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = Array.Empty<IExtension>();
+            _extensions = new IExtension[]{ new CommonSpaceConnectionExtension(this) };
         }
 
-        /// <inheritdoc />
-        public ISpaceConnectionOptions Use(ISpaceTransport transport)
+        /// <summary>
+        /// Configure the space transport that should be used to create the connection.
+        /// </summary>
+        public SpaceConnectionOptions Use(ISpaceTransport transport)
         {
             if (transport == null)
             {
@@ -45,8 +51,10 @@ namespace EtAlii.Ubigia.Api.Transport
             return this;
         }
 
-        /// <inheritdoc />
-        public ISpaceConnectionOptions Use(string space)
+        /// <summary>
+        /// Configure the space that should be connected to.
+        /// </summary>
+        public SpaceConnectionOptions Use(string space)
         {
             if (string.IsNullOrWhiteSpace(space))
             {

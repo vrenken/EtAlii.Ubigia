@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <summary>
         /// The Options used to instantiate this SpaceConnection.
         /// </summary>
-        ISpaceConnectionOptions Options { get; }
+        SpaceConnectionOptions Options { get; }
 
         /// <summary>
         /// The space that is accessed.

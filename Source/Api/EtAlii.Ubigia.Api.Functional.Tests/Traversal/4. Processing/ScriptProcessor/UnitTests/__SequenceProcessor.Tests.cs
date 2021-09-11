@@ -12,7 +12,7 @@
 //
 //    public class SequenceProcessor_Tests
 //    [
-//        [Fact, Trait("Category", TestAssembly.Category)]
+//        [Fact]
 //        public async Task SequenceProcessor_Constant_To_Variable_Assignment()
 //        [
 //            // Arrange.
@@ -47,7 +47,7 @@
 //            Assert.Equal("first", ((VariableSubject)processedParameters[2].Target).Name)
 //            Assert.IsType(processedParameters[3].Target, typeof(AssignOperator))
 //        ]
-//        [Fact, Trait("Category", TestAssembly.Category)]
+//        [Fact]
 //        public async Task SequenceProcessor_Path_Addition_To_Path_Into_Variable()
 //        [
 //            // Arrange.

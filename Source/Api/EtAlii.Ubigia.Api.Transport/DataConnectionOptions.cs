@@ -51,10 +51,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public DataConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = new IExtension[]
-            {
-                new CommonDataConnectionExtension(this)
-            };
+            _extensions = new IExtension[] { new CommonDataConnectionExtension(this) };
         }
 
         /// <summary>

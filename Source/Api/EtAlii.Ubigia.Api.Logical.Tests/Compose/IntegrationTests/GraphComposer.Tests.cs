@@ -21,13 +21,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task GraphComposer_Create()
         {
             // Arrange.
-            using var fabricContext = await _testContext.Fabric
-                .CreateFabricContext(true)
+            var logicalOptions = await _testContext.Fabric
+                .CreateFabricOptions(true)
+                .UseLogicalContext()
+                .UseDiagnostics()
                 .ConfigureAwait(false);
-            var logicalOptions = new LogicalOptions(_testContext.ClientConfiguration)
-                .UseFabricContext(fabricContext)
-                .UseDiagnostics();
             var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+            var fabricContext = logicalOptions.FabricContext;
 
             // Act.
             var composer = new GraphComposerFactory(traverser).Create(fabricContext);

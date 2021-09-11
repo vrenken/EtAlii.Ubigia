@@ -16,6 +16,6 @@ namespace EtAlii.Ubigia.Api.Transport
 
         Task Stop();
 
-        IScaffolding[] CreateScaffolding();
+        IScaffolding[] CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions);
     }
 }

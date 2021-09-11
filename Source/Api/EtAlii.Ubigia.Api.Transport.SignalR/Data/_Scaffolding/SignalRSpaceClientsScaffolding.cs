@@ -6,9 +6,25 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
     internal class SignalRSpaceClientsScaffolding : IScaffolding
     {
+        private readonly SpaceConnectionOptions _options;
+
+        public SignalRSpaceClientsScaffolding(SpaceConnectionOptions options)
+        {
+            _options = options;
+        }
+
         public void Register(IRegisterOnlyContainer container)
         {
-            container.Register<ISpaceConnection, SignalRSpaceConnection>();
+            container.Register<ISpaceConnection>(serviceCollection =>
+            {
+                var transport = serviceCollection.GetInstance<ISpaceTransport>();
+                var roots = serviceCollection.GetInstance<IRootContext>();
+                var entries = serviceCollection.GetInstance<IEntryContext>();
+                var content = serviceCollection.GetInstance<IContentContext>();
+                var properties = serviceCollection.GetInstance<IPropertiesContext>();
+                var authentication = serviceCollection.GetInstance<IAuthenticationContext>();
+                return new SignalRSpaceConnection(transport, _options, roots, entries, content, properties, authentication);
+            });
 
             container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
 

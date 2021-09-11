@@ -23,13 +23,19 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IReadOnlyEntry> Assign(Node node, Identifier id, ExecutionScope scope)
         {
-            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
+            var latestEntry = await _graphPathTraverser
+                .TraverseToSingle(id, scope)
+                .ConfigureAwait(false);
             id = latestEntry.Id;
 
             var newProperties = node.Properties;
 
-            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
-            var oldProperties = await _fabric.Properties.Retrieve(id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
+            var entry = await _fabric.Entries
+                .Get(id, scope)
+                .ConfigureAwait(false);
+            var oldProperties = await _fabric.Properties
+                .Retrieve(id, scope)
+                .ConfigureAwait(false) ?? new PropertyDictionary();
 
             if (oldProperties.Equals(newProperties))
             {
@@ -38,7 +44,9 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                var newEntry = await _updateEntryFactory.Create(entry, scope).ConfigureAwait(false);
+                var newEntry = await _updateEntryFactory
+                    .Create(entry, scope)
+                    .ConfigureAwait(false);
 
                 // We want to do an addition, so lets combine the old with the new properties.
                 var properties = new PropertyDictionary(oldProperties);
@@ -56,7 +64,9 @@ namespace EtAlii.Ubigia.Api.Logical
                     }
                 }
 
-                await _fabric.Properties.Store(newEntry.Id, properties, scope).ConfigureAwait(false);
+                await _fabric.Properties
+                    .Store(newEntry.Id, properties, scope)
+                    .ConfigureAwait(false);
 
                 return (IReadOnlyEntry)newEntry;
             }

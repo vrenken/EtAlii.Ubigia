@@ -44,9 +44,9 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
         }
 
-        IScaffolding[] ISpaceTransport.CreateScaffolding()
+        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
         {
-            return _transport.CreateScaffolding();
+            return _transport.CreateScaffolding(spaceConnectionOptions);
         }
     }
 }

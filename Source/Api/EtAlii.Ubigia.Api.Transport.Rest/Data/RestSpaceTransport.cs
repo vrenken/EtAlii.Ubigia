@@ -15,11 +15,11 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             _infrastructureClient = infrastructureClient;
         }
 
-        protected override IScaffolding[] CreateScaffoldingInternal()
+        protected override IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions)
         {
             return new IScaffolding[]
             {
-                new RestSpaceClientsScaffolding(_infrastructureClient),
+                new RestSpaceClientsScaffolding(_infrastructureClient, spaceConnectionOptions),
             };
         }
     }

@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         public ISpaceTransport Transport => ((dynamic)_decoree).Transport;
 
         /// <inheritdoc />
-        public ISpaceConnectionOptions Options => _decoree.Options;
+        public SpaceConnectionOptions Options => _decoree.Options;
 
         /// <inheritdoc />
         public IAuthenticationContext Authentication => _decoree.Authentication;

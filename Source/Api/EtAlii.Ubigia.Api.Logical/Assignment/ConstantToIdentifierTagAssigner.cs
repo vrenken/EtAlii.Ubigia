@@ -23,11 +23,17 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IReadOnlyEntry> Assign(string constant, Identifier id, ExecutionScope scope)
         {
-            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
+            var latestEntry = await _graphPathTraverser
+                .TraverseToSingle(id, scope)
+                .ConfigureAwait(false);
             id = latestEntry.Id;
 
-            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
-            var updatedEntry = await _updateEntryFactory.Create(entry, constant, scope).ConfigureAwait(false);
+            var entry = await _fabric.Entries
+                .Get(id, scope)
+                .ConfigureAwait(false);
+            var updatedEntry = await _updateEntryFactory
+                .Create(entry, constant, scope)
+                .ConfigureAwait(false);
 
             return (IReadOnlyEntry)updatedEntry;
         }

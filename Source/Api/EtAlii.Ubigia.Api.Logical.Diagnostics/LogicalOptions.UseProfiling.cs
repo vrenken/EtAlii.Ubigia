@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public static class LogicalOptionsUseProfilingExtension
@@ -14,6 +15,13 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
                 new ProfilingGraphPathTraverserExtension(),
             });
 
+        }
+
+        public static async Task<LogicalOptions> UseProfiling(this Task<LogicalOptions> optionsTask)
+        {
+            var options = await optionsTask.ConfigureAwait(false);
+
+            return UseProfiling(options);
         }
     }
 }

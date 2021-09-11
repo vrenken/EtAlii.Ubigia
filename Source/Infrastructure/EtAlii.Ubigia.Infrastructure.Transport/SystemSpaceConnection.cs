@@ -7,13 +7,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     internal class SystemSpaceConnection : SpaceConnection<SystemSpaceTransport>, ISystemSpaceConnection
     {
         public SystemSpaceConnection(
-            ISpaceTransport transport, 
-            ISpaceConnectionOptions options,
-            IRootContext roots, 
-            IEntryContext entries, 
-            IContentContext content, 
-            IPropertiesContext properties, 
-            IAuthenticationContext authentication) 
+            ISpaceTransport transport,
+            SpaceConnectionOptions options,
+            IRootContext roots,
+            IEntryContext entries,
+            IContentContext content,
+            IPropertiesContext properties,
+            IAuthenticationContext authentication)
             : base(transport, options, roots, entries, content, properties, authentication)
         {
         }

@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public bool IsConnected => Storage != null && Space != null;
 
         /// <inheritdoc />
-        public ISpaceConnectionOptions Options { get; }
+        public SpaceConnectionOptions Options { get; }
 
         /// <inheritdoc />
         public IRootContext Roots { get; }
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
         protected SpaceConnection(
             ISpaceTransport transport,
-            ISpaceConnectionOptions options,
+            SpaceConnectionOptions options,
             IRootContext roots,
             IEntryContext entries,
             IContentContext content,

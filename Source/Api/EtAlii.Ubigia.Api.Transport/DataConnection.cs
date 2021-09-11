@@ -53,8 +53,9 @@ namespace EtAlii.Ubigia.Api.Transport
             var options = new SpaceConnectionOptions(Options.ConfigurationRoot)
                 .Use(Options.TransportProvider.GetSpaceTransport(Options.Address))
                 .Use(Options.Space);
-            _connection = new SpaceConnectionFactory().Create(options);
-            await _connection.Open(Options.AccountName, Options.Password).ConfigureAwait(false);
+            _connection = Factory.Create<ISpaceConnection>(options);
+            await _connection
+            .Open(Options.AccountName, Options.Password).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -64,7 +65,9 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
-            await _connection.Close().ConfigureAwait(false);
+            await _connection
+                .Close()
+                .ConfigureAwait(false);
             _connection = null;
         }
     }

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
     {
         public SignalRSpaceConnection(
             ISpaceTransport transport,
-            ISpaceConnectionOptions options,
+            SpaceConnectionOptions options,
             IRootContext roots,
             IEntryContext entries,
             IContentContext content,

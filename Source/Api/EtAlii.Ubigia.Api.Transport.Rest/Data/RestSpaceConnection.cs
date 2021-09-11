@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             ISpaceTransport transport,
             IAddressFactory addressFactory,
             IRestInfrastructureClient client,
-            ISpaceConnectionOptions options,
+            SpaceConnectionOptions options,
             IRootContext roots,
             IEntryContext entries,
             IContentContext content,

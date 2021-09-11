@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class SystemSpaceTransport : ISystemSpaceTransport
     {
@@ -38,11 +39,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return Task.CompletedTask;
         }
 
-        xTechnology.MicroContainer.IScaffolding[] ISpaceTransport.CreateScaffolding()
+        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
         {
-            return new xTechnology.MicroContainer.IScaffolding[]
+            return new IScaffolding[]
             {
-                new SystemClientsScaffolding(_infrastructure)
+                new SystemClientsScaffolding(_infrastructure, spaceConnectionOptions)
             };
         }
     }

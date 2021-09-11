@@ -58,17 +58,19 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         public override async Task Stop()
         {
-            await base.Stop().ConfigureAwait(false);
+            await base
+                .Stop()
+                .ConfigureAwait(false);
 
             _channel?.Dispose();
 	        _channel = null;
         }
 
-        protected override IScaffolding[] CreateScaffoldingInternal()
+        protected override IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions)
         {
             return new IScaffolding[]
             {
-                new GrpcSpaceClientsScaffolding()
+                new GrpcSpaceClientsScaffolding(spaceConnectionOptions)
             };
         }
     }

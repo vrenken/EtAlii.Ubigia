@@ -91,7 +91,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management
                 throw new InvalidInfrastructureOperationException("The connection is already closed");
             }
 
-            await _connection.Close().ConfigureAwait(false);
+            await _connection
+                .Close()
+                .ConfigureAwait(false);
             _connection = null;
         }
 

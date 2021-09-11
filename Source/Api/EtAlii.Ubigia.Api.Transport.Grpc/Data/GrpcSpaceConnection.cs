@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     {
         public GrpcSpaceConnection(
             ISpaceTransport transport,
-            ISpaceConnectionOptions options,
+            SpaceConnectionOptions options,
             IRootContext roots,
             IEntryContext entries,
             IContentContext content,

@@ -2,27 +2,36 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
 
     public class TraversalContextRootSet : ITraversalContextRootSet
     {
-        private readonly IFabricContext _fabricContext;
+        private readonly IFabricContext _context;
+        private readonly bool _cachingEnabled;
 
-        private readonly IDictionary<string, Root> _cache;
-
-        public TraversalContextRootSet(IFabricContext fabricContext)
+        public TraversalContextRootSet(IFabricContext context)
         {
-            _fabricContext = fabricContext;
-            _cache = new Dictionary<string, Root>();
+            _context = context;
+            //_cachingEnabled = _context.Options.CachingEnabled;
+            _cachingEnabled = false;// TODO: CF42 Caching does not work yet.
         }
 
-        public async Task<Root> Get(string name)
+        public async Task<Root> Get(string name, ExecutionScope scope)
         {
-            if (!_cache.TryGetValue(name, out var result))
+            Root result;
+            if (_cachingEnabled)
             {
-                _cache[name] = result = await _fabricContext.Roots.Get(name).ConfigureAwait(false);
+                if (!scope.RootCache.TryGetValue(name, out result))
+                {
+                    scope.RootCache[name] = result = await _context.Roots.Get(name).ConfigureAwait(false);
+                }
+            }
+            else
+            {
+                result = await _context.Roots
+                    .Get(name)
+                    .ConfigureAwait(false);
             }
             return result;
         }

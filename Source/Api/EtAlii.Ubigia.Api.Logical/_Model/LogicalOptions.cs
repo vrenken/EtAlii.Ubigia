@@ -11,27 +11,32 @@ namespace EtAlii.Ubigia.Api.Logical
     /// This are the options for a LogicalContext instance. It provides all settings and extensions
     ///to facilitate configurable logical graph querying and traversal.
     /// </summary>
-    public sealed class LogicalOptions : ILogicalOptions
+    public sealed class LogicalOptions : IExtensible
     {
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        public IFabricContext FabricContext { get; private set; }
-
-        public IExtension[] Extensions { get; private set; }
+        public IFabricContext FabricContext => _fabricContext.Value;
+        private Lazy<IFabricContext> _fabricContext;
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
+        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
+        private IExtension[] _extensions;
 
         public LogicalOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
 
-            Extensions = new IExtension[] { new CommonLogicalExtension(this) };
+            _extensions = new IExtension[] { new CommonLogicalExtension(this) };
         }
 
-        public LogicalOptions UseFabricContext(IFabricContext fabricContext)
+        public LogicalOptions UseFabricOptions(FabricOptions fabricOptions)
         {
-            FabricContext = fabricContext ?? throw new ArgumentException("No fabric context specified", nameof(fabricContext));
+            if (fabricOptions == null)
+            {
+                throw new ArgumentNullException(nameof(fabricOptions));
+            }
+
+            _fabricContext = new Lazy<IFabricContext>(() => Factory.Create<IFabricContext>(fabricOptions));
             return this;
         }
     }

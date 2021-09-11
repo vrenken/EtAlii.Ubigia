@@ -24,11 +24,17 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IReadOnlyEntry> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope)
         {
-            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
+            var latestEntry = await _graphPathTraverser
+                .TraverseToSingle(id, scope)
+                .ConfigureAwait(false);
             id = latestEntry.Id;
 
-            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
-            var oldProperties = await _fabric.Properties.Retrieve(entry.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
+            var entry = await _fabric.Entries
+                .Get(id, scope)
+                .ConfigureAwait(false);
+            var oldProperties = await _fabric.Properties
+                .Retrieve(entry.Id, scope)
+                .ConfigureAwait(false) ?? new PropertyDictionary();
 
             var nodeShouldBeUpdated = ShouldUpdateNode(oldProperties, properties);
             if (!nodeShouldBeUpdated)
@@ -59,9 +65,13 @@ namespace EtAlii.Ubigia.Api.Logical
                 // Only update if we something changed - no need to update them when nothing changed.
                 if (!newProperties .Equals(oldProperties))
                 {
-                    var newEntry = await _updateEntryFactory.Create(entry, scope).ConfigureAwait(false);
+                    var newEntry = await _updateEntryFactory
+                        .Create(entry, scope)
+                        .ConfigureAwait(false);
 
-                    await _fabric.Properties.Store(newEntry.Id, newProperties , scope).ConfigureAwait(false);
+                    await _fabric.Properties
+                        .Store(newEntry.Id, newProperties , scope)
+                        .ConfigureAwait(false);
 
                     return (IReadOnlyEntry)newEntry;
                 }

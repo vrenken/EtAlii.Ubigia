@@ -49,7 +49,10 @@ namespace EtAlii.Ubigia
         {
             PropertyDictionary result;
 
+            // TODO. CF42 Activating this part of the cache causes massive failures.
+            // Also: shouldn't caching be done in one layer and not 2 or 3?
             if (_cacheEnabled)
+            // if (false)
             {
                 await _propertiesSemaphore.WaitAsync().ConfigureAwait(false);
 
@@ -88,7 +91,10 @@ namespace EtAlii.Ubigia
             // This cache is not clever enough yet and should be improved.
             // More details can be found in the Github issue below:
             // https://github.com/vrenken/EtAlii.Ubigia/issues/93
-            if (false) // _cacheEnabled
+            // TODO. Activating this part of the cache causes massive failures.
+            // Also: shouldn't caching be done in one layer and not 2 or 3?
+            // if (_cacheEnabled)
+            if (false)
             {
                 await _entriesSemaphore.WaitAsync().ConfigureAwait(false);
 
@@ -121,7 +127,10 @@ namespace EtAlii.Ubigia
         /// <exception cref="Exception"></exception>
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelatedEntries(Identifier identifier, EntryRelations relation, Func<IAsyncEnumerable<IReadOnlyEntry>> getter)
         {
+            // TODO. Activating this part of the cache causes massive failures.
+            // Also: shouldn't caching be done in one layer and not 2 or 3?
             if (_cacheEnabled)
+            // if (false)
             {
                 var cacheId = new Tuple<Identifier, EntryRelations>(identifier, relation);
 

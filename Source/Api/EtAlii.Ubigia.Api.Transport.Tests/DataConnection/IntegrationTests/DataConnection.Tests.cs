@@ -92,13 +92,17 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             var (connection1, _) = await _testContext.TransportTestContext
                 .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName,_testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
-            await connection1.Open().ConfigureAwait(false);
+            await connection1
+                .Open()
+                .ConfigureAwait(false);
 
             // Act.
             var (connection2, _) = await _testContext.TransportTestContext
                 .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
-            await connection2.Open().ConfigureAwait(false);
+            await connection2
+                .Open()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.True(connection1.IsConnected);
@@ -114,7 +118,9 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            await connection.Open().ConfigureAwait(false);
+            await connection
+                .Open()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.True(connection.IsConnected);

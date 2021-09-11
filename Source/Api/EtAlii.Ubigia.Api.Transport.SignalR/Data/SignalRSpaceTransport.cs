@@ -30,11 +30,11 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 		    return _httpMessageHandlerFactory?.Invoke();
 		}
 
-        protected override IScaffolding[] CreateScaffoldingInternal()
+        protected override IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions)
         {
             return new IScaffolding[]
             {
-                new SignalRSpaceClientsScaffolding()
+                new SignalRSpaceClientsScaffolding(spaceConnectionOptions)
             };
         }
     }

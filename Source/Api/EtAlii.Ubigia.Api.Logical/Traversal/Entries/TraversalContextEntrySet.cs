@@ -12,20 +12,13 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         private readonly IFabricContext _context;
 
-        private readonly IDictionary<Identifier, IReadOnlyEntry> _cache;
-        private readonly IDictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>> _cacheRelated;
-
         private readonly bool _cachingEnabled;
 
         public TraversalContextEntrySet(IFabricContext context)
         {
             _context = context;
-            if (context.Options.CachingEnabled)
-            {
-                _cachingEnabled = true;
-                _cache = new Dictionary<Identifier, IReadOnlyEntry>();
-                _cacheRelated = new Dictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>>();
-            }
+            //_cachingEnabled = _context.Options.CachingEnabled;
+            _cachingEnabled = false;// TODO: CF42 Caching does not work yet.
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope)
@@ -34,9 +27,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (_cachingEnabled)
             {
-                if (!_cache.TryGetValue(entryIdentifier, out result))
+                if (!scope.EntryCache.TryGetValue(entryIdentifier, out result))
                 {
-                    _cache[entryIdentifier] = result = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
+                    scope.EntryCache[entryIdentifier] = result = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
                 }
             }
             else
@@ -55,9 +48,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
                 if (_cachingEnabled)
                 {
-                    if (!_cache.TryGetValue(entryIdentifier, out match))
+                    if (!scope.EntryCache.TryGetValue(entryIdentifier, out match))
                     {
-                        _cache[entryIdentifier] = match = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
+                        scope.EntryCache[entryIdentifier] = match = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
                     }
                 }
                 else
@@ -75,9 +68,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (_cachingEnabled)
             {
-                if (!_cacheRelated.TryGetValue(key, out var result))
+                if (!scope.EntryRelationCache.TryGetValue(key, out var result))
                 {
-                    _cacheRelated[key] = result = await _context.Entries
+                    scope.EntryRelationCache[key] = result = await _context.Entries
                         .GetRelated(identifier, relation, scope)
                         .ToArrayAsync()
                         .ConfigureAwait(false);
@@ -85,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
                 foreach (var entry in result)
                 {
-                    _cache[entry.Id] = entry;
+                    scope.EntryCache[entry.Id] = entry;
                     yield return entry;
                 }
             }

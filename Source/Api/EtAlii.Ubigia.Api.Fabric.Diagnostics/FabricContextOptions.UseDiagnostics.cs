@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public static class FabricOptionsDiagnosticsExtension
@@ -13,6 +14,13 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
                 new LoggingFabricContextExtension(options.ConfigurationRoot),
             };
             return options.Use(extensions);
+        }
+
+        public static async Task<FabricOptions> UseDiagnostics(this Task<FabricOptions> optionsTask)
+        {
+            var options = await optionsTask.ConfigureAwait(false);
+
+            return options.UseDiagnostics();
         }
     }
 }

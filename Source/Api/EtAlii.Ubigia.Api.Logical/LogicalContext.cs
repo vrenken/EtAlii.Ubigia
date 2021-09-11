@@ -22,13 +22,13 @@ namespace EtAlii.Ubigia.Api.Logical
         public IPropertiesManager Properties { get; }
 
         public LogicalContext(
-            ILogicalOptions options,
+            LogicalOptions options,
             ILogicalNodeSet nodes,
             ILogicalRootSet roots,
             IContentManager content,
             IPropertiesManager properties)
         {
-            Options = (LogicalOptions)options;
+            Options = options;
             Nodes = nodes;
             Roots = roots;
             Content = content;

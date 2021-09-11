@@ -16,13 +16,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope();
-            var fabricOptions = await _testContext.Fabric
+            var logicalOptions = await _testContext.Fabric
                 .CreateFabricOptions(true)
-                .ConfigureAwait(false);
-
-            var logicalOptions = fabricOptions
                 .UseLogicalContext()
-                .UseDiagnostics();
+                .UseDiagnostics()
+                .ConfigureAwait(false);
             var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
             var fabricContext = logicalOptions.FabricContext;
             var composer = new GraphComposerFactory(traverser).Create(fabricContext);

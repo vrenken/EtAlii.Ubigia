@@ -29,11 +29,11 @@ namespace EtAlii.Ubigia.Api.Transport
             return Task.CompletedTask;
         }
 
-        protected abstract IScaffolding[] CreateScaffoldingInternal();
+        protected abstract IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions);
 
-        IScaffolding[] ISpaceTransport.CreateScaffolding()
+        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
         {
-            return CreateScaffoldingInternal();
+            return CreateScaffoldingInternal(spaceConnectionOptions);
         }
     }
 }

@@ -9,15 +9,29 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     internal class SystemClientsScaffolding : IScaffolding
     {
         private readonly IInfrastructure _infrastructure;
+        private readonly SpaceConnectionOptions _options;
 
-        public SystemClientsScaffolding(IInfrastructure infrastructure)
+        public SystemClientsScaffolding(IInfrastructure infrastructure, SpaceConnectionOptions options = null)
         {
             _infrastructure = infrastructure;
+            _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
-            container.Register<ISpaceConnection, SystemSpaceConnection>();
+            if (_options != null)
+            {
+                container.Register<ISpaceConnection>(serviceCollection =>
+                {
+                    var transport = serviceCollection.GetInstance<ISpaceTransport>();
+                    var roots = serviceCollection.GetInstance<IRootContext>();
+                    var entries = serviceCollection.GetInstance<IEntryContext>();
+                    var content = serviceCollection.GetInstance<IContentContext>();
+                    var properties = serviceCollection.GetInstance<IPropertiesContext>();
+                    var authentication = serviceCollection.GetInstance<IAuthenticationContext>();
+                    return new SystemSpaceConnection(transport, _options, roots, entries, content, properties, authentication);
+                });
+            }
             container.Register<IStorageConnection, SystemStorageConnection>();
 
             container.Register(() => _infrastructure);
@@ -50,7 +64,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             container.Register<IStorageNotificationClient, StorageNotificationClientStub>();
             container.Register<IAccountNotificationClient, AccountNotificationClientStub>();
             container.Register<ISpaceNotificationClient, SpaceNotificationClientStub>();
-
         }
     }
 }
