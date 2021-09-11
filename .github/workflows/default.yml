@@ -15,6 +15,8 @@ env:
 jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
+    env:
+      CONFIGURATION: 'Release-Ubuntu'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,6 +28,8 @@ jobs:
 
   build-on-windows:
     runs-on: windows-latest
+    env:
+      CONFIGURATION: 'Release'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
