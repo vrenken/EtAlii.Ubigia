@@ -31,3 +31,8 @@ runs:
         --no-restore
         --configuration $CONFIGURATION
         /p:UbigiaIsRunningOnBuildAgent=true
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-build
+        path: .
