@@ -6,3 +6,9 @@ runs:
     - name: NoOp
       shell: powershell
       run: "echo NoOp"
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: ubuntu-build
+
+
