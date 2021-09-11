@@ -1,0 +1,8 @@
+name: "Analyse CodeQL"
+description: "Receives file and generates output"
+runs:
+  using: composite
+  steps:
+    - name: NoOp
+      shell: powershell
+      run: "echo NoOp"

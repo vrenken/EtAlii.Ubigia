@@ -1,0 +1,34 @@
+name: "Build on Windows"
+description: "Build the solutions on a Windows container"
+runs:
+  using: composite
+  steps:
+
+    # Setup .NET
+    - name: 'Setup .NET'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+    # Versioning.
+    - name: 'Versioning'
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    # Restore.
+    - name: 'Restore dependencies'
+      shell: powershell
+      run: >
+        dotnet restore
+        .\Source\EtAlii.Ubigia.sln
+
+    # Build.
+    - name: 'Build'
+      shell: powershell
+      run: >
+        dotnet build
+        .\Source\EtAlii.Ubigia.sln
+        --no-restore
+        --configuration $CONFIGURATION
+        /p:UbigiaIsRunningOnBuildAgent=true
+

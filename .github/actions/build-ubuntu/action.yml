@@ -1,0 +1,33 @@
+name: "Build on Ubuntu"
+description: "Build the solutions on a Ubuntu container"
+runs:
+  using: composite
+  steps:
+
+    # Setup .NET
+    - name: 'Setup .NET'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+    # Versioning.
+    - name: 'Versioning'
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    # Restore.
+    - name: 'Restore dependencies'
+      shell: bash
+      run: >
+        dotnet restore
+        ./Source/EtAlii.Ubigia.sln
+
+    # Build.
+    - name: 'Build'
+      shell: bash
+      run: >
+        dotnet build
+        ./Source/EtAlii.Ubigia.sln
+        --no-restore
+        --configuration $CONFIGURATION
+        /p:UbigiaIsRunningOnBuildAgent=true
