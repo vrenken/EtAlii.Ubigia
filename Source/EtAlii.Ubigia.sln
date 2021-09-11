@@ -446,13 +446,14 @@ ProjectSection(SolutionItems) = preProject
 	..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md = ..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md
 EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{186D063F-AADD-4F45-B394-935239120191}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{186D063F-AADD-4F45-B394-935239120191}"
 ProjectSection(SolutionItems) = preProject
 	..\.github\workflows\build+test-windows.yml = ..\.github\workflows\build+test-windows.yml
 	..\.github\workflows\analyse-codeql.yml = ..\.github\workflows\analyse-codeql.yml
 	..\.github\workflows\analyse-sonarcloud.yml = ..\.github\workflows\analyse-sonarcloud.yml
 	..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 	..\.github\workflows\build+test-ubuntu.yml = ..\.github\workflows\build+test-ubuntu.yml
+	..\.github\workflows\default.yml = ..\.github\workflows\default.yml
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
@@ -468,6 +469,48 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api", "Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{B8FECA34-E106-46E0-8457-99F5F1E901A6}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Persistence.Tests", "Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.shproj", "{E895A45E-0B7F-4F33-993E-494D2BC78219}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{792001F7-7937-4EAA-B7C7-18D360E32FE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-codeql", "analyse-codeql", "{8F8A094D-2593-4A37-9610-838C89834017}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\analyse-codeql\action.yml = ..\.github\actions\analyse-codeql\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-sonarcloud", "analyse-sonarcloud", "{9620BAA6-CFF3-46B0-AA20-648D5BEA756A}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\analyse-sonarcloud\action.yml = ..\.github\actions\analyse-sonarcloud\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish-docker", "publish-docker", "{D91F0095-0165-4B9A-B448-D71CEE5DB2AB}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\publish-docker\action.yml = ..\.github\actions\publish-docker\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish-nuget", "publish-nuget", "{752B679E-93DB-42EF-93CC-DDBDAC0D7C8E}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\publish-nuget\action.yml = ..\.github\actions\publish-nuget\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test+ubuntu", "test+ubuntu", "{2EDD281D-4EE3-4BCA-8BCA-C9E2AF5D35E0}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\test+ubuntu\action.yml = ..\.github\actions\test+ubuntu\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-windows", "test-windows", "{C4D6D6D3-5202-4001-AD06-4FA87803FE64}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\test-windows\action.yml = ..\.github\actions\test-windows\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-ubuntu", "build-ubuntu", "{D44CC738-9C42-40FA-98CA-AC1B596416A2}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\build-ubuntu\action.yml = ..\.github\actions\build-ubuntu\action.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-windows", "build-windows", "{39EA82F5-F333-48AF-8673-3E04B8252709}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\actions\build-windows\action.yml = ..\.github\actions\build-windows\action.yml
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -2600,6 +2643,15 @@ Global
 		{11725836-5C0D-4089-B1D7-BDD89F87B00C} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6} = {27CC2941-9A82-44BF-90D7-2D55BCFFA7FA}
 		{E895A45E-0B7F-4F33-993E-494D2BC78219} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
+		{792001F7-7937-4EAA-B7C7-18D360E32FE4} = {C9537D00-7881-4ACB-9111-9439363F658D}
+		{8F8A094D-2593-4A37-9610-838C89834017} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{9620BAA6-CFF3-46B0-AA20-648D5BEA756A} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{D91F0095-0165-4B9A-B448-D71CEE5DB2AB} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{752B679E-93DB-42EF-93CC-DDBDAC0D7C8E} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{2EDD281D-4EE3-4BCA-8BCA-C9E2AF5D35E0} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{C4D6D6D3-5202-4001-AD06-4FA87803FE64} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{D44CC738-9C42-40FA-98CA-AC1B596416A2} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{39EA82F5-F333-48AF-8673-3E04B8252709} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
