@@ -20,11 +20,11 @@ runs:
         name: ubuntu-build
 
     - name: 'Configure shell to continue on error'
-      shell: bash
+      shell: powershell
       run: $ErrorActionPreference = "SilentlyContinue"
 
     - name: 'Test'
-      shell: bash
+      shell: powershell
       run: >
         dotnet test
         ./Source/EtAlii.Ubigia.sln
