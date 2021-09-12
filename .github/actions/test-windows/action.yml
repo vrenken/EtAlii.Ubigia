@@ -19,7 +19,11 @@ runs:
       with:
         name: windows-build
 
-    - name: Test
+    - name: 'Configure shell to continue on error'
+      shell: bash
+      run: $ErrorActionPreference = "SilentlyContinue"
+
+    - name: 'Test'
       shell: powershell
       run: >
         dotnet test

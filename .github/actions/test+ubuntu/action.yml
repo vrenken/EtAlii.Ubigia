@@ -19,6 +19,10 @@ runs:
       with:
         name: ubuntu-build
 
+    - name: 'Configure shell to continue on error'
+      shell: bash
+      run: $ErrorActionPreference = "SilentlyContinue"
+
     - name: 'Test'
       shell: bash
       run: >
