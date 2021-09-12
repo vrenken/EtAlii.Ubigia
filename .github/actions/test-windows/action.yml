@@ -24,11 +24,11 @@ runs:
       id: nbgv
 
     - name: 'Configure shell to continue on error'
-      shell: powershell
+      shell: pwsh
       run: $ErrorActionPreference = "SilentlyContinue"
 
     - name: 'Test'
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet test
         .\Source\EtAlii.Ubigia.sln

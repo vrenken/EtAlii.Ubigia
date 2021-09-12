@@ -21,14 +21,14 @@ runs:
 
     # Restore.
     - name: 'Restore dependencies'
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet restore
         .\Source\EtAlii.Ubigia.sln
 
     # Build.
     - name: 'Build'
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet build
         .\Source\EtAlii.Ubigia.sln

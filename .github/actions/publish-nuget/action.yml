@@ -32,7 +32,7 @@ runs:
 
     # Pack.
     - name: Pack NuGet packages
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet pack
         ${{ env.UBIGIA_SOLUTION }}
@@ -44,7 +44,7 @@ runs:
 
     # Publish NuGet packages.
     - name: Publish EtAlii.xTechnology NuGet packages
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet nuget push
         .\Source\**\EtAlii.xTechnology.*.nupkg
@@ -53,7 +53,7 @@ runs:
         --source https://api.nuget.org/v3/index.json
 
     - name: Publish EtAlii.Ubigia NuGet packages
-      shell: powershell
+      shell: pwsh
       run: >
         dotnet nuget push
         .\Source\**\EtAlii.Ubigia.*.nupkg

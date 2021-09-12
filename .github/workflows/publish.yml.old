@@ -50,7 +50,7 @@ jobs:
 
         # Pack.
       - name: Pack NuGet packages
-        shell: powershell
+        shell: pwsh
         run: >
           dotnet pack
           ${{ env.UBIGIA_SOLUTION }}
