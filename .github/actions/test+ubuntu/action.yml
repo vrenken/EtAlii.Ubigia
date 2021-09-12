@@ -3,8 +3,7 @@ description: "Test the solutions on a Ubuntu container"
 inputs:
   configuration:
     description: 'The build configuration to use'
-    required: false
-    default: 'Release-Ubuntu'
+    required: true
 runs:
   using: composite
   steps:
@@ -15,9 +14,19 @@ runs:
       with:
         dotnet-version: 5.0.302
 
-    - uses: actions/download-artifact@v2
-      with:
-        name: ubuntu-build
+    # Versioning.
+    - name: Versioning
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    # Build.
+    - name: 'Build'
+      shell: bash
+      run: >
+        dotnet build
+        ./Source/EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
 
     - name: 'Configure shell to continue on error'
       shell: powershell

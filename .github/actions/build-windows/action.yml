@@ -3,8 +3,7 @@ description: "Build the solutions on a Windows container"
 inputs:
   configuration:
     description: 'The build configuration to use'
-    required: false
-    default: 'Release'
+    required: true
 runs:
   using: composite
   steps:
@@ -36,9 +35,3 @@ runs:
         --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: windows-build
-        retention-days: 2
-        path: .\**\bin\

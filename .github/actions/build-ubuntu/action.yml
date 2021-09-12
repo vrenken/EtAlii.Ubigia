@@ -3,8 +3,7 @@ description: "Build the solutions on a Ubuntu container"
 inputs:
   configuration:
     description: 'The build configuration to use'
-    required: false
-    default: 'Release-Ubuntu'
+    required: true
 runs:
   using: composite
   steps:
@@ -37,9 +36,3 @@ runs:
         ./Source/EtAlii.Ubigia.sln
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ubuntu-build
-        retention-days: 2
-        path: ./**/bin/

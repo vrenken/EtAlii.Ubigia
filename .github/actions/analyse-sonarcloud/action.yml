@@ -1,6 +1,9 @@
 name: "SonarCloud analysis"
 description: "Apply the SonarCloud analysis to the source code and unit tests"
 inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: true
   sonar-token:
     description: 'The SonarQube token to use'
     required: true
@@ -10,10 +13,6 @@ inputs:
 runs:
   using: composite
   steps:
-
-    - uses: actions/download-artifact@v2
-      with:
-        name: windows-build
 
     - name: Set up JDK 11
       uses: actions/setup-java@v1
@@ -25,7 +24,21 @@ runs:
       with:
         dotnet-version: 5.0.302
 
-#    - name: Cache SonarCloud packages
+    # Versioning.
+    - name: 'Versioning'
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    - name: 'Build'
+      shell: powershell
+      run: >
+        dotnet build
+        .\Source\EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
+
+
+    #    - name: Cache SonarCloud packages
 #      uses: actions/cache@v1
 #      with:
 #        path: ~\sonar\cache

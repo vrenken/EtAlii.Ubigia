@@ -11,7 +11,8 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
   IMAGE_NAME: ubigia/storage
   UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
-
+  CONFIGURATION_WINDOWS: 'Release'
+  CONFIGURATION_UBUNTU: 'Release-Ubuntu'
 jobs:
   build-on-ubuntu:
     runs-on: ubuntu-latest
@@ -22,6 +23,8 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
+        with:
+          configuration: ${{ env.CONFIGURATION_UBUNTU }}
 
   build-on-windows:
     runs-on: windows-latest
@@ -32,6 +35,8 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Build on Windows
         uses: ./.github/actions/build-windows
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
 
   test-on-ubuntu:
     runs-on: ubuntu-latest
@@ -43,6 +48,8 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
+        with:
+          configuration: ${{ env.CONFIGURATION_UBUNTU }}
 
   test-on-windows:
     runs-on: windows-latest
@@ -54,6 +61,8 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Test on Windows
         uses: ./.github/actions/test-windows
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
 
   sonarcloud-analysis:
     runs-on: windows-latest
@@ -67,6 +76,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
 
   codeql-analysis:
     runs-on: windows-latest
@@ -78,6 +89,8 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
 
   nuget-publish:
     runs-on: windows-latest
@@ -91,6 +104,8 @@ jobs:
           nuget-org-ubigia-token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
       - name: Nuget publish
         uses: ./.github/actions/publish-nuget
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
 
   docker-publish:
     runs-on: windows-latest
@@ -104,3 +119,5 @@ jobs:
           dockerhub-user: ${{ secrets.DOCKERHUB_USER }}
       - name: Docker publish
         uses: ./.github/actions/publish-docker
+        with:
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}

@@ -1,6 +1,9 @@
 name: "Publish Docker"
 description: "Create docker image and publish it to dockerhub.com"
 inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: true
   dockerhub-token:
     description: 'The Dockerhub token to use'
     required: true
@@ -20,14 +23,24 @@ runs:
   using: composite
   steps:
 
-    - uses: actions/download-artifact@v2
+    # Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
       with:
-        name: ubuntu-build
+        dotnet-version: 5.0.302
 
     # Versioning.
     - name: Versioning
       uses: dotnet/nbgv@master
       id: nbgv
+
+    - name: 'Build'
+      shell: powershell
+      run: >
+        dotnet build
+        .\Source\EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
 
     # Publish Docker images.
     - name: Publish

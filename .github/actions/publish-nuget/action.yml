@@ -2,6 +2,9 @@ name: "Publish NuGet"
 description: "Create NuGet packages and publish them to nuget.org"
 
 inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: true
   nuget-org-xtechnology-token:
     description: 'The token needed to publish xTechnology packages to nuget.org'
     required: true
@@ -18,14 +21,18 @@ runs:
       with:
         dotnet-version: 5.0.302
 
-    - uses: actions/download-artifact@v2
-      with:
-        name: windows-build
-
     # Versioning.
     - name: Versioning
       uses: dotnet/nbgv@master
       id: nbgv
+
+    - name: 'Build'
+      shell: powershell
+      run: >
+        dotnet build
+        .\Source\EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
 
     # Pack.
     - name: Pack NuGet packages
