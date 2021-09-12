@@ -32,7 +32,6 @@ runs:
         --no-build
         --verbosity normal
         --logger "trx;LogFileName=report.xunit.trx"
-      #  -ErrorAction SilentlyContinue
       # run the next step even if this one step failed
 
     - name: 'Publish test results'
