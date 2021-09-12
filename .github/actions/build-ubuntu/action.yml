@@ -41,4 +41,5 @@ runs:
     - uses: actions/upload-artifact@v2
       with:
         name: ubuntu-build
-        path: ./**/bin/**/*
+        retention-days: 2
+        path: ./**/bin/
