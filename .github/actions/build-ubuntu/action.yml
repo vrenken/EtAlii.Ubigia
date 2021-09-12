@@ -20,12 +20,14 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
-    # Restore.
-    - name: 'Restore dependencies'
-      shell: bash
-      run: >
-        dotnet restore
-        ./Source/EtAlii.Ubigia.sln
+#    # Restore.
+#    - name: 'Restore dependencies'
+#      shell: bash
+#      run: >
+#        dotnet restore
+#        ./Source/EtAlii.Ubigia.sln
+#    For below step.
+#        --no-restore
 
     # Build.
     - name: 'Build'
@@ -33,7 +35,6 @@ runs:
       run: >
         dotnet build
         ./Source/EtAlii.Ubigia.sln
-        --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
