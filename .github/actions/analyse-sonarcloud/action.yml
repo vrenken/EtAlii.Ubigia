@@ -55,11 +55,6 @@ runs:
         New-Item -Path .\.sonar\scanner -ItemType Directory
         dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
 
-      # NBGV Versioning setup.
-    - name: Versioning
-      uses: dotnet/nbgv@master
-      id: nbgv
-
       # Build and analyze.
     - name: Build and analyze
       env:
