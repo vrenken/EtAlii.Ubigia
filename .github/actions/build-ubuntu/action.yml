@@ -36,3 +36,9 @@ runs:
         ./Source/EtAlii.Ubigia.sln
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-build
+        retention-days: 100
+        path: ./**/bin/
