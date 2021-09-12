@@ -1,5 +1,13 @@
 name: "Publish NuGet"
 description: "Create NuGet packages and publish them to nuget.org"
+
+inputs:
+  nuget-org-xtechnology-token:
+    description: 'The token needed to publish xTechnology packages to nuget.org'
+    required: true
+  nuget-org-ubigia-token:
+    description: 'The token needed to publish Ubigia packages to nuget.org'
+    required: true
 runs:
   using: composite
   steps:
@@ -38,7 +46,7 @@ runs:
         dotnet nuget push
         .\Source\**\EtAlii.xTechnology.*.nupkg
         --skip-duplicate
-        --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
+        --api-key ${{ inputs.nuget-org-xtechnology-token }}
         --source https://api.nuget.org/v3/index.json
 
     - name: Publish EtAlii.Ubigia NuGet packages
@@ -47,5 +55,5 @@ runs:
         dotnet nuget push
         .\Source\**\EtAlii.Ubigia.*.nupkg
         --skip-duplicate
-        --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+        --api-key ${{ inputs.nuget-org-ubigia-token }}
         --source https://api.nuget.org/v3/index.json

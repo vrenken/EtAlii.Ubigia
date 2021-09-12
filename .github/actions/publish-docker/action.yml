@@ -1,14 +1,65 @@
 name: "Publish Docker"
 description: "Create docker image and publish it to dockerhub.com"
+inputs:
+  dockerhub-token:
+    description: 'The Dockerhub token to use'
+    required: true
+  dockerhub-user:
+    description: 'The Dockerhub user to use'
+    required: true
+  image-name:
+    description: "The name of the image to create and publish"
+    required: false
+    default: 'ubigia/storage'
+  ubigia-solution:
+    description: "The solution that should be published"
+    required: false
+    default: '.\Source\EtAlii.Ubigia.sln'
+
 runs:
   using: composite
   steps:
-    - name: NoOp
-      shell: powershell
-      run: "echo NoOp"
 
     - uses: actions/download-artifact@v2
       with:
         name: ubuntu-build
 
+    # Versioning.
+    - name: Versioning
+      uses: dotnet/nbgv@master
+      id: nbgv
 
+    # Publish Docker images.
+    - name: Publish
+      shell: bash
+      run: >
+        dotnet publish
+        ${{ inputs.ubigia-solution }}
+        -c Release
+        --no-build
+
+
+    - name: Docker build
+      run: docker build -t ${{ inputs.image-name }} -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile .
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ inputs.dockerhub-user }}
+        password: ${{ inputs.dockerhub-token }}
+
+    - name: Docker build
+      if: github.ref != 'refs/heads/main'
+      run: |
+        docker tag ${{ inputs.image-name }}:latest ${{ inputs.image-name }}:${{ steps.nbgv.outputs.VersionMajor }}
+        docker push ${{ inputs.image-name }}:${{ steps.nbgv.outputs.VersionMajor }}
+        docker tag ${{ inputs.image-name }}:latest ${{ inputs.image-name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
+        docker push ${{ inputs.image-name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
+        docker tag ${{ inputs.image-name }}:latest ${{ inputs.image-name }}:${{ steps.nbgv.outputs.SimpleVersion }}
+        docker push ${{ inputs.image-name }}:${{ steps.nbgv.outputs.SimpleVersion }}
+
+    - name: Docker build for main branch
+      if: github.ref == 'refs/heads/main'
+      run: |
+        docker tag ${{ inputs.image-name }}:latest ${{ inputs.image-name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
+        docker push ${{ inputs.image-name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
