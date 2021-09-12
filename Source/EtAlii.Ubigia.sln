@@ -492,9 +492,9 @@ ProjectSection(SolutionItems) = preProject
 	..\.github\actions\publish-nuget\action.yml = ..\.github\actions\publish-nuget\action.yml
 EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test+ubuntu", "test+ubuntu", "{2EDD281D-4EE3-4BCA-8BCA-C9E2AF5D35E0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-ubuntu", "test-ubuntu", "{2EDD281D-4EE3-4BCA-8BCA-C9E2AF5D35E0}"
 ProjectSection(SolutionItems) = preProject
-	..\.github\actions\test+ubuntu\action.yml = ..\.github\actions\test+ubuntu\action.yml
+	..\.github\actions\test-ubuntu\action.yml = ..\.github\actions\test-ubuntu\action.yml
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test-windows", "test-windows", "{C4D6D6D3-5202-4001-AD06-4FA87803FE64}"
