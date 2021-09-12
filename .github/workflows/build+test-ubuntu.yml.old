@@ -1,0 +1,85 @@
+name: Build+test on Ubuntu
+
+on:
+  push:
+    branches:
+      - master
+      - 'release/**'
+
+  pull_request:
+    branches: [ master ]
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true   # Stop wasting time caching packages
+  DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true     # https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/
+  CONFIGURATION: 'Debug-Ubuntu'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+    - name: 'Setup .NET'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.302
+
+#    - name: 'Install LiquidTestReports'
+#      run: |
+#        dotnet tool install --global LiquidTestReports.Cli --version 1.2.1-beta
+
+    - name: 'Apply versioning'
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    - name: 'Restore dependencies'
+      run: >
+        dotnet restore
+        ./Source/EtAlii.Ubigia.sln
+
+    - name: 'Build'
+      run: >
+        dotnet build
+        ./Source/EtAlii.Ubigia.sln
+        --configuration $CONFIGURATION
+        --no-restore
+        /p:UbigiaIsRunningOnBuildAgent=true
+#
+#    - name: 'If PR: Set build number'
+#      id: PRNUMBER
+#      if: ${{ github.event_name == 'pull_request' }}
+#      uses: kkak10/pr-number-action@v1.3
+#
+#    - name: 'Set test title'
+#      run: |
+#        if ${{ github.event_name == 'pull_request' }}
+#        then
+#          echo "::set-env name=title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+#          echo "::set-env name=file_name::TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+#        else
+#          echo "::set-env name=title::Test Run ${{github.run_number}}"
+#          echo "::set-env name=file_name::TestReport.${{github.run_number}}.md"
+#        fi
+
+    - name: 'Test'
+      run: >
+        dotnet test
+        --configuration $CONFIGURATION
+        --no-build
+        --verbosity normal
+        --logger "trx;LogFileName=report.xunit.trx"
+        ./Source/EtAlii.Ubigia.sln
+
+    - name: 'Publish test results'
+      uses: dorny/test-reporter@v1
+      if: always()                          # run this step even if previous step failed
+      with:
+        name: 'Test report (Ubuntu-latest)' # Name of the check run which will be created
+        path: '**/*.trx'                    # Path to test results
+        reporter: dotnet-trx                # Format of test results

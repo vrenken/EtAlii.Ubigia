@@ -1,5 +1,10 @@
 name: "Test on Windows"
 description: "Test the solutions on a Windows container"
+inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: false
+    default: 'Release'
 runs:
   using: composite
   steps:
@@ -18,14 +23,16 @@ runs:
       shell: powershell
       run: >
         dotnet test
+        .\Source\EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
         --no-build
         --verbosity normal
         --logger "trx;LogFileName=report.xunit.trx"
-        .\Source\EtAlii.Ubigia.sln
+        -ErrorAction SilentlyContinue
+      # run the next step even if this one step failed
 
     - name: 'Publish test results'
       uses: dorny/test-reporter@v1
-      if: always()                           # run this step even if previous step failed
       with:
         name: 'Test report (Windows-latest)' # Name of the check run which will be created
         path: '**/*.trx'                     # Path to test results

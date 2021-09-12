@@ -1,5 +1,10 @@
 name: "Test on Ubuntu"
 description: "Test the solutions on a Ubuntu container"
+inputs:
+  configuration:
+    description: 'The build configuration to use'
+    required: false
+    default: 'Release-Ubuntu'
 runs:
   using: composite
   steps:
@@ -18,15 +23,16 @@ runs:
       shell: bash
       run: >
         dotnet test
-        --configuration $CONFIGURATION
+        ./Source/EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
         --no-build
         --verbosity normal
         --logger "trx;LogFileName=report.xunit.trx"
-        ./Source/EtAlii.Ubigia.sln
+        -ErrorAction SilentlyContinue
+      # run the next step even if this one step failed
 
     - name: 'Publish test results'
       uses: dorny/test-reporter@v1
-      if: always()                          # run this step even if previous step failed
       with:
         name: 'Test report (Ubuntu-latest)' # Name of the check run which will be created
         path: '**/*.trx'                    # Path to test results
