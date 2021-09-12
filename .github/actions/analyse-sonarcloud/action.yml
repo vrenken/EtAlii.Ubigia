@@ -1,5 +1,12 @@
 name: "SonarCloud analysis"
 description: "Apply the SonarCloud analysis to the source code and unit tests"
+inputs:
+  sonar-token:
+    description: 'The SonarQube token to use'
+    required: true
+  github-token:
+    description: 'The Github token to use'
+    required: true
 runs:
   using: composite
   steps:
@@ -18,23 +25,23 @@ runs:
       with:
         dotnet-version: 5.0.302
 
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v1
-      with:
-        path: ~\sonar\cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
+#    - name: Cache SonarCloud packages
+#      uses: actions/cache@v1
+#      with:
+#        path: ~\sonar\cache
+#        key: ${{ runner.os }}-sonar
+#        restore-keys: ${{ runner.os }}-sonar
 
-    - name: Cache SonarCloud scanner
-      id: cache-sonar-scanner
-      uses: actions/cache@v1
-      with:
-        path: .\.sonar\scanner
-        key: ${{ runner.os }}-sonar-scanner
-        restore-keys: ${{ runner.os }}-sonar-scanner
+#    - name: Cache SonarCloud scanner
+#      id: cache-sonar-scanner
+#      uses: actions/cache@v1
+#      with:
+#        path: .\.sonar\scanner
+#        key: ${{ runner.os }}-sonar-scanner
+#        restore-keys: ${{ runner.os }}-sonar-scanner
 
     - name: Install SonarCloud scanner
-      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+#      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
       shell: powershell
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
@@ -48,8 +55,6 @@ runs:
       # Build and analyze.
     - name: Build and analyze
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
         UBIGIA_PROJECTNAME: EtAlii.Ubigia
         SONAR_COVERAGE_EXCLUSIONS: >
@@ -60,6 +65,6 @@ runs:
       shell: powershell
       run: |
         dotnet test --verbosity quiet ${{ env.UBIGIA_SOLUTION }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.github-token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
         dotnet build ${{ env.UBIGIA_SOLUTION }}
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar-token }}"
