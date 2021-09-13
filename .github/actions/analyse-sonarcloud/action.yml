@@ -76,7 +76,7 @@ runs:
 
       shell: pwsh
       run: |
-        dotnet test --verbosity quiet ${{ env.UBIGIA_SOLUTION }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        dotnet test --verbosity quiet ${{ inputs.solution }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.github_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
         dotnet build ${{ inputs.solution }} --configuration ${{ inputs.configuration }}
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar_token }}"
