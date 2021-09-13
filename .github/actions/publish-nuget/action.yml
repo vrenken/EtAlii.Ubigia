@@ -5,11 +5,14 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
-  nuget-org-xtechnology-token:
+  nuget_org_xtechnology_token:
     description: 'The token needed to publish xTechnology packages to nuget.org'
     required: true
-  nuget-org-ubigia-token:
+  nuget_org_ubigia_token:
     description: 'The token needed to publish Ubigia packages to nuget.org'
+    required: true
+  solution:
+    description: 'The solution that should be published'
     required: true
 runs:
   using: composite
@@ -31,7 +34,7 @@ runs:
       shell: pwsh
       run: >
         dotnet build
-        .\Source\EtAlii.Ubigia.sln
+        ${{ inputs.solution }}
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
@@ -40,7 +43,7 @@ runs:
       shell: pwsh
       run: >
         dotnet pack
-        ${{ env.UBIGIA_SOLUTION }}
+        ${{ inputs.solution }}
         --no-restore
         /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
         /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
@@ -54,7 +57,7 @@ runs:
         dotnet nuget push
         .\Source\**\EtAlii.xTechnology.*.nupkg
         --skip-duplicate
-        --api-key ${{ inputs.nuget-org-xtechnology-token }}
+        --api-key ${{ inputs.nuget_org_xtechnology_token }}
         --source https://api.nuget.org/v3/index.json
 
     - name: Publish EtAlii.Ubigia NuGet packages
@@ -63,5 +66,5 @@ runs:
         dotnet nuget push
         .\Source\**\EtAlii.Ubigia.*.nupkg
         --skip-duplicate
-        --api-key ${{ inputs.nuget-org-ubigia-token }}
+        --api-key ${{ inputs.nuget_org_ubigia_token }}
         --source https://api.nuget.org/v3/index.json

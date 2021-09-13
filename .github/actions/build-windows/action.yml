@@ -4,6 +4,9 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
+  solution:
+    description: 'The solution that should be published'
+    required: true
 runs:
   using: composite
   steps:
@@ -24,14 +27,14 @@ runs:
       shell: pwsh
       run: >
         dotnet restore
-        .\Source\EtAlii.Ubigia.sln
+        ${{ inputs.solution }}
 
     # Build.
     - name: 'Build'
       shell: pwsh
       run: >
         dotnet build
-        .\Source\EtAlii.Ubigia.sln
+        ${{ inputs.solution }}
         --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true

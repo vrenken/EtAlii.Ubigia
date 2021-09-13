@@ -4,11 +4,14 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
-  sonar-token:
+  sonar_token:
     description: 'The SonarQube token to use'
     required: true
-  github-token:
+  github_token:
     description: 'The Github token to use'
+    required: true
+  solution:
+    description: 'The solution that should be published'
     required: true
 runs:
   using: composite
@@ -36,7 +39,7 @@ runs:
       shell: pwsh
       run: >
         dotnet build
-        .\Source\EtAlii.Ubigia.sln
+        ${{ inputs.solution }}
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
@@ -65,7 +68,6 @@ runs:
       # Build and analyze.
     - name: Build and analyze
       env:
-        UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
         UBIGIA_PROJECTNAME: EtAlii.Ubigia
         SONAR_COVERAGE_EXCLUSIONS: >
           **\*.Tests\**,
@@ -75,6 +77,6 @@ runs:
       shell: pwsh
       run: |
         dotnet test --verbosity quiet ${{ env.UBIGIA_SOLUTION }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.github-token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
-        dotnet build ${{ env.UBIGIA_SOLUTION }}
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar-token }}"
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.github_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
+        dotnet build ${{ inputs.solution }} --configuration ${{ inputs.configuration }}
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar_token }}"

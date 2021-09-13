@@ -4,6 +4,9 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
+  solution:
+    description: 'The solution that should be published'
+    required: true
 runs:
   using: composite
   steps:
@@ -18,15 +21,6 @@ runs:
     - name: Versioning
       uses: dotnet/nbgv@master
       id: nbgv
-
-    # Build.
-    - name: 'Build'
-      shell: pwsh
-      run: >
-        dotnet build
-        .\Source\EtAlii.Ubigia.sln
-        --configuration ${{ inputs.configuration }}
-        /p:UbigiaIsRunningOnBuildAgent=true
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -49,6 +43,15 @@ runs:
       # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
       #    and modify them (or add more) to build your code if your project
       #    uses a compiled language
+
+    # Build.
+    - name: 'Build'
+      shell: pwsh
+      run: >
+        dotnet build
+        ${{ inputs.solution }}
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
