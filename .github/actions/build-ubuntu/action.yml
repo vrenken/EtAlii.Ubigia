@@ -19,26 +19,11 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
-#    # Restore.
-#    - name: 'Restore dependencies'
-#      shell: bash
-#      run: >
-#        dotnet restore
-#        ./Source/EtAlii.Ubigia.sln
-#    For below step.
-#        --no-restore
-
     # Build.
     - name: 'Build'
-      shell: bash
+      shell: pwsh
       run: >
         dotnet build
         ./Source/EtAlii.Ubigia.sln
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ubuntu-build
-        retention-days: 100
-        path: ./**/bin/

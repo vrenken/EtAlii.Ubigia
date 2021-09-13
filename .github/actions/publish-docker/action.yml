@@ -23,10 +23,6 @@ runs:
   using: composite
   steps:
 
-    - uses: actions/download-artifact@v2
-      with:
-        name: windows-build
-
     # Setup .NET
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -38,15 +34,23 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
+    # Build.
+    - name: 'Build'
+      shell: pwsh
+      run: >
+        dotnet build
+        .\Source\EtAlii.Ubigia.sln
+        --configuration ${{ inputs.configuration }}
+        /p:UbigiaIsRunningOnBuildAgent=true
+
     # Publish Docker images.
     - name: Publish
-      shell: bash
+      shell: pwsh
       run: >
         dotnet publish
         ${{ inputs.ubigia-solution }}
         -c Release
         --no-build
-
 
     - name: Docker build
       run: docker build -t ${{ inputs.image-name }} -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile .
