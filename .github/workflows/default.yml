@@ -79,13 +79,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-          sonar_token: ${{ secrets.SONAR_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud
         with:
           configuration: ${{ env.CONFIGURATION_WINDOWS }}
           solution: ${{ env.SOLUTION_WINDOWS }}
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
 
   codeql-analysis:
     runs-on: windows-latest
