@@ -61,17 +61,23 @@ runs:
         password: ${{ inputs.dockerhub_token }}
 
     - name: Docker build
-      if: github.ref != 'refs/heads/main'
+      # if: github.ref != 'refs/heads/main'
       run: |
-        docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
-        docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
-        docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
-        docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
-        docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}
-        docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}
+        if("${{ github.ref }}" != "refs/heads/main")
+        {
+          docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
+          docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
+          docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
+          docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.MajorMinorVersion }}
+          docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}
+          docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}
+        }
 
     - name: Docker build for main branch
-      if: github.ref == 'refs/heads/main'
+      # if: github.ref == 'refs/heads/main'
       run: |
-        docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
-        docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
+        if("${{ github.ref }}" == "refs/heads/main")
+        {
+          docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
+          docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
+        }
