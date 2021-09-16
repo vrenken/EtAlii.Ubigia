@@ -11,6 +11,7 @@ ENV UBIGIA_DATA_MANAGEMENT_PORT_INTERFACE   = 'http://+'
 ENV UBIGIA_DATA_MANAGEMENT_PORT             = 64001
 
 # Storage related settings.
+RUN mkdir /ubigia/data
 VOLUME ["/ubigia/data"]
 ENV UBIGIA_DATA_LOCATION = '/ubigia/data'
 
