@@ -52,6 +52,7 @@ runs:
         --no-build
 
     - name: Docker build
+      shell: pwsh
       run: docker build -t ${{ inputs.image_name }} -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile .
 
     - name: Login to Docker Hub
@@ -61,6 +62,7 @@ runs:
         password: ${{ inputs.dockerhub_token }}
 
     - name: Docker build
+      shell: pwsh
       # if: github.ref != 'refs/heads/main'
       run: |
         if("${{ github.ref }}" != "refs/heads/main")
@@ -74,6 +76,7 @@ runs:
         }
 
     - name: Docker build for main branch
+      shell: pwsh
       # if: github.ref == 'refs/heads/main'
       run: |
         if("${{ github.ref }}" == "refs/heads/main")
