@@ -3,10 +3,10 @@ COPY Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.Do
 WORKDIR /ubigia
 
 #Network related settings.
-EXPOSE 64000 tcp
+EXPOSE 64000/tcp
 ENV UBIGIA_DATA_DATA_PORT_INTERFACE         = 'http://+'
 ENV UBIGIA_DATA_DATA_PORT                   = 64000
-EXPOSE 64001 tcp
+EXPOSE 64001/tcp
 ENV UBIGIA_DATA_MANAGEMENT_PORT_INTERFACE   = 'http://+'
 ENV UBIGIA_DATA_MANAGEMENT_PORT             = 64001
 
