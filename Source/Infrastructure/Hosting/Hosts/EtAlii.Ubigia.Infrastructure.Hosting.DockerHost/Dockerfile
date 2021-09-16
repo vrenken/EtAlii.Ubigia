@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
-COPY EtAlii.CryptoMagic/bin/Release/net5.0/publish/ cryptomagic/
+COPY Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/bin/Release/net5.0/publish/ ubigia/
 WORKDIR /ubigia
 
 #Network related settings.
