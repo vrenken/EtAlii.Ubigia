@@ -1,18 +1,58 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <OutputType>Library</OutputType>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>3C764E54-0A6E-4FCD-85B4-E407283BB802</ProjectGuid>
   </PropertyGroup>
+
   <ItemGroup>
-    <None Remove="sshd_config.conf" />
-    <None Remove="supervisord.conf" />
-    <Content Include="supervisord.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Remove="sshd_config" />
-    <Content Include="sshd_config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.json">
+      <TransformOnBuild>True</TransformOnBuild>
+      <Link>settings.json</Link>
+    </None>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release.json">
+      <DependentUpon>settings.json</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+      <Link>settings.Release.json</Link>
+    </None>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Debug.json">
+      <DependentUpon>settings.json</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+      <Link>settings.Debug.json</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Third party -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Shared -->
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
+
+    <!-- Grpc -->
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
+
+    <!-- SignalR -->
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
+
+    <!-- Rest -->
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
+
+    <!-- Admin -->
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.csproj" />
+
+    <!-- User -->
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.csproj" />
+
   </ItemGroup>
 </Project>

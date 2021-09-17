@@ -9,4 +9,28 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="settings.All.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Include="settings.Grpc.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Include="settings.json" />
+    <None Include="settings.Release.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Include="settings.Rest+SignalR.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Include="settings.Rest.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Include="settings.SignalR.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+    <None Update="settings.Debug.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+  </ItemGroup>
 </Project>

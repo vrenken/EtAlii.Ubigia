@@ -4,23 +4,22 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6</ProjectGuid>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Content Include="settings.All.json" />
-    <Content Include="settings.Rest.json" />
-    <Content Include="settings.SignalR.json" />
-    <None Remove="settings.json" />
-    <None Update="settings.*.json">
-      <DependentUpon>settings.json</DependentUpon>
-    </None>
-    <Content Include="settings.Grpc.json" />
-    <Content Include="settings.Rest+SignalR.json" />
-    <Content Include="settings.json">
+    <Content Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IsTransformFile>True</IsTransformFile>
+      <Link>settings.json</Link>
     </Content>
-    <Content Update="settings.*.json">
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release.json">
+      <Link>settings.Release.json</Link>
+    </None>
+    <None Update="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.*.json">
       <DependentUpon>settings.json</DependentUpon>
-    </Content>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
+  
   <ItemGroup>
     <!-- Third party -->
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
