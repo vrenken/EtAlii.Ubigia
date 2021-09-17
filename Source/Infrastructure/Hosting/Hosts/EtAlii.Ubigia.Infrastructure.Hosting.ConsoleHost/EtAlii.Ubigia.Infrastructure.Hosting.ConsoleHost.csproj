@@ -4,22 +4,29 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6</ProjectGuid>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <Content Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IsTransformFile>True</IsTransformFile>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.json">
+      <TransformOnBuild>True</TransformOnBuild>
       <Link>settings.json</Link>
-    </Content>
-    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release.json">
-      <Link>settings.Release.json</Link>
     </None>
-    <None Update="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.*.json">
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release.json">
       <DependentUpon>settings.json</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
+      <Link>settings.Release.json</Link>
+    </None>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release-Ubuntu.json">
+      <DependentUpon>settings.json</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+      <Link>settings.Release-Ubuntu.json</Link>
+    </None>
+    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Debug.json">
+      <DependentUpon>settings.json</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+      <Link>settings.Debug.json</Link>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
     <!-- Third party -->
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
@@ -31,7 +38,6 @@
     <!-- Shared -->
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
 
     <!-- Grpc -->
@@ -39,6 +45,7 @@
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
 
     <!-- SignalR -->
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
 
