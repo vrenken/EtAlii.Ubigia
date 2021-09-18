@@ -65,7 +65,7 @@ runs:
       shell: pwsh
       # if: github.ref != 'refs/heads/main'
       run: |
-        if("${{ github.ref }}" != "refs/heads/main")
+        if("${{ github.ref }}" -ne "refs/heads/master")
         {
           docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
           docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.VersionMajor }}
@@ -79,7 +79,7 @@ runs:
       shell: pwsh
       # if: github.ref == 'refs/heads/main'
       run: |
-        if("${{ github.ref }}" == "refs/heads/main")
+        if("${{ github.ref }}" -ne "refs/heads/master")
         {
           docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
           docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
