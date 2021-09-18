@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <ProjectGuid>25D3A122-9734-4E23-B894-E2C760BE5247</ProjectGuid>
+    <ProjectGuid>E50BDDE3-0B3A-4950-97BD-7DEC906BB005</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
     <Description>Package that enables a host to be started as a console application.</Description>
@@ -10,7 +10,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-<!--    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />-->
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
 </Project>
