@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class ConsoleHost
+    public partial class DockerHost
     {
         public static void Start(IHostOptions options)
         {
@@ -23,12 +23,12 @@ namespace EtAlii.xTechnology.Hosting
 
             Console.WriteLine("Starting Ubigia infrastructure...");
 
-            var host = new HostFactory<ConsoleHost>().Create(options);
+            var host = new HostFactory<DockerHost>().Create(options);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();
 
-            var consoleDialog = new ConsoleDialog(host);
+            var consoleDialog = new DockerDialog(host);
             consoleDialog.Start();
         }
     }

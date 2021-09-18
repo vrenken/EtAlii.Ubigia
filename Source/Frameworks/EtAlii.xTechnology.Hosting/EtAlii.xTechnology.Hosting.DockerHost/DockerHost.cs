@@ -2,10 +2,9 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    // ReSharper disable once RedundantExtendsListEntry
-    public partial class ConsoleHost : HostBase
+    public partial class DockerHost : HostBase
     {
-        public ConsoleHost(IHostOptions options, ISystemManager systemManager)
+        public DockerHost(IHostOptions options, ISystemManager systemManager)
             : base(options, systemManager)
         {
         }

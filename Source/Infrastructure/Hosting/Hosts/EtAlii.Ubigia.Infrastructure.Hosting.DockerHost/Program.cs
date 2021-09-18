@@ -24,10 +24,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
 
             var hostOptions = new HostOptionsBuilder()
                 .Build(configurationRoot, details)
-                .UseConsoleHost()
+                .UseDockerHost()
                 .UseHostDiagnostics();
 
-            ConsoleHost.Start(hostOptions);
+            DockerHost.Start(hostOptions);
         }
     }
 }

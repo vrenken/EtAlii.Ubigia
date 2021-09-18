@@ -1,11 +1,13 @@
 ﻿{
-    "Version": 3,
-    "@jdt.merge" : {
-
+    "@jdt.merge" : [{
         "@jdt.path" : "$.Host.Systems[0].Services[0]",
         "@jdt.value" : {
             "Factory" : "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
             "BaseFolder" : "%LOCALAPPDATA%\\EtAlii\\Ubigia"
         }
-    }
+    },
+    {
+        "@jdt.path" : "$.Serilog.WriteTo[0].Args.configure[1].Args.serverUrl",
+        "@jdt.value" : "http://127.0.0.1:5341"
+    }]
 }

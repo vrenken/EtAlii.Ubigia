@@ -512,6 +512,8 @@ ProjectSection(SolutionItems) = preProject
 	..\.github\actions\build-windows\action.yml = ..\.github\actions\build-windows\action.yml
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.DockerHost", "Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj", "{25D3A122-9734-4E23-B894-E2C760BE5247}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13

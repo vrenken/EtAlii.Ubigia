@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public static class HostOptionsUseConsoleHostExtension
     {
-        public static IHostOptions UseConsoleHost(this IHostOptions options)
+        public static IHostOptions UseDockerHost(this IHostOptions options)
         {
             var extensions = Array.Empty<IHostExtension>();
             //var extensions = new IHostExtension[]

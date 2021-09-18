@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Diagnostics
     using System.Reflection;
     using Serilog;
     using System.Diagnostics.CodeAnalysis;
+    using System.Net;
     using Microsoft.Extensions.Configuration;
 
     [SuppressMessage(
@@ -25,6 +26,7 @@ namespace EtAlii.xTechnology.Diagnostics
 
         public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, Assembly executingAssembly)
         {
+            var hostName = Dns.GetHostName();
             var executingAssemblyName = executingAssembly.GetName();
             loggerConfiguration.ReadFrom
                 .Configuration(ConfigurationRoot)
@@ -39,6 +41,7 @@ namespace EtAlii.xTechnology.Diagnostics
                 // .Enrich.WithAssemblyName()
                 // .Enrich.WithAssemblyVersion()
                 // Let's do it ourselves.
+                .Enrich.WithProperty("HostName", hostName) // We want to be able to filter the Seq logs depending on the (docker) system they originate from.
                 .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
                 .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                 .Enrich.WithMemoryUsage()
