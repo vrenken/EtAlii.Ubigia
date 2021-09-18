@@ -5,15 +5,18 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     using System.Diagnostics.CodeAnalysis;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
     using Serilog;
 
     public class HostLoggingScaffolding : IScaffolding
     {
         private readonly DiagnosticsOptions _options;
+        private readonly IConfigurationRoot _configurationRoot;
 
-        public HostLoggingScaffolding(DiagnosticsOptions options)
+        public HostLoggingScaffolding(DiagnosticsOptions options, IConfigurationRoot configurationRoot)
         {
             _options = options;
+            _configurationRoot = configurationRoot;
         }
 
         [SuppressMessage(
@@ -27,7 +30,10 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 container.RegisterInitializer<IHost>(host =>
                 {
                     var configurableHost = (IConfigurableHost)host;
-                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly()), true);
+                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) =>
+                    {
+                        DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly(), _configurationRoot);
+                    }, true);
                 });
 
                 // Register for logging required DI instances.

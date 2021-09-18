@@ -24,12 +24,13 @@ namespace EtAlii.xTechnology.Diagnostics
 
         private static bool _isInitialized;
 
-        public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, Assembly executingAssembly)
+        public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, Assembly executingAssembly, IConfigurationRoot configurationRoot)
         {
+            ConfigurationRoot = configurationRoot;
             var hostName = Dns.GetHostName();
             var executingAssemblyName = executingAssembly.GetName();
             loggerConfiguration.ReadFrom
-                .Configuration(ConfigurationRoot)
+                .Configuration(configurationRoot)
                 .Enrich.FromLogContext()
                 .Enrich.WithThreadName()
                 .Enrich.WithThreadId()
@@ -53,9 +54,7 @@ namespace EtAlii.xTechnology.Diagnostics
             if (_isInitialized) return;
             _isInitialized = true;
 
-            ConfigurationRoot = diagnosticsConfigurationRoot;
-
-            ConfigureLoggerConfiguration(_loggerConfiguration, rootAssembly);
+            ConfigureLoggerConfiguration(_loggerConfiguration, rootAssembly, diagnosticsConfigurationRoot);
             Log.Logger = _loggerConfiguration.CreateLogger();
 
             // Let's flush the log when the process exits.

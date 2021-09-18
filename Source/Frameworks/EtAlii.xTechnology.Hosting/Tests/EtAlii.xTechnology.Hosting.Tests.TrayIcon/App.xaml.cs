@@ -3,7 +3,6 @@
 namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 {
 	using System.Windows;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
 
@@ -20,7 +19,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 
 	        var configurationRoot = new ConfigurationBuilder()
 		        .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
 		        .Build();
 
 	        var hostOptions = new HostOptionsBuilder()

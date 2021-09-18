@@ -24,7 +24,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             var scaffoldings = new IScaffolding[]
             {
                 new HostDebuggingScaffolding(options),
-                new HostLoggingScaffolding(options),
+                new HostLoggingScaffolding(options, _configurationRoot),
                 new HostProfilingScaffolding(options),
             };
 
