@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc
 {
     using EtAlii.xTechnology.Hosting.Service.Grpc;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using WireUserGrpcService = global::EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc.WireProtocol.UserGrpcService;
@@ -14,11 +15,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc
         {
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // applicationBuilder.IsolatedMapWhen(
             //     context => context.Request.Host.Port == Port,// && context.Request.Path.StartsWithSegments("/user/api"),
-            applicationBuilder
+            application
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapGrpcService<UserGrpcService>());
         }

@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting
     public interface IConfigurableHost : IHost
     {
         IHostManager Manager { get; }
-        event Action<IApplicationBuilder> ConfigureApplication;
+        event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
         event Action<IWebHostBuilder> ConfigureHost;
         event Action<KestrelServerOptions> ConfigureKestrel;
     }

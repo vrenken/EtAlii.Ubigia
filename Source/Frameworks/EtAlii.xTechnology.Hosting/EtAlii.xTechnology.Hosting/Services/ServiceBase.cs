@@ -60,13 +60,13 @@ namespace EtAlii.xTechnology.Hosting
             }
         }
 
-        private void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+        private void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder.IsolatedMapOnCondition(this, ConfigureApplication, ConfigureServices);
+            application.IsolatedMapOnCondition(environment, this, ConfigureApplication, ConfigureServices);
 
         }
 
-        protected virtual void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected virtual void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
         }
         protected virtual void ConfigureServices(IServiceCollection services)

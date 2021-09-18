@@ -3,6 +3,7 @@
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc
 {
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class UserModule : ModuleBase
@@ -12,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc
         {
         }
 
-        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // Nothing to do here right now...
         }

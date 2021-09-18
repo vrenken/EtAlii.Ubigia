@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Predicate = System.Func<Microsoft.AspNetCore.Http.HttpContext, bool>;
 
@@ -15,16 +16,17 @@ namespace EtAlii.xTechnology.Hosting
         /// <summary>
         /// Branches the request pipeline based on the result of the given predicate.
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="application"></param>
+        /// <param name="environment"></param>
         /// <param name="pathMatch"></param>
         /// <param name="predicate">Invoked with the request environment to determine if the branch should be taken</param>
         /// <param name="configuration">Configures a branch to take</param>
         /// <returns></returns>
-        public static IApplicationBuilder MapOnCondition(this IApplicationBuilder app, PathString pathMatch, Predicate predicate, Action<IApplicationBuilder> configuration)
+        public static IApplicationBuilder MapOnCondition(this IApplicationBuilder application, IWebHostEnvironment environment, PathString pathMatch, Predicate predicate, Action<IApplicationBuilder, IWebHostEnvironment> configuration)
         {
-            if (app == null)
+            if (application == null)
             {
-                throw new ArgumentNullException(nameof(app));
+                throw new ArgumentNullException(nameof(application));
             }
 
             if (predicate == null)
@@ -42,8 +44,8 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             // create branch
-            var branchBuilder = app.New();
-            configuration(branchBuilder);
+            var branchBuilder = application.New();
+            configuration(branchBuilder, environment);
             var branch = branchBuilder.Build();
 
             // put middleware in pipeline
@@ -53,7 +55,7 @@ namespace EtAlii.xTechnology.Hosting
                 Branch = branch,
                 PathMatch = pathMatch,
             };
-            return app.Use(next => new MapOnConditionMiddleware(next, options).Invoke);
+            return application.Use(next => new MapOnConditionMiddleware(next, options).Invoke);
         }
     }
 }

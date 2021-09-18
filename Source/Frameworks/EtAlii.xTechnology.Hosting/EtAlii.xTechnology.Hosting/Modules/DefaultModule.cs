@@ -3,6 +3,7 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class DefaultModule : ModuleBase
@@ -13,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting
         {
         }
 
-        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
         }
 

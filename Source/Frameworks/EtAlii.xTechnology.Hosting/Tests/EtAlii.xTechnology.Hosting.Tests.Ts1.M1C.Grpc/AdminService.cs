@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting.Service.Grpc;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using WireAdminGrpcService = global::EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.WireProtocol.AdminGrpcService;
@@ -49,11 +50,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
             Status.Description = sb.ToString();
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // applicationBuilder.IsolatedMapWhen(
             //     context => context.Request.Host.Port == Port,// && context.Request.Path.StartsWithSegments("/admin/api"),
-            applicationBuilder
+            application
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapGrpcService<AdminGrpcService>());
         }

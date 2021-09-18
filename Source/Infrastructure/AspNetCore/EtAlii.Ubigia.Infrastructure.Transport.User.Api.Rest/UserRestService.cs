@@ -12,8 +12,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
+    using Microsoft.AspNetCore.Hosting;
 
-	public class UserRestService : ServiceBase
+    public class UserRestService : ServiceBase
     {
         private IContextCorrelator _contextCorrelator;
 
@@ -84,9 +85,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 		        .AddTypedControllers<RestController>();
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-	        applicationBuilder
+	        application
 		        .UseRouting()
 		        .UseAuthorization()
                 .UseCorrelationIdsFromHeaders(_contextCorrelator)

@@ -16,7 +16,7 @@ namespace EtAlii.xTechnology.Hosting
 
 	    public IWebHost Host { get; private set; }
 
-	    public event Action<IApplicationBuilder> ConfigureApplication;
+	    public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
 	    public event Action<IWebHostBuilder> ConfigureHost;
 	    public event Action<KestrelServerOptions> ConfigureKestrel;
         private IWebHostBuilder CreateHostBuilder()
@@ -78,6 +78,6 @@ namespace EtAlii.xTechnology.Hosting
 		public virtual void Initialize() { }
 
 		private void OnConfigureKestrel(WebHostBuilderContext context, KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
-		private void OnConfigureApplication(WebHostBuilderContext context, IApplicationBuilder configurationBuilder) => ConfigureApplication?.Invoke(configurationBuilder);
+		private void OnConfigureApplication(WebHostBuilderContext context, IApplicationBuilder application) => ConfigureApplication?.Invoke(application, context.HostingEnvironment);
     }
 }

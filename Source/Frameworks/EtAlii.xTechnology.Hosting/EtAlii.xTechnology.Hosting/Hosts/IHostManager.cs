@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.Hosting
     {
         IWebHost Host { get; }
 
-        event Action<IApplicationBuilder> ConfigureApplication;
+        event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
         event Action<IWebHostBuilder> ConfigureHost;
         event Action<KestrelServerOptions> ConfigureKestrel;
 

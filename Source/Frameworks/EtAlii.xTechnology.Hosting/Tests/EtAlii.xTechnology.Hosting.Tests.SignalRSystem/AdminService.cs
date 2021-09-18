@@ -4,7 +4,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 {
 	using System.Diagnostics;
 	using Microsoft.AspNetCore.Builder;
-	using Microsoft.Extensions.Configuration;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 
 	public class AdminService : ServiceBase
@@ -14,9 +15,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 		{
 		}
 
-		protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+		protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
 		{
-			applicationBuilder
+			application
 				.UseRouting()
 				.UseCors(builder =>
 				{

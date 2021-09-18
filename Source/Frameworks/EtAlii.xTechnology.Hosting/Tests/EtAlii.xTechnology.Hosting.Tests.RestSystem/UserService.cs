@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 {
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -13,9 +14,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
         {
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder
+            application
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
         }

@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
+    using Microsoft.AspNetCore.Hosting;
     using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
     public class AdminGrpcService : GrpcServiceBase
@@ -111,9 +112,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
                 });
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder
+            application
                 .UseRouting()
                 .UseEndpoints(endpoints =>
                 {

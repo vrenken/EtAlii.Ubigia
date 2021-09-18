@@ -17,7 +17,7 @@ namespace EtAlii.xTechnology.Hosting
         public IHostManager Manager => _currentHost.Manager;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public event Action<IApplicationBuilder> ConfigureApplication;
+        public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
         public IHostOptions Options => _currentHost.Options;
@@ -36,7 +36,7 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
-        private void OnConfigureApplication(IApplicationBuilder builder) => ConfigureApplication?.Invoke(builder);
+        private void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment) => ConfigureApplication?.Invoke(application, environment);
         private void OnConfigureHost(IWebHostBuilder builder) => ConfigureHost?.Invoke(builder);
         private void OnConfigureKestrel(KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
         private void Wire()

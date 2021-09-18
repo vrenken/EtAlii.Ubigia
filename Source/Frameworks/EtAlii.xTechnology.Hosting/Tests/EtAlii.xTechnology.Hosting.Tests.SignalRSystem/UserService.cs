@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -14,9 +15,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
         {
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder
+            application
                 .UseCors(builder =>
                 {
                     builder

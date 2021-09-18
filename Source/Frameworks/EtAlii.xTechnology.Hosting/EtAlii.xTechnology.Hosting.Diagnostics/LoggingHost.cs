@@ -24,7 +24,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _decoree.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
 
             _configurableHost = (IConfigurableHost) decoree;
-            _configurableHost.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);
+            _configurableHost.ConfigureApplication += (application, environment) => ConfigureApplication?.Invoke(application, environment);
             _configurableHost.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
             _configurableHost.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
         }
@@ -35,7 +35,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public ISystem[] Systems => _decoree.Systems;
 
         public IHostManager Manager => _configurableHost.Manager;
-        public event Action<IApplicationBuilder> ConfigureApplication;
+        public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
         public event PropertyChangedEventHandler PropertyChanged;

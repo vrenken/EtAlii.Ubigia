@@ -19,7 +19,7 @@ namespace EtAlii.xTechnology.Hosting
         protected IHostManager Manager => _manager;
         private IHostManager _manager;
 
-        public event Action<IApplicationBuilder> ConfigureApplication;
+        public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
@@ -78,7 +78,7 @@ namespace EtAlii.xTechnology.Hosting
             _commands = commands;
             _manager = manager;
             _manager.Setup(ref commands, this);
-            _manager.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);
+            _manager.ConfigureApplication += (application, environment) => ConfigureApplication?.Invoke(application, environment);
             _manager.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
             _manager.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
 

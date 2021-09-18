@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore
 {
     using System.Text;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class UserModule : ModuleBase
@@ -13,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore
         {
         }
 
-        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             Status.Title = "User";
 

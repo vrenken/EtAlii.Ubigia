@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.SignalR;
@@ -94,9 +95,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder
+            application
                 .UseCors(builder =>
                 {
                     builder

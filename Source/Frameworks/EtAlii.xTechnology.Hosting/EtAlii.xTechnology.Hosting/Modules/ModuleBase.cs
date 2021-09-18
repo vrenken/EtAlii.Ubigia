@@ -7,6 +7,7 @@ namespace EtAlii.xTechnology.Hosting
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
 
@@ -51,7 +52,7 @@ namespace EtAlii.xTechnology.Hosting
             return Task.CompletedTask;
         }
 
-        protected abstract void OnConfigureApplication(IApplicationBuilder applicationBuilder);
+        protected abstract void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment);
 
         public async Task Start()
         {

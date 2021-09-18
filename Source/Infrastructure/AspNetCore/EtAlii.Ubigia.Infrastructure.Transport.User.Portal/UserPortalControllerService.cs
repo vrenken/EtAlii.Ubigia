@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -58,9 +59,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal
                 .AddTypedControllers<UserPortalController>();
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            applicationBuilder
+            application
                 .UseMvc()
                 .UseWelcomePage();
         }

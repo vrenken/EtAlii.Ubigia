@@ -5,6 +5,7 @@ namespace EtAlii.xTechnology.Hosting
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Predicate = System.Func<Microsoft.AspNetCore.Http.HttpContext, bool>;
@@ -18,7 +19,8 @@ namespace EtAlii.xTechnology.Hosting
         /// <summary>
         /// Branches the request pipeline in isolation yet based on the result of the given predicate.
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="application"></param>
+        /// <param name="environment"></param>
         /// <param name="service">The service the isolated mapping should be done fore</param>
         /// <param name="appBuilder">Configures a branch to take</param>
         /// <param name="services">A method to configure the newly created service collection.</param>
@@ -28,9 +30,10 @@ namespace EtAlii.xTechnology.Hosting
             checkId: "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive",
             Justification = "Safe to do so here.")]
         public static IApplicationBuilder IsolatedMapOnCondition(
-            this IApplicationBuilder app,
+            this IApplicationBuilder application,
+            IWebHostEnvironment environment,
             IService service,
-            Action<IApplicationBuilder> appBuilder,
+            Action<IApplicationBuilder, IWebHostEnvironment> appBuilder,
             Action<IServiceCollection> services)
         {
             var whenPredicate = new Func<HttpContext, bool>(context =>
@@ -45,7 +48,7 @@ namespace EtAlii.xTechnology.Hosting
                 return hostsAreEqual && portsAreEqual;
             });
 
-            return app.Isolate(builder => builder.MapOnCondition(service.PathString, whenPredicate, appBuilder), services);
+            return application.Isolate(builder => builder.MapOnCondition(environment, service.PathString, whenPredicate, appBuilder), services);
         }
     }
 }
