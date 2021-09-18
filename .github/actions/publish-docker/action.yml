@@ -48,7 +48,7 @@ runs:
       run: >
         dotnet publish
         ${{ inputs.solution }}
-        -c Release
+        --configuration ${{ inputs.configuration }}
         --no-build
 
     - name: Docker build
