@@ -63,7 +63,6 @@ runs:
 
     - name: Docker build
       shell: pwsh
-      # if: github.ref != 'refs/heads/main'
       run: |
         if("${{ github.ref }}" -ne "refs/heads/master")
         {
@@ -77,9 +76,8 @@ runs:
 
     - name: Docker build for main branch
       shell: pwsh
-      # if: github.ref == 'refs/heads/main'
       run: |
-        if("${{ github.ref }}" -ne "refs/heads/master")
+        if("${{ github.ref }}" -eq "refs/heads/master")
         {
           docker tag ${{ inputs.image_name }}:latest ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
           docker push ${{ inputs.image_name }}:${{ steps.nbgv.outputs.SimpleVersion }}-preview
