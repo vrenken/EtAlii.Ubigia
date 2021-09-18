@@ -46,10 +46,10 @@
                                 "Name": "Portal",
                                 "Services": [
                                     {
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal"
                                     },
                                     {
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal"
                                     }
                                 ]
                             }
@@ -79,10 +79,10 @@
                                 "Name": "Portal",
                                 "Services": [
                                     {
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor"
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal"
                                     },
                                     {
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor"
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal"
                                     }
                                 ]
                             }

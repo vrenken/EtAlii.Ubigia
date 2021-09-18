@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal
 {
     using System.Text;
     using System.Threading.Tasks;
