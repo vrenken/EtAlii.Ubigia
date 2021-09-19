@@ -62,13 +62,22 @@ namespace EtAlii.xTechnology.Hosting
 
         private void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            application.IsolatedMapOnCondition(environment, this, ConfigureApplication, ConfigureServices);
+            application.IsolatedMapOnCondition(environment, this, ConfigureApplication, ConfigureServicesInternal);
 
         }
 
         protected virtual void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
         }
+
+        protected virtual void ConfigureServicesInternal(IServiceCollection services)
+        {
+            services.AddSingleton(Host.Options.ConfigurationRoot);
+            services.AddSingleton((IConfiguration)Host.Options.ConfigurationRoot);
+
+            ConfigureServices(services);
+        }
+
         protected virtual void ConfigureServices(IServiceCollection services)
         {
         }

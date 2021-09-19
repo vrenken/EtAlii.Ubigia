@@ -133,6 +133,16 @@
                                         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
                                     }
                                 ]
+                            },
+                            {
+                                "Name": "Portal",
+                                "Services": [
+                                    {
+                                        "Port": "{{PATH:AdminPortalPort@64002}}",
+                                        "IpAddress": "{{HOST:AdminPortalHost@127.0.0.1}}",
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AdminPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal"
+                                    }
+                                ]
                             }
                         ]
                     },

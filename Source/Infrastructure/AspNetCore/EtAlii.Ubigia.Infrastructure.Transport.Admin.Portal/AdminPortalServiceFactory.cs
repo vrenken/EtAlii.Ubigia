@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class AdminPortalControllerServiceFactory : ServiceFactoryBase<AdminPortalControllerService>
+    public class AdminPortalServiceFactory : ServiceFactoryBase<AdminPortalService>
     {
     }
 }
