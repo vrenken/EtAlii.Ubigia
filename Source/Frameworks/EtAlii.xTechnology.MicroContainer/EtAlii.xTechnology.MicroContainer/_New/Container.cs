@@ -15,9 +15,20 @@ namespace EtAlii.xTechnology.MicroContainer
     [DebuggerNonUserCode]
     public partial class Container : IRegisterOnlyContainer, IServiceCollection
     {
-        private readonly ServiceCollection _collection = new();
+        private readonly Microsoft.Extensions.DependencyInjection.IServiceCollection _collection;
         private ServiceProvider? _serviceProvider;
         private readonly List<ServiceInitializer> _initializers = new();
+
+        public Container()
+            : this(new ServiceCollection())
+        {
+        }
+
+        public Container(Microsoft.Extensions.DependencyInjection.IServiceCollection serviceCollection)
+        {
+            _collection = serviceCollection;
+        }
+
     }
 }
 
