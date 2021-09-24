@@ -2,7 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public partial class WindowsServiceHost : HostBase
+    public partial class WindowsServiceHost : NewHostBase
     {
         protected WindowsServiceHost(
             IHostOptions options,

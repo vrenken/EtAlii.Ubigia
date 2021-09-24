@@ -2,7 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public partial class InProcessHost : HostBase
+    public partial class InProcessHost : NewHostBase
     {
         protected InProcessHost(IHostOptions options, ISystemManager systemManager)
             : base(options, systemManager)

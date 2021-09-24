@@ -2,12 +2,11 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public partial class DockerHost : HostBase
+    public partial class DockerHost : NewHostBase
     {
         public DockerHost(IHostOptions options, ISystemManager systemManager)
             : base(options, systemManager)
         {
         }
-
     }
 }
