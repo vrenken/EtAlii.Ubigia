@@ -4,7 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class UserGrpcServiceFactory : ServiceFactoryBase<UserGrpcService>
+    public class UserGrpcServiceFactory : INewServiceFactory
     {
+        public INewService Create(ServiceConfiguration serviceConfiguration) => new UserGrpcService(serviceConfiguration);
     }
 }

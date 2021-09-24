@@ -4,7 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class UserRestServiceFactory : ServiceFactoryBase<UserRestService>
+    public class UserRestServiceFactory : INewServiceFactory
     {
+        public INewService Create(ServiceConfiguration configuration) => new UserRestService(configuration);
     }
 }

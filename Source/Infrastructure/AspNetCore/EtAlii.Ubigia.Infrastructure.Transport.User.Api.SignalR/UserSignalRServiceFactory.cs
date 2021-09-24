@@ -4,7 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class UserSignalRServiceFactory : ServiceFactoryBase<UserSignalRService>
+    public class UserSignalRServiceFactory : INewServiceFactory
     {
+        public INewService Create(ServiceConfiguration configuration) => new UserSignalRService(configuration);
     }
 }

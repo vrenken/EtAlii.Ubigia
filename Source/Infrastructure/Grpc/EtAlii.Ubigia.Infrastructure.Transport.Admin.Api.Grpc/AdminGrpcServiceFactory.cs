@@ -4,7 +4,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class AdminGrpcServiceFactory : ServiceFactoryBase<AdminGrpcService>
+    public class AdminGrpcServiceFactory : INewServiceFactory
     {
+        public INewService Create(ServiceConfiguration configuration)
+        {
+            return new AdminGrpcService(configuration);
+        }
     }
 }
