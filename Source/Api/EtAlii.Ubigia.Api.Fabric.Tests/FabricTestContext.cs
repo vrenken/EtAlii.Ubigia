@@ -57,10 +57,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                     .SingleOrDefaultAsync(e => e.Type == EntryType.Add)
                     .ConfigureAwait(false);
 
-                var updatedParent = await fabric.Entries.Prepare().ConfigureAwait(false);
+                var updatedParent = await fabric.Entries
+                    .Prepare()
+                    .ConfigureAwait(false);
                 updatedParent.Type = parent.Type;
                 updatedParent.Downdate = Relation.NewRelation(parent.Id);
-                updatedParent = (IEditableEntry)await fabric.Entries.Change(updatedParent, scope).ConfigureAwait(false);
+                updatedParent = (IEditableEntry)await fabric.Entries
+                    .Change(updatedParent, scope)
+                    .ConfigureAwait(false);
 
                 var linkEntry = await fabric.Entries.Prepare().ConfigureAwait(false);
                 linkEntry.Parent = Relation.NewRelation(updatedParent.Id);
@@ -70,28 +74,34 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                     linkEntry.Downdate = Relation.NewRelation(previousLink.Id);
                 }
                 linkEntry.Type = EntryType.Add;
-                linkEntry = (IEditableEntry)await fabric.Entries.Change(linkEntry, scope).ConfigureAwait(false);
+                linkEntry = (IEditableEntry)await fabric.Entries
+                    .Change(linkEntry, scope)
+                    .ConfigureAwait(false);
 
-                var childEntry = await fabric.Entries.Prepare().ConfigureAwait(false);
+                var childEntry = await fabric.Entries
+                    .Prepare()
+                    .ConfigureAwait(false);
                 childEntry.Type = child;
                 childEntry.Parent = Relation.NewRelation(linkEntry.Id);
-                parent = (IEditableEntry)await fabric.Entries.Change(childEntry, scope).ConfigureAwait(false);
+                parent = (IEditableEntry)await fabric.Entries
+                    .Change(childEntry, scope)
+                    .ConfigureAwait(false);
             }
             return parent;
         }
 
-        #region start/stop
-
         public async Task Start(PortRange portRange)
         {
-            await Transport.Start(portRange).ConfigureAwait(false);
+            await Transport
+                .Start(portRange)
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Transport.Stop().ConfigureAwait(false);
+            await Transport
+                .Stop()
+                .ConfigureAwait(false);
         }
-
-        #endregion start/stop
     }
 }

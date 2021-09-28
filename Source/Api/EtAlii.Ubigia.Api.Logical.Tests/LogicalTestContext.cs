@@ -109,23 +109,25 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var result = parent;
             foreach (var element in hierarchy)
             {
-                result = (IEditableEntry)await context.Nodes.Add(result.Id, element, scope).ConfigureAwait(false);
+                result = (IEditableEntry)await context.Nodes
+                    .Add(result.Id, element, scope)
+                    .ConfigureAwait(false);
             }
             return result;
         }
 
-        #region start/stop
-
         public async Task Start(PortRange portRange)
         {
-            await Fabric.Start(portRange).ConfigureAwait(false);
+            await Fabric
+                .Start(portRange)
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Fabric.Stop().ConfigureAwait(false);
+            await Fabric
+                .Stop()
+                .ConfigureAwait(false);
         }
-
-        #endregion start/stop
     }
 }
