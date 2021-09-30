@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
 {
-    public class AdminServiceFactory : ServiceFactoryBase<AdminService>
+    public class AdminServiceFactory : IServiceFactory
     {
+        public IService Create(ServiceConfiguration configuration) => new AdminService(configuration);
     }
 }

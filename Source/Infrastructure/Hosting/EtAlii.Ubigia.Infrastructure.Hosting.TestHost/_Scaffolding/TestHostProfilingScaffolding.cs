@@ -1,24 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class TestHostLoggingScaffolding : IScaffolding
+    public class TestHostProfilingScaffolding : IScaffolding
     {
         private readonly DiagnosticsOptions _options;
 
-        public TestHostLoggingScaffolding(DiagnosticsOptions options)
+        public TestHostProfilingScaffolding(DiagnosticsOptions options)
         {
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
-            if (_options.InjectLogging) // logging is enabled.
+            if (_options.InjectProfiling) // profiling is enabled
             {
-                //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton)
+                // Invoke all DI container registrations involved in profiling the Grpc test host.
             }
         }
     }

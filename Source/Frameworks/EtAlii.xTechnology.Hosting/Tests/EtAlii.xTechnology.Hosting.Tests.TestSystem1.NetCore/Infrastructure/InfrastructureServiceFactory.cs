@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 {
-    public class InfrastructureServiceFactory : ServiceFactoryBase<InfrastructureService>
+    public class InfrastructureServiceFactory : IServiceFactory
     {
+        public IService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration);
     }
 }

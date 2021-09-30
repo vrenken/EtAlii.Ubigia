@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class StorageServiceFactory : INewServiceFactory
+    public class StorageServiceFactory : IServiceFactory
     {
-        public INewService Create(ServiceConfiguration configuration) => new StorageService(configuration);
+        public IService Create(ServiceConfiguration configuration) => new StorageService(configuration);
     }
 }

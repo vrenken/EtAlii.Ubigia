@@ -34,12 +34,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
         public async Task InitializeAsync()
         {
-            await Host.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Host
+                .Start(UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await Host.Stop().ConfigureAwait(false);
+            await Host
+                .Stop()
+                .ConfigureAwait(false);
             Host = null;
         }
     }

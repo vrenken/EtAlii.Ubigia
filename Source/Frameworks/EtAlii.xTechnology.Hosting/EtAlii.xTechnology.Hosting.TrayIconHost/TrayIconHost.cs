@@ -5,15 +5,15 @@ namespace EtAlii.xTechnology.Hosting
     using System.ComponentModel;
     using System.Windows;
 
-    public partial class TrayIconHost : NewHostBase, ITrayIconHost
+    public abstract partial class TrayIconHost : HostBase, ITrayIconHost
     {
         public ITaskbarIcon TaskbarIcon { get; }
 
-        public TrayIconHost(
+        protected TrayIconHost(
             IHostOptions options,
-            ISystemManager systemManager,
-            ITaskbarIcon taskbarIcon)
-            : base(options, systemManager)
+            ITaskbarIcon taskbarIcon,
+            IHostServicesFactory hostServicesFactory)
+            : base(options, hostServicesFactory)
         {
             TaskbarIcon = taskbarIcon;
 

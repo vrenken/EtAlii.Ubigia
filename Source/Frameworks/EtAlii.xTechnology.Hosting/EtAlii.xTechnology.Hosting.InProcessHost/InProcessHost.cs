@@ -2,10 +2,10 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public partial class InProcessHost : NewHostBase
+    public abstract partial class InProcessHost : HostBase
     {
-        protected InProcessHost(IHostOptions options, ISystemManager systemManager)
-            : base(options, systemManager)
+        protected InProcessHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
+            : base(options, hostServicesFactory)
         {
         }
     }

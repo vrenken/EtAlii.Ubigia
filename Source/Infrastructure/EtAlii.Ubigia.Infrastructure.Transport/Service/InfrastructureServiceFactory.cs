@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class InfrastructureServiceFactory : INewServiceFactory
+    public class InfrastructureServiceFactory : IServiceFactory
     {
-        public INewService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration, null);
+        public IService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration);
     }
 }

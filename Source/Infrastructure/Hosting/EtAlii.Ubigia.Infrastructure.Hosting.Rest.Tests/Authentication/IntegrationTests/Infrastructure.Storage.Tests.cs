@@ -129,7 +129,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(TimeSpan.FromSeconds(30));
+            await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(TimeSpan.FromSeconds(30));
+			await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.
@@ -173,7 +173,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(TimeSpan.FromSeconds(30));
+            await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.

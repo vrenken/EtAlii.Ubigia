@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
 	using EtAlii.xTechnology.Hosting;
 
-	public class StorageServiceFactory : INewServiceFactory
+	public class StorageServiceFactory : IServiceFactory
 	{
-        public INewService Create(ServiceConfiguration serviceConfiguration) => new StorageService(serviceConfiguration);
+        public IService Create(ServiceConfiguration serviceConfiguration) => new StorageService(serviceConfiguration);
 	}
 }

@@ -2,10 +2,10 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public partial class ConsoleHost : NewHostBase
+    public abstract partial class ConsoleHost : HostBase
     {
-        public ConsoleHost(IHostOptions options, ISystemManager systemManager)
-            : base(options, systemManager)
+        protected ConsoleHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
+            : base(options, hostServicesFactory)
         {
         }
 

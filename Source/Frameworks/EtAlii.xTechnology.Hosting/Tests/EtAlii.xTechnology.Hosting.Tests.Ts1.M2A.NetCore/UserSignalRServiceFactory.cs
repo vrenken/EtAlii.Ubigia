@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
 {
-    public class UserSignalRServiceFactory : ServiceFactoryBase<UserSignalRService>
+    public class UserSignalRServiceFactory : IServiceFactory
     {
+        public IService Create(ServiceConfiguration configuration) => new UserSignalRService(configuration);
     }
 }

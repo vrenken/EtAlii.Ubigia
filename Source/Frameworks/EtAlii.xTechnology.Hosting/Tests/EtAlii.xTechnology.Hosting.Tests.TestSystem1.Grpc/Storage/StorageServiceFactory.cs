@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 {
-    public class StorageServiceFactory : ServiceFactoryBase<StorageService>
+    public class StorageServiceFactory : IServiceFactory
     {
+        public IService Create(ServiceConfiguration configuration) => new StorageService(configuration);
     }
 }

@@ -9,10 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 
     public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        public static async Task Main()
+        public static async Task Main(string[] args)
         {
             var details = await new ConfigurationDetailsParser()
                 .Parse("settings.json")
