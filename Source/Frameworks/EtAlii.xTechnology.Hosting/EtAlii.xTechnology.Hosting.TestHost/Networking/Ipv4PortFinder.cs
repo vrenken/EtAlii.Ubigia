@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Hosting
             return new Ipv4FreePortFinder();
         });
 
-        public Ipv4FreePortFinder()
+        private Ipv4FreePortFinder()
         {
             _memoryMappedIpcFileName = $"{nameof(Ipv4FreePortFinder)}_IpcFile";
             _structureSize = Marshal.SizeOf(typeof(PortRegistration));
@@ -36,21 +36,15 @@ namespace EtAlii.xTechnology.Hosting
         /// As a default we don't want to use 49152 - 65535 (IANA) nor 1025 - 5000.
         /// So let's stay between 5200 and 8000.
         /// </summary>
+        /// <param name="fromRange"></param>
         /// <param name="numberOfPorts"></param>
         /// <returns></returns>
-        public PortRange Get(ushort numberOfPorts) => Get(new PortRange(5200, 8000), numberOfPorts, TimeSpan.FromSeconds(10));
-
-        public PortRange Get(PortRange fromRange, ushort numberOfPorts) => Get(fromRange, numberOfPorts, TimeSpan.FromSeconds(10));
-
-        // ReSharper disable once MemberCanBePrivate.Global
-        public PortRange Get(PortRange fromRange, ushort numberOfPorts, TimeSpan lease)
+        public PortRange Get(PortRange fromRange, ushort numberOfPorts)
         {
+            var lease = TimeSpan.FromSeconds(10);
             // We want to allow only one thread access to the port range magic at any given moment.
-            using (var _ = new SystemSafeExecutionScope(_uniqueId))
-            {
-                var result = GetInternal(fromRange, numberOfPorts, lease);
-                return result;
-            }
+            using var _ = new SystemSafeExecutionScope(_uniqueId);
+            return GetInternal(fromRange, numberOfPorts, lease);
         }
 
         private PortRange GetInternal(PortRange fromRange, ushort numberOfPorts, TimeSpan lease)

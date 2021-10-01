@@ -8,9 +8,9 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Threading.Tasks;
 
 	public static class ConfigurationDetailsParserParseForTestingExtensions
-	{
+    {
 		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile, PortRange portRange)
-		{
+        {
 			var details = await parser
                 .Parse(configurationFile, false)
                 .ConfigureAwait(false);
