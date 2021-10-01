@@ -1,22 +1,4 @@
 ﻿{
-    "Infrastructure": {
-        "Fabric": {
-            "Diagnostics": {
-                "InjectProfiling": false,
-                "InjectLogging": true,
-                "InjectDebugging": false
-            }
-        },
-        "Functional": {
-            "Setup": {
-                "DefaultSystemAccountName": "System",
-                "DefaultSystemAccountPassword": "system123",
-                "DefaultAdministratorAccountName": "Administrator",
-                "DefaultAdministratorAccountPassword": "administrator123"
-            }
-        }
-    },
-
     "Api": {
         "Transport": {
             "Diagnostics": {
@@ -101,61 +83,49 @@
             "InjectProfiling": false,
             "InjectLogging": true,
             "InjectDebugging": false
-        },
-        "Systems": [
-            {
-                "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
-                "Services": [
-                    {
-                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory",
-                        "Name": "Debug storage",
-                        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
-                    },
-                    {
-                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
-                        "Name": "Debug storage",
-                        "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
-                    }
-                ],
-                "Modules": [
-                    {
-                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
-                        "Name": "Admin",
-                        "####Comment": "// Admin should be accessible over localhost only",
-                        "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
-                        "Port": "{{PORT:AdminPort@64001}}",
-                        "Modules": [
-                            {
-                                "Name": "Api",
-                                "Services": [
-                                    {
-                                        "Path": "{{PATH:AdminApi@}}",
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
-                        "Name": "User",
-                        "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
-                        "Port": "{{PORT:UserPort@64000}}",
-                        "Modules": [
-                            {
-                                "Name": "Api",
-                                "Services": [
-                                    {
-                                        "Path": "{{PATH:UserApi@}}",
-                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+        }
+    },
+    "Storage": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory",
+        "Name": "Debug storage",
+        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}",
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
+    },
+    "Infrastructure": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+        "Name": "Debug storage",
+        "Address": "https://{{HOST:StorageHost@127.0.0.1}}",
+        "Fabric": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
             }
-        ]
+        },
+        "Functional": {
+            "Setup": {
+                "DefaultSystemAccountName": "System",
+                "DefaultSystemAccountPassword": "system123",
+                "DefaultAdministratorAccountName": "Administrator",
+                "DefaultAdministratorAccountPassword": "administrator123"
+            }
+        }
+    },
+    "Management-Api-Grpc": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc",
+        "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
+        "Port": "{{PORT:AdminApiPort@64001}}",
+        "Path": "{{PATH:AdminApiPath@}}{{PATH:AdminApiPathGrpc@}}"
+    },
+    "User-Api-Grpc": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc",
+        "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
+        "Port": "{{PORT:UserApiPort@64000}}",
+        "Path": "{{PATH:UserApiPath@}}{{PATH:UserApiPathGrpc@}}"
     },
 
     "Persistence": {
