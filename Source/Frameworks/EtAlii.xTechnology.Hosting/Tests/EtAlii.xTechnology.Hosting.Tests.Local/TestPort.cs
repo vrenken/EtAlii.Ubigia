@@ -2,16 +2,16 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public static class TestPort 
+    public static class TestPort
     {
-        public const string GrpcAdminApi = "GrpcAdminApi"; 
-        public const string GrpcUserApi = "GrpcUserApi";
-        
-        public const string RestAdminApi = "RestAdminApi"; 
-        public const string RestUserApi = "RestUserApi"; 
-        
-        public const string SignalRAdminApi = "SignalRAdminApi"; 
-        public const string SignalRUserApi = "SignalRUserApi"; 
+        public const string GrpcAdminApi = "AdminApiPortGrpc";
+        public const string GrpcUserApi = "UserApiPortGrpc";
+
+        public const string RestAdminApi = "AdminApiPortRest";
+        public const string RestUserApi = "UserApiPortRest";
+
+        public const string SignalRAdminApi = "AdminApiPortSignalR";
+        public const string SignalRUserApi = "UserApiPortSignalR";
 
     }
 }

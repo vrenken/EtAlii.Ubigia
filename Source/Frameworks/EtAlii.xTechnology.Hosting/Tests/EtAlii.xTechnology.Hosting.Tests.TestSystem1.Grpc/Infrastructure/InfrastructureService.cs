@@ -2,13 +2,22 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 {
-    using Microsoft.Extensions.Configuration;
+    using System;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public class InfrastructureService : ServiceBase
+    public class InfrastructureService : INetworkService
     {
-        public InfrastructureService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public InfrastructureService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
+
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) { }
+
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment) { }
     }
 }

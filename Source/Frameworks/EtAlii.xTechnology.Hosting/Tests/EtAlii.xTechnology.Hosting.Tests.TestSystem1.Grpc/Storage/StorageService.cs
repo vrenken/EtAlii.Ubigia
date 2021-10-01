@@ -2,13 +2,17 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 {
-    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public class StorageService : ServiceBase
+    public class StorageService : IService
     {
-        public StorageService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public StorageService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
+
+        public void ConfigureServices(IServiceCollection services) { }
     }
 }

@@ -2,13 +2,21 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 {
-    using Microsoft.Extensions.Configuration;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
-    public class StorageService : ServiceBase
+    public class StorageService : BackgroundService, IBackgroundService
     {
-        public StorageService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public StorageService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
+
+        public void ConfigureServices(IServiceCollection services) { }
+        protected override Task ExecuteAsync(CancellationToken stoppingToken) => Task.CompletedTask;
     }
 }

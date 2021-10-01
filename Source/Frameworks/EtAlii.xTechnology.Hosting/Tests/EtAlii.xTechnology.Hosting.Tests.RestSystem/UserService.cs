@@ -2,26 +2,29 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 {
+    using System;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class UserService : ServiceBase
+    public class UserService : INetworkService
     {
-        public UserService(IConfigurationSection configuration) : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public UserService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
         }
 
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             services
                 .AddSingleton<UserController>()

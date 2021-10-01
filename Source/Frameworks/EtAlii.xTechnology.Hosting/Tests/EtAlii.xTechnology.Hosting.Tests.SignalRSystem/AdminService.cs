@@ -2,34 +2,35 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 {
-	using System.Diagnostics;
+    using System;
+    using System.Diagnostics;
 	using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 
-	public class AdminService : ServiceBase
+	public class AdminService : INetworkService
 	{
-		public AdminService(IConfigurationSection configuration)
-			: base(configuration)
-		{
-		}
+        public ServiceConfiguration Configuration { get; }
+		public AdminService(ServiceConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+		public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
 		{
 			application
 				.UseRouting()
-				.UseCors(builder =>
-				{
-                    builder
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .WithOrigins($"https://{HostString}");
-				})
+                // .UseCors(builder =>
+                // {
+                //     builder
+                //         .AllowAnyHeader()
+                //         .AllowAnyMethod()
+                //         .WithOrigins($"https://{Configuration.IpAddress}");
+                // })
 				.UseEndpoints(endpoints => endpoints.MapHub<AdminHub>(SignalRHub.Admin));
 		}
 
-		protected override void ConfigureServices(IServiceCollection services)
+		public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
 		{
 			services
 				.AddCors()

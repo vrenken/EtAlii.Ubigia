@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var context = new HostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
 
             // Assert.
             Assert.NotNull(context);
@@ -24,7 +24,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task HostTestContext_Start(string configurationFile)
         {
             // Arrange.
-            var context = new HostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
 
             // Act.
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task HostTestContext_Start_Stop(string configurationFile)
         {
             // Arrange.
-            var context = new HostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(configurationFile, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             // Act.

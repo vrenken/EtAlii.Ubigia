@@ -2,19 +2,22 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 {
+    using System;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class AdminService : ServiceBase
+    public class AdminService : INetworkService
     {
-        public AdminService(IConfigurationSection configuration) : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public AdminService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
                 .UseRouting()
@@ -24,7 +27,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
                 });
         }
 
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             services
                 .AddSingleton<AdminController>()

@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextGrpc_User_Api_GetSimple()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcUserApi];
             var path = context.Paths[TestPath.GrpcUserApi];
@@ -32,7 +32,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextGrpc_Admin_Api_GetSimple()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcAdminApi];
             var path = context.Paths[TestPath.GrpcAdminApi];
@@ -50,7 +50,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextGrpc_User_Api_GetComplex()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcUserApi];
             var path = context.Paths[TestPath.GrpcUserApi];
@@ -69,7 +69,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextGrpc_Admin_Api_GetComplex()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
+            var context = new LocalHostTestContext(ConfigurationFiles.HostSettingsSystems2VariantGrpc, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcAdminApi];
             var path = context.Paths[TestPath.GrpcAdminApi];

@@ -2,29 +2,31 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 {
+    using System;
     using System.Diagnostics;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class UserService : ServiceBase
+    public class UserService : INetworkService
     {
-        public UserService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public UserService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
-                .UseCors(builder =>
-                {
-                    builder
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .WithOrigins($"https://{HostString}");
-                })
+                // .UseCors(builder =>
+                // {
+                //     builder
+                //         .AllowAnyMethod()
+                //         .AllowAnyHeader()
+                //         .WithOrigins($"https://{Configuration.IpAddress}");
+                // })
                 .UseRouting()
                 .UseEndpoints(endpoints =>
                 {
@@ -32,7 +34,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
                 });
         }
 
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             services
                 .AddCors()

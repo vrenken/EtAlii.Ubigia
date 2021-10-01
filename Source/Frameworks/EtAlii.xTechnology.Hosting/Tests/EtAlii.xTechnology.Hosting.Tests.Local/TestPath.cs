@@ -2,16 +2,16 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public static class TestPath 
+    public static class TestPath
     {
-        public const string GrpcAdminApi = "GrpcAdminApi"; 
-        public const string GrpcUserApi = "GrpcUserApi";
-        
-        public const string RestAdminApi = "RestAdminApi"; 
-        public const string RestUserApi = "RestUserApi"; 
-        
-        public const string SignalRAdminApi = "SignalRAdminApi"; 
-        public const string SignalRUserApi = "SignalRUserApi"; 
+        public const string GrpcAdminApi = "AdminApiPathGrpc";
+        public const string GrpcUserApi = "UserApiPathGrpc";
+
+        public const string RestAdminApi = "AdminApiPathRest";
+        public const string RestUserApi = "UserApiPathRest";
+
+        public const string SignalRAdminApi = "AdminApiPathSignalR";
+        public const string SignalRUserApi = "UserApiPathSignalR";
 
     }
 }

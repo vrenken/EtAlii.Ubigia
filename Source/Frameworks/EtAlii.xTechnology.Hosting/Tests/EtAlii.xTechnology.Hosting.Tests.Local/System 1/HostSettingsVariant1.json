@@ -8,95 +8,52 @@
 
         "HostName": "{{HOST:AuthenticationHost@127.0.0.1}}",
         "PortName": "{{PORT:AuthenticationPort@5003}}",
-        "HostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}",
-
-        "Systems": [
-            {
-                "Modules": [
-                    {
-                        "Name": "Rest",
-                        "IpAddress": "0.0.0.0",
-                        "Port": "{{PORT:RestApi@5000}}",
-                        "Services": [
-                            {
-                                "Path": "{{PATH:RestApiAdmin@/Admin}}",
-                                "Assembly": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-                                "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-                                "Factory": "AdminServiceFactory"
-                            },
-                            {
-                                "Path": "{{PATH:RestApiUser@/User}}",
-                                "Assembly": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-                                "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-                                "Factory": "UserServiceFactory"
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "Grpc",
-                        "IpAddress": "0.0.0.0",
-                        "Port": "{{PORT:GrpcApi@5001}}",
-                        "Modules": [
-                            {
-                                "Name": "Admin",
-                                "Path": "{{PATH:GrpcApiAdmin@/Admin}}",
-                                "Services": [
-                                    {
-                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-                                        "Factory": "AdminServiceFactory"
-                                    }
-                                ]
-                            },
-                            {
-                                "Name": "User",
-                                "Path": "{{PATH:GrpcApiUser@/User}}",
-                                "Services": [
-                                    {
-                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-                                        "Factory": "UserServiceFactory"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "Name": "SignalR",
-                        "IpAddress": "127.0.0.1", // Test SignalR should be accessible over localhost only
-                        "Port": "{{PORT:SignalRApi@5002}}",
-                        "Modules": [
-                            {
-                                "Name": "Admin",
-                                "Path": "{{PATH:SignalRApiAdmin@/Admin}}",
-                                "Services": [
-                                    {
-                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-                                        "Factory": "AdminServiceFactory"
-                                    }
-                                ]
-                            },
-                            {
-                                "Name": "User",
-                                "Path": "{{PATH:SignalRApiUser@/User}}",
-                                "Services": [
-                                    {
-                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-                                        "Factory": "UserServiceFactory"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
+        "HostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}"
     },
     "Logging": {
         "LogLevel": {
             "Default": "Warning"
         }
+    },
+
+    "Management-Api-Rest": {
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.RestSystem.AdminServiceFactory, EtAlii.xTechnology.Hosting.Tests.RestSystem",
+        "IpAddress": "0.0.0.0",
+        "Port": "{{PORT:AdminApiPortRest@5000}}",
+        "Path": "{{PATH:AdminApiPathRest@/Admin}}"
+    },
+    "User-Api-Rest": {
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.RestSystem.UserServiceFactory, EtAlii.xTechnology.Hosting.Tests.RestSystem",
+        "IpAddress": "0.0.0.0",
+        "Port": "{{PORT:UserApiPortRest@5000}}",
+        "Path": "{{PATH:UserApiPathRest@/User}}"
+    },
+
+    "Management-Api-Grpc": {
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem.AdminServiceFactory, EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+        "IpAddress": "0.0.0.0",
+        "Port": "{{PORT:AdminApiPortGrpc@5001}}",
+        "Path": "{{PATH:AdminApiPathGrpc@/Admin}}"
+    },
+    "User-Api-Grpc": {
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem.UserServiceFactory, EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+        "IpAddress": "0.0.0.0",
+        "Port": "{{PORT:UserApiPortGrpc@5001}}",
+        "Path": "{{PATH:UserApiPathGrpc@/User}}"
+    },
+    "Management-Api-SignalR": {
+        "Comment": "Test SignalR should be accessible over localhost only",
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem.AdminServiceFactory, EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+        "IpAddress": "127.0.0.1",
+        "Port": "{{PORT:AdminApiPortSignalR@5002}}",
+        "Path": "{{PATH:AdminApiPathSignalR@/Admin}}"
+    },
+
+    "User-Api-SignalR": {
+        "Comment": "Test SignalR should be accessible over localhost only",
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem.UserServiceFactory, EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+        "IpAddress": "127.0.0.1",
+        "Port": "{{PORT:UserApiPortSignalR@5002}}",
+        "Path": "{{PATH:UserApiPathSignalR@/User}}"
     }
 }

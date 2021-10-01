@@ -2,9 +2,9 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public class HostTestContext : HostTestContextBase<TestHost>
+    public class LocalHostTestContext : HostTestContextBase<LocalTestHost>
     {
-        public HostTestContext(string hostConfigurationFile, string clientConfigurationFile)
+        public LocalHostTestContext(string hostConfigurationFile, string clientConfigurationFile)
             : base(hostConfigurationFile, clientConfigurationFile)
         {
             UseInProcessConnection = true;

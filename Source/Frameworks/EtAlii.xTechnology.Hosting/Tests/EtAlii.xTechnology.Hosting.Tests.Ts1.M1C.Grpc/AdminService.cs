@@ -2,66 +2,29 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
 {
-    using System.Text;
-    using System.Threading.Tasks;
-    using EtAlii.xTechnology.Hosting.Service.Grpc;
+    using System;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using WireAdminGrpcService = global::EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.WireProtocol.AdminGrpcService;
 
-    public class AdminService : GrpcServiceBase
+    public class AdminService : INetworkService
     {
-        public AdminService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public AdminService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        public override async Task Start()
-        {
-            Status.Title = "Test system 1 module 1 admin gRPC access";
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) => services.AddGrpc();
 
-            Status.Description = "Starting Test admin gRPC services";
-            Status.Summary = "Starting...";
-
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Test admin gRPC services are available on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Summary = "Running";
-            Status.Description = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-            Status.Summary = "Stopping...";
-            Status.Description = "Stopping Test admin gRPC services";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished providing Test admin gRPC services on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Summary = "Stopped";
-            Status.Description = sb.ToString();
-        }
-
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // applicationBuilder.IsolatedMapWhen(
             //     context => context.Request.Host.Port == Port,// && context.Request.Path.StartsWithSegments("/admin/api"),
             application
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapGrpcService<AdminGrpcService>());
-        }
-
-        protected override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddGrpc();
         }
     }
 }

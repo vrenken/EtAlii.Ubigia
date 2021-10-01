@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.GrpcSystem
 {
-    public class UserServiceFactory : ServiceFactoryBase<UserService>
+    public class UserServiceFactory : IServiceFactory
     {
+        public IService Create(ServiceConfiguration configuration) => new UserService(configuration);
     }
 }
