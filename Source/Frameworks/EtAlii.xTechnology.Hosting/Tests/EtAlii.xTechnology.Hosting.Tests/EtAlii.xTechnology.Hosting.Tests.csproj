@@ -7,8 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Infrastructure\Admin\Firewall\ConfigureFirewall.ps1" />
-    <EmbeddedResource Include="Provisioning\Firewall\ConfigureFirewall.ps1" />
-  </ItemGroup>
 </Project>
