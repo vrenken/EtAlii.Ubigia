@@ -4,65 +4,67 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.Ubigia.Persistence;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-    public class InfrastructureService : ServiceBase<IHost, IInfrastructureSystem>, IInfrastructureService
+    public class InfrastructureService : IInfrastructureService
     {
-        private readonly IConfigurationRoot _configurationRoot;
-        private readonly IConfiguration _configuration;
-        private readonly IConfigurationDetails _configurationDetails;
-        private readonly IServiceDetailsBuilder _serviceDetailsBuilder;
+        private IStorageService _storageService;
+
+        public ServiceConfiguration Configuration { get; }
 
         /// <inheritdoc />
         public IInfrastructure Infrastructure { get; private set; }
 
-        public InfrastructureService(
-            IConfigurationRoot configurationRoot,
-            IConfigurationSection configuration,
-            IConfigurationDetails configurationDetails,
-            IServiceDetailsBuilder serviceDetailsBuilder)
-            : base(configuration)
+        public InfrastructureService(ServiceConfiguration configuration)
         {
-            _configurationRoot = configurationRoot;
-            _configuration = configuration;
-            _configurationDetails = configurationDetails;
-            _serviceDetailsBuilder = serviceDetailsBuilder;
+            Configuration = configuration;
         }
 
-        /// <inheritdoc />
-        public override async Task Start()
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            Infrastructure = CreateInfrastructure();
+            Infrastructure = CreateInfrastructure(_storageService.Storage);
+            // TODO: We should work with the cancellationToken somehow.
             await Infrastructure.Start().ConfigureAwait(false);
         }
 
-        /// <inheritdoc />
-        public override async Task Stop()
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
             await Infrastructure.Stop().ConfigureAwait(false);
+            Infrastructure = null;
         }
 
-        private IInfrastructure CreateInfrastructure()
+        public void ConfigureServices(IServiceCollection services)
         {
-            var storage = System.Services.OfType<IStorageService>().Single().Storage;
+            _storageService = (IStorageService)services.Single(sd => sd.ServiceType == typeof(IStorageService)).ImplementationInstance;
 
-            string name = _configuration.GetValue<string>(nameof(name));
+            services.AddSingleton<IInfrastructureService>(this);
+            services.AddHostedService(_ => this);
+        }
+
+        private IInfrastructure CreateInfrastructure(IStorage storage)
+        {
+            string name = Configuration.Section.GetValue<string>(nameof(name));
             if (name == null)
             {
                 throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(name)} not set in service configuration.");
             }
 
-            var serviceDetails = _serviceDetailsBuilder.Build(_configurationDetails);
+            var serviceDetailsBuilder = new ServiceDetailsBuilder();
+            var serviceDetails = serviceDetailsBuilder.Build(Configuration.Details);
 
             // Create fabric instance.
-            var fabricContextOptions = new FabricContextOptions(_configurationRoot)
+            var fabricContextOptions = new FabricContextOptions(Configuration.Root)
                 .Use(storage)
                 .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
@@ -77,7 +79,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
 
             // Create logical context instance.
-            var logicalContextOptions = new LogicalContextOptions(_configurationRoot)
+            var logicalContextOptions = new LogicalContextOptions(Configuration.Root)
                 .Use(fabric)
                 .Use(name, storageAddress)
                 .UseLogicalContextDiagnostics();
@@ -85,7 +87,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             // Create a Infrastructure instance.
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
-            var infrastructureOptions = new InfrastructureOptions(_configurationRoot, systemConnectionCreationProxy)
+            var infrastructureOptions = new InfrastructureOptions(Configuration.Root, systemConnectionCreationProxy)
                 .Use(name, serviceDetails)
 	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
                 .Use(logicalContext)

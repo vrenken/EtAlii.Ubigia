@@ -2,58 +2,26 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 {
-    using System.Text;
-    using System.Threading.Tasks;
-    using Blazorise;
-    using Blazorise.Bootstrap;
-    using Blazorise.Icons.FontAwesome;
+    using System;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Serilog;
 
-    public class AdminPortalService : ServiceBase
+    public class AdminPortalService : INetworkService
     {
-        public AdminPortalService(IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+        private readonly ILogger _log = Log.ForContext<AdminPortalService>();
+
+        public AdminPortalService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
+            _log.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
         }
 
-        public override async Task Start()
-        {
-            Status.Title = "Ubigia infrastructure admin portal";
-
-            Status.Description = "Starting...";
-            Status.Summary = "Starting Ubigia admin portal";
-
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Ubigia admin portal is now available on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Running";
-            Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-            Status.Description = "Stopping...";
-            Status.Summary = "Stopping Ubigia admin portal";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished providing Ubigia admin portal on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Stopped";
-            Status.Summary = sb.ToString();
-        }
-
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             services.AddMvc();
             //
@@ -74,7 +42,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
             //     });
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
                 .UseRouting()
