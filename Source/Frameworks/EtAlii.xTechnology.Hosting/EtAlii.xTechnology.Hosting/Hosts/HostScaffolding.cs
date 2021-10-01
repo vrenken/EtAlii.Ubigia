@@ -2,7 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System.Collections.Generic;
+    using System;
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -29,20 +29,9 @@ namespace EtAlii.xTechnology.Hosting
                 // Hence we need a HostWrapper.
                 container.RegisterDecorator<IHost, HostWrapper>();
             }
-            container.Register<IInstanceCreator, InstanceCreator>();
-            container.RegisterInitializer<IHost>((services, host) =>
+            container.RegisterInitializer<IHost>((_, host) =>
             {
-                var instanceCreator = services.GetInstance<IInstanceCreator>();
-                var serviceFactory = new ServiceFactory(instanceCreator);
-                var moduleFactory = new ModuleFactory(serviceFactory, instanceCreator);
-                var systemFactory = new SystemFactory(serviceFactory, moduleFactory, instanceCreator);
-
-                // Instantiate the systems.
-                var systems = _options.CreateSystems(host, systemFactory, serviceFactory, moduleFactory);
-
-                // Fetch all available commands.
                 var commands = _options.Commands
-                    .Concat(systems.SelectMany(system => system.Commands))
                     .Distinct()
                     .ToList();
 
@@ -55,55 +44,11 @@ namespace EtAlii.xTechnology.Hosting
                 });
 
                 // Fetch all status items.
-                var statuses = systems
-                    .SelectMany(GetStatuses)
-                    .Where(status => status != null)
-                    .ToArray();
+                var statuses = Array.Empty<Status>();
 
                 // Activate the commands and status items.
                 host.Setup(commands.ToArray(), statuses);
-
-                // Initialize the services.
-                var systemManager = services.GetInstance<ISystemManager>();
-                systemManager.Setup(systems);
-
-                host.Initialize();
             });
-            container.Register<ISystemManager, SystemManager>();
-        }
-
-        private IEnumerable<Status> GetStatuses(ISystem system)
-        {
-            yield return system.Status;
-            foreach (var module in system.Modules)
-            {
-                var statuses = GetStatuses(module);
-                foreach (var status in statuses)
-                {
-                    yield return status;
-                }
-            }
-            foreach (var service in system.Services)
-            {
-                yield return service.Status;
-            }
-        }
-
-        private IEnumerable<Status> GetStatuses(IModule module)
-        {
-            yield return module.Status;
-            foreach (var childModule in module.Modules)
-            {
-                var statuses = GetStatuses(childModule);
-                foreach (var status in statuses)
-                {
-                    yield return status;
-                }
-            }
-            foreach (var service in module.Services)
-            {
-                yield return service.Status;
-            }
         }
     }
 }

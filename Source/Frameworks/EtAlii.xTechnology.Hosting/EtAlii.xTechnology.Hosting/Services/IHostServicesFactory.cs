@@ -2,7 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public interface IStopSystemCommand : ICommand
+    public interface IHostServicesFactory
     {
+        public IService[] Create(IHostOptions options);
     }
 }

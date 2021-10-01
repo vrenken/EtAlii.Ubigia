@@ -37,10 +37,20 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 
 		public ConnectivityDetails GetLocalConnectivityDetails()
 		{
+            if(!_configurationDetails.Paths.TryGetValue("AdminApiPathSignalR", out var adminApiPathSignalR))
+            {
+                adminApiPathSignalR = string.Empty;
+            }
+
+            if(!_configurationDetails.Paths.TryGetValue("UserApiPathSignalR", out var userApiPathSignalR))
+            {
+                userApiPathSignalR = string.Empty;
+            }
+
 			var result = new ConnectivityDetails
 			{
-				ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiSignalR"]}",
-				DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiSignalR"]}",
+				ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminApiPort"]}{_configurationDetails.Paths["AdminApiPath"]}{adminApiPathSignalR}",
+				DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserApiPort"]}{_configurationDetails.Paths["UserApiPath"]}{userApiPathSignalR}",
 			};
 			return result;
 		}

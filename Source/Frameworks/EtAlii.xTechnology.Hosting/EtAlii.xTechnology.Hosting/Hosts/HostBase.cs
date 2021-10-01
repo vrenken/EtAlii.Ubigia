@@ -4,172 +4,174 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Server.Kestrel.Core;
-    using Polly;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
 
-    public abstract class HostBase : IConfigurableHost
+    public abstract class HostBase : IHost
     {
-        IHostManager IConfigurableHost.Manager => _manager;
-        protected IHostManager Manager => _manager;
-        private IHostManager _manager;
+        protected Microsoft.Extensions.Hosting.IHost Host => _host;
+        private Microsoft.Extensions.Hosting.IHost _host;
+        private readonly Status _selfStatus;
 
-        public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
-        public event Action<IWebHostBuilder> ConfigureHost;
-        public event Action<KestrelServerOptions> ConfigureKestrel;
+        event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }
+        private Action<IWebHostBuilder> _configureHost;
+
+        private readonly IHostServicesFactory _hostServicesFactory;
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
 
-        public Status[] Status => _status;
-        private Status[] _status = Array.Empty<Status>();
+        public Status[] Status { get; private set; } = Array.Empty<Status>();
 
-	    private readonly ISystemManager _systemManager;
+        public ICommand[] Commands { get; private set; }
 
-	    public ISystem[] Systems => _systemManager.Systems;
-
-        public ICommand[] Commands => _commands;
-        private ICommand[] _commands;
+        protected IService[] Services { get; private set; }
 
         public IHostOptions Options { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-        private readonly Status _selfStatus;
-
-        protected HostBase(IHostOptions options, ISystemManager systemManager)
+        protected HostBase(IHostOptions options, IHostServicesFactory hostServicesFactory)
         {
-            Options = options;
-	        _systemManager = systemManager;
-
+            _hostServicesFactory = hostServicesFactory;
             _selfStatus = new Status(GetType().Name);
 
+            Options = options;
             PropertyChanged += OnPropertyChanged;
             UpdateStatus();
         }
 
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e) => UpdateStatus();
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            UpdateStatus();
-        }
-
-        protected virtual Task Starting() => _manager.Starting();
-
-        protected virtual Task Started() => _manager.Started();
-
-        protected virtual Task Stopping() => _manager.Stopping();
-
-        protected virtual Task Stopped() => _manager.Stopped();
-
-        public virtual void Setup(ICommand[] commands, Status[] status)
-        {
-            var manager = new HostManager();
-            Setup(commands, status, manager);
-        }
-
-        protected void Setup(ICommand[] commands, Status[] status, IHostManager manager)
-        {
-            _commands = commands;
-            _manager = manager;
-            _manager.Setup(ref commands, this);
-            _manager.ConfigureApplication += (application, environment) => ConfigureApplication?.Invoke(application, environment);
-            _manager.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
-            _manager.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
-
-            _status = status
-                .Concat(new [] {_selfStatus} )
-                .ToArray();
-            _commands = commands;
-            foreach (var s in _status)
-            {
-                s.PropertyChanged += OnStatusPropertyChanged;
-            }
-        }
-
-        public virtual void Initialize()
-        {
-            _manager.Initialize();
-
-            foreach (var system in Systems)
-            {
-                system.Initialize();
-            }
-        }
-
-        protected virtual async Task OnStartException(Exception exception)
-        {
-            Trace.WriteLine($"Fatal exception in hosting: {exception}");
-            Trace.WriteLine("Unable to start hosting");
-            State = State.Error;
-            await Task.Delay(100).ConfigureAwait(false);
-            await Stop().ConfigureAwait(false);
-        }
-
-        public virtual async Task Start()
+        public async Task Start()
         {
             State = State.Starting;
 
-            await Policy
-                .Handle<Exception>()
-                .WaitAndRetryAsync(
-                    5,
-                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (exception, _, _) => OnStartException(exception)
-                )
-                .ExecuteAsync(async () =>
-                {
-                    await Starting().ConfigureAwait(false);
-	                await _systemManager.Start().ConfigureAwait(false);
-                    State = State.Running;
-                    await Started().ConfigureAwait(false);
-                })
-                .ConfigureAwait(false);
+            await Starting().ConfigureAwait(false);
+            State = State.Running;
+            await Started().ConfigureAwait(false);
         }
 
-        protected virtual void OnStopException(Exception exception)
+        protected void ConfigureBackgroundServices(HostBuilderContext context, IServiceCollection services)
         {
-            State = State.Error;
-            Trace.WriteLine($"Fatal exception in hosting: {exception}");
-            Trace.WriteLine("Unable to stop hosting");
+            services.AddSingleton<IConfigurationDetails>(Options.Details);
+            foreach (var service in Services.OfType<IBackgroundService>())
+            {
+                service.ConfigureServices(services);
+            }
         }
 
-        public virtual async Task Stop()
+        public async Task Stop()
         {
             State = State.Stopping;
-
-            await Policy
-                .Handle<Exception>()
-                .WaitAndRetry(
-                    5,
-                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (exception, _, _) => OnStopException(exception)
-                )
-                .Execute(async () =>
-                {
-                    await Stopping().ConfigureAwait(false);
-	                await _systemManager.Stop().ConfigureAwait(false);
-                    State = State.Stopped;
-                    await Stopped().ConfigureAwait(false);
-                })
-                .ConfigureAwait(false);
+            await Stopping().ConfigureAwait(false);
+            State = State.Stopped;
+            await Stopped().ConfigureAwait(false);
         }
 
         public virtual async Task Shutdown()
         {
             await Stop().ConfigureAwait(false);
-
             State = State.Shutdown;
         }
 
         private void OnStatusPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
+        }
+
+        /// <summary>
+        /// This is the core method that composes the current ASP.NET hosting environment.
+        /// In case of the TestHost, this method is overridden to reconfigure usage of the test host.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual Microsoft.Extensions.Hosting.IHost CreateHost()
+        {
+            return Microsoft.Extensions.Hosting.Host
+                .CreateDefaultBuilder()
+                .ConfigureServices(ConfigureBackgroundServices)
+                .ConfigureHostConfiguration(ConfigureHostConfiguration)
+                .ConfigureWebHost(webHostBuilder =>
+                {
+                    webHostBuilder.UseKestrel(options =>
+                    {
+                        options.Limits.MaxRequestBodySize = 1024 * 1024 * 2;
+                        options.Limits.MaxRequestBufferSize = 1024 * 1024 * 2;
+                        options.Limits.MaxResponseBufferSize = 1024 * 1024 * 2;
+                        options.AllowSynchronousIO = true;
+                    });
+                    webHostBuilder.Configure(ConfigureApplication);
+                    _configureHost?.Invoke(webHostBuilder);
+                })
+                .Build();
+        }
+
+        protected void ConfigureHostConfiguration(IConfigurationBuilder builder)
+        {
+            builder.AddConfiguration(Options.ConfigurationRoot);
+        }
+
+        protected void ConfigureApplication(WebHostBuilderContext context, IApplicationBuilder application)
+        {
+            // Each network service gets instantiated in its own isolated environment.
+            // The only subsystems that services can share.
+            foreach (var service in Services.OfType<INetworkService>())
+            {
+                application.IsolatedMapOnCondition(context.HostingEnvironment, service);
+            }
+        }
+
+        protected virtual async Task Starting()
+        {
+            Services = _hostServicesFactory.Create(Options);
+            _host = CreateHost();
+            await _host
+                .StartAsync()
+                .ConfigureAwait(false);
+        }
+
+        protected abstract Task Started();
+
+        protected abstract Task Stopping();
+
+        protected virtual async Task Stopped()
+	    {
+            if (_host != null)
+            {
+                await _host
+                    .StopAsync(TimeSpan.FromSeconds(30))
+                    .ConfigureAwait(false);
+                _host.Dispose();
+                _host = null;
+            }
+	    }
+
+		public virtual void Setup(ICommand[] commands, Status[] status)
+        {
+            Commands = commands;
+
+            commands = commands
+                .Concat(new ICommand[]
+                {
+                    new ToggleLogOutputCommand(this),
+                    new IncreaseLogLevelCommand(this),
+                    new DecreaseLogLevelCommand(this),
+                })
+                .ToArray();
+
+            Status = status
+                .Concat(new [] {_selfStatus} )
+                .ToArray();
+            Commands = commands;
+            foreach (var s in Status)
+            {
+                s.PropertyChanged += OnStatusPropertyChanged;
+            }
         }
 
         private void UpdateStatus()

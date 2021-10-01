@@ -6,12 +6,12 @@ namespace EtAlii.Ubigia.Api.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Hosting;
-    using IHostTestContext = EtAlii.Ubigia.Infrastructure.Hosting.TestHost.IHostTestContext;
 
     public interface ITransportTestContext
     {
-        IHostTestContext Host { get; }
+        IInfrastructureHostTestContext Host { get; }
         Task<(IDataConnection, DataConnectionOptions)> CreateDataConnectionToNewSpace(bool openOnCreation = true);
 
         Task<(IDataConnection, DataConnectionOptions)> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
@@ -28,9 +28,9 @@ namespace EtAlii.Ubigia.Api.Tests
     }
 
     public interface ITransportTestContext<out THostTestContext> : ITransportTestContext
-        where THostTestContext : IHostTestContext, new()
+        where THostTestContext : IInfrastructureHostTestContext, new()
     {
         new THostTestContext Host { get; }
-        IHostTestContext ITransportTestContext.Host => Host;
+        IInfrastructureHostTestContext ITransportTestContext.Host => Host;
     }
 }

@@ -9,16 +9,10 @@ namespace EtAlii.xTechnology.Hosting
 
     public class HostStringBuilder
     {
-        public HostString Build(IConfigurationSection configuration, IModule parentModule, IPAddress fallbackAddress)
+        public HostString Build(IConfigurationSection configuration, IPAddress fallbackAddress)
         {
             // Port magic.
-            int? port = configuration.GetValue("Port", -1);
-            if (parentModule != null)
-            {
-                port = port == -1
-                    ? parentModule.HostString.Port
-                    : port;
-            }
+            var port = configuration.GetValue("Port", -1);
 
             // Host magic.
             var ipAddressString = configuration.GetValue<string>("IpAddress", null);
@@ -39,15 +33,8 @@ namespace EtAlii.xTechnology.Hosting
                 ? host
                 : fallbackAddress.ToString();
 
-            if (parentModule != null)
-            {
-                host = Equals(host, IPAddress.None.ToString())
-                    ? IPAddress.Parse(parentModule.HostString.Host).ToString()
-                    : host;
-            }
-
-            var hostString = port.HasValue && port != -1
-                ? new HostString(host, port.Value)
+            var hostString = port != -1
+                ? new HostString(host, port)
                 : new HostString(host);
             return hostString;
 

@@ -2,62 +2,29 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
-	using System.Linq;
-    using System.Text;
-	using System.Threading.Tasks;
+    using System;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
-	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
 
-    public class UserRestService : ServiceBase
+    public class UserRestService : INetworkService
     {
+        public ServiceConfiguration Configuration { get; }
+
         private IContextCorrelator _contextCorrelator;
 
-        public UserRestService(
-            IConfigurationSection configuration) : base(configuration)
+        public UserRestService(ServiceConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
-        public override async Task Start()
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-	        Status.Title = "Ubigia infrastructure user REST access";
-
-	        Status.Description = "Starting...";
-	        Status.Summary = "Starting Ubigia user REST services";
-
-	        await base.Start().ConfigureAwait(false);
-
-	        var sb = new StringBuilder();
-	        sb.AppendLine("All OK. Ubigia user REST services are available on the address specified below.");
-	        sb.AppendLine($"Address: {HostString}{PathString}");
-
-	        Status.Description = "Running";
-	        Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-	        Status.Description = "Stopping...";
-	        Status.Summary = "Stopping Ubigia user REST services";
-
-	        await base.Stop().ConfigureAwait(false);
-
-	        var sb = new StringBuilder();
-	        sb.AppendLine("Finished providing Ubigia user REST services on the address specified below.");
-	        sb.AppendLine($"Address: {HostString}{PathString}");
-
-	        Status.Description = "Stopped";
-	        Status.Summary = sb.ToString();
-        }
-
-        protected override void ConfigureServices(IServiceCollection services)
-        {
-	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
             _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
@@ -85,7 +52,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 		        .AddTypedControllers<RestController>();
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
 	        application
 		        .UseRouting()

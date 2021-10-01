@@ -12,11 +12,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 
 	internal class TestHttpClientFactory : IHttpClientFactory
 	{
-		private readonly RestHostTestContext _testContext;
+		private readonly RestInfrastructureHostTestContext _testContext;
         private readonly IContextCorrelator _contextCorrelator;
 
         public TestHttpClientFactory(
-            RestHostTestContext testContext,
+            RestInfrastructureHostTestContext testContext,
             IContextCorrelator contextCorrelator)
         {
             _testContext = testContext;
@@ -29,8 +29,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 
             if (credentials != null)
             {
-                var crdntls = credentials.GetCredential(address, "Basic-Authentication");
-                var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(crdntls!.UserName + ":" + crdntls.Password));
+                var credential = credentials.GetCredential(address, "Basic-Authentication");
+                var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credential!.UserName + ":" + credential.Password));
                 client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
             }
 

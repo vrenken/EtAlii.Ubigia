@@ -2,56 +2,58 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
-    using System.Text;
+    using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
+    using EtAlii.Ubigia.Persistence.NetCoreApp;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-    public class StorageService : ServiceBase, IStorageService
+    public class StorageService : IStorageService
     {
-        private readonly string _baseFolder;
-        public IStorage Storage { get; }
+        public ServiceConfiguration Configuration { get; }
+        public IStorage Storage { get; private set; }
 
-        public StorageService(IConfigurationSection configurationSection, IStorage storage)
-            : base(configurationSection)
+        public StorageService(ServiceConfiguration configuration)
         {
-            Storage = storage;
+            Configuration = configuration;
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        private IStorage CreateStorage()
+        {
+            string name;
+            name = Configuration.Section.GetValue<string>(nameof(name));
+            if (name == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
+            }
+
             string baseFolder;
-            baseFolder = configurationSection.GetValue<string>(nameof(baseFolder));
-            _baseFolder = baseFolder;
+            baseFolder = Configuration.Section.GetValue<string>(nameof(baseFolder));
+            if (baseFolder == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(baseFolder)} not set in service configuration.");
+            }
+
+            var storageOptions = new StorageOptions(Configuration.Root)
+                .Use(name)
+                .UseNetCoreAppStorage(baseFolder)
+                .UseStorageDiagnostics();
+            return new StorageFactory().Create(storageOptions);
         }
 
-        public override async Task Start()
+        public void ConfigureServices(IServiceCollection services)
         {
-            Status.Title = "Ubigia infrastructure NetCore storage subsystem";
-
-            Status.Description = "Starting...";
-            Status.Summary = "Starting Ubigia NetCore storage subsystem";
-
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Ubigia NetCore storage subsystem is operational using the folder specified below.");
-            sb.AppendLine($"Base folder: {_baseFolder}");
-
-            Status.Description = "Running";
-            Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-            Status.Description = "Stopping...";
-            Status.Summary = "Stopping Ubigia NetCore storage subsystem";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished stopping Ubigia NetCore storage subsystem from the folder specified below.");
-            sb.AppendLine($"Base folder: {_baseFolder}");
-
-            Status.Description = "Stopped";
-            Status.Summary = sb.ToString();
+            Storage = CreateStorage();
+            services.AddSingleton<IStorageService>(this);
+            services.AddHostedService(_ => this);
         }
     }
 }

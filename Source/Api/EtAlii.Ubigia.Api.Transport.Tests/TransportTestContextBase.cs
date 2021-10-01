@@ -11,10 +11,9 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Threading;
-    using IHostTestContext = EtAlii.Ubigia.Infrastructure.Hosting.TestHost.IHostTestContext;
 
     public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
-        where THostTestContext: class, IHostTestContext, new()
+        where THostTestContext: class, IInfrastructureHostTestContext, new()
     {
         public THostTestContext Host { get; private set; }
 
@@ -147,21 +146,20 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             return connection.Accounts.Add(name, password, AccountTemplate.User);
         }
 
-        #region start/stop
-
         public async Task Start(PortRange portRange)
         {
             Host = _testHostFactory.Create<THostTestContext>();
-            await Host.Start(portRange).ConfigureAwait(false);
+            await Host
+                .Start(portRange)
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Host.Stop().ConfigureAwait(false);
+            await Host
+                .Stop()
+                .ConfigureAwait(false);
             Host = null;
-            //SpaceName = null
         }
-
-        #endregion start/stop
     }
 }

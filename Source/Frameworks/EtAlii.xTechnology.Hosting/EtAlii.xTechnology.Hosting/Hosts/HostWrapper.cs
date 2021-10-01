@@ -5,21 +5,15 @@ namespace EtAlii.xTechnology.Hosting
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Server.Kestrel.Core;
 
-    public class HostWrapper : IConfigurableHost
+    public class HostWrapper : IHost
     {
         public IHost CurrentHost => _currentHost;
-        private IConfigurableHost _currentHost;
-
-        public IHostManager Manager => _currentHost.Manager;
+        private IHost _currentHost;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public event Action<IApplicationBuilder, IWebHostEnvironment> ConfigureApplication;
-        public event Action<IWebHostBuilder> ConfigureHost;
-        public event Action<KestrelServerOptions> ConfigureKestrel;
+
         public IHostOptions Options => _currentHost.Options;
         public State State => _currentHost.State;
 
@@ -27,38 +21,38 @@ namespace EtAlii.xTechnology.Hosting
 
         public ICommand[] Commands => _currentHost.Commands;
 
-        public ISystem[] Systems => _currentHost.Systems;
+        event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }
+        private Action<IWebHostBuilder> _configureHost;
 
         public HostWrapper(IHost host)
         {
-            _currentHost = (IConfigurableHost)host;
+            _currentHost = host;
             Wire();
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
-        private void OnConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment) => ConfigureApplication?.Invoke(application, environment);
-        private void OnConfigureHost(IWebHostBuilder builder) => ConfigureHost?.Invoke(builder);
-        private void OnConfigureKestrel(KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
+
+        private void OnConfigureHost(IWebHostBuilder webHostBuilder)
+        {
+            _configureHost?.Invoke(webHostBuilder);
+        }
+
         private void Wire()
         {
             _currentHost.PropertyChanged += OnPropertyChanged;
-            _currentHost.ConfigureApplication += OnConfigureApplication;
             _currentHost.ConfigureHost += OnConfigureHost;
-            _currentHost.ConfigureKestrel += OnConfigureKestrel;
         }
 
         private void Unwire()
         {
             _currentHost.PropertyChanged -= OnPropertyChanged;
-            _currentHost.ConfigureApplication -= OnConfigureApplication;
             _currentHost.ConfigureHost -= OnConfigureHost;
-            _currentHost.ConfigureKestrel -= OnConfigureKestrel;
         }
 
         public void Replace(IHost host)
         {
             Unwire();
-            _currentHost = (IConfigurableHost)host;
+            _currentHost = host;
             Wire();
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Commands)));
@@ -71,7 +65,5 @@ namespace EtAlii.xTechnology.Hosting
         public Task Shutdown() => _currentHost.Shutdown();
 
         public void Setup(ICommand[] commands, Status[] status) => _currentHost.Setup(commands, status);
-
-        public void Initialize() => _currentHost.Initialize();
     }
 }

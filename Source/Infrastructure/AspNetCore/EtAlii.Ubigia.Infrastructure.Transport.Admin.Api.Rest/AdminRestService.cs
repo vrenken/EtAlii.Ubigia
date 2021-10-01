@@ -2,66 +2,29 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
+    using System;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
-	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
 
-    public class AdminRestService : ServiceBase
+    public class AdminRestService : INetworkService
     {
-	    private readonly IConfigurationDetails _configurationDetails;
         private IContextCorrelator _contextCorrelator;
 
-        public AdminRestService(
-            IConfigurationSection configuration,
-            IConfigurationDetails configurationDetails)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public AdminRestService(ServiceConfiguration configuration)
         {
-            _configurationDetails = configurationDetails;
+            Configuration = configuration;
         }
 
-	    public override async Task Start()
-	    {
-		    Status.Title = "Ubigia infrastructure admin REST access";
-
-		    Status.Description = "Starting...";
-		    Status.Summary = "Starting Ubigia admin REST services";
-
-		    await base.Start().ConfigureAwait(false);
-
-		    var sb = new StringBuilder();
-		    sb.AppendLine("All OK. Ubigia admin REST services are available on the address specified below.");
-		    sb.AppendLine($"Address: {HostString}{PathString}");
-
-		    Status.Description = "Running";
-		    Status.Summary = sb.ToString();
-	    }
-
-	    public override async Task Stop()
-	    {
-		    Status.Description = "Stopping...";
-		    Status.Summary = "Stopping Ubigia admin REST services";
-
-		    await base.Stop().ConfigureAwait(false);
-
-		    var sb = new StringBuilder();
-		    sb.AppendLine("Finished providing Ubigia admin REST services on the address specified below.");
-		    sb.AppendLine($"Address: {HostString}{PathString}");
-
-		    Status.Description = "Stopped";
-		    Status.Summary = sb.ToString();
-	    }
-
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
             _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
@@ -71,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
 		        .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
 
-		        .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
+		        .AddSingleton(Configuration.Details) // the configuration details are needed by the InformationController.
 
 		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
 		        .AddControllers()
@@ -87,7 +50,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 		        .AddTypedControllers<RestController>();
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
 	        application
 		        .UseRouting()

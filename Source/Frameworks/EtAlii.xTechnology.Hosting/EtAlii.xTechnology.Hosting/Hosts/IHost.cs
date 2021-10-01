@@ -2,8 +2,10 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Hosting;
 
     public interface IHost : INotifyPropertyChanged
     {
@@ -15,16 +17,14 @@ namespace EtAlii.xTechnology.Hosting
 
         ICommand[] Commands { get; }
 
-		ISystem[] Systems { get; }
-
         void Setup(ICommand[] commands, Status[] status);
-
-        void Initialize();
 
         Task Start();
 
         Task Stop();
 
         Task Shutdown();
+
+        internal event Action<IWebHostBuilder> ConfigureHost;
     }
 }

@@ -2,67 +2,33 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
-	using System.Diagnostics;
+    using System;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.SignalR;
 
-	public class UserSignalRService : ServiceBase
+	public class UserSignalRService : INetworkService
     {
-        public UserSignalRService(
-            IConfigurationSection configuration)
-            : base(configuration)
+        public ServiceConfiguration Configuration { get; }
+
+        public UserSignalRService(ServiceConfiguration configuration)
         {
-        }
-
-        public override async Task Start()
-        {
-	        Status.Title = "Ubigia infrastructure user SignalR access";
-
-	        Status.Description = "Starting...";
-	        Status.Summary = "Starting Ubigia user SignalR services";
-
-	        await base.Start().ConfigureAwait(false);
-
-	        var sb = new StringBuilder();
-	        sb.AppendLine("All OK. Ubigia user SignalR services are available on the address specified below.");
-	        sb.AppendLine($"Address: {HostString}{PathString}");
-
-	        Status.Description = "Running";
-	        Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-	        Status.Description = "Stopping...";
-	        Status.Summary = "Stopping Ubigia user SignalR services";
-
-	        await base.Stop().ConfigureAwait(false);
-
-	        var sb = new StringBuilder();
-	        sb.AppendLine("Finished providing Ubigia user SignalR services on the address specified below.");
-	        sb.AppendLine($"Address: {HostString}{PathString}");
-
-	        Status.Description = "Stopped";
-	        Status.Summary = sb.ToString();
+            Configuration = configuration;
         }
 
         [SuppressMessage(
             category: "Sonar Code Smell",
             checkId: "S4792:Configuring loggers is security-sensitive",
             Justification = "Safe to do so here.")]
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
 
 	        services
 		        .AddSingleton(infrastructure.Spaces)
@@ -97,16 +63,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 		        .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
+            // var hostString = new HostStringBuilder().Build(Configuration.Section, IPAddress.Any);
+
 	        application
-		        .UseCors(builder =>
-		        {
-			        builder
-				        .AllowAnyHeader()
-				        .AllowAnyMethod()
-				        .WithOrigins($"https://{HostString}");
-		        })
+                // .UseCors(builder =>
+                // {
+                //     builder
+                //         .AllowAnyHeader()
+                //         .AllowAnyMethod()
+                //         .WithOrigins($"https://{Configuration.IpAddress}");
+                // })
 		        .UseRouting()
 		        .UseEndpoints(endPoints =>
 		        {

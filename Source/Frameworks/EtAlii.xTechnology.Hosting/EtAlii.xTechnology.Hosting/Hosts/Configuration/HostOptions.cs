@@ -26,8 +26,6 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public bool UseWrapper { get; private set; }
 
-        public Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> CreateSystems { get; private set; }
-
         /// <inheritdoc />
         public Func<IHost> CreateHost { get; private set; }
 
@@ -81,18 +79,6 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostOptions Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems)
-        {
-            if (CreateSystems != null)
-            {
-                throw new InvalidOperationException("Systems configuration already defined");
-            }
-
-            CreateSystems = createSystems;
-
-            return this;
-        }
-
         /// <inheritdoc />
         public IHostOptions Use(Func<IHost> createHost)
         {
@@ -102,23 +88,6 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             CreateHost = createHost;
-
-            return this;
-        }
-
-        public IHostOptions Use(params IConfigurationSection[] systemConfigurations)
-        {
-            if (CreateSystems != null)
-            {
-                throw new InvalidOperationException("Systems configuration already defined");
-            }
-
-            CreateSystems = (host, systemFactory, _, _) =>
-            {
-                return systemConfigurations
-                    .Select(scs => systemFactory.Create(host, scs, ConfigurationRoot, Details))
-                    .ToArray();
-            };
 
             return this;
         }

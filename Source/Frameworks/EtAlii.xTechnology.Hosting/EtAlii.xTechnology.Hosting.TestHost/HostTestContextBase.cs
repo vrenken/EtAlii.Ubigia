@@ -44,35 +44,19 @@ namespace EtAlii.xTechnology.Hosting
 		    Paths = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 	    }
 
-	    public virtual Task Start(PortRange portRange) => StartExclusive(portRange);
-
-	    private async Task StartExclusive(PortRange portRange)
+        public virtual async Task Start(PortRange portRange)
 	    {
 		    // We want to start only one test hosting at the same time.
             if (UseInProcessConnection)
             {
-                await StartExclusiveInternal(portRange).ConfigureAwait(false);
+                await StartInternal(portRange).ConfigureAwait(false);
             }
             else
             {
                 using var _ = new SystemSafeExecutionScope(_uniqueId);
-                await StartExclusiveInternal(portRange).ConfigureAwait(false);
+                await StartInternal(portRange).ConfigureAwait(false);
             }
 	    }
-
-        private async Task StartExclusiveInternal(PortRange portRange)
-        {
-            try
-            {
-                await Task
-                    .Run(async () => await StartInternal(portRange).ConfigureAwait(false))
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
-            }
-        }
 
 	    private async Task StartInternal(PortRange portRange)
 	    {
@@ -86,25 +70,22 @@ namespace EtAlii.xTechnology.Hosting
 		    Ports = details.Ports;
 		    Paths = details.Paths;
 
-            var hostConfigurationRoot = new ConfigurationBuilder()
+            HostConfiguration = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
 			    .Build();
-            HostConfiguration = hostConfigurationRoot;
+
             var hostOptions = new HostOptionsBuilder()
-                .Build(hostConfigurationRoot, details)
+                .Build(HostConfiguration, details)
                 .UseHostDiagnostics();
 
-            var clientConfigurationRoot = new ConfigurationBuilder()
+            ClientConfiguration = new ConfigurationBuilder()
                 .AddJsonFile(_clientConfigurationFile)
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
-            ClientConfiguration = clientConfigurationRoot;
 
-		    var host = (THost)new HostFactory<THost>().Create(hostOptions, false);
-
-		    Host = host;
-		    await host.Start().ConfigureAwait(false);
+            Host = (THost)new HostFactory<THost>().Create(hostOptions, false);
+		    await Host.Start().ConfigureAwait(false);
         }
 
 	    public virtual async Task Stop()

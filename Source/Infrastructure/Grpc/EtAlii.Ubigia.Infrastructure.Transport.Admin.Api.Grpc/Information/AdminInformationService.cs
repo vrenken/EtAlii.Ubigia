@@ -38,8 +38,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 			{
 				ConnectivityDetails = new ConnectivityDetails
 				{
-					ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}",
-					DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}",
+					ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminApiPort"]}",
+					DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserApiPort"]}",
 				}
 			};
 			return Task.FromResult(response);

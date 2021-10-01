@@ -1,26 +1,26 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 {
 	using System;
-	using System.Linq;
+    using System.Linq;
     using System.Reflection;
 	using System.Threading.Tasks;
-	using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting;
 
-	public class SignalRHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
+    public class RestInfrastructureHostTestContext : Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IInfrastructureHostTestContext<InfrastructureTestHost>
     {
         /// <inheritdoc />
         public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
 
-            // Improve this SignalRHostTestContext: is very ugly and breaks with many standardizations we tried to put in place.
+            // Improve this RestHostTestContext: is very ugly and breaks with many standardizations we tried to put in place.
             // However, for now it works...
             // More details can be found in the Github issue below:
             // https://github.com/vrenken/EtAlii.Ubigia/issues/91
 
-		    var codeBase = Assembly.GetExecutingAssembly()!.Location;
+            var codeBase = Assembly.GetExecutingAssembly()!.Location;
 		    var isRestTestBase = codeBase!.Contains("Rest.Tests") ||
 		                           codeBase.Contains("PowerShell.Tests");
 		    var isSignalRTestBase = codeBase.Contains("SignalR.Tests") ||

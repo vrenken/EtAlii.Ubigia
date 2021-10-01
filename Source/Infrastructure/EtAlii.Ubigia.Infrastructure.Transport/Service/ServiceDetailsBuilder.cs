@@ -20,12 +20,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             var serviceDetails = new List<ServiceDetails>();
 
-            if (configurationDetails.Paths.ContainsKey("UserApiRest"))
+            if (configurationDetails.Paths.ContainsKey("UserApiPathRest"))
             {
                 var restServiceDetails = BuildRestServiceDetails(configurationDetails);
                 serviceDetails.Add(restServiceDetails);
             }
-            if (configurationDetails.Paths.ContainsKey("UserApiSignalR"))
+            if (configurationDetails.Paths.ContainsKey("UserApiPathSignalR"))
             {
                 var signalRServiceDetails = BuildSignalRServiceDetails(configurationDetails);
                 serviceDetails.Add(signalRServiceDetails);
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // Again ugly, but for now we need to make this builder compatible with both the REST/SignalR AND Grpc services.
             // For this we need to be somewhat sneaky on how to build our details.
             // In a future refactoring all configurations will be merged into one single big one.
-            if (!configurationDetails.Paths.ContainsKey("SignalRApiRest") && !configurationDetails.Paths.ContainsKey("UserApiRest"))
+            if (!configurationDetails.Paths.ContainsKey("SignalRApiPathRest") && !configurationDetails.Paths.ContainsKey("UserApiPathRest"))
             {
                 // If we don't have any SignalR nor any REST details we should build and add Grpc service details.
                 var grpcServiceDetails = BuildGrpcServiceDetails(configurationDetails);
@@ -62,15 +62,21 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             adminHost = ConvertToDedicatedNetworkAddress(adminHost);
 
             var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApi"]);
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiSignalR"]);
+            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
+            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
+            if(configurationDetails.Paths.TryGetValue("UserApiPathSignalR", out var userApiPathSignalR))
+            {
+                dataAddressBuilder.Append(userApiPathSignalR);
+            }
             var dataAddress = dataAddressBuilder.ToString();
 
             var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApi"]);
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiSignalR"]);
+            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
+            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
+            if(configurationDetails.Paths.TryGetValue("AdminApiPathSignalR", out var adminApiPathSignalR))
+            {
+                managementAddressBuilder.Append(adminApiPathSignalR);
+            }
             var managementAddress = managementAddressBuilder.ToString();
 
             if (dataAddress == null)
@@ -101,15 +107,24 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             adminHost = ConvertToDedicatedNetworkAddress(adminHost);
 
             var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApi"]);
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiRest"]);
+            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
+            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
+            if(configurationDetails.Paths.TryGetValue("UserApiPathRest", out var userApiPathRest))
+            {
+                dataAddressBuilder.Append(userApiPathRest);
+            }
+
+            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPathRest"]);
             var dataAddress = dataAddressBuilder.ToString();
 
             var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApi"]);
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiRest"]);
+            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
+            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
+            if(configurationDetails.Paths.TryGetValue("AdminApiPathRest", out var adminApiPathRest))
+            {
+                managementAddressBuilder.Append(adminApiPathRest);
+            }
+
             var managementAddress = managementAddressBuilder.ToString();
 
             if (dataAddress == null)
@@ -140,13 +155,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             adminHost = ConvertToDedicatedNetworkAddress(adminHost);
 
             var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApi"]);
+            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
+            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
             var dataAddress = dataAddressBuilder.ToString();
 
             var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApi"]);
+            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
+            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
             var managementAddress = managementAddressBuilder.ToString();
 
             if (dataAddress == null)

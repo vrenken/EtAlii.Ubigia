@@ -8,13 +8,8 @@ namespace EtAlii.xTechnology.Hosting
     {
         public IHostOptions Build(IConfigurationRoot configurationRoot, ConfigurationDetails details)
 		{
-            var hostSection = configurationRoot.GetSection("Host");
-
-            var systemConfigurations = hostSection.GetAllSections("Systems");
-
             // Create a host options instance.
             var options = new HostOptions(configurationRoot)
-                .Use(systemConfigurations)
                 .Use(details);
 
             return options;

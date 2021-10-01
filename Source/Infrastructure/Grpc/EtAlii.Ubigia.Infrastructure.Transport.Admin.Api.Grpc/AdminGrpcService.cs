@@ -2,65 +2,33 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System;
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
     using EtAlii.xTechnology.Hosting;
-    using EtAlii.xTechnology.Hosting.Service.Grpc;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
+    using Serilog;
     using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-    public class AdminGrpcService : GrpcServiceBase
+    public class AdminGrpcService : INetworkService
     {
-        private readonly IConfigurationDetails _configurationDetails;
+        private readonly ILogger _log = Log.ForContext<AdminGrpcService>();
+        public ServiceConfiguration Configuration { get; }
 
-        public AdminGrpcService(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
-            : base(configuration)
+        public AdminGrpcService(ServiceConfiguration configuration)
         {
-            _configurationDetails = configurationDetails;
+            Configuration = configuration;
+            _log.Information("Instantiated {ServiceName}", nameof(AdminGrpcService));
+
         }
 
-        public override async Task Start()
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            Status.Title = "Ubigia infrastructure admin gRPC access";
-
-            Status.Description = "Starting...";
-            Status.Summary = "Starting Ubigia admin gRPC services";
-
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Ubigia admin gRPC services are available on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Running";
-            Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-            Status.Description = "Stopping...";
-            Status.Summary = "Stopping Ubigia admin gRPC services";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished providing Ubigia admin gRPC services on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Stopped";
-            Status.Summary = sb.ToString();
-        }
-
-        protected override void ConfigureServices(IServiceCollection services)
-        {
-            var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
+            var configurationDetails = globalServices.GetService<IConfigurationDetails>();
 
             var container = new Container();
             new AdminApiScaffolding(infrastructure).Register(container);
@@ -73,7 +41,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             container.Register<IAdminSpaceService, AdminSpaceService>();
             container.Register<IAdminInformationService, AdminInformationService>();
 
-            container.Register(() => _configurationDetails);
+            container.Register(() => configurationDetails);
 
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
@@ -112,7 +80,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
                 });
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
                 .UseRouting()

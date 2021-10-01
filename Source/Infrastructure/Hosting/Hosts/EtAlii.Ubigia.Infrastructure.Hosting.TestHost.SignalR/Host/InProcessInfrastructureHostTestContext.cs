@@ -5,7 +5,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR;
 
-    public class InProcessInfrastructureHostTestContext : SignalRHostTestContext
+    /// <summary>
+    /// We need to make the name of this HostTestContext transport-agnostic in order for it to be used in all
+    /// unit tests. Reason is that these are reused using shared projects.
+    /// </summary>
+    public class InProcessInfrastructureHostTestContext : SignalRInfrastructureHostTestContext
     {
         public InProcessInfrastructureHostTestContext()
         {

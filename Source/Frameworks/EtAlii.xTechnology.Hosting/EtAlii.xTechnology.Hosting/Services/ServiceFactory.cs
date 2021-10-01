@@ -2,40 +2,31 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using Microsoft.Extensions.Configuration;
+    using System;
 
     public class ServiceFactory
     {
-        private readonly IInstanceCreator _instanceCreator;
-
-        public ServiceFactory(IInstanceCreator instanceCreator)
+        public IService Create(ServiceConfiguration serviceConfiguration)
         {
-            _instanceCreator = instanceCreator;
-        }
+            var factoryTypeName = serviceConfiguration.Factory;
 
-        public IService Create(
-            IHost host, ISystem system,
-            IModule parentModule,
-            IServiceFactory serviceFactory,
-            IConfigurationSection serviceConfiguration,
-            IConfigurationRoot configurationRoot,
-            IConfigurationDetails configurationDetails)
-        {
-            var service = serviceFactory.Create(serviceConfiguration, configurationRoot, configurationDetails);
-            service.Setup(host, system, parentModule);
-            return service;
-        }
+            if (string.IsNullOrEmpty(factoryTypeName))
+            {
+                throw new InvalidOperationException($"Configuration section '{serviceConfiguration.Section.Path}' has no factory defined.");
+            }
 
-        public IService Create(
-            IHost host, ISystem system,
-            IModule parentModule,
-            IConfigurationSection serviceConfiguration,
-            IConfigurationRoot configurationRoot,
-            IConfigurationDetails configurationDetails)
-        {
-            _instanceCreator.TryCreate<IService>(serviceConfiguration, configurationRoot, configurationDetails, "service", out var service, true);
-            service.Setup(host, system, parentModule);
-            return service;
+            var type = Type.GetType(factoryTypeName, false);
+            if (type == null)
+            {
+                throw new InvalidOperationException($"Unable to instantiate factory: {factoryTypeName}");
+            }
+
+            if (!(Activator.CreateInstance(type) is IServiceFactory factory))
+            {
+                throw new InvalidOperationException($"Unable to activate factory: {factoryTypeName}");
+            }
+
+            return factory.Create(serviceConfiguration);
         }
     }
 }

@@ -1,51 +1,60 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+// TODO: Rename this whole project to EtAlii.Ubigia.infrastructure.Fabric.InMemory
+// And of course also the other persistence projects.
 namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
-    using System.Text;
+    using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
+    using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public class StorageService : ServiceBase, IStorageService
+    public class StorageService : IStorageService
     {
-        public IStorage Storage { get; }
+        public ServiceConfiguration Configuration { get; }
+        public IStorage Storage { get; private set; }
 
-        public StorageService(IConfigurationSection configurationSection,  IStorage storage)
-            : base(configurationSection)
+        public StorageService(ServiceConfiguration configuration)
         {
-            Storage = storage;
+            Configuration = configuration;
         }
 
-        public override async Task Start()
+        public Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        private IStorage CreateStorage()
         {
-            Status.Title = "Ubigia infrastructure in-memory storage subsystem";
+            string name;
+            name = Configuration.Section.GetValue<string>(nameof(name));
+            if (name == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
+            }
 
-            Status.Description = "Starting...";
-            Status.Summary = "Starting Ubigia in-memory storage subsystem";
+            string baseFolder;
+            baseFolder = Configuration.Section.GetValue<string>(nameof(baseFolder));
+            if (baseFolder == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(baseFolder)} not set in service configuration.");
+            }
 
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Ubigia in-memory storage subsystem is operational.");
-
-            Status.Description = "Running";
-            Status.Summary = sb.ToString();
+            var storageOptions = new StorageOptions(Configuration.Root)
+                .Use(name)
+                .UseInMemoryStorage()
+                .UseStorageDiagnostics();
+            return new StorageFactory().Create(storageOptions);
         }
 
-        public override async Task Stop()
+        public void ConfigureServices(IServiceCollection services)
         {
-            Status.Description = "Stopping...";
-            Status.Summary = "Stopping Ubigia in-memory storage subsystem";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished stopping Ubigia in-memory storage subsystem.");
-
-            Status.Description = "Stopped";
-            Status.Summary = sb.ToString();
+            Storage = CreateStorage();
+            services.AddSingleton<IStorageService>(this);
+            services.AddHostedService(_ => this);
         }
     }
 }

@@ -35,8 +35,6 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         ConfigurationDetails Details { get; }
 
-        Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> CreateSystems { get; }
-
         /// <summary>
         /// Instructs the host configuration to use the extensions provided.
         /// </summary>
@@ -44,10 +42,6 @@ namespace EtAlii.xTechnology.Hosting
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         IHostOptions Use(params IHostExtension[] extensions);
-
-        IHostOptions Use(params IConfigurationSection[] systemConfigurations);
-
-        IHostOptions Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems);
 
         IHostOptions Use(params ICommand[] commands);
 

@@ -2,71 +2,34 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 {
+    using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.SignalR;
 
-    public class AdminSignalRService : ServiceBase
+    public class AdminSignalRService : INetworkService
     {
-        private readonly IConfigurationDetails _configurationDetails;
+        public ServiceConfiguration Configuration { get; }
 
         public AdminSignalRService(
-            IConfigurationSection configuration,
-            IConfigurationDetails configurationDetails)
-            : base(configuration)
+            ServiceConfiguration configuration)
         {
-            _configurationDetails = configurationDetails;
-        }
-
-        public override async Task Start()
-        {
-            Status.Title = "Ubigia infrastructure admin SignalR access";
-
-            Status.Description = "Starting...";
-            Status.Summary = "Starting Ubigia admin SignalR services";
-
-            await base.Start().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("All OK. Ubigia admin SignalR services are available on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Running";
-            Status.Summary = sb.ToString();
-        }
-
-        public override async Task Stop()
-        {
-            Status.Description = "Stopping...";
-            Status.Summary = "Stopping Ubigia admin SignalR services";
-
-            await base.Stop().ConfigureAwait(false);
-
-            var sb = new StringBuilder();
-            sb.AppendLine("Finished providing Ubigia admin SignalR services on the address specified below.");
-            sb.AppendLine($"Address: {HostString}{PathString}");
-
-            Status.Description = "Stopped";
-            Status.Summary = sb.ToString();
+            Configuration = configuration;
         }
 
         [SuppressMessage(
             category: "Sonar Code Smell",
             checkId: "S4792:Configuring loggers is security-sensitive",
             Justification = "Safe to do so here.")]
-        protected override void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
 
             services
                 .AddSingleton(infrastructure.Accounts)
@@ -74,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddSingleton(infrastructure.Storages)
                 .AddSingleton(infrastructure.Information)
 
-                .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
+                .AddSingleton(Configuration.Details) // the configuration details are needed by the InformationController.
 
                 .AddSignalRInfrastructureAuthentication(infrastructure)
                 .AddInfrastructureSerialization()
@@ -95,16 +58,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
-                .UseCors(builder =>
-                {
-                    builder
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .WithOrigins($"https://{HostString}");
-                })
+                // .UseCors(builder =>
+                // {
+                //     builder
+                //         .AllowAnyHeader()
+                //         .AllowAnyMethod()
+                //         .WithOrigins($"https://{Configuration.IpAddress}");
+                // })
                 .UseRouting()
                 .UseEndpoints(endPoints =>
                 {

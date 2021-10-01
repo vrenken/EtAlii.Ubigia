@@ -29,16 +29,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             {
                 container.RegisterInitializer<IHost>(host =>
                 {
-                    var configurableHost = (IConfigurableHost)host;
-                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) =>
+                    host.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) =>
                     {
                         DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly(), _configurationRoot);
                     }, true);
                 });
-
-                // Register for logging required DI instances.
-                container.RegisterDecorator<IInstanceCreator, LoggingInstanceCreator>();
-                //container.RegisterDecorator(typeof(IHost), typeof(LoggingHost));
             }
         }
     }

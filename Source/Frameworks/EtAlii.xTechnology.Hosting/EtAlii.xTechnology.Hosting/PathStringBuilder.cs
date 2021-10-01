@@ -7,15 +7,10 @@ namespace EtAlii.xTechnology.Hosting
 
     public class PathStringBuilder
     {
-        public PathString Build(IConfigurationSection configuration, IModule parentModule)
+        public PathString Build(IConfigurationSection configuration)
         {
             var path = configuration.GetValue("Path", string.Empty);
             var pathString = new PathString(path);
-            if (parentModule != null)
-            {
-                pathString = parentModule.PathString.Add(pathString);
-            }
-
             return pathString;
         }
     }

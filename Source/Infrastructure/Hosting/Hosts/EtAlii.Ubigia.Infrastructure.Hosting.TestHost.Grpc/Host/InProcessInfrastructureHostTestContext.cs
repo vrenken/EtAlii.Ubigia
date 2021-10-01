@@ -12,7 +12,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using global::Grpc.Core.Logging;
     using global::Grpc.Net.Client;
 
-    public class InProcessInfrastructureHostTestContext : GrpcHostTestContext, IHostTestContext
+    /// <summary>
+    /// We need to make the name of this HostTestContext transport-agnostic in order for it to be used in all
+    /// unit tests. Reason is that these are reused using shared projects.
+    /// </summary>
+    public class InProcessInfrastructureHostTestContext : GrpcInfrastructureHostTestContext, IInfrastructureHostTestContext
     {
         public string HostIdentifier { get; }
 

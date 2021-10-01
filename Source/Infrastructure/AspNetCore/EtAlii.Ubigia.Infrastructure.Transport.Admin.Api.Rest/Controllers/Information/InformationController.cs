@@ -25,11 +25,21 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 	    {
 		    IActionResult response;
 		    try
-		    {
+            {
+                if (!_configurationDetails.Paths.TryGetValue("AdminApiPathRest", out var adminApiPathRest))
+                {
+                    adminApiPathRest = string.Empty;
+                }
+
+                if(!_configurationDetails.Paths.TryGetValue("UserApiPathRest", out var userApiPathRest))
+                {
+                    userApiPathRest = string.Empty;
+                }
+
 			    var details = new ConnectivityDetails
 			    {
-				    ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiRest"]}",
-				    DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiRest"]}",
+				    ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminApiPort"]}{_configurationDetails.Paths["AdminApiPath"]}{adminApiPathRest}",
+				    DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserApiPort"]}{_configurationDetails.Paths["UserApiPath"]}{userApiPathRest}",
 			    };
 
 			    response = Ok(details);

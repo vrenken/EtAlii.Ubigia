@@ -2,61 +2,30 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
-	using EtAlii.xTechnology.Hosting.Service.Grpc;
-	using EtAlii.xTechnology.MicroContainer;
+    using System;
+	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.MicroContainer;
 	using Microsoft.AspNetCore.Builder;
-	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
+    using Serilog;
     using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-	public class UserGrpcService : GrpcServiceBase
+    public class UserGrpcService : INetworkService
     {
-	    public UserGrpcService(IConfigurationSection configuration)
-            : base(configuration)
-	    {
-	    }
+        public ServiceConfiguration Configuration { get; }
+        private readonly ILogger _log = Log.ForContext<UserGrpcService>();
 
-	    public override async Task Start()
-	    {
-		    Status.Title = "Ubigia infrastructure user gRPC access";
-
-		    Status.Description = "Starting...";
-		    Status.Summary = "Starting Ubigia user gRPC services";
-
-		    await base.Start().ConfigureAwait(false);
-
-		    var sb = new StringBuilder();
-		    sb.AppendLine("All OK. Ubigia user gRPC services are available on the address specified below.");
-		    sb.AppendLine($"Address: {HostString}{PathString}");
-
-		    Status.Description = "Running";
-		    Status.Summary = sb.ToString();
-	    }
-
-	    public override async Task Stop()
-	    {
-		    Status.Description = "Stopping...";
-		    Status.Summary = "Stopping Ubigia user gRPC services";
-
-		    await base.Stop().ConfigureAwait(false);
-
-		    var sb = new StringBuilder();
-		    sb.AppendLine("Finished providing Ubigia user gRPC services on the address specified below.");
-		    sb.AppendLine($"Address: {HostString}{PathString}");
-
-		    Status.Description = "Stopped";
-		    Status.Summary = sb.ToString();
-	    }
-
-	    protected override void ConfigureServices(IServiceCollection services)
+        public UserGrpcService(ServiceConfiguration configuration)
         {
-	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            Configuration = configuration;
+            _log.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
+        }
+
+	    public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        {
+            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
 
             var container = new Container();
             new UserApiScaffolding(infrastructure).Register(container);
@@ -129,7 +98,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
                 });
         }
 
-        protected override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
                 .UseRouting()
