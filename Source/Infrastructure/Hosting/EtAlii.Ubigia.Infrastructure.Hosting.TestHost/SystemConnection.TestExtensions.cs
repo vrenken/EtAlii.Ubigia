@@ -19,8 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 .ConfigureAwait(false);
         }
 
-        public static Task<(ISystemConnection, SystemConnectionOptions)> CreateSystemConnection<TTestHost>(this HostTestContextBase<TTestHost> testContext)
-            where TTestHost : class, IInfrastructureTestHostBase
+        public static Task<(ISystemConnection, SystemConnectionOptions)> CreateSystemConnection(this HostTestContextBase testContext)
         {
             var systemConnectionOptions = new SystemConnectionOptions(testContext.ClientConfiguration)
                 .Use(testContext.Infrastructure)

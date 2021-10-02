@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 	using System.Threading.Tasks;
 	using EtAlii.xTechnology.Hosting;
 
-	public class GrpcInfrastructureHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>
+	public class GrpcInfrastructureHostTestContext : HostTestContextBase
     {
         /// <inheritdoc />
 	    public override async Task Start(PortRange portRange)

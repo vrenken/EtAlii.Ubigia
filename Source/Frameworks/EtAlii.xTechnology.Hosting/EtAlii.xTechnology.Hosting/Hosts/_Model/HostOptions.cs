@@ -29,6 +29,8 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public Func<IHost> CreateHost { get; private set; }
 
+        public IHostServicesFactory ServiceFactory { get; private set; }
+
         public Action<string> Output { get; private set; }
 
         /// <inheritdoc />
@@ -95,6 +97,18 @@ namespace EtAlii.xTechnology.Hosting
         public IHostOptions Use(Action<string> output)
         {
             Output = output;
+            return this;
+        }
+
+        public IHostOptions Use<THostServicesFactory>()
+            where THostServicesFactory: IHostServicesFactory, new()
+        {
+            if (ServiceFactory != null)
+            {
+                throw new InvalidOperationException("Service factory configuration already done");
+            }
+
+            ServiceFactory = new THostServicesFactory();
             return this;
         }
 

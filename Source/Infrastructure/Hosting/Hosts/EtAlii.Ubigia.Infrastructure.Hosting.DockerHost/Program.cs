@@ -22,8 +22,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
                 .AddConfigurationDetails(details)
                 .Build();
 
-            var hostOptions = new HostOptionsBuilder()
-                .Build(configurationRoot, details)
+            var hostOptions = new HostOptions(configurationRoot)
+                .Use<InfrastructureHostServicesFactory>()
+                .Use(details)
                 .UseDockerHost()
                 .UseHostDiagnostics();
 

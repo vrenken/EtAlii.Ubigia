@@ -75,8 +75,8 @@ namespace EtAlii.xTechnology.Hosting
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
 			    .Build();
 
-            var hostOptions = new HostOptionsBuilder()
-                .Build(HostConfiguration, details)
+            var hostOptions = new HostOptions(HostConfiguration)
+                .Use(details)
                 .UseHostDiagnostics();
 
             ClientConfiguration = new ConfigurationBuilder()

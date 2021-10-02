@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 	using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
 
-    public class RestInfrastructureHostTestContext : Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IInfrastructureHostTestContext<InfrastructureTestHost>
+    public class RestInfrastructureHostTestContext : HostTestContextBase, IInfrastructureHostTestContext<InfrastructureTestHost>
     {
         /// <inheritdoc />
         public override async Task Start(PortRange portRange)

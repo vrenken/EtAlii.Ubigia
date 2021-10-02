@@ -21,8 +21,6 @@ namespace EtAlii.xTechnology.Hosting
 
         private readonly ILogger _logger = Log.ForContext<TestHost>();
 
-        // Warning: This class should keep its public constructor.
-        // ReSharper disable once MemberCanBeProtected.Global
         protected TestHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
             : base(options, hostServicesFactory)
         {

@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             if(Debugger.IsAttached)
             {
                 // Server Startup
-                GrpcEnvironment.SetLogger(new LogLevelFilterLogger(new ConsoleLogger(), LogLevel.Debug) ); // show inner log
+                GrpcEnvironment.SetLogger(new LogLevelFilterLogger(new ConsoleLogger(), LogLevel.Debug)); // show inner log
             }
 
             var bytes = new byte[64];

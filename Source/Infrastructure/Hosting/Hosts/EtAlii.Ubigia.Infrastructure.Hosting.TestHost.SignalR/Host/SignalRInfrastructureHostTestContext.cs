@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 	using System.Threading.Tasks;
 	using EtAlii.xTechnology.Hosting;
 
-	public class SignalRInfrastructureHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IInfrastructureHostTestContext<InfrastructureTestHost>
+	public class SignalRInfrastructureHostTestContext : HostTestContextBase, IInfrastructureHostTestContext<InfrastructureTestHost>
     {
         /// <inheritdoc />
         public override async Task Start(PortRange portRange)

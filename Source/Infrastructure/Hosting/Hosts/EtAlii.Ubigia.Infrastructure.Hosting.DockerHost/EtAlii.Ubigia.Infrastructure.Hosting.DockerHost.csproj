@@ -58,6 +58,7 @@
 
     <!-- User -->
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
 
   </ItemGroup>
 </Project>

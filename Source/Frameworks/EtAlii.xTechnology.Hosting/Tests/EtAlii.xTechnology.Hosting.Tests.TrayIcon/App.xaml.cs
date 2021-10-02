@@ -21,8 +21,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 		        .AddConfigurationDetails(details)
 		        .Build();
 
-	        var hostOptions = new HostOptionsBuilder()
-		        .Build(configurationRoot, details)
+	        var hostOptions = new  HostOptions(configurationRoot)
+                .Use(details)
                 .UseTrayIconHost(this,
                     "Icon-Logo-White-Shaded.ico",
                     "Icon-Logo-Black.ico",
