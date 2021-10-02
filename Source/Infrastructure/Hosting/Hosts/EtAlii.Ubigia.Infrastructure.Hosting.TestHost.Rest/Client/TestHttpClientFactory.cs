@@ -12,11 +12,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 
 	internal class TestHttpClientFactory : IHttpClientFactory
 	{
-		private readonly RestInfrastructureHostTestContext _testContext;
+		private readonly IInfrastructureHostTestContext _testContext;
         private readonly IContextCorrelator _contextCorrelator;
 
         public TestHttpClientFactory(
-            RestInfrastructureHostTestContext testContext,
+            IInfrastructureHostTestContext testContext,
             IContextCorrelator contextCorrelator)
         {
             _testContext = testContext;

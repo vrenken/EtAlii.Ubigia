@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Threading;
 
-    public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
+    public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext
         where THostTestContext: class, IInfrastructureHostTestContext, new()
     {
-        public THostTestContext Host { get; private set; }
+        IInfrastructureHostTestContext ITransportTestContext.Host => Host;
+        protected THostTestContext Host { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
         private readonly IContextCorrelator _contextCorrelator;
@@ -70,7 +71,6 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         protected abstract ITransportProvider CreateTransportProvider(IContextCorrelator contextCorrelator);
 
         protected abstract IStorageTransportProvider CreateStorageTransportProvider(IContextCorrelator contextCorrelator);
-
 
         private async Task<(IManagementConnection, ManagementConnectionOptions)> CreateManagementConnection(
             Uri address, string account, string password,

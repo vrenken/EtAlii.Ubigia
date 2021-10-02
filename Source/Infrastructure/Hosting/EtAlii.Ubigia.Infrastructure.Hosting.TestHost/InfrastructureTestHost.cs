@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     /// It provides the host service factory that is able to understand which.
     /// different services can be hosted within an infrastructure host.
     /// </summary>
-	public class InfrastructureTestHost : TestHost, IInfrastructureTestHost
+	public class InfrastructureTestHost : TestHost
     {
 	    public IInfrastructure Infrastructure => _infrastructure;
 	    private IInfrastructure _infrastructure;

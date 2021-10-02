@@ -5,11 +5,10 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Grpc.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 
     public class TransportTestContext
     {
-        public ITransportTestContext<InProcessInfrastructureHostTestContext> Create()
+        public ITransportTestContext Create()
         {
             return new TransportTestContextFactory().Create<GrpcTransportTestContext>();
         }

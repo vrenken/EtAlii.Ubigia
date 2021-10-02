@@ -5,9 +5,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
     using System.Security.Cryptography;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
     using global::Grpc.Core;
     using global::Grpc.Core.Logging;
     using global::Grpc.Net.Client;
@@ -16,11 +17,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     /// We need to make the name of this HostTestContext transport-agnostic in order for it to be used in all
     /// unit tests. Reason is that these are reused using shared projects.
     /// </summary>
-    public class InProcessInfrastructureHostTestContext : GrpcInfrastructureHostTestContext, IInfrastructureHostTestContext
+    public class InfrastructureHostTestContext : HostTestContextBase, IInfrastructureHostTestContext
     {
         public string HostIdentifier { get; }
 
-        public InProcessInfrastructureHostTestContext()
+        public InfrastructureHostTestContext()
         {
             UseInProcessConnection = true;
 
@@ -34,6 +35,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
             HostIdentifier = Convert.ToBase64String(bytes);
+        }
+
+        /// <inheritdoc />
+        public override async Task Start(PortRange portRange)
+        {
+            await base
+                .Start(portRange)
+                .ConfigureAwait(false);
+
+            ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == "Grpc");
         }
 
         public GrpcChannel CreateAdminGrpcInfrastructureChannel() => this.CreateChannel(ServiceDetails.ManagementAddress);

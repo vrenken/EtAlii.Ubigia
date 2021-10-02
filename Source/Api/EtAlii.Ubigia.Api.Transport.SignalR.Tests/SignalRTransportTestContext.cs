@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Threading;
 
-	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
+	public class SignalRTransportTestContext : TransportTestContextBase<InfrastructureHostTestContext>
     {
         protected override ITransportProvider CreateTransportProvider(IContextCorrelator contextCorrelator)
         {

@@ -26,11 +26,4 @@ namespace EtAlii.Ubigia.Api.Tests
         Task Start(PortRange portRange);
         Task Stop();
     }
-
-    public interface ITransportTestContext<out THostTestContext> : ITransportTestContext
-        where THostTestContext : IInfrastructureHostTestContext, new()
-    {
-        new THostTestContext Host { get; }
-        IInfrastructureHostTestContext ITransportTestContext.Host => Host;
-    }
 }

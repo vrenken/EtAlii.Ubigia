@@ -4,13 +4,12 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class TransportUnitTestContext : IAsyncLifetime
     {
-        public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
+        public ITransportTestContext TransportTestContext { get; private set; }
 
         public ByteArrayComparer ByteArrayComparer { get; }
         public ContentComparer ContentComparer { get; }
@@ -21,6 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         public TestPropertiesFactory TestPropertiesFactory { get; }
 
         public TestIdentifierFactory TestIdentifierFactory { get; }
+
         public TransportUnitTestContext()
         {
             TestContentDefinitionFactory = new TestContentDefinitionFactory();

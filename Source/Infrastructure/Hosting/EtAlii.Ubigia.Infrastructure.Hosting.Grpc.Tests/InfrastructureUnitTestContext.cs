@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     {
         public IConfigurationRoot ClientConfiguration => Host.ClientConfiguration;
         public IConfigurationRoot HostConfiguration => Host.HostConfiguration;
-        public InProcessInfrastructureHostTestContext Host { get; private set; }
+        public InfrastructureHostTestContext Host { get; private set; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         public TestContentFactory TestContentFactory { get; }
         public TestPropertiesFactory TestPropertiesFactory { get; }
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             ContentComparer = new ContentComparer(ByteArrayComparer);
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
-            Host = new HostTestContextFactory().Create<InProcessInfrastructureHostTestContext>();
+            Host = new HostTestContextFactory().Create<InfrastructureHostTestContext>();
         }
 
         public async Task InitializeAsync()

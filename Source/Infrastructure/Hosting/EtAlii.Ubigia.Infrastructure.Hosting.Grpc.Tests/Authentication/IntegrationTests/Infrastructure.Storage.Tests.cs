@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	        _testContext = testContext;
         }
 
-		private async Task<Metadata> CreateAuthenticationHeaders(GrpcChannel channel, InProcessInfrastructureHostTestContext context)
+		private async Task<Metadata> CreateAuthenticationHeaders(GrpcChannel channel, InfrastructureHostTestContext context)
 		{
 			var authenticationClient = new AdminAuthenticationClient(channel);
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Threading;
 
-    public class RestTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
+    public class RestTransportTestContext : TransportTestContextBase<InfrastructureHostTestContext>
     {
         protected override ITransportProvider CreateTransportProvider(IContextCorrelator contextCorrelator)
         {

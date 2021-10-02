@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using global::Grpc.Net.Client;
 
-    public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
+    public class GrpcTransportTestContext : TransportTestContextBase<InfrastructureHostTestContext>
     {
         protected override ITransportProvider CreateTransportProvider(IContextCorrelator contextCorrelator)
         {

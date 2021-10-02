@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     public class TransportTestContextFactory
     {
         public TTransportTestContext Create<TTransportTestContext>()
-            where TTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, new()
+            where TTransportTestContext : TransportTestContextBase<InfrastructureHostTestContext>, new()
         {
             return new();
         }

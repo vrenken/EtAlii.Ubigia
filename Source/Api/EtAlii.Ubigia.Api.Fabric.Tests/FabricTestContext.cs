@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -18,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public IConfigurationRoot ClientConfiguration => Transport.Host.ClientConfiguration;
         public IConfigurationRoot HostConfiguration => Transport.Host.HostConfiguration;
 
-        public FabricTestContext(ITransportTestContext<InProcessInfrastructureHostTestContext> transport)
+        public FabricTestContext(ITransportTestContext transport)
         {
             Transport = transport;
         }

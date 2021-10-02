@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
     public class InfrastructureTestHelper
     {
-
         public async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
         {
             var space = await CreateSpace(infrastructure).ConfigureAwait(false);
