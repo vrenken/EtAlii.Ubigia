@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Infrastructure\ConsoleHost (Local - Grpc)" type="DotNetProject" factoryName=".NET Project">
+  <configuration default="false" name="Infrastructure\ConsoleHost" type="DotNetProject" factoryName=".NET Project">
     <option name="EXE_PATH" value="$PROJECT_DIR$/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost/bin/Debug/net5.0/EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.exe" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost/bin/Debug/net5.0" />
