@@ -62,9 +62,17 @@ namespace EtAlii.xTechnology.Hosting
             services.AddSingleton<IConfigurationDetails>(Options.Details);
             foreach (var service in Services.OfType<IBackgroundService>())
             {
-                service.Status.Summary = "State: Configuring...";
+                var sb = new StringBuilder();
+                sb.AppendLine($"Type: {service.GetType().Name}");
+                sb.AppendLine("State: Configuring...");
+                service.Status.Summary = sb.ToString();
+
                 service.ConfigureServices(services);
-                service.Status.Summary = "State: Running";
+
+                sb = new StringBuilder();
+                sb.AppendLine($"Type: {service.GetType().Name}");
+                sb.AppendLine("State: Running");
+                service.Status.Summary = sb.ToString();
             }
         }
 
@@ -102,6 +110,12 @@ namespace EtAlii.xTechnology.Hosting
                 {
                     webHostBuilder.UseKestrel(options =>
                     {
+                        var networkServices = Services.OfType<INetworkService>().ToArray();
+                        if (networkServices.Any())
+                        {
+
+                        }
+
                         options.Limits.MaxRequestBodySize = 1024 * 1024 * 2;
                         options.Limits.MaxRequestBufferSize = 1024 * 1024 * 2;
                         options.Limits.MaxResponseBufferSize = 1024 * 1024 * 2;
@@ -124,10 +138,15 @@ namespace EtAlii.xTechnology.Hosting
             // The only subsystems that services can share.
             foreach (var service in Services.OfType<INetworkService>())
             {
-                service.Status.Summary = "State: Configuring...";
-                application.IsolatedMapOnCondition(context.HostingEnvironment, service);
                 var sb = new StringBuilder();
+                sb.AppendLine($"Type: {service.GetType().Name}");
+                sb.AppendLine("State: Configuring...");
+                service.Status.Summary = sb.ToString();
 
+                application.IsolatedMapOnCondition(context.HostingEnvironment, service);
+
+                sb = new StringBuilder();
+                sb.AppendLine($"Type: {service.GetType().Name}");
                 var uriBuilder = new UriBuilder
                 {
                     Host = service.Configuration.IpAddress,
@@ -190,7 +209,7 @@ namespace EtAlii.xTechnology.Hosting
 
         private void UpdateStatus()
         {
-            _selfStatus.Title = $".NET Core {GetType().Name}";
+            _selfStatus.Title = $"{GetType().Name}";
             _selfStatus.Summary = $"State: {State}";
         }
     }

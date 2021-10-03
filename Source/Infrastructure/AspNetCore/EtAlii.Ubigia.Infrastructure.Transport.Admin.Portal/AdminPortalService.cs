@@ -3,9 +3,11 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 {
     using System;
+    using System.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Serilog;
@@ -52,14 +54,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
         {
             application
                 .UseRouting()
-                .UseWelcomePage()
-                .UseEndpoints(endpoints =>
+                .UseEndpoints(options =>
                 {
-                    endpoints.MapControllers();
+                    options.MapGet("/", request => request.Response.WriteAsync("Hello, World!"));
                 });
-            return;
+                //.UseWelcomePage();
 
-            if (environment.IsDevelopment())
+            if (environment.IsDevelopment() || Debugger.IsAttached)
             {
                 application.UseDeveloperExceptionPage();
             }
@@ -69,6 +70,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 application.UseHsts();
             }
+
+            return;
 
             //application.UseHttpsRedirection();
             application.UseStaticFiles();
