@@ -9,11 +9,8 @@ namespace EtAlii.xTechnology.Hosting
     {
         public ITaskbarIcon TaskbarIcon { get; }
 
-        protected TrayIconHost(
-            IHostOptions options,
-            ITaskbarIcon taskbarIcon,
-            IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        protected TrayIconHost(IHostOptions options, ITaskbarIcon taskbarIcon)
+            : base(options)
         {
             TaskbarIcon = taskbarIcon;
 

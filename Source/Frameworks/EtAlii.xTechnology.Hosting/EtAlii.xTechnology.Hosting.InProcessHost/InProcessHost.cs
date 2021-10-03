@@ -4,8 +4,8 @@ namespace EtAlii.xTechnology.Hosting
 {
     public abstract partial class InProcessHost : HostBase
     {
-        protected InProcessHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        protected InProcessHost(IHostOptions options)
+            : base(options)
         {
         }
     }

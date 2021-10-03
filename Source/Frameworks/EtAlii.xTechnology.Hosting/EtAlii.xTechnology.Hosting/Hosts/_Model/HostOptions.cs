@@ -101,7 +101,7 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         public IHostOptions Use<THostServicesFactory>()
-            where THostServicesFactory: IHostServicesFactory, new()
+            where THostServicesFactory : IHostServicesFactory, new()
         {
             if (ServiceFactory != null)
             {

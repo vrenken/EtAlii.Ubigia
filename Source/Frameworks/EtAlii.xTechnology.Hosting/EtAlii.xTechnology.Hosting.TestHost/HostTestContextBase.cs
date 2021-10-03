@@ -11,8 +11,9 @@ namespace EtAlii.xTechnology.Hosting
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
-    public abstract class HostTestContextBase<THost> : IHostTestContext
+    public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext
 		where THost: class, ITestHost
+        where THostServicesFactory : IHostServicesFactory, new()
     {
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
 
@@ -76,6 +77,7 @@ namespace EtAlii.xTechnology.Hosting
 			    .Build();
 
             var hostOptions = new HostOptions(HostConfiguration)
+                .Use<THostServicesFactory>()
                 .Use(details)
                 .UseHostDiagnostics();
 

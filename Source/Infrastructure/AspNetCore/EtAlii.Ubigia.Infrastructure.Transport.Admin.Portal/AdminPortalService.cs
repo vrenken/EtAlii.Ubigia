@@ -46,7 +46,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
         {
             application
                 .UseRouting()
-                .UseWelcomePage();
+                .UseWelcomePage()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
             return;
 
             if (environment.IsDevelopment())

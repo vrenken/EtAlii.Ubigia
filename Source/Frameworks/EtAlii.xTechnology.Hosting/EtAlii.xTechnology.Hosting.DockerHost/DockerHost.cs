@@ -2,11 +2,17 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public abstract partial class DockerHost : HostBase
+    using System.Threading.Tasks;
+
+    public partial class DockerHost : HostBase
     {
-        protected DockerHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        public DockerHost(IHostOptions options)
+            : base(options)
         {
         }
+
+        protected override Task Started() => Task.CompletedTask;
+
+        protected override Task Stopping() => Task.CompletedTask;
     }
 }

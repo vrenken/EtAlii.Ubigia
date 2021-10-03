@@ -4,8 +4,8 @@ namespace EtAlii.xTechnology.Hosting
 {
     public abstract partial class WindowsServiceHost : HostBase
     {
-        protected WindowsServiceHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        protected WindowsServiceHost(IHostOptions options)
+            : base(options)
         {
         }
     }

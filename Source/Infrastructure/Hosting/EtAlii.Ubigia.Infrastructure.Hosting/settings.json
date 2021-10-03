@@ -121,19 +121,20 @@
     "Management-Portal": {
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AdminPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal",
         "IpAddress": "{{HOST:AdminPortalHost@127.0.0.1}}",
-        "Port": "{{PATH:AdminPortalPort@64002}}",
+        "Port": "{{PATH:AdminPortalPort@80}}",
+        "Path": "{{PATH:AdminPortalPath@}}"
     },
     "Management-Api-Grpc": {
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc",
         "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
         "Port": "{{PORT:AdminApiPort@64001}}",
-        "Path": "{{PATH:AdminApi@}}"
+        "Path": "{{PATH:AdminApiPath@}}{{PATH:AdminApiPathGrpc@}}"
     },
     "User-Api-Grpc": {
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc",
         "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
         "Port": "{{PORT:UserApiPort@64000}}",
-        "Path": "{{PATH:UserApi@}}"
+        "Path": "{{PATH:UserApiPath@}}{{PATH:UserApiPathGrpc@}}"
     },
 
     "Persistence": {

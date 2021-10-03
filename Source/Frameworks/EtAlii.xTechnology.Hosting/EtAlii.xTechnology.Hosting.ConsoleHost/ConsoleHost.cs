@@ -2,12 +2,17 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public abstract partial class ConsoleHost : HostBase
+    using System.Threading.Tasks;
+
+    public partial class ConsoleHost : HostBase
     {
-        protected ConsoleHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        public ConsoleHost(IHostOptions options)
+            : base(options)
         {
         }
 
+        protected override Task Started() => Task.CompletedTask;
+
+        protected override Task Stopping() => Task.CompletedTask;
     }
 }

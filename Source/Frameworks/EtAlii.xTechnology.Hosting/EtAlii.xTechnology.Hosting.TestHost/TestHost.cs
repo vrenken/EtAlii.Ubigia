@@ -21,8 +21,8 @@ namespace EtAlii.xTechnology.Hosting
 
         private readonly ILogger _logger = Log.ForContext<TestHost>();
 
-        protected TestHost(IHostOptions options, IHostServicesFactory hostServicesFactory)
-            : base(options, hostServicesFactory)
+        protected TestHost(IHostOptions options)
+            : base(options)
         {
         }
 

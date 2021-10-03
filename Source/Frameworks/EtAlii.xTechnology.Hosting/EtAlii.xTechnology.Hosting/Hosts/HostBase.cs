@@ -22,7 +22,6 @@ namespace EtAlii.xTechnology.Hosting
         event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }
         private Action<IWebHostBuilder> _configureHost;
 
-        private readonly IHostServicesFactory _hostServicesFactory;
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
 
@@ -36,9 +35,8 @@ namespace EtAlii.xTechnology.Hosting
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected HostBase(IHostOptions options, IHostServicesFactory hostServicesFactory)
+        protected HostBase(IHostOptions options)
         {
-            _hostServicesFactory = hostServicesFactory;
             _selfStatus = new Status(GetType().Name);
 
             Options = options;
@@ -128,7 +126,7 @@ namespace EtAlii.xTechnology.Hosting
 
         protected virtual async Task Starting()
         {
-            Services = _hostServicesFactory.Create(Options);
+            Services = Options.ServiceFactory.Create(Options);
             _host = CreateHost();
             await _host
                 .StartAsync()

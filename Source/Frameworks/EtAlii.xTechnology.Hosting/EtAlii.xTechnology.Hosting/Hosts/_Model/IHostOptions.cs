@@ -35,6 +35,8 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         ConfigurationDetails Details { get; }
 
+        IHostServicesFactory ServiceFactory { get; }
+
         /// <summary>
         /// Instructs the host configuration to use the extensions provided.
         /// </summary>
@@ -44,6 +46,9 @@ namespace EtAlii.xTechnology.Hosting
         IHostOptions Use(params IHostExtension[] extensions);
 
         IHostOptions Use(params ICommand[] commands);
+
+        IHostOptions Use<THostServicesFactory>()
+            where THostServicesFactory : IHostServicesFactory, new();
 
         /// <summary>
         /// Instruct the host configuration to use the provided ConfigurationDetails and ConfigurationRoot.

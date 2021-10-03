@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 	public class LocalTestHost : TestHost
     {
 		public LocalTestHost(IHostOptions options)
-		    : base(options, new System1HostServicesFactory())
+		    : base(options)
 	    {
 		}
     }
