@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public abstract partial class HostTestContextBase : EtAlii.xTechnology.Hosting.HostTestContextBase<InfrastructureTestHost>
+    public abstract partial class HostTestContextBase : EtAlii.xTechnology.Hosting.HostTestContextBase<InfrastructureTestHost, InfrastructureHostServicesFactory>
     {
 	    /// <summary>
         /// The details of the service current under test.

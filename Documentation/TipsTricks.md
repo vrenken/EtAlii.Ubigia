@@ -31,6 +31,12 @@ TODO
 nbgv prepare-release
 ```
 
+
+## Docker image creation
+
+dotnet publish .\Source\EtAlii.Ubigia.sln
+docker build -t ubigia/storage:preview -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile .
+
 ## Architecture Decision Log
 
 - **[< 2021] SOLID and DRY should be aimed for wherever pragmatically possible.**
