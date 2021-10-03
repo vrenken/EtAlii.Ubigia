@@ -12,19 +12,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 	/// </summary>
 	public partial class App
 	{
-        private async void OnApplicationStartup(object sender, StartupEventArgs e)
+        private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-	        var details = await new ConfigurationDetailsParser()
-                .Parse("settings.json")
-                .ConfigureAwait(true);
-
 	        var configurationRoot = new ConfigurationBuilder()
-		        .AddConfigurationDetails(details)
+                .AddJsonFile("settings.json")
+                .ExpandEnvironmentVariablesInJson()
 		        .Build();
 
 	        var hostOptions = new HostOptions(configurationRoot)
                 .Use<InfrastructureHostServicesFactory>()
-                .Use(details)
                 .UseTrayIconHost(this,
                     "Icon-Logo-White-Shaded.ico",
                     "Icon-Logo-Black.ico",
