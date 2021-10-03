@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
 
-        public Status[] Status { get; private set; } = Array.Empty<Status>();
+        public Status[] Status { get; private set; }
 
         public ICommand[] Commands { get; private set; }
 
@@ -37,7 +37,9 @@ namespace EtAlii.xTechnology.Hosting
 
         protected HostBase(IHostOptions options)
         {
-            _selfStatus = new Status(GetType().Name);
+            _selfStatus = new Status(GetType().Name) { Summary = "Unknown", Title = GetType().Name };
+
+            Status = new[] { _selfStatus };
 
             Options = options;
             PropertyChanged += OnPropertyChanged;
@@ -60,7 +62,9 @@ namespace EtAlii.xTechnology.Hosting
             services.AddSingleton<IConfigurationDetails>(Options.Details);
             foreach (var service in Services.OfType<IBackgroundService>())
             {
+                service.Status.Summary = "State: Configuring...";
                 service.ConfigureServices(services);
+                service.Status.Summary = "State: Running";
             }
         }
 
@@ -120,7 +124,20 @@ namespace EtAlii.xTechnology.Hosting
             // The only subsystems that services can share.
             foreach (var service in Services.OfType<INetworkService>())
             {
+                service.Status.Summary = "State: Configuring...";
                 application.IsolatedMapOnCondition(context.HostingEnvironment, service);
+                var sb = new StringBuilder();
+
+                var uriBuilder = new UriBuilder
+                {
+                    Host = service.Configuration.IpAddress,
+                    Port = (int)service.Configuration.Port,
+                    Path = service.Configuration.Path
+                };
+                sb.AppendLine($"State: Running");
+                sb.AppendLine($"Location: {uriBuilder}");
+                service.Status.Summary = sb.ToString();
+
             }
         }
 
@@ -131,6 +148,12 @@ namespace EtAlii.xTechnology.Hosting
             await _host
                 .StartAsync()
                 .ConfigureAwait(false);
+            Status = new[] { _selfStatus }.Concat(Services.Select(s => s.Status)).ToArray();
+
+            foreach (var s in Status)
+            {
+                s.PropertyChanged += OnStatusPropertyChanged;
+            }
         }
 
         protected abstract Task Started();
@@ -149,7 +172,7 @@ namespace EtAlii.xTechnology.Hosting
             }
 	    }
 
-		public virtual void Setup(ICommand[] commands, Status[] status)
+		public virtual void Setup(ICommand[] commands)
         {
             Commands = commands;
 
@@ -162,22 +185,13 @@ namespace EtAlii.xTechnology.Hosting
                 })
                 .ToArray();
 
-            Status = status
-                .Concat(new [] {_selfStatus} )
-                .ToArray();
             Commands = commands;
-            foreach (var s in Status)
-            {
-                s.PropertyChanged += OnStatusPropertyChanged;
-            }
         }
 
         private void UpdateStatus()
         {
-            _selfStatus.Title = ".NET Core Host";
-            var sb = new StringBuilder();
-            sb.AppendLine($"State: {State}");
-            _selfStatus.Summary = _selfStatus.Description = sb.ToString();
+            _selfStatus.Title = $".NET Core {GetType().Name}";
+            _selfStatus.Summary = $"State: {State}";
         }
     }
 }

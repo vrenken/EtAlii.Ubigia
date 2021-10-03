@@ -14,12 +14,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 
     public class StorageService : IStorageService
     {
+        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
         public IStorage Storage { get; private set; }
 
-        public StorageService(ServiceConfiguration configuration)
+        public StorageService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;

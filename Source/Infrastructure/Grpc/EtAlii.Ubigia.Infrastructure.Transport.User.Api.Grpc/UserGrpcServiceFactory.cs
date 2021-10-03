@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
     public class UserGrpcServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration serviceConfiguration) => new UserGrpcService(serviceConfiguration);
+        public IService Create(ServiceConfiguration serviceConfiguration, Status status) => new UserGrpcService(serviceConfiguration, status);
     }
 }

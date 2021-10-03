@@ -12,12 +12,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
     public class AdminPortalService : INetworkService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
+
         private readonly ILogger _log = Log.ForContext<AdminPortalService>();
 
-        public AdminPortalService(ServiceConfiguration configuration)
+        public AdminPortalService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
             _log.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
         }
 

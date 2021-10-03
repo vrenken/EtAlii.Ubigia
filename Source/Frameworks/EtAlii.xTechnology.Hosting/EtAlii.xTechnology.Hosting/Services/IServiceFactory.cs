@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting
 {
     public interface IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration);
+        public IService Create(ServiceConfiguration configuration, Status status);
     }
 }

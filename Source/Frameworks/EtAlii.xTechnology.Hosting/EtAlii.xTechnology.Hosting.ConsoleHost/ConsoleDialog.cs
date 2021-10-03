@@ -129,11 +129,6 @@ namespace EtAlii.xTechnology.Hosting
         private void WriteHeaderAndStatus()
         {
             Console.Clear();
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("[Host]");
-            Console.WriteLine($"State: {_host.State}");
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------");
             foreach (var status in _host.Status)
             {
                 if (string.IsNullOrWhiteSpace(status.Title) || string.IsNullOrWhiteSpace(status.Summary)) continue;

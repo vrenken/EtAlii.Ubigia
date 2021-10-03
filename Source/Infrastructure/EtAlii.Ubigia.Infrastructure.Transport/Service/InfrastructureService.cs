@@ -19,16 +19,22 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class InfrastructureService : IInfrastructureService
     {
-        private IStorageService _storageService;
+        /// <inheritdoc />
+        public Status Status { get; }
 
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
         /// <inheritdoc />
         public IInfrastructure Infrastructure { get; private set; }
 
-        public InfrastructureService(ServiceConfiguration configuration)
+        private IStorageService _storageService;
+
+
+        public InfrastructureService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)

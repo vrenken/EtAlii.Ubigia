@@ -10,11 +10,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 
     public class AdminService : INetworkService
     {
+        public Status Status { get; }
+
         public ServiceConfiguration Configuration { get; }
 
-        public AdminService(ServiceConfiguration configuration)
+        public AdminService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

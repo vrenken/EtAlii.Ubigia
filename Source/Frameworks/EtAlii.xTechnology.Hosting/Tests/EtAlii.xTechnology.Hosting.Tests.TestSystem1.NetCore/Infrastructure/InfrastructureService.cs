@@ -8,11 +8,13 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 
     public class InfrastructureService : BackgroundService, IBackgroundService
     {
+        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
 
-        public InfrastructureService(ServiceConfiguration configuration)
+        public InfrastructureService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services) { }

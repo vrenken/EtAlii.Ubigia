@@ -10,11 +10,16 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 
     public class UserService : INetworkService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public UserService(ServiceConfiguration configuration)
+        public UserService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

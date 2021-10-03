@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.GrpcSystem
 {
     public class AdminServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration) => new AdminService(configuration);
+        public IService Create(ServiceConfiguration configuration, Status status) => new AdminService(configuration, status);
     }
 }

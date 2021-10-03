@@ -9,11 +9,17 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 
     public class AuthenticationService : INetworkService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public AuthenticationService(ServiceConfiguration configuration)
+
+        public AuthenticationService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) { }

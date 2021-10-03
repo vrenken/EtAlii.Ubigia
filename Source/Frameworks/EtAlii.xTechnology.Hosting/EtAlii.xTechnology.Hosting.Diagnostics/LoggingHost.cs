@@ -47,10 +47,10 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             await _decoree.Shutdown().ConfigureAwait(false);
         }
 
-        public void Setup(ICommand[] commands, Status[] status)
+        public void Setup(ICommand[] commands)
         {
             _logger.Information("Setting up host {HostName}", GetType().Name);
-            _decoree.Setup(commands, status);
+            _decoree.Setup(commands);
         }
     }
 }

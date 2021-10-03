@@ -16,11 +16,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
     public class AdminGrpcService : INetworkService
     {
         private readonly ILogger _log = Log.ForContext<AdminGrpcService>();
+
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public AdminGrpcService(ServiceConfiguration configuration)
+        public AdminGrpcService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
             _log.Information("Instantiated {ServiceName}", nameof(AdminGrpcService));
 
         }

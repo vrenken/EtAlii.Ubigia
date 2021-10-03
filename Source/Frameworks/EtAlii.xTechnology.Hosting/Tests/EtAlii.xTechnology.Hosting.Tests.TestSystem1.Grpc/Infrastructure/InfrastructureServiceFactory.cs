@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 {
     public class InfrastructureServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration);
+        public IService Create(ServiceConfiguration configuration, Status status) => new InfrastructureService(configuration, status);
     }
 }

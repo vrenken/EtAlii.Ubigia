@@ -14,12 +14,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
     public class UserGrpcService : INetworkService
     {
-        public ServiceConfiguration Configuration { get; }
         private readonly ILogger _log = Log.ForContext<UserGrpcService>();
 
-        public UserGrpcService(ServiceConfiguration configuration)
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
+        public ServiceConfiguration Configuration { get; }
+
+        public UserGrpcService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
             _log.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
         }
 

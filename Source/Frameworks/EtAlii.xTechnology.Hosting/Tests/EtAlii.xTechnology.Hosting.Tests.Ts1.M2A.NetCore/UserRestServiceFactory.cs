@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
 {
     public class UserRestServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration) => new UserRestService(configuration);
+        public IService Create(ServiceConfiguration configuration, Status status) => new UserRestService(configuration, status);
     }
 }

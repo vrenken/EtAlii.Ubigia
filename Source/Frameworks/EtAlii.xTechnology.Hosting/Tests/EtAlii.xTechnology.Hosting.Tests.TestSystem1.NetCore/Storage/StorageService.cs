@@ -9,11 +9,13 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 
     public class StorageService : BackgroundService, IBackgroundService
     {
+        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
 
-        public StorageService(ServiceConfiguration configuration)
+        public StorageService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services) { }

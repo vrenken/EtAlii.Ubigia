@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 {
     public class AuthenticationServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration) => new AuthenticationService(configuration);
+        public IService Create(ServiceConfiguration configuration, Status status) => new AuthenticationService(configuration, status);
     }
 }

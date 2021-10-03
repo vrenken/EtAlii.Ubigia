@@ -2,7 +2,6 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System;
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -43,11 +42,8 @@ namespace EtAlii.xTechnology.Hosting
                     new ShutdownHostCommand(host),
                 });
 
-                // Fetch all status items.
-                var statuses = Array.Empty<Status>();
-
                 // Activate the commands and status items.
-                host.Setup(commands.ToArray(), statuses);
+                host.Setup(commands.ToArray());
             });
         }
     }

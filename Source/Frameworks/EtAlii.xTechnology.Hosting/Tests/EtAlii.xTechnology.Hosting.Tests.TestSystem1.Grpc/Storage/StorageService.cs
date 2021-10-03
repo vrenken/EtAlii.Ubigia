@@ -6,11 +6,17 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 
     public class StorageService : IService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public StorageService(ServiceConfiguration configuration)
+
+        public StorageService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services) { }

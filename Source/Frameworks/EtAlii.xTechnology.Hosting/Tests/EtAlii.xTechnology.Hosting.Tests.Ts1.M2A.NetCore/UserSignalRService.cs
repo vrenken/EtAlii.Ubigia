@@ -10,11 +10,16 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
 
     public class UserSignalRService : INetworkService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public UserSignalRService(ServiceConfiguration configuration)
+        public UserSignalRService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

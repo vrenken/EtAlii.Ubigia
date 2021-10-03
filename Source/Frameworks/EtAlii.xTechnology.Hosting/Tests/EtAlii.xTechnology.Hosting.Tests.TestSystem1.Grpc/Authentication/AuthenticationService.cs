@@ -9,11 +9,13 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 
     public class AuthenticationService : INetworkService
     {
+        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
 
-        public AuthenticationService(ServiceConfiguration configuration)
+        public AuthenticationService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) { }

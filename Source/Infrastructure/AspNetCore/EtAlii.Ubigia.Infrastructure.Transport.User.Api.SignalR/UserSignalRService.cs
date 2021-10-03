@@ -15,11 +15,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
 	public class UserSignalRService : INetworkService
     {
+        /// <inheritdoc />
+        public Status Status { get; }
+
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public UserSignalRService(ServiceConfiguration configuration)
+        public UserSignalRService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
+            Status = status;
         }
 
         [SuppressMessage(

@@ -11,8 +11,6 @@ namespace EtAlii.xTechnology.Hosting
         private string _title;
         public string Summary { get => _summary; set => PropertyChanged.SetAndRaise(this, ref _summary, value); }
         private string _summary;
-        public string Description { get => _description; set => PropertyChanged.SetAndRaise(this, ref _description, value); }
-        private string _description;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

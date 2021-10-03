@@ -17,7 +17,7 @@ namespace EtAlii.xTechnology.Hosting
 
         ICommand[] Commands { get; }
 
-        void Setup(ICommand[] commands, Status[] status);
+        void Setup(ICommand[] commands);
 
         Task Start();
 

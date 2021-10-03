@@ -64,6 +64,6 @@ namespace EtAlii.xTechnology.Hosting
 
         public Task Shutdown() => _currentHost.Shutdown();
 
-        public void Setup(ICommand[] commands, Status[] status) => _currentHost.Setup(commands, status);
+        public void Setup(ICommand[] commands) => _currentHost.Setup(commands);
     }
 }

@@ -26,10 +26,10 @@ namespace EtAlii.xTechnology.Hosting
         {
         }
 
-        public override void Setup(ICommand[] commands, Status[] status)
+        public override void Setup(ICommand[] commands)
         {
             _logger.Information("Setting up host {HostName}", GetType().Name);
-            base.Setup(commands, status);
+            base.Setup(commands);
         }
 
         /// <summary>
