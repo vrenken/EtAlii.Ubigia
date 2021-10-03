@@ -23,8 +23,6 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             kestrelOptions.ConfigureHttpsDefaults(options => options.SslProtocols = SslProtocols.Tls13);
-            //kestrelOptions.ConfigureHttpsDefaults(options => options.);
-                //options.ConfigureHttpsDefaults(o => o.SslProtocols == SslProtocols.Tls11);.Protocols = HttpProtocols.Http2;
             kestrelOptions.Limits.MaxRequestBodySize = 1024 * 1024 * 2;
             kestrelOptions.Limits.MaxRequestBufferSize = 1024 * 1024 * 2;
             kestrelOptions.Limits.MaxResponseBufferSize = 1024 * 1024 * 2;
@@ -60,6 +58,7 @@ namespace EtAlii.xTechnology.Hosting
 
         private void OnConfigureListenOptions(ListenOptions options)
         {
+            // We want all the communication to use both HTTP2 and HTTPS. In the future well move everything to HTTP3.
             options.Protocols = HttpProtocols.Http2;
             options.UseHttps();
             // options.UseHttps("<path to .pfx file>", "<certificate password>")
