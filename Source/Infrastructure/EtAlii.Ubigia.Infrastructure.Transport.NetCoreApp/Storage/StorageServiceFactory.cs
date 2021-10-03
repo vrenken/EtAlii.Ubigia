@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 
 	public class StorageServiceFactory : IServiceFactory
 	{
-        public IService Create(ServiceConfiguration serviceConfiguration, Status status) => new StorageService(serviceConfiguration, status);
+        public IService Create(ServiceConfiguration configuration, Status status) => new StorageService(configuration, status);
 	}
 }

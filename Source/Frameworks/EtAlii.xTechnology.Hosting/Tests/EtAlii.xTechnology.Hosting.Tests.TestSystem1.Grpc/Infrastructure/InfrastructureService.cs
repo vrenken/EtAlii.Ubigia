@@ -21,8 +21,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
             Status = status;
         }
 
-        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) { }
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        {
+            // For testing we don't have anything related to the services to configure.
+        }
 
-        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment) { }
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        {
+            // For testing we don't have anything related to the application to configure.
+        }
     }
 }

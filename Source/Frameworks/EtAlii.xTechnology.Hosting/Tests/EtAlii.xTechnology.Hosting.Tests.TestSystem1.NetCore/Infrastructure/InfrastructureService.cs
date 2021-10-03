@@ -17,7 +17,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
             Status = status;
         }
 
-        public void ConfigureServices(IServiceCollection services) { }
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // For testing we don't have anything related to the services to configure.
+        }
+
         protected override Task ExecuteAsync(CancellationToken stoppingToken) => Task.CompletedTask;
     }
 }
