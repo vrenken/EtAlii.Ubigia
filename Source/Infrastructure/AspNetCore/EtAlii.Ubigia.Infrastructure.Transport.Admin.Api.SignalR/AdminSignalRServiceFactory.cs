@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 
     public class AdminSignalRServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new AdminSignalRService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new AdminSignalRService(configuration, status);
     }
 }

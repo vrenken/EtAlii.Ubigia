@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
     public class AdminPortalServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new AdminPortalService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new AdminPortalService(configuration, status);
     }
 }

@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
 
     public class StorageServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new StorageService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new StorageService(configuration, status);
     }
 }

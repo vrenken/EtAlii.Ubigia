@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc
 {
     public class UserServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new UserService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new UserService(configuration, status);
     }
 }

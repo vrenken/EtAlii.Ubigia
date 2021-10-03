@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 {
     public class AuthenticationServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new AuthenticationService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new AuthenticationService(configuration, status);
     }
 }

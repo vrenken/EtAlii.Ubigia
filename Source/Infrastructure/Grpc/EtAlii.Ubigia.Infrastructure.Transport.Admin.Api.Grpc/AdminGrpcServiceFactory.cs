@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 
     public class AdminGrpcServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new AdminGrpcService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new AdminGrpcService(configuration, status);
     }
 }
