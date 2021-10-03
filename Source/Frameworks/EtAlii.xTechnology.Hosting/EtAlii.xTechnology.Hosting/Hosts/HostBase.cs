@@ -29,7 +29,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public ICommand[] Commands { get; private set; }
 
-        protected IService[] Services { get; private set; }
+        public IService[] Services { get; private set; }
 
         public IHostOptions Options { get; }
 
@@ -59,7 +59,6 @@ namespace EtAlii.xTechnology.Hosting
 
         protected void ConfigureBackgroundServices(HostBuilderContext context, IServiceCollection services)
         {
-            services.AddSingleton<IConfigurationDetails>(Options.Details);
             foreach (var service in Services.OfType<IBackgroundService>())
             {
                 var sb = new StringBuilder();
@@ -150,7 +149,7 @@ namespace EtAlii.xTechnology.Hosting
 
         protected virtual async Task Starting()
         {
-            Services = Options.ServiceFactory.Create(Options);
+            Services = Options.ServiceFactory.Create(Options, this);
             _host = CreateHost();
             await _host
                 .StartAsync()

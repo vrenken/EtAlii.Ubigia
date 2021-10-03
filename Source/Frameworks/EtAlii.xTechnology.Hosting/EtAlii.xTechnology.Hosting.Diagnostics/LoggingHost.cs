@@ -17,6 +17,8 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public State State => _decoree.State;
         public Status[] Status => _decoree.Status;
         public ICommand[] Commands => _decoree.Commands;
+        public IService[] Services => _decoree.Services;
+
         public event PropertyChangedEventHandler PropertyChanged;
         public IHostOptions Options => _decoree.Options;
         event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }

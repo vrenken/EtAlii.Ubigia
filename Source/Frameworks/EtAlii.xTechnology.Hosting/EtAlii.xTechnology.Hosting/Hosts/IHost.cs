@@ -9,6 +9,8 @@ namespace EtAlii.xTechnology.Hosting
 
     public interface IHost : INotifyPropertyChanged
     {
+        IService[] Services { get; }
+
         IHostOptions Options { get; }
 
         State State { get; }

@@ -17,6 +17,8 @@ namespace EtAlii.xTechnology.Hosting
         public IHostOptions Options => _currentHost.Options;
         public State State => _currentHost.State;
 
+        public IService[] Services => _currentHost.Services;
+
         public Status[] Status => _currentHost.Status;
 
         public ICommand[] Commands => _currentHost.Commands;
