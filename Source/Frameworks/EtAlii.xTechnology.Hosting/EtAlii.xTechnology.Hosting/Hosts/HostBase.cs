@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public abstract class HostBase : IHost
+    public abstract partial class HostBase : IHost
     {
         protected Microsoft.Extensions.Hosting.IHost Host => _host;
         private Microsoft.Extensions.Hosting.IHost _host;
@@ -108,19 +108,7 @@ namespace EtAlii.xTechnology.Hosting
                 .ConfigureHostConfiguration(ConfigureHostConfiguration)
                 .ConfigureWebHost(webHostBuilder =>
                 {
-                    webHostBuilder.UseKestrel(options =>
-                    {
-                        var networkServices = Services.OfType<INetworkService>().ToArray();
-                        if (networkServices.Any())
-                        {
-
-                        }
-
-                        options.Limits.MaxRequestBodySize = 1024 * 1024 * 2;
-                        options.Limits.MaxRequestBufferSize = 1024 * 1024 * 2;
-                        options.Limits.MaxResponseBufferSize = 1024 * 1024 * 2;
-                        options.AllowSynchronousIO = true;
-                    });
+                    webHostBuilder.UseKestrel(ConfigureKestrel);
                     webHostBuilder.Configure(ConfigureApplication);
                     _configureHost?.Invoke(webHostBuilder);
                 })

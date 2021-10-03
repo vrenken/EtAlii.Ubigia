@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Serilog;
@@ -53,12 +52,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
-                .UseRouting()
-                .UseEndpoints(options =>
-                {
-                    options.MapGet("/", request => request.Response.WriteAsync("Hello, World!"));
-                });
-                //.UseWelcomePage();
+                .UseHsts()
+                .UseWelcomePage();
 
             if (environment.IsDevelopment() || Debugger.IsAttached)
             {
