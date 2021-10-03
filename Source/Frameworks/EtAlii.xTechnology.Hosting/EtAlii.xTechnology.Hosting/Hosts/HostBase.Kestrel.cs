@@ -2,7 +2,6 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -10,7 +9,6 @@ namespace EtAlii.xTechnology.Hosting
     using System.Reflection;
     using System.Security.Authentication;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
 
     public abstract partial class HostBase
@@ -21,8 +19,7 @@ namespace EtAlii.xTechnology.Hosting
             var networkServices = Services.OfType<INetworkService>().ToArray();
             foreach (var networkService in networkServices)
             {
-                var hostString = new HostString(networkService.Configuration.IpAddress, (int)networkService.Configuration.Port);
-                ConfigureKestrelForService(kestrelOptions, hostString);
+                ConfigureKestrelForService(kestrelOptions, networkService.Configuration.IpAddress, (int)networkService.Configuration.Port);
             }
 
             kestrelOptions.ConfigureHttpsDefaults(options => options.SslProtocols = SslProtocols.Tls13);
@@ -38,31 +35,26 @@ namespace EtAlii.xTechnology.Hosting
             category: "Sonar Code Smell",
             checkId: "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields",
             Justification = "Safe to do so here, this is a patch to get Kestrel to work as needed.")]
-        private void ConfigureKestrelForService(KestrelServerOptions options, HostString hostString)
+        private void ConfigureKestrelForService(KestrelServerOptions options, string ipAddressString, int port)
         {
-            if (!hostString.Port.HasValue)
-            {
-                throw new InvalidOperationException("Unable to configure Grpc service: No port specified.");
-            }
-
-            var ipAddress = IPAddress.Parse(hostString.Host);
+            var ipAddress = IPAddress.Parse(ipAddressString);
 
             var property = options.GetType().GetProperty("ListenOptions", BindingFlags.NonPublic | BindingFlags.Instance);
 
             var listenOptions = property!.GetValue(options) as IEnumerable<ListenOptions>;
-            if (listenOptions!.Any(lo => Equals(lo.IPEndPoint.Address, ipAddress) && lo.IPEndPoint.Port == hostString.Port)) return;
+            if (listenOptions!.Any(lo => Equals(lo.IPEndPoint.Address, ipAddress) && lo.IPEndPoint.Port == port)) return;
 
             if (Equals(ipAddress, IPAddress.None))
             {
-                options.ListenAnyIP(hostString.Port.Value, OnConfigureListenOptions);
+                options.ListenAnyIP(port, OnConfigureListenOptions);
             }
             else if (Equals(ipAddress, IPAddress.Loopback))
             {
-                options.ListenLocalhost(hostString.Port.Value, OnConfigureListenOptions);
+                options.ListenLocalhost(port, OnConfigureListenOptions);
             }
             else
             {
-                options.Listen(ipAddress, hostString.Port.Value, OnConfigureListenOptions);
+                options.Listen(ipAddress, port, OnConfigureListenOptions);
             }
         }
 
