@@ -15,11 +15,13 @@
       <IsTransformFile>True</IsTransformFile>
       <Link>settings.Release.json</Link>
     </None>
-    <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Release-Ubuntu.json">
+
+    <None Update="settings.Release-Ubuntu.json">
       <DependentUpon>settings.json</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
       <Link>settings.Release-Ubuntu.json</Link>
     </None>
+
     <None Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\settings.Debug.json">
       <DependentUpon>settings.json</DependentUpon>
       <IsTransformFile>True</IsTransformFile>

@@ -17,10 +17,5 @@
     <None Update="settings.Debug.json">
       <DependentUpon>settings.json</DependentUpon>
     </None>
-    <None Update="settings.Release-Ubuntu.json">
-      <DefaultPackFolder>none</DefaultPackFolder>
-      <BuildAction>None</BuildAction>
-      <DependentUpon>settings.json</DependentUpon>
-    </None>
   </ItemGroup>
 </Project>

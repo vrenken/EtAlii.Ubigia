@@ -4,15 +4,15 @@ WORKDIR /ubigia
 
 #Network related settings.
 EXPOSE 64000/tcp
-ENV UBIGIA_DATA_DATA_PORT_INTERFACE         = 'http://+'
-ENV UBIGIA_DATA_DATA_PORT                   = 64000
+ENV UBIGIA_DATA_PORT_INTERFACE         = '0.0.0.0'
+ENV UBIGIA_DATA_PORT                   = 64000
 EXPOSE 64001/tcp
-ENV UBIGIA_DATA_MANAGEMENT_PORT_INTERFACE   = 'http://+'
-ENV UBIGIA_DATA_MANAGEMENT_PORT             = 64001
+ENV UBIGIA_MANAGEMENT_INTERFACE        = '0.0.0.0'
+ENV UBIGIA_MANAGEMENT_PORT             = 64001
 
 # Storage related settings.
 VOLUME ["/ubigia/data"]
-ENV UBIGIA_DATA_LOCATION = '/ubigia/data'
+ENV UBIGIA_DATA_FOLDER = '/ubigia/data'
 
 # Diagnostics related settings.
 ENV SERILOG_SERVER_URL = 'http://seq.avalon:5341'
