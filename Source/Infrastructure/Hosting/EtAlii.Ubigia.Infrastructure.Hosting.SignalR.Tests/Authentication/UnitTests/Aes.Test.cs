@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
 
             var decryptedByte = decryptedBytes[2];
-            decryptedBytes[2] = (byte)(decryptedByte == 0 ? decryptedByte + 1 : decryptedByte - 1);
+            decryptedBytes[2] = (byte)(decryptedByte == 0 ? 1 : decryptedByte - 1);
 
             Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<byte>.Default);
         }
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var encryptedBytes = Aes.Encrypt(originalBytes);
 
             var encryptedByte = encryptedBytes[2];
-            encryptedBytes[2] = (byte)(encryptedByte == 0 ? encryptedByte + 1 : encryptedByte - 1);
+            encryptedBytes[2] = (byte)(encryptedByte == 0 ? 1 : encryptedByte - 1);
 
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
 
