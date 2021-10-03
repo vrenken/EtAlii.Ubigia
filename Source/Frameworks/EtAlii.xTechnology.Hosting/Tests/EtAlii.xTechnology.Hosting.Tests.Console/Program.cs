@@ -2,7 +2,6 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Console
 {
-    using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
@@ -12,17 +11,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static async Task Main()
+        public static void Main()
         {
-            var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
-
             var configurationRoot = new ConfigurationBuilder()
-                .AddConfigurationDetails(details)
+                .AddJsonFile("settings.json")
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
 
             var hostOptions = new HostOptions(configurationRoot)
-                .Use(details)
                 .UseConsoleHost()
                 .UseHostDiagnostics();
 

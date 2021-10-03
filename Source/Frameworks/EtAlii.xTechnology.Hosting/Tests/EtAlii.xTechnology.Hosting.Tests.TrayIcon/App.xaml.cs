@@ -3,6 +3,7 @@
 namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 {
 	using System.Windows;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
 
@@ -11,18 +12,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 	/// </summary>
 	public partial class App
 	{
-        private async void OnApplicationStartup(object sender, StartupEventArgs e)
+        private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-	        var details = await new ConfigurationDetailsParser()
-                .Parse("settings.json")
-                .ConfigureAwait(false);
-
 	        var configurationRoot = new ConfigurationBuilder()
-		        .AddConfigurationDetails(details)
+                .AddJsonFile("settings.json")
+                .ExpandEnvironmentVariablesInJson()
 		        .Build();
 
 	        var hostOptions = new  HostOptions(configurationRoot)
-                .Use(details)
                 .UseTrayIconHost(this,
                     "Icon-Logo-White-Shaded.ico",
                     "Icon-Logo-Black.ico",
