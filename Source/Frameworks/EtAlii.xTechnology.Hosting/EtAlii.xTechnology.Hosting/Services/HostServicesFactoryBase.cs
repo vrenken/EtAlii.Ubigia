@@ -6,16 +6,16 @@ namespace EtAlii.xTechnology.Hosting
 
     public abstract class HostServicesFactoryBase : IHostServicesFactory
     {
-        public abstract IService[] Create(IHostOptions options);
+        public abstract IService[] Create(IHostOptions options, IHost host);
 
-        protected void TryAddService(List<IService> services, IHostOptions options, string configurationSectionName)
+        protected void TryAddService(List<IService> services, IHost host, IHostOptions options, string configurationSectionName)
         {
             var configurationSection = options.ConfigurationRoot.GetSection(configurationSectionName);
             if (configurationSection != null)
             {
-                if(ServiceConfiguration.TryCreate(configurationSection, options.ConfigurationRoot, options.Details, out var serviceConfiguration))
+                if(ServiceConfiguration.TryCreate(configurationSection, options.ConfigurationRoot, out var serviceConfiguration))
                 {
-                    var service = new ServiceFactory().Create(serviceConfiguration);
+                    var service = new ServiceFactory().Create(serviceConfiguration, host);
                     services.Add(service);
                 }
             }

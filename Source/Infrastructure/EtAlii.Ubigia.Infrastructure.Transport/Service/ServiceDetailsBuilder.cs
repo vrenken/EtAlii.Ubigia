@@ -1,188 +1,74 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Text;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
+    /// <summary>
+    /// The ServiceDetailsBuilder is able to make sense of all the services configured
+    /// and accessible through the infrastructure.
+    /// </summary>
     public class ServiceDetailsBuilder : IServiceDetailsBuilder
     {
-        public ServiceDetails[] Build(IConfigurationDetails configurationDetails)
+        public ServiceDetails[] Build(IHost host)
         {
-            // Improve this ServiceDetailsBuilder: is very ugly and breaks with many standardizations we tried to put in place.
-            // More details can be found in the Github issue below:
-            // https://github.com/vrenken/EtAlii.Ubigia/issues/91
+            var networkServices = host.Services
+                .OfType<INetworkService>().
+                ToArray();
 
-            var serviceDetails = new List<ServiceDetails>();
+            var managementGrpcService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "Management-Api-Grpc");
+            var dataGrpcService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "User-Api-Grpc");
 
-            if (configurationDetails.Paths.ContainsKey("UserApiPathRest"))
-            {
-                var restServiceDetails = BuildRestServiceDetails(configurationDetails);
-                serviceDetails.Add(restServiceDetails);
-            }
-            if (configurationDetails.Paths.ContainsKey("UserApiPathSignalR"))
-            {
-                var signalRServiceDetails = BuildSignalRServiceDetails(configurationDetails);
-                serviceDetails.Add(signalRServiceDetails);
-            }
+            var managementSignalRService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "Management-Api-SignalR");
+            var dataSignalRService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "User-Api-SignalR");
 
-            // Again ugly, but for now we need to make this builder compatible with both the REST/SignalR AND Grpc services.
-            // For this we need to be somewhat sneaky on how to build our details.
-            // In a future refactoring all configurations will be merged into one single big one.
-            if (!configurationDetails.Paths.ContainsKey("SignalRApiPathRest") && !configurationDetails.Paths.ContainsKey("UserApiPathRest"))
-            {
-                // If we don't have any SignalR nor any REST details we should build and add Grpc service details.
-                var grpcServiceDetails = BuildGrpcServiceDetails(configurationDetails);
-                serviceDetails.Add(grpcServiceDetails);
-            }
+            var managementRestService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "Management-Api-Rest");
+            var dataRestService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "User-Api-Rest");
 
-            if (!serviceDetails.Any(sd => sd.IsSystemService))
-            {
-                throw new NotSupportedException("Unable to classify one of the services as the system service");
-            }
+            var grpcServiceDetails = managementGrpcService != null && dataGrpcService != null
+                ? ToServiceDetails(ServiceDetailsName.Grpc, managementGrpcService, dataGrpcService)
+                : null;
 
-            if (serviceDetails.Count(sd => sd.IsSystemService) > 1)
-            {
-                throw new NotSupportedException("Unable to classify one single service as the system service");
-            }
+            var signalRServiceDetails = managementSignalRService != null && dataSignalRService != null
+                ? ToServiceDetails(ServiceDetailsName.SignalR, managementSignalRService, dataSignalRService)
+                : null;
 
-            return serviceDetails.ToArray();
+            var restServiceDetails = managementRestService != null && dataRestService != null
+                ? ToServiceDetails(ServiceDetailsName.Rest, managementRestService, dataRestService)
+                : null;
+
+            return new []
+                {
+                    grpcServiceDetails,
+                    signalRServiceDetails,
+                    restServiceDetails
+                }.Where(sd => sd != null)
+                .ToArray();
         }
 
-        private ServiceDetails BuildSignalRServiceDetails(IConfigurationDetails configurationDetails)
+        private ServiceDetails ToServiceDetails(string name, INetworkService managementService, INetworkService dataService)
         {
-            var userHost = configurationDetails.Hosts["UserHost"];
-            userHost = ConvertToDedicatedNetworkAddress(userHost);
-            var adminHost = configurationDetails.Hosts["AdminHost"];
-            adminHost = ConvertToDedicatedNetworkAddress(adminHost);
+            var managementAddress = ToServiceAddress(managementService);
+            var dataAddress = ToServiceAddress(dataService);
+            var storageAddress = ToStorageAddress(dataService);
+            return new ServiceDetails(name, managementAddress, dataAddress, storageAddress);
 
-            var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
-            if(configurationDetails.Paths.TryGetValue("UserApiPathSignalR", out var userApiPathSignalR))
-            {
-                dataAddressBuilder.Append(userApiPathSignalR);
-            }
-            var dataAddress = dataAddressBuilder.ToString();
-
-            var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
-            if(configurationDetails.Paths.TryGetValue("AdminApiPathSignalR", out var adminApiPathSignalR))
-            {
-                managementAddressBuilder.Append(adminApiPathSignalR);
-            }
-            var managementAddress = managementAddressBuilder.ToString();
-
-            if (dataAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start SignalR service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(dataAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start SignalR service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
-            }
-
-            if (managementAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start SignalR service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(managementAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start SignalR service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
-            }
-
-            return new ServiceDetails("SignalR", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), false);
         }
-        private ServiceDetails BuildRestServiceDetails(IConfigurationDetails configurationDetails)
+        private Uri ToServiceAddress(INetworkService service)
         {
-            var userHost = configurationDetails.Hosts["UserHost"];
-            userHost = ConvertToDedicatedNetworkAddress(userHost);
-            var adminHost = configurationDetails.Hosts["AdminHost"];
-            adminHost = ConvertToDedicatedNetworkAddress(adminHost);
-
-            var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
-            if(configurationDetails.Paths.TryGetValue("UserApiPathRest", out var userApiPathRest))
-            {
-                dataAddressBuilder.Append(userApiPathRest);
-            }
-
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPathRest"]);
-            var dataAddress = dataAddressBuilder.ToString();
-
-            var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
-            if(configurationDetails.Paths.TryGetValue("AdminApiPathRest", out var adminApiPathRest))
-            {
-                managementAddressBuilder.Append(adminApiPathRest);
-            }
-
-            var managementAddress = managementAddressBuilder.ToString();
-
-            if (dataAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(dataAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
-            }
-
-            if (managementAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(managementAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
-            }
-
-            return new ServiceDetails("Rest", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
+            var configuration = service.Configuration;
+            var ipAddress = ConvertToDedicatedNetworkAddress(configuration.IpAddress);
+            return new UriBuilder("https://", ipAddress, (int)configuration.Port, configuration.Path).Uri;
         }
-        private ServiceDetails BuildGrpcServiceDetails(IConfigurationDetails configurationDetails)
+        private Uri ToStorageAddress(INetworkService service)
         {
-            var userHost = configurationDetails.Hosts["UserHost"];
-            userHost = ConvertToDedicatedNetworkAddress(userHost);
-            var adminHost = configurationDetails.Hosts["AdminHost"];
-            adminHost = ConvertToDedicatedNetworkAddress(adminHost);
-
-            var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"https://{userHost}:{configurationDetails.Ports["UserApiPort"]}");
-            dataAddressBuilder.Append(configurationDetails.Paths["UserApiPath"]);
-            var dataAddress = dataAddressBuilder.ToString();
-
-            var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"https://{adminHost}:{configurationDetails.Ports["AdminApiPort"]}");
-            managementAddressBuilder.Append(configurationDetails.Paths["AdminApiPath"]);
-            var managementAddress = managementAddressBuilder.ToString();
-
-            if (dataAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start Grpc service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(dataAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start Grpc service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
-            }
-
-            if (managementAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start Grpc service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(managementAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start Grpc service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
-            }
-
-            return new ServiceDetails("Grpc", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
+            var configuration = service.Configuration;
+            var ipAddress = ConvertToDedicatedNetworkAddress(configuration.IpAddress);
+            return new UriBuilder("https://", ipAddress).Uri;
         }
 
         [SuppressMessage(

@@ -34,7 +34,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
-            var configurationDetails = globalServices.GetService<IConfigurationDetails>();
 
             var container = new Container();
             new AdminApiScaffolding(infrastructure).Register(container);
@@ -46,8 +45,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             container.Register<IAdminAccountService, AdminAccountService>();
             container.Register<IAdminSpaceService, AdminSpaceService>();
             container.Register<IAdminInformationService, AdminInformationService>();
-
-            container.Register(() => configurationDetails);
 
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>());

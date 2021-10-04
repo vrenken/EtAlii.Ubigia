@@ -10,7 +10,6 @@ namespace EtAlii.xTechnology.Hosting
         public IConfigurationSection Section { get; private set; }
         public IConfigurationRoot Root { get; private set; }
 
-        public IConfigurationDetails Details { get; private set; }
         public string Factory { get; init; }
         public string IpAddress { get; init; }
         public uint Port { get; init; }
@@ -19,7 +18,6 @@ namespace EtAlii.xTechnology.Hosting
         public static bool TryCreate(
             IConfigurationSection configurationSection,
             IConfigurationRoot configurationRoot,
-            IConfigurationDetails configurationDetails,
             out ServiceConfiguration configuration)
         {
             try
@@ -29,7 +27,6 @@ namespace EtAlii.xTechnology.Hosting
                 {
                     configuration.Section = configurationSection;
                     configuration.Root = configurationRoot;
-                    configuration.Details = configurationDetails;
                     return true;
                 }
                 return false;

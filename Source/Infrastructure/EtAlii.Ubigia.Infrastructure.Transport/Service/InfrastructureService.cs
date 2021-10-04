@@ -30,11 +30,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         private IStorageService _storageService;
 
+        private readonly IHost _host;
 
-        public InfrastructureService(ServiceConfiguration configuration, Status status)
+        public InfrastructureService(ServiceConfiguration configuration, Status status, IHost host)
         {
             Configuration = configuration;
             Status = status;
+            _host = host;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -67,7 +69,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             }
 
             var serviceDetailsBuilder = new ServiceDetailsBuilder();
-            var serviceDetails = serviceDetailsBuilder.Build(Configuration.Details);
+            var allServiceDetails = serviceDetailsBuilder.Build(_host);
 
             // Create fabric instance.
             var fabricContextOptions = new FabricContextOptions(Configuration.Root)
@@ -75,26 +77,25 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
+            // By convention the first data/management API's will be used for the storageAddress.
+            var serviceDetails = allServiceDetails.First();
+
             // Improve the InfrastructureService.
             // This current approach isn't right. We don't want to give the logical context any address to store and distribute.
             // More information can be found on the Github issue below:
             // https://github.com/vrenken/EtAlii.Ubigia/issues/97
-            var dataService = serviceDetails.FirstOrDefault(sd => !sd.IsSystemService) ?? serviceDetails.First();
-
-            var dataAddress = dataService!.DataAddress;
-            var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
 
             // Create logical context instance.
             var logicalContextOptions = new LogicalContextOptions(Configuration.Root)
                 .Use(fabric)
-                .Use(name, storageAddress)
+                .Use(name, serviceDetails.StorageAddress)
                 .UseLogicalContextDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Create a Infrastructure instance.
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureOptions = new InfrastructureOptions(Configuration.Root, systemConnectionCreationProxy)
-                .Use(name, serviceDetails)
+                .Use(name, allServiceDetails)
 	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
                 .Use(logicalContext)
                 .UseInfrastructureDiagnostics();

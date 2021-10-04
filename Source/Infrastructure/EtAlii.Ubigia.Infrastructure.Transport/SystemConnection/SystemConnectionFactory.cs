@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             var container = new Container();
 
-            var serviceDetails = options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = options.Infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
             var transport = options.TransportProvider.GetStorageTransport(serviceDetails.ManagementAddress);
             var scaffoldings = transport

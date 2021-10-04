@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using System.Linq;
     using System.Security.Cryptography;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
     using global::Grpc.Core;
     using global::Grpc.Core.Logging;
@@ -44,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 .Start(portRange)
                 .ConfigureAwait(false);
 
-            ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == "Grpc");
+            ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
         }
 
         public GrpcChannel CreateAdminGrpcInfrastructureChannel() => this.CreateChannel(ServiceDetails.ManagementAddress);

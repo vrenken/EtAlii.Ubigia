@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public IStorageTransport GetStorageTransport()
         {
-            var serviceDetails = _infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
             return new SystemStorageTransport(serviceDetails.ManagementAddress, _infrastructure);
         }

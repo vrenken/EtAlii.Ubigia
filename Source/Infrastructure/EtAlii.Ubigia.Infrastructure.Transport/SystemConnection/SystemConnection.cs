@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<(IDataConnection, DataConnectionOptions)> OpenSpace(string accountName, string spaceName)
         {
-            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
 	        var address = serviceDetails.DataAddress;
 
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
 	        var address = serviceDetails.ManagementAddress;
 

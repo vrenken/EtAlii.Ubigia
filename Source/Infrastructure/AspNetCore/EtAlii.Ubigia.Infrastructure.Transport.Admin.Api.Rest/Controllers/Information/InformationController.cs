@@ -3,21 +3,22 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
 	using System;
-	using EtAlii.Ubigia.Api.Transport;
+    using System.Linq;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Rest;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
-	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Mvc;
 
 	[RequiresAuthenticationToken(Role.Admin)]
     [Route(RelativeManagementUri.Information)]
     public class InformationController : RestController
     {
-	    private readonly IConfigurationDetails _configurationDetails;
+        private readonly ServiceDetails _serviceDetails;
 
-	    public InformationController(IConfigurationDetails configurationDetails)
+        public InformationController(IInfrastructureOptions infrastructureOptions)
 	    {
-		    _configurationDetails = configurationDetails;
+            _serviceDetails = infrastructureOptions.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
 	    }
 
 	    [HttpGet]
@@ -26,20 +27,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 		    IActionResult response;
 		    try
             {
-                if (!_configurationDetails.Paths.TryGetValue("AdminApiPathRest", out var adminApiPathRest))
-                {
-                    adminApiPathRest = string.Empty;
-                }
-
-                if(!_configurationDetails.Paths.TryGetValue("UserApiPathRest", out var userApiPathRest))
-                {
-                    userApiPathRest = string.Empty;
-                }
-
 			    var details = new ConnectivityDetails
 			    {
-				    ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminApiPort"]}{_configurationDetails.Paths["AdminApiPath"]}{adminApiPathRest}",
-				    DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserApiPort"]}{_configurationDetails.Paths["UserApiPath"]}{userApiPathRest}",
+                    ManagementAddress = _serviceDetails.ManagementAddress.ToString(),
+                    DataAddress = _serviceDetails.DataAddress.ToString()
 			    };
 
 			    response = Ok(details);

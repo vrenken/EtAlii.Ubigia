@@ -78,7 +78,6 @@ namespace EtAlii.xTechnology.Hosting
 
             var hostOptions = new HostOptions(HostConfiguration)
                 .Use<THostServicesFactory>()
-                .Use(details)
                 .UseHostDiagnostics();
 
             ClientConfiguration = new ConfigurationBuilder()

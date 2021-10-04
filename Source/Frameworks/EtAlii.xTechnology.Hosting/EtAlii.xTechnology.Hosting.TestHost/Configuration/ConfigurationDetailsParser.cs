@@ -7,6 +7,12 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 
+    /// <summary>
+    /// This class can be used to acquire more details about the application configuration (i.e. appsettings.json & co.), and to inject new values into the application settings.
+    /// It should not be used to acquire settings from the application configuration, as was the case in the past.
+    /// As the Microsoft.Extensions.Configuration functionalities have gotten quite mature in the past few years we should also reconsider the approach below and maybe find a way to fetch and
+    /// modify values using standard IConfiguration methodologies. All in all the setup is under the hood 'just' a fancy key-value store.
+    /// </summary>
 	public class ConfigurationDetailsParser
 	{
 		private const string FolderPattern = @"(?<={{FOLDER:)(\w+?)@([0-9A-Za-z \\%]+?)(?=}})";
@@ -14,6 +20,12 @@ namespace EtAlii.xTechnology.Hosting
 		private const string PathPattern = @"(?<={{PATH:)(\w+?)@([0-9A-Za-z\/]*?)(?=}})";
 		private const string HostPattern = @"(?<={{HOST:)(\w+?)@([0-9A-Za-z.]+?)(?=}})";
 
+        /// <summary>
+        /// Parse the provided configuration file and extract replaceable values like folders, ports, paths and hosts.
+        /// </summary>
+        /// <param name="configurationFile"></param>
+        /// <param name="replace"></param>
+        /// <returns></returns>
 	    public async Task<ConfigurationDetails> Parse(string configurationFile, bool replace = true)
 	    {
 		    var configuration = await File

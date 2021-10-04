@@ -25,10 +25,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             {
                 throw new InvalidOperationException("No service details specified during infrastructure configuration");
             }
-            if (serviceDetails.All(sd => !sd.IsSystemService))
-            {
-                throw new InvalidOperationException("No system service details specified during infrastructure configuration");
-            }
 
             editableOptions.Name = name;
             editableOptions.ServiceDetails = serviceDetails;

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }
 
-            var serviceDetails = options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
             if (serviceDetails == null)
             {
                 throw new NotSupportedException("No system service details found. These are required to construct a Infrastructure instance");

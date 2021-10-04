@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
 		        .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
 
-		        .AddSingleton(Configuration.Details) // the configuration details are needed by the InformationController.
+                .AddSingleton(infrastructure.Options) // the service details are needed by the InformationController.
 
 		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
 		        .AddControllers()

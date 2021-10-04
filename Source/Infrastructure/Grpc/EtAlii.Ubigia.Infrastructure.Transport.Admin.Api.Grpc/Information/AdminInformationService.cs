@@ -2,24 +2,25 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
-	using System.Threading.Tasks;
+    using System.Linq;
+    using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 	using EtAlii.Ubigia.Infrastructure.Functional;
-	using EtAlii.xTechnology.Hosting;
 	using global::Grpc.Core;
 
 	public class AdminInformationService : InformationGrpcService.InformationGrpcServiceBase, IAdminInformationService
     {
 	    private readonly IStorageRepository _items;
-	    private readonly IConfigurationDetails _configurationDetails;
+        private readonly ServiceDetails _serviceDetails;
 
-	    public AdminInformationService(IStorageRepository items, IConfigurationDetails configurationDetails)
-	    {
-		    _items = items;
-		    _configurationDetails = configurationDetails;
-	    }
-
+	    public AdminInformationService(
+            IStorageRepository items,
+            IInfrastructureOptions infrastructureOptions)
+        {
+            _items = items;
+            _serviceDetails = infrastructureOptions.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
+        }
 
 		public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
 		{
@@ -38,8 +39,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 			{
 				ConnectivityDetails = new ConnectivityDetails
 				{
-					ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminApiPort"]}",
-					DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserApiPort"]}",
+                    ManagementAddress = _serviceDetails.ManagementAddress.ToString(),
+                    DataAddress = _serviceDetails.DataAddress.ToString()
 				}
 			};
 			return Task.FromResult(response);

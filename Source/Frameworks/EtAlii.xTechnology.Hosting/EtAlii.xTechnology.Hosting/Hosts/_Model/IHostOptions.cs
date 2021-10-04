@@ -29,12 +29,6 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         bool UseWrapper { get; }
 
-        /// <summary>
-        /// The details (variables) that got found in the configuration.
-        /// This is very useful for testing as it allows for changing the ports/ip addresses on the fly.
-        /// </summary>
-        ConfigurationDetails Details { get; }
-
         IHostServicesFactory ServiceFactory { get; }
 
         /// <summary>
@@ -49,13 +43,6 @@ namespace EtAlii.xTechnology.Hosting
 
         IHostOptions Use<THostServicesFactory>()
             where THostServicesFactory : IHostServicesFactory, new();
-
-        /// <summary>
-        /// Instruct the host configuration to use the provided ConfigurationDetails and ConfigurationRoot.
-        /// </summary>
-        /// <param name="details"></param>
-        /// <returns></returns>
-        IHostOptions Use(ConfigurationDetails details);
 
         /// <summary>
         /// Instruct the host configuration to use the provided host factory method.

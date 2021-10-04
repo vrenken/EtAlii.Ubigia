@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddSingleton(infrastructure.Storages)
                 .AddSingleton(infrastructure.Information)
 
-                .AddSingleton(Configuration.Details) // the configuration details are needed by the InformationController.
+                .AddSingleton(infrastructure.Options) // the service details are needed by the InformationHub.
 
                 .AddSignalRInfrastructureAuthentication(infrastructure)
                 .AddInfrastructureSerialization()

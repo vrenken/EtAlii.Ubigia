@@ -36,22 +36,11 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public IHostExtension[] Extensions { get; private set; }
 
-        /// <inheritdoc />
-        public ConfigurationDetails Details { get; private set; }
-
         public HostOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             Extensions = Array.Empty<IHostExtension>();
             Commands = Array.Empty<ICommand>();
-        }
-
-        /// <inheritdoc />
-        public IHostOptions Use(ConfigurationDetails details)
-        {
-            Details = details;
-
-            return this;
         }
 
         public IHostOptions Use(string enabledImage, string errorImage, string disabledImage)

@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var serviceDetails = _infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the connectivity details with.
 
             var result = new ConnectivityDetails
             {
