@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public class ServiceFactory
     {
-        public IService Create(ServiceConfiguration serviceConfiguration)
+        public IService Create(ServiceConfiguration serviceConfiguration, IHost host)
         {
             var factoryTypeName = serviceConfiguration.Factory;
 
@@ -27,7 +27,7 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             var status = new Status(serviceConfiguration.Section.Key) { Summary = "Unknown", Title = serviceConfiguration.Section.Key };
-            return factory.Create(serviceConfiguration, status);
+            return factory.Create(serviceConfiguration, status, host);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 
     public static class ConfigurationBuilderExtension
     {
-        public static void ExpandEnvironmentVariablesInJson(this IConfigurationBuilder builder)
+        public static IConfigurationBuilder ExpandEnvironmentVariablesInJson(this IConfigurationBuilder builder)
         {
             var jsonConfigurationSources = builder.Sources
                 .OfType<JsonConfigurationSource>()
@@ -30,6 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
                         ReloadOnChange = jsonConfigurationSource.ReloadOnChange
                     });
             }
+            return builder;
         }
     }
 }

@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class InfrastructureServiceFactory : IServiceFactory
     {
-        public IService Create(ServiceConfiguration configuration, Status status) => new InfrastructureService(configuration, status);
+        public IService Create(ServiceConfiguration configuration, Status status, IHost host) => new InfrastructureService(configuration, status, host);
     }
 }
