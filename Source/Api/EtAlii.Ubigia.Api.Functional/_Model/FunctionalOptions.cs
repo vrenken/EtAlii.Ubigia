@@ -16,8 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private Lazy<ILogicalContext> _logicalContext;
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
@@ -28,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
             ConfigurationRoot = configurationRoot;
             FunctionHandlersProvider = Traversal.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = Traversal.RootHandlerMappersProvider.Empty;
-            _extensions = new IExtension[] { new CommonFunctionalExtension(this) };
+            ((IExtensible)this).Extensions = new IExtension[] { new CommonFunctionalExtension(this) };
         }
 
         public FunctionalOptions UseLogicalContext(ILogicalContext logicalContext)

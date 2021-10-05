@@ -17,13 +17,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         public IStorage Storage { get; private set; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         public FabricContextOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = Array.Empty<IExtension>();
+            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
         }
 
         public FabricContextOptions Use(IStorage storage)

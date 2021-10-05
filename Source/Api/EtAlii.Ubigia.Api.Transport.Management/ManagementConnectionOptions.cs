@@ -14,8 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <summary>
         /// The storage transport provider used to create the transport layer components of this management connection.
@@ -46,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public ManagementConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = new IExtension[]
+            ((IExtensible)this).Extensions = new IExtension[]
             {
                 new CommonManagementConnectionExtension(this)
             };

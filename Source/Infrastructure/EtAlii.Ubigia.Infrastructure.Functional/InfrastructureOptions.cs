@@ -19,8 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         public ILogicalContext Logical { get; private set; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <inheritdoc />
         string IEditableInfrastructureOptions.Name { get => Name; set => Name = value; }
@@ -48,7 +47,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
-            _extensions = Array.Empty<IExtension>();
+            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
         }
     }
 }

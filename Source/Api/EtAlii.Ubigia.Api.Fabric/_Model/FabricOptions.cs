@@ -28,8 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         public bool CachingEnabled {get; private set; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         public FabricOptions(IConfigurationRoot configurationRoot)
         {
@@ -38,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             //CachingEnabled = false;
             CachingEnabled = true; // TODO: Caching does not work yet.
 
-            _extensions = new IExtension[] { new CommonFabricExtension(this) };
+            ((IExtensible)this).Extensions = new IExtension[] { new CommonFabricExtension(this) };
         }
 
         /// <summary>

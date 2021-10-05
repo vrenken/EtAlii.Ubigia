@@ -12,8 +12,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <inheritdoc />
         IStorageTransport IEditableStorageConnectionOptions.Transport { get => Transport; set => Transport = value; }
@@ -24,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public StorageConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = Array.Empty<IExtension>();
+            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
         }
     }
 }

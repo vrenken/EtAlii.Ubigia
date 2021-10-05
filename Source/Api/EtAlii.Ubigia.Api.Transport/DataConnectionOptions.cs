@@ -14,8 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <summary>
         /// The transport provider used to create the transport layer components of this data connection.
@@ -51,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public DataConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = new IExtension[] { new CommonDataConnectionExtension(this) };
+            ((IExtensible)this).Extensions = new IExtension[] { new CommonDataConnectionExtension(this) };
         }
 
         /// <summary>

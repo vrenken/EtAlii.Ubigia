@@ -20,8 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         public IFabricContext Fabric { get; private set; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <summary>
         /// The name of the Ubigia storage.
@@ -43,7 +42,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
             StorageAddress = storageAddress ?? throw new ArgumentNullException(nameof(storageAddress));
-            _extensions = Array.Empty<IExtension>();
+            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
 
             return this;
         }

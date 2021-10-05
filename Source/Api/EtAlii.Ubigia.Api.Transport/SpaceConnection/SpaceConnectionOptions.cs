@@ -14,8 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         /// <summary>
         /// The space transport that should be used to create the connection.
@@ -30,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public SpaceConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            _extensions = new IExtension[]{ new CommonSpaceConnectionExtension(this) };
+            ((IExtensible)this).Extensions = new IExtension[]{ new CommonSpaceConnectionExtension(this) };
         }
 
         /// <summary>

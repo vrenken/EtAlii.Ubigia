@@ -19,14 +19,13 @@ namespace EtAlii.Ubigia.Api.Logical
         private Lazy<IFabricContext> _fabricContext;
 
         /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get => _extensions; set => _extensions = value; }
-        private IExtension[] _extensions;
+        IExtension[] IExtensible.Extensions { get; set; }
 
         public LogicalOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
 
-            _extensions = new IExtension[] { new CommonLogicalExtension(this) };
+            ((IExtensible)this).Extensions = new IExtension[] { new CommonLogicalExtension(this) };
         }
 
         public LogicalOptions UseFabricOptions(FabricOptions fabricOptions)
