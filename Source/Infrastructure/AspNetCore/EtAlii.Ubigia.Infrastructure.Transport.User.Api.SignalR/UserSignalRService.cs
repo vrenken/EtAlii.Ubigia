@@ -70,16 +70,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            // var hostString = new HostStringBuilder().Build(Configuration.Section, IPAddress.Any);
-
 	        application
-                // .UseCors(builder =>
-                // {
-                //     builder
-                //         .AllowAnyHeader()
-                //         .AllowAnyMethod()
-                //         .WithOrigins($"https://{Configuration.IpAddress}");
-                // })
 		        .UseRouting()
 		        .UseEndpoints(endPoints =>
 		        {

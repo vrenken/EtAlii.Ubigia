@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public void Register(IRegisterOnlyContainer container)
         {
-            //container.Register<IGraphPathTraverser, GraphPathTraverser>();
             container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 
             container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();

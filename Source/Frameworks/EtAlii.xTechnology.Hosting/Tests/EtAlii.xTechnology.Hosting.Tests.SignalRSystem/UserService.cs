@@ -22,13 +22,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
-                // .UseCors(builder =>
-                // {
-                //     builder
-                //         .AllowAnyMethod()
-                //         .AllowAnyHeader()
-                //         .WithOrigins($"https://{Configuration.IpAddress}");
-                // })
                 .UseRouting()
                 .UseEndpoints(endpoints =>
                 {

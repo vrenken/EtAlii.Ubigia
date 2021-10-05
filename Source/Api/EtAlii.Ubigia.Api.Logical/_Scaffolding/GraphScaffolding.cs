@@ -11,18 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IGraphPathBuilder, GraphPathBuilder>();
             container.Register<IGraphComposerFactory, GraphComposerFactory>();
             container.Register<IGraphAssignerFactory, GraphAssignerFactory>();
-
             container.Register<IGraphPathTraverser, GraphPathTraverser>();
-            // container.Register(services =>
-            // {
-            //     var fabric = services.GetInstance<IFabricContext>();
-            //     var configurationRoot = services.GetInstance<IConfigurationRoot>();
-            //
-            //     var options = new GraphPathTraverserOptions(configurationRoot)
-            //         .Use(fabric);
-            //     var graphPathTraverserFactory = services.GetInstance<IGraphPathTraverserFactory>();
-            //     return graphPathTraverserFactory.Create(options);
-            // });
         }
     }
 }

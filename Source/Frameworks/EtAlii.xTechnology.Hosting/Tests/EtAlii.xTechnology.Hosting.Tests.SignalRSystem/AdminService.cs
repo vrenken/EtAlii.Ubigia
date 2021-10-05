@@ -22,13 +22,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 		{
 			application
 				.UseRouting()
-                // .UseCors(builder =>
-                // {
-                //     builder
-                //         .AllowAnyHeader()
-                //         .AllowAnyMethod()
-                //         .WithOrigins($"https://{Configuration.IpAddress}");
-                // })
 				.UseEndpoints(endpoints => endpoints.MapHub<AdminHub>(SignalRHub.Admin));
 		}
 

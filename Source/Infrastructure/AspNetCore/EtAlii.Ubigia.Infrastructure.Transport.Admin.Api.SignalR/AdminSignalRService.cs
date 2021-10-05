@@ -63,13 +63,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             application
-                // .UseCors(builder =>
-                // {
-                //     builder
-                //         .AllowAnyHeader()
-                //         .AllowAnyMethod()
-                //         .WithOrigins($"https://{Configuration.IpAddress}");
-                // })
                 .UseRouting()
                 .UseEndpoints(endPoints =>
                 {
