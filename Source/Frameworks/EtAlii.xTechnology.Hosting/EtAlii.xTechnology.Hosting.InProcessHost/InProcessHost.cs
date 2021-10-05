@@ -2,11 +2,17 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public abstract partial class InProcessHost : HostBase
+    using System.Threading.Tasks;
+
+    public partial class InProcessHost : HostBase
     {
-        protected InProcessHost(IHostOptions options)
+        public InProcessHost(HostOptions options)
             : base(options)
         {
         }
+
+        protected override Task Started() => Task.CompletedTask;
+
+        protected override Task Stopping() => Task.CompletedTask;
     }
 }

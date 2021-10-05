@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsHostExtension : IHostExtension
+    public class DiagnosticsHostExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _configurationRoot = configurationRoot;
         }
 
-        public void Register(IRegisterOnlyContainer container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Host:Diagnostics")

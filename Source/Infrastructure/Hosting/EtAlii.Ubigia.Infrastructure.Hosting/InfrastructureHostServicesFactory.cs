@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 
     public class InfrastructureHostServicesFactory : HostServicesFactoryBase
     {
-        public override IService[] Create(IHostOptions options, IHost host)
+        public override IService[] Create(HostOptions options, IHost host)
         {
             var services = new List<IService>();
 

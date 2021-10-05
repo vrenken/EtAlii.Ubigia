@@ -2,14 +2,15 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    public static class HostOptionsUseConsoleHostExtension
+    public static class HostOptionsUseTestHostExtension
     {
-        public static HostOptions UseConsoleHost(this HostOptions options)
+        public static HostOptions UseTestHost(this HostOptions options, Func<HostOptions, ITestHost> hostFactory)
         {
             return options
-                .Use(new IExtension[] { new ConsoleHostExtension(options) })
+                .Use(new IExtension[] { new TestHostExtension(options, hostFactory) })
                 .UseWrapper(true);
         }
     }

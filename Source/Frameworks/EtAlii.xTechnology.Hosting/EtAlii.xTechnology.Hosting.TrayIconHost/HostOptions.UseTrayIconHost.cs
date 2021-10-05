@@ -7,11 +7,12 @@ namespace EtAlii.xTechnology.Hosting
     using System.IO;
     using System.Reflection;
     using System.Windows;
+    using EtAlii.xTechnology.MicroContainer;
 
     public static class HostOptionsUseTrayIconHostExtension
     {
-        public static IHostOptions UseTrayIconHost(
-            this IHostOptions options,
+        public static HostOptions UseTrayIconHost(
+            this HostOptions options,
             Application application,
             string runningIconResource,
             string stoppedIconResource,
@@ -24,24 +25,21 @@ namespace EtAlii.xTechnology.Hosting
             var stoppedIcon = ToIcon(assembly, stoppedIconResource);
             var errorIcon = ToIcon(assembly, errorIconResource);
 
-            var extensions = new IHostExtension[]
-            {
-                new TrayIconHostExtension(runningIcon, stoppedIcon, errorIcon),
-            };
-            return options.Use(extensions);
+            return options
+                .Use(new IExtension[] { new TrayIconHostExtension(options, runningIcon, stoppedIcon, errorIcon) })
+                .UseWrapper(true);
         }
 
         private static Icon ToIcon(Assembly assembly, string resource)
         {
             var resourceNamespace = Path.GetFileNameWithoutExtension(assembly.Location);
-            using (var stream = assembly.GetManifestResourceStream($"{resourceNamespace}.{resource}"))
+
+            using var stream = assembly.GetManifestResourceStream($"{resourceNamespace}.{resource}");
+            if (stream == null)
             {
-                if (stream == null)
-                {
-                    throw new InvalidOperationException($"Unable to get manifest resource stream for resource: {resource}");
-                }
-                return new Icon(stream);
+                throw new InvalidOperationException($"Unable to get manifest resource stream for resource: {resource}");
             }
+            return new Icon(stream);
         }
     }
 }

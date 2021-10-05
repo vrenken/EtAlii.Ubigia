@@ -3,13 +3,19 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
+    using System.Threading.Tasks;
+    using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class TrayIconHost
     {
-        public static void Start(IHostOptions options)
+        protected override Task Started() => Task.CompletedTask;
+
+        protected override Task Stopping() => Task.CompletedTask;
+
+        public static void Start(HostOptions options)
         {
             var arguments = Environment.GetCommandLineArgs();
             for(var i = 0; i < arguments.Length; i++)
@@ -17,11 +23,11 @@ namespace EtAlii.xTechnology.Hosting
                 if (arguments[i] == "-d" && i + 1 < arguments.Length)
                 {
                     var delay = int.Parse(arguments[i + 1]);
-                    System.Threading.Tasks.Task.Delay(delay).Wait();
+                    Task.Delay(delay).Wait();
                 }
             }
 
-            var host = new HostFactory<TrayIconHost>().Create(options);
+            var host = Factory.Create<IHost>(options);
             // Start hosting both the infrastructure and the storage.
             host.Start();
         }

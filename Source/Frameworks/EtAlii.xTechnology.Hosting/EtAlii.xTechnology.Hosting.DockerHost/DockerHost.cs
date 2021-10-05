@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public partial class DockerHost : HostBase
     {
-        public DockerHost(IHostOptions options)
+        public DockerHost(HostOptions options)
             : base(options)
         {
         }

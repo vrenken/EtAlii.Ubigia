@@ -4,6 +4,7 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System.Collections.Generic;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class ServiceLogic : IServiceLogic
     {
@@ -16,9 +17,9 @@ namespace EtAlii.xTechnology.Hosting
 
         private readonly IHost _host;
 
-        public ServiceLogic(IHostOptions options)
+        public ServiceLogic(HostOptions options)
         {
-            _host = new HostFactory<WindowsServiceHost>().Create(options);
+            _host = Factory.Create<IHost>(options);
         }
 
 

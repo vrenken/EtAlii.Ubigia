@@ -3,13 +3,14 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
+    using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class ConsoleHost
     {
-        public static void Start(IHostOptions options)
+        public static void Start(HostOptions options)
         {
             var arguments = Environment.GetCommandLineArgs();
             for (var i = 0; i < arguments.Length; i++)
@@ -23,7 +24,7 @@ namespace EtAlii.xTechnology.Hosting
 
             Console.WriteLine("Starting Ubigia infrastructure...");
 
-            var host = new HostFactory<ConsoleHost>().Create(options);
+            var host = Factory.Create<IHost>(options);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();

@@ -4,6 +4,6 @@ namespace EtAlii.xTechnology.Hosting
 {
     public interface IHostServicesFactory
     {
-        public IService[] Create(IHostOptions options, IHost host);
+        public IService[] Create(HostOptions options, IHost host);
     }
 }

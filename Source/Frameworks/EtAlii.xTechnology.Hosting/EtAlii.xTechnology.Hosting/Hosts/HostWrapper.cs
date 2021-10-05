@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public IHostOptions Options => _currentHost.Options;
+        public HostOptions Options => _currentHost.Options;
         public State State => _currentHost.State;
 
         public IService[] Services => _currentHost.Services;

@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 	    public IStorage Storage => _storage;
 	    private IStorage _storage;
 
-		public InfrastructureTestHost(IHostOptions options)
+		public InfrastructureTestHost(HostOptions options)
 		    : base(options)
 	    {
 		}

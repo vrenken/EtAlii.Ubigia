@@ -5,21 +5,28 @@ namespace EtAlii.xTechnology.Hosting
     using System.Drawing;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class TrayIconHostExtension : IHostExtension
+    public class TrayIconHostExtension : IExtension
     {
+        private readonly HostOptions _options;
         private readonly Icon _runningIcon;
         private readonly Icon _stoppedIcon;
         private readonly Icon _errorIcon;
 
-        public TrayIconHostExtension(Icon runningIcon, Icon stoppedIcon, Icon errorIcon)
+        public TrayIconHostExtension(HostOptions options, Icon runningIcon, Icon stoppedIcon, Icon errorIcon)
         {
+            _options = options;
             _runningIcon = runningIcon;
             _stoppedIcon = stoppedIcon;
             _errorIcon = errorIcon;
         }
 
-        public void Register(IRegisterOnlyContainer container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
+            container.Register<IHost>(services =>
+            {
+                var taskbarIcon = services.GetInstance<ITaskbarIcon>();
+                return new TrayIconHost(_options, taskbarIcon);
+            });
             var scaffoldings = new IScaffolding[]
             {
                 new TrayIconHostScaffolding(_runningIcon, _stoppedIcon, _errorIcon),

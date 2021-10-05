@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
     public class System1HostServicesFactory : HostServicesFactoryBase
     {
-        public override IService[] Create(IHostOptions options, IHost host)
+        public override IService[] Create(HostOptions options, IHost host)
         {
             var services = new List<IService>();
 

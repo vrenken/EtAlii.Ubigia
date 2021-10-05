@@ -31,11 +31,11 @@ namespace EtAlii.xTechnology.Hosting
 
         public IService[] Services { get; private set; }
 
-        public IHostOptions Options { get; }
+        public HostOptions Options { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected HostBase(IHostOptions options)
+        protected HostBase(HostOptions options)
         {
             _selfStatus = new Status(GetType().Name) { Summary = "Unknown", Title = GetType().Name };
 

@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting
     {
         IService[] Services { get; }
 
-        IHostOptions Options { get; }
+        HostOptions Options { get; }
 
         State State { get; }
 

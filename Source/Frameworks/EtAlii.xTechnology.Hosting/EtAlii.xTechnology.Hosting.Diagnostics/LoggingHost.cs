@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public IService[] Services => _decoree.Services;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public IHostOptions Options => _decoree.Options;
+        public HostOptions Options => _decoree.Options;
         event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }
         private Action<IWebHostBuilder> _configureHost;
 

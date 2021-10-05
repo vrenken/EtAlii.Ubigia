@@ -2,11 +2,14 @@
 
 namespace EtAlii.xTechnology.Hosting.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class HostOptionsUseHostDiagnosticsExtension
     {
-        public static IHostOptions UseHostDiagnostics(this IHostOptions options)
+        public static HostOptions UseHostDiagnostics(this HostOptions options)
         {
-            return options.Use(new DiagnosticsHostExtension(options.ConfigurationRoot));
+            var extensions = new IExtension[] { new DiagnosticsHostExtension(options.ConfigurationRoot) };
+            return options.Use(extensions);
         }
     }
 }

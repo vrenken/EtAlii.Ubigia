@@ -2,18 +2,15 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System;
+    using EtAlii.xTechnology.MicroContainer;
 
     public static class HostOptionsUseConsoleHostExtension
     {
-        public static IHostOptions UseDockerHost(this IHostOptions options)
+        public static HostOptions UseDockerHost(this HostOptions options)
         {
-            var extensions = Array.Empty<IHostExtension>();
-            //var extensions = new IHostExtension[]
-            //[
-            //    new ConsoleHostExtension(),
-            //]
-            return options.Use(extensions);
+            return options
+                .Use(new IExtension[] { new DockerHostExtension(options) })
+                .UseWrapper(true);
         }
     }
 }

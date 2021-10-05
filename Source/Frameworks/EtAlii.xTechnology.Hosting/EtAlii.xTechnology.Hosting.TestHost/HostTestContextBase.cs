@@ -9,6 +9,7 @@ namespace EtAlii.xTechnology.Hosting
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext
@@ -33,6 +34,8 @@ namespace EtAlii.xTechnology.Hosting
 	    public ReadOnlyDictionary<string, string> Hosts { get; private set; }
 	    public ReadOnlyDictionary<string, int> Ports { get; private set; }
 	    public ReadOnlyDictionary<string, string> Paths { get; private set; }
+
+        protected abstract ITestHost CreateTestHost(HostOptions options);
 
 	    protected HostTestContextBase(string hostConfigurationFile, string clientConfigurationFile)
 	    {
@@ -77,7 +80,9 @@ namespace EtAlii.xTechnology.Hosting
 			    .Build();
 
             var hostOptions = new HostOptions(HostConfiguration)
+                .UseTestHost(CreateTestHost)
                 .Use<THostServicesFactory>()
+                .UseWrapper(false)
                 .UseHostDiagnostics();
 
             ClientConfiguration = new ConfigurationBuilder()
@@ -85,7 +90,7 @@ namespace EtAlii.xTechnology.Hosting
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
 
-            Host = (THost)new HostFactory<THost>().Create(hostOptions, false);
+            Host = (THost)Factory.Create<IHost>(hostOptions);
 		    await Host.Start().ConfigureAwait(false);
         }
 

@@ -3,8 +3,9 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.Hosting;
 
-    public abstract partial class HostTestContextBase : EtAlii.xTechnology.Hosting.HostTestContextBase<InfrastructureTestHost, InfrastructureHostServicesFactory>
+    public abstract partial class HostTestContextBase : HostTestContextBase<InfrastructureTestHost, InfrastructureHostServicesFactory>
     {
 	    /// <summary>
         /// The details of the service current under test.
@@ -29,6 +30,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         public string AdminAccountPassword { get; private set; }
 
         public string HostName => Infrastructure?.Options?.Name;
+
+        protected override ITestHost CreateTestHost(HostOptions options) => new InfrastructureTestHost(options);
 
         protected HostTestContextBase() : base("HostSettings.json", "ClientSettings.json")
         {

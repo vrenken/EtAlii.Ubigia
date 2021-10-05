@@ -2,11 +2,17 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public abstract partial class WindowsServiceHost : HostBase
+    using System.Threading.Tasks;
+
+    public partial class WindowsServiceHost : HostBase
     {
-        protected WindowsServiceHost(IHostOptions options)
+        public WindowsServiceHost(HostOptions options)
             : base(options)
         {
         }
+
+        protected override Task Started() => Task.CompletedTask;
+
+        protected override Task Stopping() => Task.CompletedTask;
     }
 }

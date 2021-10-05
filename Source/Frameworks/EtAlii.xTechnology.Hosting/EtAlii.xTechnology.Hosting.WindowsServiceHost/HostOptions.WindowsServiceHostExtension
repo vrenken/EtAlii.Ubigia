@@ -4,17 +4,15 @@ namespace EtAlii.xTechnology.Hosting
     public static class HostConfigurationWindowsServiceHostExtension
     {
         public static IHostConfiguration UseWindowsServiceHost(
-            this IHostConfiguration configuration,
+            this HostOptions options,
             string shortServiceNameFormat, // Something like: "UIS${0}" Ubigia Infrastructure Service
             string displayNameFormat, // example: "Ubigia Infrastructure Service ({0})"
             string descriptionFormat // e.g. "Provides applications access to the Ubigia storage '{0}'"
             )
         {
-            var extensions = new IHostExtension[]
-            {
-//                new WindowsServiceHostExtension(),
-            };
-            return configuration.Use(extensions);
+            return options
+                .Use(new IExtension[] { new WindowsServiceHostExtension(options) })
+                .UseWrapper(true);
         }
     }
 }

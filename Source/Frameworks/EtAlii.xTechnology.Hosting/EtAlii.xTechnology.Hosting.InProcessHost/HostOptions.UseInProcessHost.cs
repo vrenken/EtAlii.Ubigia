@@ -2,15 +2,19 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class HostOptionsUseInProcessHostExtension
     {
-        public static IHostOptions UseInProcessHost(this IHostOptions options, HostControl hostControl)
+        public static HostOptions UseInProcessHost(this HostOptions options, HostControl hostControl)
         {
-            var extensions = new IHostExtension[]
+            var extensions = new IExtension[]
             {
-                new InProcessHostExtension(hostControl),
+                new InProcessHostExtension(options, hostControl),
             };
-            return options.Use(extensions);
+            return options
+                .Use(extensions)
+                .UseWrapper(true);
         }
     }
 }

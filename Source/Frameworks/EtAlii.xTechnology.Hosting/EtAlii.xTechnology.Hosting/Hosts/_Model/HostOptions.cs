@@ -4,63 +4,41 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Linq;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class HostOptions : IHostOptions
+    public class HostOptions : IExtensible
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The configuration root instance for the current host application.
+        /// </summary>
         public IConfigurationRoot ConfigurationRoot { get; }
-
-        public string EnabledImage { get; private set; }
-
-        public string ErrorImage { get; private set; }
-
-        public string DisabledImage { get; private set; }
 
         public ICommand[] Commands { get; private set; }
 
-        public string HostTitle { get; private set; }
+        /// <summary>
+        /// True when the host will be wrapped in a decorator that allows starting, stopping and restarting of the host.
+        /// </summary>
+        public bool AddHostWrapper { get; private set; }
 
-        public string ProductTitle { get; private set; }
-
-        /// <inheritdoc />
-        public bool UseWrapper { get; private set; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// The factory function responsible for creating the actual host.
+        /// </summary>
         public Func<IHost> CreateHost { get; private set; }
 
         public IHostServicesFactory ServiceFactory { get; private set; }
 
-        public Action<string> Output { get; private set; }
-
         /// <inheritdoc />
-        public IHostExtension[] Extensions { get; private set; }
+        IExtension[] IExtensible.Extensions { get; set; }
 
         public HostOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            Extensions = Array.Empty<IHostExtension>();
+            ((IExtensible)this).Extensions = new IExtension[] { new CommonHostExtension(this) };
             Commands = Array.Empty<ICommand>();
         }
 
-        public IHostOptions Use(string enabledImage, string errorImage, string disabledImage)
-        {
-            EnabledImage = enabledImage;
-            ErrorImage = errorImage;
-            DisabledImage = disabledImage;
-
-            return this;
-        }
-
-        public IHostOptions Use(string productTitle = "EtAlii.xTechnology.Hosting", string hostTitle = "Host")
-        {
-            ProductTitle = productTitle;
-            HostTitle = hostTitle;
-
-            return this;
-        }
-
-        public IHostOptions Use(params ICommand[] commands)
+        public HostOptions Use(params ICommand[] commands)
         {
             Commands = Commands
                 .Concat(commands)
@@ -70,8 +48,12 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        /// <inheritdoc />
-        public IHostOptions Use(Func<IHost> createHost)
+        /// <summary>
+        /// Instruct the host configuration to use the provided host factory method.
+        /// </summary>
+        /// <param name="createHost"></param>
+        /// <returns></returns>
+        public HostOptions Use(Func<IHost> createHost)
         {
             if (CreateHost != null)
             {
@@ -83,13 +65,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostOptions Use(Action<string> output)
-        {
-            Output = output;
-            return this;
-        }
-
-        public IHostOptions Use<THostServicesFactory>()
+        public HostOptions Use<THostServicesFactory>()
             where THostServicesFactory : IHostServicesFactory, new()
         {
             if (ServiceFactory != null)
@@ -101,25 +77,15 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        /// <inheritdoc />
-        public IHostOptions Use(params IHostExtension[] extensions)
+        /// <summary>
+        /// Instruct the host configuration that the host should be wrapped.
+        /// This is mostly useful during runtime, as the wrapper allows the application to start, stop and restart the host.
+        /// </summary>
+        /// <param name="useWrapper"></param>
+        /// <returns></returns>
+        public HostOptions UseWrapper(bool useWrapper)
         {
-            if (extensions == null)
-            {
-                throw new ArgumentException("No extensions specified", nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
-        /// <inheritdoc />
-        public IHostOptions Use(bool useWrapper)
-        {
-            UseWrapper = useWrapper;
+            AddHostWrapper = useWrapper;
 
             return this;
         }

@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public partial class WindowsServiceHost
     {
-        public static void Start(string[] args, IHostOptions options, ServiceDetails serviceDetails)
+        public static void Start(string[] args, HostOptions options, ServiceDetails serviceDetails)
         {
             // Instantiate the service logic.
             var serviceLogic = new ServiceLogic(options);

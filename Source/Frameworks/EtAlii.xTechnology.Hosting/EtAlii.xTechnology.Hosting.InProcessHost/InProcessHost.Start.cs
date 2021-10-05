@@ -2,14 +2,16 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class InProcessHost
     {
-        public static void Start(IHostOptions options)
+        public static void Start(HostOptions options)
         {
-            var host = new HostFactory<InProcessHost>().Create(options);
+            var host = Factory.Create<InProcessHost>(options);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();
