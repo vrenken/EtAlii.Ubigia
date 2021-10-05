@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LogicalContextOptions : IExtensible, ILogicalContextOptions
+    public class LogicalContextOptions : IExtensible
     {
         /// <summary>
         /// The host configuration root that will be used to configure the logical context.
@@ -37,7 +37,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             ConfigurationRoot = configurationRoot;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Set both the name and storage address that should be used by the logical context.
+        /// </summary>
         public LogicalContextOptions Use(string name, Uri storageAddress)
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -47,7 +49,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return this;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Set the fabric that should be used by the logical context.
+        /// </summary>
         public LogicalContextOptions Use(IFabricContext fabric)
         {
 			Fabric = fabric ?? throw new ArgumentException("No fabric context specified", nameof(fabric));

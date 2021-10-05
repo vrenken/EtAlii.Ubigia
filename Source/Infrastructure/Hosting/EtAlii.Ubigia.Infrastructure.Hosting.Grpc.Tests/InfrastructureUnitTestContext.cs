@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             ContentComparer = new ContentComparer(ByteArrayComparer);
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
-            Host = new HostTestContextFactory().Create<InfrastructureHostTestContext>();
+            Host = new InfrastructureHostTestContext();
         }
 
         public async Task InitializeAsync()

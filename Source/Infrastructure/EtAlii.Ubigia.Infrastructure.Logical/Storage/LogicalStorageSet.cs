@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     {
         private readonly IFabricContext _fabric;
         private readonly ILocalStorageGetter _localStorageGetter;
-        private readonly ILogicalContextOptions _options;
+        private readonly LogicalContextOptions _options;
 
         private const string Folder = "Storages";
 
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public LogicalStorageSet(
             ILocalStorageGetter localStorageGetter,
-            ILogicalContextOptions options,
+            LogicalContextOptions options,
             IFabricContext fabric)
         {
             _fabric = fabric;

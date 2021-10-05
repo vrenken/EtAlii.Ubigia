@@ -8,18 +8,18 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     internal class LocalStorageGetter : ILocalStorageGetter
     {
-        private readonly ILogicalContextOptions _options;
-        private readonly Lazy<Storage> _localStorage;
+        private readonly LogicalContextOptions _options;
+        private readonly Storage _localStorage;
 
-        public LocalStorageGetter(ILogicalContextOptions options)
+        public LocalStorageGetter(LogicalContextOptions options)
         {
             _options = options;
-            _localStorage = new Lazy<Storage>(() => new Storage
+            _localStorage = new Storage
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid(), // TODO: This should be a system-specific Guid, persisted on disk somehow.
                 Address = _options.StorageAddress.ToString(),
                 Name = _options.Name,
-            });
+            };
         }
 
         /// <inheritdoc />
@@ -29,9 +29,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return local ?? GetLocal();
         }
 
-        private Storage GetLocal()
-        {
-            return _localStorage.Value;
-        }
+        private Storage GetLocal() =>  _localStorage;
     }
 }

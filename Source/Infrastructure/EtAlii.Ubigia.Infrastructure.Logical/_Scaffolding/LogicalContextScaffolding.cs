@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     internal class LogicalContextScaffolding : IScaffolding
     {
-        private readonly ILogicalContextOptions _options;
+        private readonly LogicalContextOptions _options;
 
-        public LogicalContextScaffolding(ILogicalContextOptions options)
+        public LogicalContextScaffolding(LogicalContextOptions options)
         {
             _options = options;
         }
@@ -31,12 +31,15 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                     services.GetInstance<ILogicalIdentifierSet>());
             });
 
-            container.Register(() => _options);
             container.Register(() => _options.Fabric);
             container.Register(() => _options.ConfigurationRoot);
 
-            container.Register<ILogicalStorageSet, LogicalStorageSet>();
-            container.Register<ILocalStorageGetter, LocalStorageGetter>();
+            container.Register<ILocalStorageGetter>(() => new LocalStorageGetter(_options));
+            container.Register<ILogicalStorageSet>(services =>
+            {
+                var localStorageGetter = services.GetInstance<ILocalStorageGetter>();
+                return new LogicalStorageSet(localStorageGetter, _options, _options.Fabric);
+            });
 
             container.Register<ILogicalSpaceSet, LogicalSpaceSet>();
 

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     public class LogicalContextFactory : ILogicalContextFactory
     {
         /// <inheritdoc />
-        public ILogicalContext Create(ILogicalContextOptions options)
+        public ILogicalContext Create(LogicalContextOptions options)
         {
             if (options.Fabric == null)
             {

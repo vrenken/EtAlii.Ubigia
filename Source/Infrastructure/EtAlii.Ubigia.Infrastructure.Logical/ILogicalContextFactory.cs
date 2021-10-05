@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     public interface ILogicalContextFactory
     {
-        ILogicalContext Create(ILogicalContextOptions options);
+        ILogicalContext Create(LogicalContextOptions options);
     }
 }

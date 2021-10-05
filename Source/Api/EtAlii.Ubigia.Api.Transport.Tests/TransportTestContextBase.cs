@@ -19,12 +19,10 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         IInfrastructureHostTestContext ITransportTestContext.Host => Host;
         protected THostTestContext Host { get; private set; }
 
-        private readonly IHostTestContextFactory _testHostFactory;
         private readonly IContextCorrelator _contextCorrelator;
 
         protected TransportTestContextBase()
         {
-            _testHostFactory = new HostTestContextFactory();
             _contextCorrelator = new ContextCorrelator();
         }
 
@@ -149,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
         public async Task Start(PortRange portRange)
         {
-            Host = _testHostFactory.Create<THostTestContext>();
+            Host = new THostTestContext();
             await Host
                 .Start(portRange)
                 .ConfigureAwait(false);
