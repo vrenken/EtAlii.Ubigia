@@ -5,16 +5,21 @@
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.DependencyInjection;
 
     public partial class Container
     {
         /// <inheritdoc />
+        [return: NotNull]
         public T GetInstance<T>()
         {
             _serviceProvider ??= _collection.BuildServiceProvider();
 
             var instance = _serviceProvider.GetService<T>();
+
+            // Remark: The null check is disabled in release mode, still the method should never return null as DI is
+            // build to compose the whole application logical structure.
 #if DEBUG
             if (instance == null)
             {
