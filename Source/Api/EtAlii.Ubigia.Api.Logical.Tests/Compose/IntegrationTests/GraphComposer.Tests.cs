@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
 
     [CorrelateUnitTests]
     public partial class GraphComposerIntegrationTests : IClassFixture<LogicalUnitTestContext>

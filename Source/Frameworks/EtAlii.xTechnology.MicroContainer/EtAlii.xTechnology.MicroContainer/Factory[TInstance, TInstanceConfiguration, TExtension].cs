@@ -1,18 +1,11 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.xTechnology.MicroContainer
 {
-    using System.Diagnostics.CodeAnalysis;
-    using EtAlii.xTechnology.MicroContainer;
-
     /// <summary>
     /// Use this as a base class to create configurable and extensible subsystem factories.
     /// </summary>
 
-    [SuppressMessage(
-        category: "Sonar Code Smell",
-        checkId: "S2436:Reduce the number of generic parameters in the 'Factory' class to no more than the 2 authorized",
-        Justification = "We cannot make this helper factory with less than 3 generic methods. Currently the change is too invasive to apply as all layers use this abstract class.")]
     public abstract class Factory<TInstance, TInstanceConfiguration>
         where TInstanceConfiguration : IExtensible
     {

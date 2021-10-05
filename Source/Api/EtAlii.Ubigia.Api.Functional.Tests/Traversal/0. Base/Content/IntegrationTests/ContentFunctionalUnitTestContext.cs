@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Serilog;
 

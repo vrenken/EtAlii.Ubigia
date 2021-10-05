@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Threading;
 
     public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext

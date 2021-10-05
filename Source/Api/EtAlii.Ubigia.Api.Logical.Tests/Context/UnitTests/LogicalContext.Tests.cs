@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
     using Xunit;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
 
     [CorrelateUnitTests]
     public class LogicalContextTests : IClassFixture<LogicalUnitTestContext>

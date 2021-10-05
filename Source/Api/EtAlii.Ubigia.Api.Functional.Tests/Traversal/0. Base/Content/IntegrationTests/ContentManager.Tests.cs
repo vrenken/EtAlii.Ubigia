@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 

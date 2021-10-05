@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.xTechnology.MicroContainer
 {
-    using EtAlii.xTechnology.MicroContainer;
-
     /// <summary>
     /// Use this as a base class to create a non-configurable nor extensible subsystem factory.
     /// </summary>

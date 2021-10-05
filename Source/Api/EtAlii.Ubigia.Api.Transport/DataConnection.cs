@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class DataConnection : IDataConnection
     {

@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Xunit;
 

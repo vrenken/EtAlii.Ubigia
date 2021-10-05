@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
 
     [CorrelateUnitTests]
     public class FabricContextContentDefinitionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime

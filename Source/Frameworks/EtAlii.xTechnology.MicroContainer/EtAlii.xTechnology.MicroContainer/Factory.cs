@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.xTechnology.MicroContainer
 {
-    using EtAlii.xTechnology.MicroContainer;
-
     public static class Factory
     {
         public static TInstance Create<TInstance>(IExtensible options)

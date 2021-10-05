@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;

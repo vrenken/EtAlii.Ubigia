@@ -3,11 +3,10 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class TestHostExtension : IHostExtension
+    public class TestHostExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             _configurationRoot = configurationRoot;
         }
 
-        public void Register(IRegisterOnlyContainer container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Infrastructure:Hosting:Diagnostics")

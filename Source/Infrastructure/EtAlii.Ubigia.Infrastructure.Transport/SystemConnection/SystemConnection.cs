@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class SystemConnection : ISystemConnection
     {

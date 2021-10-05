@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public partial class GraphComposerIntegrationTests

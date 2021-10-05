@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class ManagementConnection : IManagementConnection
     {

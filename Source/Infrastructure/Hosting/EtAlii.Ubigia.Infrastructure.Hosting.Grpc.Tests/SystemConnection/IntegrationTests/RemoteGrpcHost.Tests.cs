@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Threading;
     using Microsoft.Extensions.Configuration;
     using Xunit;

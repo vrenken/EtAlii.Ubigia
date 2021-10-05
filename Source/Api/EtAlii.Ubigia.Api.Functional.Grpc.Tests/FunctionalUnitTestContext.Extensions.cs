@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
 
     public static class FunctionalUnitTestContextExtensions
     {

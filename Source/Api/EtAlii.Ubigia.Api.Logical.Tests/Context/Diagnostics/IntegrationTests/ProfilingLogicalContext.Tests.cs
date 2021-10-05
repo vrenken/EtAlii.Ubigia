@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using Microsoft.Extensions.Configuration;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
 
     [CorrelateUnitTests]
     public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>
