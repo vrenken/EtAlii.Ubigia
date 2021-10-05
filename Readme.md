@@ -3,30 +3,23 @@ Ubigia is a philosophy and corresponding family of technologies and applications
 It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Status
-[![Dockerhub Image](https://img.shields.io/docker/v/ubigia/storage?label=docker%20image)](https://hub.docker.com/r/ubigia/storage/tags)
-
-[![Build+Test-Ubuntu](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml)
-[![Build+Test-Windows](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml)
-[![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml)
-[![CodeQL Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia)
-
-![Build history](https://buildstats.info/github/chart/vrenken/etalii.ubigia)
-
-
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=Dockerhub%20Image&logo=docker)
+![Nuget.org package](https://img.shields.io/nuget/v/EtAlii.Ubigia?label=Nuget.org%20package&logo=nuget)
+![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia?color=blue)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vrenken/etalii.ubigia/Default%20workflow?label=CI%20build) <br/>
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=bugs)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=code_smells)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=coverage)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
-
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia) <br/>
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=ncloc)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=sqale_index)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
-
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia) <br/>
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=security_rating)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=alert_status)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
+
+![Build history](https://buildstats.info/github/chart/vrenken/etalii.ubigia)
 
 ## Getting Started
 
