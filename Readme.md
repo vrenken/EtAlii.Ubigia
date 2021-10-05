@@ -3,10 +3,10 @@ Ubigia is a philosophy and corresponding family of technologies and applications
 It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Status
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=Dockerhub%20Image&logo=docker)
-![Nuget.org package](https://img.shields.io/nuget/v/EtAlii.Ubigia?label=Nuget.org%20package&logo=nuget)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=dockerhub%20image&logo=docker&logoColor=white)
+![Nuget.org package](https://img.shields.io/nuget/v/EtAlii.Ubigia?label=nuget%20package&logo=nuget)
 ![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia?color=blue)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vrenken/etalii.ubigia/Default%20workflow?label=CI%20build) <br/>
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vrenken/etalii.ubigia/Default%20workflow?label=CI%20build&logo=github) <br/>
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=bugs)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=code_smells)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=coverage)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
@@ -18,6 +18,9 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=security_rating)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=alert_status)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
+
+![Docker pulls](https://img.shields.io/docker/pulls/ubigia/storage?color=blue&label=docker%20pulls&logo=docker&logoColor=white)
+![Nuget downloads](https://img.shields.io/nuget/dt/EtAlii.Ubigia?label=nuget%20downloads&logo=nuget&color=blue)
 
 ![Build history](https://buildstats.info/github/chart/vrenken/etalii.ubigia)
 
