@@ -11,13 +11,10 @@ namespace EtAlii.xTechnology.Hosting
         protected void TryAddService(List<IService> services, IHost host, IHostOptions options, string configurationSectionName)
         {
             var configurationSection = options.ConfigurationRoot.GetSection(configurationSectionName);
-            if (configurationSection != null)
+            if (configurationSection != null && ServiceConfiguration.TryCreate(configurationSection, options.ConfigurationRoot, out var serviceConfiguration))
             {
-                if(ServiceConfiguration.TryCreate(configurationSection, options.ConfigurationRoot, out var serviceConfiguration))
-                {
-                    var service = new ServiceFactory().Create(serviceConfiguration, host);
-                    services.Add(service);
-                }
+                var service = new ServiceFactory().Create(serviceConfiguration, host);
+                services.Add(service);
             }
         }
     }
