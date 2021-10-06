@@ -11,19 +11,13 @@ namespace EtAlii.xTechnology.Hosting
 
         public HostScaffolding(HostOptions options)
         {
-            // We want to be able to recreate the whole host.
-            if (options.CreateHost == null)
-            {
-                options.Use(() => Factory.Create<IHost>(options));
-            }
-
             _options = options;
         }
 
         public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _options.ConfigurationRoot);
-
+            container.Register(services => _options.HostFactory(_options, services));
             if (_options.AddHostWrapper)
             {
                 // During runtime, so not during testing,
@@ -31,6 +25,7 @@ namespace EtAlii.xTechnology.Hosting
                 // Hence we need a HostWrapper.
                 container.RegisterDecorator<IHost, HostWrapper>();
             }
+
             container.RegisterInitializer<IHost>((_, host) =>
             {
                 var commands = _options.Commands

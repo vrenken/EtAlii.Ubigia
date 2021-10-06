@@ -21,10 +21,7 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         public bool AddHostWrapper { get; private set; }
 
-        /// <summary>
-        /// The factory function responsible for creating the actual host.
-        /// </summary>
-        public Func<IHost> CreateHost { get; private set; }
+        public Func<HostOptions, IServiceCollection, IHost> HostFactory { get; private set; }
 
         public IHostServicesFactory ServiceFactory { get; private set; }
 
@@ -48,20 +45,25 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        /// <summary>
-        /// Instruct the host configuration to use the provided host factory method.
-        /// </summary>
-        /// <param name="createHost"></param>
-        /// <returns></returns>
-        public HostOptions Use(Func<IHost> createHost)
+        public HostOptions UseHost(Func<HostOptions, IServiceCollection, IHost> hostFactory)
         {
-            if (CreateHost != null)
+            if (HostFactory != null)
             {
                 throw new InvalidOperationException("Host factory configuration already done");
             }
 
-            CreateHost = createHost;
+            HostFactory = hostFactory;
+            return this;
+        }
 
+        public HostOptions UseHost(Func<HostOptions, IHost> hostFactory)
+        {
+            if (HostFactory != null)
+            {
+                throw new InvalidOperationException("Host factory configuration already done");
+            }
+
+            HostFactory = (options, _) => hostFactory(options);
             return this;
         }
 

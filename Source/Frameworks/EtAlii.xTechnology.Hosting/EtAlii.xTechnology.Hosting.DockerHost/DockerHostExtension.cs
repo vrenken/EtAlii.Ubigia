@@ -6,12 +6,9 @@ namespace EtAlii.xTechnology.Hosting
 
     public class DockerHostExtension : IExtension
     {
-        private readonly HostOptions _options;
-
-        public DockerHostExtension(HostOptions options)
+        public void Initialize(IRegisterOnlyContainer container)
         {
-            _options = options;
+            // Nothing to do here (yet).
         }
-        public void Initialize(IRegisterOnlyContainer container) => container.Register<IHost>(() => new DockerHost(_options));
     }
 }

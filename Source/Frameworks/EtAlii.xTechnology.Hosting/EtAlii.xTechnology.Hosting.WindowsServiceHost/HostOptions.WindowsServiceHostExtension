@@ -11,7 +11,8 @@ namespace EtAlii.xTechnology.Hosting
             )
         {
             return options
-                .Use(new IExtension[] { new WindowsServiceHostExtension(options) })
+                .Use(new IExtension[] { new WindowsServiceHostExtension() })
+                .UseHost(o => new WindowsServiceHost(o))
                 .UseWrapper(true);
         }
     }

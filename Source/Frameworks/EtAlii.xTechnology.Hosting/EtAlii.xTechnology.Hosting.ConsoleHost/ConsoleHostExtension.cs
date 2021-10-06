@@ -6,12 +6,9 @@ namespace EtAlii.xTechnology.Hosting
 
     public class ConsoleHostExtension : IExtension
     {
-        private readonly HostOptions _options;
-
-        public ConsoleHostExtension(HostOptions options)
+        public void Initialize(IRegisterOnlyContainer container)
         {
-            _options = options;
+            // Nothing to do here (yet).
         }
-        public void Initialize(IRegisterOnlyContainer container) => container.Register<IHost>(() => new ConsoleHost(_options));
     }
 }

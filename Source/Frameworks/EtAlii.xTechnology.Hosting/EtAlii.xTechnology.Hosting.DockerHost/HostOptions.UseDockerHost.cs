@@ -9,7 +9,8 @@ namespace EtAlii.xTechnology.Hosting
         public static HostOptions UseDockerHost(this HostOptions options)
         {
             return options
-                .Use(new IExtension[] { new DockerHostExtension(options) })
+                .Use(new IExtension[] { new DockerHostExtension() })
+                .UseHost(o => new DockerHost(o))
                 .UseWrapper(true);
         }
     }

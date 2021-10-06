@@ -10,7 +10,8 @@ namespace EtAlii.xTechnology.Hosting
         public static HostOptions UseTestHost(this HostOptions options, Func<HostOptions, ITestHost> hostFactory)
         {
             return options
-                .Use(new IExtension[] { new TestHostExtension(options, hostFactory) })
+                .Use(new IExtension[] { new TestHostExtension() })
+                .UseHost(hostFactory)
                 .UseWrapper(true);
         }
     }

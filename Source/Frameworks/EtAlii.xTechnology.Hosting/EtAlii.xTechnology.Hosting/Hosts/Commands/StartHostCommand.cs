@@ -2,6 +2,8 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     internal class StartHostCommand : HostCommandBase, IStartHostCommand
     {
         public string Name => "Host/Start";
@@ -17,7 +19,7 @@ namespace EtAlii.xTechnology.Hosting
             //var property = Host.Property
 
             // Replace the original host by a completely fresh instance.
-            var host = Host.Options.CreateHost();
+            var host = Factory.Create<IHost>(Host.Options);
             var hostWrapper = Host as HostWrapper;
             hostWrapper?.Replace(host);
 

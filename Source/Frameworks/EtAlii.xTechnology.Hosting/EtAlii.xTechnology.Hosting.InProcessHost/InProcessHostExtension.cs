@@ -18,6 +18,9 @@ namespace EtAlii.xTechnology.Hosting
             _hostControl = hostControl;
         }
 
-        public void Initialize(IRegisterOnlyContainer container) => container.Register<IHost>(() => new InProcessHost(_options));
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            // Nothing to do here (yet).
+        }
     }
 }

@@ -2,22 +2,13 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System;
     using EtAlii.xTechnology.MicroContainer;
 
     public class TestHostExtension : IExtension
     {
-        private readonly Func<HostOptions, ITestHost> _hostFactory;
-        private readonly HostOptions _options;
-
-        public TestHostExtension(HostOptions options, Func<HostOptions, ITestHost> hostFactory)
-        {
-            _hostFactory = hostFactory;
-            _options = options;
-        }
         public void Initialize(IRegisterOnlyContainer container)
         {
-            container.Register<IHost>(() => _hostFactory(_options));
+            // Nothing to do here (yet).
         }
     }
 }

@@ -14,6 +14,7 @@ namespace EtAlii.xTechnology.Hosting
             };
             return options
                 .Use(extensions)
+                .UseHost(o => new InProcessHost(o))
                 .UseWrapper(true);
         }
     }

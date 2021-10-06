@@ -6,13 +6,9 @@ namespace EtAlii.xTechnology.Hosting
 
     public class WindowsServiceHostExtension : IExtension
     {
-        private readonly HostOptions _options;
-
-        public WindowsServiceHostExtension(HostOptions options)
+        public void Initialize(IRegisterOnlyContainer container)
         {
-            _options = options;
+            // Nothing to do here (yet).
         }
-
-        public void Initialize(IRegisterOnlyContainer container) => container.Register<IHost>(() => new WindowsServiceHost(_options));
     }
 }

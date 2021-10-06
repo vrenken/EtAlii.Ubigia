@@ -9,7 +9,8 @@ namespace EtAlii.xTechnology.Hosting
         public static HostOptions UseConsoleHost(this HostOptions options)
         {
             return options
-                .Use(new IExtension[] { new ConsoleHostExtension(options) })
+                .Use(new IExtension[] { new ConsoleHostExtension() })
+                .UseHost(o => new ConsoleHost(o))
                 .UseWrapper(true);
         }
     }

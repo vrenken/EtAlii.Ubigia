@@ -26,7 +26,12 @@ namespace EtAlii.xTechnology.Hosting
             var errorIcon = ToIcon(assembly, errorIconResource);
 
             return options
-                .Use(new IExtension[] { new TrayIconHostExtension(options, runningIcon, stoppedIcon, errorIcon) })
+                .Use(new IExtension[] { new TrayIconHostExtension(runningIcon, stoppedIcon, errorIcon) })
+                .UseHost((o, services) =>
+                {
+                    var taskbarIcon = services.GetInstance<ITaskbarIcon>();
+                    return new TrayIconHost(o, taskbarIcon);
+                })
                 .UseWrapper(true);
         }
 
