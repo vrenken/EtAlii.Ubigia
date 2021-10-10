@@ -15,6 +15,7 @@ env:
   CONFIGURATION_UBUNTU: 'Release-Ubuntu'
   SOLUTION_WINDOWS: '.\Source\EtAlii.Ubigia.sln'
   SOLUTION_UBUNTU: './Source/EtAlii.Ubigia.sln'
+  DOTNET_VERSION: '5.0.401'
 
 jobs:
   build-on-ubuntu:
@@ -29,6 +30,7 @@ jobs:
         with:
           configuration: ${{ env.CONFIGURATION_UBUNTU }}
           solution: ${{ env.SOLUTION_UBUNTU }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   build-on-windows:
     runs-on: windows-latest
@@ -42,6 +44,7 @@ jobs:
         with:
           configuration: ${{ env.CONFIGURATION_WINDOWS }}
           solution: ${{ env.SOLUTION_WINDOWS }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   test-on-ubuntu:
     runs-on: ubuntu-latest
@@ -56,6 +59,7 @@ jobs:
         with:
           configuration: ${{ env.CONFIGURATION_UBUNTU }}
           solution: ${{ env.SOLUTION_UBUNTU }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   test-on-windows:
     runs-on: windows-latest
@@ -70,6 +74,7 @@ jobs:
         with:
           configuration: ${{ env.CONFIGURATION_WINDOWS }}
           solution: ${{ env.SOLUTION_WINDOWS }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   sonarcloud-analysis:
     runs-on: windows-latest
@@ -86,6 +91,7 @@ jobs:
           solution: ${{ env.SOLUTION_WINDOWS }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   codeql-analysis:
     runs-on: windows-latest
@@ -100,6 +106,7 @@ jobs:
         with:
           configuration: ${{ env.CONFIGURATION_WINDOWS }}
           solution: ${{ env.SOLUTION_WINDOWS }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   nuget-publish:
     runs-on: windows-latest
@@ -116,6 +123,7 @@ jobs:
           solution: ${{ env.SOLUTION_WINDOWS }}
           nuget_org_xtechnology_token: ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
           nuget_org_ubigia_token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   docker-publish:
     runs-on: ubuntu-latest
@@ -132,3 +140,4 @@ jobs:
           solution: ${{ env.SOLUTION_UBUNTU }}
           dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
           dockerhub_user: ${{ secrets.DOCKERHUB_USER }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}

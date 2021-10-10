@@ -17,7 +17,9 @@ inputs:
     description: "The name of the image to create and publish"
     required: false
     default: 'ubigia/storage'
-
+  dotnet_version:
+    description: 'The dotnet version to use'
+    required: true
 runs:
   using: composite
   steps:
@@ -26,7 +28,7 @@ runs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.302
+        dotnet-version: ${{ inputs.dotnet_version }}
 
     # Versioning.
     - name: Versioning

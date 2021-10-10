@@ -448,11 +448,6 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{186D063F-AADD-4F45-B394-935239120191}"
 ProjectSection(SolutionItems) = preProject
-	..\.github\workflows\build+test-windows.yml.old = ..\.github\workflows\build+test-windows.yml.old
-	..\.github\workflows\analyse-codeql.yml.old = ..\.github\workflows\analyse-codeql.yml.old
-	..\.github\workflows\analyse-sonarcloud.yml.old = ..\.github\workflows\analyse-sonarcloud.yml.old
-	..\.github\workflows\publish.yml.old = ..\.github\workflows\publish.yml.old
-	..\.github\workflows\build+test-ubuntu.yml.old = ..\.github\workflows\build+test-ubuntu.yml.old
 	..\.github\workflows\default.yml = ..\.github\workflows\default.yml
 EndProjectSection
 EndProject
