@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var configurationRoot = new ConfigurationBuilder()
                     .Build();
 
-                _logger.Debug("Configuration root {configurationRoot}", configurationRoot);
+                _logger.Debug("Configuration root {ConfigurationRoot}", configurationRoot);
 
                 // Fabric and logical and transport layers are not really needed here.
                 // We just use the parsing capabilities in the functional layer.

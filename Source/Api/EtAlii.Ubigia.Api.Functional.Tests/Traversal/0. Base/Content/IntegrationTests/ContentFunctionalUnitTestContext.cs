@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         private void RemoveTestFiles()
         {
-            _log.Information("Removing test files.");
+            _log.Information("Removing test files");
 
             if (File.Exists(TestFile2MImage))
             {
