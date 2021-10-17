@@ -43,7 +43,7 @@
 
   <!-- We want any project that is not a test or analyzer project to use nugetizer assistance when creating packages. -->
   <ItemGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
-    <PackageReference Include="NuGetizer" Version="0.7.4" Label="NuGetizer (.targets)" >
+    <PackageReference Include="NuGetizer" Version="0.7.5" Label="NuGetizer (.targets)" >
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
