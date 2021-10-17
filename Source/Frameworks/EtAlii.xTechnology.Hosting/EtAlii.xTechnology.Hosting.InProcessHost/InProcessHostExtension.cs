@@ -6,9 +6,10 @@ namespace EtAlii.xTechnology.Hosting
 
     public class InProcessHostExtension : IExtension
     {
-        // ReSharper disable once NotAccessedField.Local
 #pragma warning disable S4487
+        // ReSharper disable once NotAccessedField.Local
         private readonly HostOptions _options;
+        // ReSharper disable once NotAccessedField.Local
         private readonly HostControl _hostControl;
 #pragma warning restore S4487
 

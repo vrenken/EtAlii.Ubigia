@@ -25,9 +25,6 @@
     <Folder Include="_Model" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Shared\Error.cs">
-      <DependentUpon>Error.cshtml</DependentUpon>
-    </Compile>
     <Compile Update="Shared\NavMenu.razor.cs">
       <DependentUpon>NavMenu.razor</DependentUpon>
     </Compile>
