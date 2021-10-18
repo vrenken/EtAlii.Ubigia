@@ -131,9 +131,9 @@ namespace EtAlii.xTechnology.Hosting
             Console.Clear();
             foreach (var status in _host.Status)
             {
-                if (string.IsNullOrWhiteSpace(status.Title) || string.IsNullOrWhiteSpace(status.Summary)) continue;
+                if (string.IsNullOrWhiteSpace(status.Summary)) continue;
 
-                Console.WriteLine($"[{status.Title}]");
+                Console.WriteLine($"[{status.Id}]");
                 Console.WriteLine(status.Summary.TrimEnd(Environment.NewLine.ToCharArray()));
                 Console.WriteLine();
             }

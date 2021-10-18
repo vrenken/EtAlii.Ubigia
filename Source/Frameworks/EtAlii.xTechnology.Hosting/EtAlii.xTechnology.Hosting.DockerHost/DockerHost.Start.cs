@@ -3,15 +3,22 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
+    using System.Reflection;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Serilog;
 
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class DockerHost
     {
+        private static readonly ILogger _log = Log.ForContext<DockerHost>();
         public static void Start(HostOptions options)
         {
+            // We want to start logging as soon as possible. This means not waiting until the ASP.NET Core hosting subsystem has started.
+            DiagnosticsOptions.Initialize(Assembly.GetCallingAssembly(), options.ConfigurationRoot);
+
             var arguments = Environment.GetCommandLineArgs();
             for (var i = 0; i < arguments.Length; i++)
             {
@@ -22,15 +29,15 @@ namespace EtAlii.xTechnology.Hosting
                 }
             }
 
-            Console.WriteLine("Starting Ubigia infrastructure...");
+            _log.Information("Starting Ubigia infrastructure");
 
             var host = Factory.Create<IHost>(options);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();
 
-            var consoleDialog = new DockerDialog(host);
-            consoleDialog.Start();
+            var dockerDialog = new DockerDialog(host);
+            dockerDialog.Start();
         }
     }
 }

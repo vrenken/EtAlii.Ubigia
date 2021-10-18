@@ -12,12 +12,14 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
+    using Serilog;
 
     public abstract partial class HostBase : IHost
     {
         protected Microsoft.Extensions.Hosting.IHost Host => _host;
         private Microsoft.Extensions.Hosting.IHost _host;
         private readonly Status _selfStatus;
+        private readonly ILogger _logger = Log.ForContext<HostBase>();
 
         event Action<IWebHostBuilder> IHost.ConfigureHost { add => _configureHost += value; remove => _configureHost -= value; }
         private Action<IWebHostBuilder> _configureHost;
@@ -37,7 +39,7 @@ namespace EtAlii.xTechnology.Hosting
 
         protected HostBase(HostOptions options)
         {
-            _selfStatus = new Status(GetType().Name) { Summary = "Unknown", Title = GetType().Name };
+            _selfStatus = new Status { Id = GetType().Name, Summary = "Unknown" };
 
             Status = new[] { _selfStatus };
 
@@ -101,6 +103,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <returns></returns>
         protected virtual Microsoft.Extensions.Hosting.IHost CreateHost()
         {
+            _logger.Debug("Creating default ASP.Net Core host");
             return Microsoft.Extensions.Hosting.Host
                 .CreateDefaultBuilder()
                 .ConfigureServices(ConfigureBackgroundServices)
@@ -150,6 +153,12 @@ namespace EtAlii.xTechnology.Hosting
         protected virtual async Task Starting()
         {
             Services = Options.ServiceFactory.Create(Options, this);
+
+            _logger.Information("Found {ServicesCount} services", Services.Length);
+            foreach (var service in Services)
+            {
+                _logger.Information("Found service: {ServiceId}", service.Configuration.Section.Key);
+            }
             _host = CreateHost();
             await _host
                 .StartAsync()
@@ -194,10 +203,6 @@ namespace EtAlii.xTechnology.Hosting
             Commands = commands;
         }
 
-        private void UpdateStatus()
-        {
-            _selfStatus.Title = $"{GetType().Name}";
-            _selfStatus.Summary = $"State: {State}";
-        }
+        private void UpdateStatus() => _selfStatus.Summary = $"State: {State}";
     }
 }

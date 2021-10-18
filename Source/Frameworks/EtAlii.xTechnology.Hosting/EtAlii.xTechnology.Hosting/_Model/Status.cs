@@ -6,17 +6,10 @@ namespace EtAlii.xTechnology.Hosting
 
     public class Status : INotifyPropertyChanged
     {
-        public string Id { get; }
-        public string Title { get => _title; set => PropertyChanged.SetAndRaise(this, ref _title, value); }
-        private string _title;
+        public string Id { get; init; }
         public string Summary { get => _summary; set => PropertyChanged.SetAndRaise(this, ref _summary, value); }
         private string _summary;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public Status(string id)
-        {
-            Id = id;
-        }
     }
 }

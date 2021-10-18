@@ -25,13 +25,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
         /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        private readonly ILogger _log = Log.ForContext<AdminPortalService>();
+        private readonly ILogger _logger = Log.ForContext<AdminPortalService>();
 
         public AdminPortalService(ServiceConfiguration configuration, Status status)
         {
             Configuration = configuration;
             Status = status;
-            _log.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
+            _logger.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)

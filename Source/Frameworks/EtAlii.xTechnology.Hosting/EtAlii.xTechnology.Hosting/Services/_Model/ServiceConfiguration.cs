@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using Microsoft.Extensions.Configuration;
+    using Serilog;
 
     public class ServiceConfiguration
     {
@@ -20,6 +21,9 @@ namespace EtAlii.xTechnology.Hosting
             IConfigurationRoot configurationRoot,
             out ServiceConfiguration configuration)
         {
+            var log = Log.ForContext<ServiceConfiguration>();
+
+            log.Verbose("Trying to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
             try
             {
                 configuration = configurationSection.Get<ServiceConfiguration>();
@@ -27,12 +31,15 @@ namespace EtAlii.xTechnology.Hosting
                 {
                     configuration.Section = configurationSection;
                     configuration.Root = configurationRoot;
+                    log.Verbose("Created ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
                     return true;
                 }
+                log.Verbose("Unable to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
                 return false;
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException e)
             {
+                log.Error(e, "Error creating ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
                 configuration = null;
                 return false;
             }

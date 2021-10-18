@@ -35,11 +35,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public FolderComparer FolderComparer { get; }
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
-        private readonly ILogger _log;
+        private readonly ILogger _logger;
         public ContentFunctionalUnitTestContext()
         {
-            _log = Log.ForContext<ContentFunctionalUnitTestContext>();
-            _log.Information("Created {InstanceName}", nameof(ContentFunctionalUnitTestContext));
+            _logger = Log.ForContext<ContentFunctionalUnitTestContext>();
+            _logger.Information("Created {InstanceName}", nameof(ContentFunctionalUnitTestContext));
 
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         private void RemoveTestFiles()
         {
-            _log.Information("Removing test files");
+            _logger.Information("Removing test files");
 
             if (File.Exists(TestFile2MImage))
             {

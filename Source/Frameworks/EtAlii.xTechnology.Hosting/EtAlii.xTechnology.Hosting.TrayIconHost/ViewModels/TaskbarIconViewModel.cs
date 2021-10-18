@@ -49,7 +49,7 @@ namespace EtAlii.xTechnology.Hosting
 
             foreach (var status in _host.Status)
             {
-                sb.AppendLine(status.Title);
+                sb.AppendLine(status.Id);
                 sb.AppendLine();
                 sb.AppendLine(status.Summary);
                 sb.AppendLine();

@@ -23,7 +23,8 @@ namespace EtAlii.xTechnology.Hosting
 
         public Func<HostOptions, IServiceCollection, IHost> HostFactory { get; private set; }
 
-        public IHostServicesFactory ServiceFactory { get; private set; }
+        public IHostServicesFactory ServiceFactory => _serviceFactory.Value;
+        private Lazy<IHostServicesFactory> _serviceFactory;
 
         /// <inheritdoc />
         IExtension[] IExtensible.Extensions { get; set; }
@@ -70,12 +71,12 @@ namespace EtAlii.xTechnology.Hosting
         public HostOptions Use<THostServicesFactory>()
             where THostServicesFactory : IHostServicesFactory, new()
         {
-            if (ServiceFactory != null)
+            if (_serviceFactory != null)
             {
                 throw new InvalidOperationException("Service factory configuration already done");
             }
 
-            ServiceFactory = new THostServicesFactory();
+            _serviceFactory = new Lazy<IHostServicesFactory>(() => new THostServicesFactory());
             return this;
         }
 

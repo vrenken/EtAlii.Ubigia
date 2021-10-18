@@ -18,7 +18,6 @@ namespace EtAlii.xTechnology.Hosting
     {
         private IDisposable _server;
         private TestServer _testServer;
-
         private readonly ILogger _logger = Log.ForContext<TestHost>();
 
         protected TestHost(HostOptions options)
@@ -39,6 +38,8 @@ namespace EtAlii.xTechnology.Hosting
         /// <returns></returns>
         protected override Microsoft.Extensions.Hosting.IHost CreateHost()
         {
+            _logger.Debug("Creating ASP.Net Core test host");
+
             return Microsoft.Extensions.Hosting.Host
                 .CreateDefaultBuilder()
                 .ConfigureServices(ConfigureBackgroundServices)

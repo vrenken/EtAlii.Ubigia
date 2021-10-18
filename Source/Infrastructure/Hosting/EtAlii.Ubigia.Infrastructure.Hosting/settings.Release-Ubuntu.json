@@ -1,0 +1,32 @@
+﻿{
+    "@jdt.merge" : [
+        {
+            "@jdt.path": "$.Storage",
+            "@jdt.value": {
+                "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
+                "BaseFolder": "%UBIGIA_DATA_FOLDER%"
+            }
+        },
+        {
+            "@jdt.path": "$.Management-Api-Grpc",
+            "@jdt.value": {
+                "Port": "%UBIGIA_MANAGEMENT_PORT%",
+                "IpAddress": "%UBIGIA_MANAGEMENT_INTERFACE%"
+            }
+        },
+        {
+            "@jdt.path": "$.User-Api-Grpc",
+            "@jdt.value": {
+                "Port": "%UBIGIA_DATA_PORT%",
+                "IpAddress": "%UBIGIA_DATA_INTERFACE%"
+            }
+        },
+        {
+            "@jdt.path": "$.Serilog.WriteTo[0].Args.configure[1].Args.serverUrl",
+            "@jdt.value": "%SERILOG_SERVER_URL%"
+        },
+        {
+            "@jdt.path": "$.Serilog.WriteTo[0].Args.configure[0].Args.restrictedToMinimumLevel",
+            "@jdt.value": "Information"
+        }]
+}

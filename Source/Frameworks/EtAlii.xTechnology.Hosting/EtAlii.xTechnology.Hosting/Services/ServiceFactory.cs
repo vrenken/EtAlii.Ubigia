@@ -26,7 +26,7 @@ namespace EtAlii.xTechnology.Hosting
                 throw new InvalidOperationException($"Unable to activate factory: {factoryTypeName}");
             }
 
-            var status = new Status(serviceConfiguration.Section.Key) { Summary = "Unknown", Title = serviceConfiguration.Section.Key };
+            var status = new Status { Id = serviceConfiguration.Section.Key, Summary = "Unknown" };
             return factory.Create(serviceConfiguration, status, host);
         }
     }

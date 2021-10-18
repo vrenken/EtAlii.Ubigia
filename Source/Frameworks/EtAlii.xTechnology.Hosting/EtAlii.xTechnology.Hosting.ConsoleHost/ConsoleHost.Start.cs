@@ -3,6 +3,8 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
+    using System.Reflection;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
@@ -12,6 +14,9 @@ namespace EtAlii.xTechnology.Hosting
     {
         public static void Start(HostOptions options)
         {
+            // We want to start logging as soon as possible. This means not waiting until the ASP.NET Core hosting subsystem has started.
+            DiagnosticsOptions.Initialize(Assembly.GetCallingAssembly(), options.ConfigurationRoot);
+
             var arguments = Environment.GetCommandLineArgs();
             for (var i = 0; i < arguments.Length; i++)
             {

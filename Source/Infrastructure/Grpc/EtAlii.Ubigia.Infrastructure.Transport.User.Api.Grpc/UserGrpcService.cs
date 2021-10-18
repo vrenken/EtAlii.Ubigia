@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
     public class UserGrpcService : INetworkService
     {
-        private readonly ILogger _log = Log.ForContext<UserGrpcService>();
+        private readonly ILogger _logger = Log.ForContext<UserGrpcService>();
 
         /// <inheritdoc />
         public Status Status { get; }
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
         {
             Configuration = configuration;
             Status = status;
-            _log.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
+            _logger.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
         }
 
 	    public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
