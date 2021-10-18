@@ -10,15 +10,22 @@
         {
             "@jdt.path": "$.Management-Api-Grpc",
             "@jdt.value": {
-                "Port": "%UBIGIA_MANAGEMENT_PORT%",
-                "IpAddress": "%UBIGIA_MANAGEMENT_INTERFACE%"
+                "Port": "%UBIGIA_MANAGEMENT_API_PORT%",
+                "IpAddress": "%UBIGIA_MANAGEMENT_API_INTERFACE%"
+            }
+        },
+        {
+            "@jdt.path": "$.Management-Portal",
+            "@jdt.value": {
+                "Port": "%UBIGIA_MANAGEMENT_PORTAL_PORT%",
+                "IpAddress": "%UBIGIA_MANAGEMENT_PORTAL_INTERFACE%"
             }
         },
         {
             "@jdt.path": "$.User-Api-Grpc",
             "@jdt.value": {
-                "Port": "%UBIGIA_DATA_PORT%",
-                "IpAddress": "%UBIGIA_DATA_INTERFACE%"
+                "Port": "%UBIGIA_USER_API_PORT%",
+                "IpAddress": "%UBIGIA_USER_API_INTERFACE%"
             }
         },
         {

@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 {
                     host.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) =>
                     {
-                        DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly(), _configurationRoot);
+                        DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, _configurationRoot);
                     }, true);
                 });
             }

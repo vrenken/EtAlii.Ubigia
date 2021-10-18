@@ -11,9 +11,11 @@ namespace EtAlii.xTechnology.Hosting
         {
         }
 
-        public void Execute()
+        public async void Execute()
         {
-            Host.Stop();
+            await Host
+                .Stop()
+                .ConfigureAwait(false);
         }
 
         protected override void OnHostStateChanged(State state)

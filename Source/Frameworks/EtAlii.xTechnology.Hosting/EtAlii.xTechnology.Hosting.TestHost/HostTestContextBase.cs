@@ -91,12 +91,16 @@ namespace EtAlii.xTechnology.Hosting
                 .Build();
 
             Host = (THost)Factory.Create<IHost>(hostOptions);
-		    await Host.Start().ConfigureAwait(false);
+		    await Host
+                .Start()
+                .ConfigureAwait(false);
         }
 
 	    public virtual async Task Stop()
 	    {
-		    await Host.Stop().ConfigureAwait(false);
+		    await Host
+                .Stop()
+                .ConfigureAwait(false);
 		    Host = null;
 	    }
 

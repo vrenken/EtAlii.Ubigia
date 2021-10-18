@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting
         {
         }
 
-        public void Execute()
+        public async void Execute()
         {
             // Backup any previous host properties that need to be remembered.
             //var property = Host.Property
@@ -26,8 +26,9 @@ namespace EtAlii.xTechnology.Hosting
             // And restore the previous host properties.
             // Host.Property = property
 
-            Host.Start();
-
+            await Host
+                .Start()
+                .ConfigureAwait(false);
         }
 
         protected override void OnHostStateChanged(State state)

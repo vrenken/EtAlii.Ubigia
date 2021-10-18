@@ -3,7 +3,7 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
-    using System.Reflection;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -12,10 +12,10 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public partial class ConsoleHost
     {
-        public static void Start(HostOptions options)
+        public static async Task Start(HostOptions options)
         {
             // We want to start logging as soon as possible. This means not waiting until the ASP.NET Core hosting subsystem has started.
-            DiagnosticsOptions.Initialize(Assembly.GetCallingAssembly(), options.ConfigurationRoot);
+            DiagnosticsOptions.Initialize(options.EntryAssembly, options.ConfigurationRoot);
 
             var arguments = Environment.GetCommandLineArgs();
             for (var i = 0; i < arguments.Length; i++)
@@ -23,7 +23,9 @@ namespace EtAlii.xTechnology.Hosting
                 if (arguments[i] == "-d" && i + 1 < arguments.Length)
                 {
                     var delay = int.Parse(arguments[i + 1]);
-                    System.Threading.Tasks.Task.Delay(delay).Wait();
+                    await Task
+                        .Delay(delay)
+                        .ConfigureAwait(false);
                 }
             }
 
@@ -32,7 +34,9 @@ namespace EtAlii.xTechnology.Hosting
             var host = Factory.Create<IHost>(options);
 
             // Start hosting both the infrastructure and the storage.
-            host.Start();
+            await host
+                .Start()
+                .ConfigureAwait(false);
 
             var consoleDialog = new ConsoleDialog(host);
             consoleDialog.Start();

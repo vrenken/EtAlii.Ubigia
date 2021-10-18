@@ -27,6 +27,7 @@ namespace EtAlii.xTechnology.Hosting
 
             return options
                 .Use(new IExtension[] { new TrayIconHostExtension(runningIcon, stoppedIcon, errorIcon) })
+                .UseEntryAssembly(Assembly.GetCallingAssembly())
                 .UseHost((o, services) =>
                 {
                     var taskbarIcon = services.GetInstance<ITaskbarIcon>();

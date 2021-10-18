@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static void Main()
+        public static async Task Main()
         {
             var configurationRoot = new ConfigurationBuilder()
                 .AddJsonFile("settings.json")
@@ -23,7 +24,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
                 .UseDockerHost()
                 .UseHostDiagnostics();
 
-            DockerHost.Start(hostOptions);
+            await DockerHost
+                .Start(hostOptions)
+                .ConfigureAwait(false);
         }
     }
 }

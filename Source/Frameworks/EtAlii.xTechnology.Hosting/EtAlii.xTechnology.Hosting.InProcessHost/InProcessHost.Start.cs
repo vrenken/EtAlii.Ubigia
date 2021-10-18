@@ -2,6 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
@@ -9,12 +10,14 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public partial class InProcessHost
     {
-        public static void Start(HostOptions options)
+        public static async Task Start(HostOptions options)
         {
             var host = Factory.Create<InProcessHost>(options);
 
             // Start hosting both the infrastructure and the storage.
-            host.Start();
+            await host
+                .Start()
+                .ConfigureAwait(false);
 
             // ReSharper disable once UnusedVariable
             #pragma warning disable S1481

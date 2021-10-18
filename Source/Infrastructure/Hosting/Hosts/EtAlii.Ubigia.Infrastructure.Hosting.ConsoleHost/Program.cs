@@ -2,13 +2,14 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var configurationRoot = new ConfigurationBuilder()
                 .AddJsonFile("settings.json")
@@ -20,7 +21,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
                 .UseConsoleHost()
                 .UseHostDiagnostics();
 
-            ConsoleHost.Start(hostOptions);
+            await ConsoleHost
+                .Start(hostOptions)
+                .ConfigureAwait(false);
         }
     }
 }

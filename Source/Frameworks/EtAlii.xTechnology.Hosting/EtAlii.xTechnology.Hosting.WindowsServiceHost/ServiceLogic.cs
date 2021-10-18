@@ -23,14 +23,18 @@ namespace EtAlii.xTechnology.Hosting
         }
 
 
-        public void Start(IEnumerable<string> args)
+        public async void Start(IEnumerable<string> args)
         {
-            _host.Start();
+            await _host
+                .Start()
+                .ConfigureAwait(false);
         }
 
-        public void Stop()
+        public async void Stop()
         {
-            _host.Stop();
+            await _host
+                .Stop()
+                .ConfigureAwait(false);
         }
     }
 }

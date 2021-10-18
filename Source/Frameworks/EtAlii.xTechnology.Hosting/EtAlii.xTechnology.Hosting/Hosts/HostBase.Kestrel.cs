@@ -35,8 +35,14 @@ namespace EtAlii.xTechnology.Hosting
             Justification = "Safe to do so here, this is a patch to get Kestrel to work as needed.")]
         private void ConfigureKestrelForService(KestrelServerOptions options, string ipAddressString, int port)
         {
-            var ipAddress = IPAddress.Parse(ipAddressString);
-
+            if (!IPAddress.TryParse(ipAddressString, out var ipAddress))
+            {
+                _logger.Error("Unable to parse {IpAddress} for configuration of Kestrel", ipAddressString ?? "NULL");
+            }
+            else
+            {
+                _logger.Debug("Parsed {IpAddress} for configuration of Kestrel", ipAddress);
+            }
             var property = options.GetType().GetProperty("ListenOptions", BindingFlags.NonPublic | BindingFlags.Instance);
 
             var listenOptions = property!.GetValue(options) as IEnumerable<ListenOptions>;
@@ -60,7 +66,8 @@ namespace EtAlii.xTechnology.Hosting
         {
             // We want all the communication to use both HTTP2 and HTTPS. In the future well move everything to HTTP3.
             options.Protocols = HttpProtocols.Http2;
-            options.UseHttps();
+            //options.UseHttps();
+            options.UseHttps("/https/ubigia.pfx", "MY_SILLY_PASSWORD");
             // options.UseHttps("<path to .pfx file>", "<certificate password>")
         }
     }

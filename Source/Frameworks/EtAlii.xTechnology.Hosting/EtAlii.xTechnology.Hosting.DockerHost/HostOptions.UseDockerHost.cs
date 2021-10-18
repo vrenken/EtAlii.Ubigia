@@ -2,6 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System.Reflection;
     using EtAlii.xTechnology.MicroContainer;
 
     public static class HostOptionsUseConsoleHostExtension
@@ -10,6 +11,7 @@ namespace EtAlii.xTechnology.Hosting
         {
             return options
                 .Use(new IExtension[] { new DockerHostExtension() })
+                .UseEntryAssembly(Assembly.GetCallingAssembly())
                 .UseHost(o => new DockerHost(o))
                 .UseWrapper(true);
         }

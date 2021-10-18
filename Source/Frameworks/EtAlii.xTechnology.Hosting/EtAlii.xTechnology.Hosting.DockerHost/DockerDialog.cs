@@ -3,68 +3,45 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
-    using System.ComponentModel;
     using System.Threading;
+    using Serilog;
 
     public class DockerDialog
     {
         private readonly IHost _host;
-        private readonly ManualResetEventSlim _endEvent = new ();
+        private readonly ILogger _logger = Log.ForContext<DockerDialog>();
+        private readonly CancellationTokenSource _cancellationTokenSource = new ();
 
         public DockerDialog(IHost host)
         {
             _host = host;
-            _host.PropertyChanged += OnHostPropertyChanged;
-        }
-
-        private void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
+            _host.PropertyChanged += (_, _) =>
             {
-                case nameof(_host.State):
-                    OnHostStateChanged(_host.State);
-                    break;
-                case nameof(_host.Commands):
-                    WriteHeaderAndStatus();
-                    break;
-            }
-        }
-
-        private void OnHostStateChanged(State state)
-        {
-            switch (state)
-            {
-                case State.Shutdown:
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Host has shut down. Have a nice day.");
-                    _endEvent.Set();
-                    break;
-            }
-            Console.WriteLine();
+                WriteHeaderAndStatus();
+                if (_host.State == State.Shutdown)
+                {
+                    _cancellationTokenSource.Cancel();
+                }
+            };
         }
 
         public void Start()
         {
             WriteHeaderAndStatus();
 
-            _endEvent.Wait();
+            _cancellationTokenSource.Token.WaitHandle.WaitOne();
+
+            _logger.Information("Host has shut down. Have a nice day");
             Environment.Exit(0);
         }
 
         private void WriteHeaderAndStatus()
         {
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("[Host]");
-            Console.WriteLine($"State: {_host.State}");
-            Console.WriteLine();
-            Console.WriteLine("-----------------------------");
             foreach (var status in _host.Status)
             {
-                if (string.IsNullOrWhiteSpace(status.Title) || string.IsNullOrWhiteSpace(status.Summary)) continue;
-
-                Console.WriteLine($"[{status.Title}]");
-                Console.WriteLine(status.Summary.TrimEnd(Environment.NewLine.ToCharArray()));
-                Console.WriteLine();
+                _logger
+                    .ForContext("StatusSummary", status.Summary ?? string.Empty)
+                    .Information("{ServiceId} status", status.Id);
             }
         }
     }

@@ -23,12 +23,13 @@ namespace EtAlii.xTechnology.Diagnostics
         public static IConfigurationRoot ConfigurationRoot { get; private set; }
 
         private static bool _isInitialized;
+        private static Assembly _entryAssembly;
 
-        public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, Assembly executingAssembly, IConfigurationRoot configurationRoot)
+        public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             var hostName = Dns.GetHostName();
-            var executingAssemblyName = executingAssembly.GetName();
+            var entryAssemblyName = _entryAssembly.GetName();
             loggerConfiguration.ReadFrom
                 .Configuration(configurationRoot)
                 .Enrich.FromLogContext()
@@ -43,18 +44,20 @@ namespace EtAlii.xTechnology.Diagnostics
                 // .Enrich.WithAssemblyVersion()
                 // Let's do it ourselves.
                 .Enrich.WithProperty("HostName", hostName) // We want to be able to filter the Seq logs depending on the (docker) system they originate from.
-                .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
-                .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
+                .Enrich.WithProperty("RootAssemblyName", entryAssemblyName.Name)
+                .Enrich.WithProperty("RootAssemblyVersion", entryAssemblyName.Version)
                 .Enrich.WithMemoryUsage()
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
         }
 
-        public static void Initialize(Assembly rootAssembly, IConfigurationRoot diagnosticsConfigurationRoot)
+        public static void Initialize(Assembly entryAssembly, IConfigurationRoot diagnosticsConfigurationRoot)
         {
             if (_isInitialized) return;
             _isInitialized = true;
 
-            ConfigureLoggerConfiguration(_loggerConfiguration, rootAssembly, diagnosticsConfigurationRoot);
+            _entryAssembly = entryAssembly;
+
+            ConfigureLoggerConfiguration(_loggerConfiguration, diagnosticsConfigurationRoot);
             Log.Logger = _loggerConfiguration.CreateLogger();
 
             // Let's flush the log when the process exits.

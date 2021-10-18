@@ -28,19 +28,23 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             _decoree = decoree;
             _decoree.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
-            _decoree.ConfigureHost += options => (_configureHost)?.Invoke(options);
+            _decoree.ConfigureHost += options => _configureHost?.Invoke(options);
         }
 
         public async Task Start()
         {
             _logger.Information("Starting host {HostName}", GetType().Name);
-            await _decoree.Start().ConfigureAwait(false);
+            await _decoree
+                .Start()
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
             _logger.Information("Stopping host {HostName}", GetType().Name);
-            await _decoree.Stop().ConfigureAwait(false);
+            await _decoree
+                .Stop()
+                .ConfigureAwait(false);
         }
 
         public async Task Shutdown()

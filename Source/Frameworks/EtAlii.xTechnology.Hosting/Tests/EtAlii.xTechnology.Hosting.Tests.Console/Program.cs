@@ -2,6 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Console
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static void Main()
+        public static async Task Main()
         {
             var configurationRoot = new ConfigurationBuilder()
                 .AddJsonFile("settings.json")
@@ -22,7 +23,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
                 .UseConsoleHost()
                 .UseHostDiagnostics();
 
-            ConsoleHost.Start(hostOptions);
+            await ConsoleHost
+                .Start(hostOptions)
+                .ConfigureAwait(false);
         }
     }
 }

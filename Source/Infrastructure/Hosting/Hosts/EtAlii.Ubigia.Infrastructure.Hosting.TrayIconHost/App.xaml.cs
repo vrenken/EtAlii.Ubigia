@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 {
-	using System.Windows;
+    using System.Windows;
     using EtAlii.xTechnology.Hosting;
 	using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 	/// </summary>
 	public partial class App
 	{
-        private void OnApplicationStartup(object sender, StartupEventArgs e)
+        private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
 	        var configurationRoot = new ConfigurationBuilder()
                 .AddJsonFile("settings.json")
@@ -27,7 +27,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
                     "Icon-Logo-Red.ico")
 		        .UseHostDiagnostics();
 
-            TrayIconHost.Start(hostOptions);
+            await TrayIconHost
+                .Start(hostOptions)
+                .ConfigureAwait(false);
         }
     }
 }

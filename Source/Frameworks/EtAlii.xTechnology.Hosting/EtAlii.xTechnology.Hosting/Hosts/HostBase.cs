@@ -110,7 +110,9 @@ namespace EtAlii.xTechnology.Hosting
                 .ConfigureHostConfiguration(ConfigureHostConfiguration)
                 .ConfigureWebHost(webHostBuilder =>
                 {
-                    webHostBuilder.UseKestrel(ConfigureKestrel);
+                    webHostBuilder
+                        .UseUrls() // No need to have ASP.NET Core try to use it's default urls.
+                        .UseKestrel(ConfigureKestrel);
                     webHostBuilder.Configure(ConfigureApplication);
                     _configureHost?.Invoke(webHostBuilder);
                 })

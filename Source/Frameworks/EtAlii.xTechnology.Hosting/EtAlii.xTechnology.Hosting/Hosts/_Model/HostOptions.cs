@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Linq;
+    using System.Reflection;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
@@ -20,6 +21,11 @@ namespace EtAlii.xTechnology.Hosting
         /// True when the host will be wrapped in a decorator that allows starting, stopping and restarting of the host.
         /// </summary>
         public bool AddHostWrapper { get; private set; }
+
+        /// <summary>
+        /// The entry assembly from which the application got started.
+        /// </summary>
+        public Assembly EntryAssembly { get; private set; }
 
         public Func<HostOptions, IServiceCollection, IHost> HostFactory { get; private set; }
 
@@ -42,6 +48,12 @@ namespace EtAlii.xTechnology.Hosting
                 .Concat(commands)
                 .Distinct()
                 .ToArray();
+
+            return this;
+        }
+        public HostOptions UseEntryAssembly(Assembly entryAssembly)
+        {
+            EntryAssembly = entryAssembly;
 
             return this;
         }

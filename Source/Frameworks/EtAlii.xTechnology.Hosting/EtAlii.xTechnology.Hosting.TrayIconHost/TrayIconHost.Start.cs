@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
@@ -15,21 +16,28 @@ namespace EtAlii.xTechnology.Hosting
 
         protected override Task Stopping() => Task.CompletedTask;
 
-        public static void Start(HostOptions options)
+        public static async Task Start(HostOptions options)
         {
+            // We want to start logging as soon as possible. This means not waiting until the ASP.NET Core hosting subsystem has started.
+            DiagnosticsOptions.Initialize(options.EntryAssembly, options.ConfigurationRoot);
+
             var arguments = Environment.GetCommandLineArgs();
             for(var i = 0; i < arguments.Length; i++)
             {
                 if (arguments[i] == "-d" && i + 1 < arguments.Length)
                 {
                     var delay = int.Parse(arguments[i + 1]);
-                    Task.Delay(delay).Wait();
+                    await Task
+                        .Delay(delay)
+                        .ConfigureAwait(false);
                 }
             }
 
             var host = Factory.Create<IHost>(options);
             // Start hosting both the infrastructure and the storage.
-            host.Start();
+            await host
+                .Start()
+                .ConfigureAwait(false);
         }
     }
 }
