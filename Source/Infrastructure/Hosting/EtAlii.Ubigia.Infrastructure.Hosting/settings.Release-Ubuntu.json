@@ -8,6 +8,13 @@
             }
         },
         {
+            "@jdt.path": "$.Host",
+            "@jdt.value": {
+                "CertificateFile": "%UBIGIA_CERTIFICATE_FILE%",
+                "CertificatePassword": "%UBIGIA_CERTIFICATE_PASSWORD%"
+            }
+        },
+        {
             "@jdt.path": "$.Management-Api-Grpc",
             "@jdt.value": {
                 "Port": "%UBIGIA_MANAGEMENT_API_PORT%",

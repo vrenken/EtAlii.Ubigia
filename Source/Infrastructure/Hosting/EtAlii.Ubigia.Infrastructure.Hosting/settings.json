@@ -83,7 +83,9 @@
             "InjectProfiling": false,
             "InjectLogging": true,
             "InjectDebugging": false
-        }
+        },
+        "CertificateFile": "",
+        "CertificatePassword": ""
     },
 
     "Storage": {

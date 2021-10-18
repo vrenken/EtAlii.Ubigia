@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 {
     using System;
-    using System.Diagnostics;
     using Blazorise;
     using Blazorise.Bootstrap;
     using Blazorise.Icons.FontAwesome;
@@ -14,7 +13,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using Serilog;
 
     public class AdminPortalService : INetworkService
@@ -70,16 +68,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .UseHsts();
                 // .UseWelcomePage();
 
-            if (environment.IsDevelopment() || Debugger.IsAttached)
-            {
+            // TEMP dump to get some kind of portal output.
+            //if (environment.IsDevelopment() || Debugger.IsAttached)
+            //{
                 application.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                application.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                application.UseHsts();
-            }
+            //}
+            // else
+            // {
+            //     application.UseExceptionHandler("/Error");
+            //     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //     application.UseHsts();
+            // }
 
             //application.UseHttpsRedirection();
             application.UseStaticFiles();

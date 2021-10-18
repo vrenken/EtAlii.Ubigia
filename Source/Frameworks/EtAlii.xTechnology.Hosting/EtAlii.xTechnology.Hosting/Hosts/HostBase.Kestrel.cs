@@ -2,18 +2,20 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Reflection;
     using System.Security.Authentication;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
+    using Microsoft.Extensions.Configuration;
 
     public abstract partial class HostBase
     {
-
         private void ConfigureKestrel(KestrelServerOptions kestrelOptions)
         {
             var networkServices = Services.OfType<INetworkService>().ToArray();
@@ -64,11 +66,23 @@ namespace EtAlii.xTechnology.Hosting
 
         private void OnConfigureListenOptions(ListenOptions options)
         {
+            var configuration = Options.ConfigurationRoot.GetSection("Host").Get<HostConfiguration>();
+            if (string.IsNullOrWhiteSpace(configuration.CertificateFile) || string.IsNullOrWhiteSpace(configuration.CertificatePassword))
+            {
+                _logger.Information("No HTTPS certificate specified. Using defaults");
+                options.UseHttps();
+            }
+            else if (!File.Exists(configuration.CertificateFile))
+            {
+                throw new InvalidOperationException($"Certificate file not found: {configuration.CertificateFile}");
+            }
+            else
+            {
+                _logger.Information("Using specified certificate instead of defaults: {CertificateFile}", configuration.CertificateFile);
+                options.UseHttps(configuration.CertificateFile, configuration.CertificatePassword);
+            }
             // We want all the communication to use both HTTP2 and HTTPS. In the future well move everything to HTTP3.
             options.Protocols = HttpProtocols.Http2;
-            //options.UseHttps();
-            options.UseHttps("/https/ubigia.pfx", "MY_SILLY_PASSWORD");
-            // options.UseHttps("<path to .pfx file>", "<certificate password>")
         }
     }
 }
