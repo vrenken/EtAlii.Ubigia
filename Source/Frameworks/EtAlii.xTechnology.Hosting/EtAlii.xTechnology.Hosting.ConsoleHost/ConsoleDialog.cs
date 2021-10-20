@@ -13,6 +13,7 @@ namespace EtAlii.xTechnology.Hosting
         private MenuItem[] _rootMenuItems;
         private readonly ParentMenuItemFinder _parentMenuItemFinder;
         private readonly HostCommandsConverter _hostCommandsConverter;
+        private bool _keepRunning = true;
 
         public ConsoleDialog(IHost host)
         {
@@ -49,6 +50,7 @@ namespace EtAlii.xTechnology.Hosting
                 case State.Shutdown:
                     Console.WriteLine("-----------------------------");
                     Console.WriteLine("Host has shut down. Have a nice day.");
+                    _keepRunning = false; // Not really needed, but the infinite while loop below is also very ugly.
                     Environment.Exit(0);
                     break;
             }
@@ -57,7 +59,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public void Start()
         {
-            while (true)
+            while (_keepRunning)
             {
                 WriteHeaderAndStatus();
                 UpdateSelectableMenuItems();
