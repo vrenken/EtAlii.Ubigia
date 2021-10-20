@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// </summary>
         public static IScriptExecutionPlan Empty { get; } = new EmptyExecutionPlan();
 
-        private class EmptyExecutionPlan : IScriptExecutionPlan
+        private sealed class EmptyExecutionPlan : IScriptExecutionPlan
         {
             public Type OutputType { get; }
 

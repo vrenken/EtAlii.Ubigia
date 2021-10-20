@@ -392,7 +392,7 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Implementing IEqualityComparer for LpNode. Compared only field Match.
 		/// </summary>
-		private class LpNodeMatchComparer : IEqualityComparer<LpNode>
+		private sealed class LpNodeMatchComparer : IEqualityComparer<LpNode>
 		{
 			bool IEqualityComparer<LpNode>.Equals(LpNode x, LpNode y)
 			{

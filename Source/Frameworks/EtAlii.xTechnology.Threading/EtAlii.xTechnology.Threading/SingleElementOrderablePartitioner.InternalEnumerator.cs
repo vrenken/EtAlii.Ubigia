@@ -47,8 +47,8 @@ namespace EtAlii.xTechnology.Threading
                     rval = _source.MoveNext();
                     if (rval)
                     {
-                        _current = new KeyValuePair<long, T>(_index.Value, _source.Current);
-                        _index.Value = _index.Value + 1;
+                        _current = new KeyValuePair<long, T>(_index._value, _source.Current);
+                        _index._value = _index._value + 1;
                     }
                     else
                     {

@@ -12,15 +12,15 @@ namespace EtAlii.xTechnology.Collections
     public static class QueryableExtensions
     {
         /// <summary>
-        /// Projects each element of a sequence recursively to an <see cref="T:System.Collections.Generic.IEnumerable`1" /> 
-        /// and flattens the resulting sequences into one sequence. 
+        /// Projects each element of a sequence recursively to an <see cref="T:System.Collections.Generic.IEnumerable`1" />
+        /// and flattens the resulting sequences into one sequence.
         /// </summary>
         /// <typeparam name="T">The type of the elements.</typeparam>
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <returns>
-        /// An <see cref="T:System.Collections.Generic.IEnumerable`1" /> whose elements 
-        /// who are the result of invoking the recursive transform function on each element of the input sequence. 
+        /// An <see cref="T:System.Collections.Generic.IEnumerable`1" /> whose elements
+        /// who are the result of invoking the recursive transform function on each element of the input sequence.
         /// </returns>
         /// <example>
         /// node.ChildNodes.SelectRecursive(n => n.ChildNodes);
@@ -30,16 +30,16 @@ namespace EtAlii.xTechnology.Collections
             return SelectRecursive(source, selector, null);
         }
         /// <summary>
-        /// Projects each element of a sequence recursively to an <see cref="T:System.Collections.Generic.IEnumerable`1" /> 
-        /// and flattens the resulting sequences into one sequence. 
+        /// Projects each element of a sequence recursively to an <see cref="T:System.Collections.Generic.IEnumerable`1" />
+        /// and flattens the resulting sequences into one sequence.
         /// </summary>
         /// <typeparam name="T">The type of the elements.</typeparam>
         /// <param name="source">A sequence of values to project.</param>
         /// <param name="selector">A transform function to apply to each element.</param>
         /// <param name="predicate">A function to test each element for a condition in each recursion.</param>
         /// <returns>
-        /// An <see cref="T:System.Collections.Generic.IEnumerable`1" /> whose elements are the result of 
-        /// invoking the recursive transform function on each element of the input sequence. 
+        /// An <see cref="T:System.Collections.Generic.IEnumerable`1" /> whose elements are the result of
+        /// invoking the recursive transform function on each element of the input sequence.
         /// </returns>
         /// <example>
         /// node.ChildNodes.SelectRecursive(n => n.ChildNodes, m => m.Depth &lt; 2);
@@ -62,7 +62,7 @@ namespace EtAlii.xTechnology.Collections
                     yield return item2;
             }
         }
-        private class Recursion<T> : IRecursion<T>
+        private sealed class Recursion<T> : IRecursion<T>
         {
             public int Depth { get; }
 
@@ -73,9 +73,9 @@ namespace EtAlii.xTechnology.Collections
                 Depth = depth;
                 Item = item;
             }
-        } 
+        }
     }
- 
+
     /// <summary>
     /// Represents an item in a recursive projection.
     /// </summary>

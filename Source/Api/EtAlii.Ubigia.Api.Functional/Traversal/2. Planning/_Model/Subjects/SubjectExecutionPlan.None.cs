@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// </summary>
         public static ISubjectExecutionPlan Empty { get; } = new EmptySubjectExecutionPlan();
 
-        private class EmptySubjectExecutionPlan : ISubjectExecutionPlan
+        private sealed class EmptySubjectExecutionPlan : ISubjectExecutionPlan
         {
             public Type OutputType { get; }
             public Subject Subject { get; }

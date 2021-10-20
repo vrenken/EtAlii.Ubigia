@@ -320,7 +320,7 @@
         /// <summary>
         /// A class for copying lambda expressions.
         /// </summary>
-        private class LambdaParameterReplacer : ExpressionVisitor
+        private sealed class LambdaParameterReplacer : ExpressionVisitor
         {
             private IEnumerable<ParameterExpression> _lambdaArgsToSearch = new List<ParameterExpression>();
             private IEnumerable<ParameterExpression> _lambdaArgsToReplace = new List<ParameterExpression>();
