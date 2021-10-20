@@ -4,7 +4,8 @@ namespace EtAlii.xTechnology.Hosting
 {
 	using System.Collections.Generic;
 	using System.IO;
-	using System.Text.RegularExpressions;
+    using System.Linq;
+    using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 
     /// <summary>
@@ -33,13 +34,16 @@ namespace EtAlii.xTechnology.Hosting
                 .ConfigureAwait(false);
 
 		    // Folder matching.
-		    var folderMatches = Regex.Matches(configuration, FolderPattern);
+		    var folderMatchGroups = Regex
+                .Matches(configuration, FolderPattern)
+                .Select(match => match.Groups)
+                .ToArray();
 		    var folders = new Dictionary<string, string>();
 
-		    foreach (Match match in folderMatches)
+		    foreach (var matchGroups in folderMatchGroups)
 		    {
-			    var name = match.Groups[1].Value;
-			    var folder = match.Groups[2].Value;
+			    var name = matchGroups[1].Value;
+			    var folder = matchGroups[2].Value;
 			    folders.Add(name, folder.Replace("\\\\","\\"));
 
 			    if (replace)
@@ -49,13 +53,16 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Host matching.
-		    var hostMatches = Regex.Matches(configuration, HostPattern);
+		    var hostMatchGroups = Regex
+                .Matches(configuration, HostPattern)
+                .Select(match => match.Groups)
+                .ToArray();
 		    var hosts = new Dictionary<string, string>();
 
-		    foreach (Match match in hostMatches)
+		    foreach (var matchGroups in hostMatchGroups)
 		    {
-			    var name = match.Groups[1].Value;
-			    var host = match.Groups[2].Value;
+			    var name = matchGroups[1].Value;
+			    var host = matchGroups[2].Value;
 			    hosts.Add(name, host);
 
 			    if (replace)
@@ -65,13 +72,17 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Port matching.
-		    var portMatches = Regex.Matches(configuration, PortPattern);
+		    var portMatchGroups = Regex
+                .Matches(configuration, PortPattern)
+                .Select(match => match.Groups)
+                .ToArray();
+
 		    var ports = new Dictionary<string, int>();
 
-		    foreach (Match match in portMatches)
+		    foreach (var matchGroups in portMatchGroups)
 		    {
-			    var name = match.Groups[1].Value;
-			    var port = int.Parse(match.Groups[2].Value);
+			    var name = matchGroups[1].Value;
+			    var port = int.Parse(matchGroups[2].Value);
 			    ports.Add(name, port);
 
 			    if (replace)
@@ -82,13 +93,16 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Path matching.
-		    var pathMatches = Regex.Matches(configuration, PathPattern);
+		    var pathMatchGroups = Regex
+                .Matches(configuration, PathPattern)
+                .Select(match => match.Groups)
+                .ToArray();
 		    var paths = new Dictionary<string, string>();
 
-		    foreach (Match match in pathMatches)
+		    foreach (var matchGroups in pathMatchGroups)
 		    {
-			    var name = match.Groups[1].Value;
-			    var path = match.Groups[2].Value;
+			    var name = matchGroups[1].Value;
+			    var path = matchGroups[2].Value;
 			    paths.Add(name, path);
 
 			    if (replace)

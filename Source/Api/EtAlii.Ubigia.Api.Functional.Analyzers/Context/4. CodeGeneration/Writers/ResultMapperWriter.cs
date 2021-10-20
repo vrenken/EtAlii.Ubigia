@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
+    using System.Linq;
     using Serilog;
 
     public class ResultMapperWriter : IResultMapperWriter
@@ -98,9 +99,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             writer.Indent -= 1;
             writer.WriteLine("}");
 
-            foreach (var pluralChild in pluralChildren)
+            foreach (var pluralChildName in pluralChildren.Select(c => c.Name))
             {
-                writer.WriteLine($"instance.{pluralChild.Name} = {ToCamelCase(pluralChild.Name)}.ToArray();");
+                writer.WriteLine($"instance.{pluralChildName} = {ToCamelCase(pluralChildName)}.ToArray();");
             }
         }
 

@@ -33,12 +33,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             // IMPORTANT: This method needs to wait until the observable is finished.
             // Else we get race conditions and very weird situations through all scripts being executed.
-            var nodesToAdd = await inputObservable
+            var identifiersToAdd = await inputObservable
                 .Cast<Node>()
+                .Select(nodeToAdd => nodeToAdd.Id)
                 .ToArray();
-            foreach (var nodeToAdd in nodesToAdd)
+            foreach (var identifierToAdd in identifiersToAdd)
             {
-                var identifierToAdd = nodeToAdd.Id;
                 var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope).ConfigureAwait(false);
                 var result = new Node(newEntry);
                 output.OnNext(result);

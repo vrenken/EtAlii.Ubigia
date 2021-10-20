@@ -51,6 +51,19 @@ namespace EtAlii.xTechnology.Hosting
 
             return this;
         }
+
+        public HostOptions Use<THostServicesFactory>()
+            where THostServicesFactory : IHostServicesFactory, new()
+        {
+            if (_serviceFactory != null)
+            {
+                throw new InvalidOperationException("Service factory configuration already done");
+            }
+
+            _serviceFactory = new Lazy<IHostServicesFactory>(() => new THostServicesFactory());
+            return this;
+        }
+
         public HostOptions UseEntryAssembly(Assembly entryAssembly)
         {
             EntryAssembly = entryAssembly;
@@ -77,18 +90,6 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             HostFactory = (options, _) => hostFactory(options);
-            return this;
-        }
-
-        public HostOptions Use<THostServicesFactory>()
-            where THostServicesFactory : IHostServicesFactory, new()
-        {
-            if (_serviceFactory != null)
-            {
-                throw new InvalidOperationException("Service factory configuration already done");
-            }
-
-            _serviceFactory = new Lazy<IHostServicesFactory>(() => new THostServicesFactory());
             return this;
         }
 
