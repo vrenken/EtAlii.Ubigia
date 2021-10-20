@@ -69,7 +69,7 @@ namespace EtAlii.xTechnology.Hosting
             var configuration = Options.ConfigurationRoot.GetSection("Host").Get<HostConfiguration>();
             if (string.IsNullOrWhiteSpace(configuration.CertificateFile) || string.IsNullOrWhiteSpace(configuration.CertificatePassword))
             {
-                _logger.Information("No HTTPS certificate specified. Using defaults");
+                _logger.Information("No HTTPS certificate specified for {EndPoint} - Using defaults", options.EndPoint.ToString());
                 options.UseHttps();
             }
             else if (!File.Exists(configuration.CertificateFile))
@@ -78,7 +78,7 @@ namespace EtAlii.xTechnology.Hosting
             }
             else
             {
-                _logger.Information("Using specified certificate instead of defaults: {CertificateFile}", configuration.CertificateFile);
+                _logger.Information("Using {CertificateFile} instead of HTTPS defaults for {EndPoint}", configuration.CertificateFile, options.EndPoint.ToString());
                 options.UseHttps(configuration.CertificateFile, configuration.CertificatePassword);
             }
             // We want all the communication to use both HTTP2 and HTTPS. In the future well move everything to HTTP3.
