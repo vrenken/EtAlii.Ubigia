@@ -18,10 +18,13 @@ namespace EtAlii.xTechnology.Hosting
     {
         private void ConfigureKestrel(KestrelServerOptions kestrelOptions)
         {
-            var networkServices = Services.OfType<INetworkService>().ToArray();
-            foreach (var networkService in networkServices)
+            var networkServiceConfigurations = Services
+                .OfType<INetworkService>()
+                .Select(networkService => networkService.Configuration)
+                .ToArray();
+            foreach (var networkServiceConfiguration in networkServiceConfigurations)
             {
-                ConfigureKestrelForService(kestrelOptions, networkService.Configuration.IpAddress, (int)networkService.Configuration.Port);
+                ConfigureKestrelForService(kestrelOptions, networkServiceConfiguration.IpAddress, (int)networkServiceConfiguration.Port);
             }
 
             kestrelOptions.ConfigureHttpsDefaults(options => options.SslProtocols = SslProtocols.Tls13);

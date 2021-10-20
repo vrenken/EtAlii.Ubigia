@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IEntryGetter _entryGetter;
 
         public EntryUpdater(
-            IEntryStorer entryStorer, 
+            IEntryStorer entryStorer,
             IEntryGetter entryGetter)
         {
             _entryStorer = entryStorer;
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 if (downdateId != Identifier.Empty)
                 {
                     var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelations.Downdate | EntryRelations.Update).ConfigureAwait(false);
-                    if (!downdate.Updates.Contains(entry.Id)) 
+                    if (!downdate.Updates.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
                         downdate.Updates.Add(entry.Id);
@@ -162,12 +162,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             var indexesComponents = components.OfType<IndexesComponent>();
             foreach (var indexesComponent in indexesComponents)
             {
-                foreach (var indexesRelation in indexesComponent.Relations)
+                var indexesRelationIds = indexesComponent.Relations
+                    .Select(relation => relation.Id)
+                    .ToArray();
+                foreach (var indexesRelationId in indexesRelationIds)
                 {
-                    var indexId = indexesRelation.Id;
-                    if (indexId != Identifier.Empty)
+                    if (indexesRelationId != Identifier.Empty)
                     {
-                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
+                        var index = (IEditableEntry)await _entryGetter.Get(indexesRelationId, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
                         if (index.Indexed == Relation.None)
                         {
                             //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
@@ -176,12 +178,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                         }
                         if (index.Indexed.Id != entry.Id)
                         {
-                            throw new SpaceFabricException(entry.Id, indexId, "Unable to add index relation from index to indexed: index.Indexed is already in use");
+                            throw new SpaceFabricException(entry.Id, indexesRelationId, "Unable to add index relation from index to indexed: index.Indexed is already in use");
                         }
                     }
                     else
                     {
-                        throw new SpaceFabricException(entry.Id, indexId,
+                        throw new SpaceFabricException(entry.Id, indexesRelationId,
                             "Unable to create index relation from index to indexed: indexId cannot be Identifier.Empty");
                     }
                 }
