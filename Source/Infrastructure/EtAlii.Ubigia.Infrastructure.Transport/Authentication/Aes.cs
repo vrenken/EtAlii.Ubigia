@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         private static SymmetricAlgorithm CreateAesCryptoServiceProvider()
         {
-            var algorithm = new AesCryptoServiceProvider();
+            var algorithm =  System.Security.Cryptography.Aes.Create();
             algorithm.GenerateKey();
             algorithm.GenerateIV();
             return algorithm;
