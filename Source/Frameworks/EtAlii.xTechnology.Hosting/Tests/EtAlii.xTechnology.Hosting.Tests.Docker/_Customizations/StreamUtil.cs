@@ -16,7 +16,9 @@ namespace Docker.DotNet.Models
 
         internal static async Task MonitorStreamAsync(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<string> progress)
         {
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = await streamTask.ConfigureAwait(false);
+#pragma warning restore CA2007
             // ReadLineAsync must be cancelled by closing the whole stream.
             // ReSharper disable once AccessToDisposedClosure
             await using (cancel.Register(() => stream.Dispose()))
@@ -34,7 +36,9 @@ namespace Docker.DotNet.Models
 
         internal static async Task MonitorStreamForMessagesAsync<T>(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<T> progress)
         {
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = await streamTask.ConfigureAwait(false);
+#pragma warning restore CA2007
             // ReadLineAsync must be cancelled by closing the whole stream.
             await using (cancel.Register(() => stream.Dispose()))
             {
@@ -63,7 +67,9 @@ namespace Docker.DotNet.Models
             using var response = await responseTask.ConfigureAwait(false);
             //await client.HandleIfErrorResponseAsync(response.StatusCode, response).ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+#pragma warning restore CA2007
             // ReadLineAsync must be cancelled by closing the whole stream.
             // ReSharper disable once AccessToDisposedClosure
             await using (cancellationToken.Register(() => stream.Dispose()))

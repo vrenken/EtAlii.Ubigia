@@ -90,7 +90,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetAssembly(type);
             // Get the stream (embedded resource) - be sure to wrap in a using block
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = assembly!.GetManifestResourceStream($"{type.Namespace}.LogicalProfilingSettings.json");
+#pragma warning restore CA2007
 
             var clientConfiguration = new ConfigurationBuilder()
                 .AddConfiguration(_testContext.ClientConfiguration)

@@ -44,7 +44,9 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         public async Task<T> Deserialize<T>(string fileName)
             where T : class
         {
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = _inMemoryItemsHelper.OpenFile(fileName);
+#pragma warning restore CA2007
             return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
         }
 

@@ -80,7 +80,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
             var folder = await _storage.GetFolderAsync(folderName).ConfigureAwait(false);
             var file = await folder.GetFileAsync(fileName).ConfigureAwait(false);
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var stream = await file.OpenAsync(FileAccess.Read).ConfigureAwait(false);
+#pragma warning restore CA2007
 
             return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
         }
