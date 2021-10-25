@@ -3,16 +3,12 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 {
     using System;
-    using Blazorise;
-    using Blazorise.Bootstrap;
-    using Blazorise.Icons.FontAwesome;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc.ApplicationParts;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using Serilog;
 
     public class AdminPortalService : INetworkService
@@ -34,71 +30,41 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            services.AddMvc();
-
             services
-                .AddBlazorise(options =>
-                {
-                    options.ChangeTextOnKeyPress = true;
-                })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
+                .AddMvc()
+                .AddApplicationPart(GetType().Assembly);
 
-            services
-                .AddSingleton<IConfiguration>(Configuration.Root)
-                .Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages")
-
-                .AddRazorPages()//options => options.RootDirectory = "/Pages") // This is where the _Host.cshtml can be found.
-                .ConfigureApplicationPartManager(p =>
-                {
-                    p.ApplicationParts.Add(new AssemblyPart(GetType().Assembly));
-                });
-            services
-                .AddServerSideBlazor()
-                .AddHubOptions(options =>
-                {
-                    options.MaximumReceiveMessageSize = 1024 * 1024 * 100;
-                });
+            services.AddSingleton<IConfiguration>(Configuration.Root);
+            services.AddRazorPages(options => options.RootDirectory = "/Pages");
+            services.AddServerSideBlazor();
+            services.AddSingleton<WeatherForecastService>();
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
+            environment.EnvironmentName = "Development";
             environment.ApplicationName = GetType().Assembly.FullName;
-            application
-                .UseHsts();
-                // .UseWelcomePage();
+            environment.UseStaticWebAssets<AdminPortalService>();
 
-            // TEMP dump to get some kind of portal output.
-            //if (environment.IsDevelopment() || Debugger.IsAttached)
-            //{
+            if (environment.IsDevelopment())
+            {
                 application.UseDeveloperExceptionPage();
-            //}
-            // else
-            // {
-            //     application.UseExceptionHandler("/Error");
-            //     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            //     application.UseHsts();
-            // }
-
-            //application.UseHttpsRedirection();
+            }
+            else
+            {
+                application.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                application.UseHsts();
+            }
             application.UseStaticFiles();
-
             application.UseRouting();
 
+            application.UseAuthorization();
             application.UseEndpoints(endpoints =>
-             {
-                 endpoints.MapControllerRoute(name: "default", pattern: "{controller}/{action}");
-                 endpoints.MapBlazorHub();
-                 endpoints.MapFallbackToPage("/_Host");
-             });
-
-            // builder
-            //     .UseRouting()
-            //     .UseWelcomePage()
-            //     .UseEndpoints(endpoints =>
-            //     {
-            //         endpoints.MapControllers();
-            //     });
+            {
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
+            });
         }
     }
 }

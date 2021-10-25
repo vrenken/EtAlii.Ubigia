@@ -1,36 +1,17 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
-@namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
 
-<Layout Sider="true">
-    <LayoutSider>
-        <NavMenu/>
-    </LayoutSider>
-    <Layout>
-        <LayoutHeader Fixed="true">
-            <Bar
-                @bind-Visible="@TopbarVisible"
-                Breakpoint="Breakpoint.Desktop" Background="Background.Primary"
-                ThemeContrast="ThemeContrast.Light">
-                <BarBrand>
-                    <BarItem>
-                        <BarLink To="">
-                            <BarIcon IconName="@("fa-magic")" />
-                            Crypto Magic
-                        </BarLink>
-                    </BarItem>
-                </BarBrand>
-                <BarEnd>
-                    <BarItem>
-                        <BarLink To="https://github.com/vrenken/EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal">
-                            <BarIcon IconName="@("fab fa-github")" Style="color:white"/>
-                        </BarLink>
-                    </BarItem>
-                </BarEnd>
-            </Bar>
-        </LayoutHeader>
-        <LayoutContent Padding="Padding.Is4.OnX">
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <div class="content px-4">
             @Body
-        </LayoutContent>
-    </Layout>
-</Layout>
+        </div>
+    </div>
+</div>
