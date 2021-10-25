@@ -27,12 +27,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 		/// <param name="accountId"></param>
 		/// <returns></returns>
 		[HttpGet]
-        public IActionResult GetForAccount([RequiredFromQuery]Guid accountId)
+        public async Task<IActionResult> GetForAccount([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
             {
-                var spaces = _items.GetAll(accountId);
+                var spaces = await _items
+                    .GetAll(accountId)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
                 response = Ok(spaces);
             }
             catch (Exception ex)

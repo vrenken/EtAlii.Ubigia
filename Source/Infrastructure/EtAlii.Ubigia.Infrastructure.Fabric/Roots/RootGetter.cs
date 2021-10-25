@@ -38,7 +38,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         public async Task<Root> Get(Guid spaceId, string name)
         {
             var roots = GetAll(spaceId);
-            var root = await roots.SingleOrDefaultAsync(r => r.Name == name).ConfigureAwait(false);
+            var root = await roots
+                .SingleOrDefaultAsync(r => r.Name == name)
+                .ConfigureAwait(false);
             return root;
         }
     }

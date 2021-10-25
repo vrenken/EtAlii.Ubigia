@@ -186,7 +186,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
             Assert.NotNull(retrievedSpaces);
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
-            Assert.Equal(2, retrievedSpaces.Count());
+            Assert.Equal(2, retrievedSpaces.Length);
         }
 
         [Fact]

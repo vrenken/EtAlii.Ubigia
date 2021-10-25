@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -30,7 +31,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
             {
                 if (id == null)
                 {
-                    var roots = _items.GetAll(spaceId);
+                    var roots = await _items
+                        .GetAll(spaceId)
+                        .ToArrayAsync()
+                        .ConfigureAwait(false);
                     response = Ok(roots);
                 }
                 else

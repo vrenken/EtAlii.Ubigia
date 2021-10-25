@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -57,12 +58,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Get all Items
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             IActionResult response;
             try
             {
-                var items = _items.GetAll();
+                var items = await _items
+                    .GetAll()
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
                 response = Ok(items);
             }
             catch (Exception ex)
