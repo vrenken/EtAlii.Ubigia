@@ -1,6 +1,6 @@
 # Introduction
 Ubigia is a philosophy and corresponding family of technologies and applications with as aim to better facilitate information ownership, exchange and entanglement.
-It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
+It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems. One of the aims is to make contextutal information traversal a possibility. 
 
 ## Status
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=dockerhub%20image&logo=docker&logoColor=white)
