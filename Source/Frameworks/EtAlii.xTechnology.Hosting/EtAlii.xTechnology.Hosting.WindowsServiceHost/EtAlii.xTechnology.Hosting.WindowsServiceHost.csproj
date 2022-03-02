@@ -8,7 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Core.System.Configuration.Install" Version="1.1.0" />
-    <PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />

@@ -42,7 +42,7 @@
 
   <ItemGroup>
     <PackageReference Include="DockerizedTesting" Version="1.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

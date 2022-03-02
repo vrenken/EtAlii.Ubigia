@@ -11,6 +11,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
 
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
   </ItemGroup>
 </Project>
