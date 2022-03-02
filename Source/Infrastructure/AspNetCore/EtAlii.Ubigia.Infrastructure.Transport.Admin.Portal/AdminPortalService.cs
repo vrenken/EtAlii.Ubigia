@@ -10,6 +10,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Serilog;
+    using Blazorise;
+    using Blazorise.Bootstrap;
+    using Blazorise.Icons.FontAwesome;
 
     public class AdminPortalService : INetworkService
     {
@@ -34,17 +37,34 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddMvc()
                 .AddApplicationPart(GetType().Assembly);
 
+            services.AddBlazorise(options =>
+                {
+                    options.ChangeTextOnKeyPress = true; // optional
+                })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
+            services.AddRazorPages(options => options.RootDirectory = "/Shared");
+            services
+                .AddServerSideBlazor()
+                .AddHubOptions(options =>
+                {
+                    options.MaximumReceiveMessageSize = 1024 * 1024 * 100;
+                });
+
+
             services.AddSingleton<IConfiguration>(Configuration.Root);
-            services.AddRazorPages(options => options.RootDirectory = "/Pages");
-            services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.ConfigureOptions(typeof(UIConfigureOptions));
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            environment.EnvironmentName = "Development";
-            environment.ApplicationName = GetType().Assembly.FullName;
-            environment.UseStaticWebAssets<AdminPortalService>();
+            //environment.EnvironmentName = "Development";
+            //environment.ApplicationName = GetType().Assembly.FullName;
+            //environment.UseStaticWebAssets<AdminPortalService>();
+            //environment.WebRootFileProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, "wwwroot");
+
+
 
             if (environment.IsDevelopment())
             {
