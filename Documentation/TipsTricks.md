@@ -1,10 +1,15 @@
-# Tips and Tricks
+r# Tips and Tricks
 
 ##Testing for linux
 Use the commandline below to run all the unit tests in a linux container:
 
 ```powershell
-docker run --rm -v ${pwd}:/app -w /app mcr.microsoft.com/dotnet/sdk:5.0 dotnet test ./EtAlii.Ubigia.sln --logger:trx --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
+docker run `
+    --rm `
+    -v ${pwd}:/app `
+    -w /app `
+    mcr.microsoft.com/dotnet/sdk:6.0 `
+    dotnet test ./EtAlii.Ubigia.sln --logger:trx --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 ```
 
 The most important tests that cover most - if not all - platform-specific runtime implementations are located in the technology specific projects.
@@ -15,9 +20,19 @@ These are mostly:
 - To quickly only run those the command lines below are a good fix:
 
 ```powershell
-docker run --rm -v ${pwd}:/app -w /app mcr.microsoft.com/dotnet/sdk:5.0 dotnet test ./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/EtAlii.Ubigia.Api.Transport.Grpc.Tests.csproj --logger:trx --results-directory:./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
+docker run `
+    --rm `
+    -v ${pwd}:/app `
+    -w /app `
+    mcr.microsoft.com/dotnet/sdk:6.0 `
+    dotnet test ./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/EtAlii.Ubigia.Api.Transport.Grpc.Tests.csproj --logger:trx --results-directory:./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 
-docker run --rm -v ${pwd}:/app -w /app mcr.microsoft.com/dotnet/sdk:5.0 dotnet test ./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/EtAlii.Ubigia.Persistence.Ntfs.Tests.csproj --logger:trx --results-directory:./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
+docker run `
+    --rm `
+    -v ${pwd}:/app `
+    -w /app `
+    mcr.microsoft.com/dotnet/sdk:6.0 `
+    dotnet test ./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/EtAlii.Ubigia.Persistence.Ntfs.Tests.csproj --logger:trx --results-directory:./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 ```
 Make sure to run the commandline is run in the same folder that the solution file resides in.
 Currently this is ```./Source``` relative to the root of the repository
@@ -31,11 +46,25 @@ TODO
 nbgv prepare-release
 ```
 
-
 ## Docker image creation
 
-dotnet publish .\Source\EtAlii.Ubigia.sln
-docker build -t ubigia/storage:preview -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile .
+```powershell
+dotnet publish .\Source\EtAlii.Ubigia.sln --configuration:'Release-Ubuntu'
+docker build `
+    --tag ubigia/storage:preview `
+    --file ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile
+    .
+```
+
+And testing:
+```powershell
+docker create `
+    --name ubigia_test_storage `
+    --env SERILOG_SERVER_URL=http://seq.avalon:5341 `
+    --volume c:\temp\ubigia:/ubigia/data `
+    --publish 64002:80 `
+    ubigia/storage:preview
+```
 
 ## Architecture Decision Log
 
