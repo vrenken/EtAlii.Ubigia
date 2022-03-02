@@ -18,7 +18,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
-    using Serilog.Core;
     using Microsoft.Extensions.Configuration;
 
     [Generator]
@@ -36,7 +35,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         private ISchemaParser _schemaParser;
         private ILogger _logger;
-        private Logger _rootLogger;
 
         private readonly INamespaceWriter _namespaceWriter;
         private readonly IHeaderWriter _headerWriter;
@@ -92,9 +90,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 loggerConfiguration.WriteTo.Seq("http://seq.avalon:5341");
             }
 
-            _rootLogger = loggerConfiguration
+            Log.Logger = loggerConfiguration
                 .CreateLogger();
-            _logger = _rootLogger
+            _logger = Log.Logger
                 .ForContext<SchemaPocoGenerator>()
                 .ForContext("CodeGeneration", ShortGuid.New());
 
@@ -212,10 +210,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 }
             }
 
-            _rootLogger.Dispose();
-            _rootLogger = null;
+            Log.CloseAndFlush();
             _logger = null;
         }
-
     }
 }
