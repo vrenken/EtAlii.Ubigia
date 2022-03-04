@@ -37,13 +37,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddMvc()
                 .AddApplicationPart(GetType().Assembly);
 
-            services.AddBlazorise(options =>
+            services
+                .AddRazorPages(options => options.RootDirectory = "/Shared");
+
+            services
+                .AddBlazorise(options =>
                 {
+                    //options.Immediate = true;
                     options.ChangeTextOnKeyPress = true; // optional
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
-            services.AddRazorPages(options => options.RootDirectory = "/Shared");
+
             services
                 .AddServerSideBlazor()
                 .AddHubOptions(options =>
@@ -63,8 +68,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
             //environment.ApplicationName = GetType().Assembly.FullName;
             //environment.UseStaticWebAssets<AdminPortalService>();
             //environment.WebRootFileProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, "wwwroot");
-
-
 
             if (environment.IsDevelopment())
             {
