@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr4BuildTasks" Version="8.17.0" />
+    <PackageReference Include="Antlr4BuildTasks" Version="8.18.0" />
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.3" />
   </ItemGroup>
 

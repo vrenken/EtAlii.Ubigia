@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddBlazorise(options =>
                 {
                     //options.Immediate = true;
-                    options.ChangeTextOnKeyPress = true; // optional
+                    //options.ChangeTextOnKeyPress = true; // optional
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();

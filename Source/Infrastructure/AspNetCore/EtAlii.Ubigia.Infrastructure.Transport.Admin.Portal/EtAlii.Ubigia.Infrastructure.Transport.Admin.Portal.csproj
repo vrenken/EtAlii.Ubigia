@@ -22,18 +22,18 @@
     <EmbeddedResource Include="wwwroot\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.2" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Charts" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Charts.Streaming" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Components" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Animate" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.DataGrid" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Sidebar" Version="0.9.5.6" />
-    <PackageReference Include="Blazorise.Snackbar" Version="0.9.5.6" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.3" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Charts" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Charts.Streaming" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Components" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Animate" Version="1.0.1" />
+    <PackageReference Include="Blazorise.DataGrid" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Sidebar" Version="1.0.1" />
+    <PackageReference Include="Blazorise.Snackbar" Version="1.0.1" />
 
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
 
