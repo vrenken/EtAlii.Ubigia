@@ -20,9 +20,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     public class InfrastructureService : IInfrastructureService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
         /// <inheritdoc />
@@ -30,13 +27,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         private IStorageService _storageService;
 
-        private readonly IHost _host;
+        private INetworkService[] _networkServices;
 
-        public InfrastructureService(ServiceConfiguration configuration, Status status, IHost host)
+        public InfrastructureService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
-            _host = host;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -52,12 +47,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             Infrastructure = null;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection serviceCollection, IService[] services)
         {
-            _storageService = (IStorageService)services.Single(sd => sd.ServiceType == typeof(IStorageService)).ImplementationInstance;
+            _storageService = services.OfType<IStorageService>().Single();
 
-            services.AddSingleton<IInfrastructureService>(this);
-            services.AddHostedService(_ => this);
+            _networkServices = services
+                .OfType<INetworkService>()
+                .ToArray();
+            serviceCollection.AddSingleton<IInfrastructureService>(this);
+            serviceCollection.AddHostedService(_ => this);
         }
 
         private IInfrastructure CreateInfrastructure(IStorage storage)
@@ -69,7 +67,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             }
 
             var serviceDetailsBuilder = new ServiceDetailsBuilder();
-            var allServiceDetails = serviceDetailsBuilder.Build(_host);
+            var allServiceDetails = serviceDetailsBuilder.Build(_networkServices);
 
             // Create fabric instance.
             var fabricContextOptions = new FabricContextOptions(Configuration.Root)

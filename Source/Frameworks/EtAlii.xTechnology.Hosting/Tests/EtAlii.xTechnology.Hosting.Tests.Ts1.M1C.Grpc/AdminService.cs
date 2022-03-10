@@ -10,16 +10,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
     public class AdminService : INetworkService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-
-        public AdminService(ServiceConfiguration configuration, Status status)
+        public AdminService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) => services.AddGrpc();

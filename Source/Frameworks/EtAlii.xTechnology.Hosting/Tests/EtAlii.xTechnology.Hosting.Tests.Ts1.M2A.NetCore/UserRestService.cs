@@ -12,15 +12,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
     public class UserRestService : INetworkService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public UserRestService(ServiceConfiguration configuration, Status status)
+        public UserRestService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

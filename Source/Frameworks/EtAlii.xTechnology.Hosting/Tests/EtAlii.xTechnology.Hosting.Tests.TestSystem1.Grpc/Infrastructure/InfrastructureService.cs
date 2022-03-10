@@ -10,15 +10,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
     public class InfrastructureService : INetworkService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public InfrastructureService(ServiceConfiguration configuration, Status status)
+        public InfrastructureService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)

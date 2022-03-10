@@ -10,13 +10,10 @@ namespace EtAlii.xTechnology.Hosting.Tests.GrpcSystem
 
     public class UserService : INetworkService
     {
-        public Status Status { get; }
-
         public ServiceConfiguration Configuration { get; }
-        public UserService(ServiceConfiguration configuration, Status status)
+        public UserService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices) => services.AddGrpc();

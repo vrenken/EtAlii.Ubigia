@@ -17,17 +17,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     public class AdminPortalService : INetworkService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
         private readonly ILogger _logger = Log.ForContext<AdminPortalService>();
 
-        public AdminPortalService(ServiceConfiguration configuration, Status status)
+        public AdminPortalService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
             _logger.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
         }
 

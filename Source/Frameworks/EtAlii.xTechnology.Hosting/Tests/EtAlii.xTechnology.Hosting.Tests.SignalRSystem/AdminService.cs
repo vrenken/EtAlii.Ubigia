@@ -10,12 +10,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 
 	public class AdminService : INetworkService
 	{
-        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
-		public AdminService(ServiceConfiguration configuration, Status status)
+
+		public AdminService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
 		public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

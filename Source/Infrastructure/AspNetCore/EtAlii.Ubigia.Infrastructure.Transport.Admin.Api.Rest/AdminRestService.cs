@@ -13,16 +13,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
     public class AdminRestService : INetworkService
     {
-        public Status Status { get; }
-
         public ServiceConfiguration Configuration { get; }
 
         private IContextCorrelator _contextCorrelator;
 
-        public AdminRestService(ServiceConfiguration configuration, Status status)
+        public AdminRestService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)

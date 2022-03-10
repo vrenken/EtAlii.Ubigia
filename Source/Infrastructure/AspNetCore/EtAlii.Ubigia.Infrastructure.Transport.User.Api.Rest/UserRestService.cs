@@ -14,17 +14,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
     public class UserRestService : INetworkService
     {
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
         private IContextCorrelator _contextCorrelator;
 
-        public UserRestService(ServiceConfiguration configuration, Status status)
+        public UserRestService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)

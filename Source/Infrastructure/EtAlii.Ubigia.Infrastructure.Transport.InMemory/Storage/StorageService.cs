@@ -15,14 +15,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 
     public class StorageService : IStorageService
     {
-        public Status Status { get; }
         public ServiceConfiguration Configuration { get; }
         public IStorage Storage { get; private set; }
 
-        public StorageService(ServiceConfiguration configuration, Status status)
+        public StorageService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
         }
 
         public Task StartAsync(CancellationToken cancellationToken) => Task.CompletedTask;
@@ -52,11 +50,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
             return new StorageFactory().Create(storageOptions);
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection serviceCollection, IService[] services)
         {
             Storage = CreateStorage();
-            services.AddSingleton<IStorageService>(this);
-            services.AddHostedService(_ => this);
+            serviceCollection.AddSingleton<IStorageService>(this);
+            serviceCollection.AddHostedService(_ => this);
         }
     }
 }

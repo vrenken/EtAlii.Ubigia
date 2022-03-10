@@ -17,15 +17,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
         private readonly ILogger _logger = Log.ForContext<UserGrpcService>();
 
         /// <inheritdoc />
-        public Status Status { get; }
-
-        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        public UserGrpcService(ServiceConfiguration configuration, Status status)
+        public UserGrpcService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            Status = status;
             _logger.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
         }
 
