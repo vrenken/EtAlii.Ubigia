@@ -15,7 +15,7 @@ env:
   CONFIGURATION_UBUNTU: 'Release-Ubuntu'
   SOLUTION_WINDOWS: '.\Source\EtAlii.Ubigia.sln'
   SOLUTION_UBUNTU: './Source/EtAlii.Ubigia.sln'
-  DOTNET_VERSION: '6.0.100'
+  DOTNET_VERSION: '6.0.200'
 
 jobs:
   build-on-ubuntu:
