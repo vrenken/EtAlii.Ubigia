@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
         public string HostName => Infrastructure?.Options?.Name;
 
-        protected override ITestHost CreateTestHost(HostOptions options) => new InfrastructureTestHost(options);
+        protected override InfrastructureTestHost CreateTestHost(IService[] services) => new (services);
 
         protected HostTestContextBase() : base("HostSettings.json", "ClientSettings.json")
         {

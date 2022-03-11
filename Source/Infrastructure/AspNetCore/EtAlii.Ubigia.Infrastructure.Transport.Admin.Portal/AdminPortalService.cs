@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddRazorPages(options => options.RootDirectory = "/Shared");
 
             services
-                .AddBlazorise(options =>
+                .AddBlazorise(_ =>
                 {
                     //options.Immediate = true;
                     //options.ChangeTextOnKeyPress = true; // optional

@@ -5,7 +5,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
+    using EtAlii.xTechnology.Hosting.Tests.Local;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
 
     public static class Program
     {
@@ -19,12 +21,16 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
 
-            var hostOptions = new HostOptions(configurationRoot)
-                .UseConsoleHost()
-                .UseHostDiagnostics();
+            System.Console.WriteLine("Starting Ubigia infrastructure...");
 
-            await ConsoleHost
-                .Start(hostOptions)
+            var host = Host
+                .CreateDefaultBuilder()
+                .AddHostLogging(configurationRoot, typeof(Program).Assembly)
+                .AddHostServices<System1HostServicesFactory>(configurationRoot)
+                .Build();
+
+            await host
+                .StartAsync()
                 .ConfigureAwait(false);
         }
     }

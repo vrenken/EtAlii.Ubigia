@@ -4,23 +4,24 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.Extensions.Configuration;
     using Serilog;
 
     public abstract class HostServicesFactoryBase : IHostServicesFactory
     {
         private readonly ILogger _logger = Log.ForContext<HostServicesFactoryBase>();
 
-        public abstract IService[] Create(HostOptions options, IHost host);
+        public abstract IService[] Create(IConfigurationRoot configurationRoot);
 
-        protected void TryAddService(List<IService> services, IHost host, HostOptions options, string configurationSectionName)
+        protected void TryAddService(List<IService> services, IConfigurationRoot configurationRoot, string configurationSectionName)
         {
             _logger.Debug("Trying to add service from {ConfigurationSectionName}", configurationSectionName);
             try
             {
-                var configurationSection = options.ConfigurationRoot.GetSection(configurationSectionName);
-                if (configurationSection != null && ServiceConfiguration.TryCreate(configurationSection, options.ConfigurationRoot, out var serviceConfiguration))
+                var configurationSection = configurationRoot.GetSection(configurationSectionName);
+                if (configurationSection != null && ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out var serviceConfiguration))
                 {
-                    var service = new ServiceFactory().Create(serviceConfiguration, host);
+                    var service = new ServiceFactory().Create(serviceConfiguration);
                     services.Add(service);
                     _logger.Debug("Successfully added service from {ConfigurationSectionName}", configurationSectionName);
                 }

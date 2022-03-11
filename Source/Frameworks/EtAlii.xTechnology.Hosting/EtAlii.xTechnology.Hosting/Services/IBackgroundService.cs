@@ -13,6 +13,6 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public interface IBackgroundService : IService, IHostedService
     {
-        void ConfigureServices(IServiceCollection services);
+        void ConfigureServices(IServiceCollection serviceCollection, IService[] services);
     }
 }

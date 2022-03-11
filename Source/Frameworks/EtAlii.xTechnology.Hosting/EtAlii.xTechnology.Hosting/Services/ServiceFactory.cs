@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public class ServiceFactory
     {
-        public IService Create(ServiceConfiguration serviceConfiguration, IHost host)
+        public IService Create(ServiceConfiguration serviceConfiguration)
         {
             var factoryTypeName = serviceConfiguration.Factory;
 
@@ -26,8 +26,7 @@ namespace EtAlii.xTechnology.Hosting
                 throw new InvalidOperationException($"Unable to activate factory: {factoryTypeName}");
             }
 
-            var status = new Status { Id = serviceConfiguration.Section.Key, Summary = "Unknown" };
-            return factory.Create(serviceConfiguration, status, host);
+            return factory.Create(serviceConfiguration);
         }
     }
 }

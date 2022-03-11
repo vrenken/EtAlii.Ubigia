@@ -10,6 +10,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             UseInProcessConnection = true;
         }
 
-        protected override ITestHost CreateTestHost(HostOptions options) => new LocalTestHost(options);
+        protected override LocalTestHost CreateTestHost(IService[] services) => new ();
     }
 }

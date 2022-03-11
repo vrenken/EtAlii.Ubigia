@@ -4,22 +4,23 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
     using System.Collections.Generic;
     using EtAlii.xTechnology.Hosting;
+    using Microsoft.Extensions.Configuration;
 
     public class System1HostServicesFactory : HostServicesFactoryBase
     {
-        public override IService[] Create(HostOptions options)
+        public override IService[] Create(IConfigurationRoot configurationRoot)
         {
             var services = new List<IService>();
 
-            TryAddService(services, options, "Storage");
+            TryAddService(services, configurationRoot, "Storage");
 
-            TryAddService(services, options, "Management-Api-Grpc");
-            TryAddService(services, options, "Management-Api-Rest");
-            TryAddService(services, options, "Management-Api-SignalR");
+            TryAddService(services, configurationRoot, "Management-Api-Grpc");
+            TryAddService(services, configurationRoot, "Management-Api-Rest");
+            TryAddService(services, configurationRoot, "Management-Api-SignalR");
 
-            TryAddService(services, options, "User-Api-Grpc");
-            TryAddService(services, options, "User-Api-Rest");
-            TryAddService(services, options, "User-Api-SignalR");
+            TryAddService(services, configurationRoot, "User-Api-Grpc");
+            TryAddService(services, configurationRoot, "User-Api-Rest");
+            TryAddService(services, configurationRoot, "User-Api-SignalR");
 
             return services.ToArray();
         }

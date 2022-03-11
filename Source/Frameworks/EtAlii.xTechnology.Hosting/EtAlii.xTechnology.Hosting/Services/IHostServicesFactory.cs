@@ -2,8 +2,10 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using Microsoft.Extensions.Configuration;
+
     public interface IHostServicesFactory
     {
-        public IService[] Create(HostOptions options, IHost host);
+        public IService[] Create(IConfigurationRoot configurationRoot);
     }
 }

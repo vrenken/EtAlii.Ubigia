@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System.Linq;
-    using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Persistence;
@@ -14,25 +13,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     /// It provides the host service factory that is able to understand which.
     /// different services can be hosted within an infrastructure host.
     /// </summary>
-	public class InfrastructureTestHost : TestHost
+	public class InfrastructureTestHost : ITestHost
     {
-	    public IInfrastructure Infrastructure => _infrastructure;
-	    private IInfrastructure _infrastructure;
+	    public IInfrastructure Infrastructure { get; }
 
-	    public IStorage Storage => _storage;
-	    private IStorage _storage;
+        public IStorage Storage { get; }
 
-		public InfrastructureTestHost(HostOptions options)
-		    : base(options)
+        public InfrastructureTestHost(IService[] services)
 	    {
+            Infrastructure = services.OfType<IInfrastructureService>().Single().Infrastructure;
+            Storage = services.OfType<IStorageService>().Single().Storage;
 		}
-
-        protected override async Task Started()
-        {
-            await base.Started().ConfigureAwait(false);
-
-            _infrastructure = Services.OfType<IInfrastructureService>().Single().Infrastructure;
-            _storage = Services.OfType<IStorageService>().Single().Storage;
-        }
     }
 }
