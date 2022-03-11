@@ -13,18 +13,24 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
+    using Serilog;
 
-    public abstract partial class HostBase
+    public class KestrelConfigurator
     {
-        private void ConfigureKestrel(KestrelServerOptions kestrelOptions)
+        private readonly ILogger _logger = Log.ForContext<KestrelConfigurator>();
+
+        public void Configure(
+            KestrelServerOptions kestrelOptions,
+            IService[] services,
+            IConfigurationRoot configurationRoot)
         {
-            var networkServiceConfigurations = Services
+            var networkServiceConfigurations = services
                 .OfType<INetworkService>()
                 .Select(networkService => networkService.Configuration)
                 .ToArray();
             foreach (var networkServiceConfiguration in networkServiceConfigurations)
             {
-                ConfigureKestrelForService(kestrelOptions, networkServiceConfiguration.IpAddress, (int)networkServiceConfiguration.Port);
+                ConfigureKestrelForService(kestrelOptions, networkServiceConfiguration.IpAddress, (int)networkServiceConfiguration.Port, configurationRoot);
             }
 
             kestrelOptions.ConfigureHttpsDefaults(options => options.SslProtocols = SslProtocols.Tls13);
@@ -38,7 +44,11 @@ namespace EtAlii.xTechnology.Hosting
             category: "Sonar Code Smell",
             checkId: "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields",
             Justification = "Safe to do so here, this is a patch to get Kestrel to work as needed.")]
-        private void ConfigureKestrelForService(KestrelServerOptions options, string ipAddressString, int port)
+        private void ConfigureKestrelForService(
+            KestrelServerOptions options,
+            string ipAddressString,
+            int port,
+            IConfigurationRoot configurationRoot)
         {
             if (!IPAddress.TryParse(ipAddressString, out var ipAddress))
             {
@@ -55,21 +65,21 @@ namespace EtAlii.xTechnology.Hosting
 
             if (Equals(ipAddress, IPAddress.None))
             {
-                options.ListenAnyIP(port, OnConfigureListenOptions);
+                options.ListenAnyIP(port, lo => OnConfigureListenOptions(lo, configurationRoot));
             }
             else if (Equals(ipAddress, IPAddress.Loopback))
             {
-                options.ListenLocalhost(port, OnConfigureListenOptions);
+                options.ListenLocalhost(port, lo => OnConfigureListenOptions(lo, configurationRoot));
             }
             else
             {
-                options.Listen(ipAddress, port, OnConfigureListenOptions);
+                options.Listen(ipAddress, port, lo => OnConfigureListenOptions(lo, configurationRoot));
             }
         }
 
-        private void OnConfigureListenOptions(ListenOptions options)
+        private void OnConfigureListenOptions(ListenOptions options, IConfigurationRoot configurationRoot)
         {
-            var configuration = Options.ConfigurationRoot.GetSection("Host").Get<HostConfiguration>();
+            var configuration = configurationRoot.GetSection("Host").Get<HostConfiguration>();
             if (string.IsNullOrWhiteSpace(configuration.CertificateFile) || string.IsNullOrWhiteSpace(configuration.CertificatePassword))
             {
                 _logger.Information("No HTTPS certificate specified for {EndPoint} - Using defaults", options.EndPoint.ToString());

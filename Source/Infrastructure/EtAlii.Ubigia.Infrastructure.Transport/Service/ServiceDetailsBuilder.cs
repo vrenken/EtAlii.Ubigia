@@ -14,12 +14,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     /// </summary>
     public class ServiceDetailsBuilder : IServiceDetailsBuilder
     {
-        public ServiceDetails[] Build(IHost host)
+        public ServiceDetails[] Build(INetworkService[] networkServices)
         {
-            var networkServices = host.Services
-                .OfType<INetworkService>().
-                ToArray();
-
             var managementGrpcService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "Management-Api-Grpc");
             var dataGrpcService = networkServices.SingleOrDefault(ns => ns.Configuration.Section.Key == "User-Api-Grpc");
 

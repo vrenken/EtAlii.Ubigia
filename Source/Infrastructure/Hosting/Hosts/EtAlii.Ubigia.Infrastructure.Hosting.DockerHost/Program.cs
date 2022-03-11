@@ -2,10 +2,12 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
 {
+    using System;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
 
     public static class Program
     {
@@ -19,13 +21,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
                 .ExpandEnvironmentVariablesInJson()
                 .Build();
 
-            var hostOptions = new HostOptions(configurationRoot)
-                .Use<InfrastructureHostServicesFactory>()
-                .UseDockerHost()
-                .UseHostDiagnostics();
+            Console.WriteLine("Starting Ubigia infrastructure...");
 
-            await DockerHost
-                .Start(hostOptions)
+            var host = Host
+                .CreateDefaultBuilder()
+                .AddHostLogging(configurationRoot, typeof(Program).Assembly)
+                .AddHostServices<InfrastructureHostServicesFactory>(configurationRoot)
+                .Build();
+
+            await host
+                .StartAsync()
                 .ConfigureAwait(false);
         }
     }

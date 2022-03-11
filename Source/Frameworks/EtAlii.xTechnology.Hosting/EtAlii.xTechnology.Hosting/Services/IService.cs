@@ -5,6 +5,5 @@ namespace EtAlii.xTechnology.Hosting
     public interface IService
     {
         ServiceConfiguration Configuration { get; }
-        Status Status { get; }
     }
 }

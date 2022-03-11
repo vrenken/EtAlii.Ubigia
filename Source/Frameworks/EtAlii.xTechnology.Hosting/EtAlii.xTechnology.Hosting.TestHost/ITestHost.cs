@@ -2,11 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using System.Net.Http;
-
-    public interface ITestHost : IHost
+    public interface ITestHost
     {
-        HttpMessageHandler CreateHandler();
-        HttpClient CreateClient();
     }
 }

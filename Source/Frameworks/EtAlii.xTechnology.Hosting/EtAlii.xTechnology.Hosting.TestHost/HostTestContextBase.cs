@@ -6,16 +6,21 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
     using System.Net.Http;
+    using System.Reflection;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+    using Serilog;
 
     public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext
 		where THost: class, ITestHost
         where THostServicesFactory : IHostServicesFactory, new()
     {
+        private readonly ILogger _logger = Log.ForContext<HostTestContextBase<THost, THostServicesFactory>>();
+
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
 
         /// <inheritdoc />
@@ -25,17 +30,19 @@ namespace EtAlii.xTechnology.Hosting
         public IConfigurationRoot ClientConfiguration { get; private set; }
 
 	    public THost Host { get; private set; }
+        private IHost _host;
         protected bool UseInProcessConnection { get; init; }
 
 	    private readonly string _hostConfigurationFile;
         private readonly string _clientConfigurationFile;
+        private TestServer _testServer;
 
         public ReadOnlyDictionary<string, string> Folders { get; private set; }
 	    public ReadOnlyDictionary<string, string> Hosts { get; private set; }
 	    public ReadOnlyDictionary<string, int> Ports { get; private set; }
 	    public ReadOnlyDictionary<string, string> Paths { get; private set; }
 
-        protected abstract ITestHost CreateTestHost(HostOptions options);
+        protected abstract THost CreateTestHost(IService[] services);
 
 	    protected HostTestContextBase(string hostConfigurationFile, string clientConfigurationFile)
 	    {
@@ -79,37 +86,71 @@ namespace EtAlii.xTechnology.Hosting
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
 			    .Build();
 
-            var hostOptions = new HostOptions(HostConfiguration)
-                .UseTestHost(CreateTestHost)
-                .Use<THostServicesFactory>()
-                .UseWrapper(false)
-                .UseHostDiagnostics();
-
             ClientConfiguration = new ConfigurationBuilder()
                 .AddJsonFile(_clientConfigurationFile)
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
 
-            Host = (THost)Factory.Create<IHost>(hostOptions);
-		    await Host
-                .Start()
+            var hostBuilder = Microsoft.Extensions.Hosting.Host
+                .CreateDefaultBuilder();
+
+            // I know, ugly patch, but it works. And it's better than making all global unit test systems trying to phone home...
+            if (Environment.MachineName == "FRACTAL")
+            {
+                hostBuilder = hostBuilder.AddHostLogging(HostConfiguration, Assembly.GetEntryAssembly());
+            }
+
+            _host = hostBuilder
+                .AddHostTestServices<THostServicesFactory>(HostConfiguration, out var services)
+                .Build();
+
+            await _host
+                .StartAsync()
                 .ConfigureAwait(false);
+
+            _testServer = _host.GetTestServer();
+            _testServer.PreserveExecutionContext = false;
+            _testServer.AllowSynchronousIO = true;
+
+            _logger.Information("Test server acquired");
+
+            Host = CreateTestHost(services);
+
+            _logger.Information("Started host {HostName}", GetType().Name);
         }
 
 	    public virtual async Task Stop()
 	    {
-		    await Host
-                .Stop()
-                .ConfigureAwait(false);
-		    Host = null;
+            _logger.Information("Stopping host {HostName}", GetType().Name);
+
+            if (_testServer != null)
+            {
+                _testServer.Dispose();
+                _testServer = null;
+            }
+
+            _logger.Information("Test server removed");
+
+            if (_host != null)
+            {
+                await _host
+                    .StopAsync(TimeSpan.FromSeconds(2))
+                    .ConfigureAwait(false);
+                _host.Dispose();
+                _host = null;
+            }
+
+            _logger.Information("Stopped host {HostName}", GetType().Name);
+
+            Host = null;
 	    }
 
         public HttpMessageHandler CreateHandler() => UseInProcessConnection
-            ? Host.CreateHandler()
+            ? _testServer.CreateHandler()
             : new HttpClientHandler();
 
         public HttpClient CreateClient() => UseInProcessConnection
-            ? Host.CreateClient()
+            ? _testServer.CreateClient()
             : new HttpClient();
     }
 }
