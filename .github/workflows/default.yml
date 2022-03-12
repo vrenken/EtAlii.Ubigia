@@ -13,11 +13,14 @@ env:
   SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
   UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
+  UBIGIA_SOURCE_WINDOWS: .\Source
+  UBIGIA_SOURCE_UBUNTU: ./Source
   CONFIGURATION_WINDOWS: Release
   CONFIGURATION_UBUNTU: Release-Ubuntu
   SOLUTION_WINDOWS: .\Source\EtAlii.Ubigia.sln
   SOLUTION_UBUNTU: ./Source/EtAlii.Ubigia.sln
   DEBUG_WORKFLOWS: true
+  BUILD_CACHE_ID: ${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
 
 jobs:
   build-on-ubuntu:
@@ -33,6 +36,12 @@ jobs:
           configuration: ${{ env.CONFIGURATION_UBUNTU }}
           solution: ${{ env.SOLUTION_UBUNTU }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
+      - name: Cache Ubuntu build
+        id: cache-ubuntu-build
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
+          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
 
   build-on-windows:
     runs-on: windows-latest
@@ -47,6 +56,12 @@ jobs:
           configuration: ${{ env.CONFIGURATION_WINDOWS }}
           solution: ${{ env.SOLUTION_WINDOWS }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
+      - name: Cache Windows build
+        id: cache-windows-build
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
+          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
 
   test-on-ubuntu:
     runs-on: ubuntu-latest
