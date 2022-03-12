@@ -40,14 +40,14 @@ runs:
       with:
         java-version: 1.11
 
-    # Build.
-    - name: 'Build'
-      shell: pwsh
-      run: >
-        dotnet build
-        ${{ inputs.solution }}
-        --configuration ${{ inputs.configuration }}
-        /p:UbigiaIsRunningOnBuildAgent=true
+#    # Build.
+#    - name: 'Build'
+#      shell: pwsh
+#      run: >
+#        dotnet build
+#        ${{ inputs.solution }}
+#        --configuration ${{ inputs.configuration }}
+#        /p:UbigiaIsRunningOnBuildAgent=true
 
     - name: Cache SonarCloud packages
       uses: actions/cache@v2

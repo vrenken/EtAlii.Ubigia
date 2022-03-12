@@ -32,14 +32,14 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
-    # Build.
-    - name: 'Build'
-      shell: pwsh
-      run: >
-        dotnet build
-        ${{ inputs.solution }}
-        --configuration ${{ inputs.configuration }}
-        /p:UbigiaIsRunningOnBuildAgent=true
+#    # Build.
+#    - name: 'Build'
+#      shell: pwsh
+#      run: >
+#        dotnet build
+#        ${{ inputs.solution }}
+#        --configuration ${{ inputs.configuration }}
+#        /p:UbigiaIsRunningOnBuildAgent=true
 
     # Pack.
     - name: Pack NuGet packages
