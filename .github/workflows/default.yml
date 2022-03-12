@@ -9,8 +9,6 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true   # Stop wasting time caching packages
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
-
-inputs:
   DOTNET_VERSION: 6.0.200
   SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
@@ -32,9 +30,9 @@ jobs:
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
         with:
-          configuration: ${{ inputs.CONFIGURATION_UBUNTU }}
-          solution: ${{ inputs.SOLUTION_UBUNTU }}
-          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          solution: ${{ env.SOLUTION_UBUNTU }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
   build-on-windows:
     runs-on: windows-latest
@@ -46,17 +44,17 @@ jobs:
       - name: Build on Windows
         uses: ./.github/actions/build-windows
         with:
-          configuration: ${{ inputs.CONFIGURATION_WINDOWS }}
-          solution: ${{ inputs.SOLUTION_WINDOWS }}
-          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          solution: ${{ env.SOLUTION_WINDOWS }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  test-on-ubuntu:
 #    needs: build-on-ubuntu
 #    - uses: ./.github/workflows/test.yml
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_UBUNTU }}
-#          solution: ${{ inputs.SOLUTION_UBUNTU }}
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+#          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+#          solution: ${{ env.SOLUTION_UBUNTU }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  test-on-ubuntu:
 #    runs-on: ubuntu-latest
@@ -69,9 +67,9 @@ jobs:
 #      - name: Test on Ubuntu
 #        uses: ./.github/actions/test-ubuntu
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_UBUNTU }}
-#          solution: ${{ inputs.SOLUTION_UBUNTU }}
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+#          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+#          solution: ${{ env.SOLUTION_UBUNTU }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  test-on-windows:
 #    runs-on: windows-latest
@@ -84,9 +82,9 @@ jobs:
 #      - name: Test on Windows
 #        uses: ./.github/actions/test-windows
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_WINDOWS }}
-#          solution: ${{ inputs.SOLUTION_WINDOWS }}
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  sonarcloud-analysis:
 #    runs-on: windows-latest
@@ -99,23 +97,30 @@ jobs:
 #      - name: SonarCloud analysis
 #        uses: ./.github/actions/analyse-sonarcloud
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_WINDOWS }}
-#          solution: ${{ inputs.SOLUTION_WINDOWS }}
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
 #          sonar_token: ${{ secrets.SONAR_TOKEN }}
 #          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
-#          sonar_scanner_version: ${{ inputs.SONAR_SCANNER_VERSION }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
+#          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   sonarcloud-analysis-on-ubuntu:
     needs: build-on-ubuntu
     uses: ./.github/workflows/sonarcloud-analysis.yml
+    env:
+      SOLUTION_UBUNTU: ${{ env.SOLUTION_UBUNTU }}
+      SOLUTION: ${{ env.SOLUTION_UBUNTU }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+      DOTNET_VERSION: ${{ env.DOTNET_VERSION }}
+      SONAR_SCANNER_VERSION: ${{ env.SONAR_SCANNER_VERSION }}
     with:
-      configuration: ${{ inputs.SOLUTION_UBUNTU }}
-      solution: ${{ inputs.SOLUTION_UBUNTU }}
+      configuration: ${{ env.SOLUTION_UBUNTU }}
+      solution: ${{ env.SOLUTION_UBUNTU }}
       sonar_token: ${{ secrets.SONAR_TOKEN }}
       github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-      dotnet_version: ${{ inputs.DOTNET_VERSION }}
-      sonar_scanner_version: ${{ inputs.SONAR_SCANNER_VERSION }}
+      dotnet_version: ${{ env.DOTNET_VERSION }}
+      sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   codeql-analysis:
     runs-on: windows-2019
@@ -128,9 +133,9 @@ jobs:
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
         with:
-          configuration: ${{ inputs.CONFIGURATION_WINDOWS }}
-          solution: ${{ inputs.SOLUTION_WINDOWS }}
-          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          solution: ${{ env.SOLUTION_WINDOWS }}
+          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  nuget-publish:
 #    runs-on: windows-latest
@@ -143,11 +148,11 @@ jobs:
 #      - name: Nuget publish
 #        uses: ./.github/actions/publish-nuget
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_WINDOWS }}
-#          solution: ${{ inputs.SOLUTION_WINDOWS }}
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
 #          nuget_org_xtechnology_token: ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
 #          nuget_org_ubigia_token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
 #  docker-publish:
 #    runs-on: ubuntu-latest
@@ -160,8 +165,8 @@ jobs:
 #      - name: Docker publish
 #        uses: ./.github/actions/publish-docker
 #        with:
-#          configuration: ${{ inputs.CONFIGURATION_UBUNTU }}
-#          solution: ${{ inputs.SOLUTION_UBUNTU }}
+#          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+#          solution: ${{ env.SOLUTION_UBUNTU }}
 #          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
 #          dockerhub_user: ${{ secrets.DOCKERHUB_USER }}
-#          dotnet_version: ${{ inputs.DOTNET_VERSION }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
