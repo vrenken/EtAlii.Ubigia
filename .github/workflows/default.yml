@@ -9,13 +9,14 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true   # Stop wasting time caching packages
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
+  DOTNET_VERSION: '6.0.200'
+  SONAR_SCANNER_VERSION = '5.5.3'
   IMAGE_NAME: ubigia/storage
   UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
   CONFIGURATION_WINDOWS: 'Release'
   CONFIGURATION_UBUNTU: 'Release-Ubuntu'
   SOLUTION_WINDOWS: '.\Source\EtAlii.Ubigia.sln'
   SOLUTION_UBUNTU: './Source/EtAlii.Ubigia.sln'
-  DOTNET_VERSION: '6.0.200'
 
 jobs:
   build-on-ubuntu:
@@ -92,6 +93,7 @@ jobs:
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           dotnet_version: ${{ env.DOTNET_VERSION }}
+          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   codeql-analysis:
     runs-on: windows-2019

@@ -16,6 +16,9 @@ inputs:
   dotnet_version:
     description: 'The dotnet version to use'
     required: true
+  sonar_scanner_version:
+    description: 'The version of the dotnet-sonarscanner tool'
+    required: true
 runs:
   using: composite
   steps:
@@ -46,27 +49,27 @@ runs:
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
-    #    - name: Cache SonarCloud packages
-#      uses: actions/cache@v1
-#      with:
-#        path: ~\sonar\cache
-#        key: ${{ runner.os }}-sonar
-#        restore-keys: ${{ runner.os }}-sonar
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v2
+      with:
+        path: ~\sonar\cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar-${{ inputs.sonar_scanner_version }}
 
-#    - name: Cache SonarCloud scanner
-#      id: cache-sonar-scanner
-#      uses: actions/cache@v1
-#      with:
-#        path: .\.sonar\scanner
-#        key: ${{ runner.os }}-sonar-scanner
-#        restore-keys: ${{ runner.os }}-sonar-scanner
+    - name: Cache SonarCloud scanner
+      id: cache-sonar-scanner
+      uses: actions/cache@v2
+      with:
+        path: .\.sonar\scanner
+        key: ${{ runner.os }}-sonar-scanner-${{ inputs.sonar_scanner_version }}
+        restore-keys: ${{ runner.os }}-sonar-scanner-${{ inputs.sonar_scanner_version }}
 
     - name: Install SonarCloud scanner
 #      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
       shell: pwsh
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.5.3
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version ${{ inputs.sonar_scanner_version }}
 
       # Build and analyze.
     - name: Build and analyze
