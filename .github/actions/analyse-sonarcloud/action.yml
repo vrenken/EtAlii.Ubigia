@@ -66,7 +66,7 @@ runs:
       shell: pwsh
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.5.3
 
       # Build and analyze.
     - name: Build and analyze
