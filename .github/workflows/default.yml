@@ -9,14 +9,15 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true   # Stop wasting time caching packages
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
-  DOTNET_VERSION: '6.0.200'
-  SONAR_SCANNER_VERSION = '5.5.3'
+  DOTNET_VERSION: 6.0.200
+  SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
   UBIGIA_SOLUTION: .\Source\EtAlii.Ubigia.sln
-  CONFIGURATION_WINDOWS: 'Release'
-  CONFIGURATION_UBUNTU: 'Release-Ubuntu'
-  SOLUTION_WINDOWS: '.\Source\EtAlii.Ubigia.sln'
-  SOLUTION_UBUNTU: './Source/EtAlii.Ubigia.sln'
+  CONFIGURATION_WINDOWS: Release
+  CONFIGURATION_UBUNTU: Release-Ubuntu
+  SOLUTION_WINDOWS: .\Source\EtAlii.Ubigia.sln
+  SOLUTION_UBUNTU: ./Source/EtAlii.Ubigia.sln
+  DEBUG_WORKFLOWS: true
 
 jobs:
   build-on-ubuntu:
@@ -47,53 +48,64 @@ jobs:
           solution: ${{ env.SOLUTION_WINDOWS }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  test-on-ubuntu:
-    runs-on: ubuntu-latest
+#  test-on-ubuntu:
+#    runs-on: ubuntu-latest
+#    needs: build-on-ubuntu
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Test on Ubuntu
+#        uses: ./.github/actions/test-ubuntu
+#        with:
+#          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+#          solution: ${{ env.SOLUTION_UBUNTU }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
+
+#  test-on-windows:
+#    runs-on: windows-latest
+#    needs: build-on-windows
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Test on Windows
+#        uses: ./.github/actions/test-windows
+#        with:
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
+
+#  sonarcloud-analysis:
+#    runs-on: windows-latest
+#    needs: build-on-windows
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: SonarCloud analysis
+#        uses: ./.github/actions/analyse-sonarcloud
+#        with:
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
+#          sonar_token: ${{ secrets.SONAR_TOKEN }}
+#          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
+#          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
+
+  sonarcloud-analysis-on-ubuntu:
+    uses: ./.github/workflows/analysis-sonarcloud-ubuntu.yml
     needs: build-on-ubuntu
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Test on Ubuntu
-        uses: ./.github/actions/test-ubuntu
-        with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
-          solution: ${{ env.SOLUTION_UBUNTU }}
-          dotnet_version: ${{ env.DOTNET_VERSION }}
-
-  test-on-windows:
-    runs-on: windows-latest
-    needs: build-on-windows
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Test on Windows
-        uses: ./.github/actions/test-windows
-        with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
-          solution: ${{ env.SOLUTION_WINDOWS }}
-          dotnet_version: ${{ env.DOTNET_VERSION }}
-
-  sonarcloud-analysis:
-    runs-on: windows-latest
-    needs: build-on-windows
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: SonarCloud analysis
-        uses: ./.github/actions/analyse-sonarcloud
-        with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
-          solution: ${{ env.SOLUTION_WINDOWS }}
-          sonar_token: ${{ secrets.SONAR_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          dotnet_version: ${{ env.DOTNET_VERSION }}
-          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
+    with:
+      configuration: ${{ env.SOLUTION_UBUNTU }}
+      solution: ${{ env.SOLUTION_UBUNTU }}
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+      dotnet_version: ${{ env.DOTNET_VERSION }}
+      sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   codeql-analysis:
     runs-on: windows-2019
@@ -110,36 +122,36 @@ jobs:
           solution: ${{ env.SOLUTION_WINDOWS }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  nuget-publish:
-    runs-on: windows-latest
-    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Nuget publish
-        uses: ./.github/actions/publish-nuget
-        with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
-          solution: ${{ env.SOLUTION_WINDOWS }}
-          nuget_org_xtechnology_token: ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
-          nuget_org_ubigia_token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
-          dotnet_version: ${{ env.DOTNET_VERSION }}
+#  nuget-publish:
+#    runs-on: windows-latest
+#    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Nuget publish
+#        uses: ./.github/actions/publish-nuget
+#        with:
+#          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+#          solution: ${{ env.SOLUTION_WINDOWS }}
+#          nuget_org_xtechnology_token: ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
+#          nuget_org_ubigia_token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  docker-publish:
-    runs-on: ubuntu-latest
-    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Docker publish
-        uses: ./.github/actions/publish-docker
-        with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
-          solution: ${{ env.SOLUTION_UBUNTU }}
-          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
-          dockerhub_user: ${{ secrets.DOCKERHUB_USER }}
-          dotnet_version: ${{ env.DOTNET_VERSION }}
+#  docker-publish:
+#    runs-on: ubuntu-latest
+#    needs: [codeql-analysis, sonarcloud-analysis, test-on-windows,  test-on-ubuntu]
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Docker publish
+#        uses: ./.github/actions/publish-docker
+#        with:
+#          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+#          solution: ${{ env.SOLUTION_UBUNTU }}
+#          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
+#          dockerhub_user: ${{ secrets.DOCKERHUB_USER }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
