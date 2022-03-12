@@ -35,8 +35,10 @@ runs:
         dotnet test
         ${{ inputs.solution }}
         --configuration ${{ inputs.configuration }}
-        --verbosity normal
+        --verbosity quiet
         --logger "trx;LogFileName=report.xunit.trx"
+        --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+
       # run the next step even if this one step failed
 
     - name: 'Publish test results'
