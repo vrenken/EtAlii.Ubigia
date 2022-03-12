@@ -41,9 +41,3 @@ runs:
         --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
-
-#    - uses: actions/upload-artifact@v2
-#      with:
-#        name: windows-build
-#        retention-days: 100
-#        path: .\**\bin\
