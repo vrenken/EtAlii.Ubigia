@@ -74,6 +74,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-on-ubuntu
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
@@ -98,6 +102,10 @@ jobs:
     runs-on: windows-latest
     needs: build-on-windows
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows build
         id: load-cached-windows-build
         uses: actions/cache@v2
@@ -122,6 +130,10 @@ jobs:
     runs-on: windows-latest
     needs: tests-on-windows
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows tests
         id: load-cached-windows-tests
         uses: actions/cache@v2
@@ -143,6 +155,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests-on-ubuntu
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu tests
         id: load-cached-ubuntu-tests
         uses: actions/cache@v2
@@ -164,6 +180,10 @@ jobs:
     runs-on: windows-2019
     needs: build-on-windows
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows build
         id: load-cached-windows-build
         uses: actions/cache@v2
@@ -182,6 +202,10 @@ jobs:
     runs-on: windows-latest
     needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, tests-on-windows,  tests-on-ubuntu]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows build
         id: load-cached-windows-build
         uses: actions/cache@v2
@@ -202,6 +226,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, tests-on-windows,  tests-on-ubuntu]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
