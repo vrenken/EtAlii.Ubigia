@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
 
   build-on-windows:
     runs-on: windows-latest
@@ -69,7 +69,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
 
   test-on-ubuntu:
     runs-on: ubuntu-latest
@@ -84,8 +84,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
         with:
@@ -106,8 +106,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: Test on Windows
         uses: ./.github/actions/test-windows
         with:
@@ -128,8 +128,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-windows
         with:
@@ -153,8 +153,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-ubuntu
         with:
@@ -178,8 +178,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
         with:
@@ -200,8 +200,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: Nuget publish
         uses: ./.github/actions/publish-nuget
         with:
@@ -224,8 +224,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-{{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
       - name: Docker publish
         uses: ./.github/actions/publish-docker
         with:
