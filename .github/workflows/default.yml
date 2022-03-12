@@ -40,7 +40,7 @@ jobs:
         id: cache-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
@@ -61,7 +61,7 @@ jobs:
         id: cache-windows-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Build on Windows
         uses: ./.github/actions/build-windows
@@ -70,7 +70,7 @@ jobs:
           solution: ${{ env.SOLUTION_WINDOWS }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  test-on-ubuntu:
+  tests-on-ubuntu:
     runs-on: ubuntu-latest
     needs: build-on-ubuntu
     steps:
@@ -78,9 +78,15 @@ jobs:
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+      - name: Cache Ubuntu tests
+        id: cache-ubuntu-tests
+        uses: actions/cache@v2
+        with:
+          path:  # We'll just cache everything. This is very fast.
+          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
         with:
@@ -88,7 +94,7 @@ jobs:
           solution: ${{ env.SOLUTION_UBUNTU }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  test-on-windows:
+  tests-on-windows:
     runs-on: windows-latest
     needs: build-on-windows
     steps:
@@ -96,9 +102,15 @@ jobs:
         id: load-cached-windows-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+      - name: Cache Windows tests
+        id: cache-windows-tests
+        uses: actions/cache@v2
+        with:
+          path:  # We'll just cache everything. This is very fast.
+          key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Windows
         uses: ./.github/actions/test-windows
         with:
@@ -108,15 +120,15 @@ jobs:
 
   sonarcloud-analysis-on-windows:
     runs-on: windows-latest
-    needs: build-on-windows
+    needs: tests-on-windows
     steps:
-      - name: Load cached Windows build
-        id: load-cached-windows-build
+      - name: Load cached Windows tests
+        id: load-cached-windows-tests
         uses: actions/cache@v2
         with:
-          path: .
-          key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
-          restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+          path:  # We'll just cache everything. This is very fast.
+          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
+          restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-windows
         with:
@@ -129,15 +141,15 @@ jobs:
 
   sonarcloud-analysis-on-ubuntu:
     runs-on: ubuntu-latest
-    needs: build-on-ubuntu
+    needs: tests-on-ubuntu
     steps:
-      - name: Load cached Ubuntu build
-        id: load-cached-ubuntu-build
+      - name: Load cached Ubuntu tests
+        id: load-cached-ubuntu-tests
         uses: actions/cache@v2
         with:
-          path: .
-          key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
-          restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+          path:  # We'll just cache everything. This is very fast.
+          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
+          restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-ubuntu
         with:
@@ -156,7 +168,7 @@ jobs:
         id: load-cached-windows-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: CodeQL analysis
@@ -168,13 +180,13 @@ jobs:
 
   nuget-publish:
     runs-on: windows-latest
-    needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, test-on-windows,  test-on-ubuntu]
+    needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, tests-on-windows,  tests-on-ubuntu]
     steps:
       - name: Load cached Windows build
         id: load-cached-windows-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Nuget publish
@@ -188,13 +200,13 @@ jobs:
 
   docker-publish:
     runs-on: ubuntu-latest
-    needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, test-on-windows,  test-on-ubuntu]
+    needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu, tests-on-windows,  tests-on-ubuntu]
     steps:
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: .
+          path:  # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Docker publish
