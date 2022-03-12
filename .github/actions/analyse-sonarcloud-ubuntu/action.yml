@@ -52,7 +52,7 @@ runs:
     - name: Cache SonarCloud packages
       uses: actions/cache@v2
       with:
-        path: ~\sonar\cache
+        path: ~/sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar-${{ inputs.sonar_scanner_version }}
 
@@ -60,7 +60,7 @@ runs:
       id: cache-sonar-scanner
       uses: actions/cache@v2
       with:
-        path: .\.sonar\scanner
+        path: ./.sonar/scanner
         key: ${{ runner.os }}-sonar-scanner-${{ inputs.sonar_scanner_version }}
         restore-keys: ${{ runner.os }}-sonar-scanner-${{ inputs.sonar_scanner_version }}
 
@@ -68,23 +68,23 @@ runs:
 #      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
       shell: pwsh
       run: |
-        New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version ${{ inputs.sonar_scanner_version }}
+        New-Item -Path ./.sonar/scanner -ItemType Directory
+        dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner --version ${{ inputs.sonar_scanner_version }}
 
       # Build and analyze.
     - name: Build and analyze
       env:
         UBIGIA_PROJECTNAME: EtAlii.Ubigia
         SONAR_COVERAGE_EXCLUSIONS: >
-          **\*.Tests\**,
-          **\Frameworks\HashLib\**,
-          **\Frameworks\Moppet.Lappa\**
+          **/*.Tests/**,
+          **/Frameworks/HashLib/**,
+          **/Frameworks/Moppet.Lappa/**
         GITHUB_TOKEN: ${{ inputs.github_token }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ inputs.sonar_token }}
 
       shell: pwsh
       run: |
         dotnet test --verbosity quiet ${{ inputs.solution }} --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
+        ./.sonar/scanner/dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
         dotnet build ${{ inputs.solution }} --configuration ${{ inputs.configuration }}
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar_token }}"
+        ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar_token }}"
