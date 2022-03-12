@@ -35,7 +35,6 @@ runs:
         dotnet test
         ${{ inputs.solution }}
         --configuration ${{ inputs.configuration }}
-        --no-build
         --verbosity normal
         --logger "trx;LogFileName=report.xunit.trx"
       # run the next step even if this one step failed
