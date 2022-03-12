@@ -25,11 +25,20 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
+    # Restore.
+    - name: 'Restore dependencies'
+      shell: pwsh
+      run: >
+        dotnet restore
+        ${{ inputs.solution }}
+
     # Build.
     - name: 'Build'
       shell: pwsh
       run: >
         dotnet build
         ${{ inputs.solution }}
+        --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
+        

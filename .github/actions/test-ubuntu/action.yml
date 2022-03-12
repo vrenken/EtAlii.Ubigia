@@ -21,18 +21,9 @@ runs:
         dotnet-version: ${{ inputs.dotnet_version }}
 
     # Versioning.
-    - name: Versioning
+    - name: 'Versioning'
       uses: dotnet/nbgv@master
       id: nbgv
-
-#    # Build.
-#    - name: 'Build'
-#      shell: pwsh
-#      run: >
-#        dotnet build
-#        ${{ inputs.solution }}
-#        --configuration ${{ inputs.configuration }}
-#        /p:UbigiaIsRunningOnBuildAgent=true
 
     - name: 'Configure shell to continue on error'
       shell: pwsh
