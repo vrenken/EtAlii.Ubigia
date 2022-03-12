@@ -98,16 +98,14 @@ jobs:
 
   sonarcloud-analysis-on-ubuntu:
     needs: build-on-ubuntu
-    runs-on: ubuntu-latest
-    steps:
-    - uses: ./.github/workflows/sonarcloud-analysis.yml
-      with:
-        configuration: ${{ env.SOLUTION_UBUNTU }}
-        solution: ${{ env.SOLUTION_UBUNTU }}
-        sonar_token: ${{ secrets.SONAR_TOKEN }}
-        github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-        dotnet_version: ${{ env.DOTNET_VERSION }}
-        sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
+  - uses: ./.github/workflows/sonarcloud-analysis.yml
+    with:
+      configuration: ${{ env.SOLUTION_UBUNTU }}
+      solution: ${{ env.SOLUTION_UBUNTU }}
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+      dotnet_version: ${{ env.DOTNET_VERSION }}
+      sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   codeql-analysis:
     runs-on: windows-2019
