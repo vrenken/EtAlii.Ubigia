@@ -94,7 +94,7 @@ jobs:
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
   codeql-analysis:
-    runs-on: windows-latest
+    runs-on: windows-2019
     needs: build-on-windows
     steps:
       - name: Checkout
