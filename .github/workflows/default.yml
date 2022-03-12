@@ -25,9 +25,8 @@ jobs:
   preparations:
     runs-on: ubuntu-latest
     steps:
-      - name: "Set build cache id environmental variable"
-        run: |
-          echo "BUILD_CACHE_ID=${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}" >> $GITHUB_ENV
+     - name: "Preparing GitHub workflow"
+       run: echo "Preparing GitHub workflow"
 
   build-on-ubuntu:
     runs-on: ubuntu-latest
@@ -42,7 +41,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
         with:
@@ -63,7 +62,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Build on Windows
         uses: ./.github/actions/build-windows
         with:
@@ -84,8 +83,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
         with:
@@ -106,8 +105,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Test on Windows
         uses: ./.github/actions/test-windows
         with:
@@ -128,8 +127,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-windows
         with:
@@ -153,8 +152,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-ubuntu
         with:
@@ -178,8 +177,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
         with:
@@ -200,8 +199,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_WINDOWS }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Nuget publish
         uses: ./.github/actions/publish-nuget
         with:
@@ -224,8 +223,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.UBIGIA_SOURCE_UBUNTU }}
-          key: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
-          restore-keys: ${{ runner.os }}-build-${{ env.BUILD_CACHE_ID }}
+          key: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-keys: ${{ runner.os }}-build-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
       - name: Docker publish
         uses: ./.github/actions/publish-docker
         with:
