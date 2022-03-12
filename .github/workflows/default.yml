@@ -20,11 +20,18 @@ env:
   SOLUTION_WINDOWS: .\Source\EtAlii.Ubigia.sln
   SOLUTION_UBUNTU: ./Source/EtAlii.Ubigia.sln
   DEBUG_WORKFLOWS: true
-  BUILD_CACHE_ID: ${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
 
 jobs:
+  preparations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Set build cache id environmental variable"
+        run: |
+          echo "BUILD_CACHE_ID=${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}" >> $GITHUB_ENV
+
   build-on-ubuntu:
     runs-on: ubuntu-latest
+    needs: preparations
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -45,6 +52,7 @@ jobs:
 
   build-on-windows:
     runs-on: windows-latest
+    needs: preparations
     steps:
       - name: Checkout
         uses: actions/checkout@v2
