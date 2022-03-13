@@ -38,22 +38,12 @@ runs:
       uses: dotnet/nbgv@master
       id: nbgv
 
-#    # Build.
-#    - name: 'Build'
-#      shell: pwsh
-#      run: >
-#        dotnet build
-#        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
-#        --configuration ${{ inputs.configuration }}
-#        /p:UbigiaIsRunningOnBuildAgent=true
-
     # Pack.
     - name: Pack NuGet packages
       shell: pwsh
       run: >
         dotnet pack
         ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        --no-restore
         /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
         /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
         /p:RepositoryType=git
