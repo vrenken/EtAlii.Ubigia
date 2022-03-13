@@ -4,7 +4,7 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
-  solution:
+  solution_file:
     description: 'The solution that should be published'
     required: true
   dotnet_version:
@@ -33,7 +33,7 @@ runs:
       shell: pwsh
       run: >
         dotnet test
-        ${{ inputs.solution }}
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
         --configuration ${{ inputs.configuration }}
         --verbosity quiet
         --logger "trx;LogFileName=report.xunit.trx"

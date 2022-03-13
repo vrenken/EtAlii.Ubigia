@@ -4,7 +4,7 @@ inputs:
   configuration:
     description: 'The build configuration to use'
     required: true
-  solution:
+  solution_file:
     description: 'The solution that should be published'
     required: true
   dotnet_version:
@@ -30,15 +30,14 @@ runs:
       shell: pwsh
       run: >
         dotnet restore
-        ${{ inputs.solution }}
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
 
     # Build.
     - name: 'Build'
       shell: pwsh
       run: >
         dotnet build
-        ${{ inputs.solution }}
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
         --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
-        
