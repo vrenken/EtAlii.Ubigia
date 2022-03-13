@@ -45,7 +45,7 @@ runs:
 #      shell: pwsh
 #      run: >
 #        dotnet build
-#        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+#        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
 #        --configuration ${{ inputs.configuration }}
 #        /p:UbigiaIsRunningOnBuildAgent=true
 
@@ -85,5 +85,5 @@ runs:
       shell: pwsh
       run: |
         ./.sonar/scanner/dotnet-sonarscanner begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="${{ env.SONAR_COVERAGE_EXCLUSIONS }}"
-        dotnet build ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator) --configuration ${{ inputs.configuration }}
+        dotnet build ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar) --configuration ${{ inputs.configuration }}
         ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ inputs.sonar_token }}"

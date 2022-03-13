@@ -30,14 +30,14 @@ runs:
       shell: pwsh
       run: >
         dotnet restore
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
 
     # Build.
     - name: 'Build'
       shell: pwsh
       run: >
         dotnet build
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --no-restore
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true

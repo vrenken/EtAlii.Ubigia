@@ -43,7 +43,7 @@ runs:
 #      shell: pwsh
 #      run: >
 #        dotnet build
-#        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+#        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
 #        --configuration ${{ inputs.configuration }}
 #        /p:UbigiaIsRunningOnBuildAgent=true
 
@@ -52,7 +52,7 @@ runs:
       shell: pwsh
       run: >
         dotnet pack
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --no-restore
         /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
         /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
@@ -64,7 +64,7 @@ runs:
       shell: pwsh
       run: >
         dotnet nuget push
-        ("${{ inputs.nuget_xtechnology_pack_filter }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.nuget_xtechnology_pack_filter }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --skip-duplicate
         --api-key ${{ inputs.nuget_org_xtechnology_token }}
         --source https://api.nuget.org/v3/index.json
@@ -73,7 +73,7 @@ runs:
       shell: pwsh
       run: >
         dotnet nuget push
-        ("${{ inputs.nuget_ubigia_pack_filter }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.nuget_ubigia_pack_filter }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --skip-duplicate
         --api-key ${{ inputs.nuget_org_ubigia_token }}
         --source https://api.nuget.org/v3/index.json

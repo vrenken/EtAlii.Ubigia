@@ -52,7 +52,7 @@ runs:
       shell: pwsh
       run: >
         dotnet build
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::PathSeparator)
+        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
 
