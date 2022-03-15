@@ -61,7 +61,7 @@ namespace EtAlii.xTechnology.Hosting
             var property = options.GetType().GetProperty("ListenOptions", BindingFlags.NonPublic | BindingFlags.Instance);
 
             var listenOptions = property!.GetValue(options) as IEnumerable<ListenOptions>;
-            if (listenOptions!.Any(lo => Equals(lo.IPEndPoint.Address, ipAddress) && lo.IPEndPoint.Port == port)) return;
+            if (listenOptions!.Any(lo => Equals(lo.IPEndPoint!.Address, ipAddress) && lo.IPEndPoint.Port == port)) return;
 
             if (Equals(ipAddress, IPAddress.None))
             {
@@ -73,7 +73,7 @@ namespace EtAlii.xTechnology.Hosting
             }
             else
             {
-                options.Listen(ipAddress, port, lo => OnConfigureListenOptions(lo, configurationRoot));
+                options.Listen(ipAddress!, port, lo => OnConfigureListenOptions(lo, configurationRoot));
             }
         }
 
