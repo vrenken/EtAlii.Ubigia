@@ -1,15 +1,8 @@
 ﻿<!-- Stuff that needs to happen at the end of the MSBuild process should go in the .targets file. -->
 <Project>
+  <!-- We want all the projects to have the right configurations and platforms. -->
   <PropertyGroup>
-  </PropertyGroup>
-
-  <!-- The projects that explicitly target windows will not get compiled on Ubuntu. -->
-  <PropertyGroup Condition="'$(TargetFramework)' == '$(UbigiaGuiApplicationTargetFramework)'">
     <Configurations>Debug;Release</Configurations>
-    <Platforms>AnyCPU</Platforms>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' != '$(UbigiaGuiApplicationTargetFramework)'">
-    <Configurations>Debug;Debug-Ubuntu;Release;Release-Ubuntu</Configurations>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
