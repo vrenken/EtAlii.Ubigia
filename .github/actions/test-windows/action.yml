@@ -1,5 +1,5 @@
-name: "Test on Windows"
-description: "Test the solutions on a Windows container"
+name: "Tests on ${{ runner.os }}"
+description: "Run unit and integration tests on ${{ runner.os }}"
 inputs:
   configuration:
     description: 'The build configuration to use'
@@ -44,7 +44,7 @@ runs:
     - name: 'Publish test results'
       uses: dorny/test-reporter@v1
       with:
-        name: 'Test report (Windows-latest)' # Name of the check run which will be created
+        name: 'Test report (${{ runner.os }})' # Name of the check run which will be created
         path: '**/*.trx'                     # Path to test results
         reporter: dotnet-trx                 # Format of test results
 
