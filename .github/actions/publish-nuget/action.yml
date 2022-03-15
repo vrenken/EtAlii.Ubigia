@@ -45,6 +45,7 @@ runs:
         dotnet pack
         ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --configuration ${{ inputs.configuration }}
+        --verbosity quiet
         /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
         /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
         /p:RepositoryType=git

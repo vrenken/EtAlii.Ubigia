@@ -39,5 +39,6 @@ runs:
         dotnet build
         ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         --no-restore
+        --verbosity quiet
         --configuration ${{ inputs.configuration }}
         /p:UbigiaIsRunningOnBuildAgent=true
