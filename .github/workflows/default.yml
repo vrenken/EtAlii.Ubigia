@@ -90,7 +90,7 @@ jobs:
           path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Ubuntu
-        uses: ./.github/actions/test-ubuntu
+        uses: ./.github/actions/test
         with:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
@@ -118,7 +118,7 @@ jobs:
           path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Windows
-        uses: ./.github/actions/test-windows
+        uses: ./.github/actions/test
         with:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
