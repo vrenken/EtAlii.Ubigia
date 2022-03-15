@@ -477,16 +477,6 @@ ProjectSection(SolutionItems) = preProject
 	..\.github\actions\publish-nuget\action.yml = ..\.github\actions\publish-nuget\action.yml
 EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-ubuntu", "build-ubuntu", "{D44CC738-9C42-40FA-98CA-AC1B596416A2}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\actions\build-ubuntu\action.yml = ..\.github\actions\build-ubuntu\action.yml
-EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-windows", "build-windows", "{39EA82F5-F333-48AF-8673-3E04B8252709}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\actions\build-windows\action.yml = ..\.github\actions\build-windows\action.yml
-EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.DockerHost", "Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj", "{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-sonarcloud-ubuntu", "analyse-sonarcloud-ubuntu", "{FC06078D-6D2E-41B0-ABB8-8D384C97061C}"
@@ -502,6 +492,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7066E246-A29E-4A14-8F89-15EA7CEDE378}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\actions\test\action.yml = ..\.github\actions\test\action.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{B36C7798-A4AB-4ECD-93A5-4AB6A77D08F2}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\actions\build\action.yml = ..\.github\actions\build\action.yml
 	EndProjectSection
 EndProject
 Global
@@ -1273,13 +1268,12 @@ Global
 		{8F8A094D-2593-4A37-9610-838C89834017} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{D91F0095-0165-4B9A-B448-D71CEE5DB2AB} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{752B679E-93DB-42EF-93CC-DDBDAC0D7C8E} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
-		{D44CC738-9C42-40FA-98CA-AC1B596416A2} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
-		{39EA82F5-F333-48AF-8673-3E04B8252709} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{25D3A122-9734-4E23-B894-E2C760BE5247} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{FC06078D-6D2E-41B0-ABB8-8D384C97061C} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{7B2CA1FC-FF74-4547-8B68-3F51BB7F8F6A} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{7066E246-A29E-4A14-8F89-15EA7CEDE378} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{B36C7798-A4AB-4ECD-93A5-4AB6A77D08F2} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
