@@ -1,5 +1,5 @@
-name: "Build on ${{ runner.os }}"
-description: "Build the solutions on a ${{ runner.os }} container"
+name: "Build"
+description: "Build the solution"
 inputs:
   configuration:
     description: 'The build configuration to use'

@@ -1,5 +1,5 @@
-name: "Tests on ${{ runner.os }}"
-description: "Run unit and integration tests on ${{ runner.os }}"
+name: "Tests"
+description: "Run unit and integration tests"
 inputs:
   configuration:
     description: 'The build configuration to use'
