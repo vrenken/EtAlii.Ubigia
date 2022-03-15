@@ -13,8 +13,7 @@ env:
   SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
   UBIGIA_SOURCE_FOLDER: ./Source
-  CONFIGURATION_WINDOWS: Release
-  CONFIGURATION_UBUNTU: Release-Ubuntu
+  CONFIGURATION: Release
   SOLUTION_FILE: ./Source/EtAlii.Ubigia.sln
   DEBUG_WORKFLOWS: true
   NUGET_UBIGIA_PACK_FILTER: ./Source/**/EtAlii.Ubigia.*.nupkg
@@ -44,7 +43,7 @@ jobs:
       - name: Build on Ubuntu
         uses: ./.github/actions/build-ubuntu
         with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
@@ -65,7 +64,7 @@ jobs:
       - name: Build on Windows
         uses: ./.github/actions/build-windows
         with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
@@ -93,7 +92,7 @@ jobs:
       - name: Test on Ubuntu
         uses: ./.github/actions/test-ubuntu
         with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
@@ -121,7 +120,7 @@ jobs:
       - name: Test on Windows
         uses: ./.github/actions/test-windows
         with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
@@ -143,7 +142,7 @@ jobs:
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-windows
         with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -168,7 +167,7 @@ jobs:
       - name: SonarCloud analysis
         uses: ./.github/actions/analyse-sonarcloud-ubuntu
         with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -193,7 +192,7 @@ jobs:
       - name: CodeQL analysis
         uses: ./.github/actions/analyse-codeql
         with:
-          configuration: ${{ env.CONFIGURATION_WINDOWS }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
@@ -215,7 +214,7 @@ jobs:
       - name: Nuget publish
         uses: ./.github/actions/publish-nuget
         with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           nuget_org_xtechnology_token: ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
           nuget_org_ubigia_token: ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
@@ -241,7 +240,7 @@ jobs:
       - name: Docker publish
         uses: ./.github/actions/publish-docker
         with:
-          configuration: ${{ env.CONFIGURATION_UBUNTU }}
+          configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
           dockerhub_user: ${{ secrets.DOCKERHUB_USER }}
