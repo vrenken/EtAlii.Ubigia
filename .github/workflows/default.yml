@@ -140,7 +140,7 @@ jobs:
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
-        uses: ./.github/actions/analyse-sonarcloud-windows
+        uses: ./.github/actions/analyse-sonarcloud
         with:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
@@ -165,7 +165,7 @@ jobs:
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
-        uses: ./.github/actions/analyse-sonarcloud-ubuntu
+        uses: ./.github/actions/analyse-sonarcloud
         with:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
