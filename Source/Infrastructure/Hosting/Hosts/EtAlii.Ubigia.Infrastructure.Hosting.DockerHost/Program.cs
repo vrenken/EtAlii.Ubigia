@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
                 .Build();
 
             await host
-                .StartAsync()
+                .RunAsync()
                 .ConfigureAwait(false);
         }
     }

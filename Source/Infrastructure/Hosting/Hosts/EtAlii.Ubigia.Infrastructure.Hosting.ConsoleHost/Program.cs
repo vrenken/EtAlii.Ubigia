@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
                 .Build();
 
             await host
-                .StartAsync()
+                .RunAsync()
                 .ConfigureAwait(false);
         }
     }

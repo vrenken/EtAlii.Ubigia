@@ -30,7 +30,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
                 .Build();
 
             await host
-                .StartAsync()
+                .RunAsync()
                 .ConfigureAwait(false);
         }
     }
