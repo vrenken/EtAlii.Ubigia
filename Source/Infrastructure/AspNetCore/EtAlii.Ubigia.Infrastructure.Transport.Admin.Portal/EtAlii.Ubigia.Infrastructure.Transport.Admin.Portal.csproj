@@ -1,12 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>df76eede-a505-49f0-8e2c-14a4da4488f1</ProjectGuid>
 
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-<!--    <IncludeRazorContentInPack>true</IncludeRazorContentInPack>-->
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+<!--    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
+<!--    <IncludeRazorContentInPack>true</IncludeRazorContentInPack>-->
 <!--    <GenerateMvcApplicationPartsAssemblyAttributes>true</GenerateMvcApplicationPartsAssemblyAttributes>-->
 <!--    <RazorCompileOnBuild>true</RazorCompileOnBuild>-->
 <!--    <EnableDefaultRazorGenerateItems>true</EnableDefaultRazorGenerateItems>-->

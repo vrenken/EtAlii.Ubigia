@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using Blazorise;
     using Blazorise.Bootstrap;
     using Blazorise.Icons.FontAwesome;
+    using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 
     public class AdminPortalService : INetworkService
     {
@@ -60,10 +61,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
-            //environment.EnvironmentName = "Development";
-            //environment.ApplicationName = GetType().Assembly.FullName;
-            //environment.UseStaticWebAssets<AdminPortalService>();
-            //environment.WebRootFileProvider = new ManifestEmbeddedFileProvider(GetType().Assembly, "wwwroot");
+            // The environment.ApplicationName needs to be set as the StaticWebAssetsLoader.UseStaticWebAssets relies on it.
+            // Weird but true.
+            environment.ApplicationName = typeof(AdminPortalService).Assembly.GetName().Name;
+            StaticWebAssetsLoader.UseStaticWebAssets(environment, Configuration.Section);
 
             if (environment.IsDevelopment())
             {
