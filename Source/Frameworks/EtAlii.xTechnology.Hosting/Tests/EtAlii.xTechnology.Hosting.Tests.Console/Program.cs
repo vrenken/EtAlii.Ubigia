@@ -25,8 +25,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
 
             var host = Host
                 .CreateDefaultBuilder()
-                .AddHostLogging(configurationRoot, typeof(Program).Assembly)
-                .AddHostServices<System1HostServicesFactory>(configurationRoot)
+                .UseHostLogging(configurationRoot, typeof(Program).Assembly)
+                .UseHostServices<System1HostServicesFactory>(configurationRoot)
                 .Build();
 
             await host

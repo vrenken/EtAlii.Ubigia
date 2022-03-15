@@ -25,8 +25,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.DockerHost
 
             var host = Host
                 .CreateDefaultBuilder()
-                .AddHostLogging(configurationRoot, typeof(Program).Assembly)
-                .AddHostServices<InfrastructureHostServicesFactory>(configurationRoot)
+                .UseHostLogging(configurationRoot, typeof(Program).Assembly)
+                .UseHostServices<InfrastructureHostServicesFactory>(configurationRoot)
                 .Build();
 
             await host

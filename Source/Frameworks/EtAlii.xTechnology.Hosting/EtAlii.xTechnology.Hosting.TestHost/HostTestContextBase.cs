@@ -97,7 +97,7 @@ namespace EtAlii.xTechnology.Hosting
             // I know, ugly patch, but it works. And it's better than making all global unit test systems trying to phone home...
             if (Environment.MachineName == "FRACTAL")
             {
-                hostBuilder = hostBuilder.AddHostLogging(HostConfiguration, Assembly.GetEntryAssembly());
+                hostBuilder = hostBuilder.UseHostLogging(HostConfiguration, Assembly.GetEntryAssembly());
             }
 
             _host = hostBuilder

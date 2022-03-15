@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public static class HostBuilderAddHostServicesExtensions
     {
-        public static IHostBuilder AddHostServices<THostServicesFactory>(
+        public static IHostBuilder UseHostServices<THostServicesFactory>(
             this IHostBuilder hostBuilder,
             IConfigurationRoot configurationRoot)
             where THostServicesFactory : IHostServicesFactory, new()

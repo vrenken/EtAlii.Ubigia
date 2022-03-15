@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public static class HostBuilderAddHostLoggingExtensions
     {
-        public static IHostBuilder AddHostLogging(
+        public static IHostBuilder UseHostLogging(
             this IHostBuilder hostBuilder,
             IConfigurationRoot configurationRoot,
             Assembly entryAssembly)
