@@ -24,11 +24,11 @@ namespace EtAlii.xTechnology.Diagnostics
 
         private static bool _isInitialized;
         private static Assembly _entryAssembly;
+        private static readonly  string _hostName = Dns.GetHostName();
 
         public static void ConfigureLoggerConfiguration(LoggerConfiguration loggerConfiguration, IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            var hostName = Dns.GetHostName();
             var entryAssemblyName = _entryAssembly.GetName();
             loggerConfiguration.ReadFrom
                 .Configuration(configurationRoot)
@@ -43,7 +43,7 @@ namespace EtAlii.xTechnology.Diagnostics
                 // .Enrich.WithAssemblyName()
                 // .Enrich.WithAssemblyVersion()
                 // Let's do it ourselves.
-                .Enrich.WithProperty("HostName", hostName) // We want to be able to filter the Seq logs depending on the (docker) system they originate from.
+                .Enrich.WithProperty("HostName", _hostName) // We want to be able to filter the Seq logs depending on the (docker) system they originate from.
                 .Enrich.WithProperty("RootAssemblyName", entryAssemblyName.Name)
                 .Enrich.WithProperty("RootAssemblyVersion", entryAssemblyName.Version)
                 .Enrich.WithMemoryUsage()

@@ -101,7 +101,7 @@ namespace EtAlii.xTechnology.Hosting
             }
 
             _host = hostBuilder
-                .AddHostTestServices<THostServicesFactory>(HostConfiguration, out var services)
+                .UseHostTestServices<THostServicesFactory>(HostConfiguration, out var services)
                 .Build();
 
             await _host

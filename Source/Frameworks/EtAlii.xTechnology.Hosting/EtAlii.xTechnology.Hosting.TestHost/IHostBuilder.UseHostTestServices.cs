@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public static class HostBuilderAddHostTestServicesExtensions
     {
-        public static IHostBuilder AddHostTestServices<THostServicesFactory>(
+        public static IHostBuilder UseHostTestServices<THostServicesFactory>(
             this IHostBuilder hostBuilder,
             IConfigurationRoot configurationRoot,
             out IService[] services)
