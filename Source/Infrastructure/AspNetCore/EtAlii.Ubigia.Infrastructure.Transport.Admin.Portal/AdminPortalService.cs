@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using Microsoft.Extensions.Hosting;
     using Serilog;
     using Blazorise;
-    using Blazorise.Bootstrap;
+    using Blazorise.Bootstrap5;
     using Blazorise.Icons.FontAwesome;
     using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 
@@ -38,12 +38,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddRazorPages(options => options.RootDirectory = "/Shared");
 
             services
-                .AddBlazorise(_ =>
+                .AddBlazorise(options =>
                 {
-                    //options.Immediate = true;
+                    options.Immediate = true;
                     //options.ChangeTextOnKeyPress = true; // optional
                 })
-                .AddBootstrapProviders()
+                .AddBootstrap5Providers()
                 .AddFontAwesomeIcons();
 
             services
