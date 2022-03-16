@@ -45,8 +45,8 @@ runs:
       shell: pwsh
       run: |
         $scannerFolder = ("./.sonar/scanner" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        New-Item -Path ${scannerFolder} -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path ${scannerFolder} --version ${{ inputs.sonar_scanner_version }}
+        New-Item -Path $scannerFolder -ItemType Directory
+        dotnet tool update dotnet-sonarscanner --tool-path $scannerFolder --version ${{ inputs.sonar_scanner_version }}
 
       # Build and analyze.
     - name: Build and analyze
@@ -66,6 +66,6 @@ runs:
         $reportsPathVs = ("**/report.xunit.trx" -replace "/", [IO.Path]::DirectorySeparatorChar)
         $reportsPathOpenCover = ("**/coverage.opencover.xml" -replace "/", [IO.Path]::DirectorySeparatorChar)
         $exclusions = ("${{ env.SONAR_COVERAGE_EXCLUSIONS }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        ${scannerExecutable} begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="${reportsPathOpenCover}" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="${reportsPathVs}" /d:sonar.coverage.exclusions="${exclusions}"
-        dotnet build ${solutionFile} --configuration ${{ inputs.configuration }}
-        ${scannerExecutable} end /d:sonar.login="${{ inputs.sonar_token }}"
+        & $scannerExecutable begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="$reportsPathOpenCover" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="$reportsPathVs" /d:sonar.coverage.exclusions="$exclusions"
+        dotnet build $solutionFile --configuration ${{ inputs.configuration }}
+        & $scannerExecutable end /d:sonar.login="${{ inputs.sonar_token }}"
