@@ -49,7 +49,7 @@ nbgv prepare-release
 ## Docker image creation
 
 ```powershell
-dotnet publish .\Source\EtAlii.Ubigia.sln --configuration:'Release-Ubuntu'
+dotnet publish .\Source\EtAlii.Ubigia.sln --configuration:'Release'
 docker build `
     --tag ubigia/storage:preview `
     --file ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile

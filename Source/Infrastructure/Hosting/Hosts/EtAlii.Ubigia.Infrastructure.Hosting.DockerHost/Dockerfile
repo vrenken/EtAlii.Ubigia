@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
-COPY Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/bin/Release-Ubuntu/net6.0/publish/ ubigia/
+COPY Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/bin/Ubuntu/net6.0/publish/ ubigia/
 WORKDIR /ubigia
 
 #Network related settings.

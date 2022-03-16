@@ -2,11 +2,11 @@ cd "C:\Git\Github\Vrenken\EtAlii.Ubigia"
 
 #dotnet build `
 #    .\Source\EtAlii.Ubigia.sln `
-#    --configuration:'Release-Ubuntu' 
+#    --configuration:'Release'
 
 dotnet publish `
     .\Source\EtAlii.Ubigia.sln `
-    --configuration:'Release-Ubuntu' 
+    --configuration:'Release'
 #    --no-build `
 #    --self-contained `
 #    --runtime linux-x64
@@ -31,7 +31,7 @@ docker create `
     --publish 64000:64000 `
     --publish 64001:64001 `
     --publish 64002:64002 `
-    ubigia/storage:preview 
+    ubigia/storage:preview
 docker start ubigia_test_storage
 
 # /ubigia/data
