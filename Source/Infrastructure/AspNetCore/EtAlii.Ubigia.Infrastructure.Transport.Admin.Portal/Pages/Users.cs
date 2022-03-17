@@ -2,12 +2,12 @@
 {
     using System.Threading.Tasks;
 
-    public partial class Dashboard2
+    public partial class Users
     {
         // private readonly Experiment[] _experiments;
         // private Experiment _currentExperiment;
 
-        public Dashboard2()
+        public Users()
         {
             // _experiments = new[]
             // {

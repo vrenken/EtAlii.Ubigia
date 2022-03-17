@@ -2,21 +2,45 @@
 
 @namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
-@* @inject AlgorithmManager _algorithmManager *@
 
-<Row>
+<Row >
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
             <CardHeader>
-                <Icon Name="@("fa-magic")" />
-                Accumulated
+                <Icon Name="@("bi bi-people")"/>
+                Users
             </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
+                <CardTitle Size="5">Users</CardTitle>
                 <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <Table Striped="true" Hoverable="true" Borderless="true">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderCell>#</TableHeaderCell>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Activity</TableHeaderCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableRowHeader>1</TableRowHeader>
+                                <TableRowCell>Tony Stark</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>2</TableRowHeader>
+                                <TableRowCell>Bruce Banner</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>3</TableRowHeader>
+                                <TableRowCell>Peter Parker</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </CardText>
-                <Button Color="Color.Primary">Button</Button>
+                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
             </CardBody>
         </Card>
     </Column>
@@ -24,15 +48,40 @@
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
             <CardHeader>
-                <Icon Name="@("fa-chart-line")" />
-                One-off trading
+                <Icon Name="@("bi bi-hdd-rack")"/>
+                Storage
             </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
+                <CardTitle Size="5">Storage</CardTitle>
                 <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <Table Striped="true" Hoverable="true" Borderless="true">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderCell>#</TableHeaderCell>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Activity</TableHeaderCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableRowHeader>1</TableRowHeader>
+                                <TableRowCell>Tony Stark</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>2</TableRowHeader>
+                                <TableRowCell>Bruce Banner</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>3</TableRowHeader>
+                                <TableRowCell>Peter Parker</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </CardText>
-                <Button Color="Color.Primary">Button</Button>
+                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
             </CardBody>
         </Card>
     </Column>
@@ -40,15 +89,40 @@
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
             <CardHeader>
-                <Icon Name="@("fa-chart-bar")" />
-                Simple trading
+                <Icon Name="@("bi bi-hdd-network")"/>
+                Network
             </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
+                <CardTitle Size="5">Network</CardTitle>
                 <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <Table Striped="true" Hoverable="true" Borderless="true">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderCell>#</TableHeaderCell>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Activity</TableHeaderCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableRowHeader>1</TableRowHeader>
+                                <TableRowCell>Tony Stark</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>2</TableRowHeader>
+                                <TableRowCell>Bruce Banner</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>3</TableRowHeader>
+                                <TableRowCell>Peter Parker</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </CardText>
-                <Button Color="Color.Primary">Button</Button>
+                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
             </CardBody>
         </Card>
     </Column>
@@ -56,31 +130,40 @@
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
             <CardHeader>
-                <Icon Name="@("fa-infinity")" />
-                Cyclic trading
+                <Icon Name="@("bi bi-speedometer")"/>
+                Performance
             </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
+                <CardTitle Size="5">Performance</CardTitle>
                 <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    <Table Striped="true" Hoverable="true" Borderless="true">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderCell>#</TableHeaderCell>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Activity</TableHeaderCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow>
+                                <TableRowHeader>1</TableRowHeader>
+                                <TableRowCell>Tony Stark</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>2</TableRowHeader>
+                                <TableRowCell>Bruce Banner</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableRowHeader>3</TableRowHeader>
+                                <TableRowCell>Peter Parker</TableRowCell>
+                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </CardText>
-                <Button Color="Color.Primary">Button</Button>
-            </CardBody>
-        </Card>
-    </Column>
-
-    <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
-        <Card Margin="DefaultLayout.Margin">
-            <CardHeader>
-                <Icon Name="@("fa-flask")" />
-                Experimental trading
-            </CardHeader>
-            <CardBody>
-                <CardTitle Size="5">Card title</CardTitle>
-                <CardText>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
-                </CardText>
-                <Button Color="Color.Primary">Button</Button>
+                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
             </CardBody>
         </Card>
     </Column>
