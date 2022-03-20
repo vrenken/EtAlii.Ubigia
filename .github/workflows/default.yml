@@ -20,10 +20,18 @@ env:
   NUGET_XTECHNOLOGY_PACK_FILTER: ./Source/**/EtAlii.xTechnology.*.nupkg
   ENVIRONMENT_SCRIPT: |
     echo "Preparing GitHub workflow"
-    echo "SOLUTION_FILE=("$Env:SOLUTION_FILE" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "SOURCE_FOLDER=("$Env:SOURCE_FOLDER" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "NUGET_UBIGIA_PACK_FILTER=("$Env:NUGET_UBIGIA_PACK_FILTER" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "NUGET_XTECHNOLOGY_PACK_FILTER=("$Env:NUGET_XTECHNOLOGY_PACK_FILTER" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    $variables = @(
+      'SOLUTION_FILE',
+      'SOURCE_FOLDER',
+      'NUGET_UBIGIA_PACK_FILTER',
+      'NUGET_XTECHNOLOGY_PACK_FILTER'
+    )
+    foreach ( $variable in $variable )
+    {
+      $value = & "$Env:$variable"
+      $value = ("$value" -replace "/", [IO.Path]::DirectorySeparatorChar)
+      echo "$variable=$value" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    }
     echo "Dumping environment variables:"
     dir Env:
 
