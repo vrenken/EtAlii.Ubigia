@@ -12,24 +12,36 @@ env:
   DOTNET_VERSION: 6.0.200
   SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
-  UBIGIA_SOURCE_FOLDER: ./Source
+  SOURCE_FOLDER: ./Source
   CONFIGURATION: Release
   SOLUTION_FILE: ./Source/EtAlii.Ubigia.sln
   DEBUG_WORKFLOWS: true
   NUGET_UBIGIA_PACK_FILTER: ./Source/**/EtAlii.Ubigia.*.nupkg
   NUGET_XTECHNOLOGY_PACK_FILTER: ./Source/**/EtAlii.xTechnology.*.nupkg
+  ENVIRONMENT_SCRIPT: |
+    echo "Preparing GitHub workflow"
+    echo "SOLUTION_FILE=("${{ inputs.SOLUTION_FILE }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "SOURCE_FOLDER=("${{ inputs.SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "NUGET_UBIGIA_PACK_FILTER=("${{ inputs.NUGET_UBIGIA_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "NUGET_XTECHNOLOGY_PACK_FILTER=("${{ inputs.NUGET_XTECHNOLOGY_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "Dumping environment variables:"
+    dir Env:
 
 jobs:
   preparations:
     runs-on: ubuntu-latest
     steps:
-     - name: "Preparing GitHub workflow"
+     - name: "Preparing GitHub environment variables"
+       shell: pwsh
        run: echo "Preparing GitHub workflow"
 
   build-on-ubuntu:
     runs-on: ubuntu-latest
     needs: preparations
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -38,7 +50,7 @@ jobs:
         id: cache-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Build on Ubuntu
         uses: ./.github/actions/build
@@ -51,6 +63,9 @@ jobs:
     runs-on: windows-latest
     needs: preparations
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -59,7 +74,7 @@ jobs:
         id: cache-windows-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Build on Windows
         uses: ./.github/actions/build
@@ -72,6 +87,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-on-ubuntu
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -80,14 +98,14 @@ jobs:
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Cache Ubuntu tests
         id: cache-ubuntu-tests
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Ubuntu
         uses: ./.github/actions/test
@@ -100,6 +118,9 @@ jobs:
     runs-on: windows-latest
     needs: build-on-windows
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -108,14 +129,14 @@ jobs:
         id: load-cached-windows-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Cache Windows tests
         id: cache-windows-tests
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Test on Windows
         uses: ./.github/actions/test
@@ -128,6 +149,9 @@ jobs:
     runs-on: windows-latest
     needs: tests-on-windows
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -136,7 +160,7 @@ jobs:
         id: load-cached-windows-tests
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
@@ -153,6 +177,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests-on-ubuntu
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -161,7 +188,7 @@ jobs:
         id: load-cached-ubuntu-tests
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
       - name: SonarCloud analysis
@@ -178,6 +205,9 @@ jobs:
     runs-on: windows-2019
     needs: build-on-windows
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -186,7 +216,7 @@ jobs:
         id: load-cached-windows-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: CodeQL analysis
@@ -200,6 +230,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu,  tests-on-ubuntu] #, tests-on-windows
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -208,7 +241,7 @@ jobs:
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Nuget publish
@@ -226,6 +259,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [codeql-analysis, sonarcloud-analysis-on-ubuntu,  tests-on-ubuntu] # , tests-on-windows
     steps:
+      - name: "Preparing GitHub environment variables"
+        shell: pwsh
+        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -234,7 +270,7 @@ jobs:
         id: load-cached-ubuntu-build
         uses: actions/cache@v2
         with:
-          path: ("${{ env.UBIGIA_SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar) # We'll just cache everything. This is very fast.
+          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Docker publish
