@@ -47,16 +47,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
                     continue;
                 }
 
-                foreach (var correlationId in Correlation.AllIds)
+                var correlationId = Correlation.AllIds.FirstOrDefault(correlationId => string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase));
+                if (correlationId != null)
                 {
-                    if (string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase))
-                    {
-                        items.Remove(key);
-
-                        var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
-                        correlations.Add(correlation);
-                        break;
-                    }
+                    items.Remove(key);
+                    var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                    correlations.Add(correlation);
                 }
             }
             return new CompositeDisposable(correlations);

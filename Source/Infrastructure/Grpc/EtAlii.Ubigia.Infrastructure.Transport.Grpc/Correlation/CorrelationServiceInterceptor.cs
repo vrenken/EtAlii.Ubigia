@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
     using global::Grpc.Core;
     using EtAlii.xTechnology.Diagnostics;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// The task of the CorrelationServiceInterceptor is to fetch any correlation Id
@@ -66,14 +67,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
                 var key = entry.Key;
                 var value = entry.Value;
 
-                foreach (var correlationId in Correlation.AllIds)
+                var correlationId = Correlation.AllIds.FirstOrDefault(correlationId => string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase));
+                if (correlationId != null)
                 {
-                    if (string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
-                        correlations.Add(correlation);
-                        break;
-                    }
+                    var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                    correlations.Add(correlation);
                 }
             }
             return new CompositeDisposable(correlations);

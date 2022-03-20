@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Microsoft.AspNetCore.Builder;
     using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.Diagnostics;
@@ -30,14 +31,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 var key = header.Key;
                 var value = header.Value[0];
 
-                foreach (var correlationId in Correlation.AllIds)
+                var correlationId = Correlation.AllIds.FirstOrDefault(correlationId => string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase));
+                if (correlationId != null)
                 {
-                    if (string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var correlation = contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
-                        correlations.Add(correlation);
-                        break;
-                    }
+                    var correlation = contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                    correlations.Add(correlation);
                 }
             }
 
