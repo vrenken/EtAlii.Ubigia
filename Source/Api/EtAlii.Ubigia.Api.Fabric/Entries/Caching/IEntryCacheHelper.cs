@@ -4,12 +4,12 @@ namespace EtAlii.Ubigia.Api.Fabric
 {
     public interface IEntryCacheHelper
     {
-        IReadOnlyEntry Get(in Identifier identifier);
+        IReadOnlyEntry Get(in Identifier identifier, ExecutionScope scope);
 
-        void Store(IReadOnlyEntry entry);
+        void Store(IReadOnlyEntry entry, ExecutionScope scope);
 
         bool ShouldStore(IReadOnlyEntry entry);
 
-        void InvalidateRelated(IReadOnlyEntry entry);
+        void InvalidateRelated(IReadOnlyEntry entry, ExecutionScope scope);
     }
 }

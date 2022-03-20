@@ -27,16 +27,13 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            return await scope.Cache.GetProperties(identifier, async () =>
+            var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier).ConfigureAwait(false);
+            if (result != null)
             {
-                var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier).ConfigureAwait(false);
-                if (result != null)
-                {
-                    PropertiesHelper.SetStored(result, true);
-                    // properties.Stored is not serialized in the PropertyDictionaryConverter.
-                }
-                return result;
-            }).ConfigureAwait(false);
+                PropertiesHelper.SetStored(result, true);
+                // properties.Stored is not serialized in the PropertyDictionaryConverter.
+            }
+            return result;
         }
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)

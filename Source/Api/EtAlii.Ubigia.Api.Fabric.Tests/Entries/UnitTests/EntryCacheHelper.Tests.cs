@@ -13,10 +13,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public void EntryCacheHelper_Create()
         {
             // Arrange.
-            var cacheProvider = new EntryCacheProvider();
 
             // Act.
-            var helper = new EntryCacheHelper(cacheProvider);
+            var helper = new EntryCacheHelper();
 
             // Assert.
             Assert.NotNull(helper);

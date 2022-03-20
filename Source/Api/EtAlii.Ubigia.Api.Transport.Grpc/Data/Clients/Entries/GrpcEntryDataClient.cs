@@ -36,13 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPutRequest { Entry = ((IComponentEditableEntry)entry).ToWire() };
                 var response = await _client.PutAsync(request, metadata);
-                scope.Cache.InvalidateEntry(entry.Id);
-
                 var result = response.Entry.ToLocal();
-
-                // It's probably wise to call the invalidateEntry on the result.id as well.
-                scope.Cache.InvalidateEntry(result.Id);
-
                 return result;
             }
             catch (RpcException e)
@@ -60,13 +54,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             try
             {
-                return await scope.Cache.GetEntry(entryIdentifier, async () =>
-                {
-                    var metadata = new Metadata { _transport.AuthenticationHeader };
-                    var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
-                    var response = await _client.GetSingleAsync(request, metadata);
-                    return response.Entry.ToLocal();
-                }).ConfigureAwait(false);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
+                var response = await _client.GetSingleAsync(request, metadata);
+                return response.Entry.ToLocal();
             }
             catch (RpcException e)
             {
@@ -96,13 +87,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                     if (hasResult)
                     {
                         var current = enumerator.Current;
-                        item = await scope.Cache.GetEntry(current, async () =>
-                        {
-                            var metadata = new Metadata { _transport.AuthenticationHeader };
-                            var request = new EntrySingleRequest {EntryId = current.ToWire(), EntryRelations = entryRelations.ToWire()};
-                            var response = await _client.GetSingleAsync(request, metadata);
-                            return response.Entry.ToLocal();
-                        }).ConfigureAwait(false);
+                        var metadata = new Metadata { _transport.AuthenticationHeader };
+                        var request = new EntrySingleRequest {EntryId = current.ToWire(), EntryRelations = entryRelations.ToWire()};
+                        var response = await _client.GetSingleAsync(request, metadata);
+                        item = response.Entry.ToLocal();
                     }
                     else
                     {
@@ -126,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             try
             {
-                return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
+                return GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
             }
             catch (RpcException e)
             {

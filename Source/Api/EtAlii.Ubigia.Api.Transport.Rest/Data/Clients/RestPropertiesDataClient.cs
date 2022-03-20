@@ -15,17 +15,14 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            return await scope.Cache.GetProperties(identifier, async () =>
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
+            var result = await Connection.Client.Get<PropertyDictionary>(address).ConfigureAwait(false);
+            if (result != null)
             {
-                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
-                var result = await Connection.Client.Get<PropertyDictionary>(address).ConfigureAwait(false);
-                if (result != null)
-                {
-                    PropertiesHelper.SetStored(result, true);
-                    // properties.Stored is not serialized in the PropertyDictionaryConverter.
-                }
-                return result;
-            }).ConfigureAwait(false);
+                PropertiesHelper.SetStored(result, true);
+                // properties.Stored is not serialized in the PropertyDictionaryConverter.
+            }
+            return result;
         }
     }
 }

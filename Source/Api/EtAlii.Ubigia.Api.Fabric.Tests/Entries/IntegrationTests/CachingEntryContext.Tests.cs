@@ -15,16 +15,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var entryContext = new EntryContext(new DataConnectionStub());
-            var entryCacheProvider = new EntryCacheProvider();
-            var entryCacheHelper = new EntryCacheHelper(entryCacheProvider);
+            var entryCacheHelper = new EntryCacheHelper();
             var entryCacheContextProvider = new EntryCacheContextProvider(entryContext);
             var entryCacheChangeHandler = new EntryCacheChangeHandler(entryCacheHelper, entryCacheContextProvider);
             var entryCacheGetHandler = new EntryCacheGetHandler(entryCacheHelper, entryCacheContextProvider);
             var entryCacheGetRelatedHandler = new EntryCacheGetRelatedHandler(entryCacheHelper, entryCacheGetHandler, entryCacheContextProvider);
-            var entryCacheStoreHandler = new EntryCacheStoreHandler(entryCacheHelper, entryCacheProvider);
 
             // Act.
-            var context = new CachingEntryContext(entryCacheContextProvider, entryCacheChangeHandler, entryCacheGetHandler, entryCacheGetRelatedHandler, entryCacheStoreHandler);
+            var context = new CachingEntryContext(entryCacheContextProvider, entryCacheChangeHandler, entryCacheGetHandler, entryCacheGetRelatedHandler);
 
             // Assert.
             Assert.NotNull(context);

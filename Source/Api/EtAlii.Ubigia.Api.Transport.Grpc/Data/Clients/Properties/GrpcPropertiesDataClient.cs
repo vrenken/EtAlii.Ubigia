@@ -39,20 +39,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             try
             {
-                return await scope.Cache.GetProperties(identifier, async () =>
-                {
-                    var metadata = new Metadata { _transport.AuthenticationHeader };
-                    var request = new PropertiesGetRequest{ EntryId = identifier.ToWire() };
-                    var response = await _client.GetAsync(request, metadata);
-                    var result = response.PropertyDictionary.ToLocal(_serializer);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new PropertiesGetRequest{ EntryId = identifier.ToWire() };
+                var response = await _client.GetAsync(request, metadata);
+                var result = response.PropertyDictionary.ToLocal(_serializer);
 
-                    if (result != null)
-                    {
-                        PropertiesHelper.SetStored(result, true);
-                        // properties.Stored is not serialized in the PropertyDictionaryConverter.
-                    }
-                    return result;
-                }).ConfigureAwait(false);
+                if (result != null)
+                {
+                    PropertiesHelper.SetStored(result, true);
+                    // properties.Stored is not serialized in the PropertyDictionaryConverter.
+                }
+                return result;
             }
             catch (RpcException e)
             {

@@ -16,12 +16,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public IReadOnlyEntry Get(in Identifier identifier)
+        public IReadOnlyEntry Get(in Identifier identifier, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Getting cached entry: " + identifier.ToTimeString());
             profile.Identifier = identifier;
 
-            var result = _decoree.Get(identifier);
+            var result = _decoree.Get(identifier, scope);
             profile.Result = result;
             profile.Action = "Getting cached entry: " + identifier.ToTimeString() + (result == null ? "" : " - AVAILABLE");
             _profiler.End(profile);
@@ -29,12 +29,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public void Store(IReadOnlyEntry entry)
+        public void Store(IReadOnlyEntry entry, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Storing entry in cache: " + entry.Id.ToTimeString());
             profile.Entry = entry;
 
-            _decoree.Store(entry);
+            _decoree.Store(entry, scope);
 
             _profiler.End(profile);
         }
@@ -54,12 +54,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         }
 
 
-        public void InvalidateRelated(IReadOnlyEntry entry)
+        public void InvalidateRelated(IReadOnlyEntry entry, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Invalidating related entries in cache: " + entry.Id.ToTimeString());
             profile.Entry = entry;
 
-            _decoree.InvalidateRelated(entry);
+            _decoree.InvalidateRelated(entry, scope);
 
             _profiler.End(profile);
         }

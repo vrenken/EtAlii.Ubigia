@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     public interface IEntryCacheStoreHandler
     {
-        Task Handle(Identifier identifier);
+        Task Handle(Identifier identifier, ExecutionScope scope);
     }
 }

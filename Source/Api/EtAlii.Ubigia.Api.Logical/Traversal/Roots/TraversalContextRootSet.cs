@@ -13,8 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public TraversalContextRootSet(IFabricContext context)
         {
             _context = context;
-            //_cachingEnabled = _context.Options.CachingEnabled;
-            _cachingEnabled = false;// TODO: CF42 Caching does not work yet.
+            _cachingEnabled = _context.Options.CachingEnabled;
         }
 
         public async Task<Root> Get(string name, ExecutionScope scope)

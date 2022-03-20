@@ -26,11 +26,6 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
             var result = await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Put", entry).ConfigureAwait(false);
-            scope.Cache.InvalidateEntry(entry.Id);
-
-            // It's probably wise to call the invalidateEntry on the result.id as well.
-            scope.Cache.InvalidateEntry(result.Id);
-
             return result;
         }
 
@@ -41,7 +36,9 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations).ConfigureAwait(false)).ConfigureAwait(false);
+            return await _invoker
+                .Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations)
+                .ConfigureAwait(false);
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
@@ -52,13 +49,15 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
             foreach (var entryIdentifier in entryIdentifiers)
             {
-                yield return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations).ConfigureAwait(false)).ConfigureAwait(false);
+                yield return await _invoker
+                    .Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations)
+                    .ConfigureAwait(false);
             }
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
+            return GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
         }
 
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)

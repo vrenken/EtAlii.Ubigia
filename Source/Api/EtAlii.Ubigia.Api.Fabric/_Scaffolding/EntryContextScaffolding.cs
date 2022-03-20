@@ -25,7 +25,6 @@ namespace EtAlii.Ubigia.Api.Fabric
                 container.Register<IEntryCacheStoreHandler, EntryCacheStoreHandler>();
                 container.Register<IEntryCacheReconnectOnStartupHandler, EntryCacheReconnectOnStartupHandler>();
 
-                container.Register<IEntryCacheProvider, EntryCacheProvider>();
                 container.Register<IEntryCacheHelper, EntryCacheHelper>();
                 container.Register(CreateEntryCacheContextProvider);
                 container.Register<IEntryContext, CachingEntryContext>();

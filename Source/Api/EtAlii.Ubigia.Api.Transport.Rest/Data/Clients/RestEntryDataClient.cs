@@ -20,10 +20,6 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             var result = await Connection.Client
                 .Put(changeAddress, entry as Entry)
                 .ConfigureAwait(false);
-            scope.Cache.InvalidateEntry(entry.Id);
-
-            // It's probably wise to call the invalidateEntry on the result.id as well.
-            scope.Cache.InvalidateEntry(result.Id);
 
             return result;
         }
@@ -35,14 +31,10 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return await scope.Cache.GetEntry(entryIdentifier, async () =>
-            {
-
-                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Entry, UriParameter.EntryId,
-                    entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
-                var result = await Connection.Client.Get<Entry>(address).ConfigureAwait(false);
-                return result;
-            }).ConfigureAwait(false);
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Entry, UriParameter.EntryId,
+                entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
+            var result = await Connection.Client.Get<Entry>(address).ConfigureAwait(false);
+            return result;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
@@ -63,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation,
             ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
+            return GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
         }
 
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
