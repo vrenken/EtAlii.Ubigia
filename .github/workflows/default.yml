@@ -123,64 +123,64 @@ jobs:
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  tests-on-windows:
-    runs-on: windows-latest
-    needs: build-on-windows
-    steps:
-      - name: "Preparing GitHub environment variables"
-        shell: pwsh
-        run: ${{ env.ENVIRONMENT_SCRIPT }}
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Load cached Windows build
-        id: load-cached-windows-build
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
-          key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
-          restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
-      - name: Cache Windows tests
-        id: cache-windows-tests
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
-          key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
-      - name: Test on Windows
-        uses: ./.github/actions/test
-        with:
-          configuration: ${{ env.CONFIGURATION }}
-          solution_file: ${{ env.SOLUTION_FILE }}
-          dotnet_version: ${{ env.DOTNET_VERSION }}
+#  tests-on-windows:
+#    runs-on: windows-latest
+#    needs: build-on-windows
+#    steps:
+#      - name: "Preparing GitHub environment variables"
+#        shell: pwsh
+#        run: ${{ env.ENVIRONMENT_SCRIPT }}
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Load cached Windows build
+#        id: load-cached-windows-build
+#        uses: actions/cache@v2
+#        with:
+#          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
+#          key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+#          restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
+#      - name: Cache Windows tests
+#        id: cache-windows-tests
+#        uses: actions/cache@v2
+#        with:
+#          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
+#          key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
+#      - name: Test on Windows
+#        uses: ./.github/actions/test
+#        with:
+#          configuration: ${{ env.CONFIGURATION }}
+#          solution_file: ${{ env.SOLUTION_FILE }}
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
 
-  sonarcloud-analysis-on-windows:
-    runs-on: windows-latest
-    needs: tests-on-windows
-    steps:
-      - name: "Preparing GitHub environment variables"
-        shell: pwsh
-        run: ${{ env.ENVIRONMENT_SCRIPT }}
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
-      - name: Load cached Windows tests
-        id: load-cached-windows-tests
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
-          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
-          restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
-      - name: SonarCloud analysis
-        uses: ./.github/actions/analyse-sonarcloud
-        with:
-          configuration: ${{ env.CONFIGURATION }}
-          solution_file: ${{ env.SOLUTION_FILE }}
-          sonar_token: ${{ secrets.SONAR_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          dotnet_version: ${{ env.DOTNET_VERSION }}
-          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
+#  sonarcloud-analysis-on-windows:
+#    runs-on: windows-latest
+#    needs: tests-on-windows
+#    steps:
+#      - name: "Preparing GitHub environment variables"
+#        shell: pwsh
+#        run: ${{ env.ENVIRONMENT_SCRIPT }}
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
+#      - name: Load cached Windows tests
+#        id: load-cached-windows-tests
+#        uses: actions/cache@v2
+#        with:
+#          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
+#          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
+#          restore-keys: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
+#      - name: SonarCloud analysis
+#        uses: ./.github/actions/analyse-sonarcloud
+#        with:
+#          configuration: ${{ env.CONFIGURATION }}
+#          solution_file: ${{ env.SOLUTION_FILE }}
+#          sonar_token: ${{ secrets.SONAR_TOKEN }}
+#          github_token: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+#          dotnet_version: ${{ env.DOTNET_VERSION }}
+#          sonar_scanner_version: ${{ env.SONAR_SCANNER_VERSION }}
 
   sonarcloud-analysis-on-ubuntu:
     runs-on: ubuntu-latest
