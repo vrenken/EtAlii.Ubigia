@@ -70,7 +70,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
             using var manifest = File.OpenRead(manifestPath);
 
+            #pragma warning disable S3011 // Reflection should not be used to increase accessibility of classes, methods, or fields
             var useStaticWebAssetsCoreMethod = typeof(StaticWebAssetsLoader).GetMethod("UseStaticWebAssetsCore", BindingFlags.NonPublic | BindingFlags.Static);
+            #pragma warning restore S3011
 
             useStaticWebAssetsCoreMethod!.Invoke(null, new object[] { environment, manifest });
             return environment;
