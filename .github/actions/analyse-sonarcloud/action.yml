@@ -58,13 +58,15 @@ runs:
           **/Frameworks/Moppet.Lappa/**
         GITHUB_TOKEN: ${{ inputs.github_token }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ inputs.sonar_token }}
-
+        OPENCOVER_REPORTS_FILTER: "**/coverage.opencover.xml"
+        VISUALSTUDIO_REPORTS_FILTER: "**/report.xunit.trx"
+        SONARSCANNER_EXE: "./.sonar/scanner/dotnet-sonarscanner"
       shell: pwsh
       run: |
-        $scannerExecutable = ("./.sonar/scanner/dotnet-sonarscanner" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        $solutionFile = ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        $reportsPathVs = ("**/report.xunit.trx" -replace "/", [IO.Path]::DirectorySeparatorChar)
-        $reportsPathOpenCover = ("**/coverage.opencover.xml" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        $scannerExecutable = ("${{ env.SONARSCANNER_EXE }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        $solutionFile = "${{ inputs.solution_file }}"
+        $reportsPathVs = ("${{ env.VISUALSTUDIO_REPORTS_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        $reportsPathOpenCover = ("${{ env.OPENCOVER_REPORTS_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         $exclusions = ("${{ env.SONAR_COVERAGE_EXCLUSIONS }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         & $scannerExecutable begin /k:"${{ env.UBIGIA_PROJECTNAME }}" /o:"vrenken" /d:sonar.login="${{ inputs.sonar_token }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="$reportsPathOpenCover" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="$reportsPathVs" /d:sonar.coverage.exclusions="$exclusions"
         dotnet build $solutionFile --configuration ${{ inputs.configuration }}

@@ -40,16 +40,18 @@ runs:
       shell: pwsh
       run: >
         dotnet publish
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        "${{ inputs.solution_file }}"
         --configuration ${{ inputs.configuration }}
         --verbosity quiet
 
     - name: Docker build
       shell: pwsh
+      env:
+        DOCKER_FILE: "./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile"
       run: >
         docker build
         -t ${{ inputs.image_name }}
-        -f ./Source/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile
+        -f ("${{ env.DOCKER_FILE }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
         .
 
     - name: Login to Docker Hub

@@ -30,14 +30,14 @@ runs:
       shell: pwsh
       run: >
         dotnet restore
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        "${{ inputs.solution_file }}"
 
     # Build.
     - name: 'Build'
       shell: pwsh
       run: >
         dotnet build
-        ("${{ inputs.solution_file }}" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        "${{ inputs.solution_file }}"
         --no-restore
         --verbosity quiet
         --configuration ${{ inputs.configuration }}
