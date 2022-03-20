@@ -3,15 +3,14 @@
 @namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
 
-<Row >
+<Row Flex="Flex.Row.AlignContent.Center" >
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
-            <CardHeader>
-                <Icon Name="@("bi bi-people")"/>
-                Users
-            </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Users</CardTitle>
+                <CardTitle Size="5">
+                    <Icon Name="@("bi bi-people")"/>
+                    Users
+                </CardTitle>
                 <CardText>
                     <Table Striped="true" Hoverable="true" Borderless="true">
                         <TableHeader>
@@ -47,12 +46,11 @@
 
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
-            <CardHeader>
-                <Icon Name="@("bi bi-hdd-rack")"/>
-                Storage
-            </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Storage</CardTitle>
+                <CardTitle Size="5">
+                    <Icon Name="@("bi bi-hdd-rack")"/>
+                    Storage
+                </CardTitle>
                 <CardText>
                     <Table Striped="true" Hoverable="true" Borderless="true">
                         <TableHeader>
@@ -81,19 +79,18 @@
                         </TableBody>
                     </Table>
                 </CardText>
-                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
+                <Button Color="Color.Primary" Size="Size.Small" Position="Position.Sticky.End">Manage</Button>
             </CardBody>
         </Card>
     </Column>
 
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
-            <CardHeader>
-                <Icon Name="@("bi bi-hdd-network")"/>
-                Network
-            </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Network</CardTitle>
+                <CardTitle Size="5">
+                    <Icon Name="@("bi bi-hdd-network")"/>
+                    Network
+                </CardTitle>
                 <CardText>
                     <Table Striped="true" Hoverable="true" Borderless="true">
                         <TableHeader>
@@ -122,19 +119,18 @@
                         </TableBody>
                     </Table>
                 </CardText>
-                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
+                <Button Color="Color.Primary" Size="Size.Small" Position="Position.Sticky.End">Manage</Button>
             </CardBody>
         </Card>
     </Column>
 
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
         <Card Margin="DefaultLayout.Margin">
-            <CardHeader>
-                <Icon Name="@("bi bi-speedometer")"/>
-                Performance
-            </CardHeader>
             <CardBody>
-                <CardTitle Size="5">Performance</CardTitle>
+                <CardTitle Size="5">
+                    <Icon Name="@("bi bi-speedometer")"/>
+                    Performance
+                </CardTitle>
                 <CardText>
                     <Table Striped="true" Hoverable="true" Borderless="true">
                         <TableHeader>
@@ -163,7 +159,7 @@
                         </TableBody>
                     </Table>
                 </CardText>
-                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
+                <Button Color="Color.Primary" Size="Size.Small" Position="Position.Sticky.End">Manage</Button>
             </CardBody>
         </Card>
     </Column>

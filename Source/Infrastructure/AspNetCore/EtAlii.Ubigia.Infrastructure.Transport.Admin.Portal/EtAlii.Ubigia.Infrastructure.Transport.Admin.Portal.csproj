@@ -62,5 +62,8 @@
     <Compile Update="Shared\NavMenu.cs">
       <DependentUpon>NavMenu.razor</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Users.cs">
+      <DependentUpon>Users.razor</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

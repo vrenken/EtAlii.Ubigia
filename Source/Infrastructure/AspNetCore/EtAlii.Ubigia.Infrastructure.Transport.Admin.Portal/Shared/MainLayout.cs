@@ -2,6 +2,5 @@
 {
     public partial class MainLayout
     {
-        private bool _topbarVisible;
     }
 }
