@@ -17,9 +17,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
                 response = await _items
                     .Prepare(spaceId)
                     .ConfigureAwait(false);
-
-                // Send the prepared event.
-                SignalPrepared(response.Id);
             }
             catch (Exception e)
             {

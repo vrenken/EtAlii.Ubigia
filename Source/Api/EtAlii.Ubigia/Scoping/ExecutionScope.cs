@@ -12,17 +12,23 @@ namespace EtAlii.Ubigia
     public class ExecutionScope
     {
         /// <summary>
-        /// This is the Cache instance used to reduce unnecessary server calls. As the whole entity and relation
+        /// This is the Cache instance used to reduce unnecessary Property server calls. As the whole entity and relation
         /// model is based on immutability local caching can do tremendous wonders.
         /// </summary>
-        public ClientCache Cache { get; } = new ();
-
         public IDictionary<Identifier, PropertyDictionary> PropertyCache { get; } = new Dictionary<Identifier, PropertyDictionary>();
 
         public IDictionary<string, Root> RootCache { get; } = new Dictionary<string, Root>();
 
+        /// <summary>
+        /// This is the Cache instance used to reduce unnecessary Entry server calls. As the whole entity and relation
+        /// model is based on immutability local caching can do tremendous wonders.
+        /// </summary>
         public IDictionary<Identifier, IReadOnlyEntry> EntryCache { get; } = new Dictionary<Identifier, IReadOnlyEntry>();
 
+        /// <summary>
+        /// This is the Cache instance used to reduce unnecessary EntryRelations server calls. As the whole entity and relation
+        /// model is based on immutability local caching can do tremendous wonders.
+        /// </summary>
         public IDictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>> EntryRelationCache { get; } = new Dictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>>();
 
         private readonly Dictionary<string, Regex> _regexes = new ();

@@ -6,13 +6,10 @@ namespace EtAlii.Ubigia.Api.Transport
 
     internal class ContentContextStub : IContentContext
     {
-        public IContentNotificationClient Notifications { get; }
-
         public IContentDataClient Data { get; }
 
         public ContentContextStub()
         {
-            Notifications = new ContentNotificationClientStub();
             Data = new ContentDataClientStub();
         }
 

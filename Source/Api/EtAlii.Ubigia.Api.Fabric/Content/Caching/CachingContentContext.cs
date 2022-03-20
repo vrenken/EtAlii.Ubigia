@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Threading.Tasks;
 
     internal class CachingContentContext : IContentContext
@@ -35,8 +34,6 @@ namespace EtAlii.Ubigia.Api.Fabric
             _storePartHandler = storePartHandler;
 
             _contextProvider = contextProvider;
-            _contextProvider.Context.Updated += OnUpdated;
-            _contextProvider.Context.Stored += OnStored;
         }
 
         public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
@@ -73,19 +70,6 @@ namespace EtAlii.Ubigia.Api.Fabric
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             await _storePartHandler.Handle(identifier, contentPart).ConfigureAwait(false);
-        }
-
-        public event Action<Identifier> Updated = delegate { };
-        public event Action<Identifier> Stored = delegate { };
-
-        private void OnUpdated(Identifier identifier)
-        {
-            Updated(identifier);
-        }
-
-        private void OnStored(Identifier identifier)
-        {
-            Stored(identifier);
         }
     }
 }

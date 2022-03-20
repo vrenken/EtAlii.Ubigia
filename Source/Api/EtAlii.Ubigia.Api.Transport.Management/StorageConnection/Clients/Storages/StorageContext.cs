@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public sealed class StorageContext : StorageClientContextBase<IStorageDataClient, IStorageNotificationClient>, IStorageContext
+    public sealed class StorageContext : StorageClientContextBase<IStorageDataClient>, IStorageContext
     {
         public StorageContext(
-            IStorageNotificationClient notifications,
             IStorageDataClient data)
-            : base(notifications, data)
+            : base(data)
         {
         }
         public async Task<Storage> Add(string storageName, string storageAddress)

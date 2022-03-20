@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.SignalR;
 
     public class RootHub : HubBase
     {
@@ -26,12 +25,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
         /// <param name="spaceId"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
-        public async IAsyncEnumerable<Root> GetForSpace(Guid spaceId) 
+        public async IAsyncEnumerable<Root> GetForSpace(Guid spaceId)
         {
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = _items
                 .GetAll(spaceId)
                 .GetAsyncEnumerator();
@@ -124,9 +123,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
                 {
                     throw new InvalidOperationException("Unable to add root");
                 }
-
-                // Send the add event.
-                SignalAdded(root.Id); // spaceId, 
             }
             catch (Exception e)
             {
@@ -144,9 +140,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
                 response = await _items
                     .Update(spaceId, rootId, root)
                     .ConfigureAwait(false);
-
-                // Send the changed event.
-                SignalChanged(root.Id); // spaceId, 
             }
             catch (Exception e)
             {
@@ -161,40 +154,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
             try
             {
                 _items.Remove(spaceId, rootId);
-
-                // Send the changed event.
-                SignalRemoved(rootId); // spaceId, 
             }
             catch (Exception e)
             {
                 throw new InvalidOperationException("Unable to serve a Root DELETE client request", e);
             }
-        }
-
-        ///=================================
-        
-        private void SignalAdded(
-            //Guid spaceId, 
-            Guid rootId)
-        {
-            Clients.All.SendAsync("added", new object[] { rootId });
-            //Clients.All.added(rootId)
-        }
-
-        private void SignalChanged(
-            //Guid spaceId, 
-            Guid rootId)
-        {
-            Clients.All.SendAsync("changed", new object[]{ rootId });
-            //Clients.All.changed(rootId)
-        }
-
-        private void SignalRemoved(
-            //Guid spaceId, 
-            Guid rootId)
-        {
-            Clients.All.SendAsync("removed", new object[] { rootId });
-            //Clients.All.removed(rootId)
         }
     }
 }

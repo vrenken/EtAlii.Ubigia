@@ -14,24 +14,6 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         private readonly IFabricContext _fabric;
 
-        public event Action<Guid> Added
-        {
-            add => _fabric.Roots.Added += value;
-            remove => _fabric.Roots.Added -= value;
-        }
-
-        public event Action<Guid> Changed
-        {
-            add => _fabric.Roots.Changed += value;
-            remove => _fabric.Roots.Changed -= value;
-        }
-
-        public event Action<Guid> Removed
-        {
-            add => _fabric.Roots.Removed += value;
-            remove => _fabric.Roots.Removed -= value;
-        }
-
         public LogicalRootSet(IFabricContext fabric)
         {
             _fabric = fabric;

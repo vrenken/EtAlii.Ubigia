@@ -14,9 +14,5 @@ namespace EtAlii.Ubigia.Api.Fabric
         Task<Root> Get(string rootName);
         Task<Root> Get(Guid rootId);
         IAsyncEnumerable<Root> GetAll();
-
-        event Action<Guid> Added;
-        event Action<Guid> Changed;
-        event Action<Guid> Removed;
     }
 }

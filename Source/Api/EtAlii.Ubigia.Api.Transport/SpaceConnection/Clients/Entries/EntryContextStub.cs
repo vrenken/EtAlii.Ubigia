@@ -7,9 +7,6 @@ namespace EtAlii.Ubigia.Api.Transport
     public class EntryContextStub : IEntryContext
     {
         /// <inheritdoc />
-        public IEntryNotificationClient Notifications { get; }
-
-        /// <inheritdoc />
         public IEntryDataClient Data { get; }
 
         /// <summary>
@@ -17,7 +14,6 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         public EntryContextStub()
         {
-            Notifications = new EntryNotificationClientStub();
             Data = new EntryDataClientStub();
         }
 

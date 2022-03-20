@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,29 +10,25 @@ namespace EtAlii.Ubigia.Api.Fabric
         private readonly IEntryCacheChangeHandler _changeHandler;
         private readonly IEntryCacheGetHandler _getHandler;
         private readonly IEntryCacheGetRelatedHandler _getRelatedHandler;
-        private readonly IEntryCacheStoreHandler _storeHandler;
         private readonly IEntryCacheContextProvider _contextProvider;
 
         public CachingEntryContext(
             IEntryCacheContextProvider contextProvider,
             IEntryCacheChangeHandler changeHandler,
             IEntryCacheGetHandler getHandler,
-            IEntryCacheGetRelatedHandler getRelatedHandler,
-            IEntryCacheStoreHandler storeHandler)
+            IEntryCacheGetRelatedHandler getRelatedHandler)
         {
             _changeHandler = changeHandler;
             _getHandler = getHandler;
             _getRelatedHandler = getRelatedHandler;
-            _storeHandler = storeHandler;
-
             _contextProvider = contextProvider;
-            _contextProvider.Context.Prepared += OnPrepared;
-            _contextProvider.Context.Stored += OnStored;
         }
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await _contextProvider.Context.Prepare().ConfigureAwait(false);
+            return await _contextProvider.Context
+                .Prepare()
+                .ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
@@ -67,25 +62,6 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             return _getRelatedHandler
                 .Handle(identifier, relations, scope);
-        }
-
-        // TODO: These events should be converted into a true OO oriented pub-sub pattern.
-        public event Action<Identifier> Prepared = delegate { };
-        public event Action<Identifier> Stored = delegate { };
-
-        private void OnPrepared(Identifier identifier)
-        {
-            Prepared(identifier);
-        }
-
-        private void OnStored(Identifier identifier)
-        {
-            var task = Task.Run(async () =>
-            {
-                await _storeHandler.Handle(identifier).ConfigureAwait(false);
-            });
-            task.Wait();
-            Stored(identifier);
         }
     }
 }

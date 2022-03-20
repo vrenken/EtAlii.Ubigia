@@ -8,10 +8,6 @@ namespace EtAlii.Ubigia.Api.Transport
     public interface IContentContext : ISpaceClientContext
     {
         /// <summary>
-        /// A instance that enables work with <see cref="Content"/> specific notifications.
-        /// </summary>
-        IContentNotificationClient Notifications { get; }
-        /// <summary>
         /// A instance that enables work with <see cref="Content"/> specific actions.
         /// </summary>
         IContentDataClient Data { get; }

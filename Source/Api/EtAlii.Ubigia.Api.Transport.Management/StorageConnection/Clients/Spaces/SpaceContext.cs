@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public sealed class SpaceContext : StorageClientContextBase<ISpaceDataClient, ISpaceNotificationClient>, ISpaceContext
+    public sealed class SpaceContext : StorageClientContextBase<ISpaceDataClient>, ISpaceContext
     {
         public SpaceContext(
-            ISpaceNotificationClient notifications,
             ISpaceDataClient data)
-            : base(notifications, data)
+            : base(data)
         {
         }
         public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate spaceTemplate)

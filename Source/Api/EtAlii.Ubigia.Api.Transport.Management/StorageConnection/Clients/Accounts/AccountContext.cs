@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public sealed class AccountContext : StorageClientContextBase<IAccountDataClient, IAccountNotificationClient>, IAccountContext
+    public sealed class AccountContext : StorageClientContextBase<IAccountDataClient>, IAccountContext
     {
         public AccountContext(
-            IAccountNotificationClient notifications,
             IAccountDataClient data)
-            : base(notifications, data)
+            : base(data)
         {
         }
 

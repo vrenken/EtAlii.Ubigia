@@ -18,11 +18,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
             container.Register<IStorageDataClient, GrpcStorageDataClient>();
             container.Register<IAccountDataClient, GrpcAccountDataClient>();
             container.Register<ISpaceDataClient, GrpcSpaceDataClient>();
-
-            // No Notification clients yet.
-            container.Register<IStorageNotificationClient, StorageNotificationClientStub>();
-            container.Register<IAccountNotificationClient, AccountNotificationClientStub>();
-            container.Register<ISpaceNotificationClient, SpaceNotificationClientStub>();
         }
     }
 }

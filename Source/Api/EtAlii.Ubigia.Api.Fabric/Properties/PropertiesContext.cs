@@ -14,7 +14,6 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;
-            _connection.Properties.Notifications.Stored += OnStored;
         }
 
         public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
@@ -30,13 +29,6 @@ namespace EtAlii.Ubigia.Api.Fabric
         public Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
             return _connection.Properties.Data.Retrieve(identifier, scope);
-        }
-
-        public event Action<Identifier> Stored = delegate { };
-
-        private void OnStored(Identifier identifier)
-        {
-            Stored(identifier);
         }
     }
 }

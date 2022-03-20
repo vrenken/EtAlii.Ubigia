@@ -10,14 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentClientStub.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentNotificationClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataConnection\IntegrationTests\DataConnection.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootDataClientStub.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootNotificationClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITransportTestContext.cs" />
   </ItemGroup>
   <ItemGroup>

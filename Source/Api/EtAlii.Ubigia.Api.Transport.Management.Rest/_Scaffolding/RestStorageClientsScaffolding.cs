@@ -27,12 +27,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
             container.Register<IAccountDataClient, RestAccountDataClient>();
             container.Register<ISpaceDataClient, RestSpaceDataClient>();
 
-            // No Notification clients yet.
-            container.Register<IStorageNotificationClient, StorageNotificationClientStub>();
-            container.Register<IAccountNotificationClient, AccountNotificationClientStub>();
-            container.Register<ISpaceNotificationClient, SpaceNotificationClientStub>();
-
-
             if (_infrastructureClient != null)
             {
                 container.Register(() => _infrastructureClient);

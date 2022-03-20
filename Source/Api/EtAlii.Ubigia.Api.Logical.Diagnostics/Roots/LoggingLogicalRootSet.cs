@@ -12,16 +12,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         private readonly ILogicalRootSet _decoree;
         private readonly ILogger _logger = Log.ForContext<ILogicalRootSet>();
 
-        public event Action<Guid> Added;
-        public event Action<Guid> Changed;
-        public event Action<Guid> Removed;
-
         public LoggingLogicalRootSet(ILogicalRootSet decoree)
         {
             _decoree = decoree;
-            _decoree.Added += id => Added?.Invoke(id);
-            _decoree.Removed += id => Removed?.Invoke(id);
-            _decoree.Changed += id => Changed?.Invoke(id);
         }
 
         public async Task<Root> Add(string name)

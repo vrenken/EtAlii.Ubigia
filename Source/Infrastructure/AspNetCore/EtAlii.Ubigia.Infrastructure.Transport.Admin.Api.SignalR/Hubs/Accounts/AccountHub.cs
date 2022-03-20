@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 			try
 			{
 				var httpContext = Context.GetHttpContext();
-				httpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+				httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = _items
                 .GetAll()
                 .GetAsyncEnumerator();

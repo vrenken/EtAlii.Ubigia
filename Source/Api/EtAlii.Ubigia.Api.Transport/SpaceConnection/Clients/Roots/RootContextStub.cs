@@ -7,9 +7,6 @@ namespace EtAlii.Ubigia.Api.Transport
     public class RootContextStub : IRootContext
     {
         /// <inheritdoc />
-        public IRootNotificationClient Notifications { get; }
-
-        /// <inheritdoc />
         public IRootDataClient Data { get; }
 
         /// <summary>
@@ -17,7 +14,6 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         public RootContextStub()
         {
-            Notifications = new RootNotificationClientStub();
             Data = new RootDataClientStub();
         }
 

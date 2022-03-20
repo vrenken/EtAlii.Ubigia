@@ -14,9 +14,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
             {
                 // Store the entry.
                 response = _items.Store(entry);
-
-                // Send the stored event.
-                SignalStored(entry.Id);
             }
             catch (Exception e)
             {

@@ -2,12 +2,11 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-    public class RootContext : SpaceClientContextBase<IRootDataClient, IRootNotificationClient>, IRootContext
+    public class RootContext : SpaceClientContextBase<IRootDataClient>, IRootContext
     {
         public RootContext(
-            IRootNotificationClient notifications,
             IRootDataClient data)
-            : base(notifications, data)
+            : base(data)
         {
         }
     }

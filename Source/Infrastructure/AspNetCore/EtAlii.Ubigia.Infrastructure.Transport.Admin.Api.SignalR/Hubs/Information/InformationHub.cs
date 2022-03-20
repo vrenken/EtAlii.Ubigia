@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 		public Storage GetLocalStorage()
 		{
 			var httpContext = Context.GetHttpContext();
-			httpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+			httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 			var authenticationToken = stringValues.Single();
 			_authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
 

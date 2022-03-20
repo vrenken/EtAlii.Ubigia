@@ -33,10 +33,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         public FabricOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-
-            //CachingEnabled = false;
-            CachingEnabled = true; // TODO: Caching does not work yet.
-
+            CachingEnabled = true;
             ((IExtensible)this).Extensions = new IExtension[] { new CommonFabricExtension(this) };
         }
 
@@ -89,8 +86,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// <returns></returns>
         public FabricOptions UseCaching(bool cachingEnabled)
         {
-            //CachingEnabled = false;
-            CachingEnabled = true; // TODO: Caching does not work yet.
+            CachingEnabled = cachingEnabled;
             return this;
         }
     }

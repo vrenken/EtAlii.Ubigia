@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Threading.Tasks;
 
     public interface IContentContext
@@ -15,8 +14,5 @@ namespace EtAlii.Ubigia.Api.Fabric
         Task Store(Identifier identifier, ContentPart contentPart);
         Task<Content> Retrieve(Identifier identifier);
         Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId);
-
-        event Action<Identifier> Updated;
-        event Action<Identifier> Stored;
     }
 }

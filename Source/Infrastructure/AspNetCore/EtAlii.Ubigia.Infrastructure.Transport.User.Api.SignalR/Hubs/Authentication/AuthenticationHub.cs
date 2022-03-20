@@ -16,8 +16,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
 		public AuthenticationHub(
             ISimpleAuthenticationVerifier authenticationVerifier,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
-            IStorageRepository storageRepository, 
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
+            IStorageRepository storageRepository,
             ISimpleAuthenticationBuilder authenticationBuilder)
         {
             _authenticationVerifier = authenticationVerifier;
@@ -33,7 +33,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
 	    public string AuthenticateAs(string accountName, string hostIdentifier)
 	    {
-		    Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+            var httpContext = Context.GetHttpContext();
+		    httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 		    var authenticationToken = stringValues.Single();
 		    _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 
@@ -42,7 +43,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
 		public Storage GetLocalStorage()
         {
-            Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+            var httpContext = Context.GetHttpContext();
+            httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
             var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 

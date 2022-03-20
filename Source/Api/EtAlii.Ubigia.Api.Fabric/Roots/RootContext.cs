@@ -9,19 +9,12 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     internal class RootContext : IRootContext
     {
-        public event Action<Guid> Added = delegate { };
-        public event Action<Guid> Changed = delegate { };
-        public event Action<Guid> Removed = delegate { };
-
         private readonly IDataConnection _connection;
 
         public RootContext(IDataConnection connection)
         {
             if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;
-            _connection.Roots.Notifications.Added += OnAdded;
-            _connection.Roots.Notifications.Changed += OnChanged;
-            _connection.Roots.Notifications.Removed += OnRemoved;
         }
 
         public async Task<Root> Add(string name)
@@ -52,22 +45,6 @@ namespace EtAlii.Ubigia.Api.Fabric
         public IAsyncEnumerable<Root> GetAll()
         {
             return _connection.Roots.Data.GetAll();
-        }
-
-
-        private void OnAdded(Guid id)
-        {
-            Added(id);
-        }
-
-        private void OnChanged(Guid id)
-        {
-            Changed(id);
-        }
-
-        private void OnRemoved(Guid id)
-        {
-            Removed(id);
         }
     }
 }

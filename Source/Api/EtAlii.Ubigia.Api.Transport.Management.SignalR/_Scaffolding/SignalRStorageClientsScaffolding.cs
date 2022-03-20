@@ -20,11 +20,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
             container.Register<IStorageDataClient, SignalRStorageDataClient>();
             container.Register<IAccountDataClient, SignalRAccountDataClient>();
             container.Register<ISpaceDataClient, SignalRSpaceDataClient>();
-
-            // No Notification clients yet.
-            container.Register<IStorageNotificationClient, StorageNotificationClientStub>();
-            container.Register<IAccountNotificationClient, AccountNotificationClientStub>();
-            container.Register<ISpaceNotificationClient, SpaceNotificationClientStub>();
         }
     }
 }

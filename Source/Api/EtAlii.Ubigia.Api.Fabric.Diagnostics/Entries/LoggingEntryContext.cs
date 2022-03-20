@@ -15,8 +15,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         public LoggingEntryContext(IEntryContext decoree)
         {
             _decoree = decoree;
-            _decoree.Prepared += identifier => Prepared?.Invoke(identifier);
-            _decoree.Stored += identifier => Stored?.Invoke(identifier);
         }
 
         public async Task<IEditableEntry> Prepare()
@@ -109,8 +107,5 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Related entries retrieved for identifier {Identifier} (Relation: {Relations} Duration: {Duration}ms)", identifierTime, relations, duration);
         }
-
-        public event Action<Identifier> Prepared;
-        public event Action<Identifier> Stored;
     }
 }

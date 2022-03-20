@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.SignalR;
 
     public class ContentHub : HubBase
     {
@@ -52,7 +51,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
         }
 
         /// <summary>
-        /// Post a new contentdefinition for the specified content.
+        /// Post a new ContentDefinition for the specified content.
         /// </summary>
         /// <param name="entryId"></param>
         /// <param name="content"></param>
@@ -65,9 +64,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
                 await _items
                     .Store(entryId, content)
                     .ConfigureAwait(false);
-
-                // Send the updated event.
-                SignalUpdated(entryId);
             }
             catch (Exception e)
             {
@@ -96,20 +92,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
                 await _items
                     .Store(entryId, contentPart)
                     .ConfigureAwait(false);
-
-                // Send the updated event.
-                SignalUpdated(entryId);
             }
             catch (Exception e)
             {
                 throw new InvalidOperationException("Unable to serve a Content part POST client request", e);
             }
-        }
-
-        private void SignalUpdated(in Identifier identifier)
-        {
-            Clients.All.SendAsync("updated", new object[] { identifier });
-            //Clients.All.updated(identifier)
         }
     }
 }

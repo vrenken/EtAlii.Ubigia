@@ -39,12 +39,6 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             container.Register<IContentDataClient, RestContentDataClient>();
             container.Register<IPropertiesDataClient, RestPropertiesDataClient>();
 
-            // Web API does not support notifications (yet).
-            container.Register<IEntryNotificationClient, EntryNotificationClientStub>();
-            container.Register<IRootNotificationClient, RootNotificationClientStub>();
-            container.Register<IContentNotificationClient, ContentNotificationClientStub>();
-            container.Register<IPropertiesNotificationClient, PropertiesNotificationClientStub>();
-
             if (_infrastructureClient != null)
             {
                 container.Register(() => _infrastructureClient);

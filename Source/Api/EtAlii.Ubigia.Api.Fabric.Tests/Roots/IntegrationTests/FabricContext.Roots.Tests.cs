@@ -53,28 +53,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(name, root.Name);
         }
 
-        [Fact(Skip = "Unknown reason")]
-        public async Task FabricContext_Roots_Event_Added()
-        {
-            // Arrange.
-            var name = Guid.NewGuid().ToString();
-            Root root = null;
-
-            // Act.
-            var action = await ActionAssert
-                .RaisesAsync<Guid>(
-                m => _fabricContext.Roots.Added += m,
-                m => _fabricContext.Roots.Added -= m,
-                async () => root = await _fabricContext.Roots.Add(name).ConfigureAwait(false))
-                .ConfigureAwait(false);
-
-            // Assert.
-            var addedId = action.Argument;
-            Assert.NotNull(root);
-            Assert.Equal(root.Id, addedId);
-            Assert.NotEqual(Guid.Empty, addedId);
-        }
-
         [Fact]
         public async Task FabricContext_Roots_Add_Multiple()
         {
@@ -236,30 +214,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Equal(name, root.Name);
         }
 
-        // TODO: The roots changed event should be raised, right?
-        [Fact(Skip = "Unknown reason")]
-        public async Task FabricContext_Roots_Event_Changed()
-        {
-            // Arrange.
-            var name = Guid.NewGuid().ToString();
-            var root = await _fabricContext.Roots.Add(name).ConfigureAwait(false);
-            name = Guid.NewGuid().ToString();
-
-            // Act.
-            var action = await ActionAssert
-                .RaisesAsync<Guid>(
-                    m => _fabricContext.Roots.Changed += m,
-                    m => _fabricContext.Roots.Changed -= m,
-                    async () => root = await _fabricContext.Roots.Change(root.Id, name).ConfigureAwait(false))
-                .ConfigureAwait(false);
-
-            // Assert.
-            var changedId = action.Argument;
-            Assert.NotEqual(Guid.Empty, changedId);
-            Assert.Equal(root.Id, changedId);
-        }
-
-
         [Fact]
         public async Task FabricContext_Roots_Remove()
         {
@@ -279,24 +233,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Assert.Null(root);
         }
 
-        //[Fact]
-        //public async Task FabricContext_Roots_Event_Removed()
-        //[
-        //    var name = Guid.NewGuid().ToString()
-
-        //    var root = await connection.Roots.Add(name)
-
-        //    var removedEvent = new ManualResetEvent(false)
-        //    var removedId = Guid.Empty;
-
-        //    connection.Roots.Removed += (id) => [ removedId = id; removedEvent.Set(); ]
-        //    await connection.Roots.Remove(root.Id)
-
-        //    removedEvent.WaitOne(TimeSpan.FromSeconds(10))
-
-        //    Assert.NotEqual(Guid.Empty, removedId)
-        //    Assert.NotEqual(root.Id, removedId)
-        //]
         [Fact]
         public async Task FabricContext_Roots_Delete_Non_Existing()
         {

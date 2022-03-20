@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -14,8 +13,5 @@ namespace EtAlii.Ubigia.Api.Fabric
         Task<IReadOnlyEntry> Get(Identifier identifier, ExecutionScope scope);
         IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope);
         IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope);
-
-        event Action<Identifier> Prepared;
-        event Action<Identifier> Stored;
     }
 }

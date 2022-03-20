@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
         public PropertyDictionary Get(Identifier entryId)
         {
-            PropertyDictionary response = null;
+            PropertyDictionary response;
             try
             {
                 response = _items.Get(entryId);

@@ -32,16 +32,9 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             container.Register<ISignalRAuthenticationTokenGetter, SignalRAuthenticationTokenGetter>();
 
             container.Register<IEntryDataClient, SignalREntryDataClient>();
-            container.Register<IEntryNotificationClient, SignalREntryNotificationClient>();
-
             container.Register<IRootDataClient, SignalRRootDataClient>();
-            container.Register<IRootNotificationClient, SignalRRootNotificationClient>();
-
             container.Register<IPropertiesDataClient, SignalRPropertiesDataClient>();
-            container.Register<IPropertiesNotificationClient, SignalRPropertiesNotificationClient>();
-
             container.Register<IContentDataClient, SignalRContentDataClient>();
-            container.Register<IContentNotificationClient, SignalRContentNotificationClient>();
         }
     }
 }
