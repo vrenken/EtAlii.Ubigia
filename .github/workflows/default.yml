@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -65,7 +65,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -89,7 +89,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -120,7 +120,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -151,7 +151,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -179,7 +179,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -207,7 +207,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -232,7 +232,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -261,7 +261,7 @@ jobs:
     steps:
       - name: "Preparing GitHub environment variables"
         shell: pwsh
-        run:  & ${{ env.ENVIRONMENT_SCRIPT }}
+        run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
         uses: actions/checkout@v2
         with:
