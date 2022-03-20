@@ -177,7 +177,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             // Assert.
             Assert.NotNull(retrievedRoots);
-            Assert.Equal(SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Count());
+            Assert.Equal(SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Length);
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 .ConfigureAwait(false);
 
             // Assert.
-            Assert.Equal(roots.Count + SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Count());
+            Assert.Equal(roots.Count + SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Length);
             foreach (var root in roots)
             {
                 var matchingRoot = retrievedRoots.Single(r => r.Id == root.Id);

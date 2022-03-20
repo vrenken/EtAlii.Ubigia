@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
             // Assert.
             // Each user is initialized with at least a configuration and a data space. so we need to add two to the amount of spaces we expect.
-            Assert.Equal(spaces.Count + 2, retrievedSpaces.Count());
+            Assert.Equal(spaces.Count + 2, retrievedSpaces.Length);
 
             foreach (var space in spaces)
             {

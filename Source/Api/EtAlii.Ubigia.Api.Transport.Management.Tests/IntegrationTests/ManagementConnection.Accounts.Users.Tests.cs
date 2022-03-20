@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.NotNull(retrievedAccounts);
             // We have the system and administrator accounts,
             // so 2 accounts need to be used in the equation.
-            Assert.Equal(2, retrievedAccounts.Count());
+            Assert.Equal(2, retrievedAccounts.Length);
         }
 
         [Fact]
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
             // We have the system and administrator accounts,
             // so 2 additional accounts need to be used in the equation.
-            Assert.Equal(accounts.Count + 2, retrievedAccounts.Count());
+            Assert.Equal(accounts.Count + 2, retrievedAccounts.Length);
 
             foreach (var account in accounts)
             {

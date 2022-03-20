@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedRoot1);
             Assert.NotNull(addedRoot2);
             Assert.NotNull(roots);
-            Assert.True(roots.Count() >= 2);
+            Assert.True(roots.Length >= 2);
         }
     }
 }

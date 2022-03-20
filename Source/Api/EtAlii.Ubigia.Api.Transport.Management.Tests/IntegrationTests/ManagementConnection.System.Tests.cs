@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
             // Assert.
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
-            Assert.Equal(2, spaces.Count());
+            Assert.Equal(2, spaces.Length);
             Assert.True(spaces.SingleOrDefault(s => s.Name == "System") != null, "System space not found");
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Metrics") != null, "Metrics space not found");
         }
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
                 .ConfigureAwait(false);
 
             // Assert.
-            Assert.Equal(2, spaces.Count());
+            Assert.Equal(2, spaces.Length);
             //Assert.True(spaces.SingleOrDefault(s => s.Name == "System") != null, "System space not found")
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Configuration") != null, "Configuration space not found");
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Data") != null, "Data space not found");
