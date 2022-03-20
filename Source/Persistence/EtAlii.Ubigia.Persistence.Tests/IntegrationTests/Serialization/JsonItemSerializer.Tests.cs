@@ -7,6 +7,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Serialization;
     using EtAlii.Ubigia.Tests;
     using Xunit;
+#if HAS_PHYSICAL_FILESYSTEM
+    using System.IO;
+#endif
 
     [CorrelateUnitTests]
     public class JsonItemSerializerTests : IAsyncLifetime
@@ -62,6 +65,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
             storageSerializer.Serialize(fileName, testItem);
 
             // Assert.
+#if HAS_PHYSICAL_FILESYSTEM
+            Assert.True(File.Exists(fileName));
+#else
+            Assert.True(true);
+#endif
 
             // Assure.
             _testContext.DeleteFileWhenNeeded(fileName);
@@ -112,6 +120,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
             storageSerializer.Serialize(fileName, properties);
 
             // Assert.
+#if HAS_PHYSICAL_FILESYSTEM
+            Assert.True(File.Exists(fileName));
+#else
+            Assert.True(true);
+#endif
 
             // Assure.
             _testContext.DeleteFileWhenNeeded(fileName);

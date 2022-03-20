@@ -59,6 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await storageDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(storageDataClientStub);
         }
 
         [Fact]
@@ -71,6 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await storageDataClientStub.Disconnect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(storageDataClientStub);
         }
 
         [Fact]
@@ -125,6 +127,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
            await storageDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(storageDataClientStub);
         }
     }
 }

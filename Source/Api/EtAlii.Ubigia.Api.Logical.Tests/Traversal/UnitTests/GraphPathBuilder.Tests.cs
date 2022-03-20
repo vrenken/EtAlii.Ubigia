@@ -31,6 +31,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             builder.Add("First");
 
             // Assert.
+            Assert.NotEmpty(builder.ToPath());
         }
 
         [Fact]
@@ -43,6 +44,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             builder.Add(GraphRelation.Children);
 
             // Assert.
+            Assert.NotEmpty(builder.ToPath());
         }
 
         [Fact]

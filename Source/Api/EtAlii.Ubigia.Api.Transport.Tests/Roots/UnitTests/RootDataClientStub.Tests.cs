@@ -33,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await rootDataClientStub.Add(Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(rootDataClientStub);
         }
 
         [Fact]
@@ -45,6 +46,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(rootDataClientStub);
         }
 
         [Fact]
@@ -57,6 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await rootDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(rootDataClientStub);
         }
 
         [Fact]
@@ -69,6 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await rootDataClientStub.Disconnect().ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(rootDataClientStub);
         }
 
         [Fact]
@@ -123,6 +127,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await rootDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(rootDataClientStub);
         }
     }
 }

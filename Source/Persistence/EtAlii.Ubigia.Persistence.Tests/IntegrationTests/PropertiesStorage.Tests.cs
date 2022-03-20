@@ -39,6 +39,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Properties.Store(containerId, properties);
 
             // Assert.
+            Assert.True(properties.Stored);
         }
 
         [Fact]

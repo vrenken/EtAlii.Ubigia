@@ -35,6 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await connection.Open().ConfigureAwait(false);
 
             // Assert.
+            Assert.True(connection.IsConnected);
         }
 
         [Fact]
@@ -49,6 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await connection.Open().ConfigureAwait(false);
 
             // Assert.
+            Assert.True(connection.IsConnected);
         }
 
         [Fact]
@@ -67,6 +69,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
                 .ConfigureAwait(false);
 
             // Assert.
+            Assert.True(connection.IsConnected);
         }
 
         [Fact]
@@ -224,15 +227,21 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         [Fact]
         public async Task DataConnection_Open_And_Close_System()
         {
+            // Arrange.
             var (connection, _) = await _testContext.TransportTestContext
                 .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
+
+            // Act.
             await connection
                 .Open()
                 .ConfigureAwait(false);
             await connection
                 .Close()
                 .ConfigureAwait(false);
+
+            // Assert.
+            Assert.False(connection.IsConnected);
         }
 
         [Fact]
@@ -254,6 +263,9 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await connection
                 .Close()
                 .ConfigureAwait(false);
+
+            // Assert.
+            Assert.False(connection.IsConnected);
         }
 
         [Fact]

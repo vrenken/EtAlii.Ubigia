@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public static class FileContentManagerExtensions
     {
-        public static async Task Upload(this IContentManager contentManager, string localDataIdentifier, Identifier identifier)
+        public static async Task<bool> Upload(this IContentManager contentManager, string localDataIdentifier, Identifier identifier)
         {
             try
             {
@@ -20,6 +20,8 @@ namespace EtAlii.Ubigia.Api.Logical
                         .Upload(stream, (uint)size, identifier)
                         .ConfigureAwait(false);
                 }
+
+                return true;
             }
             catch (Exception e)
             {

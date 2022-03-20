@@ -91,9 +91,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var hierarchicalContentManager = new HierarchicalContentManager();
 
             // Act.
-            hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
+            var success = hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 
             // Assert.
+            Assert.True(success);
         }
 
 

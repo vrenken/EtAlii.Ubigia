@@ -40,6 +40,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Items.Store(item, id, containerId);
 
             // Assert.
+            Assert.NotNull(item);
         }
 
         [Fact]

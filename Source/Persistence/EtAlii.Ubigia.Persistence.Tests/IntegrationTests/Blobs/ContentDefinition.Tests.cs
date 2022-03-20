@@ -40,6 +40,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Blobs.Store(containerId, contentDefinition);
 
             // Assert.
+            Assert.True(contentDefinition.Stored);
         }
 
         [Fact]

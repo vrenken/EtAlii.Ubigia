@@ -117,6 +117,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Components.Store(containerId, entryComponent);
 
             // Assert.
+            Assert.True(entryComponent.Stored);
         }
 
         [Fact]

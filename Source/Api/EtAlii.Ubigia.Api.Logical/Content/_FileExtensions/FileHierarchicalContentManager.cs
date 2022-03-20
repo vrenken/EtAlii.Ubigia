@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public static class FileHierarchicalContentManagerExtensions
     {
-        public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier)
+        public static bool Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier)
         {
             try
             {
@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
             //    [
             //        base.Upload(stream, (UInt32)size, identifier)
             //    ]
+            return true;
             }
             catch (Exception e)
             {

@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>DE359065-7238-451D-A43E-9C47AF26D885</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
+    <DefineConstants>$(DefineConstants);HAS_PHYSICAL_FILESYSTEM</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

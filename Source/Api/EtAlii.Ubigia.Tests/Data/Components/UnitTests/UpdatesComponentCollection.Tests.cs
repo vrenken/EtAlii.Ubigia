@@ -28,6 +28,7 @@
             updatesComponentCollection.Add(identifier);
 
             // Assert.
+            Assert.Single(updatesComponentCollection);
         }
 
         [Fact]
@@ -41,6 +42,7 @@
             updatesComponentCollection.Add(identifier);
 
             // Assert.
+            Assert.Single(updatesComponentCollection);
         }
 
         [Fact]

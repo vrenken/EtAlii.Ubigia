@@ -31,6 +31,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await contentDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
 
         [Fact]
@@ -43,6 +44,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await contentDataClientStub.Disconnect().ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
 
         [Fact]
@@ -66,6 +68,9 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
             // Act.
             await contentDataClientStub.Store(Identifier.Empty, (ContentPart)null).ConfigureAwait(false);
+
+            // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
 
         [Fact]
@@ -78,6 +83,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinition)null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
 
         [Fact]
@@ -90,6 +96,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinitionPart)null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
     }
 }

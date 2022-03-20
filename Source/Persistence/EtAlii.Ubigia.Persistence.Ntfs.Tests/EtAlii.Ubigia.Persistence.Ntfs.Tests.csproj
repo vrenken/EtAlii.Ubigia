@@ -4,6 +4,7 @@
     <DebugType>Full</DebugType>
     <ProjectGuid>4F8B2631-CDA7-4B99-9AF3-B891139D023E</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
+    <DefineConstants>$(DefineConstants);HAS_PHYSICAL_FILESYSTEM</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>

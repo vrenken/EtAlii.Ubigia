@@ -36,6 +36,7 @@
             collection.Add(new[] { Relation.NewRelation(identifier) }, true);
 
             // Assert.
+            Assert.Single(collection);
         }
 
         [Fact]
@@ -121,6 +122,7 @@
             collection.Add(identifier);
 
             // Assert.
+            Assert.Single(collection);
         }
 
         [Fact]

@@ -100,9 +100,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var contentManager = Factory.Create<IContentManager>(logicalOptions);
 
             // Act.
-            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
+            var success = await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Assert.
+            Assert.True(success);
         }
 
         [Fact]

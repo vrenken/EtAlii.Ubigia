@@ -59,6 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await spaceDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(spaceDataClientStub);
         }
 
         [Fact]
@@ -71,6 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await spaceDataClientStub.Disconnect(null).ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(spaceDataClientStub);
         }
 
         [Fact]

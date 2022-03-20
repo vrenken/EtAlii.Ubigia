@@ -24,11 +24,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         }
 
         [Fact]
-        public async Task ManagementConnection_Open()
+        public async Task ManagementConnection_Open() // TODO: LONG_TEST_DISPOSAL
         {
+            // Arrange.
 	        var host = _testContext.Transport.Host;
             var (connection, _) = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName, host.TestAccountPassword, false).ConfigureAwait(false);
+
+            // Act.
             await connection.Open().ConfigureAwait(false);
+
+            // Assert.
+            Assert.True(connection.IsConnected);
         }
 
         [Fact]
@@ -100,6 +106,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             await connection.Close().ConfigureAwait(false);
 
             // Assert.
+            Assert.False(connection.IsConnected);
         }
 
         [Fact]

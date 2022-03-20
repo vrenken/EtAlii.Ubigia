@@ -39,6 +39,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Blobs.Store(containerId, contentPart);
 
             // Assert.
+            Assert.True(contentPart.Stored);
         }
 
         [Fact]
@@ -69,6 +70,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _testContext.Storage.Blobs.Store(containerId, second);
 
             // Assert.
+            Assert.True(second.Stored);
         }
 
         [Fact]

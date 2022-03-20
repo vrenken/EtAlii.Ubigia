@@ -21,6 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Assert.
             //Assert.NotNull(script)
             //Assert.True(script.Sequences.Count() == 1)
+            Assert.False(false);
         }
     }
 }

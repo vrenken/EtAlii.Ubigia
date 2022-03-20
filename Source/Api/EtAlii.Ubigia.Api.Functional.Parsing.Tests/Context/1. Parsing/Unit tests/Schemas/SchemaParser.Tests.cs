@@ -20,10 +20,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            //var jsonNode = new SchemaParser();
+            var parser = _testContext.CreateSchemaParser();
 
             // Assert.
-            //Assert.NotNull(jsonNode);
+            Assert.NotNull(parser);
         }
 
         [Fact]

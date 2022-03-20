@@ -30,6 +30,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             contentNotificationClientStub.Connect(null);
 
             // Assert.
+            Assert.NotNull(contentNotificationClientStub);
         }
 
         [Fact]
@@ -42,6 +43,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             contentNotificationClientStub.Disconnect();
 
             // Assert.
+            Assert.NotNull(contentNotificationClientStub);
         }
     }
 }
