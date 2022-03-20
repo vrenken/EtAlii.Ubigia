@@ -30,6 +30,7 @@ env:
     {
       $value = (get-item env:$variable).Value
       $value = ("$value" -replace "/", [IO.Path]::DirectorySeparatorChar)
+      (get-item env:$variable).Value = $value
       echo "$variable=$value" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
     }
     echo "Dumping environment variables:"
