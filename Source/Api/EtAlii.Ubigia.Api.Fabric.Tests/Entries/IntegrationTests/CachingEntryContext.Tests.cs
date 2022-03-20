@@ -15,14 +15,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var entryContext = new EntryContext(new DataConnectionStub());
-            var entryCacheHelper = new EntryCacheHelper();
-            var entryCacheContextProvider = new EntryCacheContextProvider(entryContext);
-            var entryCacheChangeHandler = new EntryCacheChangeHandler(entryCacheHelper, entryCacheContextProvider);
-            var entryCacheGetHandler = new EntryCacheGetHandler(entryCacheHelper, entryCacheContextProvider);
-            var entryCacheGetRelatedHandler = new EntryCacheGetRelatedHandler(entryCacheHelper, entryCacheGetHandler, entryCacheContextProvider);
 
             // Act.
-            var context = new CachingEntryContext(entryCacheContextProvider, entryCacheChangeHandler, entryCacheGetHandler, entryCacheGetRelatedHandler);
+            var context = new CachingEntryContext(entryContext);
 
             // Assert.
             Assert.NotNull(context);

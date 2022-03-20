@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric
     {
         private readonly IDataConnection _connection;
 
-        internal EntryContext(IDataConnection connection)
+        public EntryContext(IDataConnection connection)
         {
             if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;

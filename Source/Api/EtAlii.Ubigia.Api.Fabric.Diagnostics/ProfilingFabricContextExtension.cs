@@ -27,7 +27,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             {
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
                 container.RegisterDecorator<IFabricContext, ProfilingFabricContext>();
-                container.RegisterDecorator<IEntryCacheHelper, ProfilingEntryCacheHelper>();
                 container.RegisterDecorator<IContentCacheHelper, ProfilingContentCacheHelper>();
                 container.RegisterDecorator<IPropertyCacheHelper, ProfilingPropertyCacheHelper>();
             }

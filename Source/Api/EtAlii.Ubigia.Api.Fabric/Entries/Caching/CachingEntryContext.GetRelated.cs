@@ -5,31 +5,18 @@ namespace EtAlii.Ubigia.Api.Fabric
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    internal class EntryCacheGetRelatedHandler : IEntryCacheGetRelatedHandler
+    internal partial class CachingEntryContext
     {
-        private readonly IEntryCacheHelper _cacheHelper;
-        private readonly IEntryCacheGetHandler _entryGetHandler;
-        private readonly IEntryCacheContextProvider _contextProvider;
-
-        public EntryCacheGetRelatedHandler(
-            IEntryCacheHelper cacheHelper,
-            IEntryCacheGetHandler entryGetHandler,
-            IEntryCacheContextProvider contextProvider)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
-            _cacheHelper = cacheHelper;
-            _entryGetHandler = entryGetHandler;
-            _contextProvider = contextProvider;
-        }
-
-        public async IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelations relations, ExecutionScope scope)
-        {
-            var entry = _cacheHelper.Get(identifier);
-            if (entry == null)
+            if (!scope.EntryCache.TryGetValue(identifier, out var entry))
             {
-                entry = await _contextProvider.Context.Get(identifier, scope).ConfigureAwait(false);
-                if (_cacheHelper.ShouldStore(entry))
+                entry = await _decoree
+                    .Get(identifier, scope)
+                    .ConfigureAwait(false);
+                if (ShouldStore(entry))
                 {
-                    _cacheHelper.Store(entry);
+                    scope.EntryCache[entry.Id] = entry;
                 }
             }
 
@@ -130,7 +117,8 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             if (relation.Id != Identifier.Empty)
             {
-                var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
+                var entry = await Get(relation.Id, scope)
+                    .ConfigureAwait(false);
                 yield return entry;
             }
         }
@@ -139,7 +127,8 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             if (entryRelations.HasFlag(entryRelationToMatch) && relation.Id != Identifier.Empty)
             {
-                var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
+                var entry = await Get(relation.Id, scope)
+                    .ConfigureAwait(false);
                 yield return entry;
             }
         }
