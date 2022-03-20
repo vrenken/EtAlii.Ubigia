@@ -19,7 +19,7 @@ env:
   NUGET_UBIGIA_PACK_FILTER: ./Source/**/EtAlii.Ubigia.*.nupkg
   NUGET_XTECHNOLOGY_PACK_FILTER: ./Source/**/EtAlii.xTechnology.*.nupkg
   ENVIRONMENT_SCRIPT: |
-    echo "Preparing GitHub workflow"
+    echo "Preparing GitHub workflow environment variables"
     $variables = @(
       'SOLUTION_FILE',
       'SOURCE_FOLDER',
