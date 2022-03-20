@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 			try
 			{
 				var httpContext = Context.GetHttpContext();
-				httpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+				httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
