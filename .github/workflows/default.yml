@@ -20,10 +20,10 @@ env:
   NUGET_XTECHNOLOGY_PACK_FILTER: ./Source/**/EtAlii.xTechnology.*.nupkg
   ENVIRONMENT_SCRIPT: |
     echo "Preparing GitHub workflow"
-    echo "SOLUTION_FILE=("${{ inputs.SOLUTION_FILE }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "SOURCE_FOLDER=("${{ inputs.SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "NUGET_UBIGIA_PACK_FILTER=("${{ inputs.NUGET_UBIGIA_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
-    echo "NUGET_XTECHNOLOGY_PACK_FILTER=("${{ inputs.NUGET_XTECHNOLOGY_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "SOLUTION_FILE=("${{ env.SOLUTION_FILE }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "SOURCE_FOLDER=("${{ env.SOURCE_FOLDER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "NUGET_UBIGIA_PACK_FILTER=("${{ env.NUGET_UBIGIA_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+    echo "NUGET_XTECHNOLOGY_PACK_FILTER=("${{ env.NUGET_XTECHNOLOGY_PACK_FILTER }}" -replace "/", [IO.Path]::DirectorySeparatorChar)" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
     echo "Dumping environment variables:"
     dir Env:
 
