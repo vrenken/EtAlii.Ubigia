@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
 	public class StubbedTransportProvider : ITransportProvider
     {
-        internal StubbedTransportProvider()
+        public StubbedTransportProvider()
         {
         }
 

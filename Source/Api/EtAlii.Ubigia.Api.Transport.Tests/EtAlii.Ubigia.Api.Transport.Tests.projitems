@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataConnection\UnitTests\DataConnectionOptions.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportUnitTestContext.cs" />
