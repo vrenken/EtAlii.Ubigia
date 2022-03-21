@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Hosting;
     using Serilog;
 
-    public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext
+    public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext//, IAsyncDisposable
 		where THost: class, ITestHost
         where THostServicesFactory : IHostServicesFactory, new()
     {
@@ -57,7 +57,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public virtual async Task Start(PortRange portRange)
 	    {
-		    // We want to start only one test hosting at the same time.
+            // We want to start only one test hosting at the same time.
             if (UseInProcessConnection)
             {
                 await StartInternal(portRange).ConfigureAwait(false);
@@ -134,7 +134,7 @@ namespace EtAlii.xTechnology.Hosting
             if (_host != null)
             {
                 await _host
-                    .StopAsync(TimeSpan.FromSeconds(2))
+                    .StopAsync()
                     .ConfigureAwait(false);
                 _host.Dispose();
                 _host = null;
@@ -143,7 +143,11 @@ namespace EtAlii.xTechnology.Hosting
             _logger.Information("Stopped host {HostName}", GetType().Name);
 
             Host = null;
-	    }
+        }
+
+        public WebSocketClient CreateWebSocketClient() => UseInProcessConnection
+            ? _testServer.CreateWebSocketClient()
+            : throw new NotSupportedException();
 
         public HttpMessageHandler CreateHandler() => UseInProcessConnection
             ? _testServer.CreateHandler()
