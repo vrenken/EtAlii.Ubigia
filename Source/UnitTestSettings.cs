@@ -8,9 +8,9 @@ using EtAlii.xTechnology.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
 // #if UBIGIA_RUN_TESTS_PER_ASSEMBLY
-//[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)] // CollectionPerAssembly
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)] // CollectionPerAssembly
 // #else
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
+//[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
 // #endif
 
 internal static class UnitTestConstants
