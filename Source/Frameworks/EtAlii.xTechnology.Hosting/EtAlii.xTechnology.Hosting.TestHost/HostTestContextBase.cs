@@ -145,10 +145,6 @@ namespace EtAlii.xTechnology.Hosting
             Host = null;
         }
 
-        public WebSocketClient CreateWebSocketClient() => UseInProcessConnection
-            ? _testServer.CreateWebSocketClient()
-            : throw new NotSupportedException();
-
         public HttpMessageHandler CreateHandler() => UseInProcessConnection
             ? _testServer.CreateHandler()
             : new HttpClientHandler();
