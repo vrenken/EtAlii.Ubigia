@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Hosting;
     using Serilog;
 
-    public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext//, IAsyncDisposable
+    public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTestContext
 		where THost: class, ITestHost
         where THostServicesFactory : IHostServicesFactory, new()
     {
