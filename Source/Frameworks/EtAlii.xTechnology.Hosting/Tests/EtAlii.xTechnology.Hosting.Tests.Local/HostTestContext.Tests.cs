@@ -5,10 +5,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using System.Threading.Tasks;
     using Xunit;
 
+    [Collection("System hosting tests")]
     public class HostTestContextTests
     {
         [Theory, ClassData(typeof(ConfigurationFiles))]
-        public void HostTestContext_Create(string configurationFile)
+        public async Task HostTestContext_Create(string configurationFile)
         {
             // Arrange.
 
@@ -18,6 +19,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Assert.
             Assert.NotNull(context);
             Assert.Null(context.Host);
+
+            // Assure.
+            await context.Stop().ConfigureAwait(false);
         }
 
         [Theory, ClassData(typeof(ConfigurationFiles))]
@@ -32,6 +36,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Assert.
             Assert.NotNull(context);
             Assert.NotNull(context.Host);
+
+            // Assure.
+            await context.Stop().ConfigureAwait(false);
         }
 
         [Theory, ClassData(typeof(ConfigurationFiles))]
@@ -47,6 +54,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Assert.
             Assert.NotNull(context);
             Assert.Null(context.Host);
+
+            // Assure.
+            await context.Stop().ConfigureAwait(false);
         }
     }
 }

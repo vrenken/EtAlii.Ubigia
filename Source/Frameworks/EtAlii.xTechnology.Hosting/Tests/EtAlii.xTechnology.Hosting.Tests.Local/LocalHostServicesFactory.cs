@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
-    public class System1HostServicesFactory : HostServicesFactoryBase
+    public class LocalHostServicesFactory : HostServicesFactoryBase
     {
         public override IService[] Create(IConfigurationRoot configurationRoot)
         {

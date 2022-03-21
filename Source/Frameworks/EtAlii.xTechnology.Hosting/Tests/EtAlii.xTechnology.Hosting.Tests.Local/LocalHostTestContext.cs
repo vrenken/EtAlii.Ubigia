@@ -2,7 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public class LocalHostTestContext : HostTestContextBase<LocalTestHost, System1HostServicesFactory>
+    public class LocalHostTestContext : HostTestContextBase<LocalTestHost, LocalHostServicesFactory>
     {
         public LocalHostTestContext(string hostConfigurationFile, string clientConfigurationFile)
             : base(hostConfigurationFile, clientConfigurationFile)

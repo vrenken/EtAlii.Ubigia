@@ -28,7 +28,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var host = Host
                 .CreateDefaultBuilder()
                 .UseHostLogging(configurationRoot, typeof(KestrelConfiguratorTests).Assembly)
-                .UseHostServices<System1HostServicesFactory>(configurationRoot)
+                .UseHostServices<LocalHostServicesFactory>(configurationRoot)
                 .Build();
 
             // Assert.
