@@ -41,7 +41,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <returns></returns>
         public PortRange Get(PortRange fromRange, ushort numberOfPorts)
         {
-            var lease = TimeSpan.FromSeconds(10);
+            var lease = TimeSpan.FromMinutes(1);
             // We want to allow only one thread access to the port range magic at any given moment.
             using var _ = new SystemSafeExecutionScope(_uniqueId);
             return GetInternal(fromRange, numberOfPorts, lease);
