@@ -40,10 +40,10 @@
         "MinimumLevel": {
             "Default": "Verbose",
             "Override": {
-                "Microsoft": "Verbose",
-                "Microsoft.AspNetCore": "Verbose",
-                "Microsoft.AspNetCore.SignalR": "Verbose",
-                "Microsoft.AspNetCore.Http.Connections": "Verbose"
+                "Microsoft": "Information",
+                "Microsoft.AspNetCore": "Information",
+                "Microsoft.AspNetCore.SignalR": "Information",
+                "Microsoft.AspNetCore.Http.Connections": "Information"
             }
         },
         "WriteTo": [
@@ -68,7 +68,7 @@
                                 "#COMMENT5": "// If your Seq logging instance runs on another machine you can use the following",
                                 "#COMMENT6": "// commandline in an elevated PowerShell console to forward the local port to another system:",
                                 "#COMMENT7": "// netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=5341 connectaddress=OTHERIP connectport=5341",
-                                "serverUrl": "http://seq.avalon:5341",
+                                "serverUrl": "http://localhost:5341",
                                 "restrictedToMinimumLevel": "Verbose"
                             }
                         }
