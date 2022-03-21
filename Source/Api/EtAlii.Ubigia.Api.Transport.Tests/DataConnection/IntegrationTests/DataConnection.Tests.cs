@@ -8,19 +8,13 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using Xunit;
 
     [CorrelateUnitTests]
-    public class DataConnectionTests : IClassFixture<TransportUnitTestContext>, IDisposable
+    public class DataConnectionTests : IClassFixture<TransportUnitTestContext>
     {
         private readonly TransportUnitTestContext _testContext;
 
         public DataConnectionTests(TransportUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public void Dispose()
-        {
-            // Dispose any relevant resources.
-            GC.SuppressFinalize(this);
         }
 
         [Fact]
