@@ -26,5 +26,23 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Assert.
             Assert.NotNull(configuration);
         }
+
+        [Fact]
+        public async Task ConfigurationBuilder_ExpandEnvironmentVariablesInJson()
+        {
+            // Arrange.
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting(ConfigurationFiles.HostSettingsSystems2VariantGrpc, UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
+
+            // Act.
+            var configurationRoot = new ConfigurationBuilder()
+                .AddConfigurationDetails(details)
+                .ExpandEnvironmentVariablesInJson()
+                .Build();
+
+            // Assert.
+            Assert.NotNull(configurationRoot);
+        }
     }
 }
