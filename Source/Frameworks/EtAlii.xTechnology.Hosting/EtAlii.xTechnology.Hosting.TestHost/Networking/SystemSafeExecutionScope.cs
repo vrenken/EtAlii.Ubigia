@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting
     public sealed class SystemSafeExecutionScope : IDisposable
     {
         private readonly Guid _uniqueId;
-        private static TimeSpan DefaultTimeout { get; set; } = TimeSpan.FromMinutes(10);
+        private static TimeSpan DefaultTimeout { get; } = TimeSpan.FromMinutes(10);
 
         //edit by user "jitbit" - renamed private fields to "_"
         private readonly bool _hasHandle;
