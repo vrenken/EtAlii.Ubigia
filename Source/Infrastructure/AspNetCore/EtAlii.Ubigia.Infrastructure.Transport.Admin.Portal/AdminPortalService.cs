@@ -55,7 +55,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
 
             services.AddSingleton<IConfiguration>(Configuration.Root);
-            services.AddSingleton<WeatherForecastService>();
             services.ConfigureOptions(typeof(UIConfigureOptions));
         }
 
