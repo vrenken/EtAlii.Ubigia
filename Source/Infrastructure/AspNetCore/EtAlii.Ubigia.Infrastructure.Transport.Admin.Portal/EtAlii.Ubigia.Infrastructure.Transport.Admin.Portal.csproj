@@ -44,23 +44,22 @@
     <Content Update="Shared\MainLayout.razor.css">
       <DependentUpon>MainLayout.razor</DependentUpon>
     </Content>
+    <Compile Update="Shared\MainLayout.cs">
+      <DependentUpon>MainLayout.razor</DependentUpon>
+    </Compile>
+
     <Content Update="Shared\NavMenu.razor.css">
       <DependentUpon>NavMenu.razor</DependentUpon>
     </Content>
-  </ItemGroup>
+    <Compile Update="Shared\NavMenu.cs">
+      <DependentUpon>NavMenu.razor</DependentUpon>
+    </Compile>
 
-  <ItemGroup>
     <Compile Update="Pages\Dashboard.cs">
       <DependentUpon>Dashboard.razor</DependentUpon>
     </Compile>
     <Compile Update="Shared\Error.cs">
       <DependentUpon>Error.cshtml</DependentUpon>
-    </Compile>
-    <Compile Update="Shared\MainLayout.cs">
-      <DependentUpon>MainLayout.razor</DependentUpon>
-    </Compile>
-    <Compile Update="Shared\NavMenu.cs">
-      <DependentUpon>NavMenu.razor</DependentUpon>
     </Compile>
     <Compile Update="Pages\Users.cs">
       <DependentUpon>Users.razor</DependentUpon>
