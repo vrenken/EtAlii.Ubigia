@@ -494,6 +494,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-sonarcloud", "analy
 		..\.github\actions\analyse-sonarcloud\action.yml = ..\.github\actions\analyse-sonarcloud\action.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FAA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests\EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -1268,6 +1272,8 @@ Global
 		{7066E246-A29E-4A14-8F89-15EA7CEDE378} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{B36C7798-A4AB-4ECD-93A5-4AB6A77D08F2} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{D8B71A17-5ACE-49A2-8D34-40A4622EA7CD} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
