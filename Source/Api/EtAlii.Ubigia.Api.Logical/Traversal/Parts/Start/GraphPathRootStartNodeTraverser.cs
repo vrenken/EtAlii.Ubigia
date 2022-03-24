@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
 
-    internal class GraphPathRootStartNodeTraverser : IGraphPathRootStartNodeTraverser
+    internal sealed class GraphPathRootStartNodeTraverser : IGraphPathRootStartNodeTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

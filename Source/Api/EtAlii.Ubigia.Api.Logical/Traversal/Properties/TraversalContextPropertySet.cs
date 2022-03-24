@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
 
-    internal class TraversalContextPropertySet : ITraversalContextPropertySet
+    internal sealed class TraversalContextPropertySet : ITraversalContextPropertySet
     {
         private readonly IFabricContext _context;
 

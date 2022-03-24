@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    internal class GraphPathConditionalTraverser : IGraphPathConditionalTraverser
+    internal sealed class GraphPathConditionalTraverser : IGraphPathConditionalTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

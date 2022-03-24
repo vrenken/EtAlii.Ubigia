@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TemporalGraphPathWeaver : ITemporalGraphPathWeaver
+    public sealed class TemporalGraphPathWeaver : ITemporalGraphPathWeaver
     {
         public GraphPath Weave(GraphPath path)
         {

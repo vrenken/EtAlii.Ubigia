@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
-    internal class GraphPathPartTraverserSelector : IGraphPathPartTraverserSelector
+    internal sealed class GraphPathPartTraverserSelector : IGraphPathPartTraverserSelector
     {
         private readonly IGraphPathNodeTraverser _graphPathNodeTraverser;
         private readonly IGraphPathIdentifiersStartNodeTraverser _graphPathIdentifiersStartNodeTraverser;

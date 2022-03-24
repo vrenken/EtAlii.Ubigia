@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
 
-    public class NodeEqualityComparer : IEqualityComparer<Node>
+    public sealed class NodeEqualityComparer : IEqualityComparer<Node>
     {
         // ReSharper disable once InconsistentNaming
         public static readonly NodeEqualityComparer Default = new();

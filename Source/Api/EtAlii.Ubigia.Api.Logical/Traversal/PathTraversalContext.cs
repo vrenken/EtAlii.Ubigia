@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    public class PathTraversalContext : IPathTraversalContext
+    public sealed class PathTraversalContext : IPathTraversalContext
     {
         public ITraversalContextEntrySet Entries { get; }
 

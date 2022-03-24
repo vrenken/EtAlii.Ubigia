@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Linq;
 
-    public class GraphIdentifiersStartNode : GraphPathPart
+    public sealed class GraphIdentifiersStartNode : GraphPathPart
     {
         public readonly IEnumerable<Identifier> Identifiers;
 

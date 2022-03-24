@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class GraphPathFinalRelationTraverser : IGraphPathFinalRelationTraverser
+    internal sealed class GraphPathFinalRelationTraverser : IGraphPathFinalRelationTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

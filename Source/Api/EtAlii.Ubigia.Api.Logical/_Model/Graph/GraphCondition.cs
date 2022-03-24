@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     [DebuggerStepThrough]
     [DebuggerDisplay("{" + nameof(Description) + "}")]
-    public class GraphCondition : GraphPathPart
+    public sealed class GraphCondition : GraphPathPart
     {
         private string Description { get; }
         public Predicate<PropertyDictionary> Predicate { get; }

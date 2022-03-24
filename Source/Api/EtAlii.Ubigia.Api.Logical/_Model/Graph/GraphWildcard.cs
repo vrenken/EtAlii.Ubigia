@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     [DebuggerStepThrough]
     [DebuggerDisplay("{" + nameof(Pattern) + "}")]
-    public class GraphWildcard : GraphPathPart
+    public sealed class GraphWildcard : GraphPathPart
     {
         public readonly string Pattern;
 

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     [DebuggerStepThrough]
     [DebuggerDisplay("{" + nameof(Name) + "}#{" + nameof(Tag)  +"}")]
-    public class GraphTaggedNode : GraphPathPart
+    public sealed class GraphTaggedNode : GraphPathPart
     {
         public readonly string Name;
         public readonly string Tag;

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class GraphPathAllDowndatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllDowndatesRelationTraverser
+    internal sealed class GraphPathAllDowndatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllDowndatesRelationTraverser
     {
 //        public GraphPathAllDowndatesRelationTraverser(IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser)
 //            : base(graphPathFinalRelationTraverser)

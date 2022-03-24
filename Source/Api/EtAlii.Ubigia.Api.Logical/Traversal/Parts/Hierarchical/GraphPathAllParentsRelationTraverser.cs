@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Collections;
 
-    internal class GraphPathAllParentsRelationTraverser : IGraphPathAllParentsRelationTraverser
+    internal sealed class GraphPathAllParentsRelationTraverser : IGraphPathAllParentsRelationTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

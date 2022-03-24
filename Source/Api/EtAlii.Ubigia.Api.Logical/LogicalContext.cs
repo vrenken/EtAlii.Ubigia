@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
-    internal class LogicalContext : ILogicalContext
+    internal sealed class LogicalContext : ILogicalContext
     {
         /// <inheritdoc/>
         public LogicalOptions Options { get; }
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Logical
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (disposing)
             {

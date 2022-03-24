@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
-    public class BreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
+    public sealed class BreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
     {
         private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
 

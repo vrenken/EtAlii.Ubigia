@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
 
-    internal class GraphPathWildcardTraverser : IGraphPathWildcardTraverser
+    internal sealed class GraphPathWildcardTraverser : IGraphPathWildcardTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

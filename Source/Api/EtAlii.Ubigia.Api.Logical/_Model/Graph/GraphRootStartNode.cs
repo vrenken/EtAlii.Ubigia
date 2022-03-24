@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Diagnostics;
 
     [DebuggerDisplay("{" + nameof(Root) + "}")]
-    public class GraphRootStartNode : GraphPathPart
+    public sealed class GraphRootStartNode : GraphPathPart
     {
         public string Root { get; }
 

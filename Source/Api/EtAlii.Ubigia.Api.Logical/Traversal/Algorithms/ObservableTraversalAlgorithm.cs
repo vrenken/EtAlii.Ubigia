@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class ObservableTraversalAlgorithm : IBreadthFirstTraversalAlgorithm, IDepthFirstTraversalAlgorithm
+    public sealed class ObservableTraversalAlgorithm : IBreadthFirstTraversalAlgorithm, IDepthFirstTraversalAlgorithm
     {
         private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
 

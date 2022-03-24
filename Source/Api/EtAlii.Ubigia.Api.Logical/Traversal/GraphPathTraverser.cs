@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
-    public class GraphPathTraverser : IGraphPathTraverser
+    public sealed class GraphPathTraverser : IGraphPathTraverser
     {
         private readonly IPathTraversalContext _pathTraversalContext;
         private readonly IBreadthFirstTraversalAlgorithm _breadthFirstTraversalAlgorithm;

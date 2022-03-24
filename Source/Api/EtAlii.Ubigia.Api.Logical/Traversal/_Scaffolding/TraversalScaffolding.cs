@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class TraversalScaffolding : IScaffolding
+    internal sealed class TraversalScaffolding : IScaffolding
     {
         public void Register(IRegisterOnlyContainer container)
         {

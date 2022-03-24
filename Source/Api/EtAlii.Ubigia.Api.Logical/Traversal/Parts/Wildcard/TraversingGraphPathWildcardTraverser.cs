@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
     using System.Threading.Tasks;
 
-    internal class TraversingGraphPathWildcardTraverser : ITraversingGraphPathWildcardTraverser
+    internal sealed class TraversingGraphPathWildcardTraverser : ITraversingGraphPathWildcardTraverser
     {
         private readonly IGraphPathChildrenRelationTraverser _graphPathChildrenRelationTraverser;
         private readonly IGraphPathFinalRelationTraverser _graphPathFinalRelationTraverser;

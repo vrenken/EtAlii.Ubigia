@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     [DebuggerStepThrough]
     [DebuggerDisplay("{" + nameof(Limit) + "}")]
-    public class GraphTraversingWildcard : GraphPathPart
+    public sealed class GraphTraversingWildcard : GraphPathPart
     {
         public readonly int Limit;
 

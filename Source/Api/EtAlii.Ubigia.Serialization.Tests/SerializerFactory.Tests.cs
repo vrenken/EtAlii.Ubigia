@@ -34,9 +34,9 @@ namespace EtAlii.Ubigia.Serialization.Tests
             // Assert.
             Assert.NotNull(serializer);
             Assert.Equal(DefaultValueHandling.IgnoreAndPopulate, serializer.DefaultValueHandling);
-            Assert.True(serializer.Converters.SingleOrDefault(c => c.GetType() == typeof(UnsignedLongJSonConverter)) != null);
-            Assert.True(serializer.Converters.SingleOrDefault(c => c.GetType() == typeof(PropertyDictionaryJSonConverter)) != null);
-            Assert.True(serializer.Converters.SingleOrDefault(c => c.GetType() == typeof(DecimalJSonConverter)) != null);
+            Assert.True(serializer.Converters.SingleOrDefault(c => c is UnsignedLongJSonConverter) != null);
+            Assert.True(serializer.Converters.SingleOrDefault(c => c is PropertyDictionaryJSonConverter) != null);
+            Assert.True(serializer.Converters.SingleOrDefault(c => c is DecimalJSonConverter) != null);
         }
     }
 }

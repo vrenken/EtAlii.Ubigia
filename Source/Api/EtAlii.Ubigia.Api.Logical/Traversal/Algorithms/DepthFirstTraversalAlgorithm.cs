@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class DepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
+    public sealed class DepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
     {
         private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
 

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
-    public class TraversalParameters
+    public sealed class TraversalParameters
     {
         public TraversalParameters(
             GraphPathPart part,

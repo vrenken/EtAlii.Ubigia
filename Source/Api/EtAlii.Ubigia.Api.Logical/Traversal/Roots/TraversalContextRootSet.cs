@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
 
-    public class TraversalContextRootSet : ITraversalContextRootSet
+    public sealed class TraversalContextRootSet : ITraversalContextRootSet
     {
         private readonly IFabricContext _context;
         private readonly bool _cachingEnabled;

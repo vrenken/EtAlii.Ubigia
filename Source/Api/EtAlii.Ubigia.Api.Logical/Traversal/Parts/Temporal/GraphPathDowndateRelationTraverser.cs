@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
     using System.Threading.Tasks;
 
-    internal class GraphPathDowndateRelationTraverser : IGraphPathDowndateRelationTraverser
+    internal sealed class GraphPathDowndateRelationTraverser : IGraphPathDowndateRelationTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

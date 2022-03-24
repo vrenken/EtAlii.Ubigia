@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    internal class GraphPathIdentifiersStartNodeTraverser : IGraphPathIdentifiersStartNodeTraverser
+    internal sealed class GraphPathIdentifiersStartNodeTraverser : IGraphPathIdentifiersStartNodeTraverser
     {
         public void Configure(TraversalParameters parameters)
         {

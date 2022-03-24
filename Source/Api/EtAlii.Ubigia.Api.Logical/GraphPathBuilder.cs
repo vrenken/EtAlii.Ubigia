@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
 
     [DebuggerStepThrough]
-    public class GraphPathBuilder : IGraphPathBuilder
+    public sealed class GraphPathBuilder : IGraphPathBuilder
     {
         private readonly List<GraphPathPart> _parts = new();
 

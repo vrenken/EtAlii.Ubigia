@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
     /// <summary>
     /// This class uses breadth first parallelization to achieve higher throughput.
     /// </summary>
-    public class ParallelBreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
+    public sealed class ParallelBreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
     {
         private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
         private readonly int _maxDegreeOfParallelism;

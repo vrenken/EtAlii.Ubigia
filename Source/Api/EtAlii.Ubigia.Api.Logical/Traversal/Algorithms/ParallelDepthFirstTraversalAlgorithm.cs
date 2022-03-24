@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System;
     using System.Collections.Generic;
 
-    public class ParallelDepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
+    public sealed class ParallelDepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
     {
         //private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector
         //private readonly int _maxDegreeOfParallelism
