@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class EntryContextStub : IEntryContext
+    public sealed class EntryContextStub : IEntryContext
     {
         /// <inheritdoc />
         public IEntryDataClient Data { get; }

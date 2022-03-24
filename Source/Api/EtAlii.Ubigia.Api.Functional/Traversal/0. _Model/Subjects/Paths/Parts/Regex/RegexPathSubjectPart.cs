@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class RegexPathSubjectPart : PathSubjectPart
+    public sealed class RegexPathSubjectPart : PathSubjectPart
     {
         public string Regex { get; }
 

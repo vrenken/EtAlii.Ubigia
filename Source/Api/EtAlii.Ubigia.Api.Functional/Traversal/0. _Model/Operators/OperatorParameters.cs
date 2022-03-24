@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
 
-    public class OperatorParameters
+    public sealed class OperatorParameters
     {
         public ExecutionScope Scope { get; }
         public Subject LeftSubject { get; }

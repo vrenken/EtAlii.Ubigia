@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class SpaceTemplate
+    public sealed class SpaceTemplate
     {
         /// <summary>
         /// A list of all space templates available.

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class AuthenticationContextStub : IAuthenticationContext
+    public sealed class AuthenticationContextStub : IAuthenticationContext
     {
         /// <inheritdoc />
         public IAuthenticationDataClient Data { get; }

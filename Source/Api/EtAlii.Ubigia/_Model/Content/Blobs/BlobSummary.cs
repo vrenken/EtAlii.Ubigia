@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public record BlobSummary
+    public sealed record BlobSummary
     {
         public bool IsComplete { get; init; }
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Serialization
     using System.Globalization;
     using Newtonsoft.Json;
 
-    public class DecimalJSonConverter : JsonConverter
+    public sealed class DecimalJSonConverter : JsonConverter
     {
         [DebuggerStepThrough]
         public override bool CanConvert(Type objectType)

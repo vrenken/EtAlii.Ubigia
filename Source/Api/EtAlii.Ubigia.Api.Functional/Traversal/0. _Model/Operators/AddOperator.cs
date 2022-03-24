@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class AddOperator : Operator
+    public sealed class AddOperator : Operator
     {
         public override string ToString()
         {

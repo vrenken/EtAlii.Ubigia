@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    internal class PropertiesContextStub : IPropertiesContext
+    internal sealed class PropertiesContextStub : IPropertiesContext
     {
         public IPropertiesDataClient Data { get; }
 

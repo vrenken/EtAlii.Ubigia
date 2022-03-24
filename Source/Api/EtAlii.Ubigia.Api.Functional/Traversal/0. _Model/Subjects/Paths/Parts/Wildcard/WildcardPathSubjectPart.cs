@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class WildcardPathSubjectPart : PathSubjectPart
+    public sealed class WildcardPathSubjectPart : PathSubjectPart
     {
         public string Pattern { get; }
 

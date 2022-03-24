@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class StructureContentType : ContentType
+    public sealed class StructureContentType : ContentType
     {
         private const string StructureContentTypeId = "Structure";
 

@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class AccountTemplate
+    public sealed class AccountTemplate
     {
         /// <summary>
         /// A list of all account templates available.

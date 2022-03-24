@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class Condition
+    public sealed class Condition
     {
         public string Property { get; }
         public ConditionType Type { get; }

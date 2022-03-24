@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class IdentifierPathSubjectPart : PathSubjectPart
+    public sealed class IdentifierPathSubjectPart : PathSubjectPart
     {
         public Identifier Identifier { get; }
 

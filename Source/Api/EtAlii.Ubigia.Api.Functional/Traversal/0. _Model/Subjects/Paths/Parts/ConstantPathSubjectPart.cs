@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class ConstantPathSubjectPart : PathSubjectPart
+    public sealed class ConstantPathSubjectPart : PathSubjectPart
     {
         public string Name { get; }
 

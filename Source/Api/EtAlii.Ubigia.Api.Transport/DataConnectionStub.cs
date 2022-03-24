@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Threading.Tasks;
     using Microsoft.Extensions.Configuration;
 
-    public class DataConnectionStub : IDataConnection
+    public sealed class DataConnectionStub : IDataConnection
     {
         /// <inheritdoc />
         public Storage Storage { get; }

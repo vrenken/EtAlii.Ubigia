@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class ContentDataClientStub : IContentDataClient
+    public sealed class ContentDataClientStub : IContentDataClient
     {
         public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {

@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class TimeContentType : ContentType
+    public sealed class TimeContentType : ContentType
     {
         private const string TimeContentTypeId = "Time";
 

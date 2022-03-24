@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// This PoCo represents a path subject without an absolute point of reference.
     /// It can only be used in conjunction with other path subjects or starting Identifiers.
     /// </summary>
-    public class RelativePathSubject : NonRootedPathSubject
+    public sealed class RelativePathSubject : NonRootedPathSubject
     {
         public RelativePathSubject(PathSubjectPart part)
             : base(part)

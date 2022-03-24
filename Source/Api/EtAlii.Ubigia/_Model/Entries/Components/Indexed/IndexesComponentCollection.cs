@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class IndexesComponentCollection : RelationsComponentCollection<IndexesComponent>
+    public sealed class IndexesComponentCollection : RelationsComponentCollection<IndexesComponent>
     {
     }
 }

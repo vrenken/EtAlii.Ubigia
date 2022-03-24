@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
 
-    public class ConditionalPathSubjectPart : PathSubjectPart
+    public sealed class ConditionalPathSubjectPart : PathSubjectPart
     {
         public Condition[] Conditions { get; }
 

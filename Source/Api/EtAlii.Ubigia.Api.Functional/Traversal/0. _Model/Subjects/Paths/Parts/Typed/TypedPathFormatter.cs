@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
 
 
-    public class TypedPathFormatter
+    public sealed class TypedPathFormatter
     {
         public static readonly TypedPathFormatter[] All =
         {

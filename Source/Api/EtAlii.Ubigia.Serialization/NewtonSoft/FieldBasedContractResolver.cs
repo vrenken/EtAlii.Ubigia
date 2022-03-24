@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Serialization
     using System.Reflection;
     using Newtonsoft.Json.Serialization;
 
-    public class FieldBasedContractResolver : DefaultContractResolver
+    public sealed class FieldBasedContractResolver : DefaultContractResolver
     {
         protected override IList<JsonProperty> CreateProperties(Type type, Newtonsoft.Json.MemberSerialization memberSerialization)
         {
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Serialization
             {
                 var currentFields = type.GetRuntimeFields()
                     .Where(field => !field.IsStatic)
-                    .Select(field => base.CreateProperty(field, memberSerialization));
+                    .Select(field => CreateProperty(field, memberSerialization));
                 fields.AddRange(currentFields);
                 type = type.GetTypeInfo().BaseType;
             } while (type != null);

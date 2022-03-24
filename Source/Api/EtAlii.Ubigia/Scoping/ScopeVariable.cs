@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// A ScopeVariable instance is used to cache the value of a variable in the scope of a script.
     /// </summary>
-    public class ScopeVariable
+    public sealed class ScopeVariable
     {
         /// <summary>
         /// The current value of the variable within the scope of the script.

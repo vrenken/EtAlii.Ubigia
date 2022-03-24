@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using System.Linq;
 
-    public class FunctionSubject : Subject
+    public sealed class FunctionSubject : Subject
     {
         public string Name { get; }
 

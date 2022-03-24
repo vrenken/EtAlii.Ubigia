@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class ConstantFunctionSubjectArgument : FunctionSubjectArgument
+    public sealed class ConstantFunctionSubjectArgument : FunctionSubjectArgument
     {
         public string Value { get; }
 

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DataConnectionOptions : IExtensible
+    public sealed class DataConnectionOptions : IExtensible
     {
         /// <summary>
         /// The client configuration root used to instantiate the data connection.

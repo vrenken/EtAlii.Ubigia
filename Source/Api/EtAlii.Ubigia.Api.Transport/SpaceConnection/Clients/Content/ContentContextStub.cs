@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    internal class ContentContextStub : IContentContext
+    internal sealed class ContentContextStub : IContentContext
     {
         public IContentDataClient Data { get; }
 

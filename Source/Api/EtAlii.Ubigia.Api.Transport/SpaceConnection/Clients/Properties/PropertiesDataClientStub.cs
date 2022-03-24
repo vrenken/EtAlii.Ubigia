@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class PropertiesDataClientStub : IPropertiesDataClient
+    public sealed class PropertiesDataClientStub : IPropertiesDataClient
     {
         public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {

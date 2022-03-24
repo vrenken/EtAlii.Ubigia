@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class EntryDataClientStub : IEntryDataClient
+    public sealed class EntryDataClientStub : IEntryDataClient
     {
         public Task<IEditableEntry> Prepare()
         {

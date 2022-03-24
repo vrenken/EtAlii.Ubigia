@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-    internal class ContentContext : SpaceClientContextBase<IContentDataClient>, IContentContext
+    internal sealed class ContentContext : SpaceClientContextBase<IContentDataClient>, IContentContext
     {
         public ContentContext(
             IContentDataClient data)

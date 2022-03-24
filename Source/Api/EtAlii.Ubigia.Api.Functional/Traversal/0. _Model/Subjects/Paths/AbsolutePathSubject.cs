@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class AbsolutePathSubject : NonRootedPathSubject
+    public sealed class AbsolutePathSubject : NonRootedPathSubject
     {
         public AbsolutePathSubject(PathSubjectPart part)
         : base(part)

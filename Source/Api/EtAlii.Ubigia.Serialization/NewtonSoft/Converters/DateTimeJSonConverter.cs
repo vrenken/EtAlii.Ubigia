@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Serialization
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public class DateTimeJSonConverter : DateTimeConverterBase
+    public sealed class DateTimeJSonConverter : DateTimeConverterBase
     {
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {

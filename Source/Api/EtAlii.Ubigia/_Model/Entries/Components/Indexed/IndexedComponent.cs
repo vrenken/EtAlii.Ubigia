@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class IndexedComponent : RelationComponent
+    public sealed class IndexedComponent : RelationComponent
     {
         /// <inheritdoc />
         protected internal override string Name => "Indexed";

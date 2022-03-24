@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class IdentifierComponent : NonCompositeComponent
+    public sealed class IdentifierComponent : NonCompositeComponent
     {
         internal IdentifierComponent()
         {

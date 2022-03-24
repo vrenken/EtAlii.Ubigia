@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class Children2ComponentCollection : RelationsComponentCollection<Children2Component>
+    public sealed class Children2ComponentCollection : RelationsComponentCollection<Children2Component>
     {
     }
 }

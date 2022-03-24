@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class PreviousOfPathSubjectPart : PathSubjectPart
+    public sealed class PreviousOfPathSubjectPart : PathSubjectPart
     {
         public override string ToString()
         {

@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class TagComponent : NonCompositeComponent
+    public sealed class TagComponent : NonCompositeComponent
     {
         internal TagComponent()
         {

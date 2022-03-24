@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// A simple POCO object that represents a user in the Ubigia systems.
     /// </summary>
-    public class Account : IIdentifiable
+    public sealed class Account : IIdentifiable
     {
         /// <summary>
         /// Create a new account instance.

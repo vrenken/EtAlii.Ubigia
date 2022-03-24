@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Serialization
     using System.Threading.Tasks;
     using Newtonsoft.Json.Bson;
 
-    public class BsonItemSerializer : IItemSerializer
+    public sealed class BsonItemSerializer : IItemSerializer
     {
         private readonly ISerializer _serializer;
 

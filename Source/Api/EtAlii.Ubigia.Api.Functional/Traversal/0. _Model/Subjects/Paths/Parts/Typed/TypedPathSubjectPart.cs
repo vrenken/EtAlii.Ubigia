@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class TypedPathSubjectPart : PathSubjectPart
+    public sealed class TypedPathSubjectPart : PathSubjectPart
     {
         public TypedPathFormatter Formatter { get; }
 

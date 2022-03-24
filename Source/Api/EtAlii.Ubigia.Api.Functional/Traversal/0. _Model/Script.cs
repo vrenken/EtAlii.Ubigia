@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// <summary>
     /// The Script class contains all information needed to execute actions on the current infrastructureClient.
     /// </summary>
-    public class Script
+    public sealed class Script
     {
         /// <summary>
         /// The executable sequences that make up the script.

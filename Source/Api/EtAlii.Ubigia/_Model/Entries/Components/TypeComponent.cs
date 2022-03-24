@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class TypeComponent : NonCompositeComponent
+    public sealed class TypeComponent : NonCompositeComponent
     {
         internal TypeComponent()
         {

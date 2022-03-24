@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
 	using System;
 
-	public class StubbedTransportProvider : ITransportProvider
+	public sealed class StubbedTransportProvider : ITransportProvider
     {
         public ISpaceTransport GetSpaceTransport(Uri address)
         {

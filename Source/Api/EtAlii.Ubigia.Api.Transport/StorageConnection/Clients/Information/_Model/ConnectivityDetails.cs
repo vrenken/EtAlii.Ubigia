@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A model class that contains connectivity related details.
     /// </summary>
-    public class ConnectivityDetails
+    public sealed class ConnectivityDetails
     {
         /// <summary>
         /// The transport specific management API address to which the client is connected.

@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-    public class EntryContext : SpaceClientContextBase<IEntryDataClient>, IEntryContext
+    public sealed class EntryContext : SpaceClientContextBase<IEntryDataClient>, IEntryContext
     {
         public EntryContext(
             IEntryDataClient data)

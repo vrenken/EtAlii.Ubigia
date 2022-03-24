@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class ImageContentType : ContentType
+    public sealed class ImageContentType : ContentType
     {
         private const string ImageContentTypeId = "Image";
 

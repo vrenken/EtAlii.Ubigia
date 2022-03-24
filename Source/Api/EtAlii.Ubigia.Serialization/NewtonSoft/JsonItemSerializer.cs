@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Serialization
     /// <summary>
     /// JSON based storage has some serious drawbacks. Do not use!
     /// </summary>
-    public class JsonItemSerializer : IItemSerializer
+    public sealed class JsonItemSerializer : IItemSerializer
     {
         private readonly ISerializer _serializer;
 

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
 
-    public class Sequence
+    public sealed class Sequence
     {
         public SequencePart[] Parts { get; }
 

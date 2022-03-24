@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class NonRootedPathFunctionSubjectArgument : FunctionSubjectArgument
+    public sealed class NonRootedPathFunctionSubjectArgument : FunctionSubjectArgument
     {
         public NonRootedPathSubject Subject { get; }
 

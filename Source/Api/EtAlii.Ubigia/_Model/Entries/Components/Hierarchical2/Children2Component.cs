@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class Children2Component : RelationsComponent
+    public sealed class Children2Component : RelationsComponent
     {
         /// <inheritdoc />
         protected internal override string Name => "Children2";

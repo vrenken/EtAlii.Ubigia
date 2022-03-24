@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class Comment : SequencePart
+    public sealed class Comment : SequencePart
     {
         private readonly string _text;
 

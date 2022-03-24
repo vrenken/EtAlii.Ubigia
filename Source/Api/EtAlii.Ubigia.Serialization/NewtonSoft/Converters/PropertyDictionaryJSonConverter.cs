@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Serialization
     /// <summary>
     /// A Newtonsoft oriented converter capable to serialize a PropertyDictionary from/to Json.
     /// </summary>
-    public partial class PropertyDictionaryJSonConverter : JsonConverter
+    public sealed partial class PropertyDictionaryJSonConverter : JsonConverter
     {
         /// <summary>
         /// Check if the specified object type can be converted.

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// Represents a single space in a <see cref="Storage"/>.
     /// </summary>
-    public class Space : IIdentifiable
+    public sealed class Space : IIdentifiable
     {
         /// <inheritdoc />
         public Guid Id { get; set; }

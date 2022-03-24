@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class RootSubject : Subject
+    public sealed class RootSubject : Subject
     {
         public readonly string Name;
 

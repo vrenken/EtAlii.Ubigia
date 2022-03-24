@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class EmptySubject : Subject
+    public sealed class EmptySubject : Subject
     {
     }
 }

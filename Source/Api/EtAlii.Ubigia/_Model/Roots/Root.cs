@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia
     /// Represents a root in a <see cref="Space"/>.
     /// Roots are used to start entity traversals from.
     /// </summary>
-    public class Root : IIdentifiable
+    public sealed class Root : IIdentifiable
     {
         /// <inheritdoc />
         public Guid Id { get; set; }

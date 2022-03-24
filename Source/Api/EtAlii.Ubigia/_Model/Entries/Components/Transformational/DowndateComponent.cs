@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class DowndateComponent : RelationComponent
+    public sealed class DowndateComponent : RelationComponent
     {
         /// <inheritdoc />
         protected internal override string Name => "Downdate";

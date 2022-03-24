@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// The ExecutionScope contains all details needed to execute GCL/GTL/Linq queries and mutations.
     /// </summary>
-    public class ExecutionScope
+    public sealed class ExecutionScope
     {
         /// <summary>
         /// This is the Cache instance used to reduce unnecessary Property server calls. As the whole entity and relation

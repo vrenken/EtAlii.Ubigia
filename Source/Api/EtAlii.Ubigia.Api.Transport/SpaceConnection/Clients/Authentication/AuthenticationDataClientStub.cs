@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A stubbed data client that can be used to manage roots.
     /// </summary>
-    public class AuthenticationDataClientStub : IAuthenticationDataClient
+    public sealed class AuthenticationDataClientStub : IAuthenticationDataClient
     {
         public Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {

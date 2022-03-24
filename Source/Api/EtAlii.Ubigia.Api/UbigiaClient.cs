@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class UbigiaClient
+    public sealed class UbigiaClient
     {
         public static UbigiaClient Create()
         {

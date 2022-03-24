@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Serialization
     using System.Diagnostics;
     using Newtonsoft.Json;
 
-    public class UnsignedLongJSonConverter : JsonConverter
+    public sealed class UnsignedLongJSonConverter : JsonConverter
     {
         [DebuggerStepThrough]
         public override bool CanConvert(Type objectType)

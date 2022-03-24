@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-    public class RootContext : SpaceClientContextBase<IRootDataClient>, IRootContext
+    public sealed class RootContext : SpaceClientContextBase<IRootDataClient>, IRootContext
     {
         public RootContext(
             IRootDataClient data)

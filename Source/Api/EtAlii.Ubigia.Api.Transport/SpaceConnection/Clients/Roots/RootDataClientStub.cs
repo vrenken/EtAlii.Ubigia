@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A stubbed data client that can be used to manage roots.
     /// </summary>
-    public class RootDataClientStub : IRootDataClient
+    public sealed class RootDataClientStub : IRootDataClient
     {
         /// <inheritdoc />
         public Task<Root> Add(string name)

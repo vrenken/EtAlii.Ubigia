@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public class StringConstantSubject : ConstantSubject
+    public sealed class StringConstantSubject : ConstantSubject
     {
         public readonly string Value;
 

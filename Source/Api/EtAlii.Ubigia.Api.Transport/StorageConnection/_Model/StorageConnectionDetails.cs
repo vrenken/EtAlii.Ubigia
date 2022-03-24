@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    public class StorageConnectionDetails : IStorageConnectionDetails
+    public sealed class StorageConnectionDetails : IStorageConnectionDetails
     {
         /// <inheritdoc />
         public Uri ManagementAddress { get; private set; }

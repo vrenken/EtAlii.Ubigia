@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia
 {
     using System;
 
-    public class ContentPart : BlobPart
+    public sealed class ContentPart : BlobPart
     {
         public byte[] Data { get; init; }
 

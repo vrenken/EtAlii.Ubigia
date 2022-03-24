@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class CommonSpaceConnectionExtension : IExtension
+    public sealed class CommonSpaceConnectionExtension : IExtension
     {
         private readonly SpaceConnectionOptions _options;
 

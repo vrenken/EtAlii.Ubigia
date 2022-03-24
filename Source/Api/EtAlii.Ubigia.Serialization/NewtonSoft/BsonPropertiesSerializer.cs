@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Serialization
     using System.IO;
     using Newtonsoft.Json.Bson;
 
-    public class BsonPropertiesSerializer : IPropertiesSerializer
+    public sealed class BsonPropertiesSerializer : IPropertiesSerializer
     {
         private readonly ISerializer _serializer;
 

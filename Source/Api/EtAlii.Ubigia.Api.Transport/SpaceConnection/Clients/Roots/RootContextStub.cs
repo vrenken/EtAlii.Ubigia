@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class RootContextStub : IRootContext
+    public sealed class RootContextStub : IRootContext
     {
         /// <inheritdoc />
         public IRootDataClient Data { get; }

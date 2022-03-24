@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Serialization
 	using System.Collections.Generic;
 	using Newtonsoft.Json;
 
-	public class SerializerFactory
+	public sealed class SerializerFactory
     {
         public ISerializer Create()
         {

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Serialization
 {
     using Newtonsoft.Json;
 
-    public class Serializer : JsonSerializer, ISerializer
+    public sealed class Serializer : JsonSerializer, ISerializer
     {
     }
 }

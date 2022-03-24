@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class SpaceConnectionOptions : IExtensible
+    public sealed class SpaceConnectionOptions : IExtensible
     {
         /// <summary>
         /// The client configuration root used to instantiate the space connection.

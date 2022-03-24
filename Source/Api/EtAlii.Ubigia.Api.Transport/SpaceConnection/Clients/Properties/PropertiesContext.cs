@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-    internal class PropertiesContext : SpaceClientContextBase<IPropertiesDataClient>, IPropertiesContext
+    internal sealed class PropertiesContext : SpaceClientContextBase<IPropertiesDataClient>, IPropertiesContext
     {
         public PropertiesContext(
             IPropertiesDataClient data)

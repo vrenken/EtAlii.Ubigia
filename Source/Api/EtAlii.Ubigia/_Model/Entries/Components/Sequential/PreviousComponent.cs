@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class PreviousComponent : RelationComponent
+    public sealed class PreviousComponent : RelationComponent
     {
         /// <inheritdoc />
         protected internal override string Name => "Previous";

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class DataConnection : IDataConnection
+    internal sealed class DataConnection : IDataConnection
     {
         /// <inheritdoc />
         public Storage Storage => _connection?.Storage;

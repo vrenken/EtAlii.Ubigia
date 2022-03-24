@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class NextComponent : RelationComponent
+    public sealed class NextComponent : RelationComponent
     {
         /// <inheritdoc />
         protected internal override string Name => "Next";

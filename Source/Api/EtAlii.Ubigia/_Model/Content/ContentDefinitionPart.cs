@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia
 {
-    public class ContentDefinitionPart : BlobPart
+    public sealed class ContentDefinitionPart : BlobPart
     {
         public ulong Checksum { get; init; }
         public ulong Size { get; init; }
