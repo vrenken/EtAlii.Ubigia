@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class IdentifierPathSubjectPartParser : IIdentifierPathSubjectPartParser
+    internal sealed class IdentifierPathSubjectPartParser : IIdentifierPathSubjectPartParser
     {
         public string Id => nameof(IdentifierPathSubjectPart);
 

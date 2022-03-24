@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     using Microsoft.Extensions.Configuration;
     using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
 
-    public class ProfilingFabricContextExtension : IExtension
+    public sealed class ProfilingFabricContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

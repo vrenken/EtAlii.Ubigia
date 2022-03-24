@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     using System.Threading.Tasks;
     using Serilog;
 
-    public class LoggingEntryContext : IEntryContext
+    public sealed class LoggingEntryContext : IEntryContext
     {
         private readonly IEntryContext _decoree;
         private readonly ILogger _logger = Log.ForContext<IEntryContext>();

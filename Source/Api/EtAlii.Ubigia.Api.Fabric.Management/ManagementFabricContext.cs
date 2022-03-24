@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Management
 {
     using EtAlii.Ubigia.Api.Transport;
 
-    public class ManagementFabricContext : IManagementFabricContext
+    public sealed class ManagementFabricContext : IManagementFabricContext
     {
         public Storage Storage { get; }
 

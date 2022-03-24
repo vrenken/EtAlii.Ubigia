@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class CommonManagementConnectionExtension : IExtension
+    public sealed class CommonManagementConnectionExtension : IExtension
     {
         private readonly ManagementConnectionOptions _options;
 

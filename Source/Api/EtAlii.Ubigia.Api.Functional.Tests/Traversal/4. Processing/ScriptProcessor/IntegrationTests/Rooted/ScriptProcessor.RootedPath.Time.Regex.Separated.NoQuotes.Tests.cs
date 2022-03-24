@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorRootedPathTimeRegexSeparatedNoQuotesTests : IClassFixture<FunctionalUnitTestContext>
+    public sealed class ScriptProcessorRootedPathTimeRegexSeparatedNoQuotesTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly IScriptParser _parser;
         private readonly FunctionalUnitTestContext _testContext;

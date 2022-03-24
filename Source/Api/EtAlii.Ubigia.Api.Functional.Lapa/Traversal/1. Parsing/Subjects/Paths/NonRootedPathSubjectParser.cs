@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class NonRootedPathSubjectParser : INonRootedPathSubjectParser
+    internal sealed class NonRootedPathSubjectParser : INonRootedPathSubjectParser
     {
         public string Id => nameof(NonRootedPathSubject);
         public LpsParser Parser { get; }

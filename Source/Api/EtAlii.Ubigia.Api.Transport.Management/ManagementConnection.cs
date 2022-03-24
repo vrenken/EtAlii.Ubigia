@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ManagementConnection : IManagementConnection
+    internal sealed class ManagementConnection : IManagementConnection
     {
         /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (_disposed) return;
 

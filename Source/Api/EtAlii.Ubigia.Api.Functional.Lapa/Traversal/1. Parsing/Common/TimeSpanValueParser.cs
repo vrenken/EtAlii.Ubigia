@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using Moppet.Lapa;
     using Moppet.Lapa.Parsers;
 
-    internal class TimeSpanValueParser : ITimeSpanValueParser
+    internal sealed class TimeSpanValueParser : ITimeSpanValueParser
     {
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;

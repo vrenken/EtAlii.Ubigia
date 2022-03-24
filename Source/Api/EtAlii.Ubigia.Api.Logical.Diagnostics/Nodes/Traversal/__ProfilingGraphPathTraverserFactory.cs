@@ -5,7 +5,7 @@
 //     using EtAlii.Ubigia.Diagnostics.Profiling;
 //     using EtAlii.xTechnology.MicroContainer;
 //
-//     public class ProfilingGraphPathTraverserFactory : IGraphPathTraverserFactory
+//     public sealed class ProfilingGraphPathTraverserFactory : IGraphPathTraverserFactory
 //     {
 //         private readonly IGraphPathTraverser _decoree;
 //         private readonly IProfiler _profiler;

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
-    public class HubProxyMethodInvoker : IHubProxyMethodInvoker
+    public sealed class HubProxyMethodInvoker : IHubProxyMethodInvoker
     {
         private const string ErrorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'";
 

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingContentManager : IContentManager
+    public sealed class ProfilingContentManager : IContentManager
     {
         private readonly IContentManager _decoree;
         private readonly IProfiler _profiler;

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using Serilog;
 
-    public class ResultMapperWriter : IResultMapperWriter
+    public sealed class ResultMapperWriter : IResultMapperWriter
     {
         public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, bool isRoot)
         {

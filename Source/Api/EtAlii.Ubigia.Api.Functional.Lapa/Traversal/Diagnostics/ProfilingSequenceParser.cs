@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using Moppet.Lapa;
 
-    internal class ProfilingSequenceParser : ISequenceParser
+    internal sealed class ProfilingSequenceParser : ISequenceParser
     {
         private readonly ISequenceParser _decoree;
         private readonly IProfiler _profiler;

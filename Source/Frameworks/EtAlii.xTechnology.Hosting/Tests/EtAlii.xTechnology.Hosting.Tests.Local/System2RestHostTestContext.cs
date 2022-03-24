@@ -2,11 +2,11 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public class System2RestHostTestContext : LocalHostTestContext
+    public sealed class System2RestHostTestContext : LocalHostTestContext
     {
         public System2RestHostTestContext() : base(ConfigurationFiles.HostSettingsSystems2VariantRest, ConfigurationFiles.ClientSettings)
         {
-            
+
         }
     }
 }

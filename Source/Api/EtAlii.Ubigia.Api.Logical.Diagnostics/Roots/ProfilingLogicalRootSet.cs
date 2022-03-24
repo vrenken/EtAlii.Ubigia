@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class ProfilingLogicalRootSet : ILogicalRootSet
+    public sealed class ProfilingLogicalRootSet : ILogicalRootSet
     {
         private readonly ILogicalRootSet _decoree;
 

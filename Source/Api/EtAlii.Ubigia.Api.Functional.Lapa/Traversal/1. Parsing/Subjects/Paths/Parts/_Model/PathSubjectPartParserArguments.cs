@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal class PathSubjectPartParserArguments
+    internal sealed class PathSubjectPartParserArguments
     {
         public Subject Subject { get; }
         public PathSubjectPart Before { get; }

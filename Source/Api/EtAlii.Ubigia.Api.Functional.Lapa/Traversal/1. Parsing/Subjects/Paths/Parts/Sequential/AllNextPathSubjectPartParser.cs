@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class AllNextPathSubjectPartParser : IAllNextPathSubjectPartParser
+    internal sealed class AllNextPathSubjectPartParser : IAllNextPathSubjectPartParser
     {
         public string Id => nameof(AllNextPathSubjectPart);
 

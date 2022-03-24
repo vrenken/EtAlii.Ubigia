@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Management
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ManagementFabricContextFactory
+    public sealed class ManagementFabricContextFactory
     {
         public IManagementFabricContext Create(IManagementConnection connection)
         {

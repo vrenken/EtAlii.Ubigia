@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class PathRelationParserBuilder : IPathRelationParserBuilder
+    internal sealed class PathRelationParserBuilder : IPathRelationParserBuilder
     {
 
         private readonly LpsParser _leftSource;

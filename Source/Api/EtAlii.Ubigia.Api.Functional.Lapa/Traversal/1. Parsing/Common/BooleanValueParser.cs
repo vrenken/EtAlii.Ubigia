@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class BooleanValueParser : IBooleanValueParser
+    internal sealed class BooleanValueParser : IBooleanValueParser
     {
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;

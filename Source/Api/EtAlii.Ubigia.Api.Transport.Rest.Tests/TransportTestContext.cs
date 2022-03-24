@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Rest.Tests;
 
-    public class TransportTestContext
+    public sealed class TransportTestContext
     {
         public ITransportTestContext Create()
         {

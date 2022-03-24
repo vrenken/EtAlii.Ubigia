@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaParserExtension : IExtension
+    internal sealed class LapaParserExtension : IExtension
     {
         public void Initialize(IRegisterOnlyContainer container)
         {

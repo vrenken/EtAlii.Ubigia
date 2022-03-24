@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
     using System.Security.Cryptography;
     using System.Threading.Tasks;
 
-    public class SignalRAuthenticationTokenGetter : ISignalRAuthenticationTokenGetter
+    public sealed class SignalRAuthenticationTokenGetter : ISignalRAuthenticationTokenGetter
     {
         private readonly IHubProxyMethodInvoker _invoker;
         private readonly string _hostIdentifier;

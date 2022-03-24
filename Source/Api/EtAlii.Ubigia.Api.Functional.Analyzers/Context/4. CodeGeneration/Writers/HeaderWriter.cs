@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.CodeDom.Compiler;
 
-    public class HeaderWriter : IHeaderWriter
+    public sealed class HeaderWriter : IHeaderWriter
     {
         public void Write(IndentedTextWriter writer, string fileName)
         {

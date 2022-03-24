@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
     /// <summary>
     /// The interface that abstracts away any GTL specific parser implementation.
     /// </summary>
-    internal class AntlrPathParser : IPathParser
+    internal sealed class AntlrPathParser : IPathParser
     {
         private readonly ITraversalValidator _traversalValidator;
 

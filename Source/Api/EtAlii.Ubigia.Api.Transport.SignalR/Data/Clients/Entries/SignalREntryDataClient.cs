@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
-    internal class SignalREntryDataClient : SignalRClientBase, IEntryDataClient<ISignalRSpaceTransport>
+    internal sealed class SignalREntryDataClient : SignalRClientBase, IEntryDataClient<ISignalRSpaceTransport>
     {
         private HubConnection _connection;
         private readonly IHubProxyMethodInvoker _invoker;

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using Xunit;
 
-    public class ParentPathSubjectPartTests
+    public sealed class ParentPathSubjectPartTests
     {
 
         [Fact]

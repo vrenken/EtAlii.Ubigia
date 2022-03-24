@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class ScriptProcessorLogicalAddTests : IClassFixture<FunctionalUnitTestContext>
+    public sealed class ScriptProcessorLogicalAddTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;

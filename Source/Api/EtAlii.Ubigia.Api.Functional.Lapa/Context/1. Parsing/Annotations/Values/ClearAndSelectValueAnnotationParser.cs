@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-    internal class ClearAndSelectValueAnnotationParser : IClearAndSelectValueAnnotationParser
+    internal sealed class ClearAndSelectValueAnnotationParser : IClearAndSelectValueAnnotationParser
     {
         public string Id => nameof(ClearAndSelectValueAnnotation);
         public LpsParser Parser { get; }

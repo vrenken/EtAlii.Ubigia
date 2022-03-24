@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     using IEntryContext = EtAlii.Ubigia.Api.Fabric.IEntryContext;
     using IRootContext = EtAlii.Ubigia.Api.Fabric.IRootContext;
 
-    public class ProfilingFabricContext : IProfilingFabricContext
+    public sealed class ProfilingFabricContext : IProfilingFabricContext
     {
         private readonly IFabricContext _decoree;
         public FabricOptions Options => _decoree.Options;
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             // Cleanup
             if (disposing)

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class FunctionSubjectParser : IFunctionSubjectParser
+    internal sealed class FunctionSubjectParser : IFunctionSubjectParser
     {
         public string Id => nameof(FunctionSubject);
 

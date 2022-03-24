@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
+    public sealed class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ManagementConnectionScaffolding : IScaffolding
+    public sealed class ManagementConnectionScaffolding : IScaffolding
     {
         private readonly ManagementConnectionOptions _options;
 

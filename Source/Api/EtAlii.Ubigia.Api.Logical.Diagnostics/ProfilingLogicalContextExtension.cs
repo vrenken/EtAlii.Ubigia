@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using Microsoft.Extensions.Configuration;
     using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
 
-    public class ProfilingLogicalContextExtension : IExtension
+    public sealed class ProfilingLogicalContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

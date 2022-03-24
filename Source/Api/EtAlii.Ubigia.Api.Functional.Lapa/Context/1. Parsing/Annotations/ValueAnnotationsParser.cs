@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-    internal class ValueAnnotationsParser : IValueAnnotationsParser
+    internal sealed class ValueAnnotationsParser : IValueAnnotationsParser
     {
         public string Id => nameof(ValueAnnotation);
 

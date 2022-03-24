@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
     using Antlr4.Runtime;
     using EtAlii.Ubigia.Api.Functional.Context;
 
-    internal class SchemaErrorListener : IAntlrErrorListener<object>
+    internal sealed class SchemaErrorListener : IAntlrErrorListener<object>
     {
         private readonly List<SchemaParserError> _errors = new();
         public void SyntaxError(TextWriter output, IRecognizer recognizer, object offendingSymbol, int line, int charPositionInLine,

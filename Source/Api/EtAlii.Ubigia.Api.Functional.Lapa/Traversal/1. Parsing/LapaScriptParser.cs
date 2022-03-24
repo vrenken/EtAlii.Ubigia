@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class LapaScriptParser : IScriptParser
+    internal sealed class LapaScriptParser : IScriptParser
     {
         private const string Id = "Script";
 

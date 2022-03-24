@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.CodeDom.Compiler;
     using Serilog;
 
-    public class ClassWriter : IClassWriter
+    public sealed class ClassWriter : IClassWriter
     {
         private readonly IPropertyWriter _propertyWriter;
         private readonly IAnnotationCommentWriter _annotationCommentWriter;

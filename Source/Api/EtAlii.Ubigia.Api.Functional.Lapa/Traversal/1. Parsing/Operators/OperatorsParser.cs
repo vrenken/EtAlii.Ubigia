@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class OperatorsParser : IOperatorsParser
+    internal sealed class OperatorsParser : IOperatorsParser
     {
         public string Id => "Operators";
 

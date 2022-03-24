@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SignalRSpaceClientsScaffolding : IScaffolding
+    internal sealed class SignalRSpaceClientsScaffolding : IScaffolding
     {
         private readonly SpaceConnectionOptions _options;
 

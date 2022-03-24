@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.CodeDom.Compiler;
     using Serilog;
 
-    public class StructureInstanceWriter : IStructureInstanceWriter
+    public sealed class StructureInstanceWriter : IStructureInstanceWriter
     {
         public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, string variableName)
         {

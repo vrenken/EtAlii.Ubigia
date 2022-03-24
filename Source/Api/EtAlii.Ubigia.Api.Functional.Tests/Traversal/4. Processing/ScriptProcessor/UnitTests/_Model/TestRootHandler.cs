@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
 
-    internal class TestRootHandler : IRootHandler
+    internal sealed class TestRootHandler : IRootHandler
     {
         public PathSubjectPart[] Template { get; }
 

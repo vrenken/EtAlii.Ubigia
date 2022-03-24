@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsLogicalContextExtension : IExtension
+    public sealed class DiagnosticsLogicalContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 

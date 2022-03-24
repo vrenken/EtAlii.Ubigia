@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using Serilog;
 
     /// <inheritdoc />
-    public class GraphContextExtensionWriter : IGraphContextExtensionWriter
+    public sealed class GraphContextExtensionWriter : IGraphContextExtensionWriter
     {
         private readonly IVariableFinder _variableFinder;
 

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingLogicalNodeSet : ILogicalNodeSet
+    public sealed class ProfilingLogicalNodeSet : ILogicalNodeSet
     {
         private readonly ILogicalNodeSet _decoree;
         private readonly IProfiler _profiler;

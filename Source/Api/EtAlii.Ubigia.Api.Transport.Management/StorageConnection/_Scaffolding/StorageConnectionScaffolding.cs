@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Threading;
 
-    internal class StorageConnectionScaffolding : IScaffolding
+    internal sealed class StorageConnectionScaffolding : IScaffolding
     {
         private readonly IStorageConnectionOptions _options;
 

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class LapaPathParser : IPathParser
+    internal sealed class LapaPathParser : IPathParser
     {
         private const string Id = "Script";
 

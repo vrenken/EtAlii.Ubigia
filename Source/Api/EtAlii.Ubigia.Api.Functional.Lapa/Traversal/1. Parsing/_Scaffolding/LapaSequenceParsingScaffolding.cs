@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSequenceParsingScaffolding : IScaffolding
+    internal sealed class LapaSequenceParsingScaffolding : IScaffolding
     {
         public void Register(IRegisterOnlyContainer container)
         {

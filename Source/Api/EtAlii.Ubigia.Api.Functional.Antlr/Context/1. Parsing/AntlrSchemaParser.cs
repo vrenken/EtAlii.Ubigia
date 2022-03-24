@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Context;
 
-    internal class AntlrSchemaParser : ISchemaParser
+    internal sealed class AntlrSchemaParser : ISchemaParser
     {
         private readonly IContextValidator _contextValidator;
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
+    public sealed class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private FunctionalUnitTestContext _testContext;

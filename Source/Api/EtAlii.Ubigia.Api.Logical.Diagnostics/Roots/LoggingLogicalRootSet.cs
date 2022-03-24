@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class LoggingLogicalRootSet : ILogicalRootSet
+    public sealed class LoggingLogicalRootSet : ILogicalRootSet
     {
         private readonly ILogicalRootSet _decoree;
         private readonly ILogger _logger = Log.ForContext<ILogicalRootSet>();

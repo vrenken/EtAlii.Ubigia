@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorRootedPathFunctionIdTests : IClassFixture<FunctionalUnitTestContext>
+    public sealed class ScriptProcessorRootedPathFunctionIdTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly IScriptParser _parser;
         private readonly FunctionalUnitTestContext _testContext;

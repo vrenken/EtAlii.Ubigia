@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class VariableFinder : IVariableFinder
+    public sealed class VariableFinder : IVariableFinder
     {
         public string[] FindVariables(Schema schema)
         {

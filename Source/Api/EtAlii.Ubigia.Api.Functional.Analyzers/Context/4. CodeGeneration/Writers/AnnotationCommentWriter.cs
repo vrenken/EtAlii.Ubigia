@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.CodeDom.Compiler;
     using Serilog;
 
-    public class AnnotationCommentWriter : IAnnotationCommentWriter
+    public sealed class AnnotationCommentWriter : IAnnotationCommentWriter
     {
         public void Write(ILogger logger, IndentedTextWriter writer, Annotation annotation)
         {

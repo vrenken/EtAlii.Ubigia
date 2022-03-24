@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ScopeVariableTests
+    public sealed class ScopeVariableTests
     {
         [Fact]
         public async Task ScopeVariable_New()

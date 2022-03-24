@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryConditionalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
+    public sealed class ScriptProcessorRootedPathQueryConditionalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;

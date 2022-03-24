@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingGraphPathTraverser : IProfilingGraphPathTraverser
+    public sealed class ProfilingGraphPathTraverser : IProfilingGraphPathTraverser
     {
         private readonly IGraphPathTraverser _decoree;
 

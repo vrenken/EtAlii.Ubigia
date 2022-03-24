@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System.Threading.Tasks;
 
-    public class AuthenticationManagementContext : IAuthenticationManagementContext
+    public sealed class AuthenticationManagementContext : IAuthenticationManagementContext
     {
         public IAuthenticationManagementDataClient Data { get; }
 

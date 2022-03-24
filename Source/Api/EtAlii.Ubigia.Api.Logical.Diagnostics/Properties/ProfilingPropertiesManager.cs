@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingPropertiesManager : IPropertiesManager
+    public sealed class ProfilingPropertiesManager : IPropertiesManager
     {
         private readonly IPropertiesManager _decoree;
         private readonly IProfiler _profiler;

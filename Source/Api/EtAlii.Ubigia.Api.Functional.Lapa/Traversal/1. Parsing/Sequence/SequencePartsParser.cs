@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class SequencePartsParser : ISequencePartsParser
+    internal sealed class SequencePartsParser : ISequencePartsParser
     {
         public string Id => "SequenceParts";
 

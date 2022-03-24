@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaParserScaffolding : IScaffolding
+    internal sealed class LapaSchemaParserScaffolding : IScaffolding
     {
         public void Register(IRegisterOnlyContainer container)
         {

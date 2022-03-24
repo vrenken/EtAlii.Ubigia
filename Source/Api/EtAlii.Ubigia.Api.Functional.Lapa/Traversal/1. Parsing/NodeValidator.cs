@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Collections.Generic;
     using Moppet.Lapa;
 
-    internal class NodeValidator : INodeValidator
+    internal sealed class NodeValidator : INodeValidator
     {
         public LpNode FindFirst(IEnumerable<LpNode> nodes)
         {

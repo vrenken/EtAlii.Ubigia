@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using Moppet.Lapa;
 
-    internal class ConditionParser : IConditionParser
+    internal sealed class ConditionParser : IConditionParser
     {
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IDateTimeValueParser _dateTimeValueParser;

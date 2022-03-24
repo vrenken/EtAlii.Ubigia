@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal class ConstantHelper : IConstantHelper
+    internal sealed class ConstantHelper : IConstantHelper
     {
         public bool IsValidConstantCharacter(char c)
         {

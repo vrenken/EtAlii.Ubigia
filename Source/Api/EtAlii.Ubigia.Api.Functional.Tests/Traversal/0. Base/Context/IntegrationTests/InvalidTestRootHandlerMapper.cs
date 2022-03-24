@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
-    internal class InvalidTestRootHandlerMapper : IRootHandlerMapper
+    internal sealed class InvalidTestRootHandlerMapper : IRootHandlerMapper
     {
         public string Name { get; }
 

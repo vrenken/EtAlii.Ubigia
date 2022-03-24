@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System.Threading.Tasks;
 
-    public class StorageClientContextBase<TDataClient> : IStorageClientContext
+    public abstract class StorageClientContextBase<TDataClient> : IStorageClientContext
         where TDataClient: IStorageTransportClient
     {
         public TDataClient Data { get; }

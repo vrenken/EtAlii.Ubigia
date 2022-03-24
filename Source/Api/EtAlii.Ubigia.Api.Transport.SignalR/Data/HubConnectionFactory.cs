@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
 
-	public class HubConnectionFactory
+	public sealed class HubConnectionFactory
     {
         [SuppressMessage(
             category: "Sonar Code Smell",

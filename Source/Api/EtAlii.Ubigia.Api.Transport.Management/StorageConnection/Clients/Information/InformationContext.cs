@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System.Threading.Tasks;
 
-    public class InformationContext : IInformationContext
+    public sealed class InformationContext : IInformationContext
     {
         public IInformationDataClient Data { get; }
 

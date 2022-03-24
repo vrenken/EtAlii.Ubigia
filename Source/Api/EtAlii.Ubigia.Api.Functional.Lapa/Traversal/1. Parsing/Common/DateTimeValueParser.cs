@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using Moppet.Lapa;
     using Moppet.Lapa.Parsers;
 
-    internal class DateTimeValueParser : IDateTimeValueParser
+    internal sealed class DateTimeValueParser : IDateTimeValueParser
     {
         private readonly INodeValidator _nodeValidator;
 

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Collections.Generic;
     using Moppet.Lapa;
 
-    internal class NodeFinder : INodeFinder
+    internal sealed class NodeFinder : INodeFinder
     {
         public LpNode FindFirst(LpNode node, string id)
         {

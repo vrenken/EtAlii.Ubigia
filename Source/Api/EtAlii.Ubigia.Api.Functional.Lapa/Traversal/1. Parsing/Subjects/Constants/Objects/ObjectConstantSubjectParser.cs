@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class ObjectConstantSubjectParser : IObjectConstantSubjectParser
+    internal sealed class ObjectConstantSubjectParser : IObjectConstantSubjectParser
     {
         public string Id => nameof(ObjectConstantSubject);
 

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    internal class ProfilingContentCacheHelper : IContentCacheHelper
+    internal sealed class ProfilingContentCacheHelper : IContentCacheHelper
     {
         private readonly IProfiler _profiler;
         private readonly IContentCacheHelper _decoree;

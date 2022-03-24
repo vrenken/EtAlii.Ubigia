@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using Xunit;
 
     [CorrelateUnitTests]
-    public class DataConnectionOptionsTests
+    public sealed class DataConnectionOptionsTests
     {
         [Fact]
         public void DataConnectionOptions_Create()

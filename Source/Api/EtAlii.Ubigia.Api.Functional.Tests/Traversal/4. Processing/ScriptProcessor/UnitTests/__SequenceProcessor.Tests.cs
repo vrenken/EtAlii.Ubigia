@@ -10,7 +10,7 @@
 //
 
 //
-//    public class SequenceProcessor_Tests
+//    public sealed class SequenceProcessor_Tests
 //    [
 //        [Fact]
 //        public async Task SequenceProcessor_Constant_To_Variable_Assignment()

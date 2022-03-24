@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class StorageConnectionFactory : IStorageConnectionFactory
+    public sealed class StorageConnectionFactory : IStorageConnectionFactory
     {
         public IStorageConnection Create(IStorageConnectionOptions options)
         {

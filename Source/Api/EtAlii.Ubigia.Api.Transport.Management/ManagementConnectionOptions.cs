@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class ManagementConnectionOptions : IExtensible
+    public sealed class ManagementConnectionOptions : IExtensible
     {
         /// <summary>
         /// The client configuration root that will be used to configure the management connection.

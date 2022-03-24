@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class IntegerValueParser : IIntegerValueParser
+    internal sealed class IntegerValueParser : IIntegerValueParser
     {
         private readonly INodeValidator _nodeValidator;
 

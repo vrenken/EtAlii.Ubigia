@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingTemporalGraphPathWeaver : ITemporalGraphPathWeaver
+    public sealed class ProfilingTemporalGraphPathWeaver : ITemporalGraphPathWeaver
     {
         private readonly ITemporalGraphPathWeaver _decoree;
         private readonly IProfiler _profiler;

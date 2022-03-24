@@ -5,7 +5,7 @@
 //    using System
 //    using System.Threading.Tasks
 
-//    public class TestableSequencePartProcessor : ISequencePartProcessor
+//    public sealed class TestableSequencePartProcessor : ISequencePartProcessor
 //    [
 //        private readonly Action<int, ProcessParameters<SequencePart, SequencePart>> _logMethod
 //        private int step = 0

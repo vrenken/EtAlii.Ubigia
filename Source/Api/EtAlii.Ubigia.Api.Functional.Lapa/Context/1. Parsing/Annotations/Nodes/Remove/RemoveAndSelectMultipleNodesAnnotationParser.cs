@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-    internal class RemoveAndSelectMultipleNodesAnnotationParser : IRemoveAndSelectMultipleNodesAnnotationParser
+    internal sealed class RemoveAndSelectMultipleNodesAnnotationParser : IRemoveAndSelectMultipleNodesAnnotationParser
     {
         public string Id => nameof(RemoveAndSelectMultipleNodesAnnotation);
         public LpsParser Parser { get; }

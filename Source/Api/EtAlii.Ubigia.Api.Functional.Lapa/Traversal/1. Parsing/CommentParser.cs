@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class CommentParser : ICommentParser
+    internal sealed class CommentParser : ICommentParser
     {
         public string Id => nameof(Comment);
 

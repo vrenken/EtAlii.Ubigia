@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class RootSubjectParser : IRootSubjectParser
+    internal sealed class RootSubjectParser : IRootSubjectParser
     {
         public string Id => nameof(RootSubject);
 

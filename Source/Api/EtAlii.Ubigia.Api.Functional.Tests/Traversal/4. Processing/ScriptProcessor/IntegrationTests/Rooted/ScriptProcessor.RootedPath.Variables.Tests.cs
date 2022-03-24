@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
+    public sealed class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private FunctionalUnitTestContext _testContext;

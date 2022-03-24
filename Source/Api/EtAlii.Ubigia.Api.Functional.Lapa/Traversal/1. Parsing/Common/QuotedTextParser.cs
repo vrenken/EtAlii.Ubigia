@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class QuotedTextParser : IQuotedTextParser
+    internal sealed class QuotedTextParser : IQuotedTextParser
     {
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;

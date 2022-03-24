@@ -2,7 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
-    public class System2SignalRHostTestContext : LocalHostTestContext
+    public sealed class System2SignalRHostTestContext : LocalHostTestContext
     {
         public System2SignalRHostTestContext() : base(ConfigurationFiles.HostSettingsSystems2VariantSignalR, ConfigurationFiles.ClientSettings)
         {

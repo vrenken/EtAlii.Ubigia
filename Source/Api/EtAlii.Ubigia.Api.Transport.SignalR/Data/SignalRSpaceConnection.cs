@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    internal class SignalRSpaceConnection : SpaceConnection<SignalRSpaceTransport>, ISignalRSpaceConnection
+    internal sealed class SignalRSpaceConnection : SpaceConnection<SignalRSpaceTransport>, ISignalRSpaceConnection
     {
         public SignalRSpaceConnection(
             ISpaceTransport transport,

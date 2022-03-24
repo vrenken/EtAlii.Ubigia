@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using Microsoft.Extensions.Hosting;
     using Xunit;
 
-    public class KestrelConfiguratorTests
+    public sealed class KestrelConfiguratorTests
     {
         [Fact]
         public async Task KestrelConfigurator_Configure()

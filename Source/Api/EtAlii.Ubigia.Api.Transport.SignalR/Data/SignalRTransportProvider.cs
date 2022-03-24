@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 	using System;
 	using System.Net.Http;
 
-	public class SignalRTransportProvider : ITransportProvider
+	public sealed class SignalRTransportProvider : ITransportProvider
     {
         private string _authenticationToken;
 	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class WhitespaceParser : IWhitespaceParser
+    internal sealed class WhitespaceParser : IWhitespaceParser
     {
         public LpsParser Required { get; }
 

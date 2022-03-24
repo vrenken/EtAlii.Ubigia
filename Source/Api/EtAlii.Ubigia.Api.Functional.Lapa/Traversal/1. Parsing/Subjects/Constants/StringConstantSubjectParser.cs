@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class StringConstantSubjectParser : IStringConstantSubjectParser
+    internal sealed class StringConstantSubjectParser : IStringConstantSubjectParser
     {
         public string Id => nameof(StringConstantSubject);
 

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
+    internal sealed class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
     {
         public string Id => nameof(ConditionalPathSubjectPart);
 

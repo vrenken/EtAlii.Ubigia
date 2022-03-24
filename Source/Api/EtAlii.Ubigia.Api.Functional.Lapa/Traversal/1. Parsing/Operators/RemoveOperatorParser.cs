@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Moppet.Lapa;
 
-    internal class RemoveOperatorParser : IRemoveOperatorParser
+    internal sealed class RemoveOperatorParser : IRemoveOperatorParser
     {
         public string Id => nameof(RemoveOperator);
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-    internal class AddAndSelectSingleNodeAnnotationParser : IAddAndSelectSingleNodeAnnotationParser
+    internal sealed class AddAndSelectSingleNodeAnnotationParser : IAddAndSelectSingleNodeAnnotationParser
     {
         public string Id => nameof(AddAndSelectSingleNodeAnnotation);
         public LpsParser Parser { get; }

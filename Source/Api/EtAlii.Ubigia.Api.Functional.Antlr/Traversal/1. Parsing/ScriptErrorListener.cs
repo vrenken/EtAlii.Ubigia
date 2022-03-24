@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
     using System.Text;
     using Antlr4.Runtime;
 
-    internal class ScriptErrorListener : IAntlrErrorListener<object>
+    internal sealed class ScriptErrorListener : IAntlrErrorListener<object>
     {
         private readonly StringBuilder _stringBuilder = new();
         public void SyntaxError(TextWriter output, IRecognizer recognizer, object offendingSymbol, int line, int charPositionInLine,
