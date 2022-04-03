@@ -3,8 +3,11 @@
 namespace EtAlii.xTechnology.Hosting
 {
 	using System;
+    using System.Collections.Generic;
     using Grpc.Core;
 	using Grpc.Net.Client;
+    using Grpc.Net.Compression;
+    using CompressionLevel = System.IO.Compression.CompressionLevel;
 
     public static class HostTestContextExtensions
     {
@@ -23,10 +26,11 @@ namespace EtAlii.xTechnology.Hosting
         {
 		    var options = new GrpcChannelOptions
 		    {
-#pragma warning disable CA1416
-			    HttpClient = context.CreateClient(),
-#pragma warning restore CA1416
-			    DisposeHttpClient = true,
+                CompressionProviders = new List<ICompressionProvider> { new GzipCompressionProvider(CompressionLevel.NoCompression) },
+                HttpHandler = context.CreateHandler(),
+// #pragma warning disable CA1416
+// 			    HttpClient = context.CreateClient(),
+// #pragma warning restore CA1416
 		    };
 		    var channel = GrpcChannel.ForAddress(address, options);
 		    return channel;
