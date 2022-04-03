@@ -5,7 +5,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using System.Threading.Tasks;
     using Xunit;
 
-    [Collection("System hosting tests")]
     public class HostTestContextTests
     {
         [Theory, ClassData(typeof(ConfigurationFiles))]
