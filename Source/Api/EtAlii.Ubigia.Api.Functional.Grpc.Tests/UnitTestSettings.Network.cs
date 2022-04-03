@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using EtAlii.xTechnology.Hosting;
 
-    public static class UnitTestSettings
+    internal static class UnitTestSettings
     {
         public static readonly PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 11800, UnitTestConstants.NetworkPortRangeStart + 11999);
     }
