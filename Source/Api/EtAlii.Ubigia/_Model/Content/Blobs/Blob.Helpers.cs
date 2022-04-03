@@ -3,13 +3,13 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Reflection;
 
     public partial class Blob
     {
-        private static readonly Dictionary<Type, string> _blobNames = new();
+        private static readonly ConcurrentDictionary<Type, string> _blobNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         private static readonly object _lockObject = new();

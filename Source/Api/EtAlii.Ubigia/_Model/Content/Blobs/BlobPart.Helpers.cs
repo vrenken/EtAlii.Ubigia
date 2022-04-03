@@ -3,7 +3,7 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Reflection;
 
@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia
     // https://github.com/vrenken/EtAlii.Ubigia/issues/76
     public partial class BlobPart
     {
-        private static readonly Dictionary<Type, string> _blobPartNames = new();
+        private static readonly ConcurrentDictionary<Type, string> _blobPartNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         private static readonly object _lockObject = new();

@@ -3,13 +3,13 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
     using System.Reflection;
 
     public static class ComponentHelper
     {
-        private static readonly Dictionary<Type, string> _componentNames = new();
+        private static readonly ConcurrentDictionary<Type, string> _componentNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         // Can ComponentHelper.GetName be completely replaced by the Generic GetName method?
