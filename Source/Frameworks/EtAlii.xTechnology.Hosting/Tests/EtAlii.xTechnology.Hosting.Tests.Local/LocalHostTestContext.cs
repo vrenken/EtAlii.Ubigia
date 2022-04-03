@@ -7,7 +7,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public LocalHostTestContext(string hostConfigurationFile, string clientConfigurationFile)
             : base(hostConfigurationFile, clientConfigurationFile)
         {
-            UseInProcessConnection = true;
         }
 
         protected override LocalTestHost CreateTestHost(IService[] services) => new ();
