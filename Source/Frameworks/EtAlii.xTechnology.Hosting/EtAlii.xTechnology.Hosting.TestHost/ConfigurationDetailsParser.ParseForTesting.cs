@@ -37,7 +37,9 @@ namespace EtAlii.xTechnology.Hosting
 			var neededPorts = (ushort)details.Ports.Count;
             if (neededPorts != 0)
             {
-                var freePorts = Ipv4FreePortFinder.Current.Get(portRange, neededPorts);
+                // We had the free port finder her in the past. However it isn't needed anymore.
+                // TODO: Remove PortRange.
+                var freePorts = new PortRange(portRange.LowerPort, (ushort)(portRange.LowerPort + neededPorts));
 
                 ushort i = 0;
                 foreach (var (name, originalPort) in details.Ports)
