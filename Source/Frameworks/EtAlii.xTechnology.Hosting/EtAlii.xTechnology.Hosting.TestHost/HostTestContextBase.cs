@@ -110,7 +110,7 @@ namespace EtAlii.xTechnology.Hosting
 
             _testServer = _host.GetTestServer();
             _testServer.PreserveExecutionContext = false;
-            _testServer.AllowSynchronousIO = true;
+            _testServer.AllowSynchronousIO = false;
 
             _logger.Information("Test server acquired");
 
@@ -152,5 +152,9 @@ namespace EtAlii.xTechnology.Hosting
         public HttpClient CreateClient() => UseInProcessConnection
             ? _testServer.CreateClient()
             : new HttpClient();
+
+        public WebSocketClient CreateWebSocketClient() => UseInProcessConnection
+            ? _testServer.CreateWebSocketClient()
+            : null;
     }
 }

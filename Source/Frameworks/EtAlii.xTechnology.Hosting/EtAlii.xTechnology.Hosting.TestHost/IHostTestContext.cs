@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Configuration;
 
     public interface IHostTestContext
@@ -35,5 +36,11 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         /// <returns></returns>
         HttpClient CreateClient();
+
+        /// <summary>
+        /// Create a WebSocketClient, able to create WebSocket connections.
+        /// </summary>
+        /// <returns></returns>
+        public WebSocketClient CreateWebSocketClient();
     }
 }
