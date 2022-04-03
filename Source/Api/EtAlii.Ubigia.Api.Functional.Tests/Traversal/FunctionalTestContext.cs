@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class FunctionalTestContext : IFunctionalTestContext
@@ -209,14 +208,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 //            var tonyNode = await list[list.Length - 1].Output.ToArray()
         }
 
-        public async Task Start(PortRange portRange)
+        public async Task Start()
         {
-            await Logical.Start(portRange).ConfigureAwait(false);
+            await Logical
+                .Start()
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Logical.Stop().ConfigureAwait(false);
+            await Logical
+                .Stop()
+                .ConfigureAwait(false);
         }
     }
 }

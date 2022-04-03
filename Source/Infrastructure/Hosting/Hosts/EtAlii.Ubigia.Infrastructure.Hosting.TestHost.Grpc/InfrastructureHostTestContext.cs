@@ -37,10 +37,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         }
 
         /// <inheritdoc />
-        public override async Task Start(PortRange portRange)
+        public override async Task Start()
         {
             await base
-                .Start(portRange)
+                .Start()
                 .ConfigureAwait(false);
 
             ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);

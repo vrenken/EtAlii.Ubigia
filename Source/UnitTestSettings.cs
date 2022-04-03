@@ -13,11 +13,6 @@ using Microsoft.Extensions.Configuration;
 //[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
 // #endif
 
-internal static class UnitTestConstants
-{
-    public const int NetworkPortRangeStart = 20000;
-}
-
 internal static class TestModuleInitializer
 {
     [ModuleInitializer]

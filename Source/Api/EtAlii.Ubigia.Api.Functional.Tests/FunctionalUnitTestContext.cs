@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var logicalTestContext = new LogicalTestContextFactory().Create();
             Functional = new FunctionalTestContext(logicalTestContext);
             await Functional
-                .Start(UnitTestSettings.NetworkPortRange)
+                .Start()
                 .ConfigureAwait(false);
         }
 

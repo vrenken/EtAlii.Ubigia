@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public interface IFunctionalTestContext
@@ -17,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         Task AddPeople(ITraversalContext context, ExecutionScope scope);
         Task AddAddresses(ITraversalContext context, ExecutionScope scope);
 
-        Task Start(PortRange portRange);
+        Task Start();
         Task Stop();
     }
 }

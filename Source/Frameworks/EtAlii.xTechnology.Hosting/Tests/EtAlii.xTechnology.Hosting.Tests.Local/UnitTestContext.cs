@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             Host = new TLocalHostTestContext();
             await Host
-                .Start(UnitTestSettings.NetworkPortRange)
+                .Start()
                 .ConfigureAwait(false);
         }
 

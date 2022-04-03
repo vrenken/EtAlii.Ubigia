@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting
 
 	public static class ConfigurationDetailsParserParseForTestingExtensions
     {
-		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile, PortRange portRange)
+		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile)
         {
 			var details = await parser
                 .Parse(configurationFile, false)
@@ -38,13 +38,9 @@ namespace EtAlii.xTechnology.Hosting
             if (neededPorts != 0)
             {
                 // We had the free port finder her in the past. However it isn't needed anymore.
-                // TODO: Remove PortRange.
-                var freePorts = new PortRange(portRange.LowerPort, (ushort)(portRange.LowerPort + neededPorts));
-
-                ushort i = 0;
                 foreach (var (name, originalPort) in details.Ports)
                 {
-                    var testPort = freePorts[i++];
+                    var testPort = originalPort;
                     testPorts.Add(name, testPort);
 
                     configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");

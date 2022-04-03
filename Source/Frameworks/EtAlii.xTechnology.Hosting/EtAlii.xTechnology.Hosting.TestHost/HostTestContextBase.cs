@@ -53,12 +53,12 @@ namespace EtAlii.xTechnology.Hosting
 		    Paths = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 	    }
 
-        public virtual async Task Start(PortRange portRange)
+        public virtual async Task Start()
 	    {
             // As we're testing with both a hosting environment and clients in the same process we need to use distinct configuration roots.
 
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(_hostConfigurationFile, portRange)
+                .ParseForTesting(_hostConfigurationFile)
                 .ConfigureAwait(false);
 		    Folders = details.Folders;
 		    Hosts = details.Hosts;

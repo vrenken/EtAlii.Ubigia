@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public interface ILogicalTestContext
@@ -22,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         Task<string> AddContinentCountryRegionCityLocation(LogicalOptions logicalOptions);
 
-        Task Start(PortRange portRange);
+        Task Start();
         Task Stop();
     }
 }

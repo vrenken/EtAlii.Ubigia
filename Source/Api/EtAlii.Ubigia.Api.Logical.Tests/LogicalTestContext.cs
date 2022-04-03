@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Fabric.Tests;
-    using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
@@ -117,10 +116,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return result;
         }
 
-        public async Task Start(PortRange portRange)
+        public async Task Start()
         {
             await Fabric
-                .Start(portRange)
+                .Start()
                 .ConfigureAwait(false);
         }
 

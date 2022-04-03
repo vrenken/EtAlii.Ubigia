@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public interface IFabricTestContext
@@ -18,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         Task<FabricOptions> CreateFabricOptions(bool openOnCreation);
         Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth);
 
-        Task Start(PortRange portRange);
+        Task Start();
         Task Stop();
     }
 }

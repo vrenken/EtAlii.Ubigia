@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             Fabric = new FabricTestContextFactory().Create();
             await Fabric
-                .Start(UnitTestSettings.NetworkPortRange)
+                .Start()
                 .ConfigureAwait(false);
         }
 

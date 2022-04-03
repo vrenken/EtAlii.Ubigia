@@ -13,12 +13,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task InitializeAsync()
         {
             Transport = new TransportTestContext().Create();
-            await Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Transport
+                .Start()
+                .ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await Transport.Stop().ConfigureAwait(false);
+            await Transport
+                .Stop()
+                .ConfigureAwait(false);
             Transport = null;
         }
     }

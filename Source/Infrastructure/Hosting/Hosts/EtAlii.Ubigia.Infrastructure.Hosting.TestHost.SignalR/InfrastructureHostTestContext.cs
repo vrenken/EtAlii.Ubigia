@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Hosting;
 
     /// <summary>
     /// We need to make the name of this HostTestContext transport-agnostic in order for it to be used in all
@@ -15,10 +14,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     public class InfrastructureHostTestContext : HostTestContextBase, IInfrastructureHostTestContext
     {
         /// <inheritdoc />
-        public override async Task Start(PortRange portRange)
+        public override async Task Start()
         {
             await base
-                .Start(portRange)
+                .Start()
                 .ConfigureAwait(false);
             ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.SignalR);
         }

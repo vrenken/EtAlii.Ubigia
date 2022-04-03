@@ -21,7 +21,7 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         IConfigurationRoot ClientConfiguration { get; }
 
-        Task Start(PortRange portRange);
+        Task Start();
 
         Task Stop();
 

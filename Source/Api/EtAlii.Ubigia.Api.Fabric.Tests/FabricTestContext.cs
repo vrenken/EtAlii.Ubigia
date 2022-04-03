@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
     public class FabricTestContext : IFabricTestContext
@@ -89,10 +88,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             return parent;
         }
 
-        public async Task Start(PortRange portRange)
+        public async Task Start()
         {
             await Transport
-                .Start(portRange)
+                .Start()
                 .ConfigureAwait(false);
         }
 
