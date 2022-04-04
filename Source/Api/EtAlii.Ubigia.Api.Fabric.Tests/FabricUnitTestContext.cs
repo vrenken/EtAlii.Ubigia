@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task InitializeAsync()
         {
             Transport = new TransportTestContext().Create();
-            await Transport.Start().ConfigureAwait(false);
+            await Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()

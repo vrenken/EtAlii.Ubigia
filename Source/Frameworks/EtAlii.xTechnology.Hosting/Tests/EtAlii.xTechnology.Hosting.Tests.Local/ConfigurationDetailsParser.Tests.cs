@@ -27,10 +27,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task ConfigurationDetailsParser_ParseForTesting_Host(string configurationFile)
         {
             // Arrange.
+            var portRange = new PortRange(5000, 6000);
 
             // Act.
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(configurationFile)
+                .ParseForTesting(configurationFile, portRange)
                 .ConfigureAwait(false);
 
             // Assert.
@@ -61,10 +62,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task ConfigurationDetailsParser_ParseForTesting_Port(string configurationFile)
         {
             // Arrange.
+            var portRange = new PortRange(6000, 7000);
 
             // Act.
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(configurationFile)
+                .ParseForTesting(configurationFile, portRange)
                 .ConfigureAwait(false);
 
             // Assert.
@@ -112,10 +114,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task ConfigurationDetailsParser_ParseForTesting_Folder(string configurationFile)
         {
             // Arrange.
+            var portRange = new PortRange(5000, 6000);
 
             // Act.
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(configurationFile)
+                .ParseForTesting(configurationFile, portRange)
                 .ConfigureAwait(false);
 
             // Assert.

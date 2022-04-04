@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest;
@@ -19,10 +20,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         private readonly IContextCorrelator _contextCorrelator = new ContextCorrelator();
 
         /// <inheritdoc />
-        public override async Task Start()
+        public override async Task Start(PortRange portRange)
         {
             await base
-                .Start()
+                .Start(portRange)
                 .ConfigureAwait(false);
             ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
         }

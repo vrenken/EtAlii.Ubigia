@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
         public async Task InitializeAsync()
         {
-            await Host.Start().ConfigureAwait(false);
+            await Host.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()

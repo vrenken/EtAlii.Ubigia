@@ -32,7 +32,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(ConfigurationFiles.HostSettingsSystems2VariantGrpc)
+                .ParseForTesting(ConfigurationFiles.HostSettingsSystems2VariantGrpc, UnitTestSettings.NetworkPortRange)
                 .ConfigureAwait(false);
 
             // Act.

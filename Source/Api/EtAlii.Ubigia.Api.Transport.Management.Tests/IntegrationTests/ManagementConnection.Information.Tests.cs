@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public async Task InitializeAsync()
         {
-            await _testContext.Transport.Start().ConfigureAwait(false);
+            await _testContext.Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()

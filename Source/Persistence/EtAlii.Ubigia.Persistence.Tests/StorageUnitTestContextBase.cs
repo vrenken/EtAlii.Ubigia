@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             _logger.Verbose("Initializing StorageUnitTestContext");
 
             var details = await new ConfigurationDetailsParser()
-                .ParseForTesting("HostSettings.json")
+                .ParseForTesting("HostSettings.json", UnitTestSettings.NetworkPortRange)
                 .ConfigureAwait(false);
 
             // We should make use of this storage folder somehow.

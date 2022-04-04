@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Threading;
 
@@ -144,11 +145,11 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             return connection.Accounts.Add(name, password, AccountTemplate.User);
         }
 
-        public async Task Start()
+        public async Task Start(PortRange portRange)
         {
             Host = new THostTestContext();
             await Host
-                .Start()
+                .Start(portRange)
                 .ConfigureAwait(false);
         }
 
