@@ -32,6 +32,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
                 .AddCors()
                 .AddSignalR(options =>
                 {
+                    options.MaximumParallelInvocationsPerClient = 10;
                     options.EnableDetailedErrors = Debugger.IsAttached;
                 })
                 .AddJsonProtocol();

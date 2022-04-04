@@ -28,7 +28,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
 		{
 			services
 				.AddCors()
-				.AddSignalR(options => options.EnableDetailedErrors = Debugger.IsAttached);
+				.AddSignalR(options =>
+                {
+                    options.MaximumParallelInvocationsPerClient = 10;
+                    options.EnableDetailedErrors = Debugger.IsAttached;
+                });
 		}
 	}
 }

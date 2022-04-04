@@ -47,6 +47,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 		        .AddCors()
 		        .AddSignalR(options =>
 		        {
+                    options.MaximumParallelInvocationsPerClient = 10;
                     options.AddFilter(new CorrelationServiceHubFilter(infrastructure.ContextCorrelator));
 
                     // SonarQube: Make sure that this logger's configuration is safe.
