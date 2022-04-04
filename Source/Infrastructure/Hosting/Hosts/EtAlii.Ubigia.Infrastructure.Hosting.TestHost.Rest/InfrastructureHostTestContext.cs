@@ -19,11 +19,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     {
         private readonly IContextCorrelator _contextCorrelator = new ContextCorrelator();
 
-        public InfrastructureHostTestContext()
-        {
-            UseInProcessConnection = true;
-        }
-
         /// <inheritdoc />
         public override async Task Start(PortRange portRange)
         {

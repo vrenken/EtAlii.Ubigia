@@ -34,19 +34,13 @@ namespace EtAlii.xTechnology.Hosting
             var testPorts = new Dictionary<string, int>();
 
 			// For each port we introduce a new (i.e. free) one.
-			var neededPorts = (ushort)details.Ports.Count;
-            if (neededPorts != 0)
+            ushort i = 0;
+            foreach (var (name, originalPort) in details.Ports)
             {
-                var freePorts = Ipv4FreePortFinder.Current.Get(portRange, neededPorts);
+                var testPort = portRange[i++];
+                testPorts.Add(name, testPort);
 
-                ushort i = 0;
-                foreach (var (name, originalPort) in details.Ports)
-                {
-                    var testPort = freePorts[i++];
-                    testPorts.Add(name, testPort);
-
-                    configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");
-                }
+                configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");
             }
 
 

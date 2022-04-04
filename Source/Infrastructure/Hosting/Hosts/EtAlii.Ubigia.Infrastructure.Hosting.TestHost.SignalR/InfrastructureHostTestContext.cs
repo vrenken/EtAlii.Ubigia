@@ -14,11 +14,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     /// </summary>
     public class InfrastructureHostTestContext : HostTestContextBase, IInfrastructureHostTestContext
     {
-        public InfrastructureHostTestContext()
-        {
-            UseInProcessConnection = true;
-        }
-
         /// <inheritdoc />
         public override async Task Start(PortRange portRange)
         {

@@ -21,8 +21,6 @@ namespace EtAlii.xTechnology.Hosting
     {
         private readonly ILogger _logger = Log.ForContext<HostTestContextBase<THost, THostServicesFactory>>();
 
-	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
-
         /// <inheritdoc />
         public IConfigurationRoot HostConfiguration { get; private set; }
 
@@ -31,7 +29,6 @@ namespace EtAlii.xTechnology.Hosting
 
 	    public THost Host { get; private set; }
         private IHost _host;
-        protected bool UseInProcessConnection { get; init; }
 
 	    private readonly string _hostConfigurationFile;
         private readonly string _clientConfigurationFile;
@@ -57,16 +54,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public virtual async Task Start(PortRange portRange)
 	    {
-            // We want to start only one test hosting at the same time.
-            if (UseInProcessConnection)
-            {
-                await StartInternal(portRange).ConfigureAwait(false);
-            }
-            else
-            {
-                using var _ = new SystemSafeExecutionScope(_uniqueId);
-                await StartInternal(portRange).ConfigureAwait(false);
-            }
+            await StartInternal(portRange).ConfigureAwait(false);
 	    }
 
 	    private async Task StartInternal(PortRange portRange)
@@ -145,16 +133,10 @@ namespace EtAlii.xTechnology.Hosting
             Host = null;
         }
 
-        public HttpMessageHandler CreateHandler() => UseInProcessConnection
-            ? _testServer.CreateHandler()
-            : new HttpClientHandler();
+        public HttpMessageHandler CreateHandler() => _testServer.CreateHandler();
 
-        public HttpClient CreateClient() => UseInProcessConnection
-            ? _testServer.CreateClient()
-            : new HttpClient();
+        public HttpClient CreateClient() => _testServer.CreateClient();
 
-        public WebSocketClient CreateWebSocketClient() => UseInProcessConnection
-            ? _testServer.CreateWebSocketClient()
-            : null;
+        public WebSocketClient CreateWebSocketClient() => _testServer.CreateWebSocketClient();
     }
 }
