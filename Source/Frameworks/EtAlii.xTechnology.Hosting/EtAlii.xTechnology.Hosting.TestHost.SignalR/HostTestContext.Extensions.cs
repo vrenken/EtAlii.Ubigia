@@ -2,6 +2,7 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
+    using System;
     using System.Diagnostics;
 	using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
@@ -27,6 +28,12 @@ namespace EtAlii.xTechnology.Hosting
                     options.TransportMaxBufferSize = 1024 * 1024 * 2;
                     options.ApplicationMaxBufferSize = 1024 * 1024 * 2;
                     options.SkipNegotiation = true;
+
+                    options.CloseTimeout = TimeSpan.FromSeconds(40);
+                    options.WebSocketConfiguration = o =>
+                    {
+                        o.KeepAliveInterval = TimeSpan.FromMinutes(2);
+                    };
                     options.WebSocketFactory = async (webSocketContext, cancellationToken) =>
                     {
                         var client = context.CreateWebSocketClient();
