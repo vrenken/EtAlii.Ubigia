@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return Add(items, CanAdd, item);
         }
 
-        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item)
+        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable
         {
             if (item == null)
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
-            var canAdd = cannAddFunction(items, item);
+            var canAdd = canAddFunction(items, item);
             if (canAdd)
             {
                 try

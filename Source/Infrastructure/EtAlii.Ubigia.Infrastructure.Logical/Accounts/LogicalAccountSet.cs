@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return Items.SingleOrDefault(account => account.Name == accountName && account.Password == password);
         }
 
-        private bool CannAddFunction(IList<Account> items, Account item)
+        private bool CanAddFunction(IList<Account> items, Account item)
         {
             if (item == null)
             {
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 		        .Distinct()
 		        .ToArray();
 
-			var account = _fabric.Items.Add(Items, CannAddFunction, item);
+			var account = _fabric.Items.Add(Items, CanAddFunction, item);
 
             isAdded = account != null;
             return account;

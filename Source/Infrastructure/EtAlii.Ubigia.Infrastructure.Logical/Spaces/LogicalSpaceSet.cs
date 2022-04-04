@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return originalItem;
         }
 
-        private bool CannAddFunction(IList<Space> items, Space item)
+        private bool CanAddFunction(IList<Space> items, Space item)
         {
             if (item == null)
             {
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Space Add(Space item, SpaceTemplate template, out bool isAdded)
         {
-            var space = _fabric.Items.Add(Items, CannAddFunction, item);
+            var space = _fabric.Items.Add(Items, CanAddFunction, item);
             isAdded = space != null;
             return space;
         }

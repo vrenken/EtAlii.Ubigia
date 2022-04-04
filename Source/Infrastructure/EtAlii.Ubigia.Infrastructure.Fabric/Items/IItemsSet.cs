@@ -20,14 +20,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             where T : class, IIdentifiable;
 
         /// <summary>
-        /// Add a new item to the item set, but first check if the item can be added.  
+        /// Add a new item to the item set, but first check if the item can be added.
         /// </summary>
         /// <param name="items"></param>
-        /// <param name="cannAddFunction"></param>
+        /// <param name="canAddFunction"></param>
         /// <param name="item"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item)
+        T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable;
 
 
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
 
         /// <summary>
-        /// Remove the item with the specified id from the item set. 
+        /// Remove the item with the specified id from the item set.
         /// </summary>
         /// <param name="items"></param>
         /// <param name="itemId"></param>
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
 
         /// <summary>
-        /// Update the item with the specified itemId to the state of updatedItem. 
+        /// Update the item with the specified itemId to the state of updatedItem.
         /// </summary>
         /// <param name="items"></param>
         /// <param name="updateFunction"></param>

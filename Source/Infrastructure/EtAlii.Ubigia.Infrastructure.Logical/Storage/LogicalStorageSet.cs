@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <inheritdoc />
         public async Task<Storage> Add(Storage item)
         {
-            item = _fabric.Items.Add(Items, CannAddFunction, item);
+            item = _fabric.Items.Add(Items, CanAddFunction, item);
 
             if (item != null && Added != null)
             {
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return itemToUpdate;
         }
 
-        private bool CannAddFunction(IList<Storage> items, Storage item)
+        private bool CanAddFunction(IList<Storage> items, Storage item)
         {
             if (item == null)
             {

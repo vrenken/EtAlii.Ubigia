@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         T Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable;
 
-        T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item)
+        T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable;
     }
 }

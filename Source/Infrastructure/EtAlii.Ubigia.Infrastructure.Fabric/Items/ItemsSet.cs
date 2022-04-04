@@ -32,10 +32,10 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _itemAdder.Add(items, item);
         }
 
-        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item) 
+        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item) 
             where T : class, IIdentifiable
         {
-            return _itemAdder.Add(items, cannAddFunction, item);
+            return _itemAdder.Add(items, canAddFunction, item);
         }
 
         public IAsyncEnumerable<T> GetAll<T>(IList<T> items) 
