@@ -31,10 +31,20 @@ namespace EtAlii.xTechnology.Hosting
 				configuration = configuration.Replace($"{{{{HOST:{name}@{originalHost}}}}}", originalHost);
 			}
 
-            // We had the free port finder her in the past. However it isn't needed anymore.
-            foreach (var (name, originalPort) in details.Ports)
+            var testPorts = new Dictionary<string, int>();
+
+			// For each port we introduce a new (i.e. free) one.
+			var neededPorts = (ushort)details.Ports.Count;
+            if (neededPorts != 0)
             {
-                configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{originalPort}");
+                // We had the free port finder her in the past. However it isn't needed anymore.
+                foreach (var (name, originalPort) in details.Ports)
+                {
+                    var testPort = originalPort;
+                    testPorts.Add(name, testPort);
+
+                    configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");
+                }
             }
 
 
@@ -44,7 +54,7 @@ namespace EtAlii.xTechnology.Hosting
 				configuration = configuration.Replace($"{{{{PATH:{name}@{originalPath}}}}}", originalPath);
 			}
 
-			return new ConfigurationDetails(testFolders, details.Hosts, details.Ports, details.Paths, configuration);
+			return new ConfigurationDetails(testFolders, details.Hosts, testPorts, details.Paths, configuration);
 		}
 	}
 }
