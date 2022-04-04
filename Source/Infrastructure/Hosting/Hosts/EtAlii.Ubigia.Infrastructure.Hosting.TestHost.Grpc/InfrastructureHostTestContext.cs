@@ -24,6 +24,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
         public InfrastructureHostTestContext()
         {
+            UseInProcessConnection = true;
+
             if(Debugger.IsAttached)
             {
                 // Server Startup

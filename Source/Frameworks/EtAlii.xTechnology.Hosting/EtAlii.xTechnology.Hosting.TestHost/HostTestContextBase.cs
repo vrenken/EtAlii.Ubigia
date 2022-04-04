@@ -21,6 +21,8 @@ namespace EtAlii.xTechnology.Hosting
     {
         private readonly ILogger _logger = Log.ForContext<HostTestContextBase<THost, THostServicesFactory>>();
 
+	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
+
         /// <inheritdoc />
         public IConfigurationRoot HostConfiguration { get; private set; }
 
@@ -54,6 +56,20 @@ namespace EtAlii.xTechnology.Hosting
 	    }
 
         public virtual async Task Start(PortRange portRange)
+	    {
+            // We want to start only one test hosting at the same time.
+            if (UseInProcessConnection)
+            {
+                await StartInternal(portRange).ConfigureAwait(false);
+            }
+            else
+            {
+                using var _ = new SystemSafeExecutionScope(_uniqueId);
+                await StartInternal(portRange).ConfigureAwait(false);
+            }
+	    }
+
+	    private async Task StartInternal(PortRange portRange)
 	    {
             // As we're testing with both a hosting environment and clients in the same process we need to use distinct configuration roots.
 

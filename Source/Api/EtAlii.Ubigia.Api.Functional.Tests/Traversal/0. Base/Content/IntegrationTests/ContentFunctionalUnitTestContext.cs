@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Serilog;
@@ -25,6 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         ///</summary>
         public IConfigurationRoot HostConfiguration => LogicalTestContext.HostConfiguration;
 
+        private readonly Guid _uniqueId = Guid.Parse("5F763915-44A5-496F-B478-BFA42F60E406");
         public string TestFile2MImage { get; }
         public string TestFile10MRaw { get; }
         public string TestFile100MRaw { get; }
@@ -46,14 +48,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
 
-            // Getting Temp file names to use
-            TestFile2MImage = ContentTestHelper.CreateTemporaryFileName();
-            TestFile10MRaw = ContentTestHelper.CreateTemporaryFileName();
-            TestFile100MRaw = ContentTestHelper.CreateTemporaryFileName();
+            using (var _ = new SystemSafeExecutionScope(_uniqueId))
+            {
+                // Getting Temp file names to use
+                TestFile2MImage = ContentTestHelper.CreateTemporaryFileName();
+                TestFile10MRaw = ContentTestHelper.CreateTemporaryFileName();
+                TestFile100MRaw = ContentTestHelper.CreateTemporaryFileName();
 
-            ContentTestHelper.SaveResourceTestImage(TestFile2MImage);
-            ContentTestHelper.SaveTestFile(TestFile10MRaw, 10);
-            ContentTestHelper.SaveTestFile(TestFile100MRaw, 100);
+                ContentTestHelper.SaveResourceTestImage(TestFile2MImage);
+                ContentTestHelper.SaveTestFile(TestFile10MRaw, 10);
+                ContentTestHelper.SaveTestFile(TestFile100MRaw, 100);
+            }
         }
 
         private void OnProcessExit(object sender, EventArgs e) => RemoveTestFiles();
