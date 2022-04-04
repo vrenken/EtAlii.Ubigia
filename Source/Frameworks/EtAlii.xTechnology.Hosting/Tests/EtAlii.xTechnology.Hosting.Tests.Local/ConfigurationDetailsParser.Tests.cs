@@ -71,7 +71,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             Assert.NotNull(details);
             Assert.NotNull(details.Hosts);
             Assert.Contains("AuthenticationPort", (IReadOnlyDictionary<string, int>)details.Ports);
-            Assert.NotEqual(5003, details.Ports["AuthenticationPort"]);
+            Assert.Equal(5003, details.Ports["AuthenticationPort"]);
         }
 
         [Theory, ClassData(typeof(ConfigurationFiles))]
