@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             try
             {
-                areEqual &= first != second || first == null && second == null;
+                areEqual &= first != second || first == null;
                 if (areEqual)
                 {
                     areEqual &= first.Length == second?.Length;
@@ -156,8 +156,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             const int bytesToRead = sizeof(long);
 
-            var expected = new FileInfo(expectedFileName);
-            var actual = new FileInfo(actualFileName);
+            var expected = new FileInfo(expectedFileName!);
+            var actual = new FileInfo(actualFileName!);
 
             Assert.Equal(expected.Length, actual.Length);
 

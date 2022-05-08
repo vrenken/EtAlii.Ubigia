@@ -14,8 +14,8 @@
 
             const int bytesToRead = sizeof(long);
 
-            var expected = new FileInfo(expectedFileName);
-            var actual = new FileInfo(actualFileName);
+            var expected = new FileInfo(expectedFileName!);
+            var actual = new FileInfo(actualFileName!);
 
             if(expected.Length != actual.Length)
             {
