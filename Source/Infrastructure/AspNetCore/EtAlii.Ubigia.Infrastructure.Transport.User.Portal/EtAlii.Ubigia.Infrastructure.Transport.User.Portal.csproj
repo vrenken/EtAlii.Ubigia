@@ -4,7 +4,7 @@
     <ProjectGuid>844b4d36-cc45-41e7-bfe6-f3bad94e73cb</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" />
     <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.Rest\EtAlii.Ubigia.Api.Transport.Rest.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
   </ItemGroup>

@@ -4,7 +4,7 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Memory" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest.csproj" />

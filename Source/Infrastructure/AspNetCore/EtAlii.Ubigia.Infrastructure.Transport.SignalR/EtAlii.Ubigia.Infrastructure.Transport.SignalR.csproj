@@ -6,10 +6,10 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.3" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.16.0" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" />
+    <PackageReference Include="System.Memory" />
     <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Service.SignalR\EtAlii.xTechnology.Hosting.Service.SignalR.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>

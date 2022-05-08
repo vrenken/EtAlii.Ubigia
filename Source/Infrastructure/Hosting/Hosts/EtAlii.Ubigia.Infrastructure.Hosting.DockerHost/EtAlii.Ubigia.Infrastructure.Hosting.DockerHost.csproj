@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>3C764E54-0A6E-4FCD-85B4-E407283BB802</ProjectGuid>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles> 
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -39,8 +39,8 @@
     <Content Include="wwwroot\**\*" CopyToPublishDirectory="PreserveNewest" />
 
     <!-- Third party -->
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8">
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" >
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -70,7 +70,7 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </ProjectReference>
-    
+
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
 
   </ItemGroup>

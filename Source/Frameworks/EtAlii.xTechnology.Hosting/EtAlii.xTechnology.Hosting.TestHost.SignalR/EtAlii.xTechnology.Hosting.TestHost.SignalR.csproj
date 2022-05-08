@@ -10,8 +10,8 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="6.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Service.SignalR\EtAlii.xTechnology.Hosting.Service.SignalR.csproj" />

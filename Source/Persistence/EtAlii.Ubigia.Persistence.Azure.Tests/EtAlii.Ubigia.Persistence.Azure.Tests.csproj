@@ -4,7 +4,7 @@
     <ProjectGuid>E478C343-E844-4D41-B289-846D9BF559A9</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Azure\EtAlii.Ubigia.Persistence.Azure.csproj" />
   </ItemGroup>
@@ -14,7 +14,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
   </ItemGroup>
 
   <ItemGroup>
