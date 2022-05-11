@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Serilog;
 
@@ -81,23 +80,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             }
         }
 
-        public async Task<Root> GetRoot(LogicalOptions logicalOptions, string rootName)
+        public async Task<Root> GetRoot(ILogicalContext logicalContext, string rootName)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             return await logicalContext.Roots.GetAll()
                 .SingleOrDefaultAsync(r => r.Name == rootName)
                 .ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> GetEntry(LogicalOptions logicalOptions, Identifier identifier, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> GetEntry(ILogicalContext logicalContext, Identifier identifier, ExecutionScope scope)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             return await logicalContext.Nodes
                 .SelectSingle(GraphPath.Create(identifier), scope)
                 .ConfigureAwait(false);
