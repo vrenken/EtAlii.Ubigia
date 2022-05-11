@@ -189,6 +189,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00
 		UnitTestSettings.cs = UnitTestSettings.cs
 		..\version.json = ..\version.json
 		Build+Test DockerHost.ps1 = Build+Test DockerHost.ps1
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Tests", "Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj", "{B42A4C2B-15B6-4533-B06A-89346FB7AAB6}"
@@ -497,6 +498,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FAA3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests\EtAlii.Ubigia.Infrastructure.Transport.InMemory.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests.csproj", "{2409B60A-C2D7-443F-93C0-D776FD5D4983}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -1076,6 +1079,10 @@ Global
 		{25D3A122-9734-4E23-B894-E2C760BE5247}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1274,6 +1281,7 @@ Global
 		{D8B71A17-5ACE-49A2-8D34-40A4622EA7CD} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{789ADE58-7CEC-4040-902C-B1B7230FAA3E} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
 		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
+		{2409B60A-C2D7-443F-93C0-D776FD5D4983} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

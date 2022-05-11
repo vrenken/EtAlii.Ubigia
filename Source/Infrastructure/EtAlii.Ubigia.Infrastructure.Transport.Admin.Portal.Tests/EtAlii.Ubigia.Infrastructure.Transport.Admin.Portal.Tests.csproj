@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ProjectGuid>654ade58-7cec-4040-902c-b1b7230fcd3b</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IntegrationTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" />
+  </ItemGroup>
+
+</Project>
