@@ -7,11 +7,8 @@ using System.Runtime.CompilerServices;
 using EtAlii.xTechnology.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
-// #if UBIGIA_RUN_TESTS_PER_ASSEMBLY
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)] // CollectionPerAssembly
-// #else
-//[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
-// #endif
+// We want to run as much tests (unit and integration ones) in parallel.
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)]
 
 internal static class UnitTestConstants
 {
