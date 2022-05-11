@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     using System.Threading.Tasks;
     using Serilog;
 
-    public class LoggingSpaceConnection : ISpaceConnection
+    public sealed class LoggingSpaceConnection : ISpaceConnection
     {
         private readonly ISpaceConnection _decoree;
         private readonly ILogger _logger = Log.ForContext<ISpaceConnection>();
@@ -78,40 +78,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Closed space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // Free other state (managed objects).
-                    _decoree.Dispose();
-                }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
-                _disposed = true;
-            }
-        }
-
-        // Use C# destructor syntax for finalization code.
-        ~LoggingSpaceConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion Disposable
-
     }
 }

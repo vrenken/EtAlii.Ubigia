@@ -7,11 +7,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     //using EtAlii.xTechnology.Logging
 
-    public class ProfilingManagementConnection : IManagementConnection
+    public sealed class ProfilingManagementConnection : IManagementConnection
     {
         private readonly IManagementConnection _decoree;
         //private readonly IProfiler _profiler
-        private bool _disposed;
 
         public ProfilingManagementConnection(
             IManagementConnection decoree
@@ -73,33 +72,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             await _decoree.Close().ConfigureAwait(false);
         }
 
-        /// <inheritdoc />
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // Free other state (managed objects).
-                    _decoree.Dispose();
-                }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
-                _disposed = true;
-            }
-        }
-
-        // Use C# destructor syntax for finalization code.
-        ~ProfilingManagementConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }

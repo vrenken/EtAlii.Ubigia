@@ -54,9 +54,8 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
                 .Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data)
                 .ConfigureAwait(false);
             await managementConnection
-                .Close()
+                .DisposeAsync()
                 .ConfigureAwait(false);
-            managementConnection.Dispose();
 
             if (openOnCreation)
             {

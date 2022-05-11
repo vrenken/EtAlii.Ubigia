@@ -6,11 +6,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
     using System.Threading.Tasks;
     using Serilog;
 
-    public class LoggingManagementConnection : IManagementConnection
+    public sealed class LoggingManagementConnection : IManagementConnection
     {
         private readonly IManagementConnection _decoree;
         private readonly ILogger _logger = Log.ForContext<IManagementConnection>();
-        private bool _disposed;
 
         /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
@@ -116,33 +115,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             _logger.Information("Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
         }
 
-        /// <inheritdoc />
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // Free other state (managed objects).
-                    _decoree.Dispose();
-                }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
-                _disposed = true;
-            }
-        }
-
-        // Use C# destructor syntax for finalization code.
-        ~LoggingManagementConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }

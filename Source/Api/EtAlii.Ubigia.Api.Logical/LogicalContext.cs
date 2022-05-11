@@ -2,10 +2,12 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
+    using System.Threading.Tasks;
 
     internal sealed class LogicalContext : ILogicalContext
     {
+        private bool _isDisposed;
+
         /// <inheritdoc/>
         public LogicalOptions Options { get; }
 
@@ -35,25 +37,15 @@ namespace EtAlii.Ubigia.Api.Logical
             Properties = properties;
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            if (_isDisposed) return;
 
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Dispose any relevant resources.
-                // Maybe the connection should be disposed here?
-            }
+            await Options.FabricContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
 
-        }
-
-        ~LogicalContext()
-        {
-            Dispose(false);
+            _isDisposed = true;
         }
     }
 }

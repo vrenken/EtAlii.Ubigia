@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalOptions.UseLogicalContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\ContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\HierarchicalContentManager.Tests.cs" />

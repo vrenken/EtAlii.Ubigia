@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A connection type used to connect one single storage.
     /// </summary>
-    public interface IStorageConnection : IConnection, IDisposable
+    public interface IStorageConnection : IConnection, IAsyncDisposable
     {
         /// <summary>
         /// The transport with which the connection is made.

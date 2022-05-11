@@ -30,11 +30,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             _fabricContext = Factory.Create<IFabricContext>(fabricOptions);
         }
 
-        public Task DisposeAsync()
+        public async Task DisposeAsync()
         {
-            _fabricContext.Dispose();
+            await _fabricContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
             _fabricContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact]

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     using System;
     using System.Threading.Tasks;
 
-    public interface IManagementConnection : IDisposable
+    public interface IManagementConnection : IAsyncDisposable
     {
         /// <summary>
         /// Returns true when the management connection has been established.

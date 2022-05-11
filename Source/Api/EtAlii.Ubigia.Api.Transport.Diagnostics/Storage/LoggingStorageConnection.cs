@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         private readonly IStorageConnection _decoree;
         private readonly ILogger _logger = Log.ForContext<IStorageConnection>();
 
-        private bool _disposed;
         private Uri _address;
 
         /// <inheritdoc />
@@ -73,33 +72,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Closed storage connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
-        /// <inheritdoc />
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    // Free other state (managed objects).
-                    _decoree.Dispose();
-                }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
-                _disposed = true;
-            }
-        }
-
-        // Use C# destructor syntax for finalization code.
-        ~LoggingStorageConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }

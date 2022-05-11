@@ -45,7 +45,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<LocationAddResult> AddContinentCountry(LogicalOptions logicalOptions)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             var scope = new ExecutionScope();
             // Root.
@@ -67,7 +69,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<string> AddContinentCountryRegionCityLocation(LogicalOptions logicalOptions)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             var locationRoot = await logicalContext.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
@@ -88,7 +92,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task AddRegions(LogicalOptions logicalOptions, IEditableEntry countryEntry, int regions)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
             var scope = new ExecutionScope();
 
             for (var i = 1; i <= regions; i++)
@@ -97,12 +103,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
         }
 
-        public Task<IEditableEntry> CreateHierarchy(LogicalOptions logicalOptions, IEditableEntry parent, params string[] hierarchy)
+        public async Task<IEditableEntry> CreateHierarchy(LogicalOptions logicalOptions, IEditableEntry parent, params string[] hierarchy)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
             var scope = new ExecutionScope();
 
-            return CreateHierarchy(logicalContext, parent, scope, hierarchy);
+#pragma warning disable CA2007
+            return await CreateHierarchy(logicalContext, parent, scope, hierarchy);
+#pragma warning restore CA2007
         }
 
         private async Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, ExecutionScope scope, params string[] hierarchy)

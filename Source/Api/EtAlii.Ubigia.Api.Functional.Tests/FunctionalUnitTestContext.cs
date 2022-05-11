@@ -48,7 +48,9 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public async Task<Root> GetRoot(LogicalOptions logicalOptions, string rootName)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             return await logicalContext.Roots.GetAll()
                 .SingleOrDefaultAsync(r => r.Name == rootName)
@@ -57,7 +59,9 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public async Task<IReadOnlyEntry> GetEntry(LogicalOptions logicalOptions, Identifier identifier, ExecutionScope scope)
         {
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             return await logicalContext.Nodes
                 .SelectSingle(GraphPath.Create(identifier), scope)

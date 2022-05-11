@@ -8,6 +8,8 @@ namespace EtAlii.Ubigia.Api.Transport
     public abstract class SpaceConnection<TTransport> : ISpaceConnection<TTransport>
         where TTransport : ISpaceTransport
     {
+        private bool _disposed;
+
         public Storage Storage { get; private set; }
 
         /// <inheritdoc />
@@ -97,49 +99,18 @@ namespace EtAlii.Ubigia.Api.Transport
 	        Space = await Authentication.Data.GetSpace(this).ConfigureAwait(false);
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
+        public async ValueTask DisposeAsync()
         {
             if (_disposed) return;
+            GC.SuppressFinalize(this);
 
-            #pragma warning disable S1066
-            if (disposing)
+            if (IsConnected)
             {
-                // Free other state (managed objects).
-                if (IsConnected)
-                {
-                    var task = Close();
-                    // Refactor the dispose in the Connections to a Disconnect or something similar.
-                    // More details can be found in the GitHub issue below:
-                    // https://github.com/vrenken/EtAlii.Ubigia/issues/90
-                    task.Wait();
-                    Storage = null;
-                }
+                await Close().ConfigureAwait(false);
+                Storage = null;
             }
-            #pragma warning restore S1066
 
-            // Free your own state (unmanaged objects).
-            // Set large fields to null.
             _disposed = true;
         }
-
-        // Use C# destructor syntax for finalization code.
-        ~SpaceConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion Disposable
     }
 }

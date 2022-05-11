@@ -55,8 +55,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _options.LogicalContext.Options.FabricContext.Options.Connection
-                .Close()
+            await _options.LogicalContext
+                .DisposeAsync()
                 .ConfigureAwait(false);
             _options = null;
             _context = null;

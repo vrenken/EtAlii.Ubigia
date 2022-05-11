@@ -8,6 +8,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     internal sealed class ManagementConnection : IManagementConnection
     {
+        private bool _disposed;
+
         /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
 
@@ -98,42 +100,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             _connection = null;
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
+        public async ValueTask DisposeAsync()
         {
             if (_disposed) return;
 
-            if (disposing && IsConnected)
+            if (IsConnected)
             {
-                var task = Close();
-                // Refactor the dispose in the Connections to a Disconnect or something similar.
-                // More details can be found in the GitHub issue below:
-                // https://github.com/vrenken/EtAlii.Ubigia/issues/90
-                task.Wait();
+                await Close().ConfigureAwait(false);
             }
-            // Free your own state (unmanaged objects).
-            // Set large fields to null.
+
             _disposed = true;
         }
-
-        // Use C# destructor syntax for finalization code.
-        ~ManagementConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion Disposable
-
     }
 }

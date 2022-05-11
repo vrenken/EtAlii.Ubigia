@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
-    public interface ILogicalContext : IDisposable
+    public interface ILogicalContext : IAsyncDisposable
     {
         /// <summary>
         /// The Options used to instantiate this Context.

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Fabric
     using System;
     using EtAlii.Ubigia.Api.Transport;
 
-    public interface IFabricContext : IDisposable
+    public interface IFabricContext : IAsyncDisposable
     {
         /// <summary>
         /// The Options used to instantiate this Context.

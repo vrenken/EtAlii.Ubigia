@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
-    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using IContentContext = EtAlii.Ubigia.Api.Fabric.IContentContext;
@@ -29,24 +29,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             Profiler = profiler;
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            // Cleanup
-            if (disposing)
-            {
-                _decoree.Dispose();
-            }
-        }
-
-        ~ProfilingFabricContext()
-        {
-            Dispose(false);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }

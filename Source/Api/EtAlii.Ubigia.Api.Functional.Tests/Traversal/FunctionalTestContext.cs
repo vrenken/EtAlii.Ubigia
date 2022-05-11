@@ -211,12 +211,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public async Task Start(PortRange portRange)
         {
-            await Logical.Start(portRange).ConfigureAwait(false);
+            await Logical
+                .Start(portRange)
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Logical.Stop().ConfigureAwait(false);
+            await Logical
+                .Stop()
+                .ConfigureAwait(false);
         }
     }
 }

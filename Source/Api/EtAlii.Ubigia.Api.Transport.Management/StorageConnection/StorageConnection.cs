@@ -8,6 +8,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     public abstract class StorageConnection<TTransport> : IStorageConnection<TTransport>
         where TTransport : IStorageTransport
     {
+        private bool _disposed;
+
         /// <inheritdoc />
         public Storage Storage { get; private set; }
 
@@ -98,43 +100,18 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
+        public async ValueTask DisposeAsync()
         {
             if (_disposed) return;
+            GC.SuppressFinalize(this);
 
-            if (disposing && IsConnected)
+            if (IsConnected)
             {
-                var task = Close();
-
-                // Refactor the dispose in the Connections to a Disconnect or something similar.
-                // More details can be found in the GitHub issue below:
-                // https://github.com/vrenken/EtAlii.Ubigia/issues/90
-                task.Wait();
+                await Close().ConfigureAwait(false);
                 Storage = null;
             }
-            // Free your own state (unmanaged objects).
-            // Set large fields to null.
+
             _disposed = true;
         }
-
-        // Use C# destructor syntax for finalization code.
-        ~StorageConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion Disposable
     }
 }

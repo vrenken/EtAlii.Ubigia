@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingLogicalContext : IProfilingLogicalContext
@@ -23,23 +24,12 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             Profiler = profiler;
         }
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
-            Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _decoree.Dispose();
-            }
-        }
-
-        ~ProfilingLogicalContext()
-        {
-            Dispose(false);
+            await _decoree
+                .DisposeAsync()
+                .ConfigureAwait(false);
         }
     }
 }

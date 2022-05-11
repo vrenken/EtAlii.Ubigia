@@ -2,11 +2,13 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
 
-    public class FabricContext : IFabricContext
+    public sealed class FabricContext : IFabricContext
     {
+        private bool _disposed;
+
         /// <inheritdoc/>
         public FabricOptions Options { get; }
 
@@ -41,49 +43,17 @@ namespace EtAlii.Ubigia.Api.Fabric
             Properties = properties;
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
+        public async ValueTask DisposeAsync()
         {
             if (_disposed) return;
 
-            if (disposing)
+            // Free other state (managed objects).
+            if (Connection.IsConnected)
             {
-                try
-                {
-                    // Free other state (managed objects).
-                    if (Connection.IsConnected)
-                    {
-                        var task = Connection.Close();
-                        task.Wait();
-                    }
-                }
-                catch //(Exception e)
-                {
-                    //throw
-                }
+                await Connection.Close().ConfigureAwait(false);
             }
-            // Free your own state (unmanaged objects).
-            // Set large fields to null.
+
             _disposed = true;
         }
-
-        // Use C# destructor syntax for finalization code.
-        ~FabricContext()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
-        }
-
-        #endregion Disposable
     }
 }

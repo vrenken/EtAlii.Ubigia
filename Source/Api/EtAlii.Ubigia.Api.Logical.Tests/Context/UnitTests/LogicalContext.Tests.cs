@@ -32,7 +32,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var context = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             // Assert.
             Assert.NotNull(context);
@@ -50,7 +52,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             // Assert.
             Assert.NotNull(logicalContext);
@@ -68,7 +72,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
                 .ConfigureAwait(false);
 
             // Act.
-            using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning disable CA2007
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
 
             // Assert.
             Assert.NotNull(logicalContext);

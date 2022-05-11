@@ -56,9 +56,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                     .ConfigureAwait(false);
             }
             await managementConnection
-                .Close()
+                .DisposeAsync()
                 .ConfigureAwait(false);
-            managementConnection.Dispose();
 
             return (systemConnection, systemConnectionOptions);
         }

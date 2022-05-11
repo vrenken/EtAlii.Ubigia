@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
-    public interface ISpaceConnection : IConnection, IDisposable
+    public interface ISpaceConnection : IConnection, IAsyncDisposable
     {
         ISpaceTransport Transport { get; }
 

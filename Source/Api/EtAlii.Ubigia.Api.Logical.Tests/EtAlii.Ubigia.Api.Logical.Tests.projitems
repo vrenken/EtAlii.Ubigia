@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Context\Diagnostics\IntegrationTests\ProfilingLogicalContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\UnitTests\LogicalContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalOptions.UseDataConnectionToNewSpace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogicalUnitTestContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NodeEqualityComparer.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ILogicalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContext.cs" />
