@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public sealed class ScriptProcessorLogicalAddTests : IClassFixture<FunctionalUnitTestContext>
@@ -29,8 +30,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var logicalOptions = await _testContext.Logical
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
+
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var locationPath = await _testContext.Logical
-                .AddContinentCountryRegionCityLocation(logicalOptions)
+                .AddContinentCountryRegionCityLocation(logicalContext)
                 .ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -54,8 +60,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var logicalOptions = await _testContext.Logical
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
+
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var locationPath = await _testContext.Logical
-                .AddContinentCountryRegionCityLocation(logicalOptions)
+                .AddContinentCountryRegionCityLocation(logicalContext)
                 .ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -80,8 +91,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var logicalOptions = await _testContext.Logical
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
+
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var locationPath = await _testContext.Logical
-                .AddContinentCountryRegionCityLocation(logicalOptions)
+                .AddContinentCountryRegionCityLocation(logicalContext)
                 .ConfigureAwait(false);
             var selectQuery = $"<= {locationPath}";
             var selectQueryParts = selectQuery.Split(new[] {'/'});
@@ -113,14 +129,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -153,14 +173,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -191,14 +215,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -224,14 +252,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -263,14 +295,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -301,14 +337,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -343,14 +383,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;
@@ -384,17 +428,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Person")
+                .GetRoot(logicalContext, "Person")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastNameOriginal","SurName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastNameOriginal","SurName")
                 .ConfigureAwait(false);
             await _testContext.Logical
-                .CreateHierarchy(logicalOptions, (IEditableEntry)entry, "LastName")
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
                 .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery, scope).Script;

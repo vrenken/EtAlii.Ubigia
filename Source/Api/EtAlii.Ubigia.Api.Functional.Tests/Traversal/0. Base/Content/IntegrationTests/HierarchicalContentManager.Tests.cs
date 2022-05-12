@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public class HierarchicalContentManagerTests : IClassFixture<FunctionalUnitTestContext>, IDisposable
@@ -53,11 +54,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Hierarchy")
+                .GetRoot(logicalContext, "Hierarchy")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             var folderName = Guid.NewGuid().ToString();
             var hierarchicalContentManager = new HierarchicalContentManager();
@@ -82,11 +87,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Hierarchy")
+                .GetRoot(logicalContext, "Hierarchy")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
 
@@ -107,11 +116,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             var root = await _testContext
-                .GetRoot(logicalOptions, "Hierarchy")
+                .GetRoot(logicalContext, "Hierarchy")
                 .ConfigureAwait(false);
             var entry = await _testContext
-                .GetEntry(logicalOptions, root.Identifier, scope)
+                .GetEntry(logicalContext, root.Identifier, scope)
                 .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
             var retrievedFolderPath = ContentTestHelper.CreateTemporaryFolderName();

@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public class LogicalTestContext : ILogicalTestContext
@@ -43,12 +42,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return logicalOptions;
         }
 
-        public async Task<LocationAddResult> AddContinentCountry(LogicalOptions logicalOptions)
+        public async Task<LocationAddResult> AddContinentCountry(ILogicalContext logicalContext)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             var scope = new ExecutionScope();
             // Root.
             // Location.
@@ -67,12 +62,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return new LocationAddResult(path, countryEntry);
         }
 
-        public async Task<string> AddContinentCountryRegionCityLocation(LogicalOptions logicalOptions)
+        public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext logicalContext)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             var locationRoot = await logicalContext.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
@@ -90,11 +81,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return $"/Location/{continent}/{country}/{region}/{city}/{location}";
         }
 
-        public async Task AddRegions(LogicalOptions logicalOptions, IEditableEntry countryEntry, int regions)
+        public async Task AddRegions(ILogicalContext logicalContext, IEditableEntry countryEntry, int regions)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
             var scope = new ExecutionScope();
 
             for (var i = 1; i <= regions; i++)
@@ -103,24 +91,19 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
         }
 
-        public async Task<IEditableEntry> CreateHierarchy(LogicalOptions logicalOptions, IEditableEntry parent, params string[] hierarchy)
+        public async Task<IEditableEntry> CreateHierarchy(ILogicalContext logicalContext, IEditableEntry parent, params string[] hierarchy)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
             var scope = new ExecutionScope();
 
-#pragma warning disable CA2007
-            return await CreateHierarchy(logicalContext, parent, scope, hierarchy);
-#pragma warning restore CA2007
+            return await CreateHierarchy(logicalContext, parent, scope, hierarchy).ConfigureAwait(false);
         }
 
-        private async Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, ExecutionScope scope, params string[] hierarchy)
+        private async Task<IEditableEntry> CreateHierarchy(ILogicalContext logicalContext, IEditableEntry parent, ExecutionScope scope, params string[] hierarchy)
         {
             var result = parent;
             foreach (var element in hierarchy)
             {
-                result = (IEditableEntry)await context.Nodes
+                result = (IEditableEntry)await logicalContext.Nodes
                     .Add(result.Id, element, scope)
                     .ConfigureAwait(false);
             }

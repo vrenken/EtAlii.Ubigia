@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -158,7 +158,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -189,7 +189,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -220,7 +220,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -257,7 +257,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -294,7 +294,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -334,7 +334,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
@@ -374,7 +374,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 

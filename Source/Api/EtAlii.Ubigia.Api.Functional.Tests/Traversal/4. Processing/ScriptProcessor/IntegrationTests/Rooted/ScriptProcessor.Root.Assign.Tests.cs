@@ -5,6 +5,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
+    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public sealed class ScriptProcessorRootAssignTests : IClassFixture<FunctionalUnitTestContext>
@@ -27,6 +29,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -37,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "time")
+                .GetRoot(logicalContext, "time")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
@@ -55,6 +61,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:time <= Time";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -65,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "time")
+                .GetRoot(logicalContext, "time")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
@@ -83,6 +93,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -93,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "specialtime")
+                .GetRoot(logicalContext, "specialtime")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
@@ -111,6 +125,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:specialtime <= Time";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -121,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "specialtime")
+                .GetRoot(logicalContext, "specialtime")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
@@ -139,6 +157,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -149,7 +171,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "projects")
+                .GetRoot(logicalContext, "projects")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
@@ -167,6 +189,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
             const string query = "root:projects <= Object";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
@@ -177,7 +203,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalOptions, "projects")
+                .GetRoot(logicalContext, "projects")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);

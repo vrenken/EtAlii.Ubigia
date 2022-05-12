@@ -18,9 +18,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         Task<LogicalOptions> CreateLogicalOptionsWithConnection(bool openOnCreation);
 
-        Task<IEditableEntry> CreateHierarchy(LogicalOptions logicalOptions, IEditableEntry parent, params string[] hierarchy);
+        Task<IEditableEntry> CreateHierarchy(ILogicalContext logicalContext, IEditableEntry parent, params string[] hierarchy);
 
-        Task<string> AddContinentCountryRegionCityLocation(LogicalOptions logicalOptions);
+        Task<string> AddContinentCountryRegionCityLocation(ILogicalContext logicalContext);
 
         Task Start(PortRange portRange);
         Task Stop();

@@ -46,23 +46,15 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Functional = null;
         }
 
-        public async Task<Root> GetRoot(LogicalOptions logicalOptions, string rootName)
+        public async Task<Root> GetRoot(ILogicalContext logicalContext, string rootName)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             return await logicalContext.Roots.GetAll()
                 .SingleOrDefaultAsync(r => r.Name == rootName)
                 .ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> GetEntry(LogicalOptions logicalOptions, Identifier identifier, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> GetEntry(ILogicalContext logicalContext, Identifier identifier, ExecutionScope scope)
         {
-#pragma warning disable CA2007
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
-#pragma warning restore CA2007
-
             return await logicalContext.Nodes
                 .SelectSingle(GraphPath.Create(identifier), scope)
                 .ConfigureAwait(false);
