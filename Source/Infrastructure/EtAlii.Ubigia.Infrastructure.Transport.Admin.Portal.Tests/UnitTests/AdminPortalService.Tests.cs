@@ -1,13 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests
 {
-    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.Hosting;
     using Xunit;
-    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
     public class AdminPortalServiceTests
     {
@@ -45,14 +43,6 @@
 
             // Assert.
             Assert.NotNull(host);
-        }
-
-        public static void ConfigureBackgroundServices(IService[] services, IServiceCollection serviceCollection)
-        {
-            foreach (var service in services.OfType<IBackgroundService>())
-            {
-                service.ConfigureServices(serviceCollection, services);
-            }
         }
     }
 }
