@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .Use(GrpcStorageTransportProvider.Create(correlator))
                 .Use("Administrator", "administrator123")
                 .Use(new Uri("https://localhost:64001"));
-#pragma warning disable CA2007
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
             await using var managementConnection = Factory.Create<IManagementConnection>(connectionOptions);
 #pragma warning restore CA2007
             await managementConnection
