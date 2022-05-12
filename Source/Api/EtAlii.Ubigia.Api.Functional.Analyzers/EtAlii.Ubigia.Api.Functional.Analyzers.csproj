@@ -85,10 +85,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-
-    <!--    <PackageReference Include="Serilog.Sinks.File" PrivateAssets="all">-->
-<!--      <GeneratePathProperty>true</GeneratePathProperty>-->
-<!--    </PackageReference>-->
   </ItemGroup>
 
   <ItemGroup>
