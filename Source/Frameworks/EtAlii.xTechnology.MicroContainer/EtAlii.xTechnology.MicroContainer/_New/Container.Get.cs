@@ -30,7 +30,11 @@ namespace EtAlii.xTechnology.MicroContainer
             {
                 initializer.Initialize(_serviceProvider);
             }
+#if DEBUG
             return instance;
+#else
+            return instance!;
+#endif
         }
 
         private object GetInstance(IServiceProvider provider, ServiceDescriptor descriptor)
