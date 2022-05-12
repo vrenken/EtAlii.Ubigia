@@ -142,7 +142,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Lapa\EtAlii.Ubigia.Api.Functional.Lapa.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
-    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
+    <PackageReference Include="JetBrains.DotMemoryUnit" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
