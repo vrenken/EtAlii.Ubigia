@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Get the stream (embedded resource) - be sure to wrap in a using block
             using var stream = assembly!.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Tests.TestImage_01.jpg");
             var bytes = new byte[stream!.Length];
-            stream.Read(bytes, 0, (int)stream.Length);
+            var _ = stream.Read(bytes, 0, (int)stream.Length);
             File.WriteAllBytes(fileName, bytes);
         }
 
