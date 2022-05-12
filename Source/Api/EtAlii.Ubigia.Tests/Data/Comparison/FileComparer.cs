@@ -24,21 +24,20 @@
 
             var iterations = (int)Math.Ceiling((double)expected.Length / bytesToRead);
 
-            using (var actualFileStream = actual.OpenRead())
-            using (var expectedFileStream = expected.OpenRead())
+            using var actualFileStream = actual.OpenRead();
+            using var expectedFileStream = expected.OpenRead();
+
+            var one = new byte[bytesToRead];
+            var two = new byte[bytesToRead];
+
+            for (var i = 0; i < iterations; i++)
             {
-                var one = new byte[bytesToRead];
-                var two = new byte[bytesToRead];
+                var _ = actualFileStream.Read(one, 0, bytesToRead);
+                _ = expectedFileStream.Read(two, 0, bytesToRead);
 
-                for (var i = 0; i < iterations; i++)
+                if (BitConverter.ToInt64(two, 0) != BitConverter.ToInt64(one, 0))
                 {
-                    var _ = actualFileStream.Read(one, 0, bytesToRead);
-                    _ = expectedFileStream.Read(two, 0, bytesToRead);
-
-                    if (BitConverter.ToInt64(two, 0) != BitConverter.ToInt64(one, 0))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
             return true;

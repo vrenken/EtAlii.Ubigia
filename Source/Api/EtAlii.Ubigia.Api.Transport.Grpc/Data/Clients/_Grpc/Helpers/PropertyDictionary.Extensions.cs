@@ -21,10 +21,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         public static WireProtocol.PropertyDictionary ToWire(this PropertyDictionary propertyDictionary, ISerializer serializer)
         {
             var stringBuilder = new StringBuilder();
-            using (var textWriter = new StringWriter(stringBuilder))
-            {
-                serializer.Serialize(textWriter, propertyDictionary);
-            }
+            using var textWriter = new StringWriter(stringBuilder);
+
+            serializer.Serialize(textWriter, propertyDictionary);
 
             return new WireProtocol.PropertyDictionary
             {

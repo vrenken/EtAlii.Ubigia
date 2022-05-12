@@ -116,45 +116,44 @@ namespace HashLibTest
             var temp_file = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var fs = new FileStream(temp_file, FileMode.Create);
 
-            using (var sw = new StreamWriter(fs))
+            using var sw = new StreamWriter(fs);
+
+            for (var i = 0; i <= m_hash.BlockSize * 3 + 1; i++)
             {
-                for (var i = 0; i <= m_hash.BlockSize * 3 + 1; i++)
+                if (m_keys.Any())
                 {
-                    if (m_keys.Any())
+                    foreach (var key in m_keys)
                     {
-                        foreach (var key in m_keys)
-                        {
-                            (m_hash as IWithKey).Key = key;
-                            SaveLine(sw, i);
-                        }
-                    }
-                    else
-                    {
+                        (m_hash as IWithKey).Key = key;
                         SaveLine(sw, i);
                     }
                 }
-
-                if (m_hash is ICrypto)
+                else
                 {
-                    var repeats = new int[] { 16777216, 67108865 };
+                    SaveLine(sw, i);
+                }
+            }
 
-                    foreach (var repeat in repeats)
+            if (m_hash is ICrypto)
+            {
+                var repeats = new int[] { 16777216, 67108865 };
+
+                foreach (var repeat in repeats)
+                {
+                    var str = "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmno";
+                    var data = System.Text.Encoding.ASCII.GetBytes(str);
+
+                    for (var i = 0; i < repeat; i++)
                     {
-                        var str = "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmno";
-                        var data = System.Text.Encoding.ASCII.GetBytes(str);
-
-                        for (var i = 0; i < repeat; i++)
-                        {
-                            m_hash.TransformBytes(data);
-                        }
-
-                        var hash = m_hash.TransformFinal().GetBytes();
-
-                        sw.WriteLine("Repeat: {0}", repeat);
-                        sw.WriteLine("Text: {0}", str);
-                        sw.WriteLine("Hash: {0}", Converters.ConvertBytesToHexString(hash, false));
-                        sw.WriteLine("");
+                        m_hash.TransformBytes(data);
                     }
+
+                    var hash = m_hash.TransformFinal().GetBytes();
+
+                    sw.WriteLine("Repeat: {0}", repeat);
+                    sw.WriteLine("Text: {0}", str);
+                    sw.WriteLine("Hash: {0}", Converters.ConvertBytesToHexString(hash, false));
+                    sw.WriteLine("");
                 }
             }
 

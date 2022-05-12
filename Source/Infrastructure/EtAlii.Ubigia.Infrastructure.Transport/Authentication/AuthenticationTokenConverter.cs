@@ -19,10 +19,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         public byte[] ToBytes(AuthenticationToken token)
         {
             using var stream = new MemoryStream();
-            using (var writer = new BsonDataWriter(stream))
-            {
-                _serializer.Serialize(writer, token);
-            }
+            using var writer = new BsonDataWriter(stream);
+
+            _serializer.Serialize(writer, token);
+
             var tokenAsBytes = stream.ToArray();
             return tokenAsBytes;
         }

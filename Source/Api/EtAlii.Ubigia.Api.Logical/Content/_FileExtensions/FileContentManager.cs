@@ -14,12 +14,13 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 var fileInfo = new FileInfo(localDataIdentifier);
                 var size = fileInfo.Length;
-                using (var stream = File.OpenRead(localDataIdentifier))
-                {
-                    await contentManager
-                        .Upload(stream, (uint)size, identifier)
-                        .ConfigureAwait(false);
-                }
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+                await using var stream = File.OpenRead(localDataIdentifier);
+#pragma warning restore CA2007
+
+                await contentManager
+                    .Upload(stream, (uint)size, identifier)
+                    .ConfigureAwait(false);
 
                 return true;
             }
@@ -33,12 +34,12 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             try
             {
-                using (var stream = File.Create(localDataIdentifier))
-                {
-                    await contentManager
-                        .Download(stream, identifier, validateChecksum)
-                        .ConfigureAwait(false);
-                }
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+                await using var stream = File.Create(localDataIdentifier);
+#pragma warning restore CA2007
+                await contentManager
+                    .Download(stream, identifier, validateChecksum)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

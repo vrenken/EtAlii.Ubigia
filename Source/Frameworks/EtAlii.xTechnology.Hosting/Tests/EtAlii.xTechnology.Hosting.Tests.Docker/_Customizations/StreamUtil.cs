@@ -23,13 +23,11 @@ namespace Docker.DotNet.Models
             // ReSharper disable once AccessToDisposedClosure
             await using (cancel.Register(() => stream.Dispose()))
             {
-                using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
+                using var reader = new StreamReader(stream, new UTF8Encoding(false));
+
+                while (await reader.ReadLineAsync().ConfigureAwait(false) is { } line)
                 {
-                    string line;
-                    while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
-                    {
-                        progress.Report(line);
-                    }
+                    progress.Report(line);
                 }
             }
         }
@@ -40,13 +38,13 @@ namespace Docker.DotNet.Models
             await using var stream = await streamTask.ConfigureAwait(false);
 #pragma warning restore CA2007
             // ReadLineAsync must be cancelled by closing the whole stream.
+            // ReSharper disable once AccessToDisposedClosure
             await using (cancel.Register(() => stream.Dispose()))
             {
                 using var reader = new StreamReader(stream, new UTF8Encoding(false));
                 try
                 {
-                    string line;
-                    while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
+                    while (await reader.ReadLineAsync().ConfigureAwait(false) is { } line)
                     {
                         var prog = _jsonSerializer.DeserializeObject<T>(line);
                         if (prog == null) continue;
@@ -74,24 +72,22 @@ namespace Docker.DotNet.Models
             // ReSharper disable once AccessToDisposedClosure
             await using (cancellationToken.Register(() => stream.Dispose()))
             {
-                using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
-                {
-                    try
-                    {
-                        string line;
-                        while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
-                        {
-                            var prog = _jsonSerializer.DeserializeObject<T>(line);
-                            if (prog == null) continue;
+                using var reader = new StreamReader(stream, new UTF8Encoding(false));
 
-                            progress.Report(prog);
-                        }
-                    }
-                    catch (ObjectDisposedException)
+                try
+                {
+                    while (await reader.ReadLineAsync().ConfigureAwait(false) is { } line)
                     {
-                        // The subsequent call to reader.ReadLineAsync() after cancellation
-                        // will fail because we disposed the stream. Just ignore here.
+                        var prog = _jsonSerializer.DeserializeObject<T>(line);
+                        if (prog == null) continue;
+
+                        progress.Report(prog);
                     }
+                }
+                catch (ObjectDisposedException)
+                {
+                    // The subsequent call to reader.ReadLineAsync() after cancellation
+                    // will fail because we disposed the stream. Just ignore here.
                 }
             }
         }

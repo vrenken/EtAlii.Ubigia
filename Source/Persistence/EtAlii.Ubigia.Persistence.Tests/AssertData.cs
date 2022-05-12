@@ -171,8 +171,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             for (var i = 0; i < iterations; i++)
             {
-                actualFileStream.Read(one, 0, bytesToRead);
-                expectedFileStream.Read(two, 0, bytesToRead);
+                var _ = actualFileStream.Read(one, 0, bytesToRead);
+                _ = expectedFileStream.Read(two, 0, bytesToRead);
 
                 Assert.Equal(BitConverter.ToInt64(two, 0), BitConverter.ToInt64(one, 0));
             }
