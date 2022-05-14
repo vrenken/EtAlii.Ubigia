@@ -31,6 +31,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+
+    <Content Include="$(MSBuildThisFileDirectory)\xunit.runner.json" CopyToOutputDirectory="PreserveNewest" >
+      <Visible>false</Visible>
+    </Content>
   </ItemGroup>
 
   <!-- We want any project that is not a test, portal or analyzer project to use nugetizer assistance when creating packages. -->
