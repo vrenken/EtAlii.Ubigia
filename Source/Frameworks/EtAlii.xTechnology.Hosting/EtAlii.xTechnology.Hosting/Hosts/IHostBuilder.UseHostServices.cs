@@ -42,7 +42,6 @@ namespace EtAlii.xTechnology.Hosting
                             configurator.Configure(kestrelOptions, services, configurationRoot);
                         });
                     webHostBuilder.Configure((context, application) => ConfigureApplication(hostBuilder, logger, services, context, application));
-                    //_configureHost?.Invoke(webHostBuilder);
                 });
         }
 
