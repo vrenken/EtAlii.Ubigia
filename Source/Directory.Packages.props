@@ -19,14 +19,14 @@
     <PackageVersion Include="Core.System.Configuration.Install" Version="1.1.0" />
     <PackageVersion Include="DockerizedTesting" Version="1.2.1" />
 
+    <PackageVersion Include="Google.Protobuf" Version="3.20.1" />
+    <PackageVersion Include="Grpc" Version="2.46.1" />
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.46.0" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.46.0" />
+    <PackageVersion Include="Grpc.Tools" Version="2.46.1" />
+
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Newtonsoft.Json.Bson" Version="1.0.2" />
-
-    <PackageVersion Include="Grpc" Version="2.46.1" />
-    <PackageVersion Include="Google.Protobuf" Version="3.20.1" />
-    <PackageVersion Include="Grpc.AspNetCore" Version="2.45.0" />
-    <PackageVersion Include="Grpc.Net.Client" Version="2.45.0" />
-    <PackageVersion Include="Grpc.Tools" Version="2.46.1" />
 
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="5.2.8" />
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
@@ -42,7 +42,7 @@
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
