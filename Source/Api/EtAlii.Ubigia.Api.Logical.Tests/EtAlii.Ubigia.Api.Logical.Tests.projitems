@@ -9,8 +9,8 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Logical.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Assignment\IntegrationTests\NodeToIdentifierAssigner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\__GraphPathAssigner.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\__GraphPathAssignerFactory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Link.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Remove.Tests.cs" />
