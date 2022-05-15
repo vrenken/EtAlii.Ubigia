@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Assert
 
             // We don't want any memory leaks.
-            dotMemory.Check(memory => Assert.Equal(6, memory.GetObjects(where => where.LeakedOnEventHandler()).ObjectsCount));
+            dotMemory.Check(memory => Assert.Equal(4, memory.GetObjects(where => where.LeakedOnEventHandler()).ObjectsCount));
         }
     }
 }
