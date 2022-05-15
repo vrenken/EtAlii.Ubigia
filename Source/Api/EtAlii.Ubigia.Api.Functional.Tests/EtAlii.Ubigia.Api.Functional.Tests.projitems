@@ -119,7 +119,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\TestAssembly.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)\Context\2. Planning\Integration tests" />
