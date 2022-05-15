@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence
     {
         private readonly IPropertiesRetriever _propertiesRetriever;
         private readonly IPropertiesStorer _propertiesStorer;
-        private readonly Regex _nameRegex;
+        private const string NameRegex = @"[^A-Za-z0-9]+";
 
         public PropertiesStorage(
             IPropertiesRetriever propertiesRetriever,
@@ -17,14 +17,13 @@ namespace EtAlii.Ubigia.Persistence
         {
             _propertiesRetriever = propertiesRetriever;
             _propertiesStorer = propertiesStorer;
-            _nameRegex = new Regex(@"[^A-Za-z0-9]+", RegexOptions.Singleline);
         }
 
         public void Store(ContainerIdentifier container, PropertyDictionary properties, string name = "_Default")
         {
             try
             {
-                name = _nameRegex.Replace(name, "_");
+                name = Regex.Replace(name, NameRegex, "_", RegexOptions.Singleline);
                 _propertiesStorer.Store(container, properties, name);
             }
             catch (Exception e)
@@ -38,7 +37,7 @@ namespace EtAlii.Ubigia.Persistence
         {
             try
             {
-                name = _nameRegex.Replace(name, "_");
+                name = Regex.Replace(name, NameRegex, "_", RegexOptions.Singleline);
                 return _propertiesRetriever.Retrieve(container, name);
             }
             catch (Exception e)
