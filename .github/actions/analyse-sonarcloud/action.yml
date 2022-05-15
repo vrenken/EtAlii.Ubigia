@@ -54,9 +54,9 @@ runs:
         UBIGIA_PROJECTNAME: EtAlii.Ubigia
         SONAR_COVERAGE_EXCLUSIONS: >
           **/*.Tests/**,
+          **/*Rest*/**,
+          **/*SignalR*/**,
           **/Frameworks/HashLib/**,
-          **/Frameworks/*Rest*/**,
-          **/Frameworks/*SignalR*/**,
           **/Frameworks/Moppet.Lappa/**
         GITHUB_TOKEN: ${{ inputs.github_token }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ inputs.sonar_token }}
