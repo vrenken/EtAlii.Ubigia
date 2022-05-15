@@ -22,6 +22,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             NamePathFormatter.FirstNameFormatter,
             NamePathFormatter.LastNameFormatter,
+
+            MediaPathFormatter.CompanyNameFormatter,
+            MediaPathFormatter.ProductFamilyNameFormatter,
+            MediaPathFormatter.ProductModelNameFormatter,
+            MediaPathFormatter.ProductNumberFormatter,
         };
 
         public string Type { get; }

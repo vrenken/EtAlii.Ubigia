@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact(Skip="No root handlers registered yet")]
+        [Fact]
         public async Task ScriptProcessor_RootedPath_Media_Select_ManufacturerDeviceModelDeviceTypeId_Path()
         {
             // Arrange.
@@ -29,12 +29,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
             var addQueries = new[]
             {
-                "media:Canon/PowerShot/Gtx123",
+                "Media:+=Canon/PowerShot/Gtx123/000",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Media/Canon/PowerShot/Gtx123/000";
-            var selectQuery2 = "media:Canon/PowerShot/Gtx123/000";
+            var selectQuery2 = "Media:Canon/PowerShot/Gtx123/000";
 
             var addScript = _parser.Parse(addQuery, scope).Script;
             var selectScript1 = _parser.Parse(selectQuery1, scope).Script;

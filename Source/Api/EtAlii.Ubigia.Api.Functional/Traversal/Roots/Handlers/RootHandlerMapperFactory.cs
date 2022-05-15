@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new PersonRootHandlerMapper(),
                 new ProvidersRootHandlerMapper(),
                 new LocationRootHandlerMapper(),
+                new MediaRootHandlerMapper(),
                 //new ObjectHandlerMapper(),
                 //new StringHandlerMapper(),
             };

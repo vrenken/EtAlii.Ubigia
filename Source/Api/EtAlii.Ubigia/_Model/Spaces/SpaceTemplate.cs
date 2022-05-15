@@ -63,6 +63,7 @@ namespace EtAlii.Ubigia
                     "Person",
                     "Location",
                     "Subscription",
+                    "Media",
                     "Head",
                 },
                 setupScript: new[] { "" }
