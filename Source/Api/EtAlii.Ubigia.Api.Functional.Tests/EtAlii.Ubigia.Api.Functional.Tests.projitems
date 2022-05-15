@@ -9,6 +9,7 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Scripting.Traversal.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalOptions.UseLogicalContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.Tests.cs" />
