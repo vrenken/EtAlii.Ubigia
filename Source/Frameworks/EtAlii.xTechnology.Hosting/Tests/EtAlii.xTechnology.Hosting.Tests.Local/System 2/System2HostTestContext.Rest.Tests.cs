@@ -7,17 +7,18 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using System.Threading.Tasks;
     using Xunit;
 
-    public class System2HostTestContextNetCoreTests : IClassFixture<UnitTestContext<System2RestHostTestContext>>
+    [Trait("Transport", "Rest")]
+    public class System2HostTestContextRestTests : IClassFixture<UnitTestContext<System2RestHostTestContext>>
     {
         private readonly UnitTestContext<System2RestHostTestContext> _context;
 
-        public System2HostTestContextNetCoreTests(UnitTestContext<System2RestHostTestContext> context)
+        public System2HostTestContextRestTests(UnitTestContext<System2RestHostTestContext> context)
         {
             _context = context;
         }
 
         [Fact]
-        public async Task System2HostTestContextNetCore_User_Api_Get_1()
+        public async Task System2HostTestContextRest_User_Api_Get_1()
         {
             // Arrange.
             var port = _context.Host.Ports[TestPort.RestUserApi];
@@ -35,7 +36,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         }
 
         [Fact]
-        public async Task System2HostTestContextNetCore_User_Api_Get_2()
+        public async Task System2HostTestContextRest_User_Api_Get_2()
         {
             // Arrange.
             var port = _context.Host.Ports[TestPort.RestUserApi];

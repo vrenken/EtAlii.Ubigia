@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using System.Threading.Tasks;
     using Xunit;
 
+    [Trait("Transport", "SignalR")]
     public class System2HostTestContextSignalRTests : IClassFixture<UnitTestContext<System2SignalRHostTestContext>>
     {
         private readonly UnitTestContext<System2SignalRHostTestContext> _context;

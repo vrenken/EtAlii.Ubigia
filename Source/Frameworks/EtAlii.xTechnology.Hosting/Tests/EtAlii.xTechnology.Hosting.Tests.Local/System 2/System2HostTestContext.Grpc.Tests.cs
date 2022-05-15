@@ -8,6 +8,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
     using EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc.WireProtocol;
     using Xunit;
 
+    [Trait("Transport", "Grpc")]
     public class System2HostTestContextGrpcTests : IClassFixture<UnitTestContext<System2GrpcHostTestContext>>
     {
         private readonly UnitTestContext<System2GrpcHostTestContext> _context;
