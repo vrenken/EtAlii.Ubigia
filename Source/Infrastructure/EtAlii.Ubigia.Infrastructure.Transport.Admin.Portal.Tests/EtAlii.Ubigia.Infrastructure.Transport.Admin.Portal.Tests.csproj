@@ -18,5 +18,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="HostSettings.json">
+      <BuildAction>Content</BuildAction>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>
