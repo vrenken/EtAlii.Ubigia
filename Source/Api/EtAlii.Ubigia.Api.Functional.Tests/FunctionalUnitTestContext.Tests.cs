@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.True(duration.TotalMinutes < 3);
         }
 
-        [Fact(Skip = "Temporary disabled")]
+        [Fact]
         public async Task FunctionalUnitTestContext_Create_Complete()
         {
             // Arrange.
