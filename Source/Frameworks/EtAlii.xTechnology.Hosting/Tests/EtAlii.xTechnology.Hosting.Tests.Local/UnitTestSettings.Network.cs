@@ -1,10 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Tests.Local
+using EtAlii.xTechnology.Hosting;
+
+// ReSharper disable once CheckNamespace
+internal static partial class UnitTestSettings
 {
-    internal static class UnitTestSettings
-    {
-        // For our hosting tests we need a bigger range.
-        public static readonly PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 17000, UnitTestConstants.NetworkPortRangeStart + 17499);
-    }
+    // For our hosting tests we need a bigger range.
+    public static readonly PortRange NetworkPortRange = new(NetworkPortRangeStart + 17000, NetworkPortRangeStart + 17499);
 }

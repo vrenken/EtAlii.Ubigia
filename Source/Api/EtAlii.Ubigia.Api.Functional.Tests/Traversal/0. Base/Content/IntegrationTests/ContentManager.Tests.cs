@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
-    using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class ContentManagerTests : IClassFixture<ContentFunctionalUnitTestContext>, IAsyncLifetime
     {

@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         private IStorage CreateStorage()
         {
             var options = new StorageOptions(HostConfiguration)
-                .Use(TestAssembly.StorageName)
+                .Use(UnitTestSettings.StorageName)
                 .UseStorageDiagnostics()
                 .UseNetCoreAppStorage(RootFolder);
 

@@ -10,7 +10,8 @@ using Microsoft.Extensions.Configuration;
 // We want to run as much tests (unit and integration ones) in parallel.
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)]
 
-internal static class UnitTestConstants
+// ReSharper disable once PartialTypeWithSinglePart
+internal static partial class UnitTestSettings
 {
     public const int NetworkPortRangeStart = 20000;
 }

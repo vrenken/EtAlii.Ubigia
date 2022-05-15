@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         private InMemoryStorage CreateStorage()
         {
             var options = new StorageOptions(HostConfiguration)
-                .Use(TestAssembly.StorageName)
+                .Use(UnitTestSettings.StorageName)
                 .UseStorageDiagnostics()
                 .UseInMemoryStorage();
 

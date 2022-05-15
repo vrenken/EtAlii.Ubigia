@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)StorageTestHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StorageUnitTestContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTestSettings.Network.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTestSettings.Storage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\ContainerProvider.Tests.cs" />
     <Content Include="$(MSBuildThisFileDirectory)HostSettings.json">
       <DefaultPackFolder>content</DefaultPackFolder>

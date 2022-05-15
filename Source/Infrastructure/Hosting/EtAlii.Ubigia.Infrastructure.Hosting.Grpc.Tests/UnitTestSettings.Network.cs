@@ -1,13 +1,11 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+using EtAlii.xTechnology.Hosting;
+
 [assembly: Xunit.AssemblyTrait("Transport", "Grpc")]
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+// ReSharper disable once CheckNamespace
+internal static partial class UnitTestSettings
 {
-    using EtAlii.xTechnology.Hosting;
-
-    internal static class UnitTestSettings
-    {
-        public static readonly PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 15000, UnitTestConstants.NetworkPortRangeStart + 15199);
-    }
+    public static readonly PortRange NetworkPortRange = new(NetworkPortRangeStart + 15000, NetworkPortRangeStart + 15199);
 }
