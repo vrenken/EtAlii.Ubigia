@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NotStartedTransportUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StartedTransportUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\AccountDataClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\SpaceDataClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\StorageDataClientStub.Tests.cs" />

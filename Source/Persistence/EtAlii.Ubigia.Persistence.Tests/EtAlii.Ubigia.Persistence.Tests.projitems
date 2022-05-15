@@ -40,7 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)StorageUnitTestContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTestSettings.Network.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTests\ContainerProvider.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Content Include="$(MSBuildThisFileDirectory)HostSettings.json">
       <DefaultPackFolder>content</DefaultPackFolder>
       <Pack>true</Pack>

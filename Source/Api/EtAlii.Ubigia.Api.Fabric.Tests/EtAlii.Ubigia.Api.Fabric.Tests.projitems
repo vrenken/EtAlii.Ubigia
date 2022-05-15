@@ -22,7 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)FabricTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFabricTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\IntegrationTests\FabricContext.Roots.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FabricUnitTestContext.cs" />
   </ItemGroup>
 </Project>
