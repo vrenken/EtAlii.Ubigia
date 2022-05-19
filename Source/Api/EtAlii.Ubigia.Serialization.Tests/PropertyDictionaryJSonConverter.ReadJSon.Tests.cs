@@ -629,10 +629,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             Assert.Equal(decimal.MinValue, result["Hello"]);
         }
 
-
-        // TODO: Verify this and the corresponding writeJson variant. They should work but don't give
-        // consistent results on all machines.
-        [Fact(Skip = "Not working as expected.")]
+        [Fact]
         public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Local()
         {
             // Arrange.
