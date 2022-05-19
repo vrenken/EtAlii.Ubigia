@@ -36,9 +36,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
                 var previousOutput = Observable.Create<Identifier>(output =>
                 {
+                    // ReSharper disable once AccessToModifiedClosure
                     var parameters = new TraversalParameters(graphPathPart, context, scope, output, input);
                     traverser.Configure(parameters);
 
+                    // ReSharper disable once AccessToDisposedClosure
                     continueEvent.Set();
 
                     return Disposable.Empty;
