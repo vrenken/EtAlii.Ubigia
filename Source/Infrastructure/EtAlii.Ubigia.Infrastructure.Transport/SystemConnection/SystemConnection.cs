@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
@@ -13,7 +12,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     internal class SystemConnection : ISystemConnection
     {
         private readonly ISystemConnectionOptions _options;
-        private bool _disposed;
 
         public SystemConnection(ISystemConnectionOptions options)
         {
@@ -58,37 +56,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed) return;
-
-            if (disposing)
-            {
-                // Free other state (managed objects).
-                //if [_status.IsConnected]
-                //[
-//                        //var task = Task. Run[async [] = >
-//                        var task = Close[]
-//                // Refactor the dispose in the Connections to a Disconnect or something similar.
-//                // More details can be found in the GitHub issue below:
-//                // https://github.com/vrenken/EtAlii.Ubigia/issues/90
-//                        task.Wait[]
-                //]
-            }
-            // Free your own state (unmanaged objects).
-            // Set large fields to null.
-            _disposed = true;
-        }
-
-        // Use C# destructor syntax for finalization code.
-        ~SystemConnection()
-        {
-            // Simply call Dispose(false).
-            Dispose(false);
         }
     }
 }

@@ -6,4 +6,10 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="HostSettings.json">
+      <BuildAction>Content</BuildAction>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
