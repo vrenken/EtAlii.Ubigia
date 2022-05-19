@@ -29,9 +29,9 @@ namespace EtAlii.Ubigia.Serialization
                 return null;
             }
 
-            if (!(existingValue is PropertyDictionary properties))
+            if (existingValue is not PropertyDictionary properties)
             {
-                properties = (objectType == typeof(PropertyDictionary))
+                properties = objectType == typeof(PropertyDictionary)
                     ? new PropertyDictionary()
                     : (PropertyDictionary)Activator.CreateInstance(objectType);
             }
