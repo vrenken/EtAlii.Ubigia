@@ -14,15 +14,6 @@ namespace EtAlii.Ubigia.Api.Fabric
             return fabricOptions;
         }
 
-        public static async Task<FabricOptions> UseFabricContext(this Task<DataConnectionOptions> dataConnectionOptionsTask)
-        {
-            var dataConnectionOptions = await dataConnectionOptionsTask.ConfigureAwait(false);
-
-            var fabricOptions = new FabricOptions(dataConnectionOptions.ConfigurationRoot)
-                .Use(dataConnectionOptions);
-            return fabricOptions;
-        }
-
         public static async Task<FabricOptions> UseFabricContext(this Task<(IDataConnection, DataConnectionOptions)> dataConnectionOptionsTask)
         {
             var (_, dataConnectionOptions) = await dataConnectionOptionsTask.ConfigureAwait(false);

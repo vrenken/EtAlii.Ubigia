@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.Content.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.ContentDefinition.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.Properties.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.UseFabricContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentCacheHelper.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\CachingEntryContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\FabricContext.Entries.Tests.cs" />
