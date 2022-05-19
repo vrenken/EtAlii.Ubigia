@@ -394,7 +394,6 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             Assert.Equal(1, modelCount.SecondChildInitializeCount);
             Assert.Same(parent, firstChild.Parent);
             Assert.Same(parent, secondChild.Parent);
-
         }
     }
 }
