@@ -24,15 +24,19 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
                 .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
 
-            // Arrange.
+            // Act.
             var host = Host
                 .CreateDefaultBuilder()
                 .UseHostLogging(configurationRoot, typeof(KestrelConfiguratorTests).Assembly)
                 .UseHostServices<LocalHostServicesFactory>(configurationRoot)
                 .Build();
+            await host.StartAsync().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(host);
+
+            // Assure.
+            await host.StopAsync().ConfigureAwait(false);
         }
     }
 }
