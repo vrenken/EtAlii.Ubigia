@@ -6,10 +6,9 @@
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Ntfs\EtAlii.Ubigia.Persistence.Ntfs.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj" />
   </ItemGroup>
 </Project>

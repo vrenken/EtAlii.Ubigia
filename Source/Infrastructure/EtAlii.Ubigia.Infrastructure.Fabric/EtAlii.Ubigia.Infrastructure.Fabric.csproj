@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaInfrastructureLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>1a8ebc3e-54d9-44d6-b1c9-94614e0ad0eb</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
@@ -10,5 +10,6 @@
     <ProjectReference Include="..\..\Frameworks\HashLib\HashLib\HashLib.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
 </Project>

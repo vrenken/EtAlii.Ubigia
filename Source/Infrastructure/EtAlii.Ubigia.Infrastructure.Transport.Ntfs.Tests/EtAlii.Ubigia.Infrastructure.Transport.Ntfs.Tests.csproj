@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProjectGuid>789ade58-7cec-4040-902c-b1b7230fba4d</ProjectGuid>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Ntfs.Tests</RootNamespace>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Ntfs\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.csproj" />
-  </ItemGroup>
-</Project>

@@ -1,17 +1,16 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-// TODO: Rename this whole project to EtAlii.Ubigia.infrastructure.Fabric.InMemory
-// And of course also the other persistence projects.
-namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Standard
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
-    using EtAlii.Ubigia.Persistence.InMemory;
+    using EtAlii.Ubigia.Persistence.Standard;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
     public class StorageService : IStorageService
     {
@@ -45,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 
             var storageOptions = new StorageOptions(Configuration.Root)
                 .Use(name)
-                .UseInMemoryStorage()
+                .UseStandardStorage(baseFolder)
                 .UseStorageDiagnostics();
             return new StorageFactory().Create(storageOptions);
         }

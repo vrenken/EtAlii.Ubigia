@@ -14,7 +14,7 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj" />
-    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>

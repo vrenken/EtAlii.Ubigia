@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>1c13741b-f7eb-4e8d-b818-d6d0ff9f76db</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
+  </ItemGroup>
+</Project>

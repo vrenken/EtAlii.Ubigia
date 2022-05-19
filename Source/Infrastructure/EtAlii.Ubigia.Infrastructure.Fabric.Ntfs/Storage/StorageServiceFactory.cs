@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Ntfs
 {
     using EtAlii.xTechnology.Hosting;
 

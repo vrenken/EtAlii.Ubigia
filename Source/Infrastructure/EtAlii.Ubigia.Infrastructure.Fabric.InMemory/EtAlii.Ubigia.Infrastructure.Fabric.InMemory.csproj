@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <OutputType>Library</OutputType>
     <ProjectGuid>3d433559-aadc-4379-ab8d-cea66783c533</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
@@ -8,6 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.InMemory\EtAlii.Ubigia.Persistence.InMemory.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj" />
   </ItemGroup>
 </Project>

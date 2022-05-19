@@ -1,16 +1,15 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.Standard
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Ntfs
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
-    using EtAlii.Ubigia.Persistence.Standard;
+    using EtAlii.Ubigia.Persistence.Ntfs;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
     public class StorageService : IStorageService
     {
@@ -44,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Standard
 
             var storageOptions = new StorageOptions(Configuration.Root)
                 .Use(name)
-                .UseStandardStorage(baseFolder)
+                .UseNtfsStorage(baseFolder)
                 .UseStorageDiagnostics();
             return new StorageFactory().Create(storageOptions);
         }

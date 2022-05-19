@@ -3,7 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Fabric;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Persistence;
 	using EtAlii.xTechnology.Hosting;

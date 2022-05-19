@@ -33,7 +33,7 @@
     <!-- Shared -->
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Standard\EtAlii.Ubigia.Infrastructure.Transport.Standard.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric.Standard\EtAlii.Ubigia.Infrastructure.Fabric.Standard.csproj" />
 
     <!-- Grpc -->
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />

@@ -9,7 +9,7 @@
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
-    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
