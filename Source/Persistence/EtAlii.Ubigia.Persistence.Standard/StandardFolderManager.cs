@@ -1,17 +1,17 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
 
-    internal class NetCoreAppFolderManager : IFolderManager
+    internal class StandardFolderManager : IFolderManager
     {
         private readonly IStorageSerializer _serializer;
 
-        public NetCoreAppFolderManager(IStorageSerializer serializer)
+        public StandardFolderManager(IStorageSerializer serializer)
         {
             _serializer = serializer;
         }
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
         {
             if (!Directory.Exists(folder))
             {
-                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(NetCoreAppFolderManager)}.");
+                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(StandardFolderManager)}.");
             }
 
             var fileName = string.Format(_serializer.FileNameFormat, itemName);

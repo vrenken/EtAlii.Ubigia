@@ -127,7 +127,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.InMemory", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj", "{3D433559-AADC-4379-AB8D-CEA66783C533}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj", "{A312CFE9-826E-4F12-833D-61EF21DC9C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Standard", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Standard\EtAlii.Ubigia.Infrastructure.Transport.Standard.csproj", "{A312CFE9-826E-4F12-833D-61EF21DC9C7B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Grpc", "Api\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj", "{20DB2052-783F-40DD-BA23-0ACA594DA338}"
 EndProject
@@ -227,7 +227,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.InMemory", "Persistence\EtAlii.Ubigia.Persistence.InMemory\EtAlii.Ubigia.Persistence.InMemory.csproj", "{81447261-6562-40A5-837A-A269306AD78B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.NetCoreApp", "Persistence\EtAlii.Ubigia.Persistence.NetCoreApp\EtAlii.Ubigia.Persistence.NetCoreApp.csproj", "{8389CFF0-B7E8-4A84-B95D-0F12A3706966}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Standard", "Persistence\EtAlii.Ubigia.Persistence.Standard\EtAlii.Ubigia.Persistence.Standard.csproj", "{8389CFF0-B7E8-4A84-B95D-0F12A3706966}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Ntfs", "Persistence\EtAlii.Ubigia.Persistence.Ntfs\EtAlii.Ubigia.Persistence.Ntfs.csproj", "{2FB9D0D5-DE7B-44EB-AC89-81DE306D9554}"
 EndProject
@@ -237,7 +237,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.InMemory.Tests", "Persistence\EtAlii.Ubigia.Persistence.InMemory.Tests\EtAlii.Ubigia.Persistence.InMemory.Tests.csproj", "{B0E65C72-8364-4FFD-8F4D-0B0F9D5EDE0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.NetCoreApp.Tests", "Persistence\EtAlii.Ubigia.Persistence.NetCoreApp.Tests\EtAlii.Ubigia.Persistence.NetCoreApp.Tests.csproj", "{DE359065-7238-451D-A43E-9C47AF26D885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Standard.Tests", "Persistence\EtAlii.Ubigia.Persistence.Standard.Tests\EtAlii.Ubigia.Persistence.Standard.Tests.csproj", "{DE359065-7238-451D-A43E-9C47AF26D885}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Ntfs.Tests", "Persistence\EtAlii.Ubigia.Persistence.Ntfs.Tests\EtAlii.Ubigia.Persistence.Ntfs.Tests.csproj", "{4F8B2631-CDA7-4B99-9AF3-B891139D023E}"
 EndProject

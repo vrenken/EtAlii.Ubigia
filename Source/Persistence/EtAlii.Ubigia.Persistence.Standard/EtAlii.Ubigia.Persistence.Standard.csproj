@@ -5,6 +5,7 @@
     <PackageReleaseNotes>Migrated to .NET Standard 2.1</PackageReleaseNotes>
     <PackageTags>Storage Ubigia NetCoreApp3.0</PackageTags>
     <ProjectGuid>8389CFF0-B7E8-4A84-B95D-0F12A3706966</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Standard</RootNamespace>
 <!--    <PackProject>true</PackProject>-->
 <!--    <PackageId>$(AssemblyName)</PackageId>-->
   </PropertyGroup>

@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class NetCoreAppStorageExtension : IExtension
+    public class StandardStorageExtension : IExtension
     {
         private readonly string _baseFolder;
 
-        public NetCoreAppStorageExtension(string baseFolder)
+        public StandardStorageExtension(string baseFolder)
         {
             _baseFolder = baseFolder;
         }
@@ -17,14 +17,14 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
         {
             var scaffoldings = new IScaffolding[]
             {
-                new NetCoreAppFactoryScaffolding()
+                new StandardFactoryScaffolding()
             };
 
             foreach (var scaffolding in scaffoldings)
             {
                 scaffolding.Register(container);
             }
-            container.RegisterInitializer<IPathBuilder>(pb => ((NetCoreAppPathBuilder)pb).Initialize(_baseFolder));
+            container.RegisterInitializer<IPathBuilder>(pb => ((StandardPathBuilder)pb).Initialize(_baseFolder));
         }
     }
 }

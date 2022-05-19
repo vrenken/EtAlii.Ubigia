@@ -1,28 +1,12 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using System.IO;
-    using System.Threading.Tasks;
 
-    internal partial class NetCoreAppFileManager : IFileManager
+    internal partial class StandardFileManager
     {
-        private readonly IStorageSerializer _serializer;
-        private readonly IFolderManager _folderManager;
-        private readonly IPathBuilder _pathBuilder;
-
-        public NetCoreAppFileManager(
-            IStorageSerializer serializer,
-            IFolderManager folderManager,
-            IPathBuilder pathBuilder)
-        {
-            _folderManager = folderManager;
-            _pathBuilder = pathBuilder;
-            _serializer = serializer;
-        }
-
-        public void SaveToFile<T>(string path, T item)
-            where T : class
+        public void SaveToFile(string path, PropertyDictionary item)
         {
             // Ensure that the requested folder exists.
             var folder = _pathBuilder.GetDirectoryName(path);
@@ -47,10 +31,9 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
             }
         }
 
-        public async Task<T> LoadFromFile<T>(string path)
-            where T : class
+        public PropertyDictionary LoadFromFile(string path)
         {
-            T item = null;
+            PropertyDictionary item = null;
 
             // Ensure that the requested folder exists.
             var folder = _pathBuilder.GetDirectoryName(path);
@@ -58,20 +41,10 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
 
             if (File.Exists(path))
             {
-                item = await _serializer.Deserialize<T>(path).ConfigureAwait(false);
+                item = _serializer.Deserialize(path);
             }
 
             return item;
-        }
-
-        public bool Exists(string path)
-        {
-            return File.Exists(path);
-        }
-
-        public void Delete(string path)
-        {
-	        File.Delete(path);
         }
     }
 }

@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.NetCoreApp\EtAlii.Ubigia.Persistence.NetCoreApp.csproj" />
+    <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Standard\EtAlii.Ubigia.Persistence.Standard.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>
 </Project>

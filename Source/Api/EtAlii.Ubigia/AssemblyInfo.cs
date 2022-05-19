@@ -20,7 +20,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.InMemory.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Azure.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Ntfs.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.NetCoreApp.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Standard.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Portable.Tests")]
 
 

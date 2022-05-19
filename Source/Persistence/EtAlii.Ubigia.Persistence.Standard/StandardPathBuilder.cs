@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using System;
     using System.IO;
 
-    public class NetCoreAppPathBuilder : IPathBuilder
+    public class StandardPathBuilder : IPathBuilder
     {
         public string BaseFolder { get; private set; }
 
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
         private readonly char _separatorChar;
         private readonly string _separatorString;
 
-        public NetCoreAppPathBuilder(
+        public StandardPathBuilder(
             IStorageOptions options,
             IStorageSerializer serializer)
         {

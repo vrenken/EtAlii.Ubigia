@@ -2,7 +2,7 @@
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.Ntfs.Tests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.InMemory.Tests")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.NetCoreApp.Tests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.Standard.Tests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.Portable.Tests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.Cassandra.Tests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("EtAlii.Ubigia.Persistence.Azure.Tests")]

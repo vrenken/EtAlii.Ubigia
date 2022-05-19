@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public static class StorageOptionsUseNetCoreApp
+    public static class StorageOptionsUseStandardStorage
     {
-        public static IStorageOptions UseNetCoreAppStorage(this IStorageOptions options, string baseFolder)
+        public static IStorageOptions UseStandardStorage(this IStorageOptions options, string baseFolder)
         {
             var extensions = new IExtension[]
             {
-                new NetCoreAppStorageExtension(baseFolder),
+                new StandardStorageExtension(baseFolder),
             };
             return options.Use(extensions);
         }

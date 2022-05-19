@@ -2,7 +2,7 @@
     "@jdt.merge" : [{
         "@jdt.path" : "$.Storage",
         "@jdt.value" : {
-            "Factory" : "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
+            "Factory" : "EtAlii.Ubigia.Infrastructure.Transport.Standard.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Standard",
             "BaseFolder" : "%LOCALAPPDATA%\\EtAlii\\Ubigia"
         }
     },

@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
+namespace EtAlii.Ubigia.Infrastructure.Transport.Standard
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
-    using EtAlii.Ubigia.Persistence.NetCoreApp;
+    using EtAlii.Ubigia.Persistence.Standard;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 
             var storageOptions = new StorageOptions(Configuration.Root)
                 .Use(name)
-                .UseNetCoreAppStorage(baseFolder)
+                .UseStandardStorage(baseFolder)
                 .UseStorageDiagnostics();
             return new StorageFactory().Create(storageOptions);
         }

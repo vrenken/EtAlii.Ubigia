@@ -1,19 +1,19 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp
+namespace EtAlii.Ubigia.Persistence.Standard
 {
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
 
-    public class NetCoreAppStorageSerializer : IStorageSerializer
+    public class StandardStorageSerializer : IStorageSerializer
     {
         private readonly IItemSerializer _itemSerializer;
         private readonly IPropertiesSerializer _propertiesSerializer;
 
-        public string FileNameFormat { get; } = "{0}.bson";
+        public string FileNameFormat => "{0}.bson";
 
-        public NetCoreAppStorageSerializer(
+        public StandardStorageSerializer(
             IItemSerializer itemSerializer,
             IPropertiesSerializer propertiesSerializer)
         {

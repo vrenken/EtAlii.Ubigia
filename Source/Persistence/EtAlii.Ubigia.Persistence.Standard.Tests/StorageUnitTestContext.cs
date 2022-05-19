@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence.NetCoreApp;
+    using EtAlii.Ubigia.Persistence.Standard;
     using EtAlii.Ubigia.Serialization;
 
     public class StorageUnitTestContext : FileSystemStorageUnitTestContextBase
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var options = new StorageOptions(HostConfiguration)
                 .Use(UnitTestSettings.StorageName)
                 .UseStorageDiagnostics()
-                .UseNetCoreAppStorage(RootFolder);
+                .UseStandardStorage(RootFolder);
 
             return new StorageFactory().Create(options);
         }
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
         public IStorageSerializer CreateSerializer(IItemSerializer itemSerializer, IPropertiesSerializer propertiesSerializer)
         {
-            return new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
+            return new StandardStorageSerializer(itemSerializer, propertiesSerializer);
         }
 
         public string GetExpectedDirectoryName(ContainerIdentifier containerIdentifier)

@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.InMemory.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Azure.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.NetCoreApp.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Standard.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Ntfs.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Portable.Tests")]
 
@@ -41,6 +41,6 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Standard")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.InMemory")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Ntfs")]
