@@ -29,6 +29,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 .ConfigureAwait(false);
 
             // Assert.
+            Assert.NotNull(fabricOptions);
 
             // Assure.
             var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
@@ -48,6 +49,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var fabricOptions = dataConnection.UseFabricContext();
 
             // Assert.
+            Assert.NotNull(fabricOptions);
 
             // Assure.
             var fabricContext = Factory.Create<IFabricContext>(fabricOptions);
