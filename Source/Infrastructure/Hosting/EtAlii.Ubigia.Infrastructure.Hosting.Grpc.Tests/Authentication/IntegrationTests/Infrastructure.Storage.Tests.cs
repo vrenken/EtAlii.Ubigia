@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var authenticationToken = call
 				.GetTrailers()
 				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;
-			var headers = new Metadata {{GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken}};
+			var headers = new Metadata {{GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken!}};
 			return headers;
 		}
 
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
         }
 
-		[Fact(Skip = "Not working (yet)")]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact(Skip = "Not working (yet)")]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact(Skip = "Not working (yet)")]
+		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
