@@ -56,6 +56,52 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
 
         [Fact]
+        public void DataConnectionOptions_UseTransport_Null()
+        {
+            // Arrange.
+            var settings = new Dictionary<string, string>
+            {
+                {"Service1:url", "http://somewhere"},
+                {"Service1:port", "123"}
+            };
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddInMemoryCollection(settings);
+            var configurationRoot = configurationBuilder.Build();
+            var options = new DataConnectionOptions(configurationRoot);
+
+            // Act.
+            var act = new Action(() => options.UseTransport(null));
+
+
+            // Assert.
+            Assert.Throws<ArgumentNullException>(act);
+        }
+
+        [Fact]
+        public void DataConnectionOptions_UseTransport_Already_Set()
+        {
+            // Arrange.
+            var settings = new Dictionary<string, string>
+            {
+                {"Service1:url", "http://somewhere"},
+                {"Service1:port", "123"}
+            };
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddInMemoryCollection(settings);
+            var configurationRoot = configurationBuilder.Build();
+            var options = new DataConnectionOptions(configurationRoot);
+            var transportProvider = new StubbedTransportProvider();
+            options.UseTransport(transportProvider);
+
+            // Act.
+            var act = new Action(() => options.UseTransport(null));
+
+
+            // Assert.
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        [Fact]
         public void DataConnectionOptions_UseStubbedConnection()
         {
             // Arrange.
