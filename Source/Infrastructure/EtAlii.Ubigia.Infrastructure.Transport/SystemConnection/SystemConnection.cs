@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SystemConnection : ISystemConnection
+    internal sealed class SystemConnection : ISystemConnection
     {
         private readonly ISystemConnectionOptions _options;
 
@@ -56,6 +56,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public void Dispose()
         {
+            // Nothing to clean up right now.
         }
     }
 }
