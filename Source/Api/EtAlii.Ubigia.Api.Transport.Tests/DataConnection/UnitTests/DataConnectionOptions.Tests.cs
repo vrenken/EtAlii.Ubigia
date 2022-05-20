@@ -231,5 +231,49 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             // Assert.
             Assert.Equal(uri, options.Address);
         }
+
+        [Fact]
+        public void DataConnectionOptions_UseUri_Null()
+        {
+            // Arrange.
+            var settings = new Dictionary<string, string>
+            {
+                {"Service1:url", "http://somewhere"},
+                {"Service1:port", "123"}
+            };
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddInMemoryCollection(settings);
+            var configurationRoot = configurationBuilder.Build();
+            var options = new DataConnectionOptions(configurationRoot);
+
+            // Act.
+            var act = new Action(() => options.Use((Uri)null));
+
+            // Assert.
+            Assert.Throws<ArgumentNullException>(act);
+        }
+
+        [Fact]
+        public void DataConnectionOptions_UseUri_Already_Set()
+        {
+            // Arrange.
+            var settings = new Dictionary<string, string>
+            {
+                {"Service1:url", "http://somewhere"},
+                {"Service1:port", "123"}
+            };
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddInMemoryCollection(settings);
+            var configurationRoot = configurationBuilder.Build();
+            var options = new DataConnectionOptions(configurationRoot);
+            var uri = new Uri("https://SomewhereExiting.com");
+            options.Use(uri);
+
+            // Act.
+            var act = new Action(() => options.Use((Uri)null));
+
+            // Assert.
+            Assert.Throws<InvalidOperationException>(act);
+        }
     }
 }
