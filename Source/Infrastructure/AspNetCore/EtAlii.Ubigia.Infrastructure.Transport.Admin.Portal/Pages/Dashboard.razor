@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using EtAlii.Ubigia.Infrastructure.Functional
 
 @namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
 
+@inject IInfrastructure _infrastructure;
 
 <Row Flex="Flex.Row.AlignContent.Center" >
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
@@ -17,25 +19,18 @@
                             <TableRow>
                                 <TableHeaderCell>#</TableHeaderCell>
                                 <TableHeaderCell>Name</TableHeaderCell>
-                                <TableHeaderCell>Activity</TableHeaderCell>
+                                <TableHeaderCell>Spaces</TableHeaderCell>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow>
-                                <TableRowHeader>1</TableRowHeader>
-                                <TableRowCell>Tony Stark</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowHeader>2</TableRowHeader>
-                                <TableRowCell>Bruce Banner</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowHeader>3</TableRowHeader>
-                                <TableRowCell>Peter Parker</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
-                            </TableRow>
+                            @foreach(var account in _accounts)
+                            {
+                                <TableRow>
+                                    <TableRowHeader>@account.Index</TableRowHeader>
+                                    <TableRowCell>@account.Name</TableRowCell>
+                                    <TableRowCell><Badge Color="Color.Primary" Pill> @account.Spaces</Badge></TableRowCell>
+                                </TableRow>
+                            }
                         </TableBody>
                     </Table>
                 </CardText>
@@ -61,21 +56,14 @@
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow>
-                                <TableRowHeader>1</TableRowHeader>
-                                <TableRowCell>Tony Stark</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>127 Kt/pm</Badge></TableRowCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowHeader>2</TableRowHeader>
-                                <TableRowCell>Bruce Banner</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>23 t/pm</Badge></TableRowCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowHeader>3</TableRowHeader>
-                                <TableRowCell>Peter Parker</TableRowCell>
-                                <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
-                            </TableRow>
+                            @foreach (var storage in _storages)
+                            {
+                                <TableRow>
+                                    <TableRowHeader>@storage.Index</TableRowHeader>
+                                    <TableRowCell>@storage.Name</TableRowCell>
+                                    <TableRowCell><Badge Color="Color.Primary" Pill>324 Kt/pm</Badge></TableRowCell>
+                                </TableRow>
+                            }
                         </TableBody>
                     </Table>
                 </CardText>

@@ -47,13 +47,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 .AddFontAwesomeIcons();
 
             services
-                .AddServerSideBlazor()
+                .AddServerSideBlazor(o => o.DetailedErrors = true)
                 .AddHubOptions(options =>
                 {
                     options.MaximumReceiveMessageSize = 1024 * 1024 * 100;
                 });
 
 
+            services.AddSingleton(globalServices.GetService<IInfrastructureService>()!.Infrastructure);
             services.AddSingleton<IConfiguration>(Configuration.Root);
             services.ConfigureOptions(typeof(UIConfigureOptions));
         }
