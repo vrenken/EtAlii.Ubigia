@@ -5,12 +5,12 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Components;
 
-    public partial class Dashboard
+    public partial class List
     {
         private AccountRow[] _accounts;
-        private StorageRow[] _storages;
 
         [Inject] private IInfrastructure Infrastructure { get; set; }
+
         [Inject] private NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -28,29 +28,16 @@
                 })
                 .ToArrayAsync()
                 .ConfigureAwait(false);
-
-            var storageIndex = 1;
-            _storages = await Infrastructure.Storages
-                .GetAll()
-                .Take(3)
-                .Select(s => new StorageRow
-                {
-                    Index = storageIndex++,
-                    Name = s.Name,
-                    Id = s.Id
-                })
-                .ToArrayAsync()
-                .ConfigureAwait(false);
-        }
-
-        private void OnManageAccounts()
-        {
-            NavigationManager.NavigateTo("/Accounts/");
         }
 
         private void OnEditAccount(AccountRow account)
         {
             NavigationManager.NavigateTo($"/Accounts/Edit?Id={account.Id}");
+        }
+
+        private void OnAddAccount()
+        {
+            NavigationManager.NavigateTo("/Accounts/Add");
         }
     }
 }

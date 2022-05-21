@@ -1,9 +1,6 @@
 ﻿@page "/"
-@using EtAlii.Ubigia.Infrastructure.Functional
 
 @namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
-
-@inject IInfrastructure _infrastructure;
 
 <Row Flex="Flex.Row.AlignContent.Center" >
     <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
@@ -11,7 +8,7 @@
             <CardBody>
                 <CardTitle Size="5">
                     <Icon Name="@("bi bi-people")"/>
-                    Users
+                    Accounts
                 </CardTitle>
                 <CardText>
                     <Table Striped="true" Hoverable="true" Borderless="true">
@@ -26,15 +23,15 @@
                             @foreach(var account in _accounts)
                             {
                                 <TableRow>
-                                    <TableRowHeader>@account.Index</TableRowHeader>
-                                    <TableRowCell>@account.Name</TableRowCell>
-                                    <TableRowCell><Badge Color="Color.Primary" Pill> @account.Spaces</Badge></TableRowCell>
+                                    <TableRowHeader @onclick="@(() => OnEditAccount(account))">@account.Index</TableRowHeader>
+                                    <TableRowCell @onclick="@(() => OnEditAccount(account))">@account.Name</TableRowCell>
+                                    <TableRowCell @onclick="@(() => OnEditAccount(account))"><Badge Color="Color.Primary" Pill> @account.Spaces</Badge></TableRowCell>
                                 </TableRow>
                             }
                         </TableBody>
                     </Table>
                 </CardText>
-                <Button Color="Color.Primary" Size="Size.Small">Manage</Button>
+                <Button Color="Color.Primary" Size="Size.Small" @onclick="OnManageAccounts">Manage</Button>
             </CardBody>
         </Card>
     </Column>

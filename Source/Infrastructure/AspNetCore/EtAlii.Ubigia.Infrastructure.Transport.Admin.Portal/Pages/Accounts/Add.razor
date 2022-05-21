@@ -1,0 +1,50 @@
+﻿@page "/Accounts/Add"
+
+@namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
+
+<Fields>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <FieldLabel>Name</FieldLabel>
+                <TextEdit  @bind-Text="@_account.Name" />
+            </Field>
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <FieldLabel>Password</FieldLabel>
+                @* ReSharper disable once Html.AttributeValueNotResolved *@
+                <TextEdit Role="TextRole.Password" @bind-Text="@_account.Password">
+                    <FieldHelp>Password strength: <Text TextColor="TextColor.Danger">weak</Text></FieldHelp>
+                </TextEdit>
+            </Field>
+        </Column>
+    </Row>
+
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <Select
+                    TValue="AccountTemplate"
+                    SelectedValue="@_template">
+                    @foreach (var template in AccountTemplate.All)
+                    {
+                        <SelectItem Value="@template">@template.Name</SelectItem>
+                    }
+                </Select>
+            </Field>
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <Button @onclick="OnSavePressed" Color="Color.Primary" PreventDefaultOnSubmit>Save</Button>
+            </Field>
+            <Field>
+                <Button @onclick="OnCancelPressed" Color="Color.Secondary" PreventDefaultOnSubmit>Cancel</Button>
+            </Field>
+        </Column>
+    </Row>
+</Fields>
