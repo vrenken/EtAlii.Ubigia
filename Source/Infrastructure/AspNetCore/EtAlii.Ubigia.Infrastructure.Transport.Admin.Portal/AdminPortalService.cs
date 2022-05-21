@@ -54,7 +54,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 });
 
 
-            services.AddSingleton(globalServices.GetService<IInfrastructureService>()!.Infrastructure);
+            var infrastructureService = globalServices.GetService<IInfrastructureService>();
+            if (infrastructureService != null) // The unit tests don't have access to the InfrastructureService.
+            {
+                services.AddSingleton(infrastructureService.Infrastructure);
+            }
             services.AddSingleton<IConfiguration>(Configuration.Root);
             services.ConfigureOptions(typeof(UIConfigureOptions));
         }
