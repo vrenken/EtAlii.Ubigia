@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia
     public abstract class RelationsComponentCollection<TRelationsComponent> : Collection<TRelationsComponent>
         where TRelationsComponent : RelationsComponent, new()
     {
-        internal RelationsComponentCollection()
+        private protected RelationsComponentCollection()
         {
         }
 
