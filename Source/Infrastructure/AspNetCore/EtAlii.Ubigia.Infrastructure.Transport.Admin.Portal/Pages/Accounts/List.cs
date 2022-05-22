@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Accounts
 {
     using System.Linq;
     using System.Threading.Tasks;
