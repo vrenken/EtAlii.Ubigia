@@ -21,20 +21,20 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 
 
         //public Account GetByName(string accountName)
-        public override Task<AccountSingleResponse> GetSingle(AccountSingleRequest request, ServerCallContext context)
+        public override async Task<AccountSingleResponse> GetSingle(AccountSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Account account;
 
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    account = _items.Get(request.Id.ToLocal());
+                    account = await _items.Get(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Account != null: // Get Item by Instance
-                    account = _items.Get(request.Account.Id.ToLocal());
+                    account = await _items.Get(request.Account.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when !string.IsNullOrWhiteSpace(request.Name): // Get Item by name
-                    account = _items.Get(request.Name);
+                    account = await _items.Get(request.Name).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Account GET client request");
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Account = account.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Get all Items
@@ -79,28 +79,28 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         }
 
         // Add item
-        public override Task<AccountSingleResponse> Put(AccountSingleRequest request, ServerCallContext context)
+        public override async Task<AccountSingleResponse> Put(AccountSingleRequest request, ServerCallContext context)
         {
             var account = request.Account.ToLocal();
-            account = _items.Update(account.Id, account);
+            account = await _items.Update(account.Id, account).ConfigureAwait(false);
 
             var response = new AccountSingleResponse
             {
                 Account = account.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Update Item by id
-        public override Task<AccountSingleResponse> Delete(AccountSingleRequest request, ServerCallContext context)
+        public override async Task<AccountSingleResponse> Delete(AccountSingleRequest request, ServerCallContext context)
         {
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    _items.Remove(request.Id.ToLocal());
+                    await _items.Remove(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Account != null: // Get Item by id
-                    _items.Remove(request.Account.Id.ToLocal());
+                    await _items.Remove(request.Account.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Account DELETE client request");
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Account = request.Account
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

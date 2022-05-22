@@ -17,15 +17,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             _items = items;
         }
 
-        public override Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)
         {
-            var storage = _items.GetLocal();
+            var storage = await _items.GetLocal().ConfigureAwait(false);
 
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

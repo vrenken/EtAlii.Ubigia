@@ -4,13 +4,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IItemAdder
     {
-        T Add<T>(IList<T> items, T item)
+        Task<T> Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable;
 
-        T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
+        Task<T> Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable;
     }
 }

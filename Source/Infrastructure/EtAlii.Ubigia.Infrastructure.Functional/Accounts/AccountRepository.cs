@@ -13,39 +13,45 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         private readonly IAccountInitializer _accountInitializer;
 
 		public AccountRepository(
-            ILogicalContext logicalContext, 
+            ILogicalContext logicalContext,
             IAccountInitializer accountInitializer)
         {
             _accountInitializer = accountInitializer;
 			_logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Account> GetAll()
         {
             return _logicalContext.Accounts.GetAll();
         }
 
-		public Account Get(string accountName)
+        /// <inheritdoc />
+		public Task<Account> Get(string accountName)
 		{
 			return _logicalContext.Accounts.Get(accountName);
 		}
 
-		public Account Get(string accountName, string password)
+        /// <inheritdoc />
+		public Task<Account> Get(string accountName, string password)
         {
             return _logicalContext.Accounts.Get(accountName, password);
         }
 
-        public Account Get(Guid itemId)
+        /// <inheritdoc />
+        public Task<Account> Get(Guid itemId)
         {
             return _logicalContext.Accounts.Get(itemId);
         }
 
 
-        public Account Update(Guid itemId, Account item)
+        /// <inheritdoc />
+        public Task<Account> Update(Guid itemId, Account item)
         {
             return _logicalContext.Accounts.Update(itemId, item);
         }
 
+        /// <inheritdoc />
         public async Task<Account> Add(Account item, AccountTemplate template)
         {
             var now = DateTime.UtcNow;
@@ -53,7 +59,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             // Nope. we are not updating so we set the updated value to null.
             item.Updated = null;
 
-            var addedAccount = _logicalContext.Accounts.Add(item, template, out var isAdded);
+            var (addedAccount, isAdded) = await _logicalContext.Accounts.Add(item, template).ConfigureAwait(false);
             if (isAdded)
             {
                 await _accountInitializer.Initialize(addedAccount, template).ConfigureAwait(false);
@@ -62,14 +68,16 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             return addedAccount;
         }
 
-        public void Remove(Guid itemId)
+        /// <inheritdoc />
+        public Task Remove(Guid itemId)
         {
-            _logicalContext.Accounts.Remove(itemId);
+            return _logicalContext.Accounts.Remove(itemId);
         }
 
-        public void Remove(Account item)
+        /// <inheritdoc />
+        public Task Remove(Account item)
         {
-            _logicalContext.Accounts.Remove(item);
+            return _logicalContext.Accounts.Remove(item);
         }
     }
 }

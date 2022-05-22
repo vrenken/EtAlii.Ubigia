@@ -61,6 +61,15 @@
     <Compile Update="Shared\Error.cs">
       <DependentUpon>Error.cshtml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Accounts\Add.cs">
+      <DependentUpon>Add.razor</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Accounts\Edit.cs">
+      <DependentUpon>Edit.razor</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Accounts\List.cs">
+      <DependentUpon>List.razor</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

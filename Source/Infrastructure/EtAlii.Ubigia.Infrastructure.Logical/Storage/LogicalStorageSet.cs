@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public Storage GetLocal()
+        public Task<Storage> GetLocal()
         {
             return _localStorageGetter.GetLocal(Items);
         }
@@ -48,13 +48,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public Storage Get(string name)
+        public Task<Storage> Get(string name)
         {
-            return Items.SingleOrDefault(storage => storage.Name == name);
+            var storage = Items.SingleOrDefault(storage => storage.Name == name);
+            return Task.FromResult(storage);
         }
 
         /// <inheritdoc />
-        public Storage Get(Guid id)
+        public Task<Storage> Get(Guid id)
         {
             return _fabric.Items.Get(Items, id);
         }
@@ -62,7 +63,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <inheritdoc />
         public async Task<Storage> Add(Storage item)
         {
-            item = _fabric.Items.Add(Items, CanAddFunction, item);
+            item = await _fabric.Items.Add(Items, CanAddFunction, item).ConfigureAwait(false);
 
             if (item != null && Added != null)
             {
@@ -86,7 +87,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             var isAlreadyRegistered = items.Any(s => s.Name == _options.Name);
             if (!isAlreadyRegistered)
             {
-                var storage = _localStorageGetter.GetLocal(items);
+                var storage = await _localStorageGetter.GetLocal(items).ConfigureAwait(false);
                 items.Add(storage);
 
                 if (Initialized != null)
@@ -132,19 +133,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public void Remove(Guid itemId)
+        public Task Remove(Guid itemId)
         {
-            _fabric.Items.Remove(Items, itemId);
+            return _fabric.Items.Remove(Items, itemId);
         }
 
         /// <inheritdoc />
-        public void Remove(Storage itemToRemove)
+        public Task Remove(Storage itemToRemove)
         {
-            _fabric.Items.Remove(Items, itemToRemove);
+            return _fabric.Items.Remove(Items, itemToRemove);
         }
 
         /// <inheritdoc />
-        public Storage Update(Guid itemId, Storage updatedItem)
+        public Task<Storage> Update(Guid itemId, Storage updatedItem)
         {
             return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }

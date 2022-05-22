@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedRoot);
 
-            context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot.Id);
+            await context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot.Id).ConfigureAwait(false);
 
             fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.Null(fetchedRoot);
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedRoot);
 
-            context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot);
+            await context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot).ConfigureAwait(false);
 
             fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.Null(fetchedRoot);

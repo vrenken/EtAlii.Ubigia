@@ -35,6 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _cachedHeadIdentifiers = new Dictionary<Guid, Identifier>();
         }
 
+        /// <inheritdoc />
         public async Task<Identifier> GetCurrent(Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
@@ -59,7 +60,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return headIdentifier;
         }
 
-
+        /// <inheritdoc />
         public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
@@ -67,7 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             {
                 var previousHeadIdentifier = await GetCurrentInternal(spaceId).ConfigureAwait(false);
 
-                var nextHeadIdentifier = _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier);
+                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier).ConfigureAwait(false);
 
                 await _rootUpdater.Update(spaceId, "Head", nextHeadIdentifier).ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
@@ -93,14 +94,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 if (headIdentifier == Identifier.Empty)
                 {
                     // Determine from container storage.
-                    headIdentifier = DetermineHeadFromComponentStorage(spaceId);
+                    headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
                     await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
                 }
             }
             else
             {
                 // Determine from container storage.
-                headIdentifier = DetermineHeadFromComponentStorage(spaceId);
+                headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
                 await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
                 _headIsInitialized = true;
             }
@@ -108,13 +109,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return headIdentifier;
         }
 
-        private Identifier DetermineHeadFromComponentStorage(Guid spaceId)
+        private async Task<Identifier> DetermineHeadFromComponentStorage(Guid spaceId)
         {
-            var space = _context.Spaces.Get(spaceId);
-            var storageId = _context.Storages.GetLocal().Id;
+            var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
+            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
+            var storageId = storage.Id;
             var accountId = space.AccountId;
 
-            return _fabric.Identifiers.GetNextIdentifierFromStorage(storageId, accountId, spaceId);
+            return await _fabric.Identifiers.GetNextIdentifierFromStorage(storageId, accountId, spaceId).ConfigureAwait(false);
         }
     }
 }

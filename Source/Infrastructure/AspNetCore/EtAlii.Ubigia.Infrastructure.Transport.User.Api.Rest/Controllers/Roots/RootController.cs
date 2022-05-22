@@ -139,12 +139,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
         /// <param name="rootId"></param>
         /// <returns></returns>
         [HttpDelete]
-        public IActionResult Delete([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
+        public async Task<IActionResult> Delete([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
         {
             IActionResult response;
             try
             {
-                _items.Remove(spaceId, rootId);
+                await _items.Remove(spaceId, rootId).ConfigureAwait(false);
 
                 response = Ok();
             }

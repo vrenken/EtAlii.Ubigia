@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class LocalStorageGetter : ILocalStorageGetter
     {
@@ -23,10 +24,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public Storage GetLocal(IList<Storage> items)
+        public Task<Storage> GetLocal(IList<Storage> items)
         {
             var local = items?.FirstOrDefault(item => item.Name == _options.Name);
-            return local ?? GetLocal();
+            return Task.FromResult(local ?? GetLocal());
         }
 
         private Storage GetLocal() =>  _localStorage;

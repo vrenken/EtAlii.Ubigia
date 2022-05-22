@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable;
 
-        T Get<T>(IList<T> items, Guid id)
+        Task<T> Get<T>(IList<T> items, Guid id)
             where T : class, IIdentifiable;
 
         Task<ObservableCollection<T>> GetItems<T>(string folder)

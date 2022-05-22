@@ -13,11 +13,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
             Infrastructure = Host.Infrastructure;
 
-            var systemAccount = Infrastructure.Accounts.Get("System");
+            var systemAccount = await Infrastructure.Accounts.Get("System").ConfigureAwait(false);
             SystemAccountName = systemAccount.Name;
             SystemAccountPassword = systemAccount.Password;
 
-            var adminAccount = Infrastructure.Accounts.Get("Administrator");
+            var adminAccount = await Infrastructure.Accounts.Get("Administrator").ConfigureAwait(false);
             AdminAccountName = adminAccount.Name;
             AdminAccountPassword = adminAccount.Password;
 

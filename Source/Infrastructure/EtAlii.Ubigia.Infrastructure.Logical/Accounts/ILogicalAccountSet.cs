@@ -4,20 +4,21 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ILogicalAccountSet
     {
         IAsyncEnumerable<Account> GetAll();
-        Account Get(Guid id);
-        Account Get(string accountName);
-        Account Get(string accountName, string password);
+        Task<Account> Get(Guid id);
+        Task<Account> Get(string accountName);
+        Task<Account> Get(string accountName, string password);
 
-        Account Add(Account item, AccountTemplate template, out bool isAdded);
+        Task<(Account, bool)> Add(Account item, AccountTemplate template);
 
-        void Remove(Guid itemId);
+        Task Remove(Guid itemId);
 
-        void Remove(Account itemToRemove);
+        Task Remove(Account itemToRemove);
 
-        Account Update(Guid itemId, Account updatedItem);
+        Task<Account> Update(Guid itemId, Account updatedItem);
     }
 }

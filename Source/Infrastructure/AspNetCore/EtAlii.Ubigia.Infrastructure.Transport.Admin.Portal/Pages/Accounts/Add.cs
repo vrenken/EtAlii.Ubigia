@@ -25,12 +25,10 @@
             NavigationManager.NavigateTo("/Accounts/");
         }
 
-        private Task OnSavePressed()
+        private async Task OnSavePressed()
         {
-            Infrastructure.Accounts.Add(_account, _template);
+            await Infrastructure.Accounts.Add(_account, _template).ConfigureAwait(false);
             NavigationManager.NavigateTo("/Accounts/");
-
-            return Task.CompletedTask;
         }
     }
 }

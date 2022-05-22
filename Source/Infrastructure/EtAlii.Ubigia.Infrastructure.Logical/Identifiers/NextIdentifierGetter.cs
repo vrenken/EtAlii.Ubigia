@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class NextIdentifierGetter : INextIdentifierGetter
@@ -11,20 +12,24 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
 
         public NextIdentifierGetter(
-            ILogicalContext context, 
+            ILogicalContext context,
             IFabricContext fabric)
         {
             _context = context;
             _fabric = fabric;
         }
 
-        public Identifier GetNext(Guid spaceId, in Identifier previousHeadIdentifier)
+        /// <inheritdoc />
+        public async Task<Identifier> GetNext(Guid spaceId, Identifier previousHeadIdentifier)
         {
-            var space = _context.Spaces.Get(spaceId);
-            var storageId = _context.Storages.GetLocal().Id;
+            var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
+            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
+            var storageId = storage.Id;
             var accountId = space.AccountId;
 
-            return _fabric.Identifiers.GetNextIdentifierForPreviousHeadIdentifier(storageId, accountId, spaceId, previousHeadIdentifier);
+            return await _fabric.Identifiers
+                .GetNextIdentifierForPreviousHeadIdentifier(storageId, accountId, spaceId, previousHeadIdentifier)
+                .ConfigureAwait(false);
         }
     }
 }

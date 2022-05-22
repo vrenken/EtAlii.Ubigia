@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 	    }
 
 		[HttpGet]
-		public IActionResult GetForAuthenticationToken([RequiredFromQuery(Name = "authenticationToken")] string stringValue)
+		public async Task<IActionResult> GetForAuthenticationToken([RequiredFromQuery(Name = "authenticationToken")] string stringValue)
 	    {
 			IActionResult response;
 		    try
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 			    var authenticationTokenAsString = stringValues.Single();
 			    var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-			    var account = _items.Get(authenticationToken.Name);
+			    var account = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
 			    response = Ok(account);
 		    }
 		    catch (Exception ex)
@@ -47,12 +47,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 	    }
 
 		[HttpGet]
-		public IActionResult GetByName([RequiredFromQuery]string accountName)
+		public async Task<IActionResult> GetByName([RequiredFromQuery]string accountName)
 		{
 			IActionResult response;
 			try
 			{
-				var account = _items.Get(accountName);
+				var account = await _items.Get(accountName).ConfigureAwait(false);
 				response = Ok(account);
 			}
 			catch (Exception ex)
@@ -84,12 +84,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Get Item by id
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery]Guid accountId)
+        public async Task<IActionResult> Get([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
             {
-                var item = _items.Get(accountId);
+                var item = await _items.Get(accountId).ConfigureAwait(false);
                 response = Ok(item);
             }
             catch (Exception ex)
@@ -121,12 +121,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([FromBody]Account account, [RequiredFromQuery]Guid accountId)
+        public async Task<IActionResult> Put([FromBody]Account account, [RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
             {
-                var result = _items.Update(accountId, account);
+                var result = await _items.Update(accountId, account).ConfigureAwait(false);
                 response = Ok(result);
             }
             catch (Exception ex)
@@ -139,12 +139,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Delete Item by id
         [HttpDelete]
-        public IActionResult Delete([RequiredFromQuery]Guid accountId)
+        public async Task<IActionResult> Delete([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
             {
-                _items.Remove(accountId);
+                await _items.Remove(accountId).ConfigureAwait(false);
                 response = Ok();
             }
             catch (Exception ex)

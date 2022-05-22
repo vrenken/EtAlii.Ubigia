@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <param name="item"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Add<T>(IList<T> items, T item)
+        Task<T> Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <param name="item"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
+        Task<T> Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable;
 
 
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable;
 
-        T Get<T>(IList<T> items, Guid id)
+        Task<T> Get<T>(IList<T> items, Guid id)
             where T : class, IIdentifiable;
 
         Task<ObservableCollection<T>> GetItems<T>(string folder)
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <param name="items"></param>
         /// <param name="itemId"></param>
         /// <typeparam name="T"></typeparam>
-        void Remove<T>(IList<T> items, Guid itemId)
+        Task Remove<T>(IList<T> items, Guid itemId)
             where T : class, IIdentifiable;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <param name="items"></param>
         /// <param name="itemToRemove"></param>
         /// <typeparam name="T"></typeparam>
-        void Remove<T>(IList<T> items, T itemToRemove)
+        Task Remove<T>(IList<T> items, T itemToRemove)
             where T : class, IIdentifiable;
 
 
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <param name="updatedItem"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
+        Task<T> Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
             where T : class, IIdentifiable;
     }
 }

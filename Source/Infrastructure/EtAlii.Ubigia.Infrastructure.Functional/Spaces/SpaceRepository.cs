@@ -20,53 +20,62 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public async Task<Space> Add(Space item, SpaceTemplate template)
         {
-            var addedSpace = _logicalContext.Spaces.Add(item, template, out var isAdded);
+            var (addedSpace, isAdded) = await _logicalContext.Spaces
+                .Add(item, template)
+                .ConfigureAwait(false);
             if (isAdded)
             {
-                await _spaceInitializer.Initialize(addedSpace, template).ConfigureAwait(false);
+                await _spaceInitializer
+                    .Initialize(addedSpace, template)
+                    .ConfigureAwait(false);
             }
 
             return addedSpace;
         }
 
-        public Space Get(Guid accountId, string spaceName)
+        /// <inheritdoc />
+        public Task<Space> Get(Guid accountId, string spaceName)
         {
             return _logicalContext.Spaces.Get(accountId, spaceName);
         }
 
-        public Space Get(Guid itemId)
+        /// <inheritdoc />
+        public Task<Space> Get(Guid itemId)
         {
             return _logicalContext.Spaces.Get(itemId);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll()
         {
             return _logicalContext.Spaces.GetAll();
         }
 
-
+        /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             return _logicalContext.Spaces.GetAll(accountId);
         }
 
-        public Space Update(Guid itemId, Space item)
+        /// <inheritdoc />
+        public Task<Space> Update(Guid itemId, Space item)
         {
             return _logicalContext.Spaces.Update(itemId, item);
         }
 
-
-
-        public void Remove(Guid itemId)
+        /// <inheritdoc />
+        public Task Remove(Guid itemId)
         {
-            _logicalContext.Spaces.Remove(itemId);
+            return _logicalContext.Spaces.Remove(itemId);
         }
 
-        public void Remove(Space item)
+        /// <inheritdoc />
+        public Task Remove(Space item)
         {
-            _logicalContext.Spaces.Remove(item);
+            return _logicalContext.Spaces.Remove(item);
         }
     }
 }

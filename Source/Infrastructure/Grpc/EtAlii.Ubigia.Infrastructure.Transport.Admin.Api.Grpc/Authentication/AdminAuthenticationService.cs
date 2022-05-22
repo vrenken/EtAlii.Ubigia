@@ -24,25 +24,27 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             _authenticationBuilder = authenticationBuilder;
         }
 
-        public override Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
+        public override async Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
         {
-            var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, Role.User, Role.System);
+            var (authenticationToken, _) = await _authenticationVerifier
+                .Verify(request.AccountName, request.Password, request.HostIdentifier, Role.User, Role.System)
+                .ConfigureAwait(false);
 
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
             var response = new AuthenticationResponse();
-            return Task.FromResult(response);
+            return response;
         }
 
-        public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
+        public override async Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
             var currentAccountAuthenticationToken = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
+            await _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System).ConfigureAwait(false);
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
 
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
             var response = new AuthenticationResponse();
-            return Task.FromResult(response);
+            return response;
         }
 
 //        public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)

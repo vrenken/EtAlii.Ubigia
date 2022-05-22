@@ -18,32 +18,32 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             _items = items;
         }
 
-        public override Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)
         {
-            var storage = _items.GetLocal();
+            var storage = await _items.GetLocal().ConfigureAwait(false);
 
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         //public Storage GetByName(string storageName)
-        public override Task<StorageSingleResponse> GetSingle(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> GetSingle(StorageSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Storage storage;
 
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    storage = _items.Get(request.Id.ToLocal());
+                    storage = await _items.Get(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Storage != null: // Get Item by id
-                    storage = _items.Get(request.Storage.Id.ToLocal());
+                    storage = await _items.Get(request.Storage.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when !string.IsNullOrWhiteSpace(request.Name): // Get Item by name
-                    storage = _items.Get(request.Name);
+                    storage = await _items.Get(request.Name).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Storage GET client request");
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Storage = storage?.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Get all Items
@@ -84,28 +84,28 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         }
 
         // Add item
-        public override Task<StorageSingleResponse> Put(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> Put(StorageSingleRequest request, ServerCallContext context)
         {
             var storage = request.Storage.ToLocal();
-            storage = _items.Update(storage.Id, storage);
+            storage = await _items.Update(storage.Id, storage).ConfigureAwait(false);
 
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Update Item by id
-        public override Task<StorageSingleResponse> Delete(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> Delete(StorageSingleRequest request, ServerCallContext context)
         {
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    _items.Remove(request.Id.ToLocal());
+                    await _items.Remove(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Storage != null: // Get Item by id
-                    _items.Remove(request.Storage.Id.ToLocal());
+                    await _items.Remove(request.Storage.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Storage DELETE client request");
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Storage = request.Storage
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

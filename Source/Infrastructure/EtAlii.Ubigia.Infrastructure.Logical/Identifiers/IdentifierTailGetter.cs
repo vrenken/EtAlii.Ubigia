@@ -25,6 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _cachedTailIdentifiers = new Dictionary<Guid, Identifier>();
         }
 
+        /// <inheritdoc />
         public async Task<Identifier> Get(Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
@@ -47,22 +48,29 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             // load from root "Tail"
 
-            var root = await _context.Roots.Get(spaceId, DefaultRoot.Tail).ConfigureAwait(false);
+            var root = await _context.Roots
+                .Get(spaceId, DefaultRoot.Tail)
+                .ConfigureAwait(false);
             var tailIdentifier = root?.Identifier ?? Identifier.Empty;
 
             if (tailIdentifier == Identifier.Empty)
             {
                 // Determine from disk.
-                tailIdentifier = DetermineTailFromDisk(spaceId);
-                await _rootUpdater.Update(spaceId, DefaultRoot.Tail, tailIdentifier).ConfigureAwait(false);
+                tailIdentifier = await DetermineTailFromDisk(spaceId).ConfigureAwait(false);
+                await _rootUpdater
+                    .Update(spaceId, DefaultRoot.Tail, tailIdentifier)
+                    .ConfigureAwait(false);
             }
             return tailIdentifier;
         }
 
-        private Identifier DetermineTailFromDisk(Guid spaceId)
+        private async Task<Identifier> DetermineTailFromDisk(Guid spaceId)
         {
-            var space = _context.Spaces.Get(spaceId);
-            var storageId = _context.Storages.GetLocal().Id;
+            var space = await _context.Spaces
+                .Get(spaceId)
+                .ConfigureAwait(false);
+            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
+            var storageId = storage.Id;
             var accountId = space.AccountId;
             return Identifier.Create(storageId, accountId, spaceId, 0, 0, 0);
         }

@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemAuthenticationDataClient
     {
+        /// <inheritdoc />
         public async Task<Account> GetAccount(ISpaceConnection connection, string accountName)
         {
             if (connection.Account != null)
@@ -22,15 +23,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return account;
         }
 
-        private Task<Account> GetAccount(string accountName)
+        private async Task<Account> GetAccount(string accountName)
         {
-            var account = _infrastructure.Accounts.Get(accountName);
+            var account = await _infrastructure.Accounts.Get(accountName).ConfigureAwait(false);
             if (account == null)
             {
                 var message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
-            return Task.FromResult(account);
+            return account;
         }
     }
 }

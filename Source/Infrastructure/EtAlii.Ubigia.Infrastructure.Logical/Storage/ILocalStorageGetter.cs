@@ -3,9 +3,10 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ILocalStorageGetter
     {
-        Storage GetLocal(IList<Storage> items);
+        Task<Storage> GetLocal(IList<Storage> items);
     }
 }

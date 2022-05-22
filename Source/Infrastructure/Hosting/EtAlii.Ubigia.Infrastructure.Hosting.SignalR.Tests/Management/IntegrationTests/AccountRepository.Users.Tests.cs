@@ -43,10 +43,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(Guid.Empty, addedAccount.Id);
 
-            var fetchedAccount = repository.Get(addedAccount.Id);
+            // Act.
+            var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
@@ -62,7 +64,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(Guid.NewGuid());
+            // Act.
+            var fetchedAccount = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
@@ -77,10 +82,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(addedAccount.Name);
+            // Act.
+            var fetchedAccount = await repository.Get(addedAccount.Name).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
@@ -96,7 +103,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(Guid.NewGuid().ToString());
+            // Act.
+            var fetchedAccount = await repository.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
@@ -111,10 +121,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(addedAccount.Name, addedAccount.Password);
+            // Act.
+            var fetchedAccount = await repository.Get(addedAccount.Name, addedAccount.Password).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
@@ -130,7 +142,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(addedAccount.Name, Guid.NewGuid().ToString());
+            // Act.
+            var fetchedAccount = await repository.Get(addedAccount.Name, Guid.NewGuid().ToString()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
@@ -145,7 +160,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(Guid.NewGuid().ToString(), addedAccount.Password);
+            // Act.
+            var fetchedAccount = await repository.Get(Guid.NewGuid().ToString(), addedAccount.Password).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
@@ -160,12 +178,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(addedAccount.Id);
+            var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedAccount);
 
-            repository.Remove(addedAccount.Id);
+            // Act.
+            await repository.Remove(addedAccount.Id).ConfigureAwait(false);
 
-            fetchedAccount = repository.Get(addedAccount.Id);
+            // Assert.
+            fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.Null(fetchedAccount);
         }
 
@@ -180,22 +200,28 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
-            var fetchedAccount = repository.Get(addedAccount.Id);
+            var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedAccount);
 
-            repository.Remove(addedAccount);
+            // Act.
+            await repository.Remove(addedAccount).ConfigureAwait(false);
 
-            fetchedAccount = repository.Get(addedAccount.Id);
+            // Assert.
+            fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public void AccountRepository_Get_User_Null()
+        public async Task AccountRepository_Get_User_Null()
         {
 			// Arrange.
 	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
-            var account = repository.Get(Guid.NewGuid());
+
+            // Act.
+            var account = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(account);
         }
 

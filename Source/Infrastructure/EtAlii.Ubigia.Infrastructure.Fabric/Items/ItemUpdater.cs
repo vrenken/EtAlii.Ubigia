@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class ItemUpdater : IItemUpdater
@@ -16,7 +17,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
-        public T Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
+        /// <inheritdoc />
+        public Task<T> Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
             where T : class, IIdentifiable
         {
             if (itemId == Guid.Empty)
@@ -37,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage.Items.Store(updatedItem, updatedItem.Id, containerId);
 
             items[index] = updatedItem;
-            return updatedItem;
+            return Task.FromResult(updatedItem);
         }
     }
 }

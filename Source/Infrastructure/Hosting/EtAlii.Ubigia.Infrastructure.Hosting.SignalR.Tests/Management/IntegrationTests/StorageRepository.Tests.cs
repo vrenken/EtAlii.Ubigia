@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
 	        // Act.
-            var fetchedStorage = repository.Get(addedStorage.Id);
+            var fetchedStorage = await repository.Get(addedStorage.Id).ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.Equal(addedStorage.Id, fetchedStorage.Id);
@@ -68,13 +68,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
-            var fetchedStorage = repository.Get(addedStorage.Id);
+            var fetchedStorage = await repository.Get(addedStorage.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedStorage);
 
-            repository.Remove(addedStorage.Id);
+            await repository.Remove(addedStorage.Id).ConfigureAwait(false);
 
 			// Act.
-            fetchedStorage = repository.Get(addedStorage.Id);
+            fetchedStorage = await repository.Get(addedStorage.Id).ConfigureAwait(false);
 
 			// Assert.
 	        Assert.Null(fetchedStorage);
@@ -91,26 +91,26 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
-            var fetchedStorage = repository.Get(addedStorage.Id);
+            var fetchedStorage = await repository.Get(addedStorage.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedStorage);
 
 			// Act.
-            repository.Remove(addedStorage);
-            fetchedStorage = repository.Get(addedStorage.Id);
+            await repository.Remove(addedStorage).ConfigureAwait(false);
+            fetchedStorage = await repository.Get(addedStorage.Id).ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.Null(fetchedStorage);
         }
 
         [Fact]
-        public void StorageRepository_Get_Null()
+        public async Task StorageRepository_Get_Null()
         {
 	        // Arrange.
 	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Storages;
 
 			// Act.
-	        var storage = repository.Get(Guid.NewGuid());
+	        var storage = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.Null(storage);
@@ -153,7 +153,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
 			// Act.
-            var fetchedStorage = repository.Get(addedStorage.Name);
+            var fetchedStorage = await repository.Get(addedStorage.Name).ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.Equal(addedStorage.Id, fetchedStorage.Id);
@@ -174,7 +174,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
 			// Act.
-            var fetchedStorage = repository.Get(Guid.NewGuid().ToString());
+            var fetchedStorage = await repository.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.Null(fetchedStorage);

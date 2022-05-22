@@ -3,7 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
 	using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 
 	public class AuthenticationHub : Hub
@@ -26,29 +27,32 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 	        _authenticationBuilder = authenticationBuilder;
         }
 
-	    public string Authenticate(string accountName, string password, string hostIdentifier)
+	    public async Task<string> Authenticate(string accountName, string password, string hostIdentifier)
 	    {
-		    return _authenticationVerifier.Verify(accountName, password, hostIdentifier, Role.User, Role.System);
-	    }
+		    var (response, _) = await _authenticationVerifier
+                .Verify(accountName, password, hostIdentifier, Role.User, Role.System)
+                .ConfigureAwait(false);
+            return response;
+        }
 
-	    public string AuthenticateAs(string accountName, string hostIdentifier)
+	    public async Task<string> AuthenticateAs(string accountName, string hostIdentifier)
 	    {
             var httpContext = Context.GetHttpContext();
 		    httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 		    var authenticationToken = stringValues.Single();
-		    _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
+		    await _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System).ConfigureAwait(false);
 
 		    return _authenticationBuilder.Build(accountName, hostIdentifier);
 		}
 
-		public Storage GetLocalStorage()
+		public async Task<Storage> GetLocalStorage()
         {
             var httpContext = Context.GetHttpContext();
             httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
             var authenticationToken = stringValues.Single();
-            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
+            await _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System).ConfigureAwait(false);
 
-            return _storageRepository.GetLocal();
+            return await _storageRepository.GetLocal().ConfigureAwait(false);
         }
     }
 }

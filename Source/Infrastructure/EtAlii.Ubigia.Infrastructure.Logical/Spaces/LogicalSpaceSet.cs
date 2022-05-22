@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalSpaceSet : ILogicalSpaceSet
@@ -24,6 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabric = fabric;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             return Items
@@ -31,19 +33,23 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 .ToAsyncEnumerable();
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
 
-        public Space Get(Guid id)
+        /// <inheritdoc />
+        public Task<Space> Get(Guid id)
         {
             return _fabric.Items.Get(Items, id);
         }
 
-        public Space Get(Guid accountId, string spaceName)
+        /// <inheritdoc />
+        public Task<Space> Get(Guid accountId, string spaceName)
         {
-            return Items.SingleOrDefault(space => space.AccountId == accountId && space.Name == spaceName);
+            var space = Items.SingleOrDefault(space => space.AccountId == accountId && space.Name == spaceName);
+            return Task.FromResult(space);
         }
 
 
@@ -79,24 +85,30 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return task.GetAwaiter().GetResult();
         }
 
-        public Space Add(Space item, SpaceTemplate template, out bool isAdded)
+        /// <inheritdoc />
+        public async Task<(Space, bool)> Add(Space item, SpaceTemplate template)
         {
-            var space = _fabric.Items.Add(Items, CanAddFunction, item);
-            isAdded = space != null;
-            return space;
+            var space = await _fabric.Items
+                .Add(Items, CanAddFunction, item)
+                .ConfigureAwait(false);
+            var isAdded = space != null;
+            return (space, isAdded);
         }
 
-        public void Remove(Guid itemId)
+        /// <inheritdoc />
+        public Task Remove(Guid itemId)
         {
-            _fabric.Items.Remove(Items, itemId);
+            return _fabric.Items.Remove(Items, itemId);
         }
 
-        public void Remove(Space itemToRemove)
+        /// <inheritdoc />
+        public Task Remove(Space itemToRemove)
         {
-            _fabric.Items.Remove(Items, itemToRemove);
+            return _fabric.Items.Remove(Items, itemToRemove);
         }
 
-        public Space Update(Guid itemId, Space updatedItem)
+        /// <inheritdoc />
+        public Task<Space> Update(Guid itemId, Space updatedItem)
         {
             return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }

@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = context.Host.Infrastructure.Spaces.Get(addedSpace.Id);
+            var fetchedSpace = await context.Host.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Equal(addedSpace.Id, fetchedSpace.Id);
             Assert.Equal(addedSpace.Name, fetchedSpace.Name);
 
@@ -59,12 +59,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = context.Host.Infrastructure.Spaces.Get(addedSpace.Id);
+            var fetchedSpace = await context.Host.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedSpace);
 
-            context.Host.Infrastructure.Spaces.Remove(addedSpace.Id);
+            await context.Host.Infrastructure.Spaces.Remove(addedSpace.Id).ConfigureAwait(false);
 
-            fetchedSpace = context.Host.Infrastructure.Spaces.Get(addedSpace.Id);
+            fetchedSpace = await context.Host.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Null(fetchedSpace);
         }
 
@@ -78,21 +78,21 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = context.Host.Infrastructure.Spaces.Get(addedSpace.Id);
+            var fetchedSpace = await context.Host.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedSpace);
 
-            context.Host.Infrastructure.Spaces.Remove(addedSpace);
+            await context.Host.Infrastructure.Spaces.Remove(addedSpace).ConfigureAwait(false);
 
-            fetchedSpace = context.Host.Infrastructure.Spaces.Get(addedSpace.Id);
+            fetchedSpace = await context.Host.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Null(fetchedSpace);
         }
 
         [Fact]
-        public void SpaceRepository_Get_Null()
+        public async Task SpaceRepository_Get_Null()
         {
 			// Arrange.
 	        var context = _testContext.Host;
-            var space = context.Host.Infrastructure.Spaces.Get(Guid.NewGuid());
+            var space = await context.Host.Infrastructure.Spaces.Get(Guid.NewGuid()).ConfigureAwait(false);
             Assert.Null(space);
         }
 

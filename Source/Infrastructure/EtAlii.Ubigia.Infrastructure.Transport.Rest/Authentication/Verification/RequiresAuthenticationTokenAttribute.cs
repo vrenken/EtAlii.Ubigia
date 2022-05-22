@@ -17,10 +17,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 		{
 			_roles = new[] {role, Role.System};
 		}
-		
+
 		public void OnAuthorization(AuthorizationFilterContext context)
 		{
-			// I'm not too happy that we aren't using DI here, but as the REST protocol probably won't live that long 
+			// I'm not too happy that we aren't using DI here, but as the REST protocol probably won't live that long
 			// It is rather low priority compared to gRPC and SignalR.
 			var authenticationTokenConverter = context.HttpContext.RequestServices.GetService<IAuthenticationTokenConverter>();
 			var accountRepository = context.HttpContext.RequestServices.GetService<IAccountRepository>();
@@ -29,10 +29,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 			var authenticationToken = authenticationTokenConverter.FromHttpActionContext(context.HttpContext);
 			if (authenticationToken != null)
 			{
-				result = new UnauthorizedResult(); // "Unauthorized account" 
+				result = new UnauthorizedResult(); // "Unauthorized account"
 				try
 				{
-					var account = accountRepository!.Get(authenticationToken.Name);
+					var accountTask = accountRepository!.Get(authenticationToken.Name);
+                    var account = accountTask.GetAwaiter().GetResult();
 					if (account != null)
 					{
 						// Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
@@ -54,12 +55,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 				}
 				catch (Exception)
 				{
-					result = new UnauthorizedResult(); // "Unauthorized account" 
+					result = new UnauthorizedResult(); // "Unauthorized account"
 				}
 			}
 			else
 			{
-				result = new BadRequestResult(); // "Missing Authentication-Token" 
+				result = new BadRequestResult(); // "Missing Authentication-Token"
 			}
 
 			context.Result = result;

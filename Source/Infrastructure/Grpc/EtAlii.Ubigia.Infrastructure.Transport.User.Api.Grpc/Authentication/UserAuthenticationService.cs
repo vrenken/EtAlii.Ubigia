@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
 		public UserAuthenticationService(
             ISimpleAuthenticationVerifier authenticationVerifier,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
             ISimpleAuthenticationBuilder authenticationBuilder)
         {
             _authenticationVerifier = authenticationVerifier;
@@ -24,36 +24,38 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 	        _authenticationBuilder = authenticationBuilder;
         }
 
-        public override Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
+        public override async Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
         {
-            var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, out var account, Role.User, Role.System);
-            
+            var (authenticationToken, account) = await _authenticationVerifier
+                .Verify(request.AccountName, request.Password, request.HostIdentifier, Role.User, Role.System)
+                .ConfigureAwait(false);
+
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
             var response = new AuthenticationResponse { Account = account.ToWire() };
 
             // We do not want to return the password.
             response.Account.Password = "";
-            
-            return Task.FromResult(response);
+
+            return response;
         }
 
-        public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
+        public override async Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
             // First we authenticate as the current user (most probably the administrator).
             var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, out var account, Role.User, Role.System);
+            await _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System).ConfigureAwait(false);
 
             // And next we authenticate as the other user (the user we want to authenticate as).
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
-            _authenticationTokenVerifier.Verify(otherAccountAuthenticationToken, out account, Role.User);
+            var account = await _authenticationTokenVerifier.Verify(otherAccountAuthenticationToken, Role.User).ConfigureAwait(false);
 
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
             var response = new AuthenticationResponse { Account = account.ToWire() };
-            
+
             // We do not want to return the password.
             response.Account.Password = "";
-            
-            return Task.FromResult(response);
+
+            return response;
         }
 //
 //        public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)

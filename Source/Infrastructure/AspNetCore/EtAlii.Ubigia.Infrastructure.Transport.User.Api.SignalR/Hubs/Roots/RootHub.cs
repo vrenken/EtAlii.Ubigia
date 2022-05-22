@@ -149,11 +149,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
         }
 
         // Delete Item by id
-        public void Delete(Guid spaceId, Guid rootId)
+        public async Task Delete(Guid spaceId, Guid rootId)
         {
             try
             {
-                _items.Remove(spaceId, rootId);
+                await _items.Remove(spaceId, rootId).ConfigureAwait(false);
             }
             catch (Exception e)
             {

@@ -22,15 +22,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             _serviceDetails = infrastructureOptions.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
         }
 
-		public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
+		public override async Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
 		{
-			var storage = _items.GetLocal();
+			var storage = await _items.GetLocal().ConfigureAwait(false);
 
 			var response = new LocalStorageResponse
 			{
 				Storage = storage.ToWire()
 			};
-			return Task.FromResult(response);
+			return response;
 		}
 
 		public override Task<ConnectivityDetailsResponse> GetLocalConnectivityDetails(ConnectivityDetailsRequest request, ServerCallContext context)

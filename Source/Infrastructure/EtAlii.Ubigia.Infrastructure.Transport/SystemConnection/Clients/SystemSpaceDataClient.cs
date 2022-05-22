@@ -17,7 +17,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _infrastructure = infrastructure;
         }
 
-        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+        /// <inheritdoc />
+        public Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
         {
             // Improve the space templating functionality by converting initialization to a script based approach.
             // This is where the template functionality should continue.
@@ -29,18 +30,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 AccountId = accountId,
             };
 
-            space = await _infrastructure.Spaces
-                .Add(space, template)
-                .ConfigureAwait(false);
-            return space;
+            return _infrastructure.Spaces.Add(space, template);
         }
 
+        /// <inheritdoc />
         public Task Remove(Guid spaceId)
         {
-            _infrastructure.Spaces.Remove(spaceId);
-            return Task.CompletedTask;
+            return _infrastructure.Spaces.Remove(spaceId);
         }
 
+        /// <inheritdoc />
         public Task<Space> Change(Guid spaceId, string spaceName)
         {
             var space = new Space
@@ -49,22 +48,22 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = spaceName,
             };
 
-            space = _infrastructure.Spaces.Update(spaceId, space);
-            return Task.FromResult(space);
+            return _infrastructure.Spaces.Update(spaceId, space);
         }
 
+        /// <inheritdoc />
         public Task<Space> Get(Guid accountId, string spaceName)
         {
-            var space = _infrastructure.Spaces.Get(accountId, spaceName);
-            return Task.FromResult(space);
+            return _infrastructure.Spaces.Get(accountId, spaceName);
         }
 
+        /// <inheritdoc />
         public Task<Space> Get(Guid spaceId)
         {
-            var space = _infrastructure.Spaces.Get(spaceId);
-            return Task.FromResult(space);
+            return _infrastructure.Spaces.Get(spaceId);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             return _infrastructure.Spaces.GetAll(accountId);

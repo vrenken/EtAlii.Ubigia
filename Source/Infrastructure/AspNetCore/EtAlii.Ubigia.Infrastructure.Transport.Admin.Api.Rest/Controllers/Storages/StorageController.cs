@@ -22,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
         }
 
         [HttpGet]
-        public IActionResult GetLocal([RequiredFromQuery]string local)
+        public async Task<IActionResult> GetLocal([RequiredFromQuery]string local)
         {
             IActionResult response;
             try
             {
-                var storage = _items.GetLocal();
+                var storage = await _items.GetLocal().ConfigureAwait(false);
                 response = Ok(storage);
             }
             catch (Exception ex)
@@ -39,12 +39,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
         }
 
         [HttpGet]
-        public IActionResult GetByName([RequiredFromQuery]string storageName)
+        public async Task<IActionResult> GetByName([RequiredFromQuery]string storageName)
         {
             IActionResult response;
             try
             {
-                var storage = _items.Get(storageName);
+                var storage = await _items.Get(storageName).ConfigureAwait(false);
                 response = Ok(storage);
             }
             catch (Exception ex)
@@ -79,12 +79,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Get Item by id
         [HttpGet]
-        public IActionResult GetById([RequiredFromQuery]Guid storageId)
+        public async Task<IActionResult> GetById([RequiredFromQuery]Guid storageId)
         {
             IActionResult response;
             try
             {
-                var item = _items.Get(storageId);
+                var item = await _items.Get(storageId).ConfigureAwait(false);
                 response = Ok(item);
             }
             catch (Exception ex)
@@ -115,12 +115,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid storageId, [FromBody]Storage storage)
+        public async Task<IActionResult> Put([RequiredFromQuery]Guid storageId, [FromBody]Storage storage)
         {
             IActionResult response;
             try
             {
-                var result = _items.Update(storageId, storage);
+                var result = await _items.Update(storageId, storage).ConfigureAwait(false);
                 response = Ok(result);
             }
             catch (Exception ex)
@@ -133,12 +133,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Delete Item by id
         [HttpDelete]
-        public IActionResult Delete([RequiredFromQuery]Guid storageId)
+        public async Task<IActionResult> Delete([RequiredFromQuery]Guid storageId)
         {
             IActionResult response;
             try
             {
-                _items.Remove(storageId);
+                await _items.Remove(storageId).ConfigureAwait(false);
                 response = Ok();
             }
             catch (Exception ex)

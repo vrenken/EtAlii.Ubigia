@@ -47,12 +47,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
         }
 
 		[HttpGet]
-		public IActionResult GetForAccount([RequiredFromQuery]Guid accountId, [RequiredFromQuery]string spaceName)
+		public async Task<IActionResult> GetForAccount([RequiredFromQuery]Guid accountId, [RequiredFromQuery]string spaceName)
 		{
 			IActionResult response;
 			try
 			{
-				var space = _items.Get(accountId, spaceName);
+				var space = await _items.Get(accountId, spaceName).ConfigureAwait(false);
 				response = Ok(space);
 			}
 			catch (Exception ex)
@@ -83,12 +83,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Get Item by id
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery]Guid spaceId)
+        public async Task<IActionResult> Get([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
             {
-                var item = _items.Get(spaceId);
+                var item = await _items.Get(spaceId).ConfigureAwait(false);
                 response = Ok(item);
             }
             catch (Exception ex)
@@ -120,12 +120,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid spaceId, [FromBody]Space space)
+        public async Task<IActionResult> Put([RequiredFromQuery]Guid spaceId, [FromBody]Space space)
         {
             IActionResult response;
             try
             {
-                var result = _items.Update(spaceId, space);
+                var result = await _items.Update(spaceId, space).ConfigureAwait(false);
                 response = Ok(result);
             }
             catch (Exception ex)
@@ -138,12 +138,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         // Delete Item by id
         [HttpDelete]
-        public IActionResult Delete([RequiredFromQuery]Guid spaceId)
+        public async Task<IActionResult> Delete([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
             {
-                _items.Remove(spaceId);
+                await _items.Remove(spaceId).ConfigureAwait(false);
                 response = Ok();
             }
             catch (Exception ex)

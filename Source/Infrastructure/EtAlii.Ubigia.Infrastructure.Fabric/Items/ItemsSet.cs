@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IItemUpdater _itemUpdater;
 
         public ItemsSet(
-            IItemAdder itemAdder, 
-            IItemGetter itemGetter, 
-            IItemRemover itemRemover, 
+            IItemAdder itemAdder,
+            IItemGetter itemGetter,
+            IItemRemover itemRemover,
             IItemUpdater itemUpdater)
         {
             _itemAdder = itemAdder;
@@ -26,49 +26,57 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _itemGetter = itemGetter;
         }
 
-        public T Add<T>(IList<T> items, T item) 
+        /// <inheritdoc />
+        public Task<T> Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable
         {
             return _itemAdder.Add(items, item);
         }
 
-        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item) 
+        /// <inheritdoc />
+        public Task<T> Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable
         {
             return _itemAdder.Add(items, canAddFunction, item);
         }
 
-        public IAsyncEnumerable<T> GetAll<T>(IList<T> items) 
+        /// <inheritdoc />
+        public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable
         {
             return _itemGetter.GetAll(items);
         }
 
-        public T Get<T>(IList<T> items, Guid id) 
+        /// <inheritdoc />
+        public Task<T> Get<T>(IList<T> items, Guid id)
             where T : class, IIdentifiable
         {
             return _itemGetter.Get(items, id);
         }
 
-        public Task<ObservableCollection<T>> GetItems<T>(string folder) 
+        /// <inheritdoc />
+        public Task<ObservableCollection<T>> GetItems<T>(string folder)
             where T : class, IIdentifiable
         {
             return _itemGetter.GetItems<T>(folder);
         }
 
-        public void Remove<T>(IList<T> items, Guid itemId) 
+        /// <inheritdoc />
+        public Task Remove<T>(IList<T> items, Guid itemId)
             where T : class, IIdentifiable
         {
-            _itemRemover.Remove(items, itemId);
+            return _itemRemover.Remove(items, itemId);
         }
 
-        public void Remove<T>(IList<T> items, T itemToRemove) 
+        /// <inheritdoc />
+        public Task Remove<T>(IList<T> items, T itemToRemove)
             where T : class, IIdentifiable
         {
-            _itemRemover.Remove(items, itemToRemove);
+            return _itemRemover.Remove(items, itemToRemove);
         }
 
-        public T Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem) 
+        /// <inheritdoc />
+        public Task<T> Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
             where T : class, IIdentifiable
         {
             return _itemUpdater.Update(items, updateFunction, folder, itemId, updatedItem);

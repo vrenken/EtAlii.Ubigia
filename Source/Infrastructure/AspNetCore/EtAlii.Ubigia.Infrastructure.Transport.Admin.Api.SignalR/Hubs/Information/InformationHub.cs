@@ -3,7 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 {
 	using System.Linq;
-	using EtAlii.Ubigia.Api.Transport;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 
@@ -24,14 +25,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             _serviceDetails = infrastructureOptions.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.SignalR);
 		}
 
-		public Storage GetLocalStorage()
+		public async Task<Storage> GetLocalStorage()
 		{
 			var httpContext = Context.GetHttpContext();
 			httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 			var authenticationToken = stringValues.Single();
-			_authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
+			await _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System).ConfigureAwait(false);
 
-			return _storageRepository.GetLocal();
+			return await _storageRepository.GetLocal().ConfigureAwait(false);
 		}
 
 		public ConnectivityDetails GetLocalConnectivityDetails()

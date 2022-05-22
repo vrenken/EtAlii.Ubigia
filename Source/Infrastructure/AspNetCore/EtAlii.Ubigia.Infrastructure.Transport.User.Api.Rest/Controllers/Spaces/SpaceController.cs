@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System;
 	using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
@@ -34,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
         /// <param name="spaceName"></param>
         /// <returns></returns>
         [HttpGet]
-	    public IActionResult GetForAuthenticationToken([RequiredFromQuery(Name = "authenticationToken")] string stringValue, [RequiredFromQuery]string spaceName)
+	    public async Task<IActionResult> GetForAuthenticationToken([RequiredFromQuery(Name = "authenticationToken")] string stringValue, [RequiredFromQuery]string spaceName)
 		{
             IActionResult response;
             try
@@ -43,9 +44,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 	            var authenticationTokenAsString = stringValues.Single();
 	            var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-	            var account = _accountItems.Get(authenticationToken.Name);
+	            var account = await _accountItems.Get(authenticationToken.Name).ConfigureAwait(false);
 
-	            var space = _items.Get(account.Id, spaceName);
+	            var space = await _items.Get(account.Id, spaceName).ConfigureAwait(false);
 
 	            response = Ok(space);
             }

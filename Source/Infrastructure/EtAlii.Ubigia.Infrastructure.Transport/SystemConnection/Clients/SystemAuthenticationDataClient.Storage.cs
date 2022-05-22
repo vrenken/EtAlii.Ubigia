@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemAuthenticationDataClient
     {
+        /// <inheritdoc />
         public Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
             if (connection.Storage != null)
@@ -15,10 +16,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var storage = _infrastructure.Storages.GetLocal();
-
-            return Task.FromResult(storage);
+            return _infrastructure.Storages.GetLocal();
         }
+
         public Task<Storage> GetConnectedStorage(IStorageConnection connection, Uri address)
         {
             if (connection.Storage != null)
@@ -26,9 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var storage = _infrastructure.Storages.GetLocal();
-
-            return Task.FromResult(storage);
+            return _infrastructure.Storages.GetLocal();
         }
     }
 }

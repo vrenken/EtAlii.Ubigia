@@ -111,17 +111,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
 
         // Delete Item
-        public override Task<RootSingleResponse> Delete(RootSingleRequest request, ServerCallContext context)
+        public override async Task<RootSingleResponse> Delete(RootSingleRequest request, ServerCallContext context)
         {
             var spaceId = request.SpaceId.ToLocal();
 
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    _items.Remove(spaceId, request.Id.ToLocal());
+                    await _items.Remove(spaceId, request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Root != null: // Get Item by id
-                    _items.Remove(spaceId, request.Root.Id.ToLocal());
+                    await _items.Remove(spaceId, request.Root.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Root DELETE client request");
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             {
                 Root = request.Root
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

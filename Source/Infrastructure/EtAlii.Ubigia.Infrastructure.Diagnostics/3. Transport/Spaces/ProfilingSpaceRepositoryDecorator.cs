@@ -64,18 +64,18 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Space Get(Guid accountId, string spaceName)
+        public async Task<Space> Get(Guid accountId, string spaceName)
         {
             var start = Environment.TickCount;
-            var spaces = _repository.Get(accountId, spaceName);
+            var spaces = await _repository.Get(accountId, spaceName).ConfigureAwait(false);
             _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return spaces;
         }
 
-        public Space Get(Guid itemId)
+        public async Task<Space> Get(Guid itemId)
         {
             var start = Environment.TickCount;
-            var space = _repository.Get(itemId);
+            var space = await _repository.Get(itemId).ConfigureAwait(false);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;
         }
@@ -88,24 +88,24 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return item;
         }
 
-        public void Remove(Guid itemId)
+        public async Task Remove(Guid itemId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(itemId);
+            await _repository.Remove(itemId).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Space item)
+        public async Task Remove(Space item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(item);
+            await _repository.Remove(item).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Space Update(Guid itemId, Space item)
+        public async Task<Space> Update(Guid itemId, Space item)
         {
             var start = Environment.TickCount;
-            item = _repository.Update(itemId, item);
+            item = await _repository.Update(itemId, item).ConfigureAwait(false);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }

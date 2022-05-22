@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using System.Linq;
     using System.Security.Principal;
     using System.Threading;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Http;
@@ -29,11 +30,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 	        _responseBuilder = responseBuilder;
         }
 
+        /// <inheritdoc />
         [SuppressMessage(
             category: "Sonar Code Smell",
             checkId: "S4834:Controlling permissions is security-sensitive",
             Justification = "Safe to do so here.")]
-        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
+        public async Task<IActionResult> Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
             var identity = _authenticationIdentityProvider.Get(context);
             if (identity == null)
@@ -41,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 return Challenge(context, controller);
             }
 
-            var account = _accountRepository.Get(identity.Name, identity.Password);
+            var account = await _accountRepository.Get(identity.Name, identity.Password).ConfigureAwait(false);
             if (account == null)
             {
                 return Challenge(context, controller);

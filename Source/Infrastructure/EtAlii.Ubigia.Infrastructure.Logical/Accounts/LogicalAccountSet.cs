@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalAccountSet : ILogicalAccountSet
@@ -23,24 +24,30 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabric = fabric;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Account> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
 
-        public Account Get(Guid id)
+        /// <inheritdoc />
+        public async Task<Account> Get(Guid id)
         {
-            return _fabric.Items.Get(Items, id);
+            return await _fabric.Items.Get(Items, id).ConfigureAwait(false);
         }
 
-        public Account Get(string accountName)
+        /// <inheritdoc />
+        public Task<Account> Get(string accountName)
         {
-            return Items.SingleOrDefault(account => account.Name == accountName);
+            var account = Items.SingleOrDefault(account => account.Name == accountName);
+            return Task.FromResult(account);
         }
 
-        public Account Get(string accountName, string password)
+        /// <inheritdoc />
+        public Task<Account> Get(string accountName, string password)
         {
-            return Items.SingleOrDefault(account => account.Name == accountName && account.Password == password);
+            var account = Items.SingleOrDefault(account => account.Name == accountName && account.Password == password);
+            return Task.FromResult(account);
         }
 
         private bool CanAddFunction(IList<Account> items, Account item)
@@ -83,7 +90,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return task.GetAwaiter().GetResult();
         }
 
-        public Account Add(Account item, AccountTemplate template, out bool isAdded)
+        /// <inheritdoc />
+        public async Task<(Account, bool)> Add(Account item, AccountTemplate template)
         {
 			// We want to make absolutely sure that the account has the roles described by the template.
 	        item.Roles = item.Roles
@@ -91,23 +99,26 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 		        .Distinct()
 		        .ToArray();
 
-			var account = _fabric.Items.Add(Items, CanAddFunction, item);
+			var account = await _fabric.Items.Add(Items, CanAddFunction, item).ConfigureAwait(false);
 
-            isAdded = account != null;
-            return account;
+            var isAdded = account != null;
+            return (account, isAdded);
         }
 
-        public void Remove(Guid itemId)
+        /// <inheritdoc />
+        public Task Remove(Guid itemId)
         {
-            _fabric.Items.Remove(Items, itemId);
+            return _fabric.Items.Remove(Items, itemId);
         }
 
-        public void Remove(Account itemToRemove)
+        /// <inheritdoc />
+        public Task Remove(Account itemToRemove)
         {
-            _fabric.Items.Remove(Items, itemToRemove);
+            return _fabric.Items.Remove(Items, itemToRemove);
         }
 
-        public Account Update(Guid itemId, Account updatedItem)
+        /// <inheritdoc />
+        public Task<Account> Update(Guid itemId, Account updatedItem)
         {
             return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }

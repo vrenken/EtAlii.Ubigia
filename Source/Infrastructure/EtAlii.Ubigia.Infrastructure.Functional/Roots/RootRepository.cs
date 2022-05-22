@@ -16,36 +16,47 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             return _logicalContext.Roots.GetAll(spaceId);
         }
 
+        /// <inheritdoc />
         public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             return _logicalContext.Roots.Get(spaceId, rootId);
         }
 
+        /// <inheritdoc />
         public Task<Root> Get(Guid spaceId, string name)
         {
             return _logicalContext.Roots.Get(spaceId, name);
         }
 
+        /// <inheritdoc />
         public Task<Root> Add(Guid spaceId, Root root)
         {
             return _logicalContext.Roots.Add(spaceId, root);
         }
 
-        public void Remove(Guid spaceId, Guid rootId)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Guid rootId)
         {
             _logicalContext.Roots.Remove(spaceId, rootId);
+
+            return Task.CompletedTask;
         }
 
-        public void Remove(Guid spaceId, Root root)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Root root)
         {
             _logicalContext.Roots.Remove(spaceId, root);
+
+            return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public Task<Root> Update(Guid spaceId, Guid rootId, Root root)
         {
             return _logicalContext.Roots.Update(spaceId, rootId, root);

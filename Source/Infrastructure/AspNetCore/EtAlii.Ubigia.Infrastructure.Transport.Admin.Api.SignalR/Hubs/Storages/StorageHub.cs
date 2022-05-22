@@ -19,12 +19,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             _items = items;
         }
 
-        public Storage GetLocal(string local)
+        public async Task<Storage> GetLocal(string local)
         {
             Storage response;
             try
             {
-                response = _items.GetLocal();
+                response = await _items.GetLocal().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -33,12 +33,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             return response;
         }
 
-        public Storage GetByName(string storageName)
+        public async Task<Storage> GetByName(string storageName)
         {
             Storage response;
             try
             {
-                response = _items.Get(storageName);
+                response = await _items.Get(storageName).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = _items
                 .GetAll()
                 .GetAsyncEnumerator();
@@ -81,12 +81,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Get Item by id
-        public Storage Get(Guid storageId)
+        public async Task<Storage> Get(Guid storageId)
         {
             Storage response;
             try
             {
-                response = _items.Get(storageId);
+                response = await _items.Get(storageId).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -111,12 +111,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Update Item by id
-        public Storage Put(Guid storageId, Storage storage)
+        public async Task<Storage> Put(Guid storageId, Storage storage)
         {
             Storage response;
             try
             {
-                response = _items.Update(storageId, storage);
+                response = await _items.Update(storageId, storage).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -126,11 +126,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Delete Item by id
-        public void Delete(Guid storageId)
+        public async Task Delete(Guid storageId)
         {
             try
             {
-                _items.Remove(storageId);
+                await _items.Remove(storageId).ConfigureAwait(false);
             }
             catch (Exception e)
             {

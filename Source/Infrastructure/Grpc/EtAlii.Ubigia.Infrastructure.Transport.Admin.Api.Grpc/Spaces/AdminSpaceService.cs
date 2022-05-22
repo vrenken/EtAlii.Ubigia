@@ -20,17 +20,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 		}
 
         //public Space GetByName(string spaceName)
-        public override Task<SpaceSingleResponse> GetSingle(SpaceSingleRequest request, ServerCallContext context)
+        public override async Task<SpaceSingleResponse> GetSingle(SpaceSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Space space;
 
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    space = _items.Get(request.Id.ToLocal());
+                    space = await _items.Get(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Space != null: // Get Item by id
-                    space = _items.Get(request.Space.Id.ToLocal());
+                    space = await _items.Get(request.Space.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 //case var _ when !string.IsNullOrWhiteSpace(request.Name): // Get Item by id
                 //    space = _items.Get(request.a.Name)
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Space = space.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Get all Items
@@ -81,28 +81,28 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         }
 
         // Update item
-        public override Task<SpaceSingleResponse> Put(SpaceSingleRequest request, ServerCallContext context)
+        public override async Task<SpaceSingleResponse> Put(SpaceSingleRequest request, ServerCallContext context)
         {
             var space = request.Space.ToLocal();
-            space = _items.Update(space.Id, space);
+            space = await _items.Update(space.Id, space).ConfigureAwait(false);
 
             var response = new SpaceSingleResponse
             {
                 Space = space.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Delete Item
-        public override Task<SpaceSingleResponse> Delete(SpaceSingleRequest request, ServerCallContext context)
+        public override async Task<SpaceSingleResponse> Delete(SpaceSingleRequest request, ServerCallContext context)
         {
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
-                    _items.Remove(request.Id.ToLocal());
+                    await _items.Remove(request.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 case var _ when request.Space != null: // Get Item by id
-                    _items.Remove(request.Space.Id.ToLocal());
+                    await _items.Remove(request.Space.Id.ToLocal()).ConfigureAwait(false);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Space DELETE client request");
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
             {
                 Space = request.Space
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System;
 	using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
@@ -25,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 		}
 
         [HttpGet]
-		public IActionResult GetForAuthenticationToken([RequiredFromQuery(Name="authenticationToken")] string stringValue)
+		public async Task<IActionResult> GetForAuthenticationToken([RequiredFromQuery(Name="authenticationToken")] string stringValue)
 	    {
 		    IActionResult response;
 		    try
@@ -34,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 			    var authenticationTokenAsString = stringValues.Single();
 			    var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-	            var account = _items.Get(authenticationToken.Name);
+	            var account = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
                 response = Ok(account);
             }
             catch (Exception ex)

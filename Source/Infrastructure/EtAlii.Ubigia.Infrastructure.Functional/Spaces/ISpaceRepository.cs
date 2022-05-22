@@ -6,19 +6,19 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface ISpaceRepository 
+    public interface ISpaceRepository
     {
-        Space Get(Guid accountId, string spaceName);
-        Space Get(Guid itemId);
+        Task<Space> Get(Guid accountId, string spaceName);
+        Task<Space> Get(Guid itemId);
 
         IAsyncEnumerable<Space> GetAll(Guid accountId);
         IAsyncEnumerable<Space> GetAll();
 
         Task<Space> Add(Space item, SpaceTemplate template);
 
-        void Remove(Guid itemId);
-        void Remove(Space item);
+        Task Remove(Guid itemId);
+        Task Remove(Space item);
 
-        Space Update(Guid itemId, Space item);
+        Task<Space> Update(Guid itemId, Space item);
     }
 }

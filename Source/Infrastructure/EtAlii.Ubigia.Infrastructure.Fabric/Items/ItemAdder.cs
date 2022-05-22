@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class ItemAdder : IItemAdder
     {
@@ -23,13 +24,15 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return canAdd;
         }
 
-        public T Add<T>(IList<T> items, T item)
+        /// <inheritdoc />
+        public Task<T> Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable
         {
             return Add(items, CanAdd, item);
         }
 
-        public T Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
+        /// <inheritdoc />
+        public Task<T> Add<T>(IList<T> items, Func<IList<T>, T, bool> canAddFunction, T item)
             where T : class, IIdentifiable
         {
             if (item == null)
@@ -55,7 +58,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             {
                 throw new InvalidOperationException("Unable to add the specified item");
             }
-            return item;
+            return Task.FromResult(item);
         }
     }
 }

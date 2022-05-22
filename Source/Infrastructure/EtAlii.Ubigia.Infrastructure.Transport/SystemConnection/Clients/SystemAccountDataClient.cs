@@ -17,7 +17,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _infrastructure = infrastructure;
         }
 
-        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        /// <inheritdoc />
+        public Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             // Improve the account templating functionality by converting initialization to a script based approach.
             // This is where the template functionality should continue.
@@ -29,18 +30,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Password = accountPassword,
             };
 
-            account = await _infrastructure.Accounts
-                .Add(account, template)
-                .ConfigureAwait(false);
-            return account;
+            return _infrastructure.Accounts.Add(account, template);
         }
 
+        /// <inheritdoc />
         public Task Remove(Guid accountId)
         {
-            _infrastructure.Accounts.Remove(accountId);
-            return Task.CompletedTask;
+            return _infrastructure.Accounts.Remove(accountId);
         }
 
+        /// <inheritdoc />
         public Task<Account> Change(Guid accountId, string accountName, string accountPassword)
         {
             var account = new Account
@@ -49,28 +48,28 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = accountName,
                 Password = accountPassword,
             };
-            account = _infrastructure.Accounts.Update(accountId, account);
-            return Task.FromResult(account);
+            return _infrastructure.Accounts.Update(accountId, account);
         }
 
+        /// <inheritdoc />
         public Task<Account> Change(Account account)
         {
-            account = _infrastructure.Accounts.Update(account.Id, account);
-            return Task.FromResult(account);
+            return _infrastructure.Accounts.Update(account.Id, account);
         }
 
+        /// <inheritdoc />
         public Task<Account> Get(string accountName)
         {
-            var account = _infrastructure.Accounts.Get(accountName);
-            return Task.FromResult(account);
+            return _infrastructure.Accounts.Get(accountName);
         }
 
+        /// <inheritdoc />
         public Task<Account> Get(Guid accountId)
         {
-            var account = _infrastructure.Accounts.Get(accountId);
-            return Task.FromResult(account);
+            return _infrastructure.Accounts.Get(accountId);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Account> GetAll()
         {
             return _infrastructure.Accounts.GetAll();

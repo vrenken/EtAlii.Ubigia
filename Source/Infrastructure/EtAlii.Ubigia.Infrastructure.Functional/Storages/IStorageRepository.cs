@@ -6,19 +6,19 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IStorageRepository 
+    public interface IStorageRepository
     {
-        Storage GetLocal();
+        Task<Storage> GetLocal();
         IAsyncEnumerable<Storage> GetAll();
-        Storage Get(string name);
+        Task<Storage> Get(string name);
 
-        Storage Get(Guid itemId);
+        Task<Storage> Get(Guid itemId);
 
         Task<Storage> Add(Storage item);
 
-        void Remove(Guid itemId);
-        void Remove(Storage item);
+        Task Remove(Guid itemId);
+        Task Remove(Storage item);
 
-        Storage Update(Guid itemId, Storage item);
+        Task<Storage> Update(Guid itemId, Storage item);
     }
 }

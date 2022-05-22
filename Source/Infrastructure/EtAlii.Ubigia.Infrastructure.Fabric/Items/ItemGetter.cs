@@ -19,13 +19,15 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable
         {
             return items.ToAsyncEnumerable();
         }
 
-        public T Get<T>(IList<T> items, Guid id)
+        /// <inheritdoc />
+        public Task<T> Get<T>(IList<T> items, Guid id)
             where T : class, IIdentifiable
         {
             if (id == Guid.Empty)
@@ -33,9 +35,11 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 throw new ArgumentException("No item ID specified");
             }
 
-            return items.SingleOrDefault(item => item.Id == id);
+            var item = items.SingleOrDefault(item => item.Id == id);
+            return Task.FromResult(item);
         }
 
+        /// <inheritdoc />
         public async Task<ObservableCollection<T>> GetItems<T>(string folder)
             where T : class, IIdentifiable
         {
@@ -54,20 +58,20 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return items;
         }
 
-        private void OnItemsChanged<T>(NotifyCollectionChangedEventArgs e, string folder) // object sender, 
+        private void OnItemsChanged<T>(NotifyCollectionChangedEventArgs e, string folder) // object sender,
             where T : class, IIdentifiable
         {
             var containerId = _storage.ContainerProvider.ForItems(folder);
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (T item in e.NewItems)
+                    foreach (T item in e.NewItems!)
                     {
                         _storage.Items.Store(item, item.Id, containerId);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (T item in e.OldItems)
+                    foreach (T item in e.OldItems!)
                     {
                         _storage.Items.Remove(item.Id, containerId);
                     }

@@ -38,10 +38,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             profiler.Register(UpdateCounter, SamplingType.RawCount, "Milliseconds", "Update storage", "The time it takes for the Update method to execute");
         }
 
-        public Storage GetLocal()
+        public async Task<Storage> GetLocal()
         {
             var start = Environment.TickCount;
-            var storage = _repository.GetLocal();
+            var storage = await _repository.GetLocal().ConfigureAwait(false);
             _profiler.WriteSample(GetLocalCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
@@ -59,18 +59,18 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Storage Get(string name)
+        public async Task<Storage> Get(string name)
         {
             var start = Environment.TickCount;
-            var storage = _repository.Get(name);
+            var storage = await _repository.Get(name).ConfigureAwait(false);
             _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
 
-        public Storage Get(Guid itemId)
+        public async Task<Storage> Get(Guid itemId)
         {
             var start = Environment.TickCount;
-            var storage = _repository.Get(itemId);
+            var storage = await _repository.Get(itemId).ConfigureAwait(false);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
@@ -83,24 +83,24 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return item;
         }
 
-        public void Remove(Guid itemId)
+        public async Task Remove(Guid itemId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(itemId);
+            await _repository.Remove(itemId).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Storage item)
+        public async Task Remove(Storage item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(item);
+            await _repository.Remove(item).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Storage Update(Guid itemId, Storage item)
+        public async Task<Storage> Update(Guid itemId, Storage item)
         {
             var start = Environment.TickCount;
-            item = _repository.Update(itemId, item);
+            item = await _repository.Update(itemId, item).ConfigureAwait(false);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }

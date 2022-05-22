@@ -4,13 +4,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     internal class HttpContextAuthenticationTokenVerifier : IHttpContextAuthenticationTokenVerifier
     {
-        private readonly IAccountRepository _accountRepository; 
+        private readonly IAccountRepository _accountRepository;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public HttpContextAuthenticationTokenVerifier(
@@ -21,16 +22,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
+        /// <inheritdoc />
+        public async Task<IActionResult> Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
             IActionResult result;
             var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context);
             if (authenticationToken != null)
             {
-                result = controller.Forbid(); 
+                result = controller.Forbid();
                 try
                 {
-                    var account = _accountRepository.Get(authenticationToken.Name);
+                    var account = await _accountRepository.Get(authenticationToken.Name).ConfigureAwait(false);
                     if (account != null)
                     {
 	                    // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.

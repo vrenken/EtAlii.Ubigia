@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _repository = storageRepository;
         }
 
-        public Storage GetLocal()
+        public async Task<Storage> GetLocal()
         {
             _logger.Information("Getting local storage");
             var start = Environment.TickCount;
 
-            var storage = _repository.GetLocal();
+            var storage = await _repository.GetLocal().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Got local storage (Duration: {Duration}ms)", duration);
@@ -51,12 +51,12 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _logger.Information("Got all storages (Duration: {Duration}ms)", duration);
         }
 
-        public Storage Get(string name)
+        public async Task<Storage> Get(string name)
         {
             _logger.Information("Getting storage (Name: {StorageName})", name);
             var start = Environment.TickCount;
 
-            var storage = _repository.Get(name);
+            var storage = await _repository.Get(name).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Got storage (Name: {StorageName} Duration: {Duration}ms)", name, duration);
@@ -64,12 +64,12 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return storage;
         }
 
-        public Storage Get(Guid itemId)
+        public async Task<Storage> Get(Guid itemId)
         {
             _logger.Information("Getting storage (Id: {StorageId})", itemId);
             var start = Environment.TickCount;
 
-            var storage = _repository.Get(itemId);
+            var storage = await _repository.Get(itemId).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Got storage (Id: {StorageId} Duration: {Duration}ms)", itemId, duration);
@@ -90,34 +90,34 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return item;
         }
 
-        public void Remove(Guid itemId)
+        public async Task Remove(Guid itemId)
         {
             _logger.Information("Removing storage (Id: {StorageId})", itemId);
             var start = Environment.TickCount;
 
-            _repository.Remove(itemId);
+            await _repository.Remove(itemId).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Removed storage (Id: {StorageId} Duration: {Duration}ms)", itemId, duration);
         }
 
-        public void Remove(Storage item)
+        public async Task Remove(Storage item)
         {
             _logger.Information("Removing storage (Id: {StorageId})", item.Id);
             var start = Environment.TickCount;
 
-            _repository.Remove(item);
+            await _repository.Remove(item).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Removed storage (Id: {StorageId} Duration: {Duration}ms)", item.Id, duration);
         }
 
-        public Storage Update(Guid itemId, Storage item)
+        public async Task<Storage> Update(Guid itemId, Storage item)
         {
             _logger.Information("Updating storage (Id: {StorageId})", itemId);
             var start = Environment.TickCount;
 
-            item = _repository.Update(itemId, item);
+            item = await _repository.Update(itemId, item).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Updated storage (Id: {StorageId} Duration: {Duration}ms)", itemId, duration);

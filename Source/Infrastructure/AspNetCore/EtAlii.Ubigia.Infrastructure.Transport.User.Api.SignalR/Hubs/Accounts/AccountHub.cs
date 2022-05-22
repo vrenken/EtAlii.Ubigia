@@ -4,7 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
 	using System;
 	using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 
 	public class AccountHub : HubBase
@@ -22,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 			_authenticationTokenConverter = authenticationTokenConverter;
 		}
 
-		public Account GetForAuthenticationToken()
+		public async Task<Account> GetForAuthenticationToken()
 		{
 			Account response;
 			try
@@ -32,7 +33,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-				response = _items.Get(authenticationToken.Name);
+				response = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
 			}
 			catch (Exception e)
 			{

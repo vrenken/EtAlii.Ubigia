@@ -20,6 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _spaceInitializer = spaceInitializer;
         }
 
+        /// <inheritdoc />
         public async Task Initialize(Account account, AccountTemplate template)
         {
             var accountId = account.Id;
@@ -46,7 +47,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             // And finally let's add the spaces that
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
-                var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out var isAdded);
+                var (addedSpace, isAdded) = await _context.Spaces
+                    .Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate)
+                    .ConfigureAwait(false);
                 if (isAdded)
                 {
                     await _spaceInitializer

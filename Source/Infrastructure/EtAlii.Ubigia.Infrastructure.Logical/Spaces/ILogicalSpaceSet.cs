@@ -4,22 +4,23 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ILogicalSpaceSet
     {
         IAsyncEnumerable<Space> GetAll(Guid accountId);
         IAsyncEnumerable<Space> GetAll();
 
-        Space Get(Guid accountId, string spaceName);
+        Task<Space> Get(Guid accountId, string spaceName);
 
-        Space Get(Guid id);
+        Task<Space> Get(Guid id);
 
-        Space Add(Space item, SpaceTemplate template, out bool isAdded);
-        
-        void Remove(Guid itemId);
+        Task<(Space, bool)> Add(Space item, SpaceTemplate template);
 
-        void Remove(Space itemToRemove);
+        Task Remove(Guid itemId);
 
-        Space Update(Guid itemId, Space updatedItem);
+        Task Remove(Space itemToRemove);
+
+        Task<Space> Update(Guid itemId, Space updatedItem);
     }
 }

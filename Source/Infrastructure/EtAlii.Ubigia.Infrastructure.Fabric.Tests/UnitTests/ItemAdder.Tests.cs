@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
     public sealed class ItemAdderTests
     {
         [Fact]
-        public void ItemAdder_Add()
+        public async Task ItemAdder_Add()
         {
             var itemAdder = new ItemAdder();
 
@@ -27,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
                 new Space { Id = thirdId },
             });
 
-            var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+            var item = await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
 
             Assert.Equal("Test", item.Name);
         }
@@ -48,13 +49,13 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             });
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
             });
 
             // Assert.
-            Assert.Throws<InvalidOperationException>(act);
+            Assert.ThrowsAsync<InvalidOperationException>(act);
         }
 
         [Fact]
@@ -74,13 +75,13 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             });
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
+                await itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" }).ConfigureAwait(false);
             });
 
             // Assert.
-            Assert.Throws<InvalidOperationException>(act);
+            Assert.ThrowsAsync<InvalidOperationException>(act);
         }
 
         [Fact]
@@ -100,13 +101,13 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             });
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                itemAdder.Add(items, null);
+                await itemAdder.Add(items, null).ConfigureAwait(false);
             });
 
             // Assert.
-            Assert.Throws<ArgumentNullException>(act);
+            Assert.ThrowsAsync<ArgumentNullException>(act);
         }
 
         [Fact]
@@ -127,13 +128,13 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             items.CollectionChanged += (_, _) => throw new ApplicationException();
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
             });
 
             // Assert.
-            Assert.Throws<ApplicationException>(act);
+            Assert.ThrowsAsync<ApplicationException>(act);
         }
     }
 }

@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -20,20 +21,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        
-        public void Verify(string authenticationTokenAsString, params string[] requiredRoles)
+        /// <inheritdoc />
+        public async Task<Account> Verify(string authenticationTokenAsString, params string[] requiredRoles)
         {
-            Verify(authenticationTokenAsString, out _, requiredRoles);
-        }
-
-        public void Verify(string authenticationTokenAsString, out Account account, params string[] requiredRoles)
-        {
+            Account account;
             var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
             if (authenticationToken != null)
             {
                 try
                 {
-                    account = _accountRepository.Get(authenticationToken.Name);
+                    account = await _accountRepository
+                        .Get(authenticationToken.Name)
+                        .ConfigureAwait(false);
                     if (account == null)
                     {
 	                    throw new UnauthorizedInfrastructureOperationException("Unauthorized account: Account does not contain the required role");
@@ -58,6 +57,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             {
                 throw new UnauthorizedInfrastructureOperationException("Missing Authentication-Token");
             }
+
+            return account;
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _authenticationVerifier.Verify(HttpContext, this, Role.Admin, Role.System);
+            var result = await _authenticationVerifier
+                .Verify(HttpContext, this, Role.Admin, Role.System)
+                .ConfigureAwait(false);
             return result;
         }
     }

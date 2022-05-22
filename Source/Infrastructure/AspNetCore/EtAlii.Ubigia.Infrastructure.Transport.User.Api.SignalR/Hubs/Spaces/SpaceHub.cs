@@ -4,7 +4,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
 	using System;
 	using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 
 	public class SpaceHub : HubBase
@@ -25,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 			_authenticationTokenConverter = authenticationTokenConverter;
 		}
 
-		public Space GetForAuthenticationToken(string spaceName)
+		public async Task<Space> GetForAuthenticationToken(string spaceName)
 		{
 			Space response;
 			try
@@ -35,9 +36,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-				var account = _accountItems.Get(authenticationToken.Name);
+				var account = await _accountItems.Get(authenticationToken.Name).ConfigureAwait(false);
 
-				response = _items.Get(account.Id, spaceName);
+				response = await _items.Get(account.Id, spaceName).ConfigureAwait(false);
 			}
 			catch (Exception e)
 			{

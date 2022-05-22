@@ -65,12 +65,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 	        }
         }
 
-		public Space GetForAccount(Guid accountId, string spaceName)
+		public async Task<Space> GetForAccount(Guid accountId, string spaceName)
 		{
 			Space response;
 			try
 			{
-				response = _items.Get(accountId, spaceName);
+				response = await _items.Get(accountId, spaceName).ConfigureAwait(false);
 			}
 			catch (Exception e)
 			{
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 			return response;
 		}
 
-		public Space GetForAuthenticationToken(string spaceName)
+		public async Task<Space> GetForAuthenticationToken(string spaceName)
 		{
 			Space response;
 			try
@@ -89,9 +89,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-				var account = _accountItems.Get(authenticationToken.Name);
+				var account = await _accountItems.Get(authenticationToken.Name).ConfigureAwait(false);
 
-				response = _items.Get(account.Id, spaceName);
+				response = await _items.Get(account.Id, spaceName).ConfigureAwait(false);
 			}
 			catch (Exception e)
 			{
@@ -133,12 +133,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Get Item by id
-        public Space Get(Guid spaceId)
+        public async Task<Space> Get(Guid spaceId)
         {
             Space response;
             try
             {
-                response = _items.Get(spaceId);
+                response = await _items.Get(spaceId).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -164,12 +164,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Update Item by id
-        public Space Put(Guid spaceId, Space space)
+        public async Task<Space> Put(Guid spaceId, Space space)
         {
             Space response;
             try
             {
-                response = _items.Update(spaceId, space);
+                response = await _items.Update(spaceId, space).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -179,11 +179,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Delete Item by id
-        public void Delete(Guid spaceId)
+        public async Task Delete(Guid spaceId)
         {
             try
             {
-                _items.Remove(spaceId);
+                await _items.Remove(spaceId).ConfigureAwait(false);
             }
             catch (Exception e)
             {

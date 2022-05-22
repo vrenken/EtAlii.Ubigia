@@ -23,9 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var storage = _infrastructure.Storages.GetLocal();
-
-            return Task.FromResult(storage);
+            return _infrastructure.Storages.GetLocal();
         }
 
         /// <inheritdoc />
@@ -36,9 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var storage = _infrastructure.Storages.GetLocal();
-
-            return Task.FromResult(storage);
+            return _infrastructure.Storages.GetLocal();
         }
 
         /// <inheritdoc />

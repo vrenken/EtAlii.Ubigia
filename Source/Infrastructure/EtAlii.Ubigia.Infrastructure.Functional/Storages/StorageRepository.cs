@@ -13,8 +13,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         private readonly ILocalStorageInitializer _localStorageInitializer;
         private readonly IStorageInitializer _storageInitializer;
 
-        public StorageRepository(ILogicalContext logicalContext, 
-            ILocalStorageInitializer localStorageInitializer, 
+        public StorageRepository(ILogicalContext logicalContext,
+            ILocalStorageInitializer localStorageInitializer,
             IStorageInitializer storageInitializer)
         {
             _logicalContext = logicalContext;
@@ -25,44 +25,52 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext.Storages.Added = OnStorageAdded;
         }
 
-        public Storage GetLocal()
+        /// <inheritdoc />
+        public Task<Storage> GetLocal()
         {
             return _logicalContext.Storages.GetLocal();
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Storage> GetAll()
         {
             return _logicalContext.Storages.GetAll();
         }
 
-        public Storage Get(string name)
+        /// <inheritdoc />
+        public Task<Storage> Get(string name)
         {
             return _logicalContext.Storages.Get(name);
         }
 
-        public Storage Get(Guid itemId)
+        /// <inheritdoc />
+        public Task<Storage> Get(Guid itemId)
         {
             return _logicalContext.Storages.Get(itemId);
         }
 
-        public Storage Update(Guid itemId, Storage item)
+        /// <inheritdoc />
+        public Task<Storage> Update(Guid itemId, Storage item)
         {
             return _logicalContext.Storages.Update(itemId, item);
         }
 
+        /// <inheritdoc />
         public Task<Storage> Add(Storage item)
         {
             return _logicalContext.Storages.Add(item);
         }
 
-        public void Remove(Guid itemId)
+        /// <inheritdoc />
+        public Task Remove(Guid itemId)
         {
-            _logicalContext.Storages.Remove(itemId);
+            return _logicalContext.Storages.Remove(itemId);
         }
 
-        public void Remove(Storage item)
+        /// <inheritdoc />
+        public Task Remove(Storage item)
         {
-            _logicalContext.Storages.Remove(item);
+            return _logicalContext.Storages.Remove(item);
         }
 
         private Task OnLocalStorageInitialized(Storage localStorage)

@@ -3,9 +3,10 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface INextIdentifierGetter
     {
-        Identifier GetNext(Guid spaceId, in Identifier previousHeadIdentifier);
+        Task<Identifier> GetNext(Guid spaceId, Identifier previousHeadIdentifier);
     }
 }

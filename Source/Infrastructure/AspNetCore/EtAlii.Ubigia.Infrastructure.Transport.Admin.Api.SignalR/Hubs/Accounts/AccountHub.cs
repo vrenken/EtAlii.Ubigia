@@ -24,12 +24,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 			_authenticationTokenConverter = authenticationTokenConverter;
 		}
 
-		public Account GetByName(string accountName)
+		public async Task<Account> GetByName(string accountName)
         {
             Account response;
             try
             {
-                response = _items.Get(accountName);
+                response = await _items.Get(accountName).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             return response;
         }
 
-		public Account GetForAuthenticationToken()
+		public async Task<Account> GetForAuthenticationToken()
 		{
 			Account response;
 			try
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-				response = _items.Get(authenticationToken.Name);
+				response = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
 			}
 			catch (Exception e)
 			{
@@ -91,12 +91,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Get Item by id
-        public Account Get(Guid accountId)
+        public async Task<Account> Get(Guid accountId)
         {
             Account response;
             try
             {
-                response = _items.Get(accountId);
+                response = await _items.Get(accountId).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -122,12 +122,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Update Item by id
-        public Account Put(Guid accountId, Account account)
+        public async Task<Account> Put(Guid accountId, Account account)
         {
             Account response;
             try
             {
-                response = _items.Update(accountId, account);
+                response = await _items.Update(accountId, account).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -137,11 +137,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
         }
 
         // Delete Item by id
-        public void Delete(Guid accountId)
+        public async Task Delete(Guid accountId)
         {
             try
             {
-                _items.Remove(accountId);
+                await _items.Remove(accountId).ConfigureAwait(false);
             }
             catch (Exception e)
             {

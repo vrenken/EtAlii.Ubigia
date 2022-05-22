@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -19,19 +20,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 	        _authenticationBuilder = authenticationBuilder;
         }
 
-        public string Verify(string accountName, string password, string hostIdentifier, params string[] requiredRoles)
-        {
-            return Verify(accountName, password, hostIdentifier, out _, requiredRoles);
-        }
-
-        public string Verify(string accountName, string password, string hostIdentifier, out Account account, params string[] requiredRoles)
+        /// <inheritdoc />
+        public async Task<(string, Account)> Verify(string accountName, string password, string hostIdentifier, params string[] requiredRoles)
         {
             if (string.IsNullOrWhiteSpace(accountName) || string.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidInfrastructureOperationException("Unauthorized");
             }
 
-            account = _accountRepository.Get(accountName, password);
+            var account = await _accountRepository.Get(accountName, password).ConfigureAwait(false);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException("Invalid account");
@@ -48,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
 			var authenticationToken = _authenticationBuilder.Build(accountName, hostIdentifier);
 
-            return authenticationToken;
+            return (authenticationToken, account);
         }
     }
 }

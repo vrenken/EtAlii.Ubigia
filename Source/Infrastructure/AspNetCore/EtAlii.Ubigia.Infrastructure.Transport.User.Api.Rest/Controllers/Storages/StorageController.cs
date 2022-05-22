@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
@@ -21,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 
 	    //[AllowAnonymous]
         [HttpGet]
-        public IActionResult GetLocal([RequiredFromQuery]string local)
+        public async Task<IActionResult> GetLocal([RequiredFromQuery]string local)
         {
             IActionResult response;
             try
             {
-                var storage = _items.GetLocal();
+                var storage = await _items.GetLocal().ConfigureAwait(false);
                 response = Ok(storage);
             }
             catch (Exception ex)

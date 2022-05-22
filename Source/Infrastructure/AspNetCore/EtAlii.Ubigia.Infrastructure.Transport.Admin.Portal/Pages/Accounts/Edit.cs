@@ -17,9 +17,9 @@
 
         [Parameter, SupplyParameterFromQuery] public Guid Id { get; set; }
 
-        protected override void OnParametersSet()
+        protected override async Task OnParametersSetAsync()
         {
-            _account = Infrastructure.Accounts.Get(Id);
+            _account = await Infrastructure.Accounts.Get(Id).ConfigureAwait(false);
 
             _accountName = _account.Name;
             _accountPassword = _account.Password;
@@ -30,15 +30,19 @@
             NavigationManager.NavigateTo("/Accounts/");
         }
 
-        private Task OnSavePressed()
+        private async Task OnSavePressed()
         {
             _account.Name = _accountName;
             _account.Password = _accountPassword;
 
-            Infrastructure.Accounts.Update(Id, _account);
+            await Infrastructure.Accounts.Update(Id, _account).ConfigureAwait(false);
             NavigationManager.NavigateTo("/Accounts/");
+        }
 
-            return Task.CompletedTask;
+        private async Task OnDeletePressed()
+        {
+            await Infrastructure.Accounts.Remove(Id).ConfigureAwait(false);
+            NavigationManager.NavigateTo("/Accounts/");
         }
     }
 }

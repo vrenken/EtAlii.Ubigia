@@ -2,9 +2,10 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System.Threading.Tasks;
+
     public interface ISimpleAuthenticationTokenVerifier
     {
-        void Verify(string authenticationTokenAsString, params string[] requiredRoles);
-        void Verify(string authenticationTokenAsString, out Account account, params string[] requiredRoles);
+        Task<Account> Verify(string authenticationTokenAsString, params string[] requiredRoles);
     }
 }

@@ -5,10 +5,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class ItemRemover : IItemRemover
     {
-        public void Remove<T>(IList<T> items, Guid itemId)
+        /// <inheritdoc />
+        public Task Remove<T>(IList<T> items, Guid itemId)
             where T : class, IIdentifiable
         {
             if (itemId == Guid.Empty)
@@ -17,10 +19,11 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
 
             var itemToRemove = items.SingleOrDefault(item => item.Id == itemId);
-            Remove(items, itemToRemove);
+            return Remove(items, itemToRemove);
         }
 
-        public void Remove<T>(IList<T> items, T itemToRemove)
+        /// <inheritdoc />
+        public Task Remove<T>(IList<T> items, T itemToRemove)
             where T : class, IIdentifiable
         {
             if (itemToRemove == null)
@@ -44,6 +47,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             {
                 throw new InvalidOperationException("No item found to remove");
             }
+
+            return Task.CompletedTask;
         }
 
     }

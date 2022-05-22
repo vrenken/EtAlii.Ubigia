@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using Microsoft.AspNetCore.Authorization;
@@ -27,20 +28,24 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = _authenticationVerifier.Verify(HttpContext, this, Role.User, Role.System);
+            var result = await _authenticationVerifier
+                .Verify(HttpContext, this, Role.User, Role.System)
+                .ConfigureAwait(false);
             return result;
         }
 
 		[AllowAnonymous]
 		[HttpGet]
-		public IActionResult Get([RequiredFromQuery]string accountName, [RequiredFromQuery(Name = "authenticationToken")] string value)
+		public async Task<IActionResult> Get([RequiredFromQuery]string accountName, [RequiredFromQuery(Name = "authenticationToken")] string value)
 		{
 			IActionResult response;
 			try
 			{
-				response = _authenticationTokenVerifier.Verify(HttpContext, this, Role.Admin, Role.System);
+				response = await _authenticationTokenVerifier
+                    .Verify(HttpContext, this, Role.Admin, Role.System)
+                    .ConfigureAwait(false);
 				if (response is OkResult)
 				{
 					response = _responseBuilder.Build(HttpContext, this, accountName);

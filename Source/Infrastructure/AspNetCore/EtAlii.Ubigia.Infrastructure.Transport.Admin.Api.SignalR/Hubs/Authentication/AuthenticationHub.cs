@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 {
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
 
     public class AuthenticationHub : Hub
@@ -13,9 +14,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             _authenticationVerifier = authenticationVerifier;
         }
 
-        public string Authenticate(string accountName, string password, string hostIdentifier)
+        public async Task<string> Authenticate(string accountName, string password, string hostIdentifier)
         {
-            return _authenticationVerifier.Verify(accountName, password, hostIdentifier, Role.Admin, Role.System);
+            var (response, _) = await _authenticationVerifier
+                .Verify(accountName, password, hostIdentifier, Role.Admin, Role.System)
+                .ConfigureAwait(false);
+            return response;
         }
     }
 }

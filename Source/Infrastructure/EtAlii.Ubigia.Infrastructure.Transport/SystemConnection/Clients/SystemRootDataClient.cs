@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _infrastructure = infrastructure;
         }
 
+        /// <inheritdoc />
         public async Task<Root> Add(string name)
         {
             var root = new Root
@@ -30,12 +31,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
+        /// <inheritdoc />
         public Task Remove(Guid id)
         {
-            _infrastructure.Roots.Remove(Connection.Space.Id, id);
-            return Task.CompletedTask;
+            return _infrastructure.Roots.Remove(Connection.Space.Id, id);
         }
 
+        /// <inheritdoc />
         public async Task<Root> Change(Guid rootId, string rootName)
         {
             var root = new Root
@@ -50,6 +52,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
+        /// <inheritdoc />
         public async Task<Root> Get(string rootName)
         {
             var result = await _infrastructure.Roots
@@ -58,6 +61,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
+        /// <inheritdoc />
         public async Task<Root> Get(Guid rootId)
         {
             var result = await _infrastructure.Roots
@@ -66,6 +70,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Root> GetAll()
         {
             return _infrastructure.Roots

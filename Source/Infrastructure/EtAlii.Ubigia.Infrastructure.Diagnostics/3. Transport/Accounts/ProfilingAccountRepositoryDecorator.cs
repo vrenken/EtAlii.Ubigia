@@ -44,26 +44,26 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             profiler.Register(UpdateCounter, SamplingType.RawCount, "Milliseconds", "Update account", "The time it takes for the Update method to execute");
         }
 
-        public Account Get(string accountName)
+        public async Task<Account> Get(string accountName)
         {
             var start = Environment.TickCount;
-            var account = _repository.Get(accountName);
+            var account = await _repository.Get(accountName).ConfigureAwait(false);
             _profiler.WriteSample(GetByNameNoPasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return account;
         }
 
-        public Account Get(string accountName, string password)
+        public async Task<Account> Get(string accountName, string password)
         {
             var start = Environment.TickCount;
-            var account = _repository.Get(accountName, password);
+            var account = await _repository.Get(accountName, password).ConfigureAwait(false);
             _profiler.WriteSample(GetByNamePasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return account;
         }
 
-        public Account Get(Guid itemId)
+        public async Task<Account> Get(Guid itemId)
         {
             var start = Environment.TickCount;
-            var account = _repository.Get(itemId);
+            var account = await _repository.Get(itemId).ConfigureAwait(false);
             _profiler.WriteSample(GetByIdNoPasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return account;
         }
@@ -89,24 +89,24 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return item;
         }
 
-        public void Remove(Guid itemId)
+        public async Task Remove(Guid itemId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(itemId);
+            await _repository.Remove(itemId).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Account item)
+        public async Task Remove(Account item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(item);
+            await _repository.Remove(item).ConfigureAwait(false);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Account Update(Guid itemId, Account item)
+        public async Task<Account> Update(Guid itemId, Account item)
         {
             var start = Environment.TickCount;
-            item = _repository.Update(itemId, item);
+            item = await _repository.Update(itemId, item).ConfigureAwait(false);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }
