@@ -41,9 +41,9 @@ namespace EtAlii.xTechnology.Hosting
                             .ConnectAsync(webSocketContext.Uri, cancellationToken)
                             .ConfigureAwait(false);
                     };
-// #pragma warning disable CA1416
-//                     options.HttpMessageHandlerFactory = _ => context.CreateHandler();
-// #pragma warning restore CA1416
+#pragma warning disable CA1416
+                    options.HttpMessageHandlerFactory = _ => context.CreateHandler();
+#pragma warning restore CA1416
                 })
 			    .AddJsonProtocol()
 			    .ConfigureLogging(options =>
