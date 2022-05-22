@@ -26,7 +26,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
             options = options ?? throw new ArgumentNullException(nameof(options));
 
             // Basic initialization in case the options weren't initialized by any other component
-            //options.ContentTypeProvider ??= new FileExtensionContentTypeProvider();
             if (options.FileProvider == null && _environment.WebRootFileProvider == null)
             {
                 throw new InvalidOperationException("Missing FileProvider");
