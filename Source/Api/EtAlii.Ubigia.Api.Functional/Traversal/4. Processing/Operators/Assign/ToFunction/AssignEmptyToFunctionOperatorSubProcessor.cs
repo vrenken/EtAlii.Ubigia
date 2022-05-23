@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public Task Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var functionSubject = (FunctionSubject)parameters.LeftSubject;
 
@@ -35,8 +35,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             // And one single parameter set with the exact same parameters.
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
-            functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
-            return Task.CompletedTask;
+            await functionHandler
+                .Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false)
+                .ConfigureAwait(false);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var functionSubject = (FunctionSubject)subject;
 
@@ -37,9 +37,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             // And one single parameter set with the exact same parameters.
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
-            functionHandler.Process(_functionContext, parameterSet, argumentSet, Observable.Empty<object>(), scope, output, true);
-
-            return Task.CompletedTask;
+            await functionHandler
+                .Process(_functionContext, parameterSet, argumentSet, Observable.Empty<object>(), scope, output, true)
+                .ConfigureAwait(false);
         }
     }
 }
