@@ -11,11 +11,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         Task<Entry> Get(Identifier identifier, EntryRelations entryRelations);
         IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations);
 
-        Entry Store(IEditableEntry entry);
-        Entry Store(Entry entry);
-
-        Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents);
-        Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents);
+        Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry);
+        Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry);
 
         Task Update(Entry entry, IEnumerable<IComponent> changedComponents);
         Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents);

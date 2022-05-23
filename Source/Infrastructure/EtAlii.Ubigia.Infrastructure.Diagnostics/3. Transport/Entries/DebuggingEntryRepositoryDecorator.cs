@@ -60,22 +60,22 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return _repository.Prepare(spaceId, identifier);
         }
 
-        public Entry Store(Entry entry)
+        public async Task<Entry> Store(Entry entry)
         {
             EnsureUniqueComponents(entry);
 
-            var storedEntry = _repository.Store(entry);
+            var storedEntry = await _repository.Store(entry).ConfigureAwait(false);
 
             EnsureUniqueComponents(entry);
 
             return storedEntry;
         }
 
-        public Entry Store(IEditableEntry entry)
+        public async Task<Entry> Store(IEditableEntry entry)
         {
             EnsureUniqueComponents((Entry)entry);
 
-            var storedEntry = _repository.Store(entry);
+            var storedEntry = await _repository.Store(entry).ConfigureAwait(false);
 
             EnsureUniqueComponents((Entry)entry);
 

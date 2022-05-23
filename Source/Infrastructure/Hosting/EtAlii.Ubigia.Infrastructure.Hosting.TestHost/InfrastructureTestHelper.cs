@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 {
                     createdEntry.Previous = Relation.NewRelation(previousEntry.Id);
                 }
-                infrastructure.Entries.Store(createdEntry);
+                await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
                 previousEntry = createdEntry;
             }
             return createdEntries;
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 {
                     createdEntry.Parent = Relation.NewRelation(parentEntry.Id);
                 }
-                createdEntries[i] = infrastructure.Entries.Store(createdEntry);
+                createdEntries[i] = await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
                 parentEntry = createdEntry;
             }
             return createdEntries;
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 {
                     createdEntry.Parent2 = Relation.NewRelation(parent2Entry.Id);
                 }
-                createdEntries[i] = infrastructure.Entries.Store(createdEntry);
+                createdEntries[i] = await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
                 parent2Entry = createdEntry;
             }
             return createdEntries;

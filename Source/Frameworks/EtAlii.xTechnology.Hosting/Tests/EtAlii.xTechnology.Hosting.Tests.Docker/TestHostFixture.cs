@@ -113,11 +113,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
             try
             {
                 await Task.CompletedTask.ConfigureAwait(false);//Task.Delay(TimeSpan.FromMinutes(1));// Task.CompletedTask.ConfigureAwait(false);
-                // var connectionString = GetMsSqlConnectionString(ports.Single());
-                // var connection = new SqlConnection(connectionString);
-                // await connection.OpenAsync().ConfigureAwait(false);
-                // var cmd = new SqlCommand("SELECT GETDATE()", connection);
-                // await cmd.ExecuteScalarAsync().ConfigureAwait(false);
                 return false;
             }
             catch

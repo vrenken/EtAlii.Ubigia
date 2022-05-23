@@ -19,14 +19,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _entryGetter = entryGetter;
         }
 
-        public async Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
+        /// <inheritdoc />
+        public Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            await Update((Entry)entry, changedComponents).ConfigureAwait(false);
+            return Update((Entry)entry, changedComponents);
         }
 
-        public async Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
+        /// <inheritdoc />
+        public Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            await EnsureModelConsistency(entry, changedComponents).ConfigureAwait(false);
+            return EnsureModelConsistency(entry, changedComponents);
         }
 
         private async Task EnsureModelConsistency(Entry entry, IEnumerable<IComponent> components)
@@ -52,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     {
                         //_logger.Verbose("Updating entry - Adding relation from previous to next: [0] => [1]", previousId.ToTimeString(), entry.Id.ToTimeString())
                         previous.Next = Relation.NewRelation(entry.Id);
-                        _entryStorer.Store(previous);
+                        await _entryStorer.Store(previous).ConfigureAwait(false);
                     }
                     else
                     {
@@ -81,7 +83,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
                         downdate.Updates.Add(entry.Id);
-                        _entryStorer.Store(downdate);
+                        await _entryStorer.Store(downdate).ConfigureAwait(false);
                     }
                     else
                     {
@@ -109,7 +111,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     {
                         //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
                         parent.Children.Add(entry.Id);
-                        _entryStorer.Store(parent);
+                        await _entryStorer.Store(parent).ConfigureAwait(false);
                     }
                     else
                     {
@@ -137,7 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     {
                         //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
                         parent2.Children2.Add(entry.Id);
-                        _entryStorer.Store(parent2);
+                        await _entryStorer.Store(parent2).ConfigureAwait(false);
                     }
                     else
                     {
@@ -174,7 +176,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                         {
                             //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
                             index.Indexed = Relation.NewRelation(entry.Id);
-                            _entryStorer.Store(index);
+                            await _entryStorer.Store(index).ConfigureAwait(false);
                         }
                         if (index.Indexed.Id != entry.Id)
                         {
@@ -204,7 +206,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     {
                         //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())
                         indexed.Indexes.Add(entry.Id);
-                        _entryStorer.Store(indexed);
+                        await _entryStorer.Store(indexed).ConfigureAwait(false);
                     }
                     else
                     {

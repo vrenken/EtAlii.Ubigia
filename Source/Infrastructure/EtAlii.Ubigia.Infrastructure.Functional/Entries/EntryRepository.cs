@@ -16,11 +16,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations = EntryRelations.None)
         {
             return _logicalContext.Entries.Get(identifier, entryRelations);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
             foreach (var identifier in identifiers)
@@ -29,32 +31,37 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
+        /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId)
         {
             return _logicalContext.Entries.Prepare(spaceId);
         }
 
+        /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
             return _logicalContext.Entries.Prepare(spaceId, identifier);
         }
 
-        public Entry Store(IEditableEntry entry)
+        /// <inheritdoc />
+        public async Task<Entry> Store(IEditableEntry entry)
         {
-            var storedEntry = _logicalContext.Entries.Store(entry, out var storedComponents);
-            _logicalContext.Entries.Update(storedEntry, storedComponents);
+            var (storedEntry, storedComponents) = await _logicalContext.Entries.Store(entry).ConfigureAwait(false);
+            await _logicalContext.Entries.Update(storedEntry, storedComponents).ConfigureAwait(false);
             return storedEntry;
         }
 
-        public Entry Store(Entry entry)
+        /// <inheritdoc />
+        public async Task<Entry> Store(Entry entry)
         {
-            var storedEntry = _logicalContext.Entries.Store(entry, out var storedComponents);
-            _logicalContext.Entries.Update(storedEntry, storedComponents);
+            var (storedEntry, storedComponents) = await _logicalContext.Entries.Store(entry).ConfigureAwait(false);
+            await _logicalContext.Entries.Update(storedEntry, storedComponents).ConfigureAwait(false);
             return storedEntry;
         }
     }

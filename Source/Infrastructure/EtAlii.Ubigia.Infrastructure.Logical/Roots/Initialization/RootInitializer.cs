@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _entries = entries;
         }
 
+        /// <inheritdoc />
         public async Task Initialize(Guid spaceId, Root root)
         {
             if (root.Identifier == Identifier.Empty)
@@ -27,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail)
                 //entry.Parent = Relation.NewRelation(tailRoot.Identifier)
 
-                _fabric.Entries.Store(entry);
+                await _fabric.Entries.Store(entry).ConfigureAwait(false);
                 root.Identifier = entry.Id;
                 await _fabric.Roots.Update(spaceId, root.Id, root).ConfigureAwait(false);
             }

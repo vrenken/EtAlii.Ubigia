@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                     entry.Previous = Relation.NewRelation(previousIdentifier); // All roots are sequenced next to each other.
                     entry.Parent = Relation.NewRelation(tailIdentifier); // Everything is child of the tail.
                 }
-                _context.Entries.Store(entry);
+                await _context.Entries.Store(entry).ConfigureAwait(false);
                 rootEntries[i] = entry;
                 previousIdentifier = rootEntries[i].Id;
             }

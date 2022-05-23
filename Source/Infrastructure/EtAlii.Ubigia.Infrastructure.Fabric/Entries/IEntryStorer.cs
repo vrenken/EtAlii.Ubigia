@@ -3,13 +3,22 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IEntryStorer
     {
-        Entry Store(IEditableEntry entry);
-        Entry Store(Entry entry);
+        /// <summary>
+        /// Store the specified entry and return the new entry and stored components.
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
+        Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry);
 
-        Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents);
-        Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents);
+        /// <summary>
+        /// Store the specified entry and return the new entry and stored components.
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
+        Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry);
     }
 }

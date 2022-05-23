@@ -28,6 +28,7 @@ namespace EtAlii.Ubigia.Persistence
             _containerCreator = containerCreator;
         }
 
+        /// <inheritdoc />
         public ContainerIdentifier GetNextContainer(ContainerIdentifier container)
         {
             if (container == ContainerIdentifier.Empty)
@@ -47,6 +48,7 @@ namespace EtAlii.Ubigia.Persistence
             }
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
             where T : CompositeComponent
         {
@@ -85,6 +87,7 @@ namespace EtAlii.Ubigia.Persistence
             }
         }
 
+        /// <inheritdoc />
         public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : NonCompositeComponent
         {
@@ -103,7 +106,8 @@ namespace EtAlii.Ubigia.Persistence
             }
         }
 
-        public void StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
+        /// <inheritdoc />
+        public Task StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
             where T : class, IComponent
         {
             if (container == ContainerIdentifier.Empty)
@@ -122,8 +126,11 @@ namespace EtAlii.Ubigia.Persistence
             {
                 throw new StorageException("Unable to store components in the specified container", e);
             }
+
+            return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public void Store<T>(ContainerIdentifier container, T component)
             where T : class, IComponent
         {

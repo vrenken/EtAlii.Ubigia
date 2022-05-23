@@ -4,6 +4,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Serilog;
 
     internal class LoggingEntryStorerDecorator : IEntryStorer
@@ -16,46 +17,32 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public Entry Store(IEditableEntry entry)
-        {
-            _logger.Verbose("Storing entry: {EntryId}", entry.Id.ToTimeString());
-
-            return _decoree.Store(entry);
-        }
-
-        public Entry Store(Entry entry)
-        {
-            _logger.Verbose("Storing entry: {EntryId}", entry.Id.ToTimeString());
-
-            return _decoree.Store(entry);
-        }
-
-        public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)
+        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
         {
             var entryId = entry.Id.ToTimeString();
             _logger.Verbose("Storing entry: {EntryId}", entryId);
 
-            var result = _decoree.Store(entry, out storedComponents);
+            var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
 
             _logger
                 .ForContext("StoredComponents", storedComponents)
                 .Verbose("Components stored for entry {EntryId}", entryId);
 
-            return result;
+            return (e, storedComponents);
         }
 
-        public Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents)
+        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
         {
             var entryId = entry.Id.ToTimeString();
             _logger.Verbose("Storing entry: {EntryId}", entryId);
 
-            var result = _decoree.Store(entry, out storedComponents);
+            var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
 
             _logger
                 .ForContext("StoredComponents", storedComponents)
                 .Verbose("Components stored for entry {EntryId}", entryId);
 
-            return result;
+            return (e, storedComponents);
         }
     }
 }

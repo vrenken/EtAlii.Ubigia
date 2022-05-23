@@ -13,66 +13,65 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IEntryPreparer _entryPreparer;
 
         public LogicalEntrySet(
-            IFabricContext fabricContext, 
+            IFabricContext fabricContext,
             IEntryPreparer entryPreparer)
         {
             _fabricContext = fabricContext;
             _entryPreparer = entryPreparer;
         }
 
+        /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId)
         {
             return _entryPreparer.Prepare(spaceId);
         }
 
+        /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
             return _entryPreparer.Prepare(spaceId, id);
         }
 
+        /// <inheritdoc />
         public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.Get(identifier, entryRelations);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.Get(identifiers, entryRelations);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
-        public Entry Store(IEditableEntry entry)
+        /// <inheritdoc />
+        public Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
         {
             return _fabricContext.Entries.Store(entry);
         }
 
-        public Entry Store(Entry entry)
+        /// <inheritdoc />
+        public Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
         {
             return _fabricContext.Entries.Store(entry);
         }
 
-        public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)
+        /// <inheritdoc />
+        public Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            return _fabricContext.Entries.Store(entry, out storedComponents);
+            return _fabricContext.Entries.Update(entry, changedComponents);
         }
 
-        public Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents)
+        /// <inheritdoc />
+        public Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            return _fabricContext.Entries.Store(entry, out storedComponents);
-        }
-
-        public void Update(Entry entry, IEnumerable<IComponent> changedComponents)
-        {
-            _fabricContext.Entries.Update(entry, changedComponents);
-        }
-
-        public void Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
-        {
-            _fabricContext.Entries.Update(entry, changedComponents);
+            return _fabricContext.Entries.Update(entry, changedComponents);
         }
     }
 }

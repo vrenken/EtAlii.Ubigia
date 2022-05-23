@@ -3,19 +3,20 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class EntryController
     {
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([FromBody]Entry entry)
+        public async Task<IActionResult> Put([FromBody]Entry entry)
         {
             IActionResult response;
             try
             {
                 // Store the entry.
-                var result = _items.Store(entry);
+                var result = await _items.Store(entry).ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok(result);

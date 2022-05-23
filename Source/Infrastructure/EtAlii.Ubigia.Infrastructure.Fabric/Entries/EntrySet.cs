@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IEntryStorer _entryStorer;
 
         public EntrySet(
-            IEntryGetter entryGetter, 
-            IEntryUpdater entryUpdater, 
+            IEntryGetter entryGetter,
+            IEntryUpdater entryUpdater,
             IEntryStorer entryStorer)
         {
             _entryGetter = entryGetter;
@@ -21,46 +21,43 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _entryStorer = entryStorer;
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             return _entryGetter.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
+        /// <inheritdoc />
         public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             return _entryGetter.Get(identifier, entryRelations);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             return _entryGetter.Get(identifiers, entryRelations);
         }
 
-        public Entry Store(IEditableEntry entry)
+        /// <inheritdoc />
+        public Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
         {
             return _entryStorer.Store(entry);
         }
 
-        public Entry Store(Entry entry)
+        /// <inheritdoc />
+        public Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
         {
             return _entryStorer.Store(entry);
         }
 
-        public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)
-        {
-            return _entryStorer.Store(entry, out storedComponents);
-        }
-
-        public Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents)
-        {
-            return _entryStorer.Store(entry, out storedComponents);
-        }
-
+        /// <inheritdoc />
         public Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
             return _entryUpdater.Update(entry, changedComponents);
         }
 
+        /// <inheritdoc />
         public Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
             return _entryUpdater.Update(entry, changedComponents);

@@ -3,17 +3,18 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
     using System;
+    using System.Threading.Tasks;
 
     public partial class EntryHub
     {
         // Update Item by id
-        public Entry Put(Entry entry)
+        public async Task<Entry> Put(Entry entry)
         {
             Entry response;
             try
             {
                 // Store the entry.
-                response = _items.Store(entry);
+                response = await _items.Store(entry).ConfigureAwait(false);
             }
             catch (Exception e)
             {

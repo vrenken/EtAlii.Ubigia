@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _context = context;
         }
 
+        /// <inheritdoc />
         public async Task<Entry> Prepare(Guid spaceId)
         {
             // ReSharper disable once NotAccessedVariable
@@ -26,18 +27,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             //var relation = Relation.NewRelation(previousHeadIdentifier)
             var entry = Entry.NewEntry(head.NextHeadIdentifier);//, relation)
 
-            _context.Entries.Store(entry);
+            await _context.Entries.Store(entry).ConfigureAwait(false);
 
             return entry;
         }
 
-        public Task<Entry> Prepare(Guid spaceId, Identifier id)
+        /// <inheritdoc />
+        public async Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
             var entry = Entry.NewEntry(id, Relation.None);
 
-            _context.Entries.Store(entry);
+            await _context.Entries.Store(entry).ConfigureAwait(false);
 
-            return Task.FromResult(entry);
+            return entry;
         }
     }
 }

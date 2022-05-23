@@ -81,18 +81,18 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return entry;
         }
 
-        public Entry Store(Entry entry)
+        public async Task<Entry> Store(Entry entry)
         {
             var start = Environment.TickCount;
-            var storedEntry = _repository.Store(entry);
+            var storedEntry = await _repository.Store(entry).ConfigureAwait(false);
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storedEntry;
         }
 
-        public Entry Store(IEditableEntry entry)
+        public async Task<Entry> Store(IEditableEntry entry)
         {
             var start = Environment.TickCount;
-            var storedEntry = _repository.Store(entry);
+            var storedEntry = await _repository.Store(entry).ConfigureAwait(false);
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storedEntry;
         }

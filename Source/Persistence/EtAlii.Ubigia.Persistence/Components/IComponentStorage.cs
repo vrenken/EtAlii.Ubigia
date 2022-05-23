@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Persistence
 
         void Store<T>(ContainerIdentifier container, T component)
             where T : class, IComponent;
-        void StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
+        Task StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
             where T : class, IComponent;
     }
 }

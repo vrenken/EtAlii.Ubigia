@@ -10,16 +10,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
     public partial class UserEntryService
     {
         // Update Item by id
-        public override Task<EntrySingleResponse> Put(EntryPutRequest request, ServerCallContext context)
+        public override async Task<EntrySingleResponse> Put(EntryPutRequest request, ServerCallContext context)
         {
 
             var entry = request.Entry.ToLocal();
-            entry = _items.Store(entry);
+            entry = await _items.Store(entry).ConfigureAwait(false);
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

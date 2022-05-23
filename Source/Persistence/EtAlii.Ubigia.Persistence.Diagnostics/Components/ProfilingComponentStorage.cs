@@ -32,6 +32,7 @@ namespace EtAlii.Ubigia.Persistence
             profiler.Register(StoreAllCounter, SamplingType.RawCount, "Milliseconds", "Store components", "The time it takes for the StoreAll method to execute");
         }
 
+        /// <inheritdoc />
         public ContainerIdentifier GetNextContainer(ContainerIdentifier container)
         {
             var startTicks = Environment.TickCount;
@@ -41,6 +42,7 @@ namespace EtAlii.Ubigia.Persistence
             return result;
         }
 
+        /// <inheritdoc />
         public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : NonCompositeComponent
         {
@@ -51,6 +53,7 @@ namespace EtAlii.Ubigia.Persistence
             return result;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
             where T : CompositeComponent
         {
@@ -66,6 +69,7 @@ namespace EtAlii.Ubigia.Persistence
             _profiler.WriteSample(RetrieveAllCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }
 
+        /// <inheritdoc />
         public void Store<T>(ContainerIdentifier container, T component)
             where T : class, IComponent
         {
@@ -75,11 +79,12 @@ namespace EtAlii.Ubigia.Persistence
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }
 
-        public void StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
+        /// <inheritdoc />
+        public async Task StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
             where T : class, IComponent
         {
             var startTicks = Environment.TickCount;
-            _storage.StoreAll(container, components);
+            await _storage.StoreAll(container, components).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }

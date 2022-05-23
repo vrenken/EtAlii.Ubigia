@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class EntryStorer : IEntryStorer
@@ -15,32 +16,27 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
-        public Entry Store(IEditableEntry entry)
+        /// <inheritdoc />
+        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
         {
-            return Store((Entry)entry, out _);
+            return await Store((Entry)entry).ConfigureAwait(false);
         }
 
-        public Entry Store(Entry entry)
-        {
-            return Store(entry, out _);
-        }
-
-        public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)
-        {
-            return Store((Entry)entry, out storedComponents);
-        }
-
-        public Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents)
+        /// <inheritdoc />
+        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(entry.Id);
 
             var components = EntryHelper.Decompose(entry);
-            storedComponents = components.Where(component => !component.Stored)
-                                         .ToArray();
+            var storedComponents = components
+                .Where(component => !component.Stored)
+                .ToArray();
 
-            _storage.Components.StoreAll(containerId, storedComponents);
+            await _storage.Components
+                .StoreAll(containerId, storedComponents)
+                .ConfigureAwait(false);
 
-            return entry;
+            return (entry, storedComponents);
         }
     }
 }
