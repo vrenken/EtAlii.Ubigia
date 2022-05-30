@@ -6,17 +6,49 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface ILogicalContext
     {
+        /// <summary>
+        /// Provides access to the Storages known to this infrastructure instance.
+        /// </summary>
         ILogicalStorageSet Storages { get; }
+
+        /// <summary>
+        /// Provides access to the Spaces known to this infrastructure instance.
+        /// </summary>
         ILogicalSpaceSet Spaces { get; }
+
+        /// <summary>
+        /// Provides access to the Accounts known to this infrastructure instance.
+        /// </summary>
         ILogicalAccountSet Accounts { get; }
 
+        /// <summary>
+        /// Provides access to the Roots that provide access to the information in this this infrastructure instance.
+        /// </summary>
         ILogicalRootSet Roots { get; }
+
+        /// <summary>
+        /// Provides access to the Entities that make up the information in this this infrastructure instance.
+        /// </summary>
         ILogicalEntrySet Entries { get; }
 
+        /// <summary>
+        /// Provides access to the Content that makes up the information in this this infrastructure instance.
+        /// </summary>
         ILogicalContentSet Content { get; }
+
+        /// <summary>
+        /// Provides access to the ContentDefinitions that make up the information in this this infrastructure instance.
+        /// </summary>
         ILogicalContentDefinitionSet ContentDefinition { get; }
 
+        /// <summary>
+        /// Provides access to the Properties that decorate the information in this this infrastructure instance.
+        /// </summary>
         ILogicalPropertiesSet Properties { get; }
+
+        /// <summary>
+        /// Provides access to Identifiers with which the information in this this infrastructure instance can be addressed.
+        /// </summary>
         ILogicalIdentifierSet Identifiers { get; }
 
         Task Start();

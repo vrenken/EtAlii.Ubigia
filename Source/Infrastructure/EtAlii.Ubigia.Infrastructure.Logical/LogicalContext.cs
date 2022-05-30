@@ -7,22 +7,31 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public class LogicalContext : ILogicalContext
     {
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalStorageSet Storages { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalSpaceSet Spaces { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalAccountSet Accounts { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalRootSet Roots { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalEntrySet Entries { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalContentSet Content { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalContentDefinitionSet ContentDefinition { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalPropertiesSet Properties { get; private set; }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public ILogicalIdentifierSet Identifiers { get; private set; }
 
         private readonly IFabricContext _fabricContext;
@@ -32,6 +41,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext = fabricContext;
         }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public void Initialize(
             ILogicalStorageSet storages,
             ILogicalSpaceSet spaces,
@@ -54,6 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             Identifiers = identifiers;
         }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public async Task Start()
         {
             _fabricContext.Start();
@@ -62,6 +73,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             Roots.Start();
         }
 
+        /// <inheritdoc cref="ILogicalContext"/>
         public async Task Stop()
         {
             Roots.Stop();
