@@ -30,7 +30,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
                 .UseHostLogging(configurationRoot, typeof(KestrelConfiguratorTests).Assembly)
                 .UseHostServices<LocalHostServicesFactory>(configurationRoot)
                 .Build();
-            await host.StartAsync().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(host);
