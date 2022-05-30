@@ -15,8 +15,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         Task<Root> Get(Guid spaceId, string name);
 
 
-        void Remove(Guid spaceId, Guid rootId);
-        void Remove(Guid spaceId, Root root);
+        Task Remove(Guid spaceId, Guid rootId);
+        Task Remove(Guid spaceId, Root root);
 
         Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot);
 

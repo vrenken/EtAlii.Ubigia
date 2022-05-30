@@ -17,7 +17,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
-        public void Store(in Identifier identifier, ContentDefinition contentDefinition)
+        /// <inheritdoc />
+        public async Task Store(Identifier identifier, ContentDefinition contentDefinition)
         {
             if (identifier == Identifier.Empty)
             {
@@ -50,14 +51,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 // We need to clear the parts before they are stored. Else they are persisted in the content definition file itself.
                 var contentDefinitionToStore = contentDefinition.ExceptParts();
 
-                _logicalContext.ContentDefinition.Store(identifier, contentDefinitionToStore);
-                
-                // And of course the stored flag should be updated accordingly afterwards. 
+                await _logicalContext.ContentDefinition.Store(identifier, contentDefinitionToStore).ConfigureAwait(false);
+
+                // And of course the stored flag should be updated accordingly afterwards.
                 Blob.SetStored(contentDefinition, contentDefinitionToStore.Stored);
-                
+
                 foreach (var contentDefinitionPart in contentDefinition.Parts)
                 {
-                    _logicalContext.ContentDefinition.Store(identifier, contentDefinitionPart);
+                    await _logicalContext.ContentDefinition.Store(identifier, contentDefinitionPart).ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -66,6 +67,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
+        /// <inheritdoc />
         public async Task Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             if (identifier == Identifier.Empty)
@@ -94,7 +96,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 {
                     throw new ContentDefinitionRepositoryException("Content definition part has invalid Id");
                 }
-                _logicalContext.ContentDefinition.Store(identifier, contentDefinitionPart);
+                await _logicalContext.ContentDefinition.Store(identifier, contentDefinitionPart).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -102,6 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
+        /// <inheritdoc />
         public async Task<ContentDefinition> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)

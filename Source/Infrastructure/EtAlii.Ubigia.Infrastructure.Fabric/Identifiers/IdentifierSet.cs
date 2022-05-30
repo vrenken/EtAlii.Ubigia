@@ -15,6 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
+        /// <inheritdoc />
         public Task<Identifier> GetNextIdentifierFromStorage(Guid storageId, Guid accountId, Guid spaceId)
         {
             // Determine Head From Component Storage
@@ -24,6 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return Task.FromResult(identifier);
         }
 
+        /// <inheritdoc />
         public Task<Identifier> GetNextIdentifierForPreviousHeadIdentifier(Guid storageId, Guid accountId, Guid spaceId, in Identifier previousHeadIdentifier)
         {
             // Calculate identifier.

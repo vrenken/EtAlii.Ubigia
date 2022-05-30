@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
+        /// <inheritdoc />
         public async Task<ContentDefinition> Get(Identifier identifier)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);

@@ -16,6 +16,5 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
         Task Update(Entry entry, IEnumerable<IComponent> changedComponents);
         Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents);
-
     }
 }

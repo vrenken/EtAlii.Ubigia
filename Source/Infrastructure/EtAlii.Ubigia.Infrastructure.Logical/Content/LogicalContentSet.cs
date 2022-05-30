@@ -14,24 +14,28 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext = fabricContext;
         }
 
+        /// <inheritdoc />
         public Task<Content> Get(Identifier identifier)
         {
             return _fabricContext.Content.Get(identifier);
         }
 
+        /// <inheritdoc />
         public Task<ContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             return _fabricContext.Content.Get(identifier, contentPartId);
         }
 
-        public void Store(in Identifier identifier, ContentPart contentPart)
+        /// <inheritdoc />
+        public Task Store(in Identifier identifier, ContentPart contentPart)
         {
-            _fabricContext.Content.Store(identifier, contentPart);
+            return _fabricContext.Content.Store(identifier, contentPart);
         }
 
-        public void Store(in Identifier identifier, Content content)
+        /// <inheritdoc />
+        public Task Store(in Identifier identifier, Content content)
         {
-            _fabricContext.Content.Store(identifier, content);
+            return _fabricContext.Content.Store(identifier, content);
         }
     }
 }

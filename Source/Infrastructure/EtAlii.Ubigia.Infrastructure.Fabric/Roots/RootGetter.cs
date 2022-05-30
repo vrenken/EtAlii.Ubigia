@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             var containerId = _storage.ContainerProvider.ForRoots(spaceId);
@@ -29,12 +30,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
+        /// <inheritdoc />
         public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             var containerId = _storage.ContainerProvider.ForRoots(spaceId);
             return _storage.Items.Retrieve<Root>(rootId, containerId);
         }
 
+        /// <inheritdoc />
         public async Task<Root> Get(Guid spaceId, string name)
         {
             var roots = GetAll(spaceId);

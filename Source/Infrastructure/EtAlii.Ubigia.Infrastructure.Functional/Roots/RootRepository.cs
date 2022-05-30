@@ -43,17 +43,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         public Task Remove(Guid spaceId, Guid rootId)
         {
-            _logicalContext.Roots.Remove(spaceId, rootId);
-
-            return Task.CompletedTask;
+            return _logicalContext.Roots.Remove(spaceId, rootId);
         }
 
         /// <inheritdoc />
         public Task Remove(Guid spaceId, Root root)
         {
-            _logicalContext.Roots.Remove(spaceId, root);
-
-            return Task.CompletedTask;
+            return _logicalContext.Roots.Remove(spaceId, root);
         }
 
         /// <inheritdoc />

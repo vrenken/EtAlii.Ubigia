@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Assert.
             Assert.True(contentDefinition.Stored);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             Assert.True(contentDefinition.Stored);
 
@@ -64,13 +64,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, (ContentDefinition) null);
+                await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, (ContentDefinition) null).ConfigureAwait(false);
             });
 
             // Assert.
-            Assert.Throws<ContentDefinitionRepositoryException>(act);
+            await Assert.ThrowsAsync<ContentDefinitionRepositoryException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -83,14 +83,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async () =>
             {
-                context.Host.Infrastructure.ContentDefinition.Store(Identifier.Empty, contentDefinition);
+                await context.Host.Infrastructure.ContentDefinition.Store(Identifier.Empty, contentDefinition).ConfigureAwait(false);
             });
 
             // Assert.
             Assert.NotNull(entry);
-            Assert.Throws<ContentDefinitionRepositoryException>(act);
+            await Assert.ThrowsAsync<ContentDefinitionRepositoryException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Arrange.
             var retrievedContentDefinition = await context.Host.Infrastructure.ContentDefinition.Get(entry.Id).ConfigureAwait(false);
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Act.
             await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart).ConfigureAwait(false);
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async () => await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart).ConfigureAwait(false));
@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPartFirst = _testContext.TestContentDefinitionFactory.CreatePart(0);
             var contentDefinitionPartSecond = _testContext.TestContentDefinitionFactory.CreatePart(0);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
             await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst).ConfigureAwait(false);
 
             // Act.

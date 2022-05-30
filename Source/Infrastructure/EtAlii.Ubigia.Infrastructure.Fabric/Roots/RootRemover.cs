@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class RootRemover : IRootRemover
@@ -14,7 +15,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
-        public void Remove(Guid spaceId, Guid rootId)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Guid rootId)
         {
             var containerId = _storage.ContainerProvider.ForRoots(spaceId);
 
@@ -25,11 +27,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
 
             _storage.Items.Remove(rootId, containerId);
+
+            return Task.CompletedTask;
         }
 
-        public void Remove(Guid spaceId, Root root)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Root root)
         {
-            Remove(spaceId, root.Id);
+            return Remove(spaceId, root.Id);
         }
     }
 }

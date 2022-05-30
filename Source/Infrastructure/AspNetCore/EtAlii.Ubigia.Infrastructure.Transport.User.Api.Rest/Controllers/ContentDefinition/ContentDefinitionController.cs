@@ -40,13 +40,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 
         // Post a new ContentDefinition for the specified entry.
         [HttpPost]
-        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
+        public async Task<IActionResult> Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
         {
             IActionResult response;
             try
             {
                 // Store the ContentDefinition.
-                _items.Store(entryId, contentDefinition);
+                await _items.Store(entryId, contentDefinition).ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok();

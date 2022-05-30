@@ -6,23 +6,24 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemContentDataClient
     {
-        public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        /// <inheritdoc />
+        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            _infrastructure.ContentDefinition.Store(identifier, contentDefinition);
+            await _infrastructure.ContentDefinition.Store(identifier, contentDefinition).ConfigureAwait(false);
             MarkAsStored(contentDefinition);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
             //await _client.Post(address, contentDefinition)
 
             //MarkAsStored(contentDefinition)
-            return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             await _infrastructure.ContentDefinition
                 .Store(identifier, contentDefinitionPart)
-                .ConfigureAwait(false); 
+                .ConfigureAwait(false);
             MarkAsStored(contentDefinitionPart);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString())
@@ -31,6 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             //MarkAsStored(contentDefinitionPart)
         }
 
+        /// <inheritdoc />
         public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             return await _infrastructure.ContentDefinition

@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
         public async Task<ContentDefinition> Get(Identifier entryId)
         {
-            ContentDefinition response = null;
+            ContentDefinition response;
             try
             {
                 response = await _items
@@ -35,12 +35,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
         }
 
         // Post a new ContentDefinition for the specified entry.
-        public void Post(Identifier entryId, ContentDefinition contentDefinition)
+        public async Task Post(Identifier entryId, ContentDefinition contentDefinition)
         {
             try
             {
                 // Store the ContentDefinition.
-                _items.Store(entryId, contentDefinition);
+                await _items.Store(entryId, contentDefinition).ConfigureAwait(false);
             }
             catch (Exception e)
             {

@@ -12,9 +12,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IContentDefinitionPartStorer _contentDefinitionPartStorer;
 
         public ContentDefinitionSet(
-            IContentDefinitionGetter contentDefinitionGetter, 
-            IContentDefinitionPartGetter contentDefinitionPartGetter, 
-            IContentDefinitionStorer contentDefinitionStorer, 
+            IContentDefinitionGetter contentDefinitionGetter,
+            IContentDefinitionPartGetter contentDefinitionPartGetter,
+            IContentDefinitionStorer contentDefinitionStorer,
             IContentDefinitionPartStorer contentDefinitionPartStorer)
         {
             _contentDefinitionGetter = contentDefinitionGetter;
@@ -23,25 +23,28 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _contentDefinitionPartStorer = contentDefinitionPartStorer;
         }
 
-
+        /// <inheritdoc />
         public Task<ContentDefinition> Get(Identifier identifier)
         {
             return _contentDefinitionGetter.Get(identifier);
         }
 
+        /// <inheritdoc />
         public Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             return _contentDefinitionPartGetter.Get(identifier, contentDefinitionPartId);
         }
 
-        public void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        /// <inheritdoc />
+        public Task Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            _contentDefinitionPartStorer.Store(identifier, contentDefinitionPart);
+            return _contentDefinitionPartStorer.Store(identifier, contentDefinitionPart);
         }
 
-        public void Store(in Identifier identifier, ContentDefinition contentDefinition)
+        /// <inheritdoc />
+        public Task Store(in Identifier identifier, ContentDefinition contentDefinition)
         {
-            _contentDefinitionStorer.Store(identifier, contentDefinition);
+            return _contentDefinitionStorer.Store(identifier, contentDefinition);
         }
     }
 }

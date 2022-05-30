@@ -12,9 +12,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IContentPartStorer _contentPartStorer;
 
         public ContentSet(
-            IContentGetter contentGetter, 
-            IContentPartGetter contentPartGetter, 
-            IContentStorer contentStorer, 
+            IContentGetter contentGetter,
+            IContentPartGetter contentPartGetter,
+            IContentStorer contentStorer,
             IContentPartStorer contentPartStorer)
         {
             _contentGetter = contentGetter;
@@ -34,14 +34,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _contentPartGetter.Get(identifier, contentPartId);
         }
 
-        public void Store(in Identifier identifier, ContentPart contentPart)
+        public Task Store(in Identifier identifier, ContentPart contentPart)
         {
-            _contentPartStorer.Store(identifier, contentPart);
+            return _contentPartStorer.Store(identifier, contentPart);
         }
 
-        public void Store(in Identifier identifier, Content content)
+        public Task Store(in Identifier identifier, Content content)
         {
-            _contentStorer.Store(identifier, content);
+            return _contentStorer.Store(identifier, content);
         }
     }
 }

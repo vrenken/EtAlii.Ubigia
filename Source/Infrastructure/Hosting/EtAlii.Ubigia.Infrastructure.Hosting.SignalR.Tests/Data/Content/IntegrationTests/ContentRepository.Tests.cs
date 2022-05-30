@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create(1);
             var contentPart = _testContext.TestContentFactory.CreatePart(data);
 
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition).ConfigureAwait(false);
 
             var content = _testContext.TestContentFactory.Create(1);
             var contentPart = _testContext.TestContentFactory.CreatePart(data);

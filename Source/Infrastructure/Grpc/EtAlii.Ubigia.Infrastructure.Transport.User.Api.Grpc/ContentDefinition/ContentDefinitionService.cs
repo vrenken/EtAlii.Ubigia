@@ -17,8 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
         {
             _items = items;
         }
-        
-        
+
         public override async Task<ContentDefinitionGetResponse> Get(ContentDefinitionGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
@@ -33,15 +32,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             return response;
         }
 
-        public override Task<ContentDefinitionPostResponse> Post(ContentDefinitionPostRequest request, ServerCallContext context)
+        public override async Task<ContentDefinitionPostResponse> Post(ContentDefinitionPostRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var contentDefinition = request.ContentDefinition.ToLocal();
-            
-            _items.Store(entryId, contentDefinition);
+
+            await _items.Store(entryId, contentDefinition).ConfigureAwait(false);
 
             var response = new ContentDefinitionPostResponse();
-            return Task.FromResult(response);
+            return response;
         }
 
         public override async Task<ContentDefinitionPartPostResponse> PostPart(ContentDefinitionPartPostRequest request, ServerCallContext context)
@@ -49,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             var entryId = request.EntryId.ToLocal();
             var contentDefinitionPart = request.ContentDefinitionPart.ToLocal();
             var contentDefinitionPartId = request.ContentDefinitionPartId;
-            
+
                 if (contentDefinitionPartId != contentDefinitionPart.Id)
                 {
                     throw new InvalidOperationException("ContentDefinitionPartId does not match");

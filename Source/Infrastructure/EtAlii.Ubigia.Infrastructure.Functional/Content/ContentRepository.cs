@@ -16,11 +16,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public Task Store(Identifier identifier, Content content)
         {
             return Store(identifier, content, Array.Empty<ContentPart>());
         }
-        
+
+        /// <inheritdoc />
         public Task Store(Identifier identifier, Content content, ContentPart[] contentParts)
         {
             if (identifier == Identifier.Empty)
@@ -48,7 +50,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             {
                 throw new ContentRepositoryException("Some parts of the content are already stored");
             }
-            
+
             try
             {
                 // We need to clear the parts before they are stored. Else they are persisted in the content file itself.
@@ -75,6 +77,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             if (identifier == Identifier.Empty)
@@ -108,7 +111,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 {
                     throw new ContentRepositoryException("Content part already stored");
                 }
-                _logicalContext.Content.Store(identifier, contentPart);
+                await _logicalContext.Content.Store(identifier, contentPart).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -116,6 +119,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
+        /// <inheritdoc />
         public async Task<Content> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)
@@ -133,6 +137,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
+        /// <inheritdoc />
         public async Task<ContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             if (identifier == Identifier.Empty)

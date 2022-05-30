@@ -2,8 +2,10 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
+
     public interface IContentDefinitionPartStorer
     {
-        void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
+        Task Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
     }
 }

@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _rootGetter = rootGetter;
         }
 
+        /// <inheritdoc />
         public async Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
             var rootToUpdate = await _rootGetter.Get(spaceId, rootId).ConfigureAwait(false);

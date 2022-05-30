@@ -15,6 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             foreach (var identifier in identifiers)
@@ -23,6 +24,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
+        /// <inheritdoc />
         public async Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
@@ -128,6 +130,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return entry;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             var entry = await Get(identifier, entriesWithRelation).ConfigureAwait(false);

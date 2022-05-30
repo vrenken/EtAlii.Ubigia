@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     {
         Task<ContentDefinition> Get(Identifier identifier);
         Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
-        void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
-        void Store(in Identifier identifier, ContentDefinition contentDefinition);
+        Task Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
+        Task Store(in Identifier identifier, ContentDefinition contentDefinition);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class ContentStorer : IContentStorer
@@ -13,7 +14,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
-        public void Store(in Identifier identifier, Content content)
+        /// <inheritdoc />
+        public Task Store(in Identifier identifier, Content content)
         {
             if (identifier == Identifier.Empty)
             {
@@ -21,6 +23,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
             _storage.Blobs.Store(containerId, content);
+
+            return Task.CompletedTask;
         }
     }
 }

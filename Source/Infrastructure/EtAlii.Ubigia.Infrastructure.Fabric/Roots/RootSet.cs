@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         private readonly IRootUpdater _rootUpdater;
 
         public RootSet(
-            IRootAdder rootAdder, 
-            IRootGetter rootGetter, 
-            IRootRemover rootRemover, 
+            IRootAdder rootAdder,
+            IRootGetter rootGetter,
+            IRootRemover rootRemover,
             IRootUpdater rootUpdater)
         {
             _rootAdder = rootAdder;
@@ -25,36 +25,43 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _rootUpdater = rootUpdater;
         }
 
+        /// <inheritdoc />
         public Task<Root> Add(Guid spaceId, Root root)
         {
             return _rootAdder.Add(spaceId, root);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             return _rootGetter.GetAll(spaceId);
         }
 
+        /// <inheritdoc />
         public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             return _rootGetter.Get(spaceId, rootId);
         }
 
+        /// <inheritdoc />
         public Task<Root> Get(Guid spaceId, string name)
         {
             return _rootGetter.Get(spaceId, name);
         }
 
-        public void Remove(Guid spaceId, Guid rootId)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Guid rootId)
         {
-            _rootRemover.Remove(spaceId, rootId);
+            return _rootRemover.Remove(spaceId, rootId);
         }
 
-        public void Remove(Guid spaceId, Root root)
+        /// <inheritdoc />
+        public Task Remove(Guid spaceId, Root root)
         {
-            _rootRemover.Remove(spaceId, root);
+            return _rootRemover.Remove(spaceId, root);
         }
 
+        /// <inheritdoc />
         public Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
             return _rootUpdater.Update(spaceId, rootId, updatedRoot);
