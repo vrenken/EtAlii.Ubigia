@@ -1,7 +1,7 @@
 ﻿<Project>
   <ItemGroup>
     <PackageVersion Include="Antlr4.Runtime.Standard" Version="4.10.1" />
-    <PackageVersion Include="Antlr4BuildTasks" Version="10.2.0" />
+    <PackageVersion Include="Antlr4BuildTasks" Version="10.7.0" />
 
     <PackageVersion Include="Blazorise.Bootstrap5" Version="1.0.5" />
     <PackageVersion Include="Blazorise.Icons.FontAwesome" Version="1.0.5" />
@@ -33,7 +33,7 @@
     <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.3" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
     <PackageVersion Include="Microsoft.AspNetCore.Owin" Version="6.0.7" />
-    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.7" />
     <PackageVersion Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="6.0.7" />
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="6.0.7" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
@@ -57,7 +57,7 @@
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.18.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.21.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageVersion Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8" />
 
