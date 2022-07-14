@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
+namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal
 {
     using System;
     using EtAlii.xTechnology.Hosting;
@@ -15,17 +15,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
     using Blazorise.Icons.FontAwesome;
     using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 
-    public class AdminPortalService : INetworkService
+    public class SetupPortalService : INetworkService
     {
         /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
-        private readonly ILogger _logger = Log.ForContext<AdminPortalService>();
+        private readonly ILogger _logger = Log.ForContext<SetupPortalService>();
 
-        public AdminPortalService(ServiceConfiguration configuration)
+        public SetupPortalService(ServiceConfiguration configuration)
         {
             Configuration = configuration;
-            _logger.Information("Instantiated {ServiceName}", nameof(AdminPortalService));
+            _logger.Information("Instantiated {ServiceName}", nameof(SetupPortalService));
         }
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
@@ -60,14 +60,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 services.AddSingleton(infrastructureService.Infrastructure);
             }
             services.AddSingleton<IConfiguration>(Configuration.Root);
-            // services.ConfigureOptions(typeof(UIConfigureOptions));
+            //services.ConfigureOptions(typeof(UIConfigureOptions));
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // The environment.ApplicationName needs to be set as the StaticWebAssetsLoader.UseStaticWebAssets relies on it.
             // Weird but true.
-            environment.ApplicationName = typeof(AdminPortalService).Assembly.GetName().Name;
+            environment.ApplicationName = typeof(SetupPortalService).Assembly.GetName().Name;
             StaticWebAssetsLoader.UseStaticWebAssets(environment, Configuration.Section);
 
             if (environment.IsDevelopment())
