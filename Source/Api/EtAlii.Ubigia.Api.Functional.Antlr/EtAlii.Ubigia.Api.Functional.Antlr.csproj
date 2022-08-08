@@ -27,6 +27,7 @@
 
   <Target Name="Java executable check" BeforeTargets="BeforeBuild" >
     <Message IsCritical="true" Condition="'$(LocalAntlr4JavaPath)' == ''" Text="Unable to identify Java executable for ANTLR4 code generation" />
+    <Message IsCritical="false" Condition="'$(LocalAntlr4JavaPath)' != ''" Text="Found Java executable for ANTLR4 code generation on: $(LocalAntlr4JavaPath)" />
   </Target>
 
   <!-- End of patch. -->
