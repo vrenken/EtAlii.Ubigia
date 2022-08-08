@@ -6,8 +6,30 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Antlr</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
-    <JavaPath>C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.4-8\x64\bin\java.exe</JavaPath>
   </PropertyGroup>
+
+  <!-- Below is a small patch to make sure the ANTLR4 code generation works as expected on the Github actions build server.
+       It should not be needed, but for some reason or another the compilation on the windows-latest (currently Windows 2022)
+       fails without a decent error message -->
+  <PropertyGroup>
+    <LocalAntlr4JavaPath>Unable to identify Java executable</LocalAntlr4JavaPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ImageOS)' == 'win22'">
+    <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ImageOS)' == 'ubuntu20'">
+    <LocalAntlr4JavaPath>$(JAVA_HOME)/bin/java</LocalAntlr4JavaPath>
+  </PropertyGroup>
+
+  <Target Name="Java executable check" BeforeTargets="BeforeBuild" >
+    <Message IsCritical="true" Condition="'$(LocalAntlr4JavaPath)' == ''" Text="Unable to identify Java executable for ANTLR4 code generation" />
+  </Target>
+
+  <!-- End of patch. -->
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
@@ -19,42 +41,42 @@
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="PathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="ScriptParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="Primitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="SchemaParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="UbigiaParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
+      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
   </ItemGroup>
 
