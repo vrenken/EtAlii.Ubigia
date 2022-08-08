@@ -6,6 +6,7 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Antlr</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <JavaPath>C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\17.0.4-8\x64\bin\java.exe</JavaPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,36 +19,42 @@
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="PathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="ScriptParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="Primitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="SchemaParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="UbigiaParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
+      <JavaExec Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(JavaPath)</JavaExec>
     </Antlr4>
   </ItemGroup>
 
