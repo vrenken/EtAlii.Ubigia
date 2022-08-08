@@ -13,7 +13,7 @@ env:
   SONAR_SCANNER_VERSION: 5.5.3
   IMAGE_NAME: ubigia/storage
   SOURCE_FOLDER: ./Source
-  CONFIGURATION: Debug
+  CONFIGURATION: Release
   SOLUTION_FILE: ./Source/EtAlii.Ubigia.sln
   DEBUG_WORKFLOWS: true
   NUGET_UBIGIA_PACK_FILTER: ./Source/**/EtAlii.Ubigia.*.nupkg
