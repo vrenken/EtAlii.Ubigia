@@ -52,7 +52,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr4BuildTasks" />
+    <PackageReference Include="Antlr4BuildTasks" >
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Antlr4.Runtime.Standard" />
   </ItemGroup>
 
