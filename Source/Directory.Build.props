@@ -87,5 +87,13 @@
   <PropertyGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
     <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Patch for build error:  -->
+    <!-- error NG0011: Some project references cannot be properly packaged. Please install the NuGetizer package on the following projects: C:\*\.nuget\packages\nerdbank.gitversioning\3.5.109\build\PrivateP2PCaching.proj. -->
+    <!-- https://github.com/devlooped/nugetizer/issues/198 -->
+    <NBGV_CacheMode>None</NBGV_CacheMode>
+  </PropertyGroup>
+
 </Project>
 
