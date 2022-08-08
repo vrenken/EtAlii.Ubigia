@@ -12,7 +12,7 @@
        It should not be needed, but for some reason or another the compilation on the windows-latest (currently Windows 2022)
        fails without a decent error message -->
   <PropertyGroup>
-    <LocalAntlr4JavaPath>Unable to identify Java executable</LocalAntlr4JavaPath>
+    <LocalAntlr4JavaPath />
   </PropertyGroup>
   <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
