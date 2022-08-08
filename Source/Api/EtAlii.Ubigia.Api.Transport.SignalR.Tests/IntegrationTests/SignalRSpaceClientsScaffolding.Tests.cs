@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
             // Arrange.
             var configurationRoot = _testContext.TransportTestContext.Host.ClientConfiguration;
             var options = new SpaceConnectionOptions(configurationRoot)
-                .Use(new SignalRSpaceTransport(new Uri("https://nowhere"), () => null, s => { }, () => string.Empty));
+                .Use(new SignalRSpaceTransport(new Uri("https://nowhere"), () => null, _ => { }, () => string.Empty));
             var scaffolding = new SignalRSpaceClientsScaffolding(options);
             var container = new Container();
 
