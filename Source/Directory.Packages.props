@@ -63,7 +63,7 @@
 
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.4.255" />
 
-    <PackageVersion Include="NuGetizer" Version="0.7.5" />
+    <PackageVersion Include="NuGetizer" Version="0.8.0" />
 
     <PackageVersion Include="Polly" Version="7.2.3" />
 
