@@ -39,6 +39,7 @@ runs:
       uses: actions/setup-java@v3
       with:
         java-version: 17.0.4
+        distribution: temurin
 
     - name: Install SonarCloud scanner
 #      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
