@@ -11,21 +11,18 @@
   <!-- Below is a small patch to make sure the ANTLR4 code generation works as expected on the Github actions build server.
        It should not be needed, but for some reason or another the compilation on the windows-latest (currently Windows 2022)
        fails without a decent error message -->
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(ImageOS)' == ''"> <!-- Local -->
     <LocalAntlr4JavaPath />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(ImageOS)' == 'win22'">
+  <PropertyGroup Condition="'$(ImageOS)' == 'win22'"> <!-- GitHub windows-latest -->
     <LocalAntlr4JavaPath>$(JAVA_HOME_17_X64)\bin\java.exe</LocalAntlr4JavaPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ImageOS)' == 'ubuntu20'">
+  <PropertyGroup Condition="'$(ImageOS)' == 'ubuntu20'"> <!-- GitHub ubuntu-latest -->
     <LocalAntlr4JavaPath>$(JAVA_HOME_17_X64)/bin/java</LocalAntlr4JavaPath>
   </PropertyGroup>
 
-  <Target Name="BeforeCompile" >
+  <Target Name="Antlr4JavaCheck" BeforeTargets="Antlr4Compile" Condition="'$(ImageOS)' != ''" >
     <Message IsCritical="true" Importance="high" Condition="'$(LocalAntlr4JavaPath)' == ''" Text="Unable to identify Java executable for ANTLR4 code generation" />
     <Message IsCritical="false" Importance="high" Condition="'$(LocalAntlr4JavaPath)' != ''" Text="Found Java executable for ANTLR4 code generation on: $(LocalAntlr4JavaPath)" />
   </Target>
