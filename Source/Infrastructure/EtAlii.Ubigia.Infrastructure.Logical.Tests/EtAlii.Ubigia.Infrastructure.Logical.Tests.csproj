@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>5fd5a24a-ccce-4bbc-9aa4-5725d27c90d6</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
