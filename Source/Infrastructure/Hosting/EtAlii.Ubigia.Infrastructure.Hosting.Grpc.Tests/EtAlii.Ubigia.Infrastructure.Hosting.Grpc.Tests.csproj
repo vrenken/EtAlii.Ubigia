@@ -7,12 +7,6 @@
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Content\UnitTests" />
-    <Folder Include="Data\Entries\UnitTests" />
-    <Folder Include="Data\Roots\UnitTests" />
-    <Folder Include="Management\UnitTests" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\..\UnitTestSettings.cs">
       <Link>UnitTestSettings.cs</Link>
     </Compile>
