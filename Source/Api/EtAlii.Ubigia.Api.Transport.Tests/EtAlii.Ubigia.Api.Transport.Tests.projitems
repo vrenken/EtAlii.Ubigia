@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataConnection\IntegrationTests\DataConnection.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootDataClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roots\IntegrationTests\Roots.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITransportTestContext.cs" />
   </ItemGroup>
   <ItemGroup>

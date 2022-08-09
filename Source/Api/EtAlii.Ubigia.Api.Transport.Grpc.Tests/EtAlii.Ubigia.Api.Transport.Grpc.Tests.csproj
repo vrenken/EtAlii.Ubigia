@@ -11,6 +11,9 @@
       <Link>UnitTestSettings.cs</Link>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Roots\IntegrationTests" />
+  </ItemGroup>
 
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems" Label="Shared" />
 </Project>
