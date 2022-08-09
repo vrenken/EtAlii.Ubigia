@@ -18,11 +18,11 @@
     <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(ImageOS)' == 'win22'">
-    <LocalAntlr4JavaPath>$(JAVA_HOME)\bin\java.exe</LocalAntlr4JavaPath>
+    <LocalAntlr4JavaPath>$(JAVA_HOME_17_X64)\bin\java.exe</LocalAntlr4JavaPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ImageOS)' == 'ubuntu20'">
-    <LocalAntlr4JavaPath>$(JAVA_HOME)/bin/java</LocalAntlr4JavaPath>
+    <LocalAntlr4JavaPath>$(JAVA_HOME_17_X64)/bin/java</LocalAntlr4JavaPath>
   </PropertyGroup>
 
   <Target Name="BeforeCompile" >
