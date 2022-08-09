@@ -6,17 +6,17 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public sealed class ProfilingGraphPathTraverserExtension : IExtension
     {
-        // private readonly IProfiler _profiler;
+        // private readonly IProfiler _profiler
         //
         // public ProfilingGraphPathTraverserExtension(IProfiler profiler)
-        // {
-        //     _profiler = profiler;
-        // }
+        // [
+        //     _profiler = profiler
+        // ]
 
         public void Initialize(IRegisterOnlyContainer container)
         {
             container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
-            //container.Register<IProfiler>(() => new Profiler(_profiler, ProfilingAspects.Logical.Traversal));
+            //container.Register<IProfiler>(() => new Profiler(_profiler, ProfilingAspects.Logical.Traversal))
 
             container.RegisterDecorator<ITemporalGraphPathWeaver, ProfilingTemporalGraphPathWeaver>();
 

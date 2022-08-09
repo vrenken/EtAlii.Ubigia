@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal
                 services.AddSingleton(infrastructureService.Infrastructure);
             }
             services.AddSingleton<IConfiguration>(Configuration.Root);
-            // services.ConfigureOptions(typeof(UIConfigureOptions));
+            // services.ConfigureOptions(typeof(UIConfigureOptions))
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
