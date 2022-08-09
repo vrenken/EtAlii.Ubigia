@@ -25,7 +25,7 @@
     <LocalAntlr4JavaPath>$(JAVA_HOME)/bin/java</LocalAntlr4JavaPath>
   </PropertyGroup>
 
-  <Target Name="Java executable check" BeforeTargets="BeforeBuild" >
+  <Target Name="BeforeCompile" >
     <Message IsCritical="true" Importance="high" Condition="'$(LocalAntlr4JavaPath)' == ''" Text="Unable to identify Java executable for ANTLR4 code generation" />
     <Message IsCritical="false" Importance="high" Condition="'$(LocalAntlr4JavaPath)' != ''" Text="Found Java executable for ANTLR4 code generation on: $(LocalAntlr4JavaPath)" />
   </Target>
