@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             var act = new Func<Task>(async () => await connection.Roots.Data.Add(null).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
+            await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);
         }
     }
 }
