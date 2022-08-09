@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
-    using EtAlii.Ubigia.Infrastructure.Functional;
+    // using EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -22,11 +22,11 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
                 container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
                 container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
-                container.RegisterDecorator<IEntryRepository, ProfilingEntryRepositoryDecorator>();
-                container.RegisterDecorator<IIdentifierRepository, ProfilingIdentifierRepositoryDecorator>();
-                container.RegisterDecorator<IStorageRepository, ProfilingStorageRepositoryDecorator>();
-                container.RegisterDecorator<IAccountRepository, ProfilingAccountRepositoryDecorator>();
-                container.RegisterDecorator<ISpaceRepository, ProfilingSpaceRepositoryDecorator>();
+                // container.RegisterDecorator<IEntryRepository, ProfilingEntryRepositoryDecorator>()
+                // container.RegisterDecorator<IIdentifierRepository, ProfilingIdentifierRepositoryDecorator>()
+                //container.RegisterDecorator<IStorageRepository, ProfilingStorageRepositoryDecorator>()
+                //container.RegisterDecorator<IAccountRepository, ProfilingAccountRepositoryDecorator>()
+                //container.RegisterDecorator<ISpaceRepository, ProfilingSpaceRepositoryDecorator>()
             }
         }
     }
