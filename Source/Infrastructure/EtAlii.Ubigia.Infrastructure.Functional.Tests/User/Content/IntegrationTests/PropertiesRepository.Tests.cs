@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
@@ -8,12 +8,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public sealed class PropertiesRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
+    public sealed class PropertiesRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
     {
-        private readonly InfrastructureUnitTestContext _testContext;
+        private readonly FunctionalInfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-        public PropertiesRepositoryTests(InfrastructureUnitTestContext testContext)
+        public PropertiesRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -22,13 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task PropertiesRepository_Store_Properties()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
-            context.Host.Infrastructure.Properties.Store(entry.Id, properties);
+            _testContext.Infrastructure.Properties.Store(entry.Id, properties);
 
             // Assert.
             Assert.True(properties.Stored);
@@ -38,14 +37,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task PropertiesRepository_Retrieve_Properties()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
-            context.Host.Infrastructure.Properties.Store(entry.Id, properties);
+            _testContext.Infrastructure.Properties.Store(entry.Id, properties);
 
             // Act.
-            var retrievedProperties = context.Host.Infrastructure.Properties.Get(entry.Id);
+            var retrievedProperties = _testContext.Infrastructure.Properties.Get(entry.Id);
 
             // Assert.
             Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));

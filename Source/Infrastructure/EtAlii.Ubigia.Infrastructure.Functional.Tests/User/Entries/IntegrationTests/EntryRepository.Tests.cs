@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System;
     using System.IO;
@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class EntryRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
+    public class EntryRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
     {
-        private readonly InfrastructureUnitTestContext _testContext;
+        private readonly FunctionalInfrastructureUnitTestContext _testContext;
         private const int Count = 10;
 
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-        public EntryRepositoryTests(InfrastructureUnitTestContext testContext)
+        public EntryRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -27,27 +27,25 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Prepare()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
-            var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
-            var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
-            Assert.True(context.Host.Storage.FolderManager.Exists(folder));
+            var containerId = _testContext.Storage.ContainerProvider.FromIdentifier(entry.Id);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
         }
 
         [Fact]
         public async Task EntryRepository_Prepare_Timed_01()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
             var start = Environment.TickCount;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -58,12 +56,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Prepare_Timed_02()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
             var start = Environment.TickCount;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -74,12 +71,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Prepare_Timed_03()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
             var start = Environment.TickCount;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -90,45 +86,43 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Only_Previous()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
-            entry = await context.Host.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
 
-            var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
-            var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
-            Assert.True(context.Host.Storage.FolderManager.Exists(folder));
-            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var containerId = _testContext.Storage.ContainerProvider.FromIdentifier(entry.Id);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
+            var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(context.Host.Storage.FileManager.Exists(file));
+            Assert.True(_testContext.Storage.FileManager.Exists(file));
         }
 
         [Fact]
         public async Task EntryRepository_Store_Previous_And_Next()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry1 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            var entry2 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            entry2 = await context.Host.Infrastructure.Entries.Store(entry2).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry1 = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry2 = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            entry2 = await _testContext.Infrastructure.Entries.Store(entry2).ConfigureAwait(false);
 
             // Act.
             entry2.Previous = Relation.NewRelation(entry1.Id);
-            entry2 = await context.Host.Infrastructure.Entries.Store(entry2).ConfigureAwait(false);
+            entry2 = await _testContext.Infrastructure.Entries.Store(entry2).ConfigureAwait(false);
 
             // Arrange.
-            var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry1.Id);
-            var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
-            Assert.True(context.Host.Storage.FolderManager.Exists(folder));
-            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var containerId = _testContext.Storage.ContainerProvider.FromIdentifier(entry1.Id);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
+            var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(context.Host.Storage.FileManager.Exists(file));
-            fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Next");
+            Assert.True(_testContext.Storage.FileManager.Exists(file));
+            fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Next");
             file = Path.Combine(folder, fileName);
-            Assert.True(context.Host.Storage.FileManager.Exists(file));
+            Assert.True(_testContext.Storage.FileManager.Exists(file));
             Assert.NotNull(entry2);
         }
 
@@ -136,14 +130,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Same_Identifiers()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -157,14 +150,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Check_Next_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -179,14 +171,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_First_Type_Hierarchy_Check_Child_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -202,14 +193,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Second_Type_Hierarchy_Check_Child_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -225,14 +215,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Check_Previous_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -246,14 +235,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_First_Type_Hierarchy_Parent_Previous_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -267,14 +255,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Second_Type_Hierarchy_Parent_Previous_Identifiers_Based_On_Created()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -288,18 +275,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_First_Type_Hierarchy_Child_With_Parent()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var parentEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            parentEntry = await context.Host.Infrastructure.Entries.Store(parentEntry).ConfigureAwait(false);
-            var childEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var parentEntry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            parentEntry = await _testContext.Infrastructure.Entries.Store(parentEntry).ConfigureAwait(false);
+            var childEntry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             childEntry.Parent = Relation.NewRelation(parentEntry.Id);
-            childEntry = await context.Host.Infrastructure.Entries.Store(childEntry).ConfigureAwait(false);
+            childEntry = await _testContext.Infrastructure.Entries.Store(childEntry).ConfigureAwait(false);
 
             // Assert.
-            parentEntry = await context.Host.Infrastructure.Entries.Get(parentEntry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+            parentEntry = await _testContext.Infrastructure.Entries.Get(parentEntry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             Assert.True(parentEntry.Children.Count == 1);
             var childId = parentEntry.Children.First().Relations.First().Id;
             Assert.Equal(childEntry.Id, childId);
@@ -309,18 +295,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Second_Type_Hierarchy_Child_With_Parent()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var parent2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            parent2Entry = await context.Host.Infrastructure.Entries.Store(parent2Entry).ConfigureAwait(false);
-            var child2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var parent2Entry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            parent2Entry = await _testContext.Infrastructure.Entries.Store(parent2Entry).ConfigureAwait(false);
+            var child2Entry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             child2Entry.Parent2 = Relation.NewRelation(parent2Entry.Id);
-            child2Entry = await context.Host.Infrastructure.Entries.Store(child2Entry).ConfigureAwait(false);
+            child2Entry = await _testContext.Infrastructure.Entries.Store(child2Entry).ConfigureAwait(false);
 
             // Assert.
-            parent2Entry = await context.Host.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+            parent2Entry = await _testContext.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             Assert.True(parent2Entry.Children2.Count == 1);
             var child2Id = parent2Entry.Children2.First().Relations.First().Id;
             Assert.Equal(child2Entry.Id, child2Id);
@@ -330,18 +315,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Relate_Indexed_Entry_Using_Indexes()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            index = await context.Host.Infrastructure.Entries.Store(index).ConfigureAwait(false);
-            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var index = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            index = await _testContext.Infrastructure.Entries.Store(index).ConfigureAwait(false);
+            var entry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             entry.Indexes.Add(index.Id);
-            entry = await context.Host.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
 
             // Assert.
-            index = await context.Host.Infrastructure.Entries.Get(index.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
+            index = await _testContext.Infrastructure.Entries.Get(index.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
             Assert.NotEqual(Relation.None, index.Indexed);
             Assert.Equal(index.Indexed.Id, entry.Id);
         }
@@ -351,18 +335,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Relate_Indexed_Entry_Using_Indexed()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            entry = await context.Host.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
-            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            var index = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             index.Indexed = Relation.NewRelation(entry.Id);
-            index = await context.Host.Infrastructure.Entries.Store(index).ConfigureAwait(false);
+            index = await _testContext.Infrastructure.Entries.Store(index).ConfigureAwait(false);
 
             // Assert.
-            entry = await context.Host.Infrastructure.Entries.Get(entry.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Get(entry.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
             Assert.True(entry.Indexes.Contains(index.Id));
         }
 
@@ -370,14 +353,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Check_Previous_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -394,14 +376,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Hierarchy_Check_Parent_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -418,14 +399,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Check_Next_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -442,14 +422,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Hierarchy_Check_Child_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -467,14 +446,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Sequence_Check_Next_Previous_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -495,14 +473,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Hierarchy_Check_Child_Parent_Identifiers_Based_On_Loaded()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, _testContext.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
+                loadedEntries[i] = await _testContext.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -523,23 +500,22 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task EntryRepository_Store_Already_Existing_Entry()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
-            var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
-            var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
-            Assert.True(context.Host.Storage.FolderManager.Exists(folder));
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var containerId = _testContext.Storage.ContainerProvider.FromIdentifier(entry.Id);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
 
             // Act.
-            entry = await context.Host.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
 
             // Assert.
-            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(context.Host.Storage.FileManager.Exists(file));
+            Assert.True(_testContext.Storage.FileManager.Exists(file));
 
             // Act.
-            entry = await context.Host.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
