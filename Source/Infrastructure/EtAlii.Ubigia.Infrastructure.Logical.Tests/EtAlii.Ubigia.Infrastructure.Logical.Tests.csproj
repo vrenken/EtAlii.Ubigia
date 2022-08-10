@@ -14,4 +14,8 @@
       <Link>UnitTestSettings.cs</Link>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Management" />
+    <Folder Include="User\Roots\IntegrationTests" />
+  </ItemGroup>
 </Project>

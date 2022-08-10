@@ -33,11 +33,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
+            var fabricContextOptions = new FabricContextOptions(_testContext.Configuration)
                 .Use(_testContext.Storage);
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
+            var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
                 .Use(fabric)
                 .Use(_testContext.HostName, _testContext.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
@@ -61,11 +61,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
+            var fabricContextOptions = new FabricContextOptions(_testContext.Configuration)
                 .Use(_testContext.Storage);
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
+            var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
                 .Use(fabric)
                 .Use(_testContext.HostName, _testContext.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
@@ -92,11 +92,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
+            var fabricContextOptions = new FabricContextOptions(_testContext.Configuration)
                 .Use(_testContext.Storage);
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
+            var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
                 .Use(fabric)
                 .Use(_testContext.HostName, _testContext.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);

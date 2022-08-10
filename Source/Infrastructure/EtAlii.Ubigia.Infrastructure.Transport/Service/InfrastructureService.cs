@@ -75,6 +75,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
+            // This should only happen while running unit tests, so maybe this is a smell that the service details should be stored somewhere else?
+            if (!allServiceDetails.Any())
+            {
+                allServiceDetails = new[] { new ServiceDetails("None", new Uri("http://none"), new Uri("http://none"), new Uri("http://none")) };
+            }
+
             // By convention the first data/management API's will be used for the storageAddress.
             var serviceDetails = allServiceDetails.First();
 
