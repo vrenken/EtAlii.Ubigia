@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             await base.Start(portRange).ConfigureAwait(false);
 
             Infrastructure = Host.Infrastructure;
+            HostName = Infrastructure.Options.Name;
 
             var systemAccount = await Infrastructure.Accounts.Get("System").ConfigureAwait(false);
             SystemAccountName = systemAccount.Name;
@@ -33,6 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             await base.Stop().ConfigureAwait(false);
 
             Infrastructure = null;
+            HostName = null;
 
             SystemAccountName = null;
             SystemAccountPassword = null;

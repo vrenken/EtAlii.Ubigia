@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
         public string AdminAccountPassword { get; private set; }
 
-        public string HostName => Infrastructure?.Options?.Name;
+        public string HostName { get; private set; }
 
         protected override InfrastructureTestHost CreateTestHost(IService[] services) => new (services);
 
