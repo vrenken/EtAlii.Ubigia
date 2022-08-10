@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
 	using System;
 	using System.Linq;
@@ -9,11 +9,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public sealed class StorageRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
+    public sealed class StorageRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
     {
-        private readonly InfrastructureUnitTestContext _testContext;
+        private readonly FunctionalInfrastructureUnitTestContext _testContext;
 
-        public StorageRepositoryTests(InfrastructureUnitTestContext testContext)
+        public StorageRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -22,8 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Add()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
 
 			// Act.
@@ -38,8 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Get()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
@@ -61,8 +59,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Remove_By_Id()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
@@ -84,8 +81,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Remove_By_Instance()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
@@ -106,8 +102,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Get_Null()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
 
 			// Act.
 	        var storage = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
@@ -120,8 +115,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_GetAll()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage1 = await repository.Add(storage).ConfigureAwait(false);
             storage = CreateStorage();
@@ -145,8 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Get_By_Name()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
@@ -166,8 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task StorageRepository_Get_By_Invalid_Name()
         {
 	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Storages;
+            var repository = _testContext.Infrastructure.Storages;
             var storage = CreateStorage();
             var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);

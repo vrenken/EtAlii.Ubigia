@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
 	using System;
 	using System.Linq;
@@ -9,23 +9,22 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class AccountRepositoryAdministratorsTests : IClassFixture<InfrastructureUnitTestContext>
+    public class AccountRepositoryUserTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
     {
-        private readonly InfrastructureUnitTestContext _testContext;
+        private readonly FunctionalInfrastructureUnitTestContext _testContext;
 
-        public AccountRepositoryAdministratorsTests(InfrastructureUnitTestContext testContext)
+        public AccountRepositoryUserTests(FunctionalInfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
         [Fact]
-        public async Task AccountRepository_Add_Administrator()
+        public async Task AccountRepository_Add_User()
         {
-	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+			// Arrange.
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(DateTime.MinValue, addedAccount.Created);
             Assert.Null(addedAccount.Updated);
@@ -33,168 +32,180 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_Id()
+        public async Task AccountRepository_Get_User_By_Id()
         {
-	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+			// Arrange.
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(Guid.Empty, addedAccount.Id);
 
+            // Act.
             var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_Invalid_Id()
+        public async Task AccountRepository_Get_User_By_Invalid_Id()
         {
-	        // Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+			// Arrange.
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_AccountName()
+        public async Task AccountRepository_Get_User_By_AccountName()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(addedAccount.Name).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_Invalid_AccountName()
+        public async Task AccountRepository_Get_User_By_Invalid_AccountName()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_AccountName_And_Password()
+        public async Task AccountRepository_Get_User_By_AccountName_And_Password()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(addedAccount.Name, addedAccount.Password).ConfigureAwait(false);
+
+            // Assert.
             Assert.Equal(addedAccount.Id, fetchedAccount.Id);
             Assert.Equal(addedAccount.Name, fetchedAccount.Name);
-
             Assert.Equal(account.Id, fetchedAccount.Id);
             Assert.Equal(account.Name, fetchedAccount.Name);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_AccountName_And_Invalid_Password()
+        public async Task AccountRepository_Get_User_By_AccountName_And_Invalid_Password()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(addedAccount.Name, Guid.NewGuid().ToString()).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_By_Invalid_AccountName_And_Password()
+        public async Task AccountRepository_Get_User_By_Invalid_AccountName_And_Password()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
+            // Act.
             var fetchedAccount = await repository.Get(Guid.NewGuid().ToString(), addedAccount.Password).ConfigureAwait(false);
+
+            // Assert.
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Remove_Administrator_By_Id()
+        public async Task AccountRepository_Remove_User_By_Id()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
             var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedAccount);
 
+            // Act.
             await repository.Remove(addedAccount.Id).ConfigureAwait(false);
 
+            // Assert.
             fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Remove_Administrator_By_Instance()
+        public async Task AccountRepository_Remove_User_By_Instance()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
             var fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedAccount);
 
+            // Act.
             await repository.Remove(addedAccount).ConfigureAwait(false);
 
+            // Assert.
             fetchedAccount = await repository.Get(addedAccount.Id).ConfigureAwait(false);
             Assert.Null(fetchedAccount);
         }
 
         [Fact]
-        public async Task AccountRepository_Get_Administrator_Null()
+        public async Task AccountRepository_Get_User_Null()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
 
             // Act.
             var account = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
@@ -204,15 +215,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         }
 
         [Fact]
-        public async Task AccountRepository_GetAll_Administrators()
+        public async Task AccountRepository_GetAll_Users()
         {
 			// Arrange.
-	        var context = _testContext.Host;
-            var repository = context.Host.Infrastructure.Accounts;
+            var repository = _testContext.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount1 = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount1 = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             account = CreateAccount();
-            var addedAccount2 = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
+            var addedAccount2 = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
 
             // Act.
             var accounts = await repository
