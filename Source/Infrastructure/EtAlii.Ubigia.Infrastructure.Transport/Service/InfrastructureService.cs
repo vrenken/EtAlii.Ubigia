@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // This should only happen while running unit tests, so maybe this is a smell that the service details should be stored somewhere else?
             if (!allServiceDetails.Any())
             {
-                allServiceDetails = new[] { new ServiceDetails("None", new Uri("http://none"), new Uri("http://none"), new Uri("http://none")) };
+                allServiceDetails = new[] { new ServiceDetails("None", new Uri("https://none"), new Uri("https://none"), new Uri("https://none")) };
             }
 
             // By convention the first data/management API's will be used for the storageAddress.
