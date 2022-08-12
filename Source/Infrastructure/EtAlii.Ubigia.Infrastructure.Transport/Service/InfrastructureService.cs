@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -58,6 +59,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             serviceCollection.AddHostedService(_ => this);
         }
 
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S5332:Using http protocol is insecure. Use https instead",
+            Justification = "Safe to do so: The related code only gets run during unit test execution.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S1075:URIs should not be hardcoded",
+            Justification = "The hard coded URIs direct to nowhere and are only used during unit test execution.")]
         private IInfrastructure CreateInfrastructure(IStorage storage)
         {
             string name = Configuration.Section.GetValue<string>(nameof(name));
@@ -78,7 +87,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // This should only happen while running unit tests, so maybe this is a smell that the service details should be stored somewhere else?
             if (!allServiceDetails.Any())
             {
-                allServiceDetails = new[] { new ServiceDetails("None", new Uri("https://none"), new Uri("https://none"), new Uri("https://none")) };
+                allServiceDetails = new[] { new ServiceDetails("None", new Uri("http://none"), new Uri("http://none"), new Uri("http://none")) };
             }
 
             // By convention the first data/management API's will be used for the storageAddress.
