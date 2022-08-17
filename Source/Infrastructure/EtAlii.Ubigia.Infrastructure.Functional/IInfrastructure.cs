@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     {
         IContextCorrelator ContextCorrelator { get; }
         /// <summary>
-        /// The Configuration used to instantiate this Infrastructure.
+        /// The Options used to instantiate this Infrastructure.
         /// </summary>
         IInfrastructureOptions Options { get; }
 
