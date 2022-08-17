@@ -7,9 +7,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Threading;
 
-    public class SystemConnectionInfrastructure : InfrastructureBase
+    public class Infrastructure : InfrastructureBase
     {
-        public SystemConnectionInfrastructure(
+        public Infrastructure(
             IInfrastructureOptions options,
             IInformationRepository information,
             ISpaceRepository spaces,

@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureOptions = new InfrastructureOptions(Configuration.Root, systemConnectionCreationProxy)
                 .Use(name, allServiceDetails)
-	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
+	            .Use<InfrastructureOptions, Infrastructure>()
                 .Use(logicalContext)
                 .UseInfrastructureDiagnostics();
 
