@@ -120,10 +120,16 @@
         }
     },
 
+    "Setup-Portal": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal.SetupPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal",
+        "IpAddress": "127.0.0.1",
+        "Port": "80",
+        "Path": ""
+    },
     "Management-Portal": {
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AdminPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal",
         "IpAddress": "127.0.0.1",
-        "Port": "80",
+        "Port": "81",
         "Path": ""
     },
     "Management-Api-Grpc": {
