@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                 if (!dataConnection.IsConnected)
                 {
                     var task = dataConnection.Open();
-                    task.Wait();
+                    task.GetAwaiter().GetResult();
                 }
 
                 return dataConnection;
