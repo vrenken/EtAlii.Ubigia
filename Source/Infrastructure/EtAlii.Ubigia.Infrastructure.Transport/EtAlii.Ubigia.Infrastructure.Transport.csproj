@@ -9,7 +9,25 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
-
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+
+    <!-- All portal related stuff should be moved to its own project. -->
+    <PackageReference Include="Blazorise.Bootstrap5" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" />
   </ItemGroup>
+  <ItemGroup>
+    <GclFile Include="Status\ServiceSettings.gcl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj">
+      <PrivateAssets>all</PrivateAssets>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.props" />
+  <Import Project="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.targets" />
+
 </Project>

@@ -13,8 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
-    <PackageReference Include="Blazorise.Bootstrap5" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" />
     <PackageReference Include="Blazorise.Charts" />
     <PackageReference Include="Blazorise.Charts.Streaming" />
     <PackageReference Include="Blazorise.Components" />
