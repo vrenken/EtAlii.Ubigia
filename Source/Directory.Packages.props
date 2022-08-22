@@ -19,11 +19,11 @@
     <PackageVersion Include="Core.System.Configuration.Install" Version="1.1.0" />
     <PackageVersion Include="DockerizedTesting" Version="1.2.1" />
 
-    <PackageVersion Include="Google.Protobuf" Version="3.21.4" />
+    <PackageVersion Include="Google.Protobuf" Version="3.21.5" />
     <PackageVersion Include="Grpc" Version="2.46.3" />
     <PackageVersion Include="Grpc.AspNetCore" Version="2.47.0" />
     <PackageVersion Include="Grpc.Net.Client" Version="2.47.0" />
-    <PackageVersion Include="Grpc.Tools" Version="2.47.0" />
+    <PackageVersion Include="Grpc.Tools" Version="2.48.0" />
 
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageVersion Include="Newtonsoft.Json.Bson" Version="1.0.2" />
@@ -31,11 +31,11 @@
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
     <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.3" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
-    <PackageVersion Include="Microsoft.AspNetCore.Owin" Version="6.0.7" />
-    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.7" />
-    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="6.0.7" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="6.0.7" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+    <PackageVersion Include="Microsoft.AspNetCore.Owin" Version="6.0.8" />
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.8" />
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="6.0.8" />
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="6.0.8" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
@@ -49,7 +49,7 @@
     <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.7" />
+    <PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.8" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
@@ -58,7 +58,7 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.22.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.0" />
     <PackageVersion Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8" />
 
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.5.109" />
