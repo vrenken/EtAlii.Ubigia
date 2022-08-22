@@ -8,11 +8,11 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
     public class TestHostFixtureTests : IClassFixture<TestHostFixture>
     {
         private readonly TestHostFixture _fixture;
-        
+
         public TestHostFixtureTests(TestHostFixture fixture)
         {
             _fixture = fixture;
-            _fixture.Start().Wait();
+            _fixture.Start().GetAwaiter().GetResult();
         }
 
         [Fact(Skip = "Not implemented (yet)")]
