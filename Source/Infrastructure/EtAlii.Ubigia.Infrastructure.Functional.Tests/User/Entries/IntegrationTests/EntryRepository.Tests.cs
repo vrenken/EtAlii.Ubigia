@@ -97,7 +97,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             Assert.True(_testContext.Storage.FolderManager.Exists(folder));
             var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(_testContext.Storage.FileManager.Exists(file));
+            var exists = _testContext.Storage.FileManager.Exists(file);
+            Assert.True(exists);
         }
 
         [Fact]
@@ -119,10 +120,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             Assert.True(_testContext.Storage.FolderManager.Exists(folder));
             var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(_testContext.Storage.FileManager.Exists(file));
+            var exists = _testContext.Storage.FileManager.Exists(file);
+            Assert.True(exists);
             fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Next");
             file = Path.Combine(folder, fileName);
-            Assert.True(_testContext.Storage.FileManager.Exists(file));
+            exists = _testContext.Storage.FileManager.Exists(file);
+            Assert.True(exists);
             Assert.NotNull(entry2);
         }
 
@@ -512,7 +515,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             // Assert.
             var fileName = string.Format(_testContext.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
-            Assert.True(_testContext.Storage.FileManager.Exists(file));
+            var exists = _testContext.Storage.FileManager.Exists(file);
+            Assert.True(exists);
 
             // Act.
             entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
