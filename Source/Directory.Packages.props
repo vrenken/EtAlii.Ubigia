@@ -21,8 +21,8 @@
 
     <PackageVersion Include="Google.Protobuf" Version="3.21.5" />
     <PackageVersion Include="Grpc" Version="2.46.3" />
-    <PackageVersion Include="Grpc.AspNetCore" Version="2.47.0" />
-    <PackageVersion Include="Grpc.Net.Client" Version="2.47.0" />
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.48.0" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.48.0" />
     <PackageVersion Include="Grpc.Tools" Version="2.48.0" />
 
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
@@ -57,7 +57,7 @@
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.22.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.22.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.0" />
     <PackageVersion Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8" />
 
