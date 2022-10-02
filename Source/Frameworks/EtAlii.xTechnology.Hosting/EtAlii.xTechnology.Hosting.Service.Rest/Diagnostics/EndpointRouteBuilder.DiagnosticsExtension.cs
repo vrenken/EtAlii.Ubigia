@@ -17,12 +17,12 @@ namespace EtAlii.xTechnology.Hosting.Service.Rest
             endpoints.MapGet("ShowRoutes", async context =>
             {
                 var actionDescriptorCollectionProvider = context.RequestServices.GetService<IActionDescriptorCollectionProvider>();
-                var routes = actionDescriptorCollectionProvider!.ActionDescriptors.Items.Select(x => new 
+                var routes = actionDescriptorCollectionProvider!.ActionDescriptors.Items.Select(x => new
                 {
                     Action = x.RouteValues["Action"],
                     Controller = x.RouteValues["Controller"],
-                    Name = x.AttributeRouteInfo?.Name,
-                    Template = x.AttributeRouteInfo?.Template,
+                    x.AttributeRouteInfo?.Name,
+                    x.AttributeRouteInfo?.Template,
                     Constraint = x.ActionConstraints
                 }).ToList();
 

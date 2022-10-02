@@ -23,8 +23,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
             var routes = _actionDescriptorCollectionProvider.ActionDescriptors.Items.Select(x => new {
                 Action = x.RouteValues["Action"],
                 Controller = x.RouteValues["Controller"],
-                Name = x.AttributeRouteInfo?.Name,
-                Template = x.AttributeRouteInfo?.Template,
+                x.AttributeRouteInfo?.Name,
+                x.AttributeRouteInfo?.Template,
                 Contraint = x.ActionConstraints
             }).ToList();
 
