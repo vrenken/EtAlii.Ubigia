@@ -27,8 +27,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
             var routes = _actionDescriptorCollectionProvider.ActionDescriptors.Items.Select(x => new {
                 Controller = x.RouteValues["Controller"],
                 Action = x.RouteValues["Action"],
-                Name = x.AttributeRouteInfo?.Name,
-                Template = x.AttributeRouteInfo?.Template,
+                x.AttributeRouteInfo?.Name,
+                x.AttributeRouteInfo?.Template,
                 Contraint = x.ActionConstraints
             }).ToList();
 
