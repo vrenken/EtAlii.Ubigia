@@ -4,6 +4,7 @@
     <ProjectGuid>991dfe15-55a3-4435-81fa-f56e996cd546</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,27 +25,20 @@
     <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetPackageDependencyTargetPaths;GetUbigiaDependencyTargetPaths</GetTargetPathDependsOn>
-  </PropertyGroup>
+    <PropertyGroup>
+      <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetPackageDependencyTargetPaths;GetUbigiaDependencyTargetPaths</GetTargetPathDependsOn>
+    </PropertyGroup>
 
   <ItemGroup>
-    <!-- Package the generator in the analyzer directory of the nuget package -->
-    <Content Include="Context\4. CodeGeneration\Build\CodeGeneration.ContentType.xaml" />
-    <Content Include="Context\4. CodeGeneration\Build\CodeGeneration.Rules.xaml" />
-    <Content Include="Context\4. CodeGeneration\Build\EtAlii.Ubigia.Api.Functional.Analyzers.props" />
-    <Content Include="Context\4. CodeGeneration\Build\EtAlii.Ubigia.Api.Functional.Analyzers.targets" />
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Visible="false">
-      <Pack>true</Pack>
-      <PackagePath>analyzers/dotnet/cs/</PackagePath>
-    </None>
-
-    <Content Include="4. CodeGeneration\Build\*">
-      <PackagePath>build\</PackagePath>
+    <Content Include="Context\4. CodeGeneration\Build\*">
+      <PackagePath>build/</PackagePath>
     </Content>
 
     <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
     <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+
+    <!-- We need to add *.dll here so all dlls would be packed inside NuGet package as our DependencyB.dll is not a NuGet package -->
+    <None Include="$(OutputPath)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,31 +81,25 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="4. CodeGeneration\SchemaPocoGenerator.Diagnostics.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Context" />
-  </ItemGroup>
-
+  <!-- Remark, the $(MSBuildThisFileDirectory) below is needed for the rest of the solution to use the generator. There is a weird issue in
+       that the relative paths don't get resolved for projects that live in a different leave of the folder structure. Using an absolute path solves this. -->
   <Target Name="GetUbigiaDependencyTargetPaths">
     <ItemGroup>
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia\$(OutDir)\EtAlii.Ubigia.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Fabric\$(OutDir)\EtAlii.Ubigia.Api.Fabric.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Fabric.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Fabric.Diagnostics.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical\$(OutDir)\EtAlii.Ubigia.Api.Logical.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Logical.Diagnostics.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional\$(OutDir)\EtAlii.Ubigia.Api.Functional.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Functional.Diagnostics.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Transport\$(OutDir)\EtAlii.Ubigia.Api.Transport.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Diagnostics\$(OutDir)\EtAlii.Ubigia.Diagnostics.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\$(OutDir)\EtAlii.xTechnology.Threading.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\$(OutDir)\EtAlii.xTechnology.Diagnostics.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections\$(OutDir)\EtAlii.xTechnology.Collections.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\HashLib\HashLib\$(OutDir)\HashLib.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia\$(OutDir)\EtAlii.Ubigia.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Fabric\$(OutDir)\EtAlii.Ubigia.Api.Fabric.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Fabric.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Fabric.Diagnostics.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Logical\$(OutDir)\EtAlii.Ubigia.Api.Logical.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Logical.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Logical.Diagnostics.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Functional\$(OutDir)\EtAlii.Ubigia.Api.Functional.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Functional.Diagnostics\$(OutDir)\EtAlii.Ubigia.Api.Functional.Diagnostics.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Api.Transport\$(OutDir)\EtAlii.Ubigia.Api.Transport.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\EtAlii.Ubigia.Diagnostics\$(OutDir)\EtAlii.Ubigia.Diagnostics.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\$(OutDir)\EtAlii.xTechnology.Threading.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\$(OutDir)\EtAlii.xTechnology.Diagnostics.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\..\Frameworks\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections\$(OutDir)\EtAlii.xTechnology.Collections.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(MSBuildThisFileDirectory)\..\..\Frameworks\HashLib\HashLib\$(OutDir)\HashLib.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
   </Target>
 
