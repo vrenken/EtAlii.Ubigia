@@ -21,6 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
+        private int _duration;
 
         public SchemaProcessorMemoryTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -52,12 +53,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
-            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
+            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorMemoryTests)}.Initialize: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms");
+
+            _duration = Environment.TickCount;
         }
 
         public async Task DisposeAsync()
         {
-            var start = Environment.TickCount;
+            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorMemoryTests)}.Duration: {TimeSpan.FromTicks(Environment.TickCount - _duration).TotalMilliseconds}ms");
+
+            var cleanup = Environment.TickCount;
 
             await _options.LogicalContext
                 .DisposeAsync()
@@ -65,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = null;
             _context = null;
 
-            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
+            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorMemoryTests)}.Cleanup: {TimeSpan.FromTicks(Environment.TickCount - cleanup).TotalMilliseconds}ms");
         }
 
         [Fact]

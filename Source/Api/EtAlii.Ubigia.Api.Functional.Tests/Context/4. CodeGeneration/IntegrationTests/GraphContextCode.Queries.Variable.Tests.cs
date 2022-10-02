@@ -18,6 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
+        private int _duration;
 
         public GraphContextCodeQueriesVariableTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -45,19 +46,23 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
-            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
+            _testOutputHelper.WriteLine($"{nameof(GraphContextCodeQueriesVariableTests)}.Initialize: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms");
+
+            _duration = Environment.TickCount;
         }
 
         public async Task DisposeAsync()
         {
-            var start = Environment.TickCount;
+            _testOutputHelper.WriteLine($"{nameof(GraphContextCodeQueriesVariableTests)}.Duration: {TimeSpan.FromTicks(Environment.TickCount - _duration).TotalMilliseconds}ms");
+
+            var cleanup = Environment.TickCount;
 
             await _options.LogicalContext
                 .DisposeAsync()
                 .ConfigureAwait(false);
             _options = null;
 
-            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
+            _testOutputHelper.WriteLine($"{nameof(GraphContextCodeQueriesVariableTests)}.Cleanup: {TimeSpan.FromTicks(Environment.TickCount - cleanup).TotalMilliseconds}ms");
         }
 
 
