@@ -1,22 +1,8 @@
 ﻿<Project>
 
-  <PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)\$(TargetFramework)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
-  </PropertyGroup>
-
-  <!-- ===================================================== -->
-
     <ItemGroup>
-      <AdditionalFiles Include="@(GclFile)" SourceItemGroup="GclFile" />
+      <AdditionalFiles Include="@(GclFile)" SourceItemGroup="GclFile"/>
     </ItemGroup>
-
-  <!-- ===================================================== -->
-
-  <ItemGroup>
-    <None Remove="**/*.gcl"/>
-    <GclFile Include="**/*.gcl"/>
-  </ItemGroup>
 
   <ItemGroup>
     <CompilerVisibleProperty Include="GclSchemaNamespace" />
