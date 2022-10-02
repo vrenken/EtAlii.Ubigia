@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{35B4038D-1EFF-4ABE-9DCC-3CF7057F20FF}"
 EndProject
@@ -173,8 +173,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
 		..\.gitignore = ..\.gitignore
+		Build+Test DockerHost.ps1 = Build+Test DockerHost.ps1
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
 		EtAlii.Ubigia.sln.DotSettings = EtAlii.Ubigia.sln.DotSettings
 		Global.json = Global.json
 		..\NuGet.config = ..\NuGet.config
@@ -182,8 +184,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00
 		Transform-Config.ps1 = Transform-Config.ps1
 		UnitTestSettings.cs = UnitTestSettings.cs
 		..\version.json = ..\version.json
-		Build+Test DockerHost.ps1 = Build+Test DockerHost.ps1
-		Directory.Packages.props = Directory.Packages.props
 		xunit.runner.json = xunit.runner.json
 	EndProjectSection
 EndProject
@@ -371,9 +371,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{FB14842E-F9DF-467C-8633-CD726C71BEE5}"
 	ProjectSection(SolutionItems) = preProject
+		..\Documentation\GettingStarted.md = ..\Documentation\GettingStarted.md
 		..\Readme.md = ..\Readme.md
 		..\Documentation\TipsTricks.md = ..\Documentation\TipsTricks.md
-		..\Documentation\GettingStarted.md = ..\Documentation\GettingStarted.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
@@ -403,77 +403,77 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Analyzers", "Api\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj", "{991DFE15-55A3-4435-81FA-F56E996CD546}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gcl.Samples", "Gcl.Samples", "{A69811A1-E528-4FC0-B98D-377072C53D03}"
-ProjectSection(SolutionItems) = preProject
-	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md = ..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md
-	..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md = ..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md = ..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md
+		..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md = ..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gtl.Samples", "Gtl.Samples", "{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4}"
-ProjectSection(SolutionItems) = preProject
-	..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md = ..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md = ..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md = ..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md = ..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md = ..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md = ..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md
-	..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md = ..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md = ..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md = ..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md = ..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md = ..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md = ..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md = ..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md
+		..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md = ..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{186D063F-AADD-4F45-B394-935239120191}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\workflows\default.yml = ..\.github\workflows\default.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\default.yml = ..\.github\workflows\default.yml
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Parsing.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.shproj", "{45B10AB1-0493-4BFA-8E63-5714D36C37D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests.csproj", "{82CE3399-51F8-4950-8DD2-85DD7D2F871A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests.csproj", "{984D7C17-44D3-4538-994B-0EEC298102B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests.csproj", "{11725836-5C0D-4089-B1D7-BDD89F87B00C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests.csproj", "{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api", "Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{B8FECA34-E106-46E0-8457-99F5F1E901A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api", "Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{B8FECA34-E106-46E0-8457-99F5F1E901A6}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Persistence.Tests", "Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.shproj", "{E895A45E-0B7F-4F33-993E-494D2BC78219}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{792001F7-7937-4EAA-B7C7-18D360E32FE4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-codeql", "analyse-codeql", "{8F8A094D-2593-4A37-9610-838C89834017}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\actions\analyse-codeql\action.yml = ..\.github\actions\analyse-codeql\action.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\.github\actions\analyse-codeql\action.yml = ..\.github\actions\analyse-codeql\action.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish-docker", "publish-docker", "{D91F0095-0165-4B9A-B448-D71CEE5DB2AB}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\actions\publish-docker\action.yml = ..\.github\actions\publish-docker\action.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\.github\actions\publish-docker\action.yml = ..\.github\actions\publish-docker\action.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish-nuget", "publish-nuget", "{752B679E-93DB-42EF-93CC-DDBDAC0D7C8E}"
-ProjectSection(SolutionItems) = preProject
-	..\.github\actions\publish-nuget\action.yml = ..\.github\actions\publish-nuget\action.yml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\.github\actions\publish-nuget\action.yml = ..\.github\actions\publish-nuget\action.yml
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.DockerHost", "Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj", "{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.DockerHost", "Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj", "{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7066E246-A29E-4A14-8F89-15EA7CEDE378}"
 	ProjectSection(SolutionItems) = preProject
@@ -490,47 +490,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyse-sonarcloud", "analy
 		..\.github\actions\analyse-sonarcloud\action.yml = ..\.github\actions\analyse-sonarcloud\action.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests.csproj", "{2409B60A-C2D7-443F-93C0-D776FD5D4983}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Tests.csproj", "{654ADE58-7CEC-4040-902C-B1B7230FCD3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric.InMemory", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj", "{3D433559-AADC-4379-AB8D-CEA66783C533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.InMemory", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj", "{3D433559-AADC-4379-AB8D-CEA66783C533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric.Ntfs", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.csproj", "{DEC3AF7A-4DED-4985-A3B9-FEC93F30263D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.Ntfs", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.csproj", "{DEC3AF7A-4DED-4985-A3B9-FEC93F30263D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric.Standard", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Standard\EtAlii.Ubigia.Infrastructure.Fabric.Standard.csproj", "{A312CFE9-826E-4F12-833D-61EF21DC9C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.Standard", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Standard\EtAlii.Ubigia.Infrastructure.Fabric.Standard.csproj", "{A312CFE9-826E-4F12-833D-61EF21DC9C7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FBA4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests\EtAlii.Ubigia.Infrastructure.Fabric.Ntfs.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FBA4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal.csproj", "{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal.csproj", "{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1CE369AA-5F47-4E40-8E85-D849B289A3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Logical.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Logical.Tests\EtAlii.Ubigia.Infrastructure.Logical.Tests.csproj", "{5FD5A24A-CCCE-4BBC-9AA4-5725D27C90D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Logical.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Logical.Tests\EtAlii.Ubigia.Infrastructure.Logical.Tests.csproj", "{5FD5A24A-CCCE-4BBC-9AA4-5725D27C90D6}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{3d64ff30-d4fa-4a68-8f95-46b593dbb72a}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{43519cad-f917-4cf3-b9cb-2f84bbcaf2e0}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{47d6fb52-b2d1-43ca-a6d4-4ac086ddc8a5}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{4d4aefe0-9be6-4d53-9b01-318f9db08c38}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{4f3341b1-1842-4d8a-8fa4-e60dae53bec5}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{617a217c-af63-4a8f-a5ff-91ee4aa4b600}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{65613b13-ccc4-47ca-8da2-cfbae750ea54}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{70285ea9-1824-415e-9317-b6846ffb0326}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{70db8c97-0b9a-4313-8580-c3de09c3a10e}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{77196d0a-341f-46be-9760-d174734f3ed5}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{7f3505c3-584f-4549-be37-c639b3732afe}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{85e9cf67-c4a5-47e0-ae62-f8430fdcc498}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{9243c0eb-59bd-4dab-b631-cc8b14ba3585}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{a170fe2a-373b-4f24-9f4b-6440ddf2cc04}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{ab4d1142-4552-408e-98d4-d8161b2f0d6e}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{ad2a6ca0-2d82-465b-a10f-39865c8156ed}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{f21017fa-b6af-4114-9cdd-bc1993732470}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{f34b0199-92d2-4240-88d4-06f471fa07a0}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{f9cb6a59-98fd-4d02-9d34-ce0617a8949b}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -556,6 +534,8 @@ Global
 		{4F3341B1-1842-4D8A-8FA4-E60DAE53BEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3341B1-1842-4D8A-8FA4-E60DAE53BEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F3341B1-1842-4D8A-8FA4-E60DAE53BEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2437364-7A9D-4798-B429-59E9FF9308E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2437364-7A9D-4798-B429-59E9FF9308E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2437364-7A9D-4798-B429-59E9FF9308E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -624,6 +604,8 @@ Global
 		{65613B13-CCC4-47CA-8DA2-CFBAE750EA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65613B13-CCC4-47CA-8DA2-CFBAE750EA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65613B13-CCC4-47CA-8DA2-CFBAE750EA54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B71AB436-2904-48ED-99E1-877F096468F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B71AB436-2904-48ED-99E1-877F096468F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B71AB436-2904-48ED-99E1-877F096468F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -724,6 +706,10 @@ Global
 		{AC4B87F2-6A13-4CED-895A-F68B6CF557C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC4B87F2-6A13-4CED-895A-F68B6CF557C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4B87F2-6A13-4CED-895A-F68B6CF557C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12BFE8E1-B1D7-4F16-BFE6-F97503AA483C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12BFE8E1-B1D7-4F16-BFE6-F97503AA483C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12BFE8E1-B1D7-4F16-BFE6-F97503AA483C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -740,6 +726,8 @@ Global
 		{70285EA9-1824-415E-9317-B6846FFB0326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70285EA9-1824-415E-9317-B6846FFB0326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70285EA9-1824-415E-9317-B6846FFB0326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D64FF30-D4FA-4A68-8F95-46B593DBB72A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D64FF30-D4FA-4A68-8F95-46B593DBB72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D64FF30-D4FA-4A68-8F95-46B593DBB72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -748,6 +736,10 @@ Global
 		{4D4AEFE0-9BE6-4D53-9B01-318F9DB08C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D4AEFE0-9BE6-4D53-9B01-318F9DB08C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D4AEFE0-9BE6-4D53-9B01-318F9DB08C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9243C0EB-59BD-4DAB-B631-CC8B14BA3585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9243C0EB-59BD-4DAB-B631-CC8B14BA3585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9243C0EB-59BD-4DAB-B631-CC8B14BA3585}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -880,6 +872,10 @@ Global
 		{28E845B8-2B2C-4ACC-8FF1-40A3FE3D32B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E845B8-2B2C-4ACC-8FF1-40A3FE3D32B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E845B8-2B2C-4ACC-8FF1-40A3FE3D32B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D3A122-9734-4E23-B894-E2C760BE5247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D3A122-9734-4E23-B894-E2C760BE5247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4D3A122-97C4-4C23-A8A4-EBC76BBE5EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4D3A122-97C4-4C23-A8A4-EBC76BBE5EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4D3A122-97C4-4C23-A8A4-EBC76BBE5EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -1032,52 +1028,34 @@ Global
 		{B433801E-0F22-4867-9574-8A90109A559B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B433801E-0F22-4867-9574-8A90109A559B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B433801E-0F22-4867-9574-8A90109A559B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82CE3399-51F8-4950-8DD2-85DD7D2F871A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82CE3399-51F8-4950-8DD2-85DD7D2F871A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82CE3399-51F8-4950-8DD2-85DD7D2F871A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82CE3399-51F8-4950-8DD2-85DD7D2F871A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11725836-5C0D-4089-B1D7-BDD89F87B00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11725836-5C0D-4089-B1D7-BDD89F87B00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11725836-5C0D-4089-B1D7-BDD89F87B00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11725836-5C0D-4089-B1D7-BDD89F87B00C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984D7C17-44D3-4538-994B-0EEC298102B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984D7C17-44D3-4538-994B-0EEC298102B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984D7C17-44D3-4538-994B-0EEC298102B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984D7C17-44D3-4538-994B-0EEC298102B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E895A45E-0B7F-4F33-993E-494D2BC78219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E895A45E-0B7F-4F33-993E-494D2BC78219}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25D3A122-9734-4E23-B894-E2C760BE5247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25D3A122-9734-4E23-B894-E2C760BE5247}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25D3A122-9734-4E23-B894-E2C760BE5247}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2409B60A-C2D7-443F-93C0-D776FD5D4983}.Release|Any CPU.Build.0 = Release|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654ADE58-7CEC-4040-902C-B1B7230FCD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654ADE58-7CEC-4040-902C-B1B7230FCD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654ADE58-7CEC-4040-902C-B1B7230FCD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654ADE58-7CEC-4040-902C-B1B7230FCD3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D433559-AADC-4379-AB8D-CEA66783C533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D433559-AADC-4379-AB8D-CEA66783C533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D433559-AADC-4379-AB8D-CEA66783C533}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -1090,14 +1068,14 @@ Global
 		{A312CFE9-826E-4F12-833D-61EF21DC9C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A312CFE9-826E-4F12-833D-61EF21DC9C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A312CFE9-826E-4F12-833D-61EF21DC9C7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{789ADE58-7CEC-4040-902C-B1B7230FAA3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{789ADE58-7CEC-4040-902C-B1B7230FBA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -1177,6 +1155,8 @@ Global
 		{CA117DD1-215E-4974-8F93-C66A1003940B} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 		{8F34BAEA-91CA-4031-B345-8E79EF9E9C5F} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
 		{AC4B87F2-6A13-4CED-895A-F68B6CF557C3} = {7CB6806D-C284-494E-A175-F9D7CA0E1716}
+		{789ADE58-7CEC-4040-902C-B1B7230FAA3E} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
+		{388BAEAA-1DAB-430D-9730-4EDA363AF56F} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
 		{89F4CC52-E5E5-4D41-9562-62973213A4EA} = {6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}
 		{12BFE8E1-B1D7-4F16-BFE6-F97503AA483C} = {89F4CC52-E5E5-4D41-9562-62973213A4EA}
 		{73723C36-7C9E-4C82-A5D1-2CC627FAB6F2} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
@@ -1227,6 +1207,7 @@ Global
 		{28B64BB8-2C2B-4AC9-8F61-4073A63D32B5} = {F2AEDBCB-6559-43FA-89C2-7F53BD16CDBD}
 		{28E845B8-2B2C-4ACC-8FF1-40A3FE3D32B5} = {F2AEDBCB-6559-43FA-89C2-7F53BD16CDBD}
 		{26ACEB56-243A-4E8B-A20D-81021CBFFA84} = {F2AEDBCB-6559-43FA-89C2-7F53BD16CDBD}
+		{25D3A122-9734-4E23-B894-E2C760BE5247} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{A4D3A122-97C4-4C23-A8A4-EBC76BBE5EDC} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{3CD64B65-53A9-4CD8-917C-31FFBBEC099B} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{9234ACDF-5339-4C48-917C-31246FDABEDE} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
@@ -1282,9 +1263,10 @@ Global
 		{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
 		{186D063F-AADD-4F45-B394-935239120191} = {C9537D00-7881-4ACB-9111-9439363F658D}
 		{B433801E-0F22-4867-9574-8A90109A559B} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
 		{45B10AB1-0493-4BFA-8E63-5714D36C37D4} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
-		{82CE3399-51F8-4950-8DD2-85DD7D2F871A} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
-		{11725836-5C0D-4089-B1D7-BDD89F87B00C} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{984D7C17-44D3-4538-994B-0EEC298102B4} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6} = {27CC2941-9A82-44BF-90D7-2D55BCFFA7FA}
 		{E895A45E-0B7F-4F33-993E-494D2BC78219} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
 		{792001F7-7937-4EAA-B7C7-18D360E32FE4} = {C9537D00-7881-4ACB-9111-9439363F658D}
@@ -1292,24 +1274,50 @@ Global
 		{D91F0095-0165-4B9A-B448-D71CEE5DB2AB} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{752B679E-93DB-42EF-93CC-DDBDAC0D7C8E} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{E50BDDE3-0B3A-4950-97BD-7DEC906BB005} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
-		{25D3A122-9734-4E23-B894-E2C760BE5247} = {26ACEB56-243A-4E8B-A20D-81021CBFFA84}
 		{7066E246-A29E-4A14-8F89-15EA7CEDE378} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{B36C7798-A4AB-4ECD-93A5-4AB6A77D08F2} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
 		{D8B71A17-5ACE-49A2-8D34-40A4622EA7CD} = {792001F7-7937-4EAA-B7C7-18D360E32FE4}
-		{2409B60A-C2D7-443F-93C0-D776FD5D4983} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
-		{789ADE58-7CEC-4040-902C-B1B7230FBA4D} = {CAEC7FB6-E8ED-437F-9FB1-8CD99B4B3E7B}
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB} = {CAEC7FB6-E8ED-437F-9FB1-8CD99B4B3E7B}
+		{654ADE58-7CEC-4040-902C-B1B7230FCD3B} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
 		{3D433559-AADC-4379-AB8D-CEA66783C533} = {43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}
 		{DEC3AF7A-4DED-4985-A3B9-FEC93F30263D} = {43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}
 		{A312CFE9-826E-4F12-833D-61EF21DC9C7B} = {43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}
-		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
-		{789ADE58-7CEC-4040-902C-B1B7230FAA3E} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
-		{388BAEAA-1DAB-430D-9730-4EDA363AF56F} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
+		{789ADE58-7CEC-4040-902C-B1B7230FBA4D} = {CAEC7FB6-E8ED-437F-9FB1-8CD99B4B3E7B}
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB} = {CAEC7FB6-E8ED-437F-9FB1-8CD99B4B3E7B}
 		{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
 		{1CE369AA-5F47-4E40-8E85-D849B289A3A8} = {C2240B8D-4BF7-405F-B11C-CBD11EE5E4AE}
 		{5FD5A24A-CCCE-4BBC-9AA4-5725D27C90D6} = {1CE369AA-5F47-4E40-8E85-D849B289A3A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Api\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.projitems*{0ff6b100-c0c1-4bd6-9640-9f2eedff8bcb}*SharedItemsImports = 5
+		Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems*{22b9875b-6181-49bf-9b06-bfb90080c41f}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{3d64ff30-d4fa-4a68-8f95-46b593dbb72a}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{43519cad-f917-4cf3-b9cb-2f84bbcaf2e0}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.projitems*{45b10ab1-0493-4bfa-8e63-5714d36c37d4}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{47d6fb52-b2d1-43ca-a6d4-4ac086ddc8a5}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{4d4aefe0-9be6-4d53-9b01-318f9db08c38}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{4f3341b1-1842-4d8a-8fa4-e60dae53bec5}*SharedItemsImports = 5
+		Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems*{4f8b2631-cda7-4b99-9af3-b891139d023e}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{617a217c-af63-4a8f-a5ff-91ee4aa4b600}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{65613b13-ccc4-47ca-8da2-cfbae750ea54}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{70285ea9-1824-415e-9317-b6846ffb0326}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{70db8c97-0b9a-4313-8580-c3de09c3a10e}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{77196d0a-341f-46be-9760-d174734f3ed5}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{7f3505c3-584f-4549-be37-c639b3732afe}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{85e9cf67-c4a5-47e0-ae62-f8430fdcc498}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{9243c0eb-59bd-4dab-b631-cc8b14ba3585}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.projitems*{984d7c17-44d3-4538-994b-0eec298102b4}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{a170fe2a-373b-4f24-9f4b-6440ddf2cc04}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{ab4d1142-4552-408e-98d4-d8161b2f0d6e}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{ad2a6ca0-2d82-465b-a10f-39865c8156ed}*SharedItemsImports = 5
+		Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems*{b0e65c72-8364-4ffd-8f4d-0b0f9d5ede0c}*SharedItemsImports = 5
+		Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems*{de359065-7238-451d-a43e-9c47af26d885}*SharedItemsImports = 5
+		Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems*{e895a45e-0b7f-4f33-993e-494d2bc78219}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{f21017fa-b6af-4114-9cdd-bc1993732470}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{f34b0199-92d2-4240-88d4-06f471fa07a0}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{f9cb6a59-98fd-4d02-9d34-ce0617a8949b}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
