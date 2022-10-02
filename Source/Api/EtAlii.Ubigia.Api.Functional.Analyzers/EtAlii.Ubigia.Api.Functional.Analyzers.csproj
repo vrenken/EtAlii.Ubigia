@@ -30,9 +30,9 @@
     </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Context\4. CodeGeneration\Build\*">
-      <PackagePath>build/</PackagePath>
-    </Content>
+    <None Include="Context\4. CodeGeneration\Build\*" Pack="true" >
+      <PackagePath>build/</PackagePath >
+    </None>
 
     <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
     <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
