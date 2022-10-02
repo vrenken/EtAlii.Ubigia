@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <GclFile Include="Status\ServiceSettings.gcl" />
+    <GclFile Include="Status\ServiceSettings2.gcl" />
   </ItemGroup>
 
   <ItemGroup>
