@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Threading;
 
+#pragma warning disable CA1724
     public class Infrastructure : InfrastructureBase
+#pragma warning restore CA1724
     {
         public Infrastructure(
             IInfrastructureOptions options,
