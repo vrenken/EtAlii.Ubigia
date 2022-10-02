@@ -125,7 +125,6 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
 
-
         [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Blank_Value()
         {
@@ -188,7 +187,6 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
         }
-
 
         [Fact]
         public void ScriptParser_Assign_Path_From_Object_MultiLine_NonQuoted_Key_Extra_Whitespace_01()
