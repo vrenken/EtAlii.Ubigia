@@ -9,24 +9,41 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
+    using Xunit.Abstractions;
 
     public class ContentManagerTests : IClassFixture<ContentFunctionalUnitTestContext>, IAsyncLifetime
     {
         private readonly ContentFunctionalUnitTestContext _testContext;
+        private readonly ITestOutputHelper _testOutputHelper;
+        private int _duration;
 
-        public ContentManagerTests(ContentFunctionalUnitTestContext testContext)
+        public ContentManagerTests(ContentFunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
+            _testOutputHelper = testOutputHelper;
         }
 
         public async Task InitializeAsync()
         {
+            var initialize = Environment.TickCount;
+
             await _testContext.LogicalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+
+            _testOutputHelper.WriteLine($"Initialize: {TimeSpan.FromTicks(Environment.TickCount - initialize).TotalMilliseconds}ms");
+
+            _duration = Environment.TickCount;
+
         }
 
         public async Task DisposeAsync()
         {
+            _testOutputHelper.WriteLine($"Test: {TimeSpan.FromTicks(Environment.TickCount - _duration).TotalMilliseconds}ms");
+
+            var cleanup = Environment.TickCount;
+
             await _testContext.LogicalTestContext.Stop().ConfigureAwait(false);
+
+            _testOutputHelper.WriteLine($"Cleanup: {TimeSpan.FromTicks(Environment.TickCount - cleanup).TotalMilliseconds}ms");
         }
 
         [Fact]

@@ -2,33 +2,55 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
+    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
+    using Xunit.Abstractions;
 
+    [CorrelateUnitTests]
     public sealed class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private FunctionalUnitTestContext _testContext;
+        private readonly ITestOutputHelper _testOutputHelper;
+        private int _test;
+
+        public ScriptProcessorFunctionIdIntegrationTests(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
 
         public async Task InitializeAsync()
         {
+            var initialize = Environment.TickCount;
+
             _testContext = new FunctionalUnitTestContext();
             await _testContext
                 .InitializeAsync()
                 .ConfigureAwait(false);
 
             _parser = _testContext.CreateScriptParser();
+
+            _testOutputHelper.WriteLine($"Initialize: {TimeSpan.FromTicks(Environment.TickCount - initialize).TotalMilliseconds}ms");
+
+            _test = Environment.TickCount;
         }
 
         public async Task DisposeAsync()
         {
+            _testOutputHelper.WriteLine($"Test: {TimeSpan.FromTicks(Environment.TickCount - _test).TotalMilliseconds}ms");
+
+            var dispose = Environment.TickCount;
+
             await _testContext
                 .DisposeAsync()
                 .ConfigureAwait(false);
             _testContext = null;
             _parser = null;
+
+            _testOutputHelper.WriteLine($"Dispose: {TimeSpan.FromTicks(Environment.TickCount - dispose).TotalMilliseconds}ms");
         }
 
         [Fact]

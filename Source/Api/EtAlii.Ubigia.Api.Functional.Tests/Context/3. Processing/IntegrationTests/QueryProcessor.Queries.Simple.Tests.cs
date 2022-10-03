@@ -19,7 +19,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
-        private int _duration;
+        private int _test;
+
         public SchemaProcessorQueriesSimpleTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
@@ -28,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
         public async Task InitializeAsync()
         {
-            var start = Environment.TickCount;
+            var initialize = Environment.TickCount;
 
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestParsing()
@@ -47,16 +48,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
-            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorQueriesSimpleTests)}.Initialize: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms");
+            _testOutputHelper.WriteLine($"Initialize: {TimeSpan.FromTicks(Environment.TickCount - initialize).TotalMilliseconds}ms");
 
-            _duration = Environment.TickCount;
+            _test = Environment.TickCount;
         }
 
         public async Task DisposeAsync()
         {
-            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorQueriesSimpleTests)}.Duration: {TimeSpan.FromTicks(Environment.TickCount - _duration).TotalMilliseconds}ms");
+            _testOutputHelper.WriteLine($"Test: {TimeSpan.FromTicks(Environment.TickCount - _test).TotalMilliseconds}ms");
 
-            var cleanup = Environment.TickCount;
+            var dispose = Environment.TickCount;
 
             await _options.LogicalContext
                 .DisposeAsync()
@@ -64,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = null;
             _context = null;
 
-            _testOutputHelper.WriteLine($"{nameof(SchemaProcessorQueriesSimpleTests)}.Cleanup: {TimeSpan.FromTicks(Environment.TickCount - cleanup).TotalMilliseconds}ms");
+            _testOutputHelper.WriteLine($"Dispose: {TimeSpan.FromTicks(Environment.TickCount - dispose).TotalMilliseconds}ms");
         }
 
 
