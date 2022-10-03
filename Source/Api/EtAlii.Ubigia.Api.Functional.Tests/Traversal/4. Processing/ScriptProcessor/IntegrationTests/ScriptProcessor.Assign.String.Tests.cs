@@ -5,9 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class ScriptProcessorAssignStringUnitTests : IClassFixture<FunctionalUnitTestContext>
+    [CorrelateUnitTests]
+    public sealed class ScriptProcessorAssignStringUnitTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;

@@ -5,9 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
+    using EtAlii.Ubigia.Tests;
     using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
 
+    [CorrelateUnitTests]
     public sealed class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;

@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public sealed class ScriptProcessorScriptedAddTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;

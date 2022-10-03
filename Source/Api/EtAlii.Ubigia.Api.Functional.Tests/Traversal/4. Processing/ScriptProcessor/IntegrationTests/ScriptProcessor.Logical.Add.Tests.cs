@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
+    [CorrelateUnitTests]
     public sealed class ScriptProcessorLogicalAddTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly FunctionalUnitTestContext _testContext;

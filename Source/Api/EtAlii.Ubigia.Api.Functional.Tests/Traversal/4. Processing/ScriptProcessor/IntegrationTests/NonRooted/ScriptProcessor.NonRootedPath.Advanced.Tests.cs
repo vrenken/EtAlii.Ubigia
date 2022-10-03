@@ -7,9 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathAdvancedTests : IAsyncLifetime
+    [CorrelateUnitTests]
+    public sealed class ScriptProcessorNonRootedPathAdvancedTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private FunctionalUnitTestContext _testContext;
