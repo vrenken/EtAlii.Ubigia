@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Serialization
+namespace EtAlii.Ubigia
 {
-    internal enum TypeId : byte
+    public enum TypeId : byte
     {
         None = 0,
         String,
