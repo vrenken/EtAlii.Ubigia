@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using EtAlii.Ubigia.Serialization;
     using Newtonsoft.Json;
     using Xunit;
     using EtAlii.Ubigia.Tests;
@@ -17,8 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AuthenticationTokenConverter_Converter_Token()
         {
             // Arrange.
-            var serializer = new SerializerFactory().Create();
-            var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
+            var authenticationTokenConverter = new AuthenticationTokenConverter();
 
             var originalToken = new AuthenticationToken
             {
@@ -41,8 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AuthenticationTokenConverter_ToBytes_Null()
         {
             // Arrange.
-            var serializer = new SerializerFactory().Create();
-            var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
+            var authenticationTokenConverter = new AuthenticationTokenConverter();
 
             // Act.
             var act = new Action(() =>
@@ -58,8 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AuthenticationTokenConverter_FromBytes_Null()
         {
             // Arrange.
-            var serializer = new SerializerFactory().Create();
-            var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
+            var authenticationTokenConverter = new AuthenticationTokenConverter();
 
             // Act.
             var act = new Action(() =>
@@ -75,8 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AuthenticationTokenConverter_FromBytes_Empty()
         {
             // Arrange.
-            var serializer = new SerializerFactory().Create();
-            var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
+            var authenticationTokenConverter = new AuthenticationTokenConverter();
 
             // Act.
             var token = authenticationTokenConverter.FromBytes(Array.Empty<byte>());
@@ -89,8 +84,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AuthenticationTokenConverter_FromBytes_Random()
         {
             // Arrange.
-            var serializer = new SerializerFactory().Create();
-            var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
+            var authenticationTokenConverter = new AuthenticationTokenConverter();
 
             // Act.
             var act = new Action(() =>
