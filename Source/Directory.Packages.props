@@ -26,7 +26,6 @@
     <PackageVersion Include="Grpc.Tools" Version="2.49.1" />
 
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageVersion Include="Newtonsoft.Json.Bson" Version="1.0.2" />
 
     <PackageVersion Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
