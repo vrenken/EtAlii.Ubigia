@@ -3,8 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
+    using System.IO;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using Newtonsoft.Json;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             });
 
             // Assert.
-            Assert.Throws<JsonWriterException>(act);
+            Assert.Throws<ArgumentNullException>(act);
         }
 
         [Fact]
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             });
 
             // Assert.
-            Assert.Throws<JsonReaderException>(act);
+            Assert.Throws<EndOfStreamException>(act);
         }
     }
 }
