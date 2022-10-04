@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using EtAlii.Ubigia.Persistence.InMemory;
-    using EtAlii.Ubigia.Serialization;
     using Xunit;
     using EtAlii.Ubigia.Tests;
     using Microsoft.Extensions.Configuration;
@@ -15,15 +14,15 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void InMemoryStorage_Create()
         {
             // Arrange.
-            var bsonItemSerializer = new BsonItemSerializer();
-            var bsonPropertiesSerializer = new BsonPropertiesSerializer();
+            var itemSerializer = new BinaryItemSerializer();
+            var propertiesSerializer = new BinaryPropertiesSerializer();
             var configurationRoot = new ConfigurationBuilder().Build();
 
             var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var inMemoryItems = new InMemoryItems();
             var inMemoryItemsHelper = new InMemoryItemsHelper(inMemoryItems);
-            var storageSerializer = new InMemoryStorageSerializer(bsonItemSerializer,bsonPropertiesSerializer, inMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, inMemoryItemsHelper);
             var pathBuilder = new InMemoryPathBuilder( storageSerializer);
             var folderManager = new InMemoryFolderManager(storageSerializer, inMemoryItems, inMemoryItemsHelper);
             var fileManager = new InMemoryFileManager(storageSerializer, folderManager, pathBuilder, inMemoryItems, inMemoryItemsHelper);

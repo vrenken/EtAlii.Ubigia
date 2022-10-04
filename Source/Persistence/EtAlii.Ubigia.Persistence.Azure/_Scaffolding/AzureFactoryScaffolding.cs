@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence.Azure
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class AzureFactoryScaffolding : IScaffolding
@@ -16,8 +15,8 @@ namespace EtAlii.Ubigia.Persistence.Azure
             container.Register<IPathBuilder, AzurePathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, BsonItemSerializer>();
-            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BinaryItemSerializer>();
+            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
         }
     }
 }

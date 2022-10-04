@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System;
     using System.IO;
     using EtAlii.Ubigia.Persistence.Portable;
-    using EtAlii.Ubigia.Serialization;
     using PCLStorage;
     using Xunit;
     using EtAlii.Ubigia.Tests;
@@ -20,12 +19,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var configurationRoot = new ConfigurationBuilder().Build();
             var folderName = $"C:\\Temp\\{Guid.NewGuid()}";
-            var bsonItemSerializer = new BsonItemSerializer();
-            var bsonPropertiesSerializer = new BsonPropertiesSerializer();
+            var itemSerializer = new BinaryItemSerializer();
+            var propertiesSerializer = new BinaryPropertiesSerializer();
             var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var folderStorage = new FileSystemFolder(folderName);
-            var storageSerializer = new PortableStorageSerializer(bsonItemSerializer, bsonPropertiesSerializer, folderStorage);
+            var storageSerializer = new PortableStorageSerializer(itemSerializer, propertiesSerializer, folderStorage);
             var pathBuilder = new PortablePathBuilder(storageOptions, storageSerializer);
             var folderManager = new PortableFolderManager(storageSerializer, folderStorage);
             var fileManager = new PortableFileManager(storageSerializer, folderManager, pathBuilder, folderStorage);

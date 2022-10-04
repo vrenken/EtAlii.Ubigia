@@ -17,5 +17,4 @@
     <Folder Include="Serialization\Items" />
     <Folder Include="Serialization\Properties" />
   </ItemGroup>
-
 </Project>

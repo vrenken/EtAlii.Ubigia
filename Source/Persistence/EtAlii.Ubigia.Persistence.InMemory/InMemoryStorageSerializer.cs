@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Serialization;
 
     public class InMemoryStorageSerializer : IStorageSerializer
     {
@@ -12,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
 
         private readonly IInMemoryItemsHelper _inMemoryItemsHelper;
 
-        public string FileNameFormat { get; } = "{0}.bson";
+        public string FileNameFormat { get; } = "{0}.bin";
 
         public InMemoryStorageSerializer(
             IItemSerializer itemSerializer,

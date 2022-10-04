@@ -1,26 +1,26 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Serialization
+namespace EtAlii.Ubigia.Persistence
 {
     using System.IO;
-    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Serialization;
     using Newtonsoft.Json;
 
     //[Obsolete("JSON based storage has some serious drawbacks. Do not use!")]
     /// <summary>
     /// JSON based storage has some serious drawbacks. Do not use!
     /// </summary>
-    public sealed class JsonItemSerializer : IItemSerializer
+    public sealed class JsonPropertiesSerializer : IPropertiesSerializer
     {
         private readonly ISerializer _serializer;
 
-        public JsonItemSerializer(ISerializer serializer)
+        public JsonPropertiesSerializer(ISerializer serializer)
         {
             _serializer = serializer;
             ((Serializer)_serializer).Formatting = Formatting.Indented;
         }
 
-        public void Serialize<T>(Stream stream, T item) where T : class
+        public void Serialize(Stream stream, PropertyDictionary item)
         {
             using var textWriter = new StreamWriter(stream);
             using var writer = new JsonTextWriter(textWriter);
@@ -28,14 +28,12 @@ namespace EtAlii.Ubigia.Serialization
             _serializer.Serialize(writer, item);
         }
 
-        public Task<T> Deserialize<T>(Stream stream)
-            where T : class
+        public PropertyDictionary Deserialize(Stream stream)
         {
             using var textReader = new StreamReader(stream);
             using var reader = new JsonTextReader(textReader);
 
-            var item = _serializer.Deserialize<T>(reader);
-            return Task.FromResult(item);
+            return _serializer.Deserialize<PropertyDictionary>(reader);
         }
     }
 }

@@ -4,14 +4,13 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Serialization;
 
     public class NtfsStorageSerializer : IStorageSerializer
     {
         private readonly IItemSerializer _itemSerializer;
         private readonly IPropertiesSerializer _propertiesSerializer;
 
-        public string FileNameFormat { get; } = "{0}.bson";
+        public string FileNameFormat { get; } = "{0}.bin";
 
         public NtfsStorageSerializer(
             IItemSerializer itemSerializer,

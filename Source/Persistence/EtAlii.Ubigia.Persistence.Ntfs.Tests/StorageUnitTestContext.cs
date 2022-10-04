@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Ntfs;
-    using EtAlii.Ubigia.Serialization;
 
     public class StorageUnitTestContext : FileSystemStorageUnitTestContextBase
     {

@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence.InMemory
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class InMemoryFactoryScaffolding : IScaffolding
@@ -16,8 +15,8 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             container.Register<IPathBuilder, InMemoryPathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, BsonItemSerializer>();
-            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BinaryItemSerializer>();
+            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
 
             container.Register<IInMemoryItems, InMemoryItems>();
             container.Register<IInMemoryItemsHelper, InMemoryItemsHelper>();

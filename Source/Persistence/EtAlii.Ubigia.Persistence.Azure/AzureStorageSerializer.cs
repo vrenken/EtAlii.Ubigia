@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Azure
 
     public class AzureStorageSerializer : IStorageSerializer
     {
-        public string FileNameFormat { get; } = "{0}.bson";
+        public string FileNameFormat { get; } = "{0}.bin";
 
 
         public Task<T> Deserialize<T>(string fileName)

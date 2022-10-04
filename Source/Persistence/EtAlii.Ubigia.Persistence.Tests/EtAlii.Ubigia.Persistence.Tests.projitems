@@ -33,7 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ItemStorage.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\PathBuilder.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\PropertiesStorage.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Serialization\BsonItemSerializer.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Serialization\BinaryItemSerializer.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Serialization\JsonItemSerializer.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SimpleTestItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StorageTestHelper.cs" />

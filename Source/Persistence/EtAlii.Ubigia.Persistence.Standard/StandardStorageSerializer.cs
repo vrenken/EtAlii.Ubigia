@@ -4,14 +4,13 @@ namespace EtAlii.Ubigia.Persistence.Standard
 {
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Serialization;
 
     public class StandardStorageSerializer : IStorageSerializer
     {
         private readonly IItemSerializer _itemSerializer;
         private readonly IPropertiesSerializer _propertiesSerializer;
 
-        public string FileNameFormat => "{0}.bson";
+        public string FileNameFormat => "{0}.bin";
 
         public StandardStorageSerializer(
             IItemSerializer itemSerializer,

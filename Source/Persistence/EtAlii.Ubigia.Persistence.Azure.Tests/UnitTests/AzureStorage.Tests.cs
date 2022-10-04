@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using EtAlii.Ubigia.Persistence.Azure;
-    using EtAlii.Ubigia.Serialization;
     using Xunit;
     using EtAlii.Ubigia.Tests;
     using Microsoft.Extensions.Configuration;
@@ -15,8 +14,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void AzureStorage_Create()
         {
             // Arrange.
-            var bsonItemSerializer = new BsonItemSerializer();
-            var bsonPropertiesSerializer = new BsonPropertiesSerializer();
+            var itemSerializer = new BinaryItemSerializer();
+            var propertiesSerializer = new BinaryPropertiesSerializer();
             var configurationRoot = new ConfigurationBuilder().Build();
 
             var storageOptions = new StorageOptions(configurationRoot)
@@ -52,8 +51,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.NotNull(storage);
-            Assert.NotNull(bsonItemSerializer);
-            Assert.NotNull(bsonPropertiesSerializer);
+            Assert.NotNull(itemSerializer);
+            Assert.NotNull(propertiesSerializer);
         }
     }
 }

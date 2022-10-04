@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence.Portable
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
     using PCLStorage;
 
@@ -24,8 +23,8 @@ namespace EtAlii.Ubigia.Persistence.Portable
             container.Register<IPathBuilder, PortablePathBuilder>();
             container.Register<IContainerProvider, PortableContainerProvider>();
 
-            container.Register<IItemSerializer, BsonItemSerializer>();
-            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BinaryItemSerializer>();
+            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
 
             container.Register(() => _localStorage);
         }

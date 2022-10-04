@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Serialization
+namespace EtAlii.Ubigia.Persistence
 {
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
 
-    public sealed class BsonItemSerializer : IItemSerializer
+    public sealed class BinaryItemSerializer : IItemSerializer
     {
         public void Serialize<T>(Stream stream, T item)
             where T : class

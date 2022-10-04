@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence.Standard
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class StandardFactoryScaffolding : IScaffolding
@@ -16,8 +15,8 @@ namespace EtAlii.Ubigia.Persistence.Standard
             container.Register<IPathBuilder, StandardPathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, BsonItemSerializer>();
-            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BinaryItemSerializer>();
+            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
         }
     }
 }

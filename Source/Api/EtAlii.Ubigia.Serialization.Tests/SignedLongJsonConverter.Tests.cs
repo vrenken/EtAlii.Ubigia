@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
-        public void SignedLongJsonConverter_Convert_Bson_Random()
+        public void SignedLongJsonConverter_Convert_Binary_Random()
         {
             // Arrange.
             var expectedBytes = new byte[8];
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
-        public void SignedLongJsonConverter_Convert_Bson_Max()
+        public void SignedLongJsonConverter_Convert_Binary_Max()
         {
             // Arrange.
             const long startValue = long.MaxValue - 1;
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
-        public void SignedLongJsonConverter_Convert_Bson_Min()
+        public void SignedLongJsonConverter_Convert_Binary_Min()
         {
             // Arrange.
             const long startValue = long.MinValue + 1;

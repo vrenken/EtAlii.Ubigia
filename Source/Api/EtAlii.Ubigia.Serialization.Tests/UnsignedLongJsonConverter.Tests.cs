@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
-        public void UnsignedLongJsonConverter_Convert_Bson_Random()
+        public void UnsignedLongJsonConverter_Convert_Binary_Random()
         {
             // Arrange.
             var valueAsBytes = new byte[8];
@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
-        public void UnsignedLongJsonConverter_Convert_Bson_Max()
+        public void UnsignedLongJsonConverter_Convert_Binary_Max()
         {
             // Arrange.
             const ulong startValue = ulong.MaxValue - 1;

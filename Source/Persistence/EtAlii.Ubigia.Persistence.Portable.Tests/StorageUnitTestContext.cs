@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Portable;
-    using EtAlii.Ubigia.Serialization;
     using PCLStorage;
 
     public class StorageUnitTestContext : FileSystemStorageUnitTestContextBase

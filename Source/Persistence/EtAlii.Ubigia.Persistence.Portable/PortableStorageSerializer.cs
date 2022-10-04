@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Serialization;
     using PCLStorage;
 
     public class PortableStorageSerializer : IStorageSerializer
@@ -13,7 +12,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
         private readonly IPropertiesSerializer _propertiesSerializer;
         private readonly IFolder _storage;
 
-        public string FileNameFormat { get; } = "{0}.bson";
+        public string FileNameFormat { get; } = "{0}.bin";
 
         public PortableStorageSerializer(
             IItemSerializer itemSerializer,

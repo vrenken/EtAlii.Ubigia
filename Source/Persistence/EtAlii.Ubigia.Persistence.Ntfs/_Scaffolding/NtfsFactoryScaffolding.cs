@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence.Ntfs
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class NtfsFactoryScaffolding : IScaffolding
@@ -16,8 +15,8 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
             container.Register<IPathBuilder, NtfsPathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, BsonItemSerializer>();
-            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BinaryItemSerializer>();
+            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
         }
     }
 }
