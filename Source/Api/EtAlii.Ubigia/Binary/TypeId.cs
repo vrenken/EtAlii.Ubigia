@@ -23,5 +23,6 @@ namespace EtAlii.Ubigia
         TimeSpan,
         Guid,
         Version,
+        Range,
     }
 }
