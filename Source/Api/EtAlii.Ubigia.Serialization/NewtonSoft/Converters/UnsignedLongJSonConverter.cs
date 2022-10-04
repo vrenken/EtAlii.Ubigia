@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Serialization
             if (reader.TokenType == JsonToken.Bytes || reader.TokenType == JsonToken.String)
             {
                 var bytes = serializer.Deserialize<byte[]>(reader);
-                result = BitConverter.ToUInt64(bytes, 0);
+                result = BitConverter.ToUInt64(bytes!, 0);
             }
             return result;
         }
