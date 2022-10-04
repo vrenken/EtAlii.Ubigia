@@ -90,7 +90,11 @@ namespace EtAlii.Ubigia
             return !equals;
         }
 
+        // ReSharper disable NonReadonlyMemberInGetHashCode
+        // Reason is that the non readonly properties are needed to be compatible with the serialization.
+        // When deserialized, properties are static and the has can consistently be calculated.
         public override int GetHashCode() => HashCode.Combine(Size, Checksum, Parts);
+        // ReSharper restore NonReadonlyMemberInGetHashCode
 
     }
 }
