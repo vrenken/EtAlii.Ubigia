@@ -39,6 +39,9 @@
 
     <!-- We need to add *.dll here so all dlls would be packed inside NuGet package as our DependencyB.dll is not a NuGet package -->
     <None Include="$(OutputPath)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <!-- But the above makes the analyzer clash with Nugetizer magic, hence we need to give it somewhat
+         more room to breath by relaxing Nugetizer. -->
+    <PackInference Update="None" PackExclude="$(OutputPath)\*.dll" />
   </ItemGroup>
 
   <ItemGroup>
