@@ -8,13 +8,13 @@ namespace EtAlii.Ubigia
     {
         public void Write(BinaryWriter writer)
         {
-            writer.Write(Id);
+            Identifier.Write(writer, Id);
             writer.Write(Moment);
         }
 
         public void Read(BinaryReader reader)
         {
-            _id = reader.Read<Identifier>();
+            _id = Identifier.Read(reader);
             _moment = reader.ReadUInt64();
         }
     }

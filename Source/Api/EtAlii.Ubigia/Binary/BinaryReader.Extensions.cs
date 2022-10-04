@@ -73,6 +73,13 @@ namespace EtAlii.Ubigia
                 serializable.Read(reader);
                 return (T)serializable;
             }
+            if (type == typeof(Identifier))
+            {
+                // We want to handle Identifiers somewhat differently
+                // as they have a very strong and tightly optimized (immutable) structure.
+                return (T)(object)Identifier.Read(reader);
+            }
+
             object result = typeof(T) switch
             {
                 _ when typeof(T) == typeof(string) => reader.ReadString(),

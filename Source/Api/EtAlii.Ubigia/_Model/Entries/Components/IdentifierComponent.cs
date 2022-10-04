@@ -24,12 +24,12 @@ namespace EtAlii.Ubigia
 
         public override void Write(BinaryWriter writer)
         {
-            writer.Write(Id);
+            Identifier.Write(writer, Id);
         }
 
         public override void Read(BinaryReader reader)
         {
-            Id = reader.Read<Identifier>();
+            Id = Identifier.Read(reader);
         }
     }
 }

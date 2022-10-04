@@ -56,6 +56,13 @@ namespace EtAlii.Ubigia
                 serializable.Write(writer);
                 return;
             }
+            if (item is Identifier identifier)
+            {
+                // We want to handle Identifiers somewhat differently
+                // as they have a very strong and tightly optimized (immutable) structure.
+                Identifier.Write(writer, identifier);
+                return;
+            }
 
             switch(typeof(T))
             {

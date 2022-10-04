@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia
         {
             writer.Write(Id);
             writer.Write(Name);
-            writer.Write(Identifier);
+            Identifier.Write(writer, Identifier);
         }
 
         public void Read(BinaryReader reader)
