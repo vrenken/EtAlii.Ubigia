@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = _testContext.Content.CreatePart();
+            var contentDefinitionPart = _testContext.ContentDefinitions.CreatePart();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);

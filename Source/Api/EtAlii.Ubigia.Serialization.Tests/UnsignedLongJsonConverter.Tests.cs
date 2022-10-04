@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using System.IO;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.Ubigia.Tests;
-    using Newtonsoft.Json.Bson;
     using Xunit;
 
     [CorrelateUnitTests]
@@ -64,11 +63,10 @@ namespace EtAlii.Ubigia.Serialization.Tests
         {
             // Arrange.
             const ulong startValue = 12345;
-            var serializer = CreateSerializer();
 
             // Act.
-            var jsonAsBytes = WriteBytes(startValue, serializer);
-            var resultValue = ReadBytes<ulong>(serializer, jsonAsBytes);
+            var jsonAsBytes = WriteBytes(startValue);
+            var resultValue = ReadBytes<ulong>(jsonAsBytes);
 
             // Assert.
             Assert.Equal(startValue, resultValue);
@@ -81,11 +79,10 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var valueAsBytes = new byte[8];
             new Random().NextBytes(valueAsBytes);
             var startValue = BitConverter.ToUInt64(valueAsBytes, 0);
-            var serializer = CreateSerializer();
 
             // Act.
-            var jsonAsBytes = WriteBytes(startValue, serializer);
-            var resultValue = ReadBytes<ulong>(serializer, jsonAsBytes);
+            var jsonAsBytes = WriteBytes(startValue);
+            var resultValue = ReadBytes<ulong>(jsonAsBytes);
 
             // Assert.
             Assert.Equal(startValue, resultValue);
@@ -96,11 +93,10 @@ namespace EtAlii.Ubigia.Serialization.Tests
         {
             // Arrange.
             const ulong startValue = ulong.MaxValue - 1;
-            var serializer = CreateSerializer();
 
             // Act.
-            var jsonAsBytes = WriteBytes(startValue, serializer);
-            var resultValue = ReadBytes<ulong>(serializer, jsonAsBytes);
+            var jsonAsBytes = WriteBytes(startValue);
+            var resultValue = ReadBytes<ulong>(jsonAsBytes);
 
             // Assert.
             Assert.Equal(startValue, resultValue);
@@ -124,22 +120,22 @@ namespace EtAlii.Ubigia.Serialization.Tests
             return package.Value;
         }
 
-        private byte[] WriteBytes<T>(T value, ISerializer serializer)
+        private byte[] WriteBytes<T>(T value)
         {
             using var stream = new MemoryStream();
-            using var writer = new BsonDataWriter(stream);
+            using var writer = new BinaryWriter(stream);
 
             var package = new TestPackage<T> { Value = value };
-            serializer.Serialize(writer, package);
+            writer.Write(package, TestPackage<T>.Write);
             return stream.ToArray();
         }
 
-        private T ReadBytes<T>(ISerializer serializer, byte[] jsonAsBytes)
+        private T ReadBytes<T>(byte[] jsonAsBytes)
         {
-            using var reader = new MemoryStream(jsonAsBytes);
-            using var jsonReader = new BsonDataReader(reader);
+            using var stream = new MemoryStream(jsonAsBytes);
+            using var reader = new BinaryReader(stream);
 
-            var package = serializer.Deserialize<TestPackage<T>>(jsonReader);
+            var package = reader.Read(TestPackage<T>.Read);
             return package.Value;
         }
 

@@ -15,9 +15,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void AzureStorage_Create()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var bsonItemSerializer = new BsonItemSerializer(serializer);
-            var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var bsonItemSerializer = new BsonItemSerializer();
+            var bsonPropertiesSerializer = new BsonPropertiesSerializer();
             var configurationRoot = new ConfigurationBuilder().Build();
 
             var storageOptions = new StorageOptions(configurationRoot)

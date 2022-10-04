@@ -36,9 +36,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void BsonItemSerializer_Create()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var itemSerializer = new BsonItemSerializer(serializer);
-            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer();
+            var propertiesSerializer = new BsonPropertiesSerializer();
 
             // Act.
             var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
@@ -51,9 +50,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void BsonItemSerializer_Serialize_Item()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var itemSerializer = new BsonItemSerializer(serializer);
-            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer();
+            var propertiesSerializer = new BsonPropertiesSerializer();
             var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
@@ -79,9 +77,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public async Task BsonItemSerializer_Deserialize_Item()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var itemSerializer = new BsonItemSerializer(serializer);
-            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer();
+            var propertiesSerializer = new BsonPropertiesSerializer();
             var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
@@ -108,9 +105,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void BsonItemSerializer_Serialize_Properties()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var itemSerializer = new BsonItemSerializer(serializer);
-            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer();
+            var propertiesSerializer = new BsonPropertiesSerializer();
             var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
@@ -136,9 +132,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void BsonItemSerializer_Deserialize_Properties()
         {
             // Arrange.
-            var serializer = new Serializer();
-            var itemSerializer = new BsonItemSerializer(serializer);
-            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer();
+            var propertiesSerializer = new BsonPropertiesSerializer();
             var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);

@@ -40,7 +40,8 @@ namespace EtAlii.Ubigia.Persistence
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }
 
-        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container) where T : class
+        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container)
+            where T : class
         {
             var startTicks = Environment.TickCount;
             var result = await _storage.Retrieve<T>(id, container).ConfigureAwait(false);
