@@ -19,12 +19,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
         public PropertyDictionary GetProperties(in Identifier identifier)
         {
-            dynamic profile = _profiler.Begin("Getting cached properties: " + identifier.ToTimeString());
+            dynamic profile = _profiler.Begin($"Getting cached properties: {identifier.ToTimeString()}");
             profile.Identifier = identifier;
 
             var result = _decoree.GetProperties(identifier);
             profile.Result = result;
-            profile.Action = "Getting cached properties: " + identifier.ToTimeString() + (result == null ? "" : " - AVAILABLE");
+            profile.Action = $"Getting cached properties: {identifier.ToTimeString()} {(result == null ? "" : " - AVAILABLE")}";
             _profiler.End(profile);
 
             return result;
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
         public void StoreProperties(in Identifier identifier, PropertyDictionary properties)
         {
-            dynamic profile = _profiler.Begin("Storing properties in cache: " + identifier.ToTimeString());
+            dynamic profile = _profiler.Begin($"Storing properties in cache: {identifier.ToTimeString()}");
             profile.Properties = properties;
 
             _decoree.StoreProperties(identifier, properties);
