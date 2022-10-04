@@ -4,17 +4,18 @@ namespace EtAlii.Ubigia
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     public sealed partial class ContentDefinition : Blob, IEquatable<ContentDefinition>
     {
         internal const string ContentDefinitionName = "ContentDefinition";
 
-        public ulong Size { get; init; }
+        public ulong Size { get; private set; }
 
-        public ulong Checksum { get; init; }
+        public ulong Checksum { get; private set; }
 
-        public ContentDefinitionPart[] Parts { get; init; } = Array.Empty<ContentDefinitionPart>();
+        public ContentDefinitionPart[] Parts { get; private set; } = Array.Empty<ContentDefinitionPart>();
 
         /// <inheritdoc />
         protected override string Name => ContentDefinitionName;
@@ -48,6 +49,32 @@ namespace EtAlii.Ubigia
                 Checksum = Checksum,
                 Parts = Parts.Concat(contentDefinitionParts).ToArray()
             };
+        }
+
+        public static ContentDefinition Create(ulong checksum, ulong size, ContentDefinitionPart[] parts)
+        {
+            return new ContentDefinition
+            {
+                Checksum = checksum,
+                Size = size,
+                Parts = parts
+            };
+        }
+
+        public override void Write(BinaryWriter writer)
+        {
+            base.Write(writer);
+            writer.Write(Checksum);
+            writer.Write(Size);
+            writer.WriteMany(Parts);
+        }
+
+        public override void Read(BinaryReader reader)
+        {
+            base.Read(reader);
+            Checksum = reader.ReadUInt64();
+            Size = reader.ReadUInt64();
+            Parts = reader.ReadMany<ContentDefinitionPart>();
         }
     }
 }

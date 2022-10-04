@@ -3,12 +3,13 @@
 namespace EtAlii.Ubigia
 {
     using System;
+    using System.IO;
 
     /// <summary>
     /// Represents a root in a <see cref="Space"/>.
     /// Roots are used to start entity traversals from.
     /// </summary>
-    public sealed class Root : IIdentifiable
+    public sealed class Root : IIdentifiable, IBinarySerializable
     {
         /// <inheritdoc />
         public Guid Id { get; set; }
@@ -20,5 +21,19 @@ namespace EtAlii.Ubigia
         /// The current (=last) Ubigia identifier from which traversal can commence.
         /// </summary>
         public Identifier Identifier { get; set; }
+
+        public void Write(BinaryWriter writer)
+        {
+            writer.Write(Id);
+            writer.Write(Name);
+            writer.Write(Identifier);
+        }
+
+        public void Read(BinaryReader reader)
+        {
+            Id = reader.Read<Guid>();
+            Name = reader.ReadString();
+            Identifier = reader.Read<Identifier>();
+        }
     }
 }

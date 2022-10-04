@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Linq;
@@ -20,7 +19,7 @@ namespace EtAlii.Ubigia
             base.Add(new TRelationsComponent { Relations = new[] { Relation.NewRelation(id) } });
         }
 
-        internal void Add(IEnumerable<Relation> relations, bool markAsStored)
+        internal void Add(Relation[] relations, bool markAsStored)
         {
             base.Add(new TRelationsComponent { Relations = relations, Stored = markAsStored });
         }

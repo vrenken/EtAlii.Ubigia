@@ -2,7 +2,9 @@
 
 namespace EtAlii.Ubigia
 {
-    public abstract partial class Blob
+    using System.IO;
+
+    public abstract partial class Blob : IBinarySerializable
     {
         /// <summary>
         /// Returns true when the blob has been stored.
@@ -20,5 +22,17 @@ namespace EtAlii.Ubigia
         /// Returns the total number of parts that make up the blob.
         /// </summary>
         public ulong TotalParts { get; protected set; }
+
+        public virtual void Write(BinaryWriter writer)
+        {
+            writer.WriteOptional(Summary);
+            writer.Write(TotalParts);
+        }
+
+        public virtual void Read(BinaryReader reader)
+        {
+            Summary = reader.ReadOptional<BlobSummary>();
+            TotalParts = reader.ReadUInt64();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia
     using System.Text;
 
     [Serializable]
-    public sealed class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
+    public sealed partial class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
     {
         public bool Stored { get; internal set; }
 
@@ -72,7 +72,6 @@ namespace EtAlii.Ubigia
             {
                 sb.AppendFormat("{0}: \"{1}\" - ", kvp.Key, kvp.Value);
             }
-
             return sb.ToString().TrimEnd(_trimChars);
         }
     }

@@ -3,11 +3,12 @@
 namespace EtAlii.Ubigia
 {
     using System;
+    using System.IO;
 
     /// <summary>
     /// Represents a single space in a <see cref="Storage"/>.
     /// </summary>
-    public sealed class Space : IIdentifiable
+    public sealed class Space : IIdentifiable, IBinarySerializable
     {
         /// <inheritdoc />
         public Guid Id { get; set; }
@@ -19,5 +20,19 @@ namespace EtAlii.Ubigia
         /// The account to which this Space belongs.
         /// </summary>
         public Guid AccountId { get; set; }
+
+        public void Write(BinaryWriter writer)
+        {
+            writer.Write(Id);
+            writer.Write(Name);
+            writer.Write(AccountId);
+        }
+
+        public void Read(BinaryReader reader)
+        {
+            Id = reader.Read<Guid>();
+            Name = reader.ReadString();
+            AccountId = reader.Read<Guid>();
+        }
     }
 }

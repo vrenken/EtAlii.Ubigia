@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia
 {
+    using System.IO;
+
     public sealed class IdentifierComponent : NonCompositeComponent
     {
         internal IdentifierComponent()
@@ -17,6 +19,17 @@ namespace EtAlii.Ubigia
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.IdComponent = this;
+        }
+
+
+        public override void Write(BinaryWriter writer)
+        {
+            writer.Write(Id);
+        }
+
+        public override void Read(BinaryReader reader)
+        {
+            Id = reader.Read<Identifier>();
         }
     }
 }

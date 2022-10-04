@@ -3,11 +3,12 @@
 namespace EtAlii.Ubigia
 {
     using System;
+    using System.IO;
 
     /// <summary>
     /// A simple POCO object that represents a user in the Ubigia systems.
     /// </summary>
-    public sealed class Account : IIdentifiable
+    public sealed class Account : IIdentifiable, IBinarySerializable
     {
         /// <summary>
         /// Create a new account instance.
@@ -26,5 +27,25 @@ namespace EtAlii.Ubigia
         public string[] Roles { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
+
+        public void Write(BinaryWriter writer)
+        {
+            writer.Write(Id);
+            writer.Write(Name);
+            writer.Write(Password);
+            writer.WriteMany(Roles);
+            writer.Write(Created);
+            writer.WriteOptional(Updated);
+        }
+
+        public void Read(BinaryReader reader)
+        {
+            Id = reader.Read<Guid>();
+            Name = reader.ReadString();
+            Password = reader.ReadString();
+            Roles = reader.ReadMany<string>();
+            Created = reader.Read<DateTime>();
+            Updated = reader.ReadOptional<DateTime>();
+        }
     }
 }

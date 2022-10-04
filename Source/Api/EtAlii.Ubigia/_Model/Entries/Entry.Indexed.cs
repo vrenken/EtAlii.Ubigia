@@ -3,12 +3,11 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public sealed partial class Entry
     {
-        public IEnumerable<Relation> Indexes => _indexes.SelectMany(component => component.Relations);
+        public Relation[] Indexes => _indexes.SelectMany(component => component.Relations).ToArray();
         private readonly IndexesComponentCollection _indexes;
 
         public Relation Indexed => ((IComponentEditableEntry) this).IndexedComponent.Relation;

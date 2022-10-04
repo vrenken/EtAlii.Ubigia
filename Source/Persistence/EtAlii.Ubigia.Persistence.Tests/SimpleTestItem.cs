@@ -3,10 +3,23 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
+    using System.IO;
 
-    public class SimpleTestItem
+    public class SimpleTestItem : IBinarySerializable
     {
         public string Name { get; set; }
         public Guid Value { get; set; }
+
+        public void Write(BinaryWriter writer)
+        {
+            writer.Write(Name);
+            writer.Write(Value);
+        }
+
+        public void Read(BinaryReader reader)
+        {
+            Name = reader.ReadString();
+            Value = reader.Read<Guid>();
+        }
     }
 }

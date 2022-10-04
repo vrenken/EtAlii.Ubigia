@@ -2,7 +2,9 @@
 
 namespace EtAlii.Ubigia
 {
-    public abstract class ComponentBase : IComponent
+    using System.IO;
+
+    public abstract class ComponentBase : IComponent, IBinarySerializable
     {
         /// <summary>
         /// Returns true when the component has been stored.
@@ -21,5 +23,9 @@ namespace EtAlii.Ubigia
         /// <param name="entry"></param>
         /// <param name="markAsStored"></param>
         protected internal abstract void Apply(IComponentEditableEntry entry, bool markAsStored);
+
+        public abstract void Write(BinaryWriter writer);
+
+        public abstract void Read(BinaryReader reader);
     }
 }

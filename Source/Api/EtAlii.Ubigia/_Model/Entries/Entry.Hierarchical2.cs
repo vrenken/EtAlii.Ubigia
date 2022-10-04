@@ -3,14 +3,13 @@
 namespace EtAlii.Ubigia
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public sealed partial class Entry
     {
         public Relation Parent2 => ((IComponentEditableEntry) this).Parent2Component.Relation;
 
-        public IEnumerable<Relation> Children2 => _children2.SelectMany(component => component.Relations);
+        public Relation[] Children2 => _children2.SelectMany(component => component.Relations).ToArray();
         private readonly Children2ComponentCollection _children2;
 
 

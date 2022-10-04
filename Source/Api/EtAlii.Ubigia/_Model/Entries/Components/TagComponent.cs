@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia
 {
+    using System.IO;
+
     public sealed class TagComponent : NonCompositeComponent
     {
         internal TagComponent()
@@ -17,6 +19,16 @@ namespace EtAlii.Ubigia
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.TagComponent = this;
+        }
+
+        public override void Write(BinaryWriter writer)
+        {
+            writer.Write(Tag);
+        }
+
+        public override void Read(BinaryReader reader)
+        {
+            Tag = reader.ReadString();
         }
     }
 }

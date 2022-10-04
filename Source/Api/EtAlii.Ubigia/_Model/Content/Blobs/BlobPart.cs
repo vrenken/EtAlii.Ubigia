@@ -2,7 +2,9 @@
 
 namespace EtAlii.Ubigia
 {
-    public abstract partial class BlobPart
+    using System.IO;
+
+    public abstract partial class BlobPart : IBinarySerializable
     {
         /// <summary>
         /// Returns true when the blob part has been stored.
@@ -14,6 +16,16 @@ namespace EtAlii.Ubigia
         /// </summary>
         protected abstract string Name { get; }
 
-        public ulong Id { get; init; }
+        public ulong Id { get; protected set; }
+
+        public virtual void Write(BinaryWriter writer)
+        {
+            writer.Write(Id);
+        }
+
+        public virtual void Read(BinaryReader reader)
+        {
+            Id = reader.ReadUInt64();
+        }
     }
 }

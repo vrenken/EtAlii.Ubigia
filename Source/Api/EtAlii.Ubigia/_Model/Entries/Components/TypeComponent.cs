@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia
 {
+    using System.IO;
+
     public sealed class TypeComponent : NonCompositeComponent
     {
         internal TypeComponent()
@@ -17,6 +19,16 @@ namespace EtAlii.Ubigia
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.TypeComponent = this;
+        }
+
+        public override void Write(BinaryWriter writer)
+        {
+            writer.Write(Type);
+        }
+
+        public override void Read(BinaryReader reader)
+        {
+            Type = reader.ReadString();
         }
     }
 }

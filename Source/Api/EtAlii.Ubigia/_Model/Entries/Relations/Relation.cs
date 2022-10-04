@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia
     using System.Diagnostics;
 
     [DebuggerStepThrough]
-    public partial struct Relation : IEquatable<Relation>
+    public partial struct Relation : IEquatable<Relation>, IBinarySerializable
     {
         public Identifier Id => _id;
         private Identifier _id;
