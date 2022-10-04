@@ -9,14 +9,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     {
         public static BlobSummary ToLocal(this WireProtocol.BlobSummary blobSummary)
         {
-            var availableParts = blobSummary.AvailableParts
-                .ToArray();
-            return new BlobSummary
-            {
-                IsComplete = blobSummary.IsComplete,
-                TotalParts = blobSummary.TotalParts,
-                AvailableParts = availableParts
-            };
+            var availableParts = blobSummary.AvailableParts.ToArray();
+            return BlobSummary.Create(blobSummary.IsComplete, availableParts, blobSummary.TotalParts);
         }
 
         public static WireProtocol.BlobSummary ToWire(this BlobSummary blobSummary)

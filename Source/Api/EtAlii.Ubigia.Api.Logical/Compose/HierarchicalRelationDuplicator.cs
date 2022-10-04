@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System.Collections.Generic;
     using System.Linq;
 
     internal class HierarchicalRelationDuplicator : IHierarchicalRelationDuplicator
@@ -28,12 +27,14 @@ namespace EtAlii.Ubigia.Api.Logical
             }
         }
 
-        private void DuplicateRelations<TRelationsComponent>(IEnumerable<Relation> source, RelationsComponentCollection<TRelationsComponent> target, Identifier relationToExclude)
+        private void DuplicateRelations<TRelationsComponent>(Relation[] source, RelationsComponentCollection<TRelationsComponent> target, Identifier relationToExclude)
             where TRelationsComponent : RelationsComponent, new()
         {
             if (relationToExclude != Identifier.Empty)
             {
-                source = source.Where(relation => relation.Id != relationToExclude).ToArray();
+                source = source
+                    .Where(relation => relation.Id != relationToExclude)
+                    .ToArray();
             }
             target.Add(source, false);
         }

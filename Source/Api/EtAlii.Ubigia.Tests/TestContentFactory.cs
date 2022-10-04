@@ -69,11 +69,7 @@
         }
         public ContentPart CreatePart(byte[] data, ulong partId = 0)
         {
-            var contentPart = new ContentPart 
-            {
-                Id = partId,
-                Data = data
-            };
+            var contentPart = ContentPart.Create(partId, data);
             return contentPart;
         }
 

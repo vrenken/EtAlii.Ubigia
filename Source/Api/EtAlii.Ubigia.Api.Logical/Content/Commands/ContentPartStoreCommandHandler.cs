@@ -49,11 +49,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             if (!contentPartAlreadyAvailable)
             {
-                var contentPart = new ContentPart
-                {
-                    Id = part,
-                    Data = bytesToWrite
-                };
+                var contentPart = ContentPart.Create(part, bytesToWrite);
                 await _fabric.Content.Store(identifier, contentPart).ConfigureAwait(false);
             }
         }
@@ -84,12 +80,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             if (!contentDefinitionPartAlreadyAvailable)
             {
-                var contentDefinitionPart = new ContentDefinitionPart
-                {
-                    Id = part,
-                    Size = partSize,
-                    Checksum = checksum,
-                };
+                var contentDefinitionPart = ContentDefinitionPart.Create(part, checksum, partSize);
                 await _fabric.Content.StoreDefinition(identifier, contentDefinitionPart).ConfigureAwait(false);
             }
         }

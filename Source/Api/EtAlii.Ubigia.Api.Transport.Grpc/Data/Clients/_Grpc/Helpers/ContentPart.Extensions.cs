@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         public static ContentPart ToLocal(this WireProtocol.ContentPart contentPart)
         {
-            var result = new ContentPart { Data = contentPart.Data.ToByteArray(), Id = contentPart.Id};
+            var result = ContentPart.Create(contentPart.Id, contentPart.Data.ToByteArray());
             BlobPart.SetStored(result, contentPart.Stored);
             return result;
         }

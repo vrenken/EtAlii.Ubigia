@@ -15,9 +15,11 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             return Relation.Create(id, moment);
         }
 
-        public static IEnumerable<Relation> ToLocal(this IEnumerable<WireProtocol.Relation> relations)
+        public static Relation[] ToLocal(this IEnumerable<WireProtocol.Relation> relations)
         {
-            return relations.Select(s => s.ToLocal());
+            return relations
+                .Select(s => s.ToLocal())
+                .ToArray();
         }
 
         public static WireProtocol.Relation ToWire(this Relation relation)

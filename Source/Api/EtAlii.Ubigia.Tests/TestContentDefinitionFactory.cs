@@ -22,12 +22,9 @@
                 parts.Add(CreatePart(partId));
             }
 
-            var contentDefinition = new ContentDefinition
-            {
-                Checksum = (ulong)_random.Next(0, int.MaxValue),
-                Size = (ulong)_random.Next(0, int.MaxValue),
-                Parts = parts.ToArray(),
-            };
+            var checksum = (ulong)_random.Next(0, int.MaxValue);
+            var size = (ulong)_random.Next(0, int.MaxValue);
+            var contentDefinition = ContentDefinition.Create(checksum, size, parts.ToArray());
             Blob.SetTotalParts(contentDefinition, partIds);
 
             return contentDefinition;
@@ -51,23 +48,14 @@
             {
                 var checksum = hash.ComputeBytes(data).GetULong();
                 var size = (ulong)data.Length;
-                var contentDefinitionPart = new ContentDefinitionPart 
-                {
-                    Id = partId++,
-                    Checksum = checksum,
-                    Size = size,
-                };
+                var contentDefinitionPart = ContentDefinitionPart.Create(partId++, checksum, size);
                 parts.Add(contentDefinitionPart);
                 totalChecksum ^= checksum;
                 totalSize += size;
             }
-            
-            var contentDefinition = new ContentDefinition
-            {
-                Checksum = totalChecksum,
-                Size = totalSize,
-                Parts = parts.ToArray(),
-            };
+
+            var contentDefinition = ContentDefinition.Create(totalChecksum, totalSize, parts.ToArray());
+
             Blob.SetTotalParts(contentDefinition, (ulong)datas.Length);
 
             return contentDefinition;
@@ -78,21 +66,16 @@
             var parts = new List<ContentDefinitionPart>();
             for (ulong partId = 0; partId < totalParts; partId++)
             {
-                var contentDefinitionPart = new ContentDefinitionPart 
-                {
-                    Id = partId,
-                    Checksum = (ulong) _random.Next(0, int.MaxValue),
-                    Size = (ulong) _random.Next(0, int.MaxValue),
-                }; 
+                var checksum = (ulong)_random.Next(0, int.MaxValue);
+                var size = (ulong)_random.Next(0, int.MaxValue);
+                var contentDefinitionPart = ContentDefinitionPart.Create(partId, checksum, size);
                 parts.Add(contentDefinitionPart);
             }
 
-            var contentDefinition = new ContentDefinition
-            {
-                Checksum = (ulong)_random.Next(0, int.MaxValue),
-                Size = (ulong)_random.Next(0, int.MaxValue),
-                Parts = parts.ToArray(),
-            };
+            var totalChecksum = (ulong)_random.Next(0, int.MaxValue);
+            var totalSize = (ulong)_random.Next(0, int.MaxValue);
+            var contentDefinition = ContentDefinition.Create(totalChecksum, totalSize, parts.ToArray());
+
             Blob.SetTotalParts(contentDefinition, totalParts);
 
             return contentDefinition;
@@ -106,14 +89,11 @@
 
         public ContentDefinitionPart CreatePart(ulong partId)
         {
-            var contentDefinitionPart = new ContentDefinitionPart
-            {
-                Id = partId,
-                Checksum = (ulong)_random.Next(0, int.MaxValue),
-                Size = (ulong)_random.Next(0, int.MaxValue),
-            };
+            var checksum = (ulong)_random.Next(0, int.MaxValue);
+            var size = (ulong)_random.Next(0, int.MaxValue);
+
+            var contentDefinitionPart = ContentDefinitionPart.Create(partId, checksum, size);
             return contentDefinitionPart;
         }
-
     }
 }

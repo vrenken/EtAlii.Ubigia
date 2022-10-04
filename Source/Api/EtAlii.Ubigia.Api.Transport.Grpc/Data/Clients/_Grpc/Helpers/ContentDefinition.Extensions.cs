@@ -12,13 +12,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             ContentDefinition result = null;
             if (contentDefinition != null)
             {
-                result = new ContentDefinition
-                {
-                    Checksum = contentDefinition.Checksum,
+                var checksum = contentDefinition.Checksum;
+                var size = contentDefinition.Size;
+                var parts = contentDefinition.Parts
+                    .Select(p => p.ToLocal())
+                    .ToArray();
 
-                    Size = contentDefinition.Size,
-                    Parts = contentDefinition.Parts.Select(p => p.ToLocal()).ToArray()
-                };
+                result = ContentDefinition.Create(checksum, size, parts);
                 Blob.SetTotalParts(result, contentDefinition.TotalParts);
                 Blob.SetStored(result, contentDefinition.Stored);
                 Blob.SetSummary(result, contentDefinition.Summary?.ToLocal());

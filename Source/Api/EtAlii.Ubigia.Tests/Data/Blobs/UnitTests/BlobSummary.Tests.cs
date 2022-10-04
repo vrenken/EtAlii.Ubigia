@@ -15,12 +15,7 @@
             var isComplete = availableParts.Length > 0;
 
             // Act.
-            var summary = new BlobSummary
-            {
-                IsComplete = isComplete,
-                TotalParts = blob.TotalParts,
-                AvailableParts = availableParts
-            };
+            var summary = BlobSummary.Create(isComplete, availableParts, blob.TotalParts);
 
             // Assert.
             Assert.Equal(isComplete, summary.IsComplete);
@@ -37,12 +32,7 @@
             var isComplete = availableParts.Length > 0;
 
             // Act.
-            var summary = new BlobSummary
-            {
-                IsComplete = isComplete,
-                TotalParts = parts,
-                AvailableParts = availableParts
-            };
+            var summary = BlobSummary.Create(isComplete, availableParts, parts);
 
             // Assert.
             Assert.Equal(isComplete, summary.IsComplete);

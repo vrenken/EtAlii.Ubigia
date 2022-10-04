@@ -45,13 +45,8 @@ namespace EtAlii.Ubigia.Persistence
                         totalAvailableParts += 1;
                     }
                 }
-
-                summary = new BlobSummary
-                {
-                    IsComplete = totalAvailableParts == blob.TotalParts,
-                    TotalParts = blob.TotalParts,
-                    AvailableParts = availableParts.ToArray()
-                };
+                var isComplete = totalAvailableParts == blob.TotalParts;
+                summary = BlobSummary.Create(isComplete, availableParts.ToArray(), blob.TotalParts);
             }
 
             return summary;

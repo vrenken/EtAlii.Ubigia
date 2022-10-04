@@ -36,7 +36,7 @@
             var id = (uint)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var blobPart = new ContentPart { Id = id };
+            var blobPart = ContentPart.Create(id, null);
 
             // Assert.
             Assert.Equal(id, blobPart.Id);

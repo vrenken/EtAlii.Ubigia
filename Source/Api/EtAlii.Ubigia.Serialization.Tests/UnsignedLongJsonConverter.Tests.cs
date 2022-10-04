@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             using var writer = new BinaryWriter(stream);
 
             var package = new TestPackage<T> { Value = value };
-            writer.Write(package, TestPackage<T>.Write);
+            writer.Write(package);
             return stream.ToArray();
         }
 
@@ -135,7 +135,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             using var stream = new MemoryStream(jsonAsBytes);
             using var reader = new BinaryReader(stream);
 
-            var package = reader.Read(TestPackage<T>.Read);
+            var package = reader.Read<TestPackage<T>>();
             return package.Value;
         }
 

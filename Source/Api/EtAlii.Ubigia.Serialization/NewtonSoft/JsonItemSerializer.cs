@@ -28,7 +28,8 @@ namespace EtAlii.Ubigia.Serialization
             _serializer.Serialize(writer, item);
         }
 
-        public Task<T> Deserialize<T>(Stream stream) where T : class
+        public Task<T> Deserialize<T>(Stream stream)
+            where T : class
         {
             using var textReader = new StreamReader(stream);
             using var reader = new JsonTextReader(textReader);

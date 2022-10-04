@@ -29,12 +29,7 @@ namespace EtAlii.Ubigia.Persistence
             _folderManager.SaveToFolder(blob, "Blob", folder);
             Blob.SetStored(blob, true);
 
-            var summary = new BlobSummary
-            {
-                IsComplete = false,
-                TotalParts = blob.TotalParts,
-                AvailableParts = Array.Empty<ulong>()
-            };
+            var summary = BlobSummary.Create(false, Array.Empty<ulong>(), blob.TotalParts);
 
             Blob.SetSummary(blob, summary);
         }

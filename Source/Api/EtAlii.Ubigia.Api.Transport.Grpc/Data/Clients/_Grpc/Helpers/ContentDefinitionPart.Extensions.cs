@@ -9,12 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     {
         public static ContentDefinitionPart ToLocal(this WireProtocol.ContentDefinitionPart contentDefinitionPart)
         {
-            var result = new ContentDefinitionPart
-            {
-                Id = contentDefinitionPart.Id,
-                Checksum = contentDefinitionPart.Checksum,
-                Size = contentDefinitionPart.Size,
-            };
+            var result = ContentDefinitionPart.Create(contentDefinitionPart.Id, contentDefinitionPart.Checksum, contentDefinitionPart.Size);
             BlobPart.SetStored(result, contentDefinitionPart.Stored);
             return result;
         }

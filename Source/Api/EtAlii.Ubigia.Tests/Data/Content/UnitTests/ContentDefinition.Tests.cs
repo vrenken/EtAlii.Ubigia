@@ -49,34 +49,10 @@
         public void ContentDefinition_Add_Part()
         {
             // Arrange.
+            var parts = new[] { new ContentDefinitionPart() };
 
             // Act.
-            var content = new ContentDefinition
-            {
-                Parts = new []
-                {
-                    new ContentDefinitionPart()
-                }
-            };
-
-            // Assert.
-            Assert.Single(content.Parts);
-            Assert.Equal((ulong)0, content.Size);
-        }
-
-        [Fact]
-        public void ContentDefinition_Add_Part_ReadOnly()
-        {
-            // Arrange.
-
-            // Act.
-            var content = new ContentDefinition
-            {
-                Parts = new []
-                {
-                    new ContentDefinitionPart()
-                }
-            };
+            var content = ContentDefinition.Create(0, 0, parts);
 
             // Assert.
             Assert.Single(content.Parts);
@@ -90,8 +66,8 @@
             var checksum = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Checksum = checksum };
-            var second = new ContentDefinition { Checksum = checksum };
+            var first = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.True(first == second);
@@ -104,8 +80,8 @@
             var checksum = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Checksum = checksum };
-            var second = new ContentDefinition { Checksum = checksum };
+            var first = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.False(first != second);
@@ -118,8 +94,8 @@
             var checksum = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Checksum = checksum };
-            var second = new ContentDefinition { Checksum = checksum };
+            var first = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.True(first.Equals(second));
@@ -132,8 +108,8 @@
             var size = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Size = size };
-            var second = new ContentDefinition { Size = size };
+            var first = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.True(first == second);
@@ -146,8 +122,8 @@
             var size = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Size = size };
-            var second = new ContentDefinition { Size = size };
+            var first = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.False(first != second);
@@ -160,8 +136,8 @@
             var size = (ulong)new Random().Next(0, int.MaxValue);
 
             // Act.
-            var first = new ContentDefinition { Size = size };
-            var second = new ContentDefinition { Size = size };
+            var first = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(0, size, Array.Empty<ContentDefinitionPart>());
 
             // Assert.
             Assert.True(first.Equals(second));
@@ -260,8 +236,8 @@
         {
             // Arrange.
             var random = new Random();
-            var first = new ContentDefinition { Size = (ulong)random.Next(0, int.MaxValue) };
-            var second = new ContentDefinition { Size = (ulong)random.Next(0, int.MaxValue) };
+            var first = ContentDefinition.Create(0, (ulong)random.Next(0, int.MaxValue), Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(0, (ulong)random.Next(0, int.MaxValue), Array.Empty<ContentDefinitionPart>());
 
             // Act.
             var equals = first.Equals(second);
@@ -275,8 +251,8 @@
         {
             // Arrange.
             var random = new Random();
-            var first = new ContentDefinition { Checksum = (ulong)random.Next(0, int.MaxValue) };
-            var second = new ContentDefinition { Checksum = (ulong)random.Next(0, int.MaxValue) };
+            var first = ContentDefinition.Create((ulong)random.Next(0, int.MaxValue), 0, Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create((ulong)random.Next(0, int.MaxValue), 0, Array.Empty<ContentDefinitionPart>());
 
             // Act.
             var equals = first.Equals(second);
@@ -289,21 +265,14 @@
         public void ContentDefinition_Compare_With_Other_Parts()
         {
             // Arrange.
-            var first = new ContentDefinition
+            var firstParts = new[]
             {
-                Parts = new []
-                {
-                    new ContentDefinitionPart(),
-                    new ContentDefinitionPart()
-                }
+                ContentDefinitionPart.Create(0, 0, 0),
+                ContentDefinitionPart.Create(0, 0, 0)
             };
-            var second = new ContentDefinition()
-            {
-                Parts = new []
-                {
-                    new ContentDefinitionPart(),
-                }
-            };
+            var first = ContentDefinition.Create(0, 0, firstParts);
+            var secondParts = new[] { ContentDefinitionPart.Create(0, 0, 0) };
+            var second = ContentDefinition.Create(0, 0, secondParts);
 
             // Act.
             var equals = first.Equals(second);
@@ -318,8 +287,8 @@
         {
             // Arrange.
             var random = new Random();
-            var first = new ContentDefinition { Size = (ulong)random.Next(0, int.MaxValue)};
-            var second = new ContentDefinition { Size = (ulong)random.Next(0, int.MaxValue)};
+            var first = ContentDefinition.Create(0, (ulong)random.Next(0, int.MaxValue), Array.Empty<ContentDefinitionPart>());
+            var second = ContentDefinition.Create(0, (ulong)random.Next(0, int.MaxValue), Array.Empty<ContentDefinitionPart>());
 
             // Act.
             var equals = first.Equals((object)second);
@@ -347,7 +316,8 @@
         {
             // Arrange.
             var random = new Random();
-            var content = new ContentDefinition {Checksum = (ulong) random.Next(0, int.MaxValue)};
+            var checksum = (ulong)random.Next(0, int.MaxValue);
+            var content = ContentDefinition.Create(checksum, 0, Array.Empty<ContentDefinitionPart>());
 
             // Act.
             var hash = content.GetHashCode();
