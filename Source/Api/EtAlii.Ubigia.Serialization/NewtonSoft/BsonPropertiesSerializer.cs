@@ -3,29 +3,21 @@
 namespace EtAlii.Ubigia.Serialization
 {
     using System.IO;
-    using Newtonsoft.Json.Bson;
+    using System.Text;
 
     public sealed class BsonPropertiesSerializer : IPropertiesSerializer
     {
-        private readonly ISerializer _serializer;
-
-        public BsonPropertiesSerializer(ISerializer serializer)
-        {
-            _serializer = serializer;
-        }
-
         public void Serialize(Stream stream, PropertyDictionary item)
         {
-            using var writer = new BsonDataWriter(stream) {CloseOutput = false};
+            using var writer = new BinaryWriter(stream, Encoding.Default, true);
 
-            _serializer.Serialize(writer, item);
+            writer.Write(item, PropertyDictionary.Write);
         }
 
         public PropertyDictionary Deserialize(Stream stream)
         {
-            using var reader = new BsonDataReader(stream) {CloseInput = false};
-
-            return _serializer.Deserialize<PropertyDictionary>(reader);
+            using var reader = new BinaryReader(stream, Encoding.Default, true);
+            return reader.Read(PropertyDictionary.Read);
         }
     }
 }

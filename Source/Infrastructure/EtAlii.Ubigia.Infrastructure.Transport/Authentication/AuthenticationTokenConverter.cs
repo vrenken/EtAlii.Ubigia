@@ -4,24 +4,20 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.IO;
-    using EtAlii.Ubigia.Serialization;
-    using Newtonsoft.Json.Bson;
 
     public class AuthenticationTokenConverter : IAuthenticationTokenConverter
     {
-        private readonly ISerializer _serializer;
-
-        public AuthenticationTokenConverter(ISerializer serializer)
-        {
-            _serializer = serializer;
-        }
-
         public byte[] ToBytes(AuthenticationToken token)
         {
-            using var stream = new MemoryStream();
-            using var writer = new BsonDataWriter(stream);
+            if (token == null)
+            {
+                throw new ArgumentNullException(nameof(token));
+            }
 
-            _serializer.Serialize(writer, token);
+            using var stream = new MemoryStream();
+            using var writer = new BinaryWriter(stream);
+
+            writer.Write(token, AuthenticationToken.Write);
 
             var tokenAsBytes = stream.ToArray();
             return tokenAsBytes;
@@ -29,11 +25,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public AuthenticationToken FromBytes(byte[] tokenAsBytes)
         {
+            if (tokenAsBytes == null)
+            {
+                throw new ArgumentNullException(nameof(tokenAsBytes));
+            }
+            if (tokenAsBytes.Length == 0)
+            {
+                return null;
+            }
             using var stream = new MemoryStream(tokenAsBytes);
-            using var reader = new BsonDataReader(stream);
-            var token = _serializer.Deserialize<AuthenticationToken>(reader);
+            using var reader = new BinaryReader(stream);
 
-            return token;
+            return reader.Read(AuthenticationToken.Read);
         }
 
         public AuthenticationToken FromString(string authenticationTokenAsString)
@@ -43,13 +46,5 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var authenticationToken = FromBytes(authenticationTokenAsBytes);
             return authenticationToken;
         }
-
-        //public AuthenticationToken FromHttpActionContext(HttpActionContext actionContext)
-        //[
-        //    var authenticationTokenAsString = actionContext.Request.Headers
-        //        .GetValues("Authentication-Token")
-        //        .FirstOrDefault()
-        //    return authenticationTokenAsString != null ? FromString(authenticationTokenAsString) : null
-        //]
     }
 }
