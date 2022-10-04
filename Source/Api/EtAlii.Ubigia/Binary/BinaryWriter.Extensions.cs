@@ -151,15 +151,5 @@ namespace EtAlii.Ubigia
                 Write<T>(writer, item);
             }
         }
-
-        public static void WriteMany<TSerializable>(this BinaryWriter writer, TSerializable[] items, Action<BinaryWriter, TSerializable> write)
-        {
-            writer.Write(items.Length);
-
-            foreach (var item in items)
-            {
-                write(writer, item);
-            }
-        }
     }
 }
