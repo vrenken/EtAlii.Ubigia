@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence
         public void Serialize<T>(Stream stream, T item)
             where T : class
         {
-            using var writer = new BinaryWriter(stream, Encoding.Default, true);
+            using var writer = new BinaryWriter(stream, Encoding.UTF8, true);
 
             writer.Write<T>(item);
         }
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Persistence
         public Task<T> Deserialize<T>(Stream stream)
             where T : class
         {
-            using var reader = new BinaryReader(stream, Encoding.Default, true);
+            using var reader = new BinaryReader(stream, Encoding.UTF8, true);
 
             var result = reader.Read<T>();
             return Task.FromResult(result);

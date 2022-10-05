@@ -7,7 +7,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Reflection;
-	using System.Threading.Tasks;
+    using System.Text;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
     using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
@@ -66,7 +67,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
             //
             // Request for typeof(object) may cause a simple value to round trip as a JObject.
             if (!IsSimpleType(type) && type != typeof(byte[])) return ReadFromStreamInternal(type, readStream);
-            
+
             // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
             var dictionaryType = _openDictionaryType.MakeGenericType(typeof(string), type);
             if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
@@ -93,9 +94,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 // S1751 = Loops with at most one iteration should be refactored
 // However I see no easy, simple way to refactor this into a form without a break - It's a non-generic dictionary which
 // has way less ways to access its contents compared to its modern generic brother.
-#pragma warning disable S1751                 
+#pragma warning disable S1751
                 break;
-#pragma warning restore S1751                
+#pragma warning restore S1751
             }
 
             var e2 = new InvalidOperationException("Unexpected Data");
@@ -117,7 +118,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            using var innerReader = new BinaryReader(readStream);
+            using var innerReader = new BinaryReader(readStream, Encoding.UTF8);
             using var reader = new BsonDataReader(innerReader) {CloseInput = false};
 
             try
@@ -132,7 +133,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 ((IDisposable)reader).Dispose();
                 throw;
             }
-            
+
             return _serializer.Deserialize(reader, type);
         }
 

@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.IO;
+    using System.Text;
 
     public class AuthenticationTokenConverter : IAuthenticationTokenConverter
     {
@@ -15,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             }
 
             using var stream = new MemoryStream();
-            using var writer = new BinaryWriter(stream);
+            using var writer = new BinaryWriter(stream, Encoding.UTF8);
 
             writer.Write(token, AuthenticationToken.Write);
 
@@ -34,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 return null;
             }
             using var stream = new MemoryStream(tokenAsBytes);
-            using var reader = new BinaryReader(stream);
+            using var reader = new BinaryReader(stream, Encoding.UTF8);
 
             return reader.Read(AuthenticationToken.Read);
         }

@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
 {
     using System;
     using System.IO;
+    using System.Text;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.Ubigia.Tests;
     using Xunit;
@@ -123,7 +124,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         private byte[] WriteBytes<T>(T value)
         {
             using var stream = new MemoryStream();
-            using var writer = new BinaryWriter(stream);
+            using var writer = new BinaryWriter(stream, Encoding.UTF8);
 
             var package = new TestPackage<T> { Value = value };
             writer.Write(package);
@@ -133,7 +134,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         private T ReadBytes<T>(byte[] jsonAsBytes)
         {
             using var stream = new MemoryStream(jsonAsBytes);
-            using var reader = new BinaryReader(stream);
+            using var reader = new BinaryReader(stream, Encoding.UTF8);
 
             var package = reader.Read<TestPackage<T>>();
             return package.Value;

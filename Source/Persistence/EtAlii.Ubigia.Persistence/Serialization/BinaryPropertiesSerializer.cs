@@ -9,14 +9,14 @@ namespace EtAlii.Ubigia.Persistence
     {
         public void Serialize(Stream stream, PropertyDictionary item)
         {
-            using var writer = new BinaryWriter(stream, Encoding.Default, true);
+            using var writer = new BinaryWriter(stream, Encoding.UTF8, true);
 
             writer.Write(item, PropertyDictionary.Write);
         }
 
         public PropertyDictionary Deserialize(Stream stream)
         {
-            using var reader = new BinaryReader(stream, Encoding.Default, true);
+            using var reader = new BinaryReader(stream, Encoding.UTF8, true);
             return reader.Read(PropertyDictionary.Read);
         }
     }
