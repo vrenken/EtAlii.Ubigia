@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[]", result);
+            Assert.Equal("{\"d\":\"AAAAAA==\"}", result);
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":1,\"v\":\"World\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwEFV29ybGQ=\"}", result);
         }
 
         [Fact]
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":6,\"v\":123}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwZ7AA==\"}", result);
         }
 
         [Fact]
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":6,\"v\":32767}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwb/fw==\"}", result);
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":6,\"v\":-32768}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwYAgA==\"}", result);
         }
 
         [Fact]
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":7,\"v\":123}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwd7AAAA\"}", result);
         }
 
         [Fact]
@@ -167,7 +167,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":7,\"v\":2147483647}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwf///9/\"}", result);
         }
 
         [Fact]
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":7,\"v\":-2147483648}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwcAAACA\"}", result);
         }
 
         [Fact]
@@ -199,7 +199,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":8,\"v\":123}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwh7AAAAAAAAAA==\"}", result);
         }
 
         [Fact]
@@ -215,7 +215,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":8,\"v\":9223372036854775807}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwj/////////fw==\"}", result);
         }
 
         [Fact]
@@ -231,7 +231,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":8,\"v\":-9223372036854775808}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwgAAAAAAAAAgA==\"}", result);
         }
 
         [Fact]
@@ -247,7 +247,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":9,\"v\":1234}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwnSBA==\"}", result);
         }
 
         [Fact]
@@ -263,7 +263,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":9,\"v\":65535}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwn//w==\"}", result);
         }
 
         [Fact]
@@ -279,7 +279,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":9,\"v\":0}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwkAAA==\"}", result);
         }
 
         [Fact]
@@ -295,7 +295,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":10,\"v\":1234}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwrSBAAA\"}", result);
         }
 
 
@@ -312,7 +312,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":10,\"v\":4294967295}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwr/////\"}", result);
         }
 
         [Fact]
@@ -328,7 +328,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":10,\"v\":0}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwoAAAAA\"}", result);
         }
 
         [Fact]
@@ -344,7 +344,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":11,\"v\":\"0gQAAAAAAAA=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwvSBAAAAAAAAA==\"}", result);
         }
 
         [Fact]
@@ -360,7 +360,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwv//////////w==\"}", result);
         }
 
         [Fact]
@@ -376,7 +376,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":11,\"v\":\"AAAAAAAAAAA=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwsAAAAAAAAAAA==\"}", result);
         }
 
         [Fact]
@@ -392,7 +392,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":0}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwA=\"}", result);
         }
 
         [Fact]
@@ -408,7 +408,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":2,\"v\":\"a\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwJh\"}", result);
         }
 
         [Fact]
@@ -424,7 +424,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":2,\"v\":\"" + (char)0xFFFF + "\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwLvv78=\"}", result);
         }
 
         [Fact]
@@ -440,7 +440,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":2,\"v\":\"\\u0000\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwIA\"}", result);
         }
 
         [Fact]
@@ -456,7 +456,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":3,\"v\":true}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMB\"}", result);
         }
 
         [Fact]
@@ -472,7 +472,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":3,\"v\":false}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMA\"}", result);
         }
 
         [Fact]
@@ -488,7 +488,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":4,\"v\":123}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR7\"}", result);
         }
 
         [Fact]
@@ -504,7 +504,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":4,\"v\":127}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR/\"}", result);
         }
 
         [Fact]
@@ -520,7 +520,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":4,\"v\":-128}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwSA\"}", result);
         }
 
         [Fact]
@@ -536,7 +536,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":5,\"v\":123}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwV7\"}", result);
         }
 
         [Fact]
@@ -552,7 +552,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":5,\"v\":255}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwX/\"}", result);
         }
 
         [Fact]
@@ -568,7 +568,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":5,\"v\":0}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwUA\"}", result);
         }
 
         [Fact]
@@ -584,7 +584,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":123.456}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwx56fZC\"}", result);
         }
 
         [Fact]
@@ -600,7 +600,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":3.4028235E+38}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//39/\"}", result);
         }
 
         [Fact]
@@ -616,7 +616,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":-3.4028235E+38}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//3//\"}", result);
         }
 
         [Fact]
@@ -632,7 +632,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":13,\"v\":123.456}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw13vp8aL91eQA==\"}", result);
         }
 
         [Fact]
@@ -648,7 +648,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":13,\"v\":1.7976931348623157E+308}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////vfw==\"}", result);
         }
 
         [Fact]
@@ -664,7 +664,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":13,\"v\":-1.7976931348623157E+308}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////v/w==\"}", result);
         }
 
         [Fact]
@@ -680,7 +680,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":14,\"v\":\"123.456\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw5A4gEAAAAAAAAAAAAAAAMA\"}", result);
         }
 
         [Fact]
@@ -696,7 +696,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":14,\"v\":\"79228162514264337593543950335\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAAAA\"}", result);
         }
 
         [Fact]
@@ -712,12 +712,12 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":14,\"v\":\"-79228162514264337593543950335\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAACA\"}", result);
         }
 
         // TODO: Verify this and the corresponding readJson variant. They should work but don't give
         // consistent results on all machines.
-        [Fact(Skip = "Not working as expected.")]
+        [Fact] //(Skip = "Not working as expected.")]
         public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
         {
             // Arrange.
@@ -730,7 +730,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":15,\"v\":\"ANkhy36o0og=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8CAKmqjo+o0gg=\"}", result);
         }
 
         [Fact]
@@ -746,7 +746,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":15,\"v\":\"AKmqjo+o0kg=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8BAKmqjo+o0gg=\"}", result);
         }
 
         [Fact]
@@ -762,7 +762,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":15,\"v\":\"AKmqjo+o0gg=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAKmqjo+o0gg=\"}", result);
         }
 
         [Fact]
@@ -778,7 +778,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":15,\"v\":\"/z839HUoyis=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8A/z839HUoyis=\"}", result);
         }
 
         [Fact]
@@ -794,7 +794,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":15,\"v\":\"AAAAAAAAAAA=\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAAAAAAAAAAA=\"}", result);
         }
 
         [Fact]
@@ -810,7 +810,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":16,\"v\":\"00:00:10\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAA4fUFAAAAAA==\"}", result);
         }
 
         [Fact]
@@ -826,7 +826,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":16,\"v\":\"10675199.02:48:05.4775807\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxD/////////fw==\"}", result);
         }
 
         [Fact]
@@ -842,7 +842,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":16,\"v\":\"-10675199.02:48:05.4775808\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAAAAAAAAAAgA==\"}", result);
         }
 
         [Fact]
@@ -858,7 +858,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":17,\"v\":\"3ad36a1f-8ed6-42aa-be7b-877f17b4db05\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxEfatM61o6qQr57h38XtNsF\"}", result);
         }
 
         [Fact]
@@ -874,7 +874,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":18,\"v\":\"1.2.3.4\"}]", result);
+            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxIBAAAAAgAAAAMAAAAEAAAA\"}", result);
 
         }
 
@@ -896,7 +896,29 @@ namespace EtAlii.Ubigia.Serialization.Tests
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":1,\"v\":\"World\"},{\"k\":\"Int32\",\"t\":7,\"v\":1234},{\"k\":\"Boolean\",\"t\":3,\"v\":true},{\"k\":\"Null\",\"t\":0},{\"k\":\"Int16\",\"t\":6,\"v\":1234}]", result);
+            Assert.Equal("{\"d\":\"BQAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQ=\"}", result);
+        }
+
+
+        [Fact]
+        public void PropertyDictionaryJSonConverter_WriteJson_Complex_02()
+        {
+            // Arrange.
+            var properties = new PropertyDictionary
+            {
+                ["Hello"] = "World",
+                ["Int32"] = 1234,
+                ["Boolean"] = true,
+                ["Null"] = null,
+                ["Int16"] = (short) 1234,
+                ["f53e71ce-68e5-48a2-a024-5ba9ad169128"] = 1175335310
+            };
+
+            // Act.
+            var result = WriteJSon(properties);
+
+            // Assert.
+            Assert.Equal("{\"d\":\"BgAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQkZjUzZTcxY2UtNjhlNS00OGEyLWEwMjQtNWJhOWFkMTY5MTI4B44xDkY=\"}", result);
         }
 
         private string WriteJSon(PropertyDictionary properties)
