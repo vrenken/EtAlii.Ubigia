@@ -29,10 +29,6 @@ namespace EtAlii.xTechnology.Hosting
                     options.ApplicationMaxBufferSize = 1024 * 1024 * 2;
                     options.SkipNegotiation = true;
 
-                    options.WebSocketConfiguration = o =>
-                    {
-                        o.KeepAliveInterval = TimeSpan.FromMinutes(2);
-                    };
                     options.WebSocketFactory = async (webSocketContext, cancellationToken) =>
                     {
                         var client = context.CreateWebSocketClient();
