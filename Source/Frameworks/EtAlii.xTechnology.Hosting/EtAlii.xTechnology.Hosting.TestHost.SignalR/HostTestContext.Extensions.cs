@@ -29,7 +29,6 @@ namespace EtAlii.xTechnology.Hosting
                     options.ApplicationMaxBufferSize = 1024 * 1024 * 2;
                     options.SkipNegotiation = true;
 
-                    options.CloseTimeout = TimeSpan.FromSeconds(40);
                     options.WebSocketConfiguration = o =>
                     {
                         o.KeepAliveInterval = TimeSpan.FromMinutes(2);
