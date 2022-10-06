@@ -4,12 +4,14 @@ namespace EtAlii.Ubigia.Serialization
 {
     using System;
     using System.Diagnostics;
+    using System.IO;
+    using System.Text;
     using Newtonsoft.Json;
 
     /// <summary>
     /// A Newtonsoft oriented converter capable to serialize a PropertyDictionary from/to Json.
     /// </summary>
-    public sealed partial class PropertyDictionaryJSonConverter : JsonConverter
+    public sealed class PropertyDictionaryJSonConverter : JsonConverter
     {
         /// <summary>
         /// Check if the specified object type can be converted.
@@ -29,28 +31,47 @@ namespace EtAlii.Ubigia.Serialization
                 return null;
             }
 
-            if (existingValue is not PropertyDictionary properties)
+            if (reader.TokenType == JsonToken.None)
             {
-                properties = objectType == typeof(PropertyDictionary)
-                    ? new PropertyDictionary()
-                    : (PropertyDictionary)Activator.CreateInstance(objectType);
+                reader.Read();
+                if (reader.TokenType != JsonToken.StartObject)
+                {
+                    throw new JsonException($"JsonToken was of type {reader.TokenType}, only objects are supported");
+                }
+            }
+            else if (reader.TokenType != JsonToken.StartObject)
+            {
+                throw new JsonException($"JsonToken was of type {reader.TokenType}, only objects are supported");
             }
 
-            if (reader.TokenType != JsonToken.StartArray)
+            if (!reader.Read())
             {
-                CheckedRead(reader);
+                throw new JsonException($"Unable to load binary payload");
+            }
+            if (reader.TokenType != JsonToken.PropertyName)
+            {
+                throw new JsonException("JsonToken was not PropertyName");
+            }
+            var propertyName = reader.Value!;
+            if (!propertyName.Equals("d"))
+            {
+                throw new JsonException("PropertyName Data was not found");
             }
 
-            if (reader.TokenType == JsonToken.StartArray)
+            var value = reader.ReadAsString();
+
+            reader.Read();
+            if (reader.TokenType != JsonToken.EndObject)
             {
-                ReadAsArray(reader, properties, serializer);
-            }
-            else
-            {
-                ReadAsDictionary(reader, properties, serializer);
+                throw new JsonException($"JsonToken was of type {reader.TokenType}, but should be EndObject");
+
             }
 
-            return properties;
+            var data = Convert.FromBase64String(value!);
+            using var stream = new MemoryStream(data);
+            using var binaryReader = new BinaryReader(stream, Encoding.UTF8);
+            var dictionary = PropertyDictionary.Read(binaryReader);
+            return dictionary;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -58,95 +79,20 @@ namespace EtAlii.Ubigia.Serialization
             if (value == null)
             {
                 writer.WriteNull();
-            }
-            else
-            {
-                writer.WriteStartArray();
-
-                var properties = (PropertyDictionary)value;
-
-                foreach (var kvp in properties)
-                {
-                    writer.WriteStartObject();
-                    var typeId = TypeIdConverter.ToTypeId(kvp.Value);
-                    writer.WritePropertyName("k"); // key
-                    serializer.Serialize(writer, kvp.Key);
-                    writer.WritePropertyName("t"); // type
-                    serializer.Serialize(writer, typeId);
-                    if (typeId != TypeId.None)
-                    {
-                        writer.WritePropertyName("v"); // value
-                        serializer.Serialize(writer, kvp.Value);
-                    }
-                    writer.WriteEndObject();
-                }
-
-                writer.WriteEndArray();
-            }
-        }
-
-
-        private void ReadKeyValuePair(JsonReader reader, PropertyDictionary properties, JsonSerializer serializer)
-        {
-            if (reader.TokenType != JsonToken.StartObject)
-            {
-                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected StartObject, got {reader.TokenType}.");
+                return;
             }
 
-            CheckedRead(reader);
+            using var stream = new MemoryStream();
+            using var binaryWriter = new BinaryWriter(stream, Encoding.UTF8);
+            PropertyDictionary.Write(binaryWriter, (PropertyDictionary)value);
 
-            if (reader.TokenType != JsonToken.PropertyName)
-            {
-                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
-            }
+            var data = stream.GetBuffer().AsSpan(0, (int)stream.Length);
+            var stringValue = Convert.ToBase64String(data);
 
-            CheckedRead(reader);
-
-            var key = (string)reader.Value;
-
-            CheckedRead(reader);
-
-            if (reader.TokenType != JsonToken.PropertyName)
-            {
-                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
-            }
-
-            CheckedRead(reader);
-
-            var typeId = serializer.Deserialize<TypeId>(reader);
-
-            object value = null;
-            if (typeId != TypeId.None)
-            {
-                CheckedRead(reader);
-
-                if (reader.TokenType != JsonToken.PropertyName)
-                {
-                    throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
-                }
-
-                CheckedRead(reader);
-
-                var objectType = TypeIdConverter.ToType(typeId);
-                value = serializer.Deserialize(reader, objectType);
-            }
-
-            CheckedRead(reader);
-
-            if (reader.TokenType != JsonToken.EndObject)
-            {
-                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected EndObject, got {reader.TokenType}.");
-            }
-
-            properties.Add(key!, value);
-        }
-
-        private void CheckedRead(JsonReader reader)
-        {
-            if (!reader.Read())
-            {
-                throw new JsonSerializationException("Unexpected end when reading PropertyDictionary.");
-            }
+            writer.WriteStartObject();
+            writer.WritePropertyName("d");
+            writer.WriteValue(stringValue);
+            writer.WriteEndObject();
         }
     }
 }
