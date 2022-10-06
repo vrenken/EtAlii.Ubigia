@@ -15,8 +15,8 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
             container.Register<IPathBuilder, NtfsPathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, BinaryItemSerializer>();
-            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
+            container.Register<IItemSerializer, ItemSerializer>();
+            container.Register<IPropertiesSerializer, PropertiesSerializer>();
         }
     }
 }

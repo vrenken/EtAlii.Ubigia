@@ -10,7 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Serialization\EtAlii.Ubigia.Serialization.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

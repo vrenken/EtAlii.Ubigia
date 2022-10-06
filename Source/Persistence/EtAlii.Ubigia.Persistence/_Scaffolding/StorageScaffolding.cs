@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class StorageScaffolding : IScaffolding
@@ -18,7 +17,6 @@ namespace EtAlii.Ubigia.Persistence
         {
             container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);
-            container.Register(() => new SerializerFactory().Create());
         }
     }
 }

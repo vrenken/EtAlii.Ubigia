@@ -19,8 +19,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var configurationRoot = new ConfigurationBuilder().Build();
             var folderName = $"C:\\Temp\\{Guid.NewGuid()}";
-            var itemSerializer = new BinaryItemSerializer();
-            var propertiesSerializer = new BinaryPropertiesSerializer();
+            var itemSerializer = new ItemSerializer();
+            var propertiesSerializer = new PropertiesSerializer();
             var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var folderStorage = new FileSystemFolder(folderName);

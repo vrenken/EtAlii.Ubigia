@@ -23,8 +23,8 @@ namespace EtAlii.Ubigia.Persistence.Portable
             container.Register<IPathBuilder, PortablePathBuilder>();
             container.Register<IContainerProvider, PortableContainerProvider>();
 
-            container.Register<IItemSerializer, BinaryItemSerializer>();
-            container.Register<IPropertiesSerializer, BinaryPropertiesSerializer>();
+            container.Register<IItemSerializer, ItemSerializer>();
+            container.Register<IPropertiesSerializer, PropertiesSerializer>();
 
             container.Register(() => _localStorage);
         }

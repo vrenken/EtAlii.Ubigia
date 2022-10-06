@@ -14,8 +14,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void InMemoryStorage_Create()
         {
             // Arrange.
-            var itemSerializer = new BinaryItemSerializer();
-            var propertiesSerializer = new BinaryPropertiesSerializer();
+            var itemSerializer = new ItemSerializer();
+            var propertiesSerializer = new PropertiesSerializer();
             var configurationRoot = new ConfigurationBuilder().Build();
 
             var storageOptions = new StorageOptions(configurationRoot)

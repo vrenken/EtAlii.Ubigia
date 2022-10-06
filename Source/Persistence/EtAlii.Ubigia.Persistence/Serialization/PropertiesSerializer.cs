@@ -4,25 +4,20 @@ namespace EtAlii.Ubigia.Persistence
 {
     using System.IO;
     using System.Text;
-    using System.Threading.Tasks;
 
-    public sealed class BinaryItemSerializer : IItemSerializer
+    public sealed class PropertiesSerializer : IPropertiesSerializer
     {
-        public void Serialize<T>(Stream stream, T item)
-            where T : class
+        public void Serialize(Stream stream, PropertyDictionary item)
         {
             using var writer = new BinaryWriter(stream, Encoding.UTF8, true);
 
-            writer.Write<T>(item);
+            writer.Write(item, PropertyDictionary.Write);
         }
 
-        public Task<T> Deserialize<T>(Stream stream)
-            where T : class
+        public PropertyDictionary Deserialize(Stream stream)
         {
             using var reader = new BinaryReader(stream, Encoding.UTF8, true);
-
-            var result = reader.Read<T>();
-            return Task.FromResult(result);
+            return reader.Read(PropertyDictionary.Read);
         }
     }
 }
