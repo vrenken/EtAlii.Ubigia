@@ -15,6 +15,10 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 return false;
             }
+            if (x is null && y is null)
+            {
+                return true;
+            }
 
             // Optimization for a common success case.
             if (ReferenceEquals(x, y))
