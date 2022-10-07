@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia
     using System.Linq;
 
     [DebuggerStepThrough]
-    public abstract class RelationsComponentCollection<TRelationsComponent> : Collection<TRelationsComponent>
+    public abstract class RelationsComponentCollection<TRelationsComponent> : Collection<TRelationsComponent>, IReadOnlyRelationsComponentCollection<TRelationsComponent>
         where TRelationsComponent : RelationsComponent, new()
     {
         private protected RelationsComponentCollection()

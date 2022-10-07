@@ -19,7 +19,9 @@ namespace EtAlii.Ubigia
         NextComponent NextComponent { get; set; }
 
         DowndateComponent DowndateComponent { get; set; }
-        UpdatesComponentCollection UpdatesComponent { get; }
+
+        IReadOnlyRelationsComponentCollection<UpdatesComponent> UpdatesComponent { get; }
+        void AddUpdates(Relation[] relations, bool markAsStored);
 
         TypeComponent TypeComponent { get; set; }
 

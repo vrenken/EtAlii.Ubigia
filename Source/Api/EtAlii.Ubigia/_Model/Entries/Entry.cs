@@ -13,7 +13,8 @@ namespace EtAlii.Ubigia
         {
             // Temporal
             ((IComponentEditableEntry) this).DowndateComponent = new DowndateComponent();
-            _updates = new UpdatesComponentCollection();
+            _updatesComponentCollection = new UpdatesComponentCollection();
+            _updates = Array.Empty<Relation>();
 
             // Hierarchical
             ((IComponentEditableEntry) this).ParentComponent = new ParentComponent();

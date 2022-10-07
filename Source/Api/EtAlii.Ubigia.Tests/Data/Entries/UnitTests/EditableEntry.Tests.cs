@@ -151,7 +151,7 @@
             var entry = Entry.NewEntry(id);
 
             // Act.
-            ((IEditableEntry)entry).Updates.Add(otherId);
+            ((IEditableEntry)entry).AddUpdate(otherId);
 
             // Assert.
             Assert.Single(entry.Updates);

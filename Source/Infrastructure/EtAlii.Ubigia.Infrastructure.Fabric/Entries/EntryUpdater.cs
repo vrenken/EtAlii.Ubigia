@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     if (!downdate.Updates.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
-                        downdate.Updates.Add(entry.Id);
+                        downdate.AddUpdate(entry.Id);
                         await _entryStorer.Store(downdate).ConfigureAwait(false);
                     }
                     else

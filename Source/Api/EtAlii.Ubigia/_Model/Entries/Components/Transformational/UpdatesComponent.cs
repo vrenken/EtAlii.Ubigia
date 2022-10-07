@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia
         /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
-            entry.UpdatesComponent.Add(Relations, markAsStored);
+            entry.AddUpdates(Relations, markAsStored);
         }
     }
 }

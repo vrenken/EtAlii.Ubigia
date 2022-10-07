@@ -19,7 +19,10 @@ namespace EtAlii.Ubigia
         Relation Next{ get; set; }
 
         Relation Downdate { get; set; }
-        UpdatesComponentCollection Updates { get; }
+
+        IReadOnlyRelationsComponentCollection<UpdatesComponent> Updates { get; }
+
+        public void AddUpdate(in Identifier id);
 
         string Type { get; set; }
         string Tag { get; set; }

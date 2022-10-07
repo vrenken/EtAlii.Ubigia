@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             result.DowndateComponent = entry.Downdate.ToLocal<DowndateComponent>();
             foreach (var update in entry.Updates)
             {
-                result.UpdatesComponent.Add(update.Relations.ToLocal(), update.Stored);
+                result.AddUpdates(update.Relations.ToLocal(), update.Stored);
             }
 
             result.PreviousComponent = entry.Previous.ToLocal<PreviousComponent>();
