@@ -16,33 +16,6 @@ namespace EtAlii.Ubigia
             writer.Write(item.End.Value); // We do not support from end ranges.
         }
 
-        public static void WriteOptional<T>(this BinaryWriter writer, T item)
-            where T: class
-        {
-            if (item != null)
-            {
-                writer.Write(true);
-                Write<T>(writer, item);
-            }
-            else
-            {
-                writer.Write(false);
-            }
-        }
-
-        public static void WriteOptional<T>(this BinaryWriter writer, T? item)
-            where T: struct
-        {
-            if (item.HasValue)
-            {
-                writer.Write(true);
-                Write<T>(writer, item.Value);
-            }
-            else
-            {
-                writer.Write(false);
-            }
-        }
 
         public static void Write(this BinaryWriter writer, IBinarySerializable item)
         {
@@ -113,6 +86,39 @@ namespace EtAlii.Ubigia
             writer.Write(item.Revision);
         }
 
+        public static void Write<TSerializable>(this BinaryWriter writer, TSerializable item, Action<BinaryWriter, TSerializable> write)
+        {
+            write(writer, item);
+        }
+
+        public static void WriteOptional<T>(this BinaryWriter writer, T item)
+            where T: class
+        {
+            if (item != null)
+            {
+                writer.Write(true);
+                Write<T>(writer, item);
+            }
+            else
+            {
+                writer.Write(false);
+            }
+        }
+
+        public static void WriteOptional<T>(this BinaryWriter writer, T? item)
+            where T: struct
+        {
+            if (item.HasValue)
+            {
+                writer.Write(true);
+                Write<T>(writer, item.Value);
+            }
+            else
+            {
+                writer.Write(false);
+            }
+        }
+
         public static void WriteTyped(this BinaryWriter writer, object item)
         {
             var typeId = TypeIdConverter.ToTypeId(item);
@@ -142,11 +148,6 @@ namespace EtAlii.Ubigia
                 case TypeId.None: break;
                 default: throw new NotSupportedException($"TypeId is not supported: {typeId}");
             }
-        }
-
-        public static void Write<TSerializable>(this BinaryWriter writer, TSerializable item, Action<BinaryWriter, TSerializable> write)
-        {
-            write(writer, item);
         }
 
         public static void WriteMany<T>(this BinaryWriter writer, T[] items)
