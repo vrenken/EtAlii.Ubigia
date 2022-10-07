@@ -63,7 +63,11 @@ namespace EtAlii.Ubigia
                 IBinarySerializable serializable;
                 if (type.IsClass)
                 {
+                    #pragma warning disable S3011
+                    // reasoning We explicitly want to get access to any constructor, either a public or a non public one.
                     var constructor = type.GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public, null, Array.Empty<Type>(), Array.Empty<ParameterModifier>());
+                    #pragma warning restore S3011
+
                     serializable = (IBinarySerializable)constructor!.Invoke(Array.Empty<object>());
                 }
                 else
