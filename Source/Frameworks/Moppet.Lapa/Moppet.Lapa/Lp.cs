@@ -303,8 +303,10 @@ namespace Moppet.Lapa
 			if (maybeSpaces == null) return new LpsParser(text =>
 			{
 				var last = listItem.Do(text);
-				if (!last.Success)
-					return last;
+                if (!last.Success)
+                {
+                    return last;
+                }
 
                 var children = new List<LpNode>(0x10);
 				children.Add(last);
@@ -329,8 +331,10 @@ namespace Moppet.Lapa
 			return new LpsParser(text =>
 			{
 				var last = listItem.Do(text);
-				if (!last.Success)
-					return last;
+                if (!last.Success)
+                {
+                    return last;
+                }
 
                 var children = new List<LpNode>(0x10);
 				children.Add(last);
@@ -435,8 +439,10 @@ namespace Moppet.Lapa
             if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
 			{
                 var next = parser.Do(text);
-				if (!next.Success)
-					return next;
+                if (!next.Success)
+                {
+                    return next;
+                }
 
                 // It turned out that List is 1.5 times faster than LinkedList, even at 10 ppm and arrays.
                 // And memory eats one third less if LpNode - class, not the structure.

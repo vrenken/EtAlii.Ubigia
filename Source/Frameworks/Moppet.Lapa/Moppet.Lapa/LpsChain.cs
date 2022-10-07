@@ -316,8 +316,10 @@ namespace Moppet.Lapa
         private static Func<LpText, LpNode> Concat(IEnumerable<LpsParser> parsersList)
 		{
 			var parsers = parsersList.ToArray();
-			if (parsers.Length < 2)
-				throw new ArgumentOutOfRangeException(nameof(parsersList));
+            if (parsers.Length < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(parsersList));
+            }
 
 			return text =>
 			{
