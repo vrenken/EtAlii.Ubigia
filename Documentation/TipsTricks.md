@@ -84,7 +84,6 @@ Having these in code instead of in the SonarCloud portal also allows for future 
   The code base honors the differences between logic and data by ensuring that data (state) is modelled using classes/structs that reside in __Model_ folders.
   Additionally, most of the other classes do never contain 'state' (i.e. 'functional' data) beyond any configuration or options.
 
-
 - **[< 2021] All unit tests will be structured according to the triple-A Arrange/Act/Assert pattern.**
 
   TODO: elaborate
