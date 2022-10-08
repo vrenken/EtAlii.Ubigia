@@ -14,17 +14,18 @@ namespace EtAlii.Ubigia
             // Temporal
             ((IComponentEditableEntry) this).DowndateComponent = new DowndateComponent();
             _updatesComponent = new UpdatesComponentCollection();
-            _updates = Array.Empty<Relation>();
+            Updates = Array.Empty<Relation>();
 
             // Hierarchical
             ((IComponentEditableEntry) this).ParentComponent = new ParentComponent();
-            _children = new ChildrenComponentCollection();
+            _childrenComponent = new ChildrenComponentCollection();
+            Children = Array.Empty<Relation>();
 
             // Hierarchical
             ((IComponentEditableEntry) this).Parent2Component = new Parent2Component();
             _children2Component = new Children2ComponentCollection();
-            _children2 = Array.Empty<Relation>();
-            
+            Children2 = Array.Empty<Relation>();
+
             // Indexed
             ((IComponentEditableEntry) this).IndexedComponent = new IndexedComponent();
             _indexesComponent = new IndexesComponentCollection();

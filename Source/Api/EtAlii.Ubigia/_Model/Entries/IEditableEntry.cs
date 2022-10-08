@@ -7,7 +7,8 @@ namespace EtAlii.Ubigia
         Identifier Id{ get; set; }
 
         Relation Parent { get; set; }
-        ChildrenComponentCollection Children { get; }
+        IReadOnlyRelationsComponentCollection<ChildrenComponent> Children { get; }
+        public void AddChild(in Identifier id);
 
         Relation Parent2 { get; set; }
         IReadOnlyRelationsComponentCollection<Children2Component> Children2 { get; }

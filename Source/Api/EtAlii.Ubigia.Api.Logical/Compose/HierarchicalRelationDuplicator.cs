@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public void Duplicate(IReadOnlyEntry source, IEditableEntry target, in Identifier relationToExclude)
         {
             var children = FindRelationsToDuplicate(source.Children, relationToExclude);
-            target.Children.Add(children, false);
+            ((IComponentEditableEntry)target).AddChildren(children, false);
             var children2 = FindRelationsToDuplicate(source.Children2, relationToExclude);
             ((IComponentEditableEntry)target).AddChildren2(children2, false);
 

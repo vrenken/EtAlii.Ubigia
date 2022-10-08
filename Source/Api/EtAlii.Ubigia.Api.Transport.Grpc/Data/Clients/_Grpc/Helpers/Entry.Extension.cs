@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             result.ParentComponent = entry.Parent.ToLocal<ParentComponent>();
             foreach (var child in entry.Children)
             {
-                result.ChildrenComponent.Add(child.Relations.ToLocal(), child.Stored);
+                result.AddChildren(child.Relations.ToLocal(), child.Stored);
             }
 
             result.Parent2Component = entry.Parent2.ToLocal<Parent2Component>();

@@ -9,8 +9,8 @@ namespace EtAlii.Ubigia
     {
         public Relation Downdate => ((IComponentEditableEntry) this).DowndateComponent.Relation;
 
-        public Relation[] Updates => _updates;
-        private Relation[] _updates;
+        public Relation[] Updates { get; private set; }
+
         private readonly UpdatesComponentCollection _updatesComponent;
 
         Relation IEditableEntry.Downdate
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia
         void IEditableEntry.AddUpdate(in Identifier id)
         {
             _updatesComponent.Add(id);
-            _updates = _updatesComponent
+            Updates = _updatesComponent
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia
         void IComponentEditableEntry.AddUpdates(Relation[] relations, bool markAsStored)
         {
             _updatesComponent.Add(relations, markAsStored);
-            _updates = _updatesComponent
+            Updates = _updatesComponent
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }

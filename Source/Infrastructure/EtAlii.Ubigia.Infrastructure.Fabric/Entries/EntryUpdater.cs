@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     if (!parent.Children.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
-                        parent.Children.Add(entry.Id);
+                        parent.AddChild(entry.Id);
                         await _entryStorer.Store(parent).ConfigureAwait(false);
                     }
                     else

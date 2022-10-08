@@ -9,8 +9,8 @@ namespace EtAlii.Ubigia
     {
         public Relation Parent2 => ((IComponentEditableEntry) this).Parent2Component.Relation;
 
-        public Relation[] Children2 => _children2;
-        private Relation[] _children2;
+        public Relation[] Children2 { get; private set; }
+
         private readonly Children2ComponentCollection _children2Component;
 
         IReadOnlyRelationsComponentCollection<Children2Component> IEditableEntry.Children2 => _children2Component;
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia
         void IEditableEntry.AddChild2(in Identifier id)
         {
             _children2Component.Add(id);
-            _children2 = _children2Component
+            Children2 = _children2Component
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia
         void IComponentEditableEntry.AddChildren2(Relation[] relations, bool markAsStored)
         {
             _children2Component.Add(relations, markAsStored);
-            _children2 = _children2Component
+            Children2 = _children2Component
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }
