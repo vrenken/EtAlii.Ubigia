@@ -9,10 +9,9 @@
         public void TypeIdConverter_ToType_ToTypeId_Boolean()
         {
             // Arrange.
-            var o = true;
 
             // Act.
-            var typeId = TypeIdConverter.ToTypeId(o);
+            var typeId = TypeIdConverter.ToTypeId(true);
 
             // Assert.
             Assert.Equal(TypeId.Boolean, typeId);
