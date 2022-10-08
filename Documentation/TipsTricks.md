@@ -74,7 +74,6 @@ docker create `
 
   TODO: Talk about the _Model folders.
 
-
 - **[< 2021] All unit tests will be structured according to the triple-A Arrange/Act/Assert pattern.**
 
   TODO: elaborate
