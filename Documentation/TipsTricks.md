@@ -68,11 +68,20 @@ docker create `
 
 ## Architecture Decision Log
 
+- **[2021-10-08] Code quality is guaranteed using the default warnings and errors as provided by Sonarcloud.**
+
+  The team behind SonarQube / SonarCloud has made it their day job to find out what the best code quality conventions are for many, many different languages. The default rules are already very powerful, and taking them as the rule of thumb makes any internal discussions about quality and convention obsolete.
+Therefore all errors and warnings (including the security ones) should never be reconfigured in the SonarCloud portal, but rather corrected in the code. In special circumstances - and only when all other alternatives are not viable - a SonarCloud warning can be disabled using the #pragma warning disable S1234 concept, but in that case also a decent comment should be added to describe the reason for the exemption.
+Having these in code instead of in the SonarCloud portal also allows for future corrections and/or reconsideration.
+
+
 - **[< 2021] SOLID and DRY should be aimed for wherever pragmatically possible.**
+
 
 - **[< 2021] Strong separation between logic and state.**
 
-  TODO: Talk about the _Model folders.
+  The code base honors the differences between logic and data by ensuring that data (state) is modelled using classes/structs that reside in __Model_ folders.
+  Additionally, most of the other classes do never contain 'state' (i.e. 'functional' data) beyond any configuration or options.
 
 
 - **[< 2021] All unit tests will be structured according to the triple-A Arrange/Act/Assert pattern.**
