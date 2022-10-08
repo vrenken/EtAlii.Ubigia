@@ -77,6 +77,7 @@ Having these in code instead of in the SonarCloud portal also allows for future 
 
 - **[< 2021] SOLID and DRY should be aimed for wherever pragmatically possible.**
 
+  TODO: elaborate
 
 - **[< 2021] Strong separation between logic and state.**
 
