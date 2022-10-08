@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia
             Password = reader.ReadString();
             Roles = reader.ReadMany<string>();
             Created = reader.Read<DateTime>();
-            Updated = reader.ReadOptional<DateTime>();
+            Updated = reader.ReadOptionalValueType<DateTime>();
         }
     }
 }

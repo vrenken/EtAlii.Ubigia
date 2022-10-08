@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia
 
         public virtual void Read(BinaryReader reader)
         {
-            Summary = reader.ReadOptional<BlobSummary>();
+            Summary = reader.ReadOptionalReferenceType<BlobSummary>();
             TotalParts = reader.ReadUInt64();
         }
     }

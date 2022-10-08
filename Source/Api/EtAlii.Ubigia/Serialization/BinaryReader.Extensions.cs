@@ -43,8 +43,9 @@ namespace EtAlii.Ubigia
 
         }
 
-        public static T ReadOptional<T>(this BinaryReader reader)
-            where T : new()
+#nullable enable
+        public static T? ReadOptionalReferenceType<T>(this BinaryReader reader)
+            where T: class
         {
             var hasValue = reader.ReadBoolean();
             if (hasValue)
@@ -52,8 +53,22 @@ namespace EtAlii.Ubigia
                 return Read<T>(reader);
             }
 
-            return default;
+            return null;
         }
+
+        public static T? ReadOptionalValueType<T>(this BinaryReader reader)
+            where T: struct
+        {
+            var hasValue = reader.ReadBoolean();
+            if (hasValue)
+            {
+                return Read<T>(reader);
+            }
+
+            return null;
+        }
+
+#nullable disable
 
         public static T Read<T>(this BinaryReader reader)
         {
