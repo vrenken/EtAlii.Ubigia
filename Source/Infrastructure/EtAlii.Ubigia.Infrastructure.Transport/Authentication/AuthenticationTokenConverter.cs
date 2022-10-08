@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             using var stream = new MemoryStream();
             using var writer = new BinaryWriter(stream, Encoding.UTF8);
 
-            writer.Write(token, AuthenticationToken.Write);
+            writer.Write(token);
 
             var tokenAsBytes = stream.ToArray();
             return tokenAsBytes;
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             using var stream = new MemoryStream(tokenAsBytes);
             using var reader = new BinaryReader(stream, Encoding.UTF8);
 
-            return reader.Read(AuthenticationToken.Read);
+            return reader.Read<AuthenticationToken>();
         }
 
         public AuthenticationToken FromString(string authenticationTokenAsString)
