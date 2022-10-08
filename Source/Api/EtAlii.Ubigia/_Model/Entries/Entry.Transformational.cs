@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia
 
         public Relation[] Updates => _updates;
         private Relation[] _updates;
-        private readonly UpdatesComponentCollection _updatesComponentCollection;
+        private readonly UpdatesComponentCollection _updatesComponent;
 
         Relation IEditableEntry.Downdate
         {
@@ -28,23 +28,23 @@ namespace EtAlii.Ubigia
 
         DowndateComponent IComponentEditableEntry.DowndateComponent { get; set; }
 
-        IReadOnlyRelationsComponentCollection<UpdatesComponent> IEditableEntry.Updates => _updatesComponentCollection;
+        IReadOnlyRelationsComponentCollection<UpdatesComponent> IEditableEntry.Updates => _updatesComponent;
 
-        IReadOnlyRelationsComponentCollection<UpdatesComponent> IComponentEditableEntry.UpdatesComponent => _updatesComponentCollection;
+        IReadOnlyRelationsComponentCollection<UpdatesComponent> IComponentEditableEntry.UpdatesComponent => _updatesComponent;
 
 
         void IEditableEntry.AddUpdate(in Identifier id)
         {
-            _updatesComponentCollection.Add(id);
-            _updates = _updatesComponentCollection
+            _updatesComponent.Add(id);
+            _updates = _updatesComponent
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }
 
         void IComponentEditableEntry.AddUpdates(Relation[] relations, bool markAsStored)
         {
-            _updatesComponentCollection.Add(relations, markAsStored);
-            _updates = _updatesComponentCollection
+            _updatesComponent.Add(relations, markAsStored);
+            _updates = _updatesComponent
                 .SelectMany(components => components.Relations)
                 .ToArray();
         }

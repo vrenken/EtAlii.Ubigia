@@ -12,8 +12,9 @@ namespace EtAlii.Ubigia
         Parent2Component Parent2Component { get; set; }
         Children2ComponentCollection Children2Component { get; }
 
-        IndexesComponentCollection IndexesComponent { get; }
+        IReadOnlyRelationsComponentCollection<IndexesComponent> IndexesComponent { get; }
         IndexedComponent IndexedComponent { get; set; }
+        void AddIndexes(Relation[] relations, bool markAsStored);
 
         PreviousComponent PreviousComponent { get; set; }
         NextComponent NextComponent { get; set; }

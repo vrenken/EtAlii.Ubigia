@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
-            entry.IndexesComponent.Add(Relations, markAsStored);
+            entry.AddIndexes(Relations, markAsStored);
         }
     }
 }

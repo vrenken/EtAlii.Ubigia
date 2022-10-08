@@ -168,7 +168,7 @@
             var entry = Entry.NewEntry(id);
 
             // Act.
-            ((IEditableEntry)entry).Indexes.Add(otherId);
+            ((IEditableEntry)entry).AddIndex(otherId);
 
             // Assert.
             Assert.Single(entry.Indexes);

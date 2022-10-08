@@ -324,7 +324,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             var entry = (IEditableEntry)await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
-            entry.Indexes.Add(index.Id);
+            entry.AddIndex(index.Id);
             entry = await _testContext.Infrastructure.Entries.Store(entry).ConfigureAwait(false);
 
             // Assert.

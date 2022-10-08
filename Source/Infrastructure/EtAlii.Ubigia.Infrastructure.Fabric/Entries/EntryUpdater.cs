@@ -205,7 +205,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     if (!indexed.Indexes.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())
-                        indexed.Indexes.Add(entry.Id);
+                        indexed.AddIndex(entry.Id);
                         await _entryStorer.Store(indexed).ConfigureAwait(false);
                     }
                     else

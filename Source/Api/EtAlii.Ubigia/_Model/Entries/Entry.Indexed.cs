@@ -7,14 +7,15 @@ namespace EtAlii.Ubigia
 
     public sealed partial class Entry
     {
-        public Relation[] Indexes => _indexes.SelectMany(component => component.Relations).ToArray();
-        private readonly IndexesComponentCollection _indexes;
+        public Relation[] Indexes => _indexes; // _indexes.SelectMany(component => component.Relations).ToArray()
+        private Relation[] _indexes;
+        private readonly IndexesComponentCollection _indexesComponent;
 
         public Relation Indexed => ((IComponentEditableEntry) this).IndexedComponent.Relation;
 
-        IndexesComponentCollection IEditableEntry.Indexes => _indexes;
+        IReadOnlyRelationsComponentCollection<IndexesComponent> IEditableEntry.Indexes => _indexesComponent;
 
-        IndexesComponentCollection IComponentEditableEntry.IndexesComponent => _indexes;
+        IReadOnlyRelationsComponentCollection<IndexesComponent> IComponentEditableEntry.IndexesComponent => _indexesComponent;
 
         Relation IEditableEntry.Indexed
         {
@@ -30,5 +31,21 @@ namespace EtAlii.Ubigia
         }
 
         IndexedComponent IComponentEditableEntry.IndexedComponent { get; set; }
+
+        void IEditableEntry.AddIndex(in Identifier id)
+        {
+            _indexesComponent.Add(id);
+            _indexes = _indexesComponent
+                .SelectMany(components => components.Relations)
+                .ToArray();
+        }
+
+        void IComponentEditableEntry.AddIndexes(Relation[] relations, bool markAsStored)
+        {
+            _indexesComponent.Add(relations, markAsStored);
+            _indexes = _indexesComponent
+                .SelectMany(components => components.Relations)
+                .ToArray();
+        }
     }
 }

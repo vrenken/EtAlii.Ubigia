@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             result.IndexedComponent = entry.Indexed.ToLocal<IndexedComponent>();
             foreach (var index in entry.Indexes)
             {
-                result.IndexesComponent.Add(index.Relations.ToLocal(), index.Stored);
+                result.AddIndexes(index.Relations.ToLocal(), index.Stored);
             }
 
             return (Entry)result;
