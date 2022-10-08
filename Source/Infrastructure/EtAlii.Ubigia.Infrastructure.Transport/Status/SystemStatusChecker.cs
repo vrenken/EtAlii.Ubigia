@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 var scope = new ExecutionScope();
 
                 var settings = await context
-                    .ProcessServiceSettings2()
+                    .ProcessServiceSettings()
                     .ConfigureAwait(false);
 
                 // var isOperational = true;
