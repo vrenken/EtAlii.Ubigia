@@ -1,7 +1,0 @@
-[namespace=EtAlii.Ubigia.Infrastructure.Transport]
-ServiceSettings2 = @node(Data:ServiceSettings2)
-{
-    string AdminUsername
-    string AdminPassword
-    string Certificate
-}
