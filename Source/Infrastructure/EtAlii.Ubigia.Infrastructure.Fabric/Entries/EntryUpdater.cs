@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     if (!parent2.Children2.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
-                        parent2.Children2.Add(entry.Id);
+                        parent2.AddChild2(entry.Id);
                         await _entryStorer.Store(parent2).ConfigureAwait(false);
                     }
                     else

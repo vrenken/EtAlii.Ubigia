@@ -10,17 +10,17 @@ namespace EtAlii.Ubigia
         ChildrenComponentCollection ChildrenComponent { get; }
 
         Parent2Component Parent2Component { get; set; }
-        Children2ComponentCollection Children2Component { get; }
+        IReadOnlyRelationsComponentCollection<Children2Component> Children2Component { get; }
+        void AddChildren2(Relation[] relations, bool markAsStored);
 
-        IReadOnlyRelationsComponentCollection<IndexesComponent> IndexesComponent { get; }
         IndexedComponent IndexedComponent { get; set; }
+        IReadOnlyRelationsComponentCollection<IndexesComponent> IndexesComponent { get; }
         void AddIndexes(Relation[] relations, bool markAsStored);
 
         PreviousComponent PreviousComponent { get; set; }
         NextComponent NextComponent { get; set; }
 
         DowndateComponent DowndateComponent { get; set; }
-
         IReadOnlyRelationsComponentCollection<UpdatesComponent> UpdatesComponent { get; }
         void AddUpdates(Relation[] relations, bool markAsStored);
 

@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             result.Parent2Component = entry.Parent2.ToLocal<Parent2Component>();
             foreach (var child in entry.Children2)
             {
-                result.Children2Component.Add(child.Relations.ToLocal(), child.Stored);
+                result.AddChildren2(child.Relations.ToLocal(), child.Stored);
             }
 
             result.DowndateComponent = entry.Downdate.ToLocal<DowndateComponent>();

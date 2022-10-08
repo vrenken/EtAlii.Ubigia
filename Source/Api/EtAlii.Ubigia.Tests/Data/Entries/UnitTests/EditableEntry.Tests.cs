@@ -134,7 +134,7 @@
             var entry = Entry.NewEntry(id);
 
             // Act.
-            ((IEditableEntry)entry).Children2.Add(otherId);
+            ((IEditableEntry)entry).AddChild2(otherId);
 
             // Assert.
             Assert.Single(entry.Children2);

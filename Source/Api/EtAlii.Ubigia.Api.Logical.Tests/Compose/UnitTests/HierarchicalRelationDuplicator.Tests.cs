@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             for (var i = 0; i < count; i++)
             {
-                first.Children2.Add(_testIdentifierFactory.Create());
+                first.AddChild2(_testIdentifierFactory.Create());
             }
             var second = Entry.NewEntry(entryId, previousEntryRelation);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 {
                     idToExclude = identifier;
                 }
-                first.Children2.Add(identifier);
+                first.AddChild2(identifier);
             }
             var second = Entry.NewEntry(entryId, previousEntryRelation);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
@@ -180,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             }
             for (var i = 0; i < count; i++)
             {
-                first.Children2.Add(_testIdentifierFactory.Create());
+                first.AddChild2(_testIdentifierFactory.Create());
             }
             var second = Entry.NewEntry(entryId, previousEntryRelation);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();

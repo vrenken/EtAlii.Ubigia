@@ -22,8 +22,9 @@ namespace EtAlii.Ubigia
 
             // Hierarchical
             ((IComponentEditableEntry) this).Parent2Component = new Parent2Component();
-            _children2 = new Children2ComponentCollection();
-
+            _children2Component = new Children2ComponentCollection();
+            _children2 = Array.Empty<Relation>();
+            
             // Indexed
             ((IComponentEditableEntry) this).IndexedComponent = new IndexedComponent();
             _indexesComponent = new IndexesComponentCollection();

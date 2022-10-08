@@ -10,20 +10,18 @@ namespace EtAlii.Ubigia
         ChildrenComponentCollection Children { get; }
 
         Relation Parent2 { get; set; }
-        Children2ComponentCollection Children2 { get; }
+        IReadOnlyRelationsComponentCollection<Children2Component> Children2 { get; }
+        public void AddChild2(in Identifier id);
 
-        IReadOnlyRelationsComponentCollection<IndexesComponent> Indexes { get; }
         Relation Indexed { get; set; }
-
+        IReadOnlyRelationsComponentCollection<IndexesComponent> Indexes { get; }
         public void AddIndex(in Identifier id);
 
         Relation Previous { get; set; }
         Relation Next{ get; set; }
 
         Relation Downdate { get; set; }
-
         IReadOnlyRelationsComponentCollection<UpdatesComponent> Updates { get; }
-
         public void AddUpdate(in Identifier id);
 
         string Type { get; set; }

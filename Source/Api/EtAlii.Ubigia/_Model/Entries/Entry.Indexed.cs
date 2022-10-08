@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia
 
     public sealed partial class Entry
     {
-        public Relation[] Indexes => _indexes; // _indexes.SelectMany(component => component.Relations).ToArray()
+        public Relation[] Indexes => _indexes;
         private Relation[] _indexes;
         private readonly IndexesComponentCollection _indexesComponent;
 

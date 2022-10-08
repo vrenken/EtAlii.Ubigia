@@ -13,8 +13,10 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void Duplicate(IReadOnlyEntry source, IEditableEntry target, in Identifier relationToExclude)
         {
-            DuplicateRelations(source.Children, target.Children, relationToExclude);
-            DuplicateRelations(source.Children2, target.Children2, relationToExclude);
+            var children = FindRelationsToDuplicate(source.Children, relationToExclude);
+            target.Children.Add(children, false);
+            var children2 = FindRelationsToDuplicate(source.Children2, relationToExclude);
+            ((IComponentEditableEntry)target).AddChildren2(children2, false);
 
             if (source.Parent != Relation.None)
             {
@@ -27,16 +29,17 @@ namespace EtAlii.Ubigia.Api.Logical
             }
         }
 
-        private void DuplicateRelations<TRelationsComponent>(Relation[] source, RelationsComponentCollection<TRelationsComponent> target, Identifier relationToExclude)
-            where TRelationsComponent : RelationsComponent, new()
+        private Relation[] FindRelationsToDuplicate(
+            Relation[] relations,
+            Identifier relationToExclude)
         {
             if (relationToExclude != Identifier.Empty)
             {
-                source = source
+                relations = relations
                     .Where(relation => relation.Id != relationToExclude)
                     .ToArray();
             }
-            target.Add(source, false);
+            return relations;
         }
 
     }
