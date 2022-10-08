@@ -164,10 +164,9 @@
         public void TypeIdConverter_ToType_ToTypeId_None()
         {
             // Arrange.
-            var o = (object)null;
 
             // Act.
-            var typeId = TypeIdConverter.ToTypeId(o);
+            var typeId = TypeIdConverter.ToTypeId(null);
 
             // Assert.
             Assert.Equal(TypeId.None, typeId);
