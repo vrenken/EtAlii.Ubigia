@@ -12,6 +12,59 @@ namespace EtAlii.Ubigia.Serialization.Tests
     public class PropertyDictionaryJSonConverterReadJSonTests
     {
         [Fact]
+        public void PropertyDictionaryJSonConverter_ReadJson_No_StartObject_Token()
+        {
+            // Arrange.
+            var json = "\"d\":\"AAAAAA==\"}";
+
+            // Act.
+            var act = new Action(() => ReadJson(json));
+
+            // Assert.
+            Assert.Throws<JsonException>(act);
+        }
+
+        [Fact]
+        public void PropertyDictionaryJSonConverter_ReadJson_No_PropertyName_Token()
+        {
+            // Arrange.
+            var json = "{ }";
+
+            // Act.
+            var act = new Action(() => ReadJson(json));
+
+            // Assert.
+            Assert.Throws<JsonException>(act);
+        }
+
+        [Fact]
+        public void PropertyDictionaryJSonConverter_ReadJson_No_Correct_Property_Name()
+        {
+            // Arrange.
+            var json = "{\"d2\":\"AAAAAA==\"}";
+
+            // Act.
+            var act = new Action(() => ReadJson(json));
+
+            // Assert.
+            Assert.Throws<JsonException>(act);
+        }
+
+        [Fact]
+        public void PropertyDictionaryJSonConverter_ReadJson_No_EndObject_Token()
+        {
+            // Arrange.
+            var json = "{\"d2\":\"AAAAAA==\"";
+
+            // Act.
+            var act = new Action(() => ReadJson(json));
+
+            // Assert.
+            Assert.Throws<JsonException>(act);
+        }
+
+
+        [Fact]
         public void PropertyDictionaryJSonConverter_ReadJson_Empty()
         {
             // Arrange.

@@ -62,6 +62,18 @@ namespace EtAlii.Ubigia.Serialization.Tests
         }
 
         [Fact]
+        public void PropertyDictionaryJSonConverter_WriteJson_Null()
+        {
+            // Arrange.
+
+            // Act.
+            var result = WriteJSon(null);
+
+            // Assert.
+            Assert.Equal("null", result);
+        }
+
+        [Fact]
         public void PropertyDictionaryJSonConverter_WriteJson_Empty()
         {
             // Arrange.

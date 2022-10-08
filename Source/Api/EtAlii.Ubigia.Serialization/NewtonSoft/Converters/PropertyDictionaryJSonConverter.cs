@@ -44,10 +44,7 @@ namespace EtAlii.Ubigia.Serialization
                 throw new JsonException($"JsonToken was of type {reader.TokenType}, only objects are supported");
             }
 
-            if (!reader.Read())
-            {
-                throw new JsonException($"Unable to load binary payload");
-            }
+            reader.Read();
             if (reader.TokenType != JsonToken.PropertyName)
             {
                 throw new JsonException("JsonToken was not PropertyName");
