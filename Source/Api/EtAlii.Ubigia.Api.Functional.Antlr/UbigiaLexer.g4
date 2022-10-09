@@ -133,6 +133,7 @@ VALUE_TYPE_BOOL                                     : 'bool';
 VALUE_TYPE_FLOAT                                    : 'float';
 VALUE_TYPE_INT                                      : 'int';
 VALUE_TYPE_DATETIME                                 : 'datetime';
+VALUE_TYPE_GUID                                     : ( 'guid' | 'Guid' );
 
 
 IDENTIFIER

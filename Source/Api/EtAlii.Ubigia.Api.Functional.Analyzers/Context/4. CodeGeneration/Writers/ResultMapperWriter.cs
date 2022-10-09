@@ -125,6 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     ValueType.Float => "float",
                     ValueType.Int => "int",
                     ValueType.DateTime => "System.DateTime",
+                    ValueType.Guid => "System.Guid",
                     _ => throw new NotSupportedException()
                 };
 

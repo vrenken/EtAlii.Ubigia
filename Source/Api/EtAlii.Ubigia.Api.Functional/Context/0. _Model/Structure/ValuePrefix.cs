@@ -32,6 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 ValueType.Float => "float",
                 ValueType.Int => "int",
                 ValueType.DateTime => "datetime",
+                ValueType.Guid => "guid",
                 _ => throw new NotSupportedException()
             };
             return $"{typeAsString}{requirementAsString}";

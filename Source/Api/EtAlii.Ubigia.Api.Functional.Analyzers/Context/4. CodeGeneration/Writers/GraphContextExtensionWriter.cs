@@ -32,29 +32,46 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            writer.WriteLine("///<summary>");
-            writer.WriteLine("///Query:");
-            for (var i = 0; i < schemaLineCount; i++)
-            {
-                writer.WriteLine($"///{schemaTextLines[i]}");
-            }
-
-            writer.WriteLine("///</summary>");
-
             var variables = _variableFinder.FindVariables(schema);
-            foreach (var variable in variables)
-            {
-                writer.WriteLine($"/// <param name=\"{variable}\" />");
-            }
-
             var returnType = structureFragment.Plurality == Plurality.Single
                 ? $"Task<{className}>"
                 : $"IAsyncEnumerable<{className}>";
 
-            var variablesAsString = string.Join(", ",variables.Select(v => $"string {v}"));
+            var variablesAsParameterString = string.Join(", ",variables.Select(v => $"string {v}"));
             var parameters = variables.Any()
-                ? $"this IGraphContext context, {variablesAsString}"
+                ? $"this IGraphContext context, {variablesAsParameterString}"
                 : $"this IGraphContext context";
+
+            var variablesAsArgumentString = string.Join(", ",variables.Select(v => $"{v}"));
+            var arguments = variables.Any()
+                ? $"context, {variablesAsArgumentString}, scope"
+                : $"context, scope";
+
+            // Write override method (with internal scope variable).
+            WriteSummary(writer, schemaLineCount, schemaTextLines);
+            WriteVariableParametersComment(writer, variables);
+            writer.WriteLine($"public static {returnType} Process{className}({parameters})");
+            writer.WriteLine("{");
+            writer.Indent += 1;
+
+            writer.WriteLine("var scope = new ExecutionScope();");
+            writer.WriteLine($"return Process{className}({arguments});");
+
+            writer.Indent -= 1;
+            writer.WriteLine("}");
+            writer.WriteLine();
+
+            // Write core method (with scope parameter).
+            WriteSummary(writer, schemaLineCount, schemaTextLines);
+            WriteVariableParametersComment(writer, variables);
+            writer.WriteLine($"/// <param name=\"scope\" />");
+
+
+            variablesAsParameterString = string.Join(", ",variables.Select(v => $"string {v}"));
+            parameters = variables.Any()
+                ? $"this IGraphContext context, {variablesAsParameterString}, ExecutionScope scope"
+                : $"this IGraphContext context, ExecutionScope scope";
+
             writer.WriteLine($"public static {returnType} Process{className}({parameters})");
             writer.WriteLine("{");
             writer.Indent += 1;
@@ -70,7 +87,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             writer.Indent -= 1;
 
             writer.WriteLine($"var resultMapper = new {className}.ResultMapper();");
-            writer.WriteLine("var scope = new ExecutionScope();");
             foreach (var variable in variables)
             {
                 writer.WriteLine($"scope.Variables.Add(\"{variable}\", new ScopeVariable({variable}, \"{variable}\"));");
@@ -91,6 +107,26 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             writer.Indent -= 1;
             writer.WriteLine("}");
+        }
+
+        private static void WriteVariableParametersComment(IndentedTextWriter writer, string[] variables)
+        {
+            foreach (var variable in variables)
+            {
+                writer.WriteLine($"/// <param name=\"{variable}\" />");
+            }
+        }
+
+        private static void WriteSummary(IndentedTextWriter writer, int schemaLineCount, string[] schemaTextLines)
+        {
+            writer.WriteLine("///<summary>");
+            writer.WriteLine("///Query:");
+            for (var i = 0; i < schemaLineCount; i++)
+            {
+                writer.WriteLine($"///{schemaTextLines[i]}");
+            }
+
+            writer.WriteLine("///</summary>");
         }
     }
 }

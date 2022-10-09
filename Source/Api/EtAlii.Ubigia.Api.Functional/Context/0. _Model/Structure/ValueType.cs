@@ -10,5 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         Int,
         Bool,
         DateTime,
+        Guid,
     }
 }

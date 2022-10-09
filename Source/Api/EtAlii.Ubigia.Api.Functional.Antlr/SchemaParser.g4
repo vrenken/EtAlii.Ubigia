@@ -53,6 +53,7 @@ value_type
     | VALUE_TYPE_FLOAT
     | VALUE_TYPE_INT
     | VALUE_TYPE_DATETIME
+    | VALUE_TYPE_GUID
     ;
 
 structure_fragment_body_newline_separated               : (structure_fragment_body_entry WHITESPACE* comment? NEWLINE+)* structure_fragment_body_entry comment? (WHITESPACE | NEWLINE)* ;

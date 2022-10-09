@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -41,14 +42,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 var scope = new ExecutionScope();
 
                 var settings = await context
-                    .ProcessServiceSettings()
+                    .ProcessServiceSettings(scope)
                     .ConfigureAwait(false);
 
-                // var isOperational = true;
-                // isOperational &= !string.IsNullOrWhiteSpace(settings.AdminUsername);
-                // isOperational &= !string.IsNullOrWhiteSpace(settings.AdminPassword);
-                // isOperational &= !string.IsNullOrWhiteSpace(settings.Certificate);
-                return true;//isOperational;
+                var isOperational = true;
+                isOperational &= !string.IsNullOrWhiteSpace(settings.AdminUsername);
+                isOperational &= !string.IsNullOrWhiteSpace(settings.AdminPassword);
+                isOperational &= !string.IsNullOrWhiteSpace(settings.Certificate);
+                isOperational &= settings.LocalStorageId != Guid.Empty;
+                return isOperational;
             });
             return task.GetAwaiter().GetResult();
         }
