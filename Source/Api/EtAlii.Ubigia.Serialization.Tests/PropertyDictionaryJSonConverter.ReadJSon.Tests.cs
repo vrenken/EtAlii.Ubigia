@@ -682,7 +682,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             Assert.Equal(decimal.MinValue, result["Hello"]);
         }
 
-        [Fact(Skip = "Still not working.")]
+        [Fact]
         public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Local()
         {
             // Arrange.

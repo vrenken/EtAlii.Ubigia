@@ -727,9 +727,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAACA\"}", result);
         }
 
-        // TODO: Verify this and the corresponding readJson variant. They should work but don't give
-        // consistent results on all machines.
-        [Fact] //(Skip = "Not working as expected.")]
+        [Fact]
         public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
         {
             // Arrange.
