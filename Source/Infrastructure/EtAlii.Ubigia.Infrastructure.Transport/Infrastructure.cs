@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Threading;
 
 #pragma warning disable CA1724
@@ -42,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 var configuration = new SystemConnectionOptions(Options.ConfigurationRoot)
                     .Use(new SystemTransportProvider(this))
                     .Use(this);
-                return new SystemConnectionFactory().Create(configuration);
+                return Factory.Create<ISystemConnection>(configuration);
             });
 
             return base.Start();

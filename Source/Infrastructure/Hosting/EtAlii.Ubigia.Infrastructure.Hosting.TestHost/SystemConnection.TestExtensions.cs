@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.xTechnology.MicroContainer;
 
     public static class SystemConnectionTestExtensions
     {
@@ -24,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             var systemConnectionOptions = new SystemConnectionOptions(testContext.ClientConfiguration)
                 .Use(testContext.Infrastructure)
                 .Use(new SystemTransportProvider(testContext.Infrastructure));
-            var systemConnection = new SystemConnectionFactory().Create(systemConnectionOptions);
+            var systemConnection = Factory.Create<ISystemConnection>(systemConnectionOptions);
 
             return Task.FromResult((systemConnection, systemConnectionOptions));
         }

@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal sealed class SystemConnection : ISystemConnection
     {
-        private readonly ISystemConnectionOptions _options;
+        private readonly SystemConnectionOptions _options;
 
-        public SystemConnection(ISystemConnectionOptions options)
+        public SystemConnection(SystemConnectionOptions options)
         {
             _options = options;
         }

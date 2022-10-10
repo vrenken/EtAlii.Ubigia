@@ -8,36 +8,66 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class SystemConnectionOptions : IExtensible, ISystemConnectionOptions, IEditableSystemConnectionOptions
+    public class SystemConnectionOptions : IExtensible
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The client configuration root that will be used to configure the system connection.
+        /// </summary>
         public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get; set; }
 
-        /// <inheritdoc />
-        IStorageTransportProvider IEditableSystemConnectionOptions.TransportProvider { get => TransportProvider; set => TransportProvider = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// The storage transport for which the system connection should be created.
+        /// This same transport is also used when data or management connections are requested
+        /// through the system connection.
+        /// </summary>
         public IStorageTransportProvider TransportProvider { get; private set; }
 
-        /// <inheritdoc />
-        Func<ISystemConnection> IEditableSystemConnectionOptions.FactoryExtension { get => FactoryExtension; set => FactoryExtension = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// A system connection extension factory with which more complex connection setups
+        /// can be configured.
+        /// </summary>
         public Func<ISystemConnection> FactoryExtension { get; private set; }
 
-        /// <inheritdoc />
-        IInfrastructure IEditableSystemConnectionOptions.Infrastructure { get => Infrastructure; set => Infrastructure = value; }
-
-        /// <inheritdoc />
+        // TODO: The below property should be replaced by a ServiceDetails[] instance.
+        /// <summary>
+        /// The infrastructure for which the system connection should be created.
+        /// </summary>/>
         public IInfrastructure Infrastructure { get; private set; }
 
         public SystemConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
+
+            ((IExtensible)this).Extensions = new IExtension[]
+            {
+                new CommonSystemConnectionExtension(this)
+            };
+        }
+
+        public SystemConnectionOptions Use(IStorageTransportProvider transportProvider)
+        {
+            if (TransportProvider != null)
+            {
+                throw new ArgumentException("A TransportProvider has already been assigned to this SystemConnectionOptions", nameof(transportProvider));
+            }
+
+            TransportProvider = transportProvider ?? throw new ArgumentNullException(nameof(transportProvider));
+            return this;
+        }
+
+        public SystemConnectionOptions Use(Func<ISystemConnection> factoryExtension)
+        {
+            FactoryExtension = factoryExtension;
+            return this;
+        }
+
+        public SystemConnectionOptions Use(IInfrastructure infrastructure)
+        {
+            Infrastructure = infrastructure;
+            return this;
         }
     }
 }
