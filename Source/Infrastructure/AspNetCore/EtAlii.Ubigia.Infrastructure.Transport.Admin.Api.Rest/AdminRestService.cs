@@ -28,13 +28,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
             _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
+                .AddSingleton(infrastructure)
 		        .AddSingleton(infrastructure.Storages)
 		        .AddSingleton(infrastructure.Accounts)
 		        .AddSingleton(infrastructure.Spaces)
 
-		        .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
-
-                .AddSingleton(infrastructure.Options) // the service details are needed by the InformationController.
+		        .AddSingleton(infrastructure.Roots) // We want the management portal to manage the roots as well.
 
 		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
 		        .AddControllers()

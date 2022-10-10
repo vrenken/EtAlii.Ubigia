@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <summary>
         /// The Options used to instantiate this Infrastructure.
         /// </summary>
-        IInfrastructureOptions Options { get; }
+        InfrastructureOptions Options { get; }
 
         /// <summary>
         /// All meta-information related operations can be found here.

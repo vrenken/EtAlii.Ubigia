@@ -3,51 +3,90 @@
 namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class InfrastructureOptions : IExtensible, IInfrastructureOptions, IEditableInfrastructureOptions
+    public class InfrastructureOptions : IExtensible
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// The host configuration root instance for the current application.
+        /// </summary>
+        /// <remarks>
+        /// This is not the same configuration root as used by client API subsystems.
+        /// </remarks>
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        /// <inheritdoc />
-        ILogicalContext IEditableInfrastructureOptions.Logical { get => Logical; set => Logical = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// The context that provides access to the logical layer of the codebase.
+        /// </summary>
         public ILogicalContext Logical { get; private set; }
 
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get; set; }
 
-        /// <inheritdoc />
-        string IEditableInfrastructureOptions.Name { get => Name; set => Name = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// The name of the infrastructure.
+        /// </summary>
         public string Name { get; private set; }
 
-        /// <inheritdoc />
-        ServiceDetails[] IEditableInfrastructureOptions.ServiceDetails { get => ServiceDetails; set => ServiceDetails = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns the details for all of the services provided by the hosted infrastructure.
+        /// </summary>
         public ServiceDetails[] ServiceDetails { get; private set; } = Array.Empty<ServiceDetails>();
 
-        /// <inheritdoc />
-        ISystemConnectionCreationProxy IEditableInfrastructureOptions.SystemConnectionCreationProxy { get => SystemConnectionCreationProxy; set => SystemConnectionCreationProxy = value; }
-
-        /// <inheritdoc />
+        /// <summary>
+        /// A proxy wrapping system connection creation mechanisms.
+        /// </summary>
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
-
-        /// <inheritdoc />
-        Action<IRegisterOnlyContainer> IEditableInfrastructureOptions.RegisterInfrastructureService { get => RegisterInfrastructureService; set => RegisterInfrastructureService = value; }
-        public Action<IRegisterOnlyContainer> RegisterInfrastructureService { get; private set; }
 
         public InfrastructureOptions(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
-            ((IExtensible)this).Extensions = Array.Empty<IExtension>();
+
+            ((IExtensible)this).Extensions = new IExtension[]
+            {
+                new CommonInfrastructureExtension(this)
+            };
+        }
+
+        /// <summary>
+        /// Configure the name and service details that define the infrastructure.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="serviceDetails"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public InfrastructureOptions Use(string name, ServiceDetails[] serviceDetails)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("No name specified", nameof(name));
+            }
+
+            if (!serviceDetails.Any())
+            {
+                throw new InvalidOperationException("No service details specified during infrastructure configuration");
+            }
+
+            Name = name;
+            ServiceDetails = serviceDetails;
+            return this;
+        }
+
+        /// <summary>
+        /// Configure the logical context that should be used by the infrastructure.
+        /// </summary>
+        /// <param name="logical"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public InfrastructureOptions Use(ILogicalContext logical)
+        {
+            Logical = logical ?? throw new ArgumentException("No logical context specified", nameof(logical));
+            return this;
         }
     }
 }

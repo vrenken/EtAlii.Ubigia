@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Persistence;
     using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
@@ -109,11 +110,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureOptions = new InfrastructureOptions(Configuration.Root, systemConnectionCreationProxy)
                 .Use(name, allServiceDetails)
-	            .Use<InfrastructureOptions, Infrastructure>()
                 .Use(logicalContext)
                 .UseInfrastructureDiagnostics();
 
-            return new InfrastructureFactory().Create(infrastructureOptions);
+            return Factory.Create<IInfrastructure>(infrastructureOptions);
         }
     }
 }

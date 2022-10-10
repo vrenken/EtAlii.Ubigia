@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public IContextCorrelator ContextCorrelator => _decoree.ContextCorrelator;
 
         /// <inheritdoc />
-        public IInfrastructureOptions Options => _decoree.Options;
+        public InfrastructureOptions Options => _decoree.Options;
 
         /// <inheritdoc />
         public IInformationRepository Information => _decoree.Information;
@@ -37,7 +37,6 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
         /// <inheritdoc />
         public IRootRepository Roots => _decoree.Roots;
-        //public IRootInitializer RootInitializer [ get [ return _decoree.RootInitializer; ] ]
 
         /// <inheritdoc />
         public IAccountRepository Accounts => _decoree.Accounts;

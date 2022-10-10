@@ -31,12 +31,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
 
             services
+                .AddSingleton(infrastructure)
                 .AddSingleton(infrastructure.Accounts)
                 .AddSingleton(infrastructure.Spaces)
                 .AddSingleton(infrastructure.Storages)
                 .AddSingleton(infrastructure.Information)
-
-                .AddSingleton(infrastructure.Options) // the service details are needed by the InformationHub.
 
                 .AddSignalRInfrastructureAuthentication(infrastructure)
                 .AddInfrastructureSerialization()

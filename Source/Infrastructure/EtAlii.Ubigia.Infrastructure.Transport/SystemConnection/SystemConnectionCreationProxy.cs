@@ -2,25 +2,26 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class SystemConnectionCreationProxy : ISystemConnectionCreationProxy
     {
-        private Func<ISystemConnection> _create;
+        private IInfrastructure _infrastructure;
 
         public ISystemConnection Request()
         {
-            if (_create == null)
-            {
-                throw new NotSupportedException("This SystemConnectionCreationProxy instance has no Create function assigned.");
-            }
-            return _create();
+            // This Options.ConfigurationRoot refers to the host configuration root.
+            // In order to use it for the system connection it should have the entries needed by the API subsystems.
+            var systemConnectionOptions = new SystemConnectionOptions(_infrastructure.Options.ConfigurationRoot)
+                .Use(new SystemTransportProvider(_infrastructure))
+                .Use(_infrastructure);
+            return Factory.Create<ISystemConnection>(systemConnectionOptions);
         }
 
-        public void Initialize(Func<ISystemConnection> create)
+        public void Initialize(IInfrastructure infrastructure)
         {
-            _create = create ?? throw new ArgumentException("No system connection create function specified", nameof(create));
+            _infrastructure = infrastructure;
         }
     }
 }

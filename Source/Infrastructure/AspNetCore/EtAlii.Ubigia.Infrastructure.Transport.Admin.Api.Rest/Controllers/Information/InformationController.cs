@@ -16,9 +16,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
     {
         private readonly ServiceDetails _serviceDetails;
 
-        public InformationController(IInfrastructureOptions infrastructureOptions)
+        public InformationController(IInfrastructure infrastructure)
 	    {
-            _serviceDetails = infrastructureOptions.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
+            _serviceDetails = infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
 	    }
 
 	    [HttpGet]

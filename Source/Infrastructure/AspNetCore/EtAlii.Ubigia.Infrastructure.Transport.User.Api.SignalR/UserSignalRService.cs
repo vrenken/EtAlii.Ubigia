@@ -32,6 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
             var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
 
 	        services
+                .AddSingleton(infrastructure)
 		        .AddSingleton(infrastructure.Spaces)
 		        .AddSingleton(infrastructure.Accounts)
 		        .AddSingleton(infrastructure.Roots)

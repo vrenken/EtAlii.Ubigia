@@ -29,6 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
             _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
+                .AddSingleton(infrastructure)
 		        .AddSingleton(infrastructure.Storages)
 		        .AddSingleton(infrastructure.Accounts)
 		        .AddSingleton(infrastructure.Spaces)
