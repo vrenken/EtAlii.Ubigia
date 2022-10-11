@@ -36,7 +36,7 @@ runs:
         "${{ inputs.solution_file }}"
         --configuration ${{ inputs.configuration }}
         --verbosity quiet
-        --filter "Transport!~Signalr & Transport!~Rest"
+        --filter "FullyQualifiedName!~.Signalr & FullyQualifiedName!~.Rest"
         --logger "trx;LogFileName=report.xunit.trx"
         --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
