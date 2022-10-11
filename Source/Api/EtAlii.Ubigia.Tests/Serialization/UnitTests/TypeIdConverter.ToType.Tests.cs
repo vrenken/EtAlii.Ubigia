@@ -6,6 +6,31 @@
     public partial class TypeIdConverterTests
     {
         [Fact]
+        public void TypeIdConverter_ToType_Invalid()
+        {
+            // Arrange.
+
+            // Act.
+            var act = new Action(() => TypeIdConverter.ToType((TypeId)254));
+
+            // Assert.
+            Assert.Throws<NotSupportedException>(act);
+        }
+
+        [Fact]
+        public void TypeIdConverter_ToTypeId_Invalid()
+        {
+            // Arrange.
+            var o = new object();
+
+            // Act.
+            var act = new Action(() => TypeIdConverter.ToTypeId(o));
+
+            // Assert.
+            Assert.Throws<NotSupportedException>(act);
+        }
+
+        [Fact]
         public void TypeIdConverter_ToType_Boolean()
         {
             // Arrange.
