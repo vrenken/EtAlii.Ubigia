@@ -7,5 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         byte[] ToBytes(AuthenticationToken token);
         AuthenticationToken FromBytes(byte[] tokenAsBytes);
         AuthenticationToken FromString(string authenticationTokenAsString);
+        string ToString(AuthenticationToken token);
+
     }
 }

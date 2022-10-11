@@ -47,5 +47,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var authenticationToken = FromBytes(authenticationTokenAsBytes);
             return authenticationToken;
         }
+
+        public string ToString(AuthenticationToken token)
+        {
+            var bytes = ToBytes(token);
+            bytes = Aes.Encrypt(bytes);
+            return Convert.ToBase64String(bytes);
+        }
     }
 }
