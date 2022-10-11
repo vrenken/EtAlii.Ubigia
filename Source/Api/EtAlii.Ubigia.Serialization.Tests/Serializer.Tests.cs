@@ -8,28 +8,15 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SerializerFactoryTests
+    public class SerializerTests
     {
         [Fact]
-        public void SerializerFactory_New()
+        public void Serializer_Default()
         {
             // Arrange.
 
             // Act.
-            var factory = new SerializerFactory();
-
-            // Assert.
-            Assert.NotNull(factory);
-        }
-
-        [Fact]
-        public void SerializerFactory_Create()
-        {
-            // Arrange.
-            var factory = new SerializerFactory();
-
-            // Act.
-            var serializer = factory.Create() as Serializer;
+            var serializer = Serializer.Default as Serializer;
 
             // Assert.
             Assert.NotNull(serializer);

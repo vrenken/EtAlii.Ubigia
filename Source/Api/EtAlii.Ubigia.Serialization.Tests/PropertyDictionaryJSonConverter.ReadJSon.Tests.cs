@@ -874,7 +874,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
 
         private PropertyDictionary ReadJson(string json)
         {
-            var serializer = (Serializer)new SerializerFactory().Create();
+            var serializer = (Serializer)Serializer.Default;
             var converter = new PropertyDictionaryJSonConverter();
 
             using var textReader = new StringReader(json);

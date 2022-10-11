@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 			        const long maximumReceiveMessageSizeInMegaByte = 1024 * 1024 * 2;
 			        options.MaximumReceiveMessageSize = maximumReceiveMessageSizeInMegaByte;
 		        })
-		        .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+		        .AddNewtonsoftJsonProtocol(options => Serializer.Configure(options.PayloadSerializerSettings));
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

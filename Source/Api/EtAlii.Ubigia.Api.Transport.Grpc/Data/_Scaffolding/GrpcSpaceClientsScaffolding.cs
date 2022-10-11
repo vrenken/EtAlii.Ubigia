@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             container.Register<IContentDataClient, GrpcContentDataClient>();
 
             // The GrpcPropertiesDataClient requires advanced serialization.
-            container.Register(() => new SerializerFactory().Create());
+            container.Register(() => Serializer.Default);
         }
     }
 }

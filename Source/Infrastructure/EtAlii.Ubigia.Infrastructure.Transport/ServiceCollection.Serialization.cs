@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 	{
 		public static IServiceCollection AddInfrastructureSerialization(this IServiceCollection services)
 		{
-			var serializer = new SerializerFactory().Create();
+			var serializer = Serializer.Default;
 
 			// We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
 			services

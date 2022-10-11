@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
         {
             _httpClientFactory = httpClientFactory;
 
-            _formatter = new BsonMediaTypeFormatter { SerializerSettings = SerializerFactory.CreateSerializerSettings() };
+            _formatter = new BsonMediaTypeFormatter { SerializerSettings = Serializer.DefaultSettings };
             var bytes = new byte[64];
             using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);

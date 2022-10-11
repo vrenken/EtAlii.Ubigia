@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 	    public HubConnection CreateForHost(ISignalRTransport transport, Uri address, string hostIdentifier)
 	    {
 		    var builder = new HubConnectionBuilder()
-			    .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .AddNewtonsoftJsonProtocol(options => Serializer.Configure(options.PayloadSerializerSettings))
 			    .ConfigureLogging(options =>
 			    {
                     // SonarQube: Make sure that this logger's configuration is safe.
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 		public HubConnection Create(ISignalRTransport transport, Uri address, string authenticationToken)
 	    {
 		    var builder = new HubConnectionBuilder()
-			    .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .AddNewtonsoftJsonProtocol(options => Serializer.Configure(options.PayloadSerializerSettings))
 			    .ConfigureLogging(options =>
 			    {
                     // SonarQube: Make sure that this logger's configuration is safe.

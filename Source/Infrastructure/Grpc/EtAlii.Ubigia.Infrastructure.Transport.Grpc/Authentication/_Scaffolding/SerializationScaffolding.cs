@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 		public void Register(IRegisterOnlyContainer container)
 		{
 			// We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
-			container.Register(() => new SerializerFactory().Create());
+			container.Register(() => Serializer.Default);
 		}
 	}
 }

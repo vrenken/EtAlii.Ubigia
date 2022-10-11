@@ -933,7 +933,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
 
         private string WriteJSon(PropertyDictionary properties)
         {
-            var serializer = (Serializer)new SerializerFactory().Create();
+            var serializer = (Serializer)Serializer.Default;
             var converter = new PropertyDictionaryJSonConverter();
 
             using var textWriter = new StringWriter();

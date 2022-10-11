@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                         options.EnableDetailedErrors = true;
                     }
                 })
-                .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+                .AddNewtonsoftJsonProtocol(options => Serializer.Configure(options.PayloadSerializerSettings));
         }
 
         public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)

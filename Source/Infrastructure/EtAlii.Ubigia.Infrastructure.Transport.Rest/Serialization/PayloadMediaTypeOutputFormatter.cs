@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 		{
 		    // Set default supported media type
 		    SupportedMediaTypes.Add(_mediaType);
-			_serializer = new SerializerFactory().Create();
+			_serializer = Serializer.Default;
 		}
 
 		protected override bool CanWriteType(Type type)
