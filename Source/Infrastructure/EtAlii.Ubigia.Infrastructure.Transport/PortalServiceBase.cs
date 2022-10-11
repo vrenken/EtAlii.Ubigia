@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     public abstract class PortalServiceBase<TPortalService> : INetworkService
         where TPortalService: INetworkService
     {
-                /// <inheritdoc />
+        /// <inheritdoc />
         public ServiceConfiguration Configuration { get; }
 
         private readonly ILogger _logger = Log.ForContext<TPortalService>();

@@ -105,6 +105,11 @@
                 "DefaultSystemAccountPassword": "system123",
                 "DefaultAdministratorAccountName": "Administrator",
                 "DefaultAdministratorAccountPassword": "administrator123"
+            },
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
             }
         }
     },

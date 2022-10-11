@@ -18,9 +18,8 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         /// <inheritdoc />
         public void Initialize(IRegisterOnlyContainer container)
         {
-            // TODO: Refactor to "Infrastructure:Functional:Diagnostics"
             var options = _configurationRoot
-                .GetSection("Infrastructure:Fabric:Diagnostics")
+                .GetSection("Infrastructure:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
