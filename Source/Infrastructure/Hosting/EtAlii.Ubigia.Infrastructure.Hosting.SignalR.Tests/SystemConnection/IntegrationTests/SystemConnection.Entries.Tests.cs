@@ -3,15 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
-    using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
     using EtAlii.Ubigia.Tests;
