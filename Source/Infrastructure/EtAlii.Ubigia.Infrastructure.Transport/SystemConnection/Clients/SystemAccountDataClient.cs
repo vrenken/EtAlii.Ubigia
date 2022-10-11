@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemAccountDataClient : SystemStorageClientBase, IAccountDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemAccountDataClient(IInfrastructure infrastructure)
+        public SystemAccountDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
@@ -30,13 +30,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Password = accountPassword,
             };
 
-            return _infrastructure.Accounts.Add(account, template);
+            return _functionalContext.Accounts.Add(account, template);
         }
 
         /// <inheritdoc />
         public Task Remove(Guid accountId)
         {
-            return _infrastructure.Accounts.Remove(accountId);
+            return _functionalContext.Accounts.Remove(accountId);
         }
 
         /// <inheritdoc />
@@ -48,31 +48,31 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = accountName,
                 Password = accountPassword,
             };
-            return _infrastructure.Accounts.Update(accountId, account);
+            return _functionalContext.Accounts.Update(accountId, account);
         }
 
         /// <inheritdoc />
         public Task<Account> Change(Account account)
         {
-            return _infrastructure.Accounts.Update(account.Id, account);
+            return _functionalContext.Accounts.Update(account.Id, account);
         }
 
         /// <inheritdoc />
         public Task<Account> Get(string accountName)
         {
-            return _infrastructure.Accounts.Get(accountName);
+            return _functionalContext.Accounts.Get(accountName);
         }
 
         /// <inheritdoc />
         public Task<Account> Get(Guid accountId)
         {
-            return _infrastructure.Accounts.Get(accountId);
+            return _functionalContext.Accounts.Get(accountId);
         }
 
         /// <inheritdoc />
         public IAsyncEnumerable<Account> GetAll()
         {
-            return _infrastructure.Accounts.GetAll();
+            return _functionalContext.Accounts.GetAll();
         }
     }
 }

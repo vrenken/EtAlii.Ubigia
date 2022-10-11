@@ -22,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task PropertiesRepository_Store_Properties()
         {
 	        // Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
-            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
+            var entry = await _testContext.Functional.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
-            _testContext.Infrastructure.Properties.Store(entry.Id, properties);
+            _testContext.Functional.Properties.Store(entry.Id, properties);
 
             // Assert.
             Assert.True(properties.Stored);
@@ -37,13 +37,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task PropertiesRepository_Retrieve_Properties()
         {
 	        // Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
-            var entry = await _testContext.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
+            var entry = await _testContext.Functional.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
-            _testContext.Infrastructure.Properties.Store(entry.Id, properties);
+            _testContext.Functional.Properties.Store(entry.Id, properties);
 
             // Act.
-            var retrievedProperties = _testContext.Infrastructure.Properties.Get(entry.Id);
+            var retrievedProperties = _testContext.Functional.Properties.Get(entry.Id);
 
             // Assert.
             Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));

@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         public ServiceConfiguration Configuration { get; }
 
         /// <inheritdoc />
-        public IInfrastructure Infrastructure { get; private set; }
+        public IFunctionalContext Functional { get; private set; }
 
         private IStorageService _storageService;
 
@@ -38,15 +38,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            Infrastructure = CreateInfrastructure(_storageService.Storage);
+            Functional = CreateFunctionalContext(_storageService.Storage);
             // TODO: We should work with the cancellationToken somehow.
-            await Infrastructure.Start().ConfigureAwait(false);
+            await Functional.Start().ConfigureAwait(false);
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
-            await Infrastructure.Stop().ConfigureAwait(false);
-            Infrastructure = null;
+            await Functional.Stop().ConfigureAwait(false);
+            Functional = null;
         }
 
         public void ConfigureServices(IServiceCollection serviceCollection, IService[] services)
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             category: "Sonar Code Smell",
             checkId: "S1075:URIs should not be hardcoded",
             Justification = "The hard coded URIs direct to nowhere and are only used during unit test execution.")]
-        private IInfrastructure CreateInfrastructure(IStorage storage)
+        private IFunctionalContext CreateFunctionalContext(IStorage storage)
         {
             string name = Configuration.Section.GetValue<string>(nameof(name));
             if (name == null)
@@ -103,17 +103,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var logicalContextOptions = new LogicalContextOptions(Configuration.Root)
                 .Use(fabric)
                 .Use(name, serviceDetails.StorageAddress)
-                .UseLogicalContextDiagnostics();
+                .UseLogicalDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Create a Infrastructure instance.
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
-            var infrastructureOptions = new InfrastructureOptions(Configuration.Root, systemConnectionCreationProxy)
+            var infrastructureOptions = new FunctionalContextOptions(Configuration.Root, systemConnectionCreationProxy)
                 .Use(name, allServiceDetails)
                 .Use(logicalContext)
-                .UseInfrastructureDiagnostics();
+                .UseFunctionalDiagnostics();
 
-            return Factory.Create<IInfrastructure>(infrastructureOptions);
+            return Factory.Create<IFunctionalContext>(infrastructureOptions);
         }
     }
 }

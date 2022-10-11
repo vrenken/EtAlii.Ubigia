@@ -5,13 +5,13 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public static class InfrastructureOptionsUseInfrastructureDiagnostics
+    public static class FunctionalContextOptionsUseFunctionalDiagnostics
     {
-        public static InfrastructureOptions UseInfrastructureDiagnostics(this InfrastructureOptions options)
+        public static FunctionalContextOptions UseFunctionalDiagnostics(this FunctionalContextOptions options)
         {
             var extensions = new IExtension[]
             {
-                new DiagnosticsInfrastructureExtension(options.ConfigurationRoot),
+                new FunctionalContextDiagnosticsExtension(options.ConfigurationRoot),
             };
 
             return options.Use(extensions);

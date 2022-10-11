@@ -11,7 +11,7 @@
         private string _accountName;
         private string _accountPassword;
 
-        [Inject] private IInfrastructure Infrastructure { get; set; }
+        [Inject] private IFunctionalContext FunctionalContext { get; set; }
 
         [Inject] private NavigationManager NavigationManager { get; set; }
 
@@ -19,7 +19,7 @@
 
         protected override async Task OnParametersSetAsync()
         {
-            _account = await Infrastructure.Accounts.Get(Id).ConfigureAwait(false);
+            _account = await FunctionalContext.Accounts.Get(Id).ConfigureAwait(false);
 
             _accountName = _account.Name;
             _accountPassword = _account.Password;
@@ -35,13 +35,13 @@
             _account.Name = _accountName;
             _account.Password = _accountPassword;
 
-            await Infrastructure.Accounts.Update(Id, _account).ConfigureAwait(false);
+            await FunctionalContext.Accounts.Update(Id, _account).ConfigureAwait(false);
             NavigationManager.NavigateTo("/Accounts/");
         }
 
         private async Task OnDeletePressed()
         {
-            await Infrastructure.Accounts.Remove(Id).ConfigureAwait(false);
+            await FunctionalContext.Accounts.Remove(Id).ConfigureAwait(false);
             NavigationManager.NavigateTo("/Accounts/");
         }
     }

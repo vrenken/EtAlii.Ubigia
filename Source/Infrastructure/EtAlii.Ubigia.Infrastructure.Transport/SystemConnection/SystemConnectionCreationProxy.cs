@@ -7,21 +7,20 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class SystemConnectionCreationProxy : ISystemConnectionCreationProxy
     {
-        private IInfrastructure _infrastructure;
+        private IFunctionalContext _functionalContext;
 
         public ISystemConnection Request()
         {
             // This Options.ConfigurationRoot refers to the host configuration root.
             // In order to use it for the system connection it should have the entries needed by the API subsystems.
-            var systemConnectionOptions = new SystemConnectionOptions(_infrastructure.Options.ConfigurationRoot)
-                .Use(new SystemTransportProvider(_infrastructure))
-                .Use(_infrastructure);
+            var systemConnectionOptions = new SystemConnectionOptions(_functionalContext.Options.ConfigurationRoot)
+                .Use(_functionalContext);
             return Factory.Create<ISystemConnection>(systemConnectionOptions);
         }
 
-        public void Initialize(IInfrastructure infrastructure)
+        public void Initialize(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
     }
 }

@@ -8,12 +8,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemClientsScaffolding : IScaffolding
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
         private readonly SpaceConnectionOptions _options;
 
-        public SystemClientsScaffolding(IInfrastructure infrastructure, SpaceConnectionOptions options = null)
+        public SystemClientsScaffolding(IFunctionalContext functionalContext, SpaceConnectionOptions options = null)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
             _options = options;
         }
 
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             }
             container.Register<IStorageConnection, SystemStorageConnection>();
 
-            container.Register(() => _infrastructure);
+            container.Register(() => _functionalContext);
 
             // Data clients.
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();

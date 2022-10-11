@@ -31,11 +31,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// </summary>
         public Func<ISystemConnection> FactoryExtension { get; private set; }
 
-        // TODO: The below property should be replaced by a ServiceDetails[] instance.
         /// <summary>
-        /// The infrastructure for which the system connection should be created.
+        /// The service details for which the system connection should be created.
         /// </summary>/>
-        public IInfrastructure Infrastructure { get; private set; }
+        public ServiceDetails[] ServiceDetails { get; private set; }
 
         public SystemConnectionOptions(IConfigurationRoot configurationRoot)
         {
@@ -47,26 +46,25 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             };
         }
 
-        public SystemConnectionOptions Use(IStorageTransportProvider transportProvider)
-        {
-            if (TransportProvider != null)
-            {
-                throw new ArgumentException("A TransportProvider has already been assigned to this SystemConnectionOptions", nameof(transportProvider));
-            }
-
-            TransportProvider = transportProvider ?? throw new ArgumentNullException(nameof(transportProvider));
-            return this;
-        }
-
         public SystemConnectionOptions Use(Func<ISystemConnection> factoryExtension)
         {
             FactoryExtension = factoryExtension;
             return this;
         }
 
-        public SystemConnectionOptions Use(IInfrastructure infrastructure)
+        public SystemConnectionOptions Use(IFunctionalContext functionalContext)
         {
-            Infrastructure = infrastructure;
+            functionalContext = functionalContext ?? throw new ArgumentNullException(nameof(functionalContext));
+
+            if (TransportProvider != null)
+            {
+                throw new InvalidOperationException("A TransportProvider has already been assigned to this SystemConnectionOptions");
+            }
+
+            ServiceDetails = functionalContext.Options.ServiceDetails;
+
+            TransportProvider = new SystemTransportProvider(functionalContext);
+
             return this;
         }
     }

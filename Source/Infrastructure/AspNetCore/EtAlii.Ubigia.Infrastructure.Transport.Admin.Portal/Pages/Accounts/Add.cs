@@ -10,7 +10,7 @@
 
         private AccountTemplate _template;
 
-        [Inject] private IInfrastructure Infrastructure { get; set; }
+        [Inject] private IFunctionalContext FunctionalContext { get; set; }
 
         [Inject] private NavigationManager NavigationManager { get; set; }
 
@@ -27,7 +27,7 @@
 
         private async Task OnSavePressed()
         {
-            await Infrastructure.Accounts.Add(_account, _template).ConfigureAwait(false);
+            await FunctionalContext.Accounts.Add(_account, _template).ConfigureAwait(false);
             NavigationManager.NavigateTo("/Accounts/");
         }
     }

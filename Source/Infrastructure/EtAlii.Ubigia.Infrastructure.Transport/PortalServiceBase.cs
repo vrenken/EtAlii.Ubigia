@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var infrastructureService = globalServices.GetService<IInfrastructureService>();
             if (infrastructureService != null) // The unit tests don't have access to the InfrastructureService.
             {
-                services.AddSingleton(infrastructureService.Infrastructure);
+                services.AddSingleton(infrastructureService.Functional);
             }
             services.AddSingleton<IConfiguration>(Configuration.Root);
             // services.ConfigureOptions(typeof(UIConfigureOptions))

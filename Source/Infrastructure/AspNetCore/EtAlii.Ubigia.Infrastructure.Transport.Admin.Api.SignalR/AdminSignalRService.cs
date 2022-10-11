@@ -28,16 +28,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
             Justification = "Safe to do so here.")]
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
+            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
 
             services
-                .AddSingleton(infrastructure)
-                .AddSingleton(infrastructure.Accounts)
-                .AddSingleton(infrastructure.Spaces)
-                .AddSingleton(infrastructure.Storages)
-                .AddSingleton(infrastructure.Information)
+                .AddSingleton(functionalContext)
+                .AddSingleton(functionalContext.Storages)
+                .AddSingleton(functionalContext.Spaces)
+                .AddSingleton(functionalContext.Accounts)
 
-                .AddSignalRInfrastructureAuthentication(infrastructure)
+                .AddSingleton(functionalContext.Information)
+
+                .AddSignalRInfrastructureAuthentication(functionalContext)
                 .AddInfrastructureSerialization()
 
                 .AddRouting()
@@ -45,7 +46,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddSignalR(options =>
                 {
                     options.MaximumParallelInvocationsPerClient = 10;
-                    options.AddFilter(new CorrelationServiceHubFilter(infrastructure.ContextCorrelator));
+                    options.AddFilter(new CorrelationServiceHubFilter(functionalContext.ContextCorrelator));
 
                     // SonarQube: Make sure that this logger's configuration is safe.
                     // As we only add the logging services this ought to be safe. It is when and how they are configured that matters.

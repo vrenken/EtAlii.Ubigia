@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal sealed class SystemStorageDataClient : SystemStorageClientBase, IStorageDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemStorageDataClient(IInfrastructure infrastructure)
+        public SystemStorageDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
@@ -26,13 +26,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Address = storageAddress,
             };
 
-            return _infrastructure.Storages.Add(storage);
+            return _functionalContext.Storages.Add(storage);
         }
 
         /// <inheritdoc />
         public Task Remove(Guid storageId)
         {
-            return _infrastructure.Storages.Remove(storageId);
+            return _functionalContext.Storages.Remove(storageId);
         }
 
         /// <inheritdoc />
@@ -44,25 +44,25 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = storageName,
                 Address = storageAddress,
             };
-            return _infrastructure.Storages.Update(storageId, storage);
+            return _functionalContext.Storages.Update(storageId, storage);
         }
 
         /// <inheritdoc />
         public Task<Storage> Get(string storageName)
         {
-            return _infrastructure.Storages.Get(storageName);
+            return _functionalContext.Storages.Get(storageName);
         }
 
         /// <inheritdoc />
         public Task<Storage> Get(Guid storageId)
         {
-            return _infrastructure.Storages.Get(storageId);
+            return _functionalContext.Storages.Get(storageId);
         }
 
         /// <inheritdoc />
         public IAsyncEnumerable<Storage> GetAll()
         {
-            return _infrastructure.Storages.GetAll();
+            return _functionalContext.Storages.GetAll();
         }
     }
 }

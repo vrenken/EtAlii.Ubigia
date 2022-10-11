@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         public bool IsConnected { get; private set; }
 
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
         public Uri Address { get; }
 
-        public SystemStorageTransport(Uri address, IInfrastructure infrastructure)
+        public SystemStorageTransport(Uri address, IFunctionalContext functionalContext)
         {
             Address = address;
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         public Task Start()
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         {
             return new xTechnology.MicroContainer.IScaffolding[]
             {
-                new SystemClientsScaffolding(_infrastructure)
+                new SystemClientsScaffolding(_functionalContext)
             };
         }
     }

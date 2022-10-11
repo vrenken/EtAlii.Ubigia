@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         /// <summary>
         /// The infrastructure against which this TestContext conducts its tests.
         /// </summary>
-        protected internal IInfrastructure Infrastructure { get; private set; }
+        protected internal IFunctionalContext Functional { get; private set; }
 
         public string SystemAccountName { get; private set; }
 

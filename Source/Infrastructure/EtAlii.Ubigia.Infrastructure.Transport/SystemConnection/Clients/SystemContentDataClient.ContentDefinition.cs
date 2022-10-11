@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await _infrastructure.ContentDefinition.Store(identifier, contentDefinition).ConfigureAwait(false);
+            await _functionalContext.ContentDefinition.Store(identifier, contentDefinition).ConfigureAwait(false);
             MarkAsStored(contentDefinition);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await _infrastructure.ContentDefinition
+            await _functionalContext.ContentDefinition
                 .Store(identifier, contentDefinitionPart)
                 .ConfigureAwait(false);
             MarkAsStored(contentDefinitionPart);
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return await _infrastructure.ContentDefinition
+            return await _functionalContext.ContentDefinition
                 .Get(identifier)
                 .ConfigureAwait(false);
 

@@ -16,14 +16,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     /// </summary>
 	public class InfrastructureTestHost : ITestHost
     {
-	    public IInfrastructure Infrastructure { get; }
+	    public IFunctionalContext Functional { get; }
 
         public IStorage Storage { get; }
 
         public InfrastructureTestHost(IService[] services)
 	    {
-            Infrastructure = services.OfType<IInfrastructureService>().Single().Infrastructure;
-            Storage = services.OfType<IStorageService>().Single().Storage;
+            Functional = services
+                .OfType<IInfrastructureService>()
+                .Single().Functional;
+            Storage = services
+                .OfType<IStorageService>()
+                .Single().Storage;
 		}
     }
 }

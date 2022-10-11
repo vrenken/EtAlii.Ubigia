@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         private async Task<Account> GetAccount(string accountName)
         {
-            var account = await _infrastructure.Accounts.Get(accountName).ConfigureAwait(false);
+            var account = await _functionalContext.Accounts.Get(accountName).ConfigureAwait(false);
             if (account == null)
             {
                 var message = $"Unable to connect using the specified account ({accountName})";

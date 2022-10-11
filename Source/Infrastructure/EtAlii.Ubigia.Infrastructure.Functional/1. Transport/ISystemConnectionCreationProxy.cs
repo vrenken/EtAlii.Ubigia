@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     public interface ISystemConnectionCreationProxy
     {
         ISystemConnection Request();
-        void Initialize(IInfrastructure infrastructure);
+        void Initialize(IFunctionalContext functionalContext);
     }
 }

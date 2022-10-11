@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public interface IInfrastructureService : IBackgroundService
     {
-        IInfrastructure Infrastructure { get; }
+        IFunctionalContext Functional { get; }
     }
 }

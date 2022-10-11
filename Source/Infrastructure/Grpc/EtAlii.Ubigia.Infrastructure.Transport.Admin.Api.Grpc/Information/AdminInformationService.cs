@@ -16,10 +16,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 
 	    public AdminInformationService(
             IStorageRepository items,
-            IInfrastructure infrastructure)
+            IFunctionalContext functionalContext)
         {
             _items = items;
-            _serviceDetails = infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
+            _serviceDetails = functionalContext.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
         }
 
 		public override async Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)

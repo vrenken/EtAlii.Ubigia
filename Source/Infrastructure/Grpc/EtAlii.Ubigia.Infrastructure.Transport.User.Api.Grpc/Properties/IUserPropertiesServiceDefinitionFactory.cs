@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
     public interface IUserPropertiesServiceDefinitionFactory
     {
-        ServerServiceDefinition Create(IInfrastructure infrastructure, ISpaceAuthenticationInterceptor spaceAuthenticationInterceptor);
+        ServerServiceDefinition Create(IFunctionalContext functionalContext, ISpaceAuthenticationInterceptor spaceAuthenticationInterceptor);
     }
 }

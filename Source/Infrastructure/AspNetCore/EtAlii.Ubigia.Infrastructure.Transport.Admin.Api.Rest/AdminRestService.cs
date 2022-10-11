@@ -24,18 +24,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
-            _contextCorrelator = infrastructure.ContextCorrelator;
+            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
+            _contextCorrelator = functionalContext.ContextCorrelator;
 
 	        services
-                .AddSingleton(infrastructure)
-		        .AddSingleton(infrastructure.Storages)
-		        .AddSingleton(infrastructure.Accounts)
-		        .AddSingleton(infrastructure.Spaces)
+                .AddSingleton(functionalContext)
+		        .AddSingleton(functionalContext.Storages)
+                .AddSingleton(functionalContext.Spaces)
+		        .AddSingleton(functionalContext.Accounts)
 
-		        .AddSingleton(infrastructure.Roots) // We want the management portal to manage the roots as well.
+		        .AddSingleton(functionalContext.Roots) // We want the management portal to manage the roots as well.
 
-		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
+		        .AddAttributeBasedInfrastructureAuthorization()
 		        .AddControllers()
 		        .AddInfrastructureSerialization()
 		        .AddMvcOptions(options =>

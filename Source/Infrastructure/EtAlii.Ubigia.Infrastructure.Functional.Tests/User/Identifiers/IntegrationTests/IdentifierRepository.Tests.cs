@@ -22,9 +22,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task IdentifierRepository_Get_Current_Head()
         {
 	        // Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
 
-            var identifier = await _testContext.Infrastructure.Identifiers.GetCurrentHead(space.Id).ConfigureAwait(false);
+            var identifier = await _testContext.Functional.Identifiers.GetCurrentHead(space.Id).ConfigureAwait(false);
             Assert.NotEqual(identifier, Identifier.Empty);
         }
 
@@ -32,9 +32,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task IdentifierRepository_Get_Next_Head()
         {
 	        // Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
 
-            var head = await _testContext.Infrastructure.Identifiers.GetNextHead(space.Id).ConfigureAwait(false);
+            var head = await _testContext.Functional.Identifiers.GetNextHead(space.Id).ConfigureAwait(false);
             Assert.NotEqual(head.NextHeadIdentifier, Identifier.Empty);
             Assert.NotEqual(head.PreviousHeadIdentifier, Identifier.Empty);
             Assert.NotEqual(head.NextHeadIdentifier, head.PreviousHeadIdentifier);
@@ -44,9 +44,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task IdentifierRepository_Get_Current_Tail()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
 
-            var identifier = await _testContext.Infrastructure.Identifiers.GetTail(space.Id).ConfigureAwait(false);
+            var identifier = await _testContext.Functional.Identifiers.GetTail(space.Id).ConfigureAwait(false);
             Assert.NotEqual(identifier, Identifier.Empty);
         }
     }

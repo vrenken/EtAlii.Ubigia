@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 		public InformationHub(
 			ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
 			IStorageRepository storageRepository,
-            IInfrastructure infrastructure)
+            IFunctionalContext functionalContext)
 			: base(authenticationTokenVerifier)
 		{
 			_authenticationTokenVerifier = authenticationTokenVerifier;
 			_storageRepository = storageRepository;
-            _serviceDetails = infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.SignalR);
+            _serviceDetails = functionalContext.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.SignalR);
 		}
 
 		public async Task<Storage> GetLocalStorage()

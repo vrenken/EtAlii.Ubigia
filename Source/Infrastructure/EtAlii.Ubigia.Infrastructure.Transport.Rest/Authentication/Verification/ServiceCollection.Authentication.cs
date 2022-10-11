@@ -2,12 +2,11 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 {
-	using EtAlii.Ubigia.Infrastructure.Functional;
-	using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public static partial class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddAttributeBasedInfrastructureAuthorization(this IServiceCollection services, IInfrastructure infrastructure)
+		public static IServiceCollection AddAttributeBasedInfrastructureAuthorization(this IServiceCollection services)
 		{
 			services
 				.AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()

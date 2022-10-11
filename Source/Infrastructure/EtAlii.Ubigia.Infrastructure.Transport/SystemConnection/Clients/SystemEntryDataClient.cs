@@ -9,17 +9,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemEntryDataClient : SystemSpaceClientBase, IEntryDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemEntryDataClient(IInfrastructure infrastructure)
+        public SystemEntryDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
         public async Task<IEditableEntry> Prepare()
         {
-            var result = await _infrastructure.Entries
+            var result = await _functionalContext.Entries
                 .Prepare(Connection.Space.Id)
                 .ConfigureAwait(false);
             return result;
@@ -28,14 +28,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var result = await _infrastructure.Entries.Store(entry).ConfigureAwait(false);
+            var result = await _functionalContext.Entries.Store(entry).ConfigureAwait(false);
             return result;
         }
 
         /// <inheritdoc />
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            var result = await _infrastructure.Entries
+            var result = await _functionalContext.Entries
                 .Get(root.Identifier)
                 .ConfigureAwait(false);
             return result;
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            var result = await _infrastructure.Entries
+            var result = await _functionalContext.Entries
                 .Get(entryIdentifier, entryRelations)
                 .ConfigureAwait(false);
             return result;
@@ -53,13 +53,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return _infrastructure.Entries.Get(entryIdentifiers, entryRelations);
+            return _functionalContext.Entries.Get(entryIdentifiers, entryRelations);
         }
 
         /// <inheritdoc />
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            return _infrastructure.Entries.GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
+            return _functionalContext.Entries.GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
         }
     }
 }

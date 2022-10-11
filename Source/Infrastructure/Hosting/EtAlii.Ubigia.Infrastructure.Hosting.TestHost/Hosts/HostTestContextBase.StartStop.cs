@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         {
             await base.Start(portRange).ConfigureAwait(false);
 
-            Infrastructure = Host.Infrastructure;
-            HostName = Infrastructure.Options.Name;
+            Functional = Host.Functional;
+            HostName = Functional.Options.Name;
 
-            var systemAccount = await Infrastructure.Accounts.Get("System").ConfigureAwait(false);
+            var systemAccount = await Functional.Accounts.Get("System").ConfigureAwait(false);
             SystemAccountName = systemAccount.Name;
             SystemAccountPassword = systemAccount.Password;
 
-            var adminAccount = await Infrastructure.Accounts.Get("Administrator").ConfigureAwait(false);
+            var adminAccount = await Functional.Accounts.Get("Administrator").ConfigureAwait(false);
             AdminAccountName = adminAccount.Name;
             AdminAccountPassword = adminAccount.Password;
 
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         {
             await base.Stop().ConfigureAwait(false);
 
-            Infrastructure = null;
+            Functional = null;
             HostName = null;
 
             SystemAccountName = null;

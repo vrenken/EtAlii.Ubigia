@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public void Initialize(IRegisterOnlyContainer container)
         {
-            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
+            var serviceDetails = _options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
             var transport = _options.TransportProvider.GetStorageTransport(serviceDetails.ManagementAddress);
             var scaffoldings = transport

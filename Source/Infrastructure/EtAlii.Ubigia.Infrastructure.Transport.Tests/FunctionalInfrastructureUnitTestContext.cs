@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
     {
         private readonly ILogger _logger = Log.ForContext<TransportInfrastructureUnitTestContext>();
 
-        public IInfrastructure Infrastructure { get; private set; }
+        public IFunctionalContext Functional { get; private set; }
 
         public IStorage Storage { get; private set; }
 
@@ -85,9 +85,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
 
             _logger.Information("Started host {HostName}", GetType().Name);
 
-            Infrastructure = services.OfType<IInfrastructureService>().Single().Infrastructure;
-            HostName = Infrastructure.Options.Name;
-            DataAddress = Infrastructure.Options.ServiceDetails.First().DataAddress;
+            Functional = services.OfType<IInfrastructureService>().Single().Functional;
+            HostName = Functional.Options.Name;
+            DataAddress = Functional.Options.ServiceDetails.First().DataAddress;
 
             Storage = services.OfType<IStorageService>().Single().Storage;
         }
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
 
             _logger.Information("Stopped host {HostName}", GetType().Name);
 
-            Infrastructure = null;
+            Functional = null;
             HostName = null;
             DataAddress = null;
             Storage = null;

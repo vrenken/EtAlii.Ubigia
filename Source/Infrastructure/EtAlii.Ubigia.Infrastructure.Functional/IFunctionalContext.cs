@@ -5,13 +5,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.Threading;
     using System.Threading.Tasks;
 
-    public interface IInfrastructure
+    public interface IFunctionalContext
     {
         IContextCorrelator ContextCorrelator { get; }
         /// <summary>
         /// The Options used to instantiate this Infrastructure.
         /// </summary>
-        InfrastructureOptions Options { get; }
+        FunctionalContextOptions Options { get; }
 
         /// <summary>
         /// All meta-information related operations can be found here.

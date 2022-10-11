@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal sealed class SystemSpaceDataClient : SystemStorageClientBase, ISpaceDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemSpaceDataClient(IInfrastructure infrastructure)
+        public SystemSpaceDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
@@ -30,13 +30,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 AccountId = accountId,
             };
 
-            return _infrastructure.Spaces.Add(space, template);
+            return _functionalContext.Spaces.Add(space, template);
         }
 
         /// <inheritdoc />
         public Task Remove(Guid spaceId)
         {
-            return _infrastructure.Spaces.Remove(spaceId);
+            return _functionalContext.Spaces.Remove(spaceId);
         }
 
         /// <inheritdoc />
@@ -48,25 +48,25 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = spaceName,
             };
 
-            return _infrastructure.Spaces.Update(spaceId, space);
+            return _functionalContext.Spaces.Update(spaceId, space);
         }
 
         /// <inheritdoc />
         public Task<Space> Get(Guid accountId, string spaceName)
         {
-            return _infrastructure.Spaces.Get(accountId, spaceName);
+            return _functionalContext.Spaces.Get(accountId, spaceName);
         }
 
         /// <inheritdoc />
         public Task<Space> Get(Guid spaceId)
         {
-            return _infrastructure.Spaces.Get(spaceId);
+            return _functionalContext.Spaces.Get(spaceId);
         }
 
         /// <inheritdoc />
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
-            return _infrastructure.Spaces.GetAll(accountId);
+            return _functionalContext.Spaces.GetAll(accountId);
         }
     }
 }

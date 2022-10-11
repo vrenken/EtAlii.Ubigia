@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemContentDataClient : SystemSpaceClientBase, IContentDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemContentDataClient(IInfrastructure infrastructure)
+        public SystemContentDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
     }
 }

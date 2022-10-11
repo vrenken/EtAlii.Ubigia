@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
                 .Start(portRange)
                 .ConfigureAwait(false);
 
-            ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
+            ServiceDetails = Functional.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Grpc);
         }
 
         public GrpcChannel CreateAdminGrpcInfrastructureChannel() => this.CreateChannel(ServiceDetails.ManagementAddress);

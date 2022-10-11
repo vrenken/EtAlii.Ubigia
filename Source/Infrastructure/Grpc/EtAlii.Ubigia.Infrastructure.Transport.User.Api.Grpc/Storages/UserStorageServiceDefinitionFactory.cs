@@ -9,17 +9,18 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
     using global::Grpc.Core;
     using global::Grpc.Core.Interceptors;
 
+    // Referred to in the configuration Json.
     public class UserStorageServiceDefinitionFactory : IUserStorageServiceDefinitionFactory
     {
-        public ServerServiceDefinition Create(IInfrastructure infrastructure, IAccountAuthenticationInterceptor accountAuthenticationInterceptor)
+        public ServerServiceDefinition Create(IFunctionalContext functionalContext, IAccountAuthenticationInterceptor accountAuthenticationInterceptor)
         {
             var container = new Container();
             container.Register<IUserStorageService, UserStorageService>();
-       
-            new UserApiScaffolding(infrastructure).Register(container);
-            new AuthenticationScaffolding().Register(container);     
+
+            new UserApiScaffolding(functionalContext).Register(container);
+            new AuthenticationScaffolding().Register(container);
             new SerializationScaffolding().Register(container);
-            
+
             var storageService = (UserStorageService)container.GetInstance<IUserStorageService>();
             var serverServiceDefinition = StorageGrpcService.BindService(storageService);
             return serverServiceDefinition.Intercept((Interceptor)accountAuthenticationInterceptor);

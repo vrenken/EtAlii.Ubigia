@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                     .OfType<IInfrastructureService>()
                     .Single();
 
-                using var systemConnection = infrastructureService.Infrastructure.Options.SystemConnectionCreationProxy.Request();
+                using var systemConnection = infrastructureService.Functional.Options.SystemConnectionCreationProxy.Request();
                 var (connection, _) = await systemConnection
                     .OpenSpace(AccountName.System, SpaceName.Configuration)
                     .ConfigureAwait(false);

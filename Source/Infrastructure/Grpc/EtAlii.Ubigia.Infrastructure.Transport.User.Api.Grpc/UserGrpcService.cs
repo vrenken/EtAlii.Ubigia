@@ -27,10 +27,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
 	    public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
+            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
 
             var container = new Container();
-            new UserApiScaffolding(infrastructure).Register(container);
+            new UserApiScaffolding(functionalContext).Register(container);
             new AuthenticationScaffolding().Register(container);
             new SerializationScaffolding().Register(container);
 

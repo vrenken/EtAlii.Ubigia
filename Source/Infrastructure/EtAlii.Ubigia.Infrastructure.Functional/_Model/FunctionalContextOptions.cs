@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class InfrastructureOptions : IExtensible
+    public class FunctionalContextOptions : IExtensible
     {
         /// <summary>
         /// The host configuration root instance for the current application.
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// </summary>
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 
-        public InfrastructureOptions(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
+        public FunctionalContextOptions(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
-        public InfrastructureOptions Use(string name, ServiceDetails[] serviceDetails)
+        public FunctionalContextOptions Use(string name, ServiceDetails[] serviceDetails)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <param name="logical"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public InfrastructureOptions Use(ILogicalContext logical)
+        public FunctionalContextOptions Use(ILogicalContext logical)
         {
             Logical = logical ?? throw new ArgumentException("No logical context specified", nameof(logical));
             return this;

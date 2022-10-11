@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemRootDataClient : SystemSpaceClientBase, IRootDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemRootDataClient(IInfrastructure infrastructure)
+        public SystemRootDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             {
                 Name = name,
             };
-            var result = await _infrastructure.Roots
+            var result = await _functionalContext.Roots
                 .Add(Connection.Space.Id, root)
                 .ConfigureAwait(false);
 
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public Task Remove(Guid id)
         {
-            return _infrastructure.Roots.Remove(Connection.Space.Id, id);
+            return _functionalContext.Roots.Remove(Connection.Space.Id, id);
         }
 
         /// <inheritdoc />
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 Name = rootName,
             };
 
-            var result = await _infrastructure.Roots
+            var result = await _functionalContext.Roots
                 .Update(Connection.Space.Id, rootId, root)
                 .ConfigureAwait(false);
             return result;
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<Root> Get(string rootName)
         {
-            var result = await _infrastructure.Roots
+            var result = await _functionalContext.Roots
                 .Get(Connection.Space.Id, rootName)
                 .ConfigureAwait(false);
             return result;
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public async Task<Root> Get(Guid rootId)
         {
-            var result = await _infrastructure.Roots
+            var result = await _functionalContext.Roots
                 .Get(Connection.Space.Id, rootId)
                 .ConfigureAwait(false);
             return result;
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public IAsyncEnumerable<Root> GetAll()
         {
-            return _infrastructure.Roots
+            return _functionalContext.Roots
                 .GetAll(Connection.Space.Id);
         }
     }

@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     public static class LogicalContextOptionsUseLogicalContextDiagnostics
     {
-        public static LogicalContextOptions UseLogicalContextDiagnostics(this LogicalContextOptions options)
+        public static LogicalContextOptions UseLogicalDiagnostics(this LogicalContextOptions options)
         {
             var extensions = new IExtension[]
             {
-                new DiagnosticsLogicalContextExtension(options.ConfigurationRoot),
+                new LogicalContextDiagnosticsExtension(options.ConfigurationRoot),
             };
 
             return options.Use(extensions);

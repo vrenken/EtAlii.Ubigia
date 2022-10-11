@@ -8,11 +8,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemAuthenticationDataClient(IInfrastructure infrastructure)
+        public SystemAuthenticationDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         public Task Connect(ISpaceConnection spaceConnection)

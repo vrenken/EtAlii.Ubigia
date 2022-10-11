@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 
     public static class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddSignalRInfrastructureAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
+		public static IServiceCollection AddSignalRInfrastructureAuthentication(this IServiceCollection services, IFunctionalContext functionalContext)
 	    {
 		    services
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()

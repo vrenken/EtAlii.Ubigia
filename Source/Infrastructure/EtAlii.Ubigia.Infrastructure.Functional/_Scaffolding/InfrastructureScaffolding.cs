@@ -10,9 +10,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     internal class InfrastructureScaffolding : IScaffolding
     {
-        private readonly InfrastructureOptions _options;
+        private readonly FunctionalContextOptions _options;
 
-        public InfrastructureScaffolding(InfrastructureOptions options)
+        public InfrastructureScaffolding(FunctionalContextOptions options)
         {
             _options = options;
         }
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");
             }
 
-            container.Register(CreateInfrastructure);
+            container.Register(CreateFunctionalContext);
 
             container.Register<IContextCorrelator, ContextCorrelator>();
             container.Register(() => _options.ConfigurationRoot);
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             container.Register(() => _options.SystemConnectionCreationProxy);
         }
 
-        private IInfrastructure CreateInfrastructure(IServiceCollection services)
+        private IFunctionalContext CreateFunctionalContext(IServiceCollection services)
         {
             var information = services.GetInstance<IInformationRepository>();
             var spaces = services.GetInstance<ISpaceRepository>();
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var storages = services.GetInstance<IStorageRepository>();
             var logicalContext = services.GetInstance<ILogicalContext>();
             var contextCorrelator = services.GetInstance<IContextCorrelator>();
-            return new Infrastructure(_options, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator);
+            return new FunctionalContext(_options, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator);
         }
     }
 }

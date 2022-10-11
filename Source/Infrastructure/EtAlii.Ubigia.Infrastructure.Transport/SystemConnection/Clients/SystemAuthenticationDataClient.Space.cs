@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         private Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
-            return _infrastructure.Spaces.Get(currentAccount.Id, spaceName);
+            return _functionalContext.Spaces.Get(currentAccount.Id, spaceName);
         }
     }
 }

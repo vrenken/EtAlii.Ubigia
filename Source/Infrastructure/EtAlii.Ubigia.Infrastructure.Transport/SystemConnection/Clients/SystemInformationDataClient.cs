@@ -9,11 +9,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal sealed class SystemInformationDataClient : SystemStorageClientBase, IInformationDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemInformationDataClient(IInfrastructure infrastructure)
+        public SystemInformationDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         public Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            return _infrastructure.Storages.GetLocal();
+            return _functionalContext.Storages.GetLocal();
         }
 
         /// <inheritdoc />
@@ -34,13 +34,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            return _infrastructure.Storages.GetLocal();
+            return _functionalContext.Storages.GetLocal();
         }
 
         /// <inheritdoc />
         public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var serviceDetails = _infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the connectivity details with.
+            var serviceDetails = _functionalContext.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the connectivity details with.
 
             var result = new ConnectivityDetails
             {

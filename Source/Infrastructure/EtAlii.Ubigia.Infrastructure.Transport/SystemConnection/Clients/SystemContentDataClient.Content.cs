@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         public async Task Store(Identifier identifier, Content content)
         {
-            await _infrastructure.Content
+            await _functionalContext.Content
                 .Store(identifier, content)
                 .ConfigureAwait(false);
 
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await _infrastructure.Content
+            await _functionalContext.Content
                 .Store(identifier, contentPart)
                 .ConfigureAwait(false);
             BlobPart.SetStored(contentPart, true);
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task<Content> Retrieve(Identifier identifier)
         {
-            var result = await _infrastructure.Content
+            var result = await _functionalContext.Content
                 .Get(identifier)
                 .ConfigureAwait(false);
             return result;
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
-            var result = await _infrastructure.Content
+            var result = await _functionalContext.Content
                 .Get(identifier, contentPartId)
                 .ConfigureAwait(false);
             return result;

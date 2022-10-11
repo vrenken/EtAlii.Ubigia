@@ -25,22 +25,22 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 
         public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
-            var infrastructure = globalServices.GetService<IInfrastructureService>()!.Infrastructure;
-            _contextCorrelator = infrastructure.ContextCorrelator;
+            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
+            _contextCorrelator = functionalContext.ContextCorrelator;
 
 	        services
-                .AddSingleton(infrastructure)
-		        .AddSingleton(infrastructure.Storages)
-		        .AddSingleton(infrastructure.Accounts)
-		        .AddSingleton(infrastructure.Spaces)
+                .AddSingleton(functionalContext)
+		        .AddSingleton(functionalContext.Storages)
+                .AddSingleton(functionalContext.Spaces)
+		        .AddSingleton(functionalContext.Accounts)
 
-		        .AddSingleton(infrastructure.Roots)
-		        .AddSingleton(infrastructure.Entries)
-		        .AddSingleton(infrastructure.Properties)
-		        .AddSingleton(infrastructure.Content)
-		        .AddSingleton(infrastructure.ContentDefinition)
+		        .AddSingleton(functionalContext.Roots)
+		        .AddSingleton(functionalContext.Entries)
+		        .AddSingleton(functionalContext.Properties)
+		        .AddSingleton(functionalContext.Content)
+		        .AddSingleton(functionalContext.ContentDefinition)
 
-		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
+		        .AddAttributeBasedInfrastructureAuthorization()
 		        .AddControllers()
 		        .AddInfrastructureSerialization()
 		        .AddMvcOptions(options =>

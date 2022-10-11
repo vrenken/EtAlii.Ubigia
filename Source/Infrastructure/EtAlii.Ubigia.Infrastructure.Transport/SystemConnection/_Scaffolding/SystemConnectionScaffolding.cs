@@ -31,9 +31,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException("Error creating system connection: No TransportProvider provided.");
             }
 
-            if (_options.Infrastructure == null)
+            if (_options.ServiceDetails == null)
             {
-                throw new NotSupportedException("A Infrastructure is required to construct a SystemConnection instance");
+                throw new NotSupportedException("The service details are required to construct a SystemConnection instance");
             }
 
             return new SystemConnection(_options);

@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             await base
                 .Start(portRange)
                 .ConfigureAwait(false);
-            ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
+            ServiceDetails = Functional.Options.ServiceDetails.Single(sd => sd.Name == ServiceDetailsName.Rest);
         }
 
         public IRestInfrastructureClient CreateRestInfrastructureClient()

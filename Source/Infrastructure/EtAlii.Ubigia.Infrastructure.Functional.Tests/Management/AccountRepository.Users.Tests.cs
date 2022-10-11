@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Add_User()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_Id()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_Invalid_Id()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_AccountName()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_Invalid_AccountName()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_AccountName_And_Password()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -129,7 +129,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_AccountName_And_Invalid_Password()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -146,7 +146,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_By_Invalid_AccountName_And_Password()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -163,7 +163,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Remove_User_By_Id()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -184,7 +184,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Remove_User_By_Instance()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
@@ -205,7 +205,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_Get_User_Null()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
 
             // Act.
             var account = await repository.Get(Guid.NewGuid()).ConfigureAwait(false);
@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task AccountRepository_GetAll_Users()
         {
 			// Arrange.
-            var repository = _testContext.Infrastructure.Accounts;
+            var repository = _testContext.Functional.Accounts;
             var account = CreateAccount();
             var addedAccount1 = await repository.Add(account, AccountTemplate.User).ConfigureAwait(false);
             account = CreateAccount();

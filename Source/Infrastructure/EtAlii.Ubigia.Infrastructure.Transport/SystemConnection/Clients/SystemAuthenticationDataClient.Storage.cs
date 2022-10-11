@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            return _infrastructure.Storages.GetLocal();
+            return _functionalContext.Storages.GetLocal();
         }
 
         public Task<Storage> GetConnectedStorage(IStorageConnection connection, Uri address)
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            return _infrastructure.Storages.GetLocal();
+            return _functionalContext.Storages.GetLocal();
         }
     }
 }

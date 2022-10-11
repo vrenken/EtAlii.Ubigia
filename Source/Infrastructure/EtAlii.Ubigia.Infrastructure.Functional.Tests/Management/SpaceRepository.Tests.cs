@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task SpaceRepository_Add()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
         }
@@ -34,12 +34,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task SpaceRepository_Get()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = await _testContext.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
+            var fetchedSpace = await _testContext.Functional.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Equal(addedSpace.Id, fetchedSpace.Id);
             Assert.Equal(addedSpace.Name, fetchedSpace.Name);
 
@@ -51,19 +51,19 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task SpaceRepository_Remove_By_Id()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = await _testContext.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
+            var fetchedSpace = await _testContext.Functional.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedSpace);
 
             // Act.
-            await _testContext.Infrastructure.Spaces.Remove(addedSpace.Id).ConfigureAwait(false);
+            await _testContext.Functional.Spaces.Remove(addedSpace.Id).ConfigureAwait(false);
 
             // Assert.
-            fetchedSpace = await _testContext.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
+            fetchedSpace = await _testContext.Functional.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Null(fetchedSpace);
         }
 
@@ -71,19 +71,19 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task SpaceRepository_Remove_By_Instance()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
-            var fetchedSpace = await _testContext.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
+            var fetchedSpace = await _testContext.Functional.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedSpace);
 
             // Act.
-            await _testContext.Infrastructure.Spaces.Remove(addedSpace).ConfigureAwait(false);
+            await _testContext.Functional.Spaces.Remove(addedSpace).ConfigureAwait(false);
 
             // Assert.
-            fetchedSpace = await _testContext.Infrastructure.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
+            fetchedSpace = await _testContext.Functional.Spaces.Get(addedSpace.Id).ConfigureAwait(false);
             Assert.Null(fetchedSpace);
         }
 
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 			// Arrange.
 
             // Act.
-            var space = await _testContext.Infrastructure.Spaces.Get(Guid.NewGuid()).ConfigureAwait(false);
+            var space = await _testContext.Functional.Spaces.Get(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(space);
@@ -103,13 +103,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
         public async Task SpaceRepository_GetAll()
         {
 			// Arrange.
-            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace1 = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
-            space = await _infrastructureTestHelper.CreateSpace(_testContext.Infrastructure, false).ConfigureAwait(false);
-            var addedSpace2 = await _testContext.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace1 = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+            space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional, false).ConfigureAwait(false);
+            var addedSpace2 = await _testContext.Functional.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Act.
-            var spaces = await _testContext.Infrastructure.Spaces
+            var spaces = await _testContext.Functional.Spaces
 	            .GetAll()
 	            .ToArrayAsync()
                 .ConfigureAwait(false);

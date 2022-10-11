@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     internal class CommonInfrastructureExtension : IExtension
     {
-        private readonly InfrastructureOptions _options;
+        private readonly FunctionalContextOptions _options;
 
-        public CommonInfrastructureExtension(InfrastructureOptions options)
+        public CommonInfrastructureExtension(FunctionalContextOptions options)
         {
             _options = options;
         }

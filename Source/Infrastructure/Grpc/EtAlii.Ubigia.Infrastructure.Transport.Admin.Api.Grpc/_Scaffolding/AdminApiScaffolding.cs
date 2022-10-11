@@ -7,21 +7,21 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 
 	public class AdminApiScaffolding : IScaffolding
 	{
-		private readonly IInfrastructure _infrastructure;
+		private readonly IFunctionalContext _functionalContext;
 
-		public AdminApiScaffolding(IInfrastructure infrastructure)
+		public AdminApiScaffolding(IFunctionalContext functionalContext)
 		{
-			_infrastructure = infrastructure;
+			_functionalContext = functionalContext;
 		}
 
         /// <inheritdoc />
 		public void Register(IRegisterOnlyContainer container)
 		{
-            container.Register(() => _infrastructure);
-			container.Register(() => _infrastructure.Accounts);
-			container.Register(() => _infrastructure.Storages);
-			container.Register(() => _infrastructure.Spaces);
-            container.Register(() => _infrastructure.ContextCorrelator);
+            container.Register(() => _functionalContext);
+			container.Register(() => _functionalContext.Accounts);
+			container.Register(() => _functionalContext.Storages);
+			container.Register(() => _functionalContext.Spaces);
+            container.Register(() => _functionalContext.ContextCorrelator);
 		}
 	}
 }

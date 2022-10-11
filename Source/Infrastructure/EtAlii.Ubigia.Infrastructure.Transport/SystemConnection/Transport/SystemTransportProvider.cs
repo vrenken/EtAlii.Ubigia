@@ -9,30 +9,30 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class SystemTransportProvider : IStorageTransportProvider
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemTransportProvider(IInfrastructure infrastructure)
+        public SystemTransportProvider(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         /// <inheritdoc />
         public ISpaceTransport GetSpaceTransport(Uri address)
         {
-            return new SystemSpaceTransport(address, _infrastructure);
+            return new SystemSpaceTransport(address, _functionalContext);
         }
 
         /// <inheritdoc />
         public IStorageTransport GetStorageTransport(Uri address)
         {
-            return new SystemStorageTransport(address, _infrastructure);
+            return new SystemStorageTransport(address, _functionalContext);
         }
 
         public IStorageTransport GetStorageTransport()
         {
-            var serviceDetails = _infrastructure.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
+            var serviceDetails = _functionalContext.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the system connection with.
 
-            return new SystemStorageTransport(serviceDetails.ManagementAddress, _infrastructure);
+            return new SystemStorageTransport(serviceDetails.ManagementAddress, _functionalContext);
         }
     }
 }

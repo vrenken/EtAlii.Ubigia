@@ -7,14 +7,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.Threading;
 
 #pragma warning disable CA1724
-    public class Infrastructure : IInfrastructure
+    public class FunctionalContext : IFunctionalContext
 #pragma warning restore CA1724
     {
         /// <inheritdoc />
         public IContextCorrelator ContextCorrelator { get; }
 
         /// <inheritdoc />
-        public InfrastructureOptions Options { get; }
+        public FunctionalContextOptions Options { get; }
 
         /// <inheritdoc />
         public IInformationRepository Information { get; }
@@ -53,8 +53,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         // specified by SonarQube. The current setup here is already some kind of facade that hides away many infrastructure specific variations. Therefore refactoring to facades won't work.
         // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
-        internal Infrastructure(
-            InfrastructureOptions options,
+        internal FunctionalContext(
+            FunctionalContextOptions options,
             IInformationRepository information,
             ISpaceRepository spaces,
             IIdentifierRepository identifiers,

@@ -12,14 +12,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         public bool IsConnected { get; private set; }
 
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
         public Uri Address { get; }
 
-        public SystemSpaceTransport(Uri address, IInfrastructure infrastructure)
+        public SystemSpaceTransport(Uri address, IFunctionalContext functionalContext)
         {
             Address = address;
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         public SystemSpaceTransport(Uri address)
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         {
             return new IScaffolding[]
             {
-                new SystemClientsScaffolding(_infrastructure, spaceConnectionOptions)
+                new SystemClientsScaffolding(_functionalContext, spaceConnectionOptions)
             };
         }
     }

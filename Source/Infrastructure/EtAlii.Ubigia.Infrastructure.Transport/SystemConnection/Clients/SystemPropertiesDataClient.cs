@@ -8,22 +8,22 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemPropertiesDataClient : SystemSpaceClientBase, IPropertiesDataClient
     {
-        private readonly IInfrastructure _infrastructure;
+        private readonly IFunctionalContext _functionalContext;
 
-        public SystemPropertiesDataClient(IInfrastructure infrastructure)
+        public SystemPropertiesDataClient(IFunctionalContext functionalContext)
         {
-            _infrastructure = infrastructure;
+            _functionalContext = functionalContext;
         }
 
         public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            _infrastructure.Properties.Store(identifier, properties);
+            _functionalContext.Properties.Store(identifier, properties);
             return Task.CompletedTask;
         }
 
         public Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            var result = _infrastructure.Properties.Get(identifier);
+            var result = _functionalContext.Properties.Get(identifier);
             return Task.FromResult(result);
         }
     }

@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsLogicalContextExtension : IExtension
+    public class LogicalContextDiagnosticsExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
-        public DiagnosticsLogicalContextExtension(IConfigurationRoot configurationRoot)
+        public LogicalContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
         {
             _configurationRoot = configurationRoot;
         }

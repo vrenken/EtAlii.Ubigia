@@ -8,56 +8,56 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
     public class InfrastructureTestHelper
     {
-        public async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
+        public async Task<IEditableEntry[]> CreateSequence(int count, IFunctionalContext functionalContext)
         {
-            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
+            var space = await CreateSpace(functionalContext).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry previousEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+                var createdEntry = (IEditableEntry)await functionalContext.Entries.Prepare(space.Id).ConfigureAwait(false);
                 createdEntries[i] = createdEntry;
                 if (previousEntry != null)
                 {
                     createdEntry.Previous = Relation.NewRelation(previousEntry.Id);
                 }
-                await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
+                await functionalContext.Entries.Store(createdEntry).ConfigureAwait(false);
                 previousEntry = createdEntry;
             }
             return createdEntries;
         }
 
-        public async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
+        public async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IFunctionalContext functionalContext)
         {
-            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
+            var space = await CreateSpace(functionalContext).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parentEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+                var createdEntry = (IEditableEntry)await functionalContext.Entries.Prepare(space.Id).ConfigureAwait(false);
                 if (parentEntry != null)
                 {
                     createdEntry.Parent = Relation.NewRelation(parentEntry.Id);
                 }
-                createdEntries[i] = await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
+                createdEntries[i] = await functionalContext.Entries.Store(createdEntry).ConfigureAwait(false);
                 parentEntry = createdEntry;
             }
             return createdEntries;
         }
 
-        public async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
+        public async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IFunctionalContext functionalContext)
         {
-            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
+            var space = await CreateSpace(functionalContext).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parent2Entry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+                var createdEntry = (IEditableEntry)await functionalContext.Entries.Prepare(space.Id).ConfigureAwait(false);
                 if (parent2Entry != null)
                 {
                     createdEntry.Parent2 = Relation.NewRelation(parent2Entry.Id);
                 }
-                createdEntries[i] = await infrastructure.Entries.Store(createdEntry).ConfigureAwait(false);
+                createdEntries[i] = await functionalContext.Entries.Store(createdEntry).ConfigureAwait(false);
                 parent2Entry = createdEntry;
             }
             return createdEntries;
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             };
         }
 
-        public async Task<Space> CreateSpace(IInfrastructure infrastructure, bool addToRepository = true)
+        public async Task<Space> CreateSpace(IFunctionalContext functionalContext, bool addToRepository = true)
         {
             var space = new Space
             {
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
             if (addToRepository)
             {
-                space = await infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
+                space = await functionalContext.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             }
             return space;
         }

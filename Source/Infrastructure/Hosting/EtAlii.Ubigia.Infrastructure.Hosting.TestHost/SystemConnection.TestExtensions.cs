@@ -23,8 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         public static Task<(ISystemConnection, SystemConnectionOptions)> CreateSystemConnection(this HostTestContextBase testContext)
         {
             var systemConnectionOptions = new SystemConnectionOptions(testContext.ClientConfiguration)
-                .Use(testContext.Infrastructure)
-                .Use(new SystemTransportProvider(testContext.Infrastructure));
+                .Use(testContext.Functional);
             var systemConnection = Factory.Create<ISystemConnection>(systemConnectionOptions);
 
             return Task.FromResult((systemConnection, systemConnectionOptions));
