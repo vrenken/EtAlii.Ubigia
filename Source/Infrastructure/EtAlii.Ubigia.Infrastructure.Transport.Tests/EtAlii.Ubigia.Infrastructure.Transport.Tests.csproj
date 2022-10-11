@@ -7,4 +7,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
     <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SystemConnection\IntegrationTests" />
+  </ItemGroup>
 </Project>

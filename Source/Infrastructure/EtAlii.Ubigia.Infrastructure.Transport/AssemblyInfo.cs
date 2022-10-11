@@ -2,6 +2,7 @@
 
 using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Rest")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.SignalR")]
 
