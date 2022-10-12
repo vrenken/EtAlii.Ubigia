@@ -122,6 +122,7 @@ jobs:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
+          test_filter: "FullyQualifiedName!~.Signalr & FullyQualifiedName!~.Rest"
 
   tests-on-windows:
     runs-on: windows-latest
@@ -153,6 +154,7 @@ jobs:
           configuration: ${{ env.CONFIGURATION }}
           solution_file: ${{ env.SOLUTION_FILE }}
           dotnet_version: ${{ env.DOTNET_VERSION }}
+          test_filter: "Transport!~Signalr & Transport!~Rest"
 
 #  sonarcloud-analysis-on-windows:
 #    runs-on: windows-latest

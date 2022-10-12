@@ -10,6 +10,9 @@ inputs:
   dotnet_version:
     description: 'The dotnet version to use'
     required: true
+  test_filter:
+    description: 'The filter to apply to the unit tests'
+    required: true
 runs:
   using: composite
   steps:
@@ -36,7 +39,7 @@ runs:
         "${{ inputs.solution_file }}"
         --configuration ${{ inputs.configuration }}
         --verbosity quiet
-        --filter "FullyQualifiedName!~.Signalr & FullyQualifiedName!~.Rest"
+        --filter "${{ inputs.test_filter }}"
         --logger "trx;LogFileName=report.xunit.trx"
         --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
 
