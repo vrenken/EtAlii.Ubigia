@@ -13,7 +13,7 @@
     <PackageVersion Include="Blazorise.Sidebar" Version="1.1.1" />
     <PackageVersion Include="Blazorise.Snackbar" Version="1.1.1" />
 
-    <PackageVersion Include="Coverlet.Collector" Version="3.1.2" />
+    <PackageVersion Include="AltCover" Version="8.3.839" />
 
     <!-- Weird packages -->
     <PackageVersion Include="Core.System.Configuration.Install" Version="1.1.0" />

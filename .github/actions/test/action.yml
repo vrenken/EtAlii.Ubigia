@@ -10,6 +10,9 @@ inputs:
   dotnet_version:
     description: 'The dotnet version to use'
     required: true
+  dotnet_version_short:
+    description: 'The short dotnet version to use'
+    required: true
   test_filter:
     description: 'The filter to apply to the unit tests'
     required: true
@@ -40,8 +43,7 @@ runs:
         --configuration ${{ inputs.configuration }}
         --verbosity quiet
         --filter "${{ inputs.test_filter }}"
-        --logger "trx;LogFileName=report.xunit.trx"
-        --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        /p:AltCover=true /p:AltCoverReport=bin\${{ inputs.configuration }}\{{ inputs.dotnet_version_short }}\coverage.opencover.xml
 
       # run the next step even if this one step failed
 
