@@ -185,6 +185,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00
 		UnitTestSettings.cs = UnitTestSettings.cs
 		..\version.json = ..\version.json
 		xunit.runner.json = xunit.runner.json
+		Clean-Output.ps1 = Clean-Output.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Tests", "Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj", "{B42A4C2B-15B6-4533-B06A-89346FB7AAB6}"
