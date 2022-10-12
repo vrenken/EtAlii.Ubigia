@@ -44,7 +44,7 @@ runs:
         --verbosity quiet
         --filter "${{ inputs.test_filter }}"
         --logger "trx;LogFileName=report.xunit.trx"
-        /p:AltCover=true /p:AltCoverReport=bin\("${{ inputs.configuration }}\{{ inputs.dotnet_version_short }}\coverage.opencover.xml" -replace "/", [IO.Path]::DirectorySeparatorChar)
+        /p:AltCover=true /p:AltCoverReport=bin\("${{ inputs.configuration }}\${{ inputs.dotnet_version_short }}\coverage.opencover.xml" -replace "/", [IO.Path]::DirectorySeparatorChar)
 
       # run the next step even if this one step failed
 
