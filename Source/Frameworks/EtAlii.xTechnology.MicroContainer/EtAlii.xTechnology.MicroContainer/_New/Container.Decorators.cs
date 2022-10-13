@@ -20,11 +20,8 @@ namespace EtAlii.xTechnology.MicroContainer
             where TService : class
             where TDecorator : TService
         {
-            RegisterDecorator(typeof(TService), typeof(TDecorator));
-        }
-
-        private void RegisterDecorator(Type serviceType, Type decoratorType)
-        {
+            var serviceType = typeof(TService);
+            var decoratorType = typeof(TDecorator);
 #if DEBUG
             if (!serviceType.GetTypeInfo().IsInterface)
             {
