@@ -352,11 +352,14 @@
         public void BinaryWriter_Read_Object()
         {
             // Arrange.
-            using var stream = new MemoryStream();
-            using var reader = new BinaryReader(stream);
 
             // Act.
-            var act = new Action(() => reader.Read<object>());
+            var act = new Action(() =>
+            {
+                using var stream = new MemoryStream();
+                using var reader = new BinaryReader(stream);
+                reader.Read<object>();
+            });
 
             // Assert.
             Assert.Throws<ArgumentOutOfRangeException>(act);
