@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia
             (
                 name: AccountName.System,
                 rolesToAssign: new [] { Role.System },
-                spacesToCreate: new [] { SpaceTemplate.System, SpaceTemplate.Metrics }
+                spacesToCreate: new [] { SpaceTemplate.System, SpaceTemplate.Configuration, SpaceTemplate.Metrics }
             );
             Administrator = new AccountTemplate
             (
