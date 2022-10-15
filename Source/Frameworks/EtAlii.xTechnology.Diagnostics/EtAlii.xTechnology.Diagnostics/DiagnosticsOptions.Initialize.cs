@@ -17,6 +17,9 @@ namespace EtAlii.xTechnology.Diagnostics
     {
         private static readonly LoggerConfiguration _loggerConfiguration = new();
 
+        // Set this to true to activate unit test logging.
+        private const bool UnitTestLoggingIsEnabled = false;
+
         /// <summary>
         /// Returns a configuration root with additional debug information that can be added on top of existing configuration roots.
         /// </summary>
@@ -32,6 +35,7 @@ namespace EtAlii.xTechnology.Diagnostics
             var entryAssemblyName = _entryAssembly.GetName();
             loggerConfiguration.ReadFrom
                 .Configuration(configurationRoot)
+                .Filter.ByExcluding(_ => !UnitTestLoggingIsEnabled)
                 .Enrich.FromLogContext()
                 .Enrich.WithThreadName()
                 .Enrich.WithThreadId()
