@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
+
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
 	using System;
@@ -215,3 +217,5 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		}
     }
 }
+
+#endif
