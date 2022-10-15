@@ -53,7 +53,7 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
-    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.23.1" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="6.24.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageVersion Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8" />
 
