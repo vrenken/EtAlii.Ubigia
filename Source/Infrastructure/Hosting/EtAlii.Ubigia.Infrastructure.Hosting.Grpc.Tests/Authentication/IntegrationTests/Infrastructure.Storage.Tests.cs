@@ -20,7 +20,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
     [CorrelateUnitTests]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
-	{
+    {
+        private readonly TimeSpan _delay = TimeSpan.FromMilliseconds(50000);
+
 	    private readonly InfrastructureUnitTestContext _testContext;
 
         public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
@@ -124,7 +126,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
-			Thread.Sleep(50000);
+			Thread.Sleep(_delay);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
@@ -145,7 +147,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
-			Thread.Sleep(50000);
+			Thread.Sleep(_delay);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
@@ -166,7 +168,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
-			Thread.Sleep(50000);
+			Thread.Sleep(_delay);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
@@ -187,7 +189,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
-			Thread.Sleep(50000);
+			Thread.Sleep(_delay);
 
 			// Act.
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
@@ -201,7 +203,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		{
 			// Arrange.
 			var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
-			Thread.Sleep(50000);
+			Thread.Sleep(_delay);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
