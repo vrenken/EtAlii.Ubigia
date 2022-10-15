@@ -91,5 +91,32 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var assignAndSelectValueAnnotation = Assert.IsType<ClearAndSelectValueAnnotation>(valueFragment.Annotation);
             Assert.Null(assignAndSelectValueAnnotation.Source);
         }
+
+        [Fact]
+        public void SchemaParserBugs_Parse_Generated_Code_Not_Working()
+        {
+            // Arrange.
+            var scope = new ExecutionScope();
+            var parser = _testContext.CreateSchemaParser();
+            const string text = @"
+			[namespace=EtAlii.Ubigia.Infrastructure.Transport]
+			ServiceSettings = @node(Data:ServiceSettings)
+			{
+				string AdminUsername
+				string AdminPassword
+				string Certificate
+				Guid LocalStorageId
+			}";
+
+            // Act.
+            var parseResult = parser.Parse(text, scope);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Schema);
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.NotNull(parseResult.Schema.Structure.Annotation);
+        }
     }
 }
