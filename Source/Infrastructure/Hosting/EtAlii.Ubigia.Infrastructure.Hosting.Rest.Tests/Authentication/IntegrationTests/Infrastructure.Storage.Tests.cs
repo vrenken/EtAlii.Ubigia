@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using System;
 	using System.Collections.Generic;
 	using System.Net;
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
 	using System.Threading;
+#endif
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Api.Transport.Rest;
@@ -15,6 +17,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     [CorrelateUnitTests]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
+        private readonly TimeSpan _delay = TimeSpan.FromSeconds(30);
+#endif
+
 	    private readonly InfrastructureUnitTestContext _testContext;
 
         public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
@@ -117,6 +123,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 		}
 
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
+
 		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
@@ -129,7 +137,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-            await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
+            await Task.Delay(_delay).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.
@@ -151,7 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
+			await Task.Delay(_delay).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.
@@ -173,7 +181,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-            await Task.Delay(TimeSpan.FromSeconds(30)).ConfigureAwait(false);
+            await Task.Delay(_delay).ConfigureAwait(false);
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
 
 			// Act.
@@ -195,7 +203,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			// Act.
 			var act = new Func<Task>(async () =>
             {
-                Thread.Sleep(TimeSpan.FromSeconds(30));
+                Thread.Sleep(_delay);
                 var storage = await client.Get<Storage>(address).ConfigureAwait(false);
                 Assert.NotNull(storage);
             });
@@ -203,5 +211,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Assert.
             Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
+#endif
     }
 }

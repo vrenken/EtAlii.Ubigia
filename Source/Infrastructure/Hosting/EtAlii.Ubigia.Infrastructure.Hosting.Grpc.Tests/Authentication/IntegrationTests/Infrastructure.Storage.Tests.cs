@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
-
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
 	using System;
 	using System.Linq;
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
 	using System.Threading;
+#endif
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Grpc;
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
@@ -23,8 +23,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     [CorrelateUnitTests]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
     {
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
         private readonly TimeSpan _delay = TimeSpan.FromMilliseconds(50000);
-
+#endif
 	    private readonly InfrastructureUnitTestContext _testContext;
 
         public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
@@ -121,6 +122,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
         }
 
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
+
 		[Fact]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
@@ -215,7 +218,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			// Assert.
 			await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
 		}
+#endif
     }
 }
-
-#endif
