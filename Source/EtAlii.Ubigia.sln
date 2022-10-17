@@ -380,16 +380,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
 	ProjectSection(SolutionItems) = preProject
 		..\Documentation\Architecture\Dependencies.md = ..\Documentation\Architecture\Dependencies.md
-		..\Documentation\Architecture\Gcl.AdditionalExamples.md = ..\Documentation\Architecture\Gcl.AdditionalExamples.md
-		..\Documentation\Architecture\Gcl.CodeGeneration.md = ..\Documentation\Architecture\Gcl.CodeGeneration.md
-		..\Documentation\Architecture\Gcl.GraphMapping.md = ..\Documentation\Architecture\Gcl.GraphMapping.md
-		..\Documentation\Architecture\Gcl.GraphMutation.md = ..\Documentation\Architecture\Gcl.GraphMutation.md
-		..\Documentation\Architecture\Gcl.Introduction.md = ..\Documentation\Architecture\Gcl.Introduction.md
-		..\Documentation\Architecture\Gcl.ResultStructuring.md = ..\Documentation\Architecture\Gcl.ResultStructuring.md
-		..\Documentation\Architecture\Gcl.Specification.md = ..\Documentation\Architecture\Gcl.Specification.md
 		..\Documentation\Architecture\GraphTraversalLanguage.md = ..\Documentation\Architecture\GraphTraversalLanguage.md
-		..\Documentation\Architecture\Gtl.Introduction.md = ..\Documentation\Architecture\Gtl.Introduction.md
-		..\Documentation\Architecture\Gtl.Specification.md = ..\Documentation\Architecture\Gtl.Specification.md
 		..\Documentation\Architecture\Identifiers.md = ..\Documentation\Architecture\Identifiers.md
 		..\Documentation\Architecture\System.Overview.puml = ..\Documentation\Architecture\System.Overview.puml
 	EndProjectSection
@@ -402,41 +393,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Philosophy", "Philosophy", 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Analyzers", "Api\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj", "{991DFE15-55A3-4435-81FA-F56E996CD546}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gcl.Samples", "Gcl.Samples", "{A69811A1-E528-4FC0-B98D-377072C53D03}"
-	ProjectSection(SolutionItems) = preProject
-		..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md = ..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md
-		..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md = ..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gtl.Samples", "Gtl.Samples", "{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4}"
-	ProjectSection(SolutionItems) = preProject
-		..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md = ..\Documentation\Architecture\Gtl.Samples\Samples 0. - Introduction.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gtl.Samples\Samples 1. - Queries.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md = ..\Documentation\Architecture\Gtl.Samples\Samples 2. - Operators.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md = ..\Documentation\Architecture\Gtl.Samples\Samples 3. - Variables.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md = ..\Documentation\Architecture\Gtl.Samples\Samples 4. - Objects.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 5. - Functions.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md = ..\Documentation\Architecture\Gtl.Samples\Samples 6. - Roots.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md = ..\Documentation\Architecture\Gtl.Samples\Samples 7. - Roots.Definitions.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md = ..\Documentation\Architecture\Gtl.Samples\Samples 8. - Technical.md
-		..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md = ..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{186D063F-AADD-4F45-B394-935239120191}"
 	ProjectSection(SolutionItems) = preProject
@@ -510,6 +466,58 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Logical.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Logical.Tests\EtAlii.Ubigia.Infrastructure.Logical.Tests.csproj", "{5FD5A24A-CCCE-4BBC-9AA4-5725D27C90D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Tests\EtAlii.Ubigia.Infrastructure.Transport.Tests.csproj", "{902348DA-E734-42C9-AFAA-F08F3DB5A00B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gcl", "Gcl", "{206B5EE1-4AD1-470D-8E5D-5CCF5C4E5D04}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gcl\AdditionalExamples.md = ..\Documentation\Architecture\Gcl\AdditionalExamples.md
+		..\Documentation\Architecture\Gcl\CodeGeneration.md = ..\Documentation\Architecture\Gcl\CodeGeneration.md
+		..\Documentation\Architecture\Gcl\GraphMapping.md = ..\Documentation\Architecture\Gcl\GraphMapping.md
+		..\Documentation\Architecture\Gcl\GraphMutation.md = ..\Documentation\Architecture\Gcl\GraphMutation.md
+		..\Documentation\Architecture\Gcl\Introduction.md = ..\Documentation\Architecture\Gcl\Introduction.md
+		..\Documentation\Architecture\Gcl\ResultStructuring.md = ..\Documentation\Architecture\Gcl\ResultStructuring.md
+		..\Documentation\Architecture\Gcl\Specification.md = ..\Documentation\Architecture\Gcl\Specification.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gtl", "Gtl", "{5C40A6DA-2FC6-492E-B7E2-82794260C959}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gtl\Introduction.md = ..\Documentation\Architecture\Gtl\Introduction.md
+		..\Documentation\Architecture\Gtl\Specification.md = ..\Documentation\Architecture\Gtl\Specification.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{A8076F2F-B39A-44D2-87AD-1573864C2199}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gcl\Examples\0. - Basics - compact - v2.md = ..\Documentation\Architecture\Gcl\Examples\0. - Basics - compact - v2.md
+		..\Documentation\Architecture\Gcl\Examples\0. - Basics - elaborate - v2.md = ..\Documentation\Architecture\Gcl\Examples\0. - Basics - elaborate - v2.md
+		..\Documentation\Architecture\Gcl\Examples\1. - Queries.md = ..\Documentation\Architecture\Gcl\Examples\1. - Queries.md
+		..\Documentation\Architecture\Gcl\Examples\2. - Nodes - compact - v2.md = ..\Documentation\Architecture\Gcl\Examples\2. - Nodes - compact - v2.md
+		..\Documentation\Architecture\Gcl\Examples\2. - Nodes - elaborate - v2.md = ..\Documentation\Architecture\Gcl\Examples\2. - Nodes - elaborate - v2.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - compact - v2.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - compact - v2.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - elaborate - v2.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - elaborate - v2.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - v2.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Properties - v2.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Values.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Values.md
+		..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Values - v2.md = ..\Documentation\Architecture\Gcl\Examples\3. - Mutations - Values - v2.md
+		..\Documentation\Architecture\Gcl\Examples\4. - Linking.md = ..\Documentation\Architecture\Gcl\Examples\4. - Linking.md
+		..\Documentation\Architecture\Gcl\Examples\4. - Linking - Alternatives.md = ..\Documentation\Architecture\Gcl\Examples\4. - Linking - Alternatives.md
+		..\Documentation\Architecture\Gcl\Examples\4. - Linking - v2.md = ..\Documentation\Architecture\Gcl\Examples\4. - Linking - v2.md
+		..\Documentation\Architecture\Gcl\Examples\5. - Variables - v2.md = ..\Documentation\Architecture\Gcl\Examples\5. - Variables - v2.md
+		..\Documentation\Architecture\Gcl\Examples\7. - Scribbles.md = ..\Documentation\Architecture\Gcl\Examples\7. - Scribbles.md
+		..\Documentation\Architecture\Gcl\Examples\8. - Typed results.md = ..\Documentation\Architecture\Gcl\Examples\8. - Typed results.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{140B2A28-1995-470D-82D3-EE72480AC547}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documentation\Architecture\Gtl\Examples\0. - Basics.md = ..\Documentation\Architecture\Gtl\Examples\0. - Basics.md
+		..\Documentation\Architecture\Gtl\Examples\1. - Queries.md = ..\Documentation\Architecture\Gtl\Examples\1. - Queries.md
+		..\Documentation\Architecture\Gtl\Examples\2. - Operators.md = ..\Documentation\Architecture\Gtl\Examples\2. - Operators.md
+		..\Documentation\Architecture\Gtl\Examples\3. - Variables.md = ..\Documentation\Architecture\Gtl\Examples\3. - Variables.md
+		..\Documentation\Architecture\Gtl\Examples\4. - Objects.md = ..\Documentation\Architecture\Gtl\Examples\4. - Objects.md
+		..\Documentation\Architecture\Gtl\Examples\5. - Functions.md = ..\Documentation\Architecture\Gtl\Examples\5. - Functions.md
+		..\Documentation\Architecture\Gtl\Examples\6. - Roots.md = ..\Documentation\Architecture\Gtl\Examples\6. - Roots.md
+		..\Documentation\Architecture\Gtl\Examples\7. - Roots.Definitions.md = ..\Documentation\Architecture\Gtl\Examples\7. - Roots.Definitions.md
+		..\Documentation\Architecture\Gtl\Examples\8. - Technical.md = ..\Documentation\Architecture\Gtl\Examples\8. - Technical.md
+		..\Documentation\Architecture\Gtl\Examples\9. - Tags.md = ..\Documentation\Architecture\Gtl\Examples\9. - Tags.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1265,8 +1273,6 @@ Global
 		{6DD333C1-4642-480A-8A61-AE92F4237CB0} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 		{BD83EE17-7A41-40B9-9884-07BC2411A9BA} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 		{991DFE15-55A3-4435-81FA-F56E996CD546} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
-		{A69811A1-E528-4FC0-B98D-377072C53D03} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
-		{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
 		{186D063F-AADD-4F45-B394-935239120191} = {C9537D00-7881-4ACB-9111-9439363F658D}
 		{B433801E-0F22-4867-9574-8A90109A559B} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
@@ -1294,6 +1300,10 @@ Global
 		{5FD5A24A-CCCE-4BBC-9AA4-5725D27C90D6} = {1CE369AA-5F47-4E40-8E85-D849B289A3A8}
 		{388BAEAA-1DAB-430D-9730-4EDA363AF56F} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 		{902348DA-E734-42C9-AFAA-F08F3DB5A00B} = {388BAEAA-1DAB-430D-9730-4EDA363AF56F}
+		{206B5EE1-4AD1-470D-8E5D-5CCF5C4E5D04} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
+		{5C40A6DA-2FC6-492E-B7E2-82794260C959} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
+		{A8076F2F-B39A-44D2-87AD-1573864C2199} = {206B5EE1-4AD1-470D-8E5D-5CCF5C4E5D04}
+		{140B2A28-1995-470D-82D3-EE72480AC547} = {5C40A6DA-2FC6-492E-B7E2-82794260C959}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
