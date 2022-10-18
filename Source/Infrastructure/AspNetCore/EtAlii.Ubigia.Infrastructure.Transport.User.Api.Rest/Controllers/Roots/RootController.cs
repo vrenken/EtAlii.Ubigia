@@ -54,9 +54,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
                                 .ConfigureAwait(false);
                             break;
                         case "rootName":
-                            var rootName = id;
                             root = await _items
-                                .Get(spaceId, rootName)
+                                .Get(spaceId, id)
                                 .ConfigureAwait(false);
                             break;
                         default:

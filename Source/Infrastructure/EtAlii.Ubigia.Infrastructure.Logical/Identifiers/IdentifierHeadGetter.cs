@@ -70,7 +70,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
                 var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier).ConfigureAwait(false);
 
-                await _rootUpdater.Update(spaceId, "Head", nextHeadIdentifier).ConfigureAwait(false);
+                await _rootUpdater
+                    .Update(spaceId, DefaultRoot.Head, nextHeadIdentifier)
+                    .ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
 
                 return (NextHeadIdentifier: nextHeadIdentifier, PreviousHeadIdentifier: previousHeadIdentifier);
