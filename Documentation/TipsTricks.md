@@ -8,7 +8,7 @@ docker run `
     --rm `
     -v ${pwd}:/app `
     -w /app `
-    mcr.microsoft.com/dotnet/sdk:6.0 `
+    mcr.microsoft.com/dotnet/sdk:7.0 `
     dotnet test ./EtAlii.Ubigia.sln --logger:trx --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 ```
 
@@ -24,14 +24,14 @@ docker run `
     --rm `
     -v ${pwd}:/app `
     -w /app `
-    mcr.microsoft.com/dotnet/sdk:6.0 `
+    mcr.microsoft.com/dotnet/sdk:7.0 `
     dotnet test ./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/EtAlii.Ubigia.Api.Transport.Grpc.Tests.csproj --logger:trx --results-directory:./Api/EtAlii.Ubigia.Api.Transport.Grpc.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 
 docker run `
     --rm `
     -v ${pwd}:/app `
     -w /app `
-    mcr.microsoft.com/dotnet/sdk:6.0 `
+    mcr.microsoft.com/dotnet/sdk:7.0 `
     dotnet test ./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/EtAlii.Ubigia.Persistence.Ntfs.Tests.csproj --logger:trx --results-directory:./Persistence/EtAlii.Ubigia.Persistence.Ntfs.Tests/bin/TestResults --configuration:'Debug-Ubuntu' /p:UbigiaIsRunningOnBuildAgent=true
 ```
 Make sure to run the commandline is run in the same folder that the solution file resides in.
