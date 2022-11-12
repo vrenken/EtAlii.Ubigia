@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia
         /// <summary>
         /// The roots to create in the space.
         /// </summary>
-        public string[] RootsToCreate { get; }
+        public RootTemplate[] RootsToCreate { get; }
 
         /// <summary>
         /// The script to execute in order to create the space.
@@ -54,17 +54,17 @@ namespace EtAlii.Ubigia
                 requiredRoles: new [] { Role.User },
                 rootsToCreate: new[]
                 {
-                    "Tail",
-                    "Hierarchy",
-                    "Sequences",
-                    "Tag",
-                    "Time",
-                    "Communication",
-                    "Person",
-                    "Location",
-                    "Subscription",
-                    "Media",
-                    "Head",
+                    new RootTemplate("Tail", RootType.Tail),
+                    new RootTemplate("Hierarchy", RootType.Text),
+                    new RootTemplate("Sequences", RootType.Text),
+                    new RootTemplate("Tag", RootType.Text),
+                    new RootTemplate("Time", RootType.Time),
+                    new RootTemplate("Communication", RootType.Text),
+                    new RootTemplate("Person", RootType.Text),
+                    new RootTemplate("Location", RootType.Location),
+                    new RootTemplate("Subscription", RootType.Text),
+                    new RootTemplate("Media", RootType.Text),
+                    new RootTemplate("Head", RootType.Head),
                 },
                 setupScript: new[] { "" }
             );
@@ -74,13 +74,13 @@ namespace EtAlii.Ubigia
                 requiredRoles: new [] { Role.System, },
                 rootsToCreate: new[]
                 {
-                    "Tail",
-                    "Providers",
-                    "Users",
-                    "Spaces",
-                    "Diagnostics",
-                    "Time",
-                    "Head",
+                    new RootTemplate("Tail", RootType.Tail),
+                    new RootTemplate("Providers", RootType.Text),
+                    new RootTemplate("Users", RootType.Text),
+                    new RootTemplate("Spaces", RootType.Text),
+                    new RootTemplate("Diagnostics", RootType.Text),
+                    new RootTemplate("Time", RootType.Time),
+                    new RootTemplate("Head", RootType.Head),
                 },
                 setupScript: new [] { "" }
             );
@@ -90,11 +90,11 @@ namespace EtAlii.Ubigia
                 requiredRoles: new [] { Role.User },
                 rootsToCreate: new[]
                 {
-                    "Tail",
-                    "Providers",
-                    "Time",
-                    "Data",
-                    "Head",
+                    new RootTemplate("Tail", RootType.Tail),
+                    new RootTemplate("Providers", RootType.Text),
+                    new RootTemplate("Time", RootType.Time),
+                    new RootTemplate("Data", RootType.Text),
+                    new RootTemplate("Head", RootType.Head),
                 },
                 setupScript: new [] { "" }
             );
@@ -104,12 +104,12 @@ namespace EtAlii.Ubigia
                 requiredRoles: new [] {Role.User },
                 rootsToCreate: new[]
                 {
-                    "Tail",
-                    "Providers",
-                    "Users",
-                    "Spaces",
-                    "Time",
-                    "Head",
+                    new RootTemplate("Tail", RootType.Tail),
+                    new RootTemplate("Providers", RootType.Text),
+                    new RootTemplate("Users", RootType.Text),
+                    new RootTemplate("Spaces", RootType.Text),
+                    new RootTemplate("Time", RootType.Time),
+                    new RootTemplate("Head", RootType.Head),
                 },
                 setupScript: new[] { "" }
             );
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia
         private SpaceTemplate(
             string name,
             string[] requiredRoles,
-            string[] rootsToCreate,
+            RootTemplate[] rootsToCreate,
             string[] setupScript)
         {
             Name = name;

@@ -26,13 +26,18 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
                 .ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
             var name = "TestRoot";
+            var rootType = new RootType(Guid.NewGuid().ToString());
+
             // Act.
-            var root = await connection.Roots.Data.Add(name).ConfigureAwait(false);
+            var root = await connection.Roots.Data
+                .Add(name, rootType)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
             Assert.NotEqual(Guid.Empty,root.Id);
             Assert.Equal(name,root.Name);
+            Assert.Equal(rootType, root.Type);
         }
 
         [Fact(Skip = "Results differ between SignalR/Grpc/REST")]
@@ -45,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             await connection.Open().ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Roots.Data.Add(null).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await connection.Roots.Data.Add(null, new RootType(Guid.NewGuid().ToString())).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface ILogicalRootSet
     {
-        Task<Root> Add(string name);
+        Task<Root> Add(string name, RootType rootType);
         Task Remove(Guid id);
         Task<Root> Change(Guid rootId, string rootName);
         Task<Root> Get(string rootName);

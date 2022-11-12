@@ -18,11 +18,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         }
 
         /// <inheritdoc />
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             var root = new Root
             {
                 Name = name,
+                Type = rootType,
             };
             var result = await _functionalContext.Roots
                 .Add(Connection.Space.Id, root)

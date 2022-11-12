@@ -19,9 +19,11 @@ namespace EtAlii.Ubigia.Api.Logical
             _fabric = fabric;
         }
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
-            return await _fabric.Roots.Add(name).ConfigureAwait(false);
+            return await _fabric.Roots
+                .Add(name, rootType)
+                .ConfigureAwait(false);
         }
 
         public async Task Remove(Guid id)

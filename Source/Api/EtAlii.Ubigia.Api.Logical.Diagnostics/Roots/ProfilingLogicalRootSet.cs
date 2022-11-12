@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _decoree = decoree;
         }
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
-            return await _decoree.Add(name).ConfigureAwait(false);
+            return await _decoree.Add(name, rootType).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid id)

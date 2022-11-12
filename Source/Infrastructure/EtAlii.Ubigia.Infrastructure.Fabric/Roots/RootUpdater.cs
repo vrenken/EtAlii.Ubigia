@@ -25,13 +25,19 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             if (rootToUpdate.Name != updatedRoot.Name || rootToUpdate.Identifier != updatedRoot.Identifier)
             {
                 rootToUpdate.Name = updatedRoot.Name;
-                rootToUpdate.Identifier = updatedRoot.Identifier == Identifier.Empty ? rootToUpdate.Identifier : updatedRoot.Identifier;
+                rootToUpdate.Identifier = updatedRoot.Identifier == Identifier.Empty
+                    ? rootToUpdate.Identifier
+                    : updatedRoot.Identifier;
+
+                // RT2022: We cannot change the root type yet.
+                // Currently there is no way we can change the root type. Let's consider this in the future.
+                updatedRoot.Type = rootToUpdate.Type;
 
                 var containerId = _storage.ContainerProvider.ForRoots(spaceId);
-                _storage.Items.Store(updatedRoot, rootId, containerId);
+                _storage.Items.Store(rootToUpdate, rootId, containerId);
             }
 
-            return updatedRoot;
+            return rootToUpdate;
         }
     }
 }

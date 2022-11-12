@@ -8,11 +8,12 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
     internal class RestRootDataClient : RestClientBase, IRootDataClient<IRestSpaceTransport>
     {
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             var root = new Root
             {
                 Name = name,
+                Type = rootType
             };
 
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString());
@@ -32,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             {
                 Id = rootId,
                 Name = rootName,
+                Type = RootType.None // RT2022: We cannot change the root type yet.
             };
 
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString(), UriParameter.RootId, rootId.ToString());

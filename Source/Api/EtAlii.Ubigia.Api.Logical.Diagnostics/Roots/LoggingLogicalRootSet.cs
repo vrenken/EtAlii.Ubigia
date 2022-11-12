@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _decoree = decoree;
         }
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             _logger.Debug("Adding root {RootName}", name);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Add(name).ConfigureAwait(false);
+            var result = await _decoree.Add(name, rootType).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Added root {@RootName} (Duration: {Duration}ms)", result, duration);

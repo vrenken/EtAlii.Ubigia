@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Transport
     public sealed class RootDataClientStub : IRootDataClient
     {
         /// <inheritdoc />
-        public Task<Root> Add(string name)
+        public Task<Root> Add(string name, RootType rootType)
         {
             return Task.FromResult<Root>(null);
         }

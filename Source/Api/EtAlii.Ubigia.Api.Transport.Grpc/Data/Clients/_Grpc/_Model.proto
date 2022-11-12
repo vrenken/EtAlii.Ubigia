@@ -44,7 +44,8 @@ message Root
 {
 	Guid Id = 1;
 	string Name = 2;
-	Identifier Identifier = 3;
+	string type = 3;
+	Identifier Identifier = 4;
 }
 
 message Identifier

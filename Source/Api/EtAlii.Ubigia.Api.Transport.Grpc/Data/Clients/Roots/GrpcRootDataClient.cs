@@ -13,12 +13,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         private RootGrpcService.RootGrpcServiceClient _client;
         private IGrpcSpaceTransport _transport;
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             try
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
-                var root = new Root { Name = name };
+                var root = new Root { Name = name, Type = rootType };
                 var request = new RootPostSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
                 var response = await _client.PostAsync(request, metadata);
                 return response.Root.ToLocal();
@@ -48,7 +48,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             try
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
-                var root = new Root { Id = rootId, Name = rootName };
+                var root = new Root
+                {
+                    Id = rootId,
+                    Name = rootName,
+                    Type = RootType.None // RT2022: We cannot change the root type yet.
+                };
                 var request = new RootSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
                 var response = await _client.PutAsync(request, metadata);
                 return response.Root.ToLocal();

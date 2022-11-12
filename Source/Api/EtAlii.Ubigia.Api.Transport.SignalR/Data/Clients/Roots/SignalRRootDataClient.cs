@@ -17,11 +17,12 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             _invoker = invoker;
         }
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             var root = new Root
             {
                 Name = name,
+                Type = rootType,
             };
             return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "Post", Connection.Space.Id, root).ConfigureAwait(false);
         }
@@ -37,6 +38,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             {
                 Id = rootId,
                 Name = rootName,
+                Type = RootType.None // RT2022: We cannot change the root type yet.
             };
 
             return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "Put", Connection.Space.Id, rootId, root).ConfigureAwait(false);

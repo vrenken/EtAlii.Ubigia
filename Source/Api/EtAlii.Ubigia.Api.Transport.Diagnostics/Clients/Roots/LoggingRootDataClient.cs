@@ -27,12 +27,14 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             await _client.Disconnect().ConfigureAwait(false);
         }
 
-        public async Task<Root> Add(string name)
+        public async Task<Root> Add(string name, RootType rootType)
         {
             _logger.Debug("Adding root (Name: {RootName})", name);
             var start = Environment.TickCount;
 
-            var root = await _client.Add(name).ConfigureAwait(false);
+            var root = await _client
+                .Add(name, rootType)
+                .ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Added root (Name: {RootName} Duration: {Duration}ms)", name, duration);
