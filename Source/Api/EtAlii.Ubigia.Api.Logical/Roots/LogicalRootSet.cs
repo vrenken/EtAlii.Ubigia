@@ -19,36 +19,16 @@ namespace EtAlii.Ubigia.Api.Logical
             _fabric = fabric;
         }
 
-        public async Task<Root> Add(string name, RootType rootType)
-        {
-            return await _fabric.Roots
-                .Add(name, rootType)
-                .ConfigureAwait(false);
-        }
+        public Task<Root> Add(string name, RootType rootType) => _fabric.Roots.Add(name, rootType);
 
-        public async Task Remove(Guid id)
-        {
-            await _fabric.Roots.Remove(id).ConfigureAwait(false);
-        }
+        public Task Remove(Guid id) => _fabric.Roots.Remove(id);
 
-        public async Task<Root> Change(Guid rootId, string rootName)
-        {
-            return await _fabric.Roots.Change(rootId, rootName).ConfigureAwait(false);
-        }
+        public Task<Root> Change(Guid rootId, string rootName) => _fabric.Roots.Change(rootId, rootName);
 
-        public async Task<Root> Get(string rootName)
-        {
-            return await _fabric.Roots.Get(rootName).ConfigureAwait(false);
-        }
+        public Task<Root> Get(string rootName) => _fabric.Roots.Get(rootName);
 
-        public async Task<Root> Get(Guid rootId)
-        {
-            return await _fabric.Roots.Get(rootId).ConfigureAwait(false);
-        }
+        public Task<Root> Get(Guid rootId) => _fabric.Roots.Get(rootId);
 
-        public IAsyncEnumerable<Root> GetAll()
-        {
-            return _fabric.Roots.GetAll();
-        }
+        public IAsyncEnumerable<Root> GetAll() => _fabric.Roots.GetAll();
     }
 }
