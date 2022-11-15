@@ -16,7 +16,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             _timePreparer = timePreparer;
 
-            Template = new PathSubjectPart[] {
+            Template = new PathSubjectPart[]
+            {
                     new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
