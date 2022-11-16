@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             };
         }
 
-        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Person"), new ParentPathSubjectPart() }
+            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(root), new ParentPathSubjectPart() }
                .Concat(match)
                .Concat(rest)
                .ToArray();

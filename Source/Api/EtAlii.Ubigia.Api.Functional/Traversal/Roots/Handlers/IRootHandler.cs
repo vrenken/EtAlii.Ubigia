@@ -8,6 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
 
         PathSubjectPart[] Template { get; }
-        void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output);
+        void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output);
     }
 }

@@ -15,11 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Template = Array.Empty<PathSubjectPart>();
         }
 
-        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var hasMatch = match.Any();
             var hasRest = rest.Any();
-            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Providers")}.AsQueryable();
+            //var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Providers")}.AsQueryable();
+            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(root)}.AsQueryable();
 
             // We only add the isparentof separator when no match or rest is available.
             if (hasMatch || hasRest)

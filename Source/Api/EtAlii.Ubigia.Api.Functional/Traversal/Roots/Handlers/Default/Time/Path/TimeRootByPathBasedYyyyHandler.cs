@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             };
         }
 
-        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var year = int.Parse(match[0].ToString());
 
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var parts = new PathSubjectPart[]
                 {
-                    new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart(root),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
                     new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // month
                     new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // day

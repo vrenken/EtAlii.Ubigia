@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}\d{3}") };
         }
 
-        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var timeString = match[0].ToString();
             var year = int.Parse(timeString.Substring(0, 4));
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var parts = new PathSubjectPart[]
                 {
-                    new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart(root),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),

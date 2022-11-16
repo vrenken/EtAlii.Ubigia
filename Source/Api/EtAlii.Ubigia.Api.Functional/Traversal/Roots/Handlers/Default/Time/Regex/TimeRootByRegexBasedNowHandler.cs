@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"now") };
         }
 
-        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var time = DateTime.Now;
 
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var parts = new PathSubjectPart[]
                 {
-                    new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart(root),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
                     new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
