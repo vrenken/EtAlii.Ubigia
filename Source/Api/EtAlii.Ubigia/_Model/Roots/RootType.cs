@@ -19,6 +19,13 @@ public readonly record struct RootType(string Value)
     public static readonly RootType Time = new("EtAlii.Api.Roots.Time");
     public static readonly RootType Text = new("EtAlii.Api.Roots.Text");
     public static readonly RootType Location = new("EtAlii.Api.Roots.Location");
+
+    public static readonly RootType Person = new("EtAlii.Api.Roots.Person");
+    public static readonly RootType Provider = new("EtAlii.Api.Roots.Provider");
+    public static readonly RootType Media = new("EtAlii.Api.Roots.Media");
+
     public static readonly RootType Tail = new("EtAlii.Api.Roots.Tail");
     public static readonly RootType Head = new("EtAlii.Api.Roots.Head");
+
+    public override string ToString() => Value;
 }
