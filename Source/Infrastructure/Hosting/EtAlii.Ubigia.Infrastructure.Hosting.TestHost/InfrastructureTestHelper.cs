@@ -68,6 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             return new()
             {
                 Name = Guid.NewGuid().ToString(),
+                Type = RootType.Text,
             };
         }
 
