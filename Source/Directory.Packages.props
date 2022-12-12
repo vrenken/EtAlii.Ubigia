@@ -19,11 +19,11 @@
     <PackageVersion Include="Core.System.Configuration.Install" Version="1.1.0" />
     <PackageVersion Include="DockerizedTesting" Version="1.2.1" />
 
-    <PackageVersion Include="Google.Protobuf" Version="3.21.10" />
+    <PackageVersion Include="Google.Protobuf" Version="3.21.11" />
     <PackageVersion Include="Grpc" Version="2.46.5" />
     <PackageVersion Include="Grpc.AspNetCore" Version="2.50.0" />
     <PackageVersion Include="Grpc.Net.Client" Version="2.50.0" />
-    <PackageVersion Include="Grpc.Tools" Version="2.50.0" />
+    <PackageVersion Include="Grpc.Tools" Version="2.51.0" />
 
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.2" />
 
