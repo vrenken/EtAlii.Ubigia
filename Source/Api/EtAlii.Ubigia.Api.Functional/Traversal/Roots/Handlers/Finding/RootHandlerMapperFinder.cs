@@ -3,22 +3,31 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class RootHandlerMapperFinder : IRootHandlerMapperFinder
     {
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
+        private readonly IScriptProcessingContext _processingContext;
 
-        public RootHandlerMapperFinder(IRootHandlerMappersProvider rootHandlerMappersProvider)
+        public RootHandlerMapperFinder(
+            IScriptProcessingContext processingContext,
+            IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
+            _processingContext = processingContext;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
         }
 
-        public IRootHandlerMapper Find(string root)
+        public async Task<IRootHandlerMapper> Find(string rootName)
         {
-            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => string.Equals(rhp.Name, root, System.StringComparison.OrdinalIgnoreCase));
+            var root = await _processingContext.Logical.Roots
+                .Get(rootName)
+                .ConfigureAwait(false);
+
+            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => rhp.Type == root.Type);
             if (rootHandlerMapper == null)
             {
-                throw new ScriptParserException($"No root handler found with name '{root}'");
+                throw new ScriptParserException($"No root handler found for root '{rootName}' with type '{root.Type}'");
             }
             return rootHandlerMapper;
         }

@@ -17,9 +17,11 @@ internal class RootContext : IRootContext
         _connection = connection;
     }
 
-    public async Task<Root> Add(string name, RootType rootType)
+    public async Task<Root> Add(string rootName, RootType rootType)
     {
-        return await _connection.Roots.Data.Add(name, rootType).ConfigureAwait(false);
+        // RCI2022: We want to make roots case insensitive.
+        rootName = rootName.ToUpper();
+        return await _connection.Roots.Data.Add(rootName, rootType).ConfigureAwait(false);
     }
 
     public async Task Remove(Guid id)
@@ -29,11 +31,15 @@ internal class RootContext : IRootContext
 
     public async Task<Root> Change(Guid rootId, string rootName)
     {
+        // RCI2022: We want to make roots case insensitive.
+        rootName = rootName.ToUpper();
         return await _connection.Roots.Data.Change(rootId, rootName).ConfigureAwait(false);
     }
 
     public async Task<Root> Get(string rootName)
     {
+        // RCI2022: We want to make roots case insensitive.
+        rootName = rootName.ToUpper();
         return await _connection.Roots.Data.Get(rootName).ConfigureAwait(false);
     }
 

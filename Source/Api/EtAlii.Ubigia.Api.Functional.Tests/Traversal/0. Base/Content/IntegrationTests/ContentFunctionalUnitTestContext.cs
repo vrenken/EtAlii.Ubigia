@@ -82,8 +82,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public async Task<Root> GetRoot(ILogicalContext logicalContext, string rootName)
         {
-            return await logicalContext.Roots.GetAll()
-                .SingleOrDefaultAsync(r => r.Name == rootName)
+            return await logicalContext.Roots
+                .GetAll()
+                // RCI2022: We want to make roots case insensitive.
+                .SingleOrDefaultAsync(r => string.Compare(r.Name, rootName, StringComparison.OrdinalIgnoreCase) == 0)
                 .ConfigureAwait(false);
         }
 

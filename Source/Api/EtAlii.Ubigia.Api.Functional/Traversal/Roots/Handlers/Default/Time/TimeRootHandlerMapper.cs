@@ -4,14 +4,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal class TimeRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get; }
+        public RootType Type => RootType.Time;
 
         public IRootHandler[] AllowedRootHandlers { get; }
 
         public TimeRootHandlerMapper()
         {
-            Name = "time";
-
             var timePreparer = new TimePreparer();
 
            AllowedRootHandlers = new IRootHandler[]

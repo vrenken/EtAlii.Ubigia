@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
@@ -48,8 +47,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public async Task<Root> GetRoot(ILogicalContext logicalContext, string rootName)
         {
-            return await logicalContext.Roots.GetAll()
-                .SingleOrDefaultAsync(r => r.Name == rootName)
+            return await logicalContext.Roots
+                .Get(rootName)
                 .ConfigureAwait(false);
         }
 

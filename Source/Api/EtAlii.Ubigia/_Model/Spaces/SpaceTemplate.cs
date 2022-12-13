@@ -57,13 +57,14 @@ namespace EtAlii.Ubigia
                     new RootTemplate("Tail", RootType.Tail),
                     new RootTemplate("Hierarchy", RootType.Text),
                     new RootTemplate("Sequences", RootType.Text),
+                    new RootTemplate("Data", RootType.Text),
                     new RootTemplate("Tag", RootType.Text),
                     new RootTemplate("Time", RootType.Time),
                     new RootTemplate("Communication", RootType.Text),
-                    new RootTemplate("Person", RootType.Text),
+                    new RootTemplate("Person", RootType.Person),
                     new RootTemplate("Location", RootType.Location),
                     new RootTemplate("Subscription", RootType.Text),
-                    new RootTemplate("Media", RootType.Text),
+                    new RootTemplate("Media", RootType.Media),
                     new RootTemplate("Head", RootType.Head),
                 },
                 setupScript: new[] { "" }
@@ -75,8 +76,8 @@ namespace EtAlii.Ubigia
                 rootsToCreate: new[]
                 {
                     new RootTemplate("Tail", RootType.Tail),
-                    new RootTemplate("Providers", RootType.Text),
-                    new RootTemplate("Users", RootType.Text),
+                    new RootTemplate("Providers", RootType.Provider),
+                    new RootTemplate("Users", RootType.Person),
                     new RootTemplate("Spaces", RootType.Text),
                     new RootTemplate("Diagnostics", RootType.Text),
                     new RootTemplate("Time", RootType.Time),
@@ -91,7 +92,7 @@ namespace EtAlii.Ubigia
                 rootsToCreate: new[]
                 {
                     new RootTemplate("Tail", RootType.Tail),
-                    new RootTemplate("Providers", RootType.Text),
+                    new RootTemplate("Providers", RootType.Provider),
                     new RootTemplate("Time", RootType.Time),
                     new RootTemplate("Data", RootType.Text),
                     new RootTemplate("Head", RootType.Head),
@@ -105,8 +106,8 @@ namespace EtAlii.Ubigia
                 rootsToCreate: new[]
                 {
                     new RootTemplate("Tail", RootType.Tail),
-                    new RootTemplate("Providers", RootType.Text),
-                    new RootTemplate("Users", RootType.Text),
+                    new RootTemplate("Providers", RootType.Provider),
+                    new RootTemplate("Users", RootType.Person),
                     new RootTemplate("Spaces", RootType.Text),
                     new RootTemplate("Time", RootType.Time),
                     new RootTemplate("Head", RootType.Head),

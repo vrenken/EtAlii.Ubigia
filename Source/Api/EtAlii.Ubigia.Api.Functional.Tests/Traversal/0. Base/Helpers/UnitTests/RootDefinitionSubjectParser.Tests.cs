@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(text, result.Type);
+            Assert.Equal(new RootType(text), result.Type);
         }
 
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(text, result.Type);
+            Assert.Equal(new RootType(text), result.Type);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(text, result.Type);
+            Assert.Equal(new RootType(text), result.Type);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(type, result.Type);
+            Assert.Equal(new RootType(text), result.Type);
             //Assert.NotNull(result.Schema)
             //Assert.Equal(schema.ToUpper(), result.Schema.ToString())
         }
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(type, result.Type);
+            Assert.Equal(new RootType(text), result.Type);
             //Assert.NotNull(result.Schema)
             //Assert.Equal(schema.ToUpper(), result.Schema.ToString())
         }

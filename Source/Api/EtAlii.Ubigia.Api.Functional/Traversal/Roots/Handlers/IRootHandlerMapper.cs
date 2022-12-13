@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public interface IRootHandlerMapper
     {
-        string Name { get; }
+        RootType Type { get; }
 
         IRootHandler[] AllowedRootHandlers { get; }
 

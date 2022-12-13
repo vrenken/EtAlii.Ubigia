@@ -2,17 +2,17 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-internal class LocationRootHandlerMapper : IRootHandlerMapper
+internal class TextRootHandlerMapper : IRootHandlerMapper
 {
-    public RootType Type => RootType.Location;
+    public RootType Type => RootType.Text;
 
     public IRootHandler[] AllowedRootHandlers { get; }
 
-    public LocationRootHandlerMapper()
+    public TextRootHandlerMapper()
     {
         AllowedRootHandlers = new IRootHandler[]
         {
-            new LocationRootByEmptyHandler(), // only root, no arguments, should be at the end.
+            new TextRootByEmptyHandler(), // only root, no arguments, should be at the end.
         };
     }
 }

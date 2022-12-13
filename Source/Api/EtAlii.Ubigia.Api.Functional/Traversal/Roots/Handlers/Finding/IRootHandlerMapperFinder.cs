@@ -2,8 +2,10 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System.Threading.Tasks;
+
     internal interface IRootHandlerMapperFinder
     {
-        IRootHandlerMapper Find(string root);
+        Task<IRootHandlerMapper> Find(string rootName);
     }
 }

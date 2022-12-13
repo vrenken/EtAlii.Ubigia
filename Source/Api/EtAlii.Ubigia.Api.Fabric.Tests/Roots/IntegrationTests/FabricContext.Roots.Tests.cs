@@ -52,7 +52,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             // Assert.
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
         }
 
@@ -70,7 +71,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
                 // Assert.
                 Assert.NotNull(root);
-                Assert.Equal(name, root.Name);
+                // RCI2022: We want to make roots case insensitive.
+                Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
                 Assert.Equal(rootType, root.Type);
             }
         }
@@ -88,7 +90,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             // Assert.
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
         }
 
@@ -105,7 +108,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             // Assert.
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
         }
 
@@ -124,7 +128,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
                 // Assert.
                 Assert.NotNull(root);
-                Assert.Equal(name, root.Name);
+                // RCI2022: We want to make roots case insensitive.
+                Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
                 Assert.Equal(rootType, root.Type);
             }
         }
@@ -141,7 +146,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 var root = await _fabricContext.Roots.Add(name, rootType).ConfigureAwait(false);
 
                 Assert.NotNull(root);
-                Assert.Equal(name, root.Name);
+                // RCI2022: We want to make roots case insensitive.
+                Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
                 Assert.Equal(rootType, root.Type);
                 roots.Add(root);
             }
@@ -153,7 +159,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
                 // Assert.
                 Assert.NotNull(retrievedRoot);
-                Assert.Equal(root.Name, retrievedRoot.Name);
+                // RCI2022: We want to make roots case insensitive.
+                Assert.Equal(root.Name, retrievedRoot.Name, StringComparer.OrdinalIgnoreCase);
             }
         }
         [Fact]
@@ -184,7 +191,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 var root = await _fabricContext.Roots.Add(name, rootType).ConfigureAwait(false);
 
                 Assert.NotNull(root);
-                Assert.Equal(name, root.Name);
+                // RCI2022: We want to make roots case insensitive.
+                Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
                 Assert.Equal(rootType, root.Type);
                 roots.Add(root);
             }
@@ -214,10 +222,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var root = await _fabricContext.Roots.Add(name, rootType).ConfigureAwait(false);
 
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
             name = Guid.NewGuid().ToString();
 
@@ -226,10 +236,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             // Assert.
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
         }
 
@@ -242,7 +254,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var root = await _fabricContext.Roots.Add(name, rootType).ConfigureAwait(false);
 
             Assert.NotNull(root);
-            Assert.Equal(name, root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(name, root.Name, StringComparer.OrdinalIgnoreCase);
             Assert.Equal(rootType, root.Type);
             root = await _fabricContext.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);

@@ -4,6 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal class PersonRootHandlerMapper : IRootHandlerMapper
     {
+        public RootType Type => RootType.Person;
+
         public string Name { get; }
 
         public IRootHandler[] AllowedRootHandlers { get; }

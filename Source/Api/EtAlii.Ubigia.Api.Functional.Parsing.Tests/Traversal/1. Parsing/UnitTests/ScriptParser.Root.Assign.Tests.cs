@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var sequence = script.Sequences.First();
             Assert.Equal("time", sequence.Parts.Skip(0).Cast<RootSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
-            Assert.Equal("EtAlii.Ubigia.Roots.Time", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
+            Assert.Equal(new RootType("EtAlii.Ubigia.Roots.Time"), sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var sequence = script.Sequences.First();
             Assert.Equal("specialtime", sequence.Parts.Skip(0).Cast<RootSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
-            Assert.Equal("EtAlii.Ubigia.Roots.Time", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
+            Assert.Equal(new RootType("EtAlii.Ubigia.Roots.Time"), sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var sequence = script.Sequences.First();
             Assert.Equal("projects", sequence.Parts.Skip(0).Cast<RootSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
-            Assert.Equal("EtAlii.Ubigia.Roots.Object", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
+            Assert.Equal(new RootType("EtAlii.Ubigia.Roots.Object"), sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
         }
 
 
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var sequence = script.Sequences.First();
             Assert.Equal("projects", sequence.Parts.Skip(0).Cast<RootSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
-            Assert.Equal("EtAlii.Ubigia.Roots.Object", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
+            Assert.Equal(new RootType("EtAlii.Ubigia.Roots.Object"), sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Type);
             //Assert.Equal("/[WORDS]/[NUMBER]", sequence.Parts.Skip(2).Cast<RootDefinitionSubject>().First().Schema.ToString()); // TODO, should be types
         }
     }

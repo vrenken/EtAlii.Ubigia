@@ -30,7 +30,7 @@ public sealed class Root : IIdentifiable, IBinarySerializable
     public void Write(BinaryWriter writer)
     {
         writer.Write(Id);
-        writer.Write(Name);
+        writer.Write(Name.ToUpper()); // RCI2022: We want to make roots case insensitive.
         writer.Write(Type.Value);
         Identifier.Write(writer, Identifier);
     }

@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 .ToArray();
 
             var doubles = rootHandlerMappers
-                .GroupBy(fh => fh.Name)
+                .GroupBy(fh => fh.Type)
                 .Where(g => g.Count() > 1)
                 .Select(g => g.Key)
                 .ToArray();

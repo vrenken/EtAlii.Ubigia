@@ -26,11 +26,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             parameters.LeftInput
                 .Cast<RootSubject>()
                 .SubscribeAsync(
-                onError: (e) => parameters.Output.OnError(e),
+                onError: e => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: async (root) =>
+                onNext: async root =>
                 {
-                    await _context.Logical.Roots.Add(root.Name).ConfigureAwait(false);
+                    var rootType = new RootType(((StringConstantSubject)parameters.RightSubject).Value);
+                    await _context.Logical.Roots.Add(root.Name, rootType).ConfigureAwait(false);
                     parameters.Output.OnNext(root.Name);
                 });
             return Task.CompletedTask;

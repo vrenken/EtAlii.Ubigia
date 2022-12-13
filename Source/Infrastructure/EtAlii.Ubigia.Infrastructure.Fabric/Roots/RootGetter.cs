@@ -42,7 +42,10 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         {
             var roots = GetAll(spaceId);
             var root = await roots
-                .SingleOrDefaultAsync(r => r.Name == name)
+                // RCI2022: We want to make roots case insensitive.
+                // Fetching roots by name should be done using a case insensitive search.
+                //.SingleOrDefaultAsync(r => string.Compare(r.Name, name, StringComparison.InvariantCultureIgnoreCase) == 0)
+                .SingleOrDefaultAsync(r => string.Compare(r.Name, name, StringComparison.OrdinalIgnoreCase) == 0)
                 .ConfigureAwait(false);
             return root;
         }

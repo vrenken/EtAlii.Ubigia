@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             // Duplicate names.
             var invalidNamedRootHandlerMappers = rootHandlerMappersProvider.RootHandlerMappers
-                .GroupBy(fh => fh.Name)
+                .GroupBy(fh => fh.Type)
                 .Where(fhg => fhg.Count() > 1)
                 .Select(fhg => fhg.First())
                 .ToArray();
@@ -38,19 +38,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             if (invalidNamedRootHandlerMappers.Any())
             {
                 var message =
-                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with the same name: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with the same name: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Type)) : invalidNamedRootHandlerMappers.Single().Type)}";
                 throw new InvalidOperationException(message);
             }
 
             // Invalid names.
             invalidNamedRootHandlerMappers = rootHandlerMappersProvider.RootHandlerMappers
-                .Where(fh => fh.Name.ToCharArray().Any(c => !char.IsLetterOrDigit(c)))
+                .Where(fh => fh.Type.Value.ToCharArray().Any(c => !char.IsLetterOrDigit(c)))
                 .ToArray();
 
             if (invalidNamedRootHandlerMappers.Any())
             {
                 var message =
-                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with invalid naming: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with invalid naming: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Type)) : invalidNamedRootHandlerMappers.Single().Type)}";
                 throw new InvalidOperationException(message);
             }
         }
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     if (areEqual && second != first)
                     {
                         var message =
-                            $"A root handler mapper with multiple matching allowed paths was found: {rootHandlerMapper.Name}";
+                            $"A root handler mapper with multiple matching allowed paths was found: {rootHandlerMapper.Type}";
                         throw new InvalidOperationException(message);
                     }
                 }

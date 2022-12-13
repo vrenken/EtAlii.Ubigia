@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier).ConfigureAwait(false);
 
                 await _rootUpdater
-                    .Update(spaceId, DefaultRoot.Head, nextHeadIdentifier)
+                    .Update(spaceId, PositionalRoot.Head, nextHeadIdentifier)
                     .ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
 
@@ -90,21 +90,21 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             if (_headIsInitialized)
             {
                 // load from root "Head"
-                var root = await _context.Roots.Get(spaceId, DefaultRoot.Head).ConfigureAwait(false);
+                var root = await _context.Roots.Get(spaceId, PositionalRoot.Head.Name).ConfigureAwait(false);
                 headIdentifier = root?.Identifier ?? Identifier.Empty;
 
                 if (headIdentifier == Identifier.Empty)
                 {
                     // Determine from container storage.
                     headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
-                    await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
+                    await _rootUpdater.Update(spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
                 }
             }
             else
             {
                 // Determine from container storage.
                 headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
-                await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
+                await _rootUpdater.Update(spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
                 _headIsInitialized = true;
             }
 

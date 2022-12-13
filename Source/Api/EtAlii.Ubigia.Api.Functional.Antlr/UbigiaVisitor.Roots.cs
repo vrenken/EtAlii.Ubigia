@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         public override object VisitSubject_root_definition(UbigiaParser.Subject_root_definitionContext context)
         {
             var type = context.GetText();
-            return new RootDefinitionSubject(type);
+            return new RootDefinitionSubject(new RootType(type));
         }
     }
 }

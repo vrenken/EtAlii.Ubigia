@@ -4,14 +4,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     internal sealed class InvalidTestRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get; }
+        public RootType Type { get; } = new("TestRoot");
 
         public IRootHandler[] AllowedRootHandlers { get; }
 
         public InvalidTestRootHandlerMapper()
         {
-            Name = "TestRoot";
-
             var timePreparer = new TimePreparer();
 
             AllowedRootHandlers = new IRootHandler[]

@@ -4,10 +4,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public sealed class RootDefinitionSubject : Subject
     {
-        public readonly string Type;
+        public readonly RootType Type;
         //public readonly PathSubject Schema
 
-        public RootDefinitionSubject(string type)//, PathSubject schema)
+        public RootDefinitionSubject(RootType type)//, PathSubject schema)
         {
             Type = type;
             //Schema = schema
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override string ToString()
         {
-            return Type;//Schema == null ? $"[Type]" : $"[Type]:[Schema]"
+            return Type.Value;//Schema == null ? $"[Type]" : $"[Type]:[Schema]"
         }
     }
 }

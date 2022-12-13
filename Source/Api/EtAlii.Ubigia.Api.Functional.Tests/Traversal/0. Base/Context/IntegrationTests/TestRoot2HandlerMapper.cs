@@ -6,13 +6,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     internal sealed class TestRoot2HandlerMapper : IRootHandlerMapper
     {
-        public string Name { get; }
+        public RootType Type { get; } = new("TestRoot2");
 
         public IRootHandler[] AllowedRootHandlers { get; }
 
         public TestRoot2HandlerMapper()
         {
-            Name = "TestRoot2";
             AllowedRootHandlers = Array.Empty<IRootHandler>();
         }
     }

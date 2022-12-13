@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var quotedTextNode = _nodeFinder.FindFirst(node, _typeValueParser.Id);
             var type = _typeValueParser.Parse(quotedTextNode);
 
-            return new RootDefinitionSubject(type);
+            return new RootDefinitionSubject(new RootType(type));
         }
 
         public bool CanParse(LpNode node)

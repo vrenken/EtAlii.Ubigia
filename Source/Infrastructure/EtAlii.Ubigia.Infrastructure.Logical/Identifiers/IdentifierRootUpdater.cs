@@ -14,12 +14,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _context = context;
         }
 
-        public async Task Update(Guid spaceId, string name, Identifier id)
+        public async Task Update(Guid spaceId, RootTemplate rootTemplate, Identifier id)
         {
-            var root = await _context.Roots.Get(spaceId, name).ConfigureAwait(false);
+            var root = await _context.Roots.Get(spaceId, rootTemplate.Name).ConfigureAwait(false);
             if (root == null)
             {
-                await _context.Roots.Add(spaceId, new Root { Name = name, Identifier = id }).ConfigureAwait(false);
+                // QUESTION: Should this be possible?
+                root = new Root
+                {
+                    // RCI2022: We want to make roots case insensitive.
+                    Name = rootTemplate.Name.ToUpper(),
+                    Identifier = id,
+                };
+                await _context.Roots.Add(spaceId, root).ConfigureAwait(false);
             }
             else
             {

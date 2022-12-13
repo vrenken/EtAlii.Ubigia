@@ -4,14 +4,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal class MediaRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get; }
+        public RootType Type => RootType.Media;
 
         public IRootHandler[] AllowedRootHandlers { get; }
 
         public MediaRootHandlerMapper()
         {
-            Name = "Media";
-
             AllowedRootHandlers = new IRootHandler[]
             {
                 // media:COMPANY/FAMILY/MODEL/NUMBER

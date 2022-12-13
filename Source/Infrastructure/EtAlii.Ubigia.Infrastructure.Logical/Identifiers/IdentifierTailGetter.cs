@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             // load from root "Tail"
 
             var root = await _context.Roots
-                .Get(spaceId, DefaultRoot.Tail)
+                .Get(spaceId, PositionalRoot.Tail.Name)
                 .ConfigureAwait(false);
             var tailIdentifier = root?.Identifier ?? Identifier.Empty;
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 // Determine from disk.
                 tailIdentifier = await DetermineTailFromDisk(spaceId).ConfigureAwait(false);
                 await _rootUpdater
-                    .Update(spaceId, DefaultRoot.Tail, tailIdentifier)
+                    .Update(spaceId, PositionalRoot.Tail, tailIdentifier)
                     .ConfigureAwait(false);
             }
             return tailIdentifier;
