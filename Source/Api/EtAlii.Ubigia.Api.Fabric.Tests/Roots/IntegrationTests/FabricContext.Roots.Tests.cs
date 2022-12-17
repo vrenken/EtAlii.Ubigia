@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var rootType = new RootType(Guid.NewGuid().ToString());
+            var rootType = RootType.Text;
             var root = await _fabricContext.Roots.Add(name, rootType).ConfigureAwait(false);
 
             Assert.NotNull(root);
@@ -232,7 +232,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             name = Guid.NewGuid().ToString();
 
             // Act.
-            root = await _fabricContext.Roots.Change(root.Id, name).ConfigureAwait(false);
+            root = await _fabricContext.Roots.Change(root.Id, name, rootType).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -287,9 +287,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             // Arrange.
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
+            var rootType = RootType.Text;
 
             // Act.
-            var act = new Func<Task>(async () => await _fabricContext.Roots.Change(id, name).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabricContext.Roots.Change(id, name, rootType).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
