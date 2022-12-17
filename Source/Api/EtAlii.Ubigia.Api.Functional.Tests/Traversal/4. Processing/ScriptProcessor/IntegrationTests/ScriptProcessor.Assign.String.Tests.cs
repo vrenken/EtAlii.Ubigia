@@ -33,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Act.
             var lastSequence = await processor.Process(script, scope);
             await lastSequence.Output.ToArray();
+
             // Assert.
             Assert.Equal("Time", await scope.Variables["var1"].Value.SingleAsync());
         }
