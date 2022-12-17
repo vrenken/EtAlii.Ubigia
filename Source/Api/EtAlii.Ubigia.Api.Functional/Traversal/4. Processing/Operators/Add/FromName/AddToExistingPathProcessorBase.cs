@@ -43,8 +43,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = ItemToIdentifierConverter.Convert(o);
-                    await Add(leftId, pathToAdd, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    try
+                    {
+                        var leftId = ItemToIdentifierConverter.Convert(o);
+                        await Add(leftId, pathToAdd, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Unable to add to existing path";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
         }
 

@@ -38,7 +38,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     }
                     catch (Exception e)
                     {
-                        parameters.Output.OnError(e);
+                        var message = $"Unable to assign empty to root: {root.Name}";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
                     }
                 });
             return Task.CompletedTask;

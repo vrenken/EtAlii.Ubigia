@@ -36,8 +36,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope).ConfigureAwait(false);
-                    output.OnNext(entry);
+                    try
+                    {
+                        var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope).ConfigureAwait(false);
+                        output.OnNext(entry);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Failure converting path subject items for output";
+                        output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
         }
     }

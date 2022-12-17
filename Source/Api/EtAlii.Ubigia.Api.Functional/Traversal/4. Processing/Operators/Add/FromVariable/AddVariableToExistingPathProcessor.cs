@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -30,24 +31,32 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftIdentifier = _itemToIdentifierConverter.Convert(o);
-
-                    switch (rightResult)
+                    try
                     {
-                        case Identifier identifier:
-                            await AddFromIdentifier(leftIdentifier, identifier, parameters).ConfigureAwait(false);
-                            break;
-                        case IReadOnlyEntry entry:
-                            await AddFromIdentifier(leftIdentifier, entry.Id, parameters).ConfigureAwait(false);
-                            break;
-                        case Node node:
-                            await AddFromIdentifier(leftIdentifier, node.Id, parameters).ConfigureAwait(false);
-                            break;
-                        case string s:
-                            await AddFromString(leftIdentifier, s, parameters).ConfigureAwait(false);
-                            break;
-                        default:
-                            throw new ScriptProcessingException($"The {GetType().Name} requires a identifier or string to add");
+                        var leftIdentifier = _itemToIdentifierConverter.Convert(o);
+
+                        switch (rightResult)
+                        {
+                            case Identifier identifier:
+                                await AddFromIdentifier(leftIdentifier, identifier, parameters).ConfigureAwait(false);
+                                break;
+                            case IReadOnlyEntry entry:
+                                await AddFromIdentifier(leftIdentifier, entry.Id, parameters).ConfigureAwait(false);
+                                break;
+                            case Node node:
+                                await AddFromIdentifier(leftIdentifier, node.Id, parameters).ConfigureAwait(false);
+                                break;
+                            case string s:
+                                await AddFromString(leftIdentifier, s, parameters).ConfigureAwait(false);
+                                break;
+                            default:
+                                throw new ScriptProcessingException($"The {GetType().Name} requires a identifier or string to add");
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Unable to add variable to existing path";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
                     }
                 });
         }

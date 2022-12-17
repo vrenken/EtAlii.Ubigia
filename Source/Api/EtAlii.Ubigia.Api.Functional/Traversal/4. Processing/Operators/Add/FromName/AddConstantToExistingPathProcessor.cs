@@ -47,8 +47,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = _itemToIdentifierConverter.Convert(o);
-                    await Add(leftId, stringConstant, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    try
+                    {
+                        var leftId = _itemToIdentifierConverter.Convert(o);
+                        await Add(leftId, stringConstant, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Unable to add constant to existing path";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
             return Task.CompletedTask;
         }

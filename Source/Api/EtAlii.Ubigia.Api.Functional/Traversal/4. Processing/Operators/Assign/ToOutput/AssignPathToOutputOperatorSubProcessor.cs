@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Threading.Tasks;
 
     internal class AssignPathToOutputOperatorSubProcessor : IAssignPathToOutputOperatorSubProcessor
@@ -20,7 +21,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async o =>
                 {
-                    await _resultConverter.Convert(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    try
+                    {
+                        await _resultConverter.Convert(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Unable to assign path items as output";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
             return Task.CompletedTask;
         }

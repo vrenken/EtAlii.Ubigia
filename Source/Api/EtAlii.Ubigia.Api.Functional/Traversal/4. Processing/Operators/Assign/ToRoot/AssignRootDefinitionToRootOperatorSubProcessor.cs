@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
@@ -29,9 +30,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async root =>
                 {
-                    var rootDefinition = (RootDefinitionSubject)parameters.RightSubject;
-                    var createdRoot = await _context.Logical.Roots.Add(root.Name, rootDefinition.Type).ConfigureAwait(false);
-                    parameters.Output.OnNext(createdRoot.Identifier);
+                    try
+                    {
+                        var rootDefinition = (RootDefinitionSubject)parameters.RightSubject;
+                        var createdRoot = await _context.Logical.Roots.Add(root.Name, rootDefinition.Type).ConfigureAwait(false);
+                        parameters.Output.OnNext(createdRoot.Identifier);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = $"Unable to assign definition to root: {root.Name}";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
             return Task.CompletedTask;
         }

@@ -47,8 +47,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = _itemToIdentifierConverter.Convert(o);
-                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    try
+                    {
+                        var leftId = _itemToIdentifierConverter.Convert(o);
+                        await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    }
+                    catch (Exception e)
+                    {
+                        var message = "Unable to remove from relative path by name";
+                        parameters.Output.OnError(new InvalidOperationException(message, e));
+                    }
                 });
 
             //if [leftResult = = null]

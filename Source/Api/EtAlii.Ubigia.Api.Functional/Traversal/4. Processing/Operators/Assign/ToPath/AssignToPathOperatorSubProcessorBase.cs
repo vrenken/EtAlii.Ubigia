@@ -41,12 +41,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     onCompleted: () => parameters.Output.OnCompleted(),
                     onNext: async o =>
                     {
-                        var identifier = _itemToIdentifierConverter.Convert(o);
-                        var leftPathSubject = (PathSubject)parameters.LeftSubject;
-                        var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope).ConfigureAwait(false);
-                        var entry = await Assign(graphPath, identifier, value, parameters.Scope).ConfigureAwait(false);
-                        var result = await _entriesToDynamicNodesConverter.Convert(entry, parameters.Scope).ConfigureAwait(false);
-                        parameters.Output.OnNext(result);
+                        try
+                        {
+                            var identifier = _itemToIdentifierConverter.Convert(o);
+                            var leftPathSubject = (PathSubject)parameters.LeftSubject;
+                            var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope).ConfigureAwait(false);
+                            var entry = await Assign(graphPath, identifier, value, parameters.Scope).ConfigureAwait(false);
+                            var result = await _entriesToDynamicNodesConverter.Convert(entry, parameters.Scope).ConfigureAwait(false);
+                            parameters.Output.OnNext(result);
+                        }
+                        catch (Exception e)
+                        {
+                            var message = "Unable to assign to path";
+                            parameters.Output.OnError(new InvalidOperationException(message, e));
+                        }
                     });
         }
 
