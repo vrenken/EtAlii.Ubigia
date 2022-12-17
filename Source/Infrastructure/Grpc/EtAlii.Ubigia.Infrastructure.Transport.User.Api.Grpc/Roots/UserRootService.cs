@@ -83,6 +83,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
                 .Add(spaceId, root)
                 .ConfigureAwait(false);
 
+            if (root == null)
+            {
+                throw new InvalidOperationException("Unable to serve a Root POST client request");
+            }
             var response = new RootSingleResponse
             {
                 Root = root.ToWire()
