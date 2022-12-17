@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             if (nextPart != null)
             {
                 var nextPartExecutionPlanner = _sequencePartExecutionPlannerSelector.Select(nextPart);
-                leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out var _);
+                leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out _);
             }
 
             skipNext = true;
