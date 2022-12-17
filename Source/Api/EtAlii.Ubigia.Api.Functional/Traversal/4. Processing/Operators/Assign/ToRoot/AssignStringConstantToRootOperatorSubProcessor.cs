@@ -33,8 +33,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 {
                     try
                     {
-                        var rootType = new RootType(((StringConstantSubject)parameters.RightSubject).Value);
-                        await _context.Logical.Roots.Add(root.Name, rootType).ConfigureAwait(false);
+                        var existingRoot = await _context.Logical.Roots.Get(root.Name).ConfigureAwait(false);
+                        if (existingRoot == null)
+                        {
+                            var rootType = new RootType(((StringConstantSubject)parameters.RightSubject).Value);
+                            await _context.Logical.Roots.Add(root.Name, rootType).ConfigureAwait(false);
+                        }
+                        else
+                        {
+                            var rootType = new RootType(((StringConstantSubject)parameters.RightSubject).Value);
+                            await _context.Logical.Roots.Change(existingRoot.Id, root.Name, rootType).ConfigureAwait(false);
+                        }
                         parameters.Output.OnNext(root.Name);
                     }
                     catch (Exception e)
