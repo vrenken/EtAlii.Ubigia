@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
+    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Tests;
@@ -22,8 +23,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
+
         [Fact]
-        public async Task ScriptProcessor_Root_Assign_Time_Root()
+        public async Task ScriptProcessor_Root_Assign_Time_Root_Existing()
         {
             // Arrange.
             var scope = new ExecutionScope();
@@ -40,18 +42,48 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
             // Act.
+            var act = new Func<Task>(async () =>
+            {
+                var lastSequence = await processor.Process(script, scope);
+                var _ = await lastSequence.Output.ToArray();
+            });
+
+            // Assert.
+            await Assert.ThrowsAsync<InvalidOperationException>(act).ConfigureAwait(false);
+        }
+
+        [Fact]
+        public async Task ScriptProcessor_Root_Assign_Time_Root()
+        {
+            // Arrange.
+            var scope = new ExecutionScope();
+            var logicalOptions = await _testContext.Logical
+                .CreateLogicalOptionsWithConnection(true)
+                .ConfigureAwait(false);
+
+#pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
+            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+#pragma warning restore CA2007
+
+            const string query = "root:time2 <= EtAlii.Ubigia.Roots.Time";
+            var script = _parser.Parse(query, scope).Script;
+            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+            // Act.
             var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalContext, "time")
+                .GetRoot(logicalContext, "time2")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("time", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("time2", root.Name, StringComparer.OrdinalIgnoreCase);
+            Assert.Equal(new RootType("EtAlii.Ubigia.Roots.Time"), root.Type);
         }
 
         [Fact]
@@ -67,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
-            const string query = "root:time <= Time";
+            const string query = "root:time2 <= Time";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
@@ -77,13 +109,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             var root = await _testContext
-                .GetRoot(logicalContext, "time")
+                .GetRoot(logicalContext, "time2")
                 .ConfigureAwait(false);
             Assert.NotNull(script);
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("time", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("time2", root.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
@@ -115,7 +148,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("specialtime", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("specialtime", root.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
@@ -147,7 +181,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("specialtime", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("specialtime", root.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
@@ -179,7 +214,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("projects", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("projects", root.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
@@ -211,7 +247,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
             Assert.NotNull(root);
-            Assert.Equal("projects", root.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal("projects", root.Name, StringComparer.OrdinalIgnoreCase);
         }
     }
 }

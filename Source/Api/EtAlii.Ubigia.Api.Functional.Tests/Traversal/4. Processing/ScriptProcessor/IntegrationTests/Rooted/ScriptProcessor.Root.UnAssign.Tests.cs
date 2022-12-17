@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _parser = testContext.CreateScriptParser();
         }
 
-        [Fact]
+        [Fact(Skip = "Unassigning root types should not be possible. Replacing them (immediately) should")]
         public async Task ScriptProcessor_Root_UnAssign_Time_Root()
         {
             // Arrange.
@@ -29,10 +29,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-            const string query = "root:time <= ";
+            const string query = "root:time2 <= ";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
-            const string arrangeQuery = "root:time <= Object";
+            const string arrangeQuery = "root:time2 <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery, scope).Script;
             var lastSequence = await processor.Process(arrangeScript, scope);
             await lastSequence.Output.ToArray();
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
         [Fact]
-        public async Task ScriptProcessor_Root_UnAssign_Time_Root_Under_Other_Name()
+        public async Task ScriptProcessor_Root_UnAssign_Time_Root_With_Other_Type()
         {
             // Arrange.
             var scope = new ExecutionScope();
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .CreateLogicalOptionsWithConnection(true)
                 .ConfigureAwait(false);
 
-            const string query = "root:specialtime <= ";
+            const string query = "root:specialtime <= Text";
             var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalOptions);
             const string arrangeQuery = "root:specialtime <= Object";
