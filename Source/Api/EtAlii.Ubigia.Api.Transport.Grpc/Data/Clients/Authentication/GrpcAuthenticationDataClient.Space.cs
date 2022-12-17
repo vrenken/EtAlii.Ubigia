@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             var metadata = new Metadata { transport.AuthenticationHeader };
             var request = new SpaceSingleRequest {Name = spaceName};
-            var response = await _spaceClient.GetSingleAsync(request, metadata);
+            var response = await _spaceClient.GetSingleAsync(request, metadata).ConfigureAwait(false);
 
             var space = response.Space.ToLocal();
             if (space == null)

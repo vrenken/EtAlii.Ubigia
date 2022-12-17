@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentPostRequest {EntryId = identifier.ToWire(), Content = content.ToWire()};
-                await _contentClient.PostAsync(request, metadata);
+                await _contentClient.PostAsync(request, metadata).ConfigureAwait(false);
 
                 // Should this call be replaced by get instead?
                 // More details can be found in the Github issue below:
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentPartPostRequest {EntryId = identifier.ToWire(), ContentPart = contentPart.ToWire(), ContentPartId = contentPart.Id };
-                await _contentClient.PostPartAsync(request, metadata);
+                await _contentClient.PostPartAsync(request, metadata).ConfigureAwait(false);
                 BlobPart.SetStored(contentPart, true);
             }
             catch (RpcException e)
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentGetRequest { EntryId = identifier.ToWire() };
-                var response = await _contentClient.GetAsync(request, metadata);
+                var response = await _contentClient.GetAsync(request, metadata).ConfigureAwait(false);
                 return response.Content.ToLocal();
             }
             catch (RpcException e)
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentPartGetRequest { EntryId = identifier.ToWire(), ContentPartId = contentPartId};
-                var response = await _contentClient.GetPartAsync(request, metadata);
+                var response = await _contentClient.GetPartAsync(request, metadata).ConfigureAwait(false);
                 return response.ContentPart.ToLocal();
             }
             catch (RpcException e)

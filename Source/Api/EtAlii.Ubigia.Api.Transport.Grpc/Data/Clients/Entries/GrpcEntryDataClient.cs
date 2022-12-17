@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPostRequest { SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PostAsync(request, metadata);
+                var response = await _client.PostAsync(request, metadata).ConfigureAwait(false);
                 return response.Entry.ToLocal();
             }
             catch (RpcException e)
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPutRequest { Entry = ((IComponentEditableEntry)entry).ToWire() };
-                var response = await _client.PutAsync(request, metadata);
+                var response = await _client.PutAsync(request, metadata).ConfigureAwait(false);
                 var result = response.Entry.ToLocal();
                 return result;
             }
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
-                var response = await _client.GetSingleAsync(request, metadata);
+                var response = await _client.GetSingleAsync(request, metadata).ConfigureAwait(false);
                 return response.Entry.ToLocal();
             }
             catch (RpcException e)

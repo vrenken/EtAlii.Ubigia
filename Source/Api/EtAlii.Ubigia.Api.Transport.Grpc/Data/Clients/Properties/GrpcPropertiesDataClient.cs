@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new PropertiesPostRequest{EntryId = identifier.ToWire(), PropertyDictionary = properties.ToWire(_serializer)};
-                await _client.PostAsync(request, metadata);
+                await _client.PostAsync(request, metadata).ConfigureAwait(false);
                 PropertiesHelper.SetStored(properties, true);
             }
             catch (RpcException e)
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new PropertiesGetRequest{ EntryId = identifier.ToWire() };
-                var response = await _client.GetAsync(request, metadata);
+                var response = await _client.GetAsync(request, metadata).ConfigureAwait(false);
                 var result = response.PropertyDictionary.ToLocal(_serializer);
 
                 if (result != null)

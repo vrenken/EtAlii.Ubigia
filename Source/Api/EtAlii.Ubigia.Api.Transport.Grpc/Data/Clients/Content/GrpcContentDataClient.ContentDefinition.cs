@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionPostRequest {EntryId = identifier.ToWire(), ContentDefinition = contentDefinition.ToWire()};
-                await _contentDefinitionClient.PostAsync(request, metadata);
+                await _contentDefinitionClient.PostAsync(request, metadata).ConfigureAwait(false);
                 MarkAsStored(contentDefinition);
             }
             catch (RpcException e)
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionPartPostRequest {EntryId = identifier.ToWire(), ContentDefinitionPart = contentDefinitionPart.ToWire(), ContentDefinitionPartId = contentDefinitionPart.Id };
-                await _contentDefinitionClient.PostPartAsync(request, metadata);
+                await _contentDefinitionClient.PostPartAsync(request, metadata).ConfigureAwait(false);
                 MarkAsStored(contentDefinitionPart);
             }
             catch (RpcException e)
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionGetRequest { EntryId = identifier.ToWire() };
-                var response = await _contentDefinitionClient.GetAsync(request, metadata);
+                var response = await _contentDefinitionClient.GetAsync(request, metadata).ConfigureAwait(false);
                 return response.ContentDefinition.ToLocal();
             }
             catch (RpcException e)

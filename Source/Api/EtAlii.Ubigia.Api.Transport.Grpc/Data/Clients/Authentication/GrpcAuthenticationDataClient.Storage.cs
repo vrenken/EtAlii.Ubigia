@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             var metadata = new Metadata { transport.AuthenticationHeader };
             var request = new StorageSingleRequest();
-            var response = await _storageClient.GetLocalAsync(request, metadata);
+            var response = await _storageClient.GetLocalAsync(request, metadata).ConfigureAwait(false);
             var storage = response.Storage.ToLocal();
             return storage;
         }
