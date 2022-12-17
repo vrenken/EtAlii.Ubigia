@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport
         }
 
         /// <inheritdoc />
-        public Task<Root> Change(Guid rootId, string rootName)
+        public Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
             return Task.FromResult<Root>(null);
         }

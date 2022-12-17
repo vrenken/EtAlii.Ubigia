@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public Task Remove(Guid id) => _fabric.Roots.Remove(id);
 
-        public Task<Root> Change(Guid rootId, string rootName) => _fabric.Roots.Change(rootId, rootName);
+        public Task<Root> Change(Guid rootId, string rootName, RootType rootType) => _fabric.Roots.Change(rootId, rootName, rootType);
 
         public Task<Root> Get(string rootName) => _fabric.Roots.Get(rootName);
 

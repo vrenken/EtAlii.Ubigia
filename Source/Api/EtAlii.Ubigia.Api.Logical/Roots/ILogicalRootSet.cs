@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         Task<Root> Add(string name, RootType rootType);
         Task Remove(Guid id);
-        Task<Root> Change(Guid rootId, string rootName);
+        Task<Root> Change(Guid rootId, string rootName, RootType rootType);
         Task<Root> Get(string rootName);
         Task<Root> Get(Guid rootId);
         IAsyncEnumerable<Root> GetAll();

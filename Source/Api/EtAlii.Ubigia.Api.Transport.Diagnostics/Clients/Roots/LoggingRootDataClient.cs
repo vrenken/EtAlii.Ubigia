@@ -53,12 +53,12 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Removed root (Id: {RootId} Duration: {Duration}ms)", id, duration);
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
             _logger.Debug("Changing root (Id: {RootId} Name: {RootName})", rootId, rootName);
             var start = Environment.TickCount;
 
-            var root = await _client.Change(rootId, rootName).ConfigureAwait(false);
+            var root = await _client.Change(rootId, rootName, rootType).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Changed root (Id: {RootId} Name: {RootName} Duration: {Duration}ms)", rootId, rootName, duration);

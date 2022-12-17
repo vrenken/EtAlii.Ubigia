@@ -27,13 +27,13 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             await Connection.Client.Delete(address).ConfigureAwait(false);
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
             var root = new Root
             {
                 Id = rootId,
                 Name = rootName,
-                Type = RootType.None // RT2022: We cannot change the root type yet.
+                Type = rootType
             };
 
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString(), UriParameter.RootId, rootId.ToString());

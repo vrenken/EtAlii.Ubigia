@@ -25,9 +25,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             await _decoree.Remove(id).ConfigureAwait(false);
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
-            return await _decoree.Change(rootId, rootName).ConfigureAwait(false);
+            return await _decoree.Change(rootId, rootName, rootType).ConfigureAwait(false);
         }
 
         public async Task<Root> Get(string rootName)

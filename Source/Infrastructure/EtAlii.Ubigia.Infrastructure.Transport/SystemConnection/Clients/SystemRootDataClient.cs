@@ -39,12 +39,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         }
 
         /// <inheritdoc />
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
             var root = new Root
             {
                 Id = rootId,
                 Name = rootName,
+                Type = rootType
             };
 
             var result = await _functionalContext.Roots

@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var root = new Root { Name = name, Type = rootType };
                 var request = new RootPostSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PostAsync(request, metadata);
+                var response = await _client.PostAsync(request, metadata).ConfigureAwait(false);
                 return response.Root.ToLocal();
             }
             catch (RpcException e)
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new RootSingleRequest { Id = id.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                await _client.DeleteAsync(request, metadata);
+                await _client.DeleteAsync(request, metadata).ConfigureAwait(false);
             }
             catch (RpcException e)
             {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
         }
 
-        public async Task<Root> Change(System.Guid rootId, string rootName)
+        public async Task<Root> Change(System.Guid rootId, string rootName, RootType rootType)
         {
             try
             {
@@ -52,10 +52,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 {
                     Id = rootId,
                     Name = rootName,
-                    Type = RootType.None // RT2022: We cannot change the root type yet.
+                    Type = rootType
                 };
                 var request = new RootSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PutAsync(request, metadata);
+                var response = await _client.PutAsync(request, metadata).ConfigureAwait(false);
                 return response.Root.ToLocal();
             }
             catch (RpcException e)
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new RootSingleRequest { Name = rootName, SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.GetSingleAsync(request, metadata);
+                var response = await _client.GetSingleAsync(request, metadata).ConfigureAwait(false);
                 return response.Root?.ToLocal();
             }
             catch (RpcException e)
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.GetSingleAsync(request, metadata);
+                var response = await _client.GetSingleAsync(request, metadata).ConfigureAwait(false);
                 return response.Root?.ToLocal();
             }
             catch (RpcException e)

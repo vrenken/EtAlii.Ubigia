@@ -41,12 +41,12 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _logger.Debug("Removing root (Duration: {Duration}ms)", duration);
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
         {
-            _logger.Debug("Changing root {RootId} {RootName}", rootId, rootName);
+            _logger.Debug("Changing root {RootId} {RootName} {RootType}", rootId, rootName, rootType.Value);
             var start = Environment.TickCount;
 
-            var result =await _decoree.Change(rootId, rootName).ConfigureAwait(false);
+            var result =await _decoree.Change(rootId, rootName, rootType).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Changing root (Duration: {Duration}ms)", duration);

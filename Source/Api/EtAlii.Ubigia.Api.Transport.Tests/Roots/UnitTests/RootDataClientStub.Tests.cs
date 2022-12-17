@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             var rootDataClientStub = new RootDataClientStub();
 
             // Act.
-            await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
+            await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), RootType.Text).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(rootDataClientStub);
