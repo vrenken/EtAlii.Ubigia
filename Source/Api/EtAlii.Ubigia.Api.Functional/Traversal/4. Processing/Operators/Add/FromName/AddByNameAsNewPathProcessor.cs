@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
         {
-            PathSubject pathToAdd = null;
+            PathSubject pathToAdd;
 
             if (parameters.RightSubject is PathSubject pathSubject)
             {

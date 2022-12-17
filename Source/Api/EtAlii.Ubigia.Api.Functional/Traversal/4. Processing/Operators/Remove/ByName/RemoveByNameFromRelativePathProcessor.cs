@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)
         {
-            PathSubject pathToAdd = null;
+            PathSubject pathToAdd;
 
             if (parameters.RightSubject is PathSubject pathSubject)
             {
