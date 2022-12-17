@@ -50,10 +50,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 
             // Assert.
             Assert.Equal(addedRoot.Id, fetchedRoot.Id);
-            Assert.Equal(addedRoot.Name, fetchedRoot.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(addedRoot.Name, fetchedRoot.Name, StringComparer.OrdinalIgnoreCase);
 
             Assert.Equal(root.Id, fetchedRoot.Id);
-            Assert.Equal(root.Name, fetchedRoot.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(root.Name, fetchedRoot.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
@@ -71,10 +73,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 
             // Assert.
             Assert.Equal(addedRoot.Id, fetchedRoot.Id);
-            Assert.Equal(addedRoot.Name, fetchedRoot.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(addedRoot.Name, fetchedRoot.Name, StringComparer.OrdinalIgnoreCase);
 
             Assert.Equal(root.Id, fetchedRoot.Id);
-            Assert.Equal(root.Name, fetchedRoot.Name);
+            // RCI2022: We want to make roots case insensitive.
+            Assert.Equal(root.Name, fetchedRoot.Name, StringComparer.OrdinalIgnoreCase);
         }
 
         [Fact]
