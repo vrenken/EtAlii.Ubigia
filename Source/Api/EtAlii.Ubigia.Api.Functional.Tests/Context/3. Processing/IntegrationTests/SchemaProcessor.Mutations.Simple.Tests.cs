@@ -157,6 +157,65 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
+        // TODO: Change the localStorageId from being a string into a Guid.
+        [Fact]
+        public async Task SchemaProcessor_Mutate_ServiceSettings()
+        {
+            // Arrange.
+            var scope = new ExecutionScope();
+            var localStorageId = Guid.NewGuid();
+            // TODO: The below root based approach should also be possible.
+            //var mutationText = $@"Settings = @node-add(Data:, ServiceSettings)
+            var mutationText = $@"Settings = @node-add(/Data, ServiceSettings)
+                               {{
+                                    string AdminUsername = ""Admin1"",
+                                    string AdminPassword = ""1234"",
+                                    string Certificate = ""BaadFood"",
+                                    string LocalStorageId = ""{localStorageId}""
+                               }}";
+            var parseResult = _context.Parse(mutationText, scope);
+            var mutationSchema = parseResult.Schema;
+
+            var queryText = @"Settings = @node(/Data/ServiceSettings)
+                              {
+                                    AdminUsername,
+                                    AdminPassword,
+                                    Certificate,
+                                    LocalStorageId
+                              }";
+            var querySchema = _context.Parse(queryText, scope).Schema;
+
+            var processor = _testContext.CreateSchemaProcessor(_options);
+
+            // Act.
+            var mutationResults = await processor
+                .Process(mutationSchema, scope)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema, scope)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            // Assert.
+            var mutationStructure = mutationResults.Single();
+            Assert.NotNull(mutationStructure);
+            var queryStructure = queryResults.Single();
+            Assert.NotNull(queryStructure);
+
+            AssertValue("Admin1", mutationStructure, "AdminUsername");
+            AssertValue("Admin1", queryStructure, "AdminUsername");
+
+            AssertValue("1234", mutationStructure, "AdminPassword");
+            AssertValue("1234", queryStructure, "AdminPassword");
+
+            AssertValue("BaadFood", mutationStructure, "Certificate");
+            AssertValue("BaadFood", queryStructure, "Certificate");
+
+            AssertValue(localStorageId.ToString(), mutationStructure, "LocalStorageId");
+            AssertValue(localStorageId.ToString(), queryStructure, "LocalStorageId");
+        }
+
         [Fact(Skip = "Skipped - Should be made working though.")]
         public async Task SchemaProcessor_Mutate_Person_03()
         {
