@@ -22,6 +22,12 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
             return new AddAndSelectSingleNodeAnnotation(sourcePath, name);
         }
 
+        // public override object VisitNode_annotation_add_and_select_single_node_without_key(UbigiaParser.Node_annotation_add_and_select_single_node_without_keyContext context)
+        // {
+        //     var sourcePath = (PathSubject)VisitSchema_path(context.schema_path());
+        //     return new AddAndSelectSingleNodeAnnotation(sourcePath, name);
+        // }
+
         public override object VisitNode_annotation_remove_and_select_multiple_nodes(UbigiaParser.Node_annotation_remove_and_select_multiple_nodesContext context)
         {
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path());
