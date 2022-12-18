@@ -32,7 +32,7 @@
 
             for (var i = 0; i < iterations; i++)
             {
-                var _ = actualFileStream.Read(one, 0, bytesToRead);
+                _ = actualFileStream.Read(one, 0, bytesToRead);
                 _ = expectedFileStream.Read(two, 0, bytesToRead);
 
                 if (BitConverter.ToInt64(two, 0) != BitConverter.ToInt64(one, 0))
