@@ -19,6 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             container.Register<IAccountInitializer, AccountInitializer>();
             container.Register<ISpaceInitializer, DirectSpaceInitializer>();
+            // container.Register<ISpaceInitializer, ScriptedSpaceInitializer>();
         }
     }
 }
