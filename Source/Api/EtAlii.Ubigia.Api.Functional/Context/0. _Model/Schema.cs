@@ -9,9 +9,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     public class Schema
 #pragma warning restore CA1724
     {
+        /// <summary>
+        /// The namespace that should be used when generating code.
+        /// </summary>
         public string Namespace { get; }
+
         public string ContextName { get; }
 
+        /// <summary>
+        /// The hierarchical structure fragments that make up the query or mutation.
+        /// </summary>
         public StructureFragment Structure { get; }
 
         public string Text { get; }
