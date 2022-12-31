@@ -39,42 +39,42 @@
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="PathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="ScriptParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="Primitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="SchemaParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
     <Antlr4 Include="UbigiaParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
-      <JavaExec>$(LocalAntlr4JavaPath)</JavaExec>
+      <JavaExec Condition="'$(LocalAntlr4JavaPath)' != ''">$(LocalAntlr4JavaPath)</JavaExec>
     </Antlr4>
   </ItemGroup>
 
