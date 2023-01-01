@@ -52,7 +52,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(annotation);
             Assert.NotNull(valueFragment);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("John",valueFragment.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(valueFragment.Mutation);
+            Assert.Equal("John", ((PrimitiveMutationValue)valueFragment.Mutation).Value);
         }
 
         [Fact]
@@ -74,7 +75,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(annotation);
             Assert.NotNull(valueFragment);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("John",valueFragment.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(valueFragment.Mutation);
+            Assert.Equal("John", ((PrimitiveMutationValue)valueFragment.Mutation).Value);
         }
 
         [Fact]
@@ -96,7 +98,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Null(annotation);
             Assert.NotNull(valueFragment);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("John",valueFragment.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(valueFragment.Mutation);
+            Assert.Equal("John", ((PrimitiveMutationValue)valueFragment.Mutation).Value);
         }
 
         [Fact]

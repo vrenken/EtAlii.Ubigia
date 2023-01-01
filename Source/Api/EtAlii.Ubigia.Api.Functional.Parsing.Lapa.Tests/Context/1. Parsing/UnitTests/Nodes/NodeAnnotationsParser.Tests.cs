@@ -95,7 +95,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(annotation);
             Assert.IsType<AddAndSelectSingleNodeAnnotation>(annotation);
             Assert.Equal("Person:Potts",annotation.Source?.ToString());
-            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Name);
+            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Identity.Name);
+            Assert.False(((AddAndSelectSingleNodeAnnotation)annotation).Identity.IsVariable);
         }
 
         [Fact]
@@ -117,7 +118,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(annotation);
             Assert.IsType<AddAndSelectSingleNodeAnnotation>(annotation);
             Assert.Equal("Person:Potts",annotation.Source?.ToString());
-            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Name);
+            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Identity.Name);
+            Assert.False(((AddAndSelectSingleNodeAnnotation)annotation).Identity.IsVariable);
         }
         [Fact]
         public async Task NodeAnnotationsParser_Parse_Node_Person_Add_Compact()
@@ -138,7 +140,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(annotation);
             Assert.IsType<AddAndSelectSingleNodeAnnotation>(annotation);
             Assert.Equal("Person:Potts",annotation.Source?.ToString());
-            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Name);
+            Assert.Equal("Pepper",((AddAndSelectSingleNodeAnnotation)annotation).Identity.Name);
+            Assert.False(((AddAndSelectSingleNodeAnnotation)annotation).Identity.IsVariable);
         }
 
         [Fact]

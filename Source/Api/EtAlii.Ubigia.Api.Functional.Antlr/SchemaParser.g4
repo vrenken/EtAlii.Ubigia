@@ -31,9 +31,17 @@ structure_fragment_body_entry
 
 structure_plurality                                     : LBRACK RBRACK ;
 
+mutation_value_primitive                                : primitive_value ;
+mutation_value_variable                                 : DOLLAR (identifier | reserved_words) ;
+
+mutation_value
+    : mutation_value_variable
+    | mutation_value_primitive
+    ;
+
 structure_fragment                                      : WHITESPACE* requirement? schema_key structure_plurality? WHITESPACE* (EQUALS WHITESPACE* node_annotation)? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body? (WHITESPACE | NEWLINE)* RBRACE;
 value_query_fragment                                    : WHITESPACE* schema_key_prefix? schema_key WHITESPACE* (EQUALS WHITESPACE* value_annotation)? WHITESPACE* ;
-value_mutation_fragment                                 : WHITESPACE* schema_key_prefix? schema_key WHITESPACE* EQUALS WHITESPACE* primitive_value WHITESPACE* ;
+value_mutation_fragment                                 : WHITESPACE* schema_key_prefix? schema_key WHITESPACE* EQUALS WHITESPACE* mutation_value WHITESPACE* ;
 
 schema_key_prefix_type_and_requirement_1                : value_type WHITESPACE* requirement ;
 schema_key_prefix_type_and_requirement_2                : value_type requirement WHITESPACE* ;
@@ -93,6 +101,15 @@ value_annotation
     | value_annotation_select_current_node
     | value_annotation_map_sequence
     ;
+
+node_identity
+    : node_identity_literal
+    | node_identity_variable
+    ;
+
+node_identity_literal                                   : identifier | string_quoted_non_empty | reserved_words ;
+node_identity_variable                                  : DOLLAR (identifier | reserved_words) ;
+
                                                         // @node-link(SOURCE, TARGET, TARGET_LINK)
 node_annotation_link_and_select_single_node             : ATSIGN ANNOTATION_NODE_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN;
                                                         // @nodes-remove(SOURCE, NAME)
@@ -104,11 +121,11 @@ node_annotation_unlink_and_select_multiple_nodes        : ATSIGN ANNOTATION_NODE
                                                         // @node-unlink(SOURCE, TARGET, TARGET_LINK)
 node_annotation_unlink_and_select_single_node           : ATSIGN ANNOTATION_NODE_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @nodes-add(PATH, NAME)
-node_annotation_add_and_select_multiple_nodes           : ATSIGN ANNOTATION_NODES_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+node_annotation_add_and_select_multiple_nodes           : ATSIGN ANNOTATION_NODES_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* node_identity WHITESPACE* RPAREN ;
 //                                                        // @node-add(PATH)
 //node_annotation_add_and_select_single_node_without_key  : ATSIGN ANNOTATION_NODE_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @node-add(PATH, NAME)
-node_annotation_add_and_select_single_node              : ATSIGN ANNOTATION_NODE_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+node_annotation_add_and_select_single_node              : ATSIGN ANNOTATION_NODE_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* node_identity WHITESPACE* RPAREN ;
                                                         // @nodes-link(SOURCE, TARGET, TARGET_LINK)
 node_annotation_link_and_select_multiple_nodes          : ATSIGN ANNOTATION_NODES_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @nodes(SOURCE)
@@ -139,6 +156,6 @@ node_annotation
     | node_annotation_map_sequence
     ;
 
-schema_key                                              : identifier | string_quoted_non_empty | reserved_words;
+schema_key                                              : identifier | string_quoted_non_empty | reserved_words ;
 schema_path                                             : rooted_path | non_rooted_path ;
 comment                                                 : WHITESPACE* COMMENT ;

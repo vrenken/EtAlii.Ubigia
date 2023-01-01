@@ -7,18 +7,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     public class AddAndSelectMultipleNodesAnnotation : NodeAnnotation
     {
         /// <summary>
-        /// The name of the node to be added.
+        /// The identity of the nodes to be added (this can either be a name or a variable).
         /// </summary>
-        public string Name { get; }
+        public NodeIdentity Identity { get; }
 
-        public AddAndSelectMultipleNodesAnnotation(PathSubject source, string name) : base(source)
+        public AddAndSelectMultipleNodesAnnotation(PathSubject source, NodeIdentity identity) : base(source)
         {
-            Name = name;
+            Identity = identity;
         }
 
         public override string ToString()
         {
-            return $"@{AnnotationPrefix.NodesAdd}({Source?.ToString() ?? string.Empty}, {Name})";
+            return $"@{AnnotationPrefix.NodesAdd}({Source?.ToString() ?? string.Empty}, {Identity})";
         }
     }
 }

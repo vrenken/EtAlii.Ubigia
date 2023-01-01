@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             return annotation switch
             {
-                AddAndSelectMultipleNodesAnnotation a => CorrectAddition(annotation, path, a.Name),
-                AddAndSelectSingleNodeAnnotation a => CorrectAddition(annotation, path, a.Name),
+                AddAndSelectMultipleNodesAnnotation a => CorrectAddition(annotation, path, a.Identity),
+                AddAndSelectSingleNodeAnnotation a => CorrectAddition(annotation, path, a.Identity),
                 RemoveAndSelectMultipleNodesAnnotation _ => CorrectSelection(annotation, path),
                 RemoveAndSelectSingleNodeAnnotation _ => CorrectSelection(annotation, path),
                 _ => path
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return path;
         }
 
-        private PathSubject CorrectAddition(NodeAnnotation annotation, PathSubject path, string name)
+        private PathSubject CorrectAddition(NodeAnnotation annotation, PathSubject path, NodeIdentity identity)
         {
             var parts = BuildCorrectedPathParts(annotation, path);
 
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             }
 
             parts = parts
-                .Concat(new [] { new ConstantPathSubjectPart(name) })
+                .Concat(new [] { new ConstantPathSubjectPart(identity.Name) })
                 .ToArray();
 
             path = path switch

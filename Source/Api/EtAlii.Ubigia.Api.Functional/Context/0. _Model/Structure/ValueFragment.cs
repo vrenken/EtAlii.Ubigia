@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     public class ValueFragment : Fragment
     {
-        public object Mutation { get; }
+        public MutationValue Mutation { get; }
         public ValuePrefix Prefix { get; }
         public ValueAnnotation Annotation { get; }
 
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             ValuePrefix valuePrefix,
             ValueAnnotation annotation,
             FragmentType fragmentType,
-            object mutation)
+            MutationValue mutation)
             : base(name, fragmentType)
         {
             Prefix = valuePrefix;

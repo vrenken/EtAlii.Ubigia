@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -14,19 +15,22 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         private readonly IPathStructureBuilder _pathStructureBuilder;
         private readonly IPathDeterminer _pathDeterminer;
         private readonly IPathCorrecter _pathCorrecter;
+        private readonly IVariableToSubjectConverter _variableToSubjectConverter;
 
         public MutationStructureProcessor(
             IRelatedIdentityFinder relatedIdentityFinder,
             ITraversalContext traversalContext,
             IPathStructureBuilder pathStructureBuilder,
             IPathDeterminer pathDeterminer,
-            IPathCorrecter pathCorrecter)
+            IPathCorrecter pathCorrecter,
+            IVariableToSubjectConverter variableToSubjectConverter)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
             _traversalContext = traversalContext;
             _pathStructureBuilder = pathStructureBuilder;
             _pathDeterminer = pathDeterminer;
             _pathCorrecter = pathCorrecter;
+            _variableToSubjectConverter = variableToSubjectConverter;
         }
 
         public async Task Process(
@@ -61,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             var path = _pathDeterminer.Determine(executionPlanResultSink, annotation, id);
 
-            var mutationScript = CreateMutationScript(annotation, path);
+            var mutationScript = await CreateMutationScript(annotation, path, scope).ConfigureAwait(false);
             if (mutationScript != null)
             {
                 var scriptResult = await _traversalContext
@@ -78,14 +82,30 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         }
 
-        private Script CreateMutationScript(NodeAnnotation annotation, PathSubject pathSubject)
+        private async Task<Subject> ToSubject(NodeIdentity identity, ExecutionScope scope)
+        {
+            if (!identity.IsVariable)
+            {
+                return new StringConstantSubject(identity.Name);
+            }
+
+            if (scope.Variables.TryGetValue(identity.Name, out var variable))
+            {
+                return await _variableToSubjectConverter
+                    .Convert(variable)
+                    .ConfigureAwait(false);
+            }
+            throw new InvalidOperationException($"Variable with name '{identity.Name}' not found");
+        }
+
+        private async Task<Script> CreateMutationScript(NodeAnnotation annotation, PathSubject pathSubject, ExecutionScope scope)
         {
             switch (annotation)
             {
                 case AddAndSelectMultipleNodesAnnotation addAnnotation:
-                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), await ToSubject(addAnnotation.Identity, scope).ConfigureAwait(false) }));
                 case AddAndSelectSingleNodeAnnotation addAnnotation:
-                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), await ToSubject(addAnnotation.Identity, scope).ConfigureAwait(false) }));
                 case LinkAndSelectMultipleNodesAnnotation linkAnnotation:
                     return CreateLinkScript(pathSubject, linkAnnotation.Source, linkAnnotation.Target, linkAnnotation.TargetLink);
                 case LinkAndSelectSingleNodeAnnotation linkAnnotation:
@@ -128,8 +148,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 new Sequence(new SequencePart[] {target, new AddOperator(), relativeTarget }),
                 new Sequence(new SequencePart[] {absoluteTargetLink, new AddOperator(), pathSubject }),
             });
-
         }
-
     }
 }

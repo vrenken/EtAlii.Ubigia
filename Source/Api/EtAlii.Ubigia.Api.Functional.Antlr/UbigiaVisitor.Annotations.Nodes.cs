@@ -8,18 +8,30 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
 
     public partial class UbigiaVisitor
     {
+        public override object VisitNode_identity_literal(UbigiaParser.Node_identity_literalContext context)
+        {
+            var name = (string)base.VisitNode_identity_literal(context);
+            return new NodeIdentity { Name = name, IsVariable = false };
+        }
+
+        public override object VisitNode_identity_variable(UbigiaParser.Node_identity_variableContext context)
+        {
+            var name = (string)base.VisitNode_identity_variable(context);
+            return new NodeIdentity { Name = name[1..], IsVariable = true };
+        }
+
         public override object VisitNode_annotation_add_and_select_multiple_nodes(UbigiaParser.Node_annotation_add_and_select_multiple_nodesContext context)
         {
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path());
-            var name = (string)VisitSchema_key(context.schema_key());
-            return new AddAndSelectMultipleNodesAnnotation(sourcePath, name);
+            var identity = (NodeIdentity)VisitNode_identity(context.node_identity());
+            return new AddAndSelectMultipleNodesAnnotation(sourcePath, identity);
         }
 
         public override object VisitNode_annotation_add_and_select_single_node(UbigiaParser.Node_annotation_add_and_select_single_nodeContext context)
         {
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path());
-            var name = (string)VisitSchema_key(context.schema_key());
-            return new AddAndSelectSingleNodeAnnotation(sourcePath, name);
+            var identity = (NodeIdentity)VisitNode_identity(context.node_identity());
+            return new AddAndSelectSingleNodeAnnotation(sourcePath, identity);
         }
 
         // public override object VisitNode_annotation_add_and_select_single_node_without_key(UbigiaParser.Node_annotation_add_and_select_single_node_without_keyContext context)

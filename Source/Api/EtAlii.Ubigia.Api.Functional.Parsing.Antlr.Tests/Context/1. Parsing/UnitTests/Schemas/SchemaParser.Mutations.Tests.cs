@@ -188,12 +188,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal("22", ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -231,12 +233,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal(22, ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -248,7 +252,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var normalPersonText = @"-- Comment goes here.
             Person = @node(Person:Start/Tony)
             {
-                age = ""22"",
+                age = 22,
                 first = ""Sabrina"",
                 last = ""Stephenson"",
                 company = ""ISOTRONIC"",
@@ -270,12 +274,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -287,7 +293,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var normalPersonText = @"
             Person
             {
-                ""age"" = ""22"",
+                ""age"" = 22,
                 ""first"" = ""Sabrina"",
                 ""last"" = ""Stephenson"",
                 ""company"" = ""ISOTRONIC"",
@@ -310,12 +316,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -327,7 +335,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var normalPersonText = @"
             Person = @node(Person:Doe/John)
             {
-                ""age"" = ""22"",
+                ""age"" = 22,
                 ""first"" = ""John"",
                 ""last"" = ""Doe"",
                 ""company"" = ""ISOTRONIC"",
@@ -352,12 +360,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -395,12 +405,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal(22, ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -435,12 +447,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal(22, ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("admin@starkindustries.com", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("admin@starkindustries.com", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -475,12 +489,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal(22, ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
 
         [Fact]
@@ -519,12 +535,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal(22, ageStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(ageStructure.Mutation);
+            Assert.Equal(22, ((PrimitiveMutationValue)ageStructure.Mutation).Value);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
             Assert.Equal(FragmentType.Mutation, emailStructure.Type);
-            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
+            Assert.IsType<PrimitiveMutationValue>(emailStructure.Mutation);
+            Assert.Equal("sabrina.stephenson@isotronic.io", ((PrimitiveMutationValue)emailStructure.Mutation).Value);
         }
     }
 }

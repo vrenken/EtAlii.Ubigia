@@ -29,8 +29,22 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
             var prefix = prefixContext != null
                 ? (ValuePrefix)VisitSchema_key_prefix(prefixContext)
                 : new ValuePrefix(ValueType.Object, Requirement.None);
-            var value = VisitPrimitive_value(context.primitive_value());
+            var value = (MutationValue)VisitMutation_value(context.mutation_value());
             return new ValueFragment(name, prefix, null, FragmentType.Mutation, value);
+        }
+
+        public override object VisitMutation_value_variable(UbigiaParser.Mutation_value_variableContext context)
+        {
+            var variableName = context.GetText()[1..];
+            return new VariableMutationValue { Name = variableName };
+        }
+
+        public override object VisitMutation_value_primitive(UbigiaParser.Mutation_value_primitiveContext context)
+        {
+            return new PrimitiveMutationValue
+            {
+                Value = VisitPrimitive_value(context.primitive_value())
+            };
         }
 
         public override object VisitSchema_key_prefix_type_and_requirement_1(UbigiaParser.Schema_key_prefix_type_and_requirement_1Context context)

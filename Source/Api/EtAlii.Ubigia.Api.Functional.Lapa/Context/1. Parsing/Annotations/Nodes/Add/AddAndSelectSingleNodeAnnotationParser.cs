@@ -63,7 +63,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 {} id when id == _quotedTextParser.Id => _quotedTextParser.Parse(nameChildNode),
                 _ => nameChildNode.Match.ToString()
             };
-            return new AddAndSelectSingleNodeAnnotation(sourcePath, name);
+
+            var identity = name.StartsWith("$")
+                ? new NodeIdentity { Name = name[1..], IsVariable = true }
+                : new NodeIdentity { Name = name, IsVariable = false };
+
+            return new AddAndSelectSingleNodeAnnotation(sourcePath, identity);
         }
 
         public bool CanParse(LpNode node)

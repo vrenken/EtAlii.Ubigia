@@ -50,7 +50,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -72,7 +73,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -94,7 +96,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin", nodeAnnotation.Source.ToString());
         }
 
@@ -116,7 +119,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -138,7 +142,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -160,7 +165,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam",nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -182,7 +188,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam", nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
@@ -205,7 +212,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("Potsdam",nodeAnnotation.Name);
+            Assert.Equal("Potsdam", nodeAnnotation.Identity.Name);
+            Assert.False(nodeAnnotation.Identity.IsVariable);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
     }
