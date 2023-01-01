@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Reactive.Linq;
 
     internal class VariableSubjectFunctionParameterConverter : IVariableSubjectFunctionParameterConverter
@@ -10,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var variableSubjectArgument = (VariableFunctionSubjectArgument)argument;
 
-            object result = Observable.Empty<object>();
+            IObservable<object> result;
             var variableName = variableSubjectArgument.Name;
             if (scope.Variables.TryGetValue(variableName, out var variable))
             {
@@ -18,6 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
             else
             {
+                result = Observable.Empty<object>();
                 //string message = string.Format("Variable [0] not set (subject: [0])", variableName, parameters.Target.ToString())
                 //throw new ScriptParserException(message)
             }
