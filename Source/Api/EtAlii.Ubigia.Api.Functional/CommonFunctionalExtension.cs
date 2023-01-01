@@ -144,6 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             container.Register<IVariablePathSubjectPartToPathConverter, VariablePathSubjectPartToPathConverter>();
             container.Register<IVariablePathSubjectPartToGraphPathPartsConverter, VariablePathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IVariableToSubjectConverter, VariableToSubjectConverter>();
 
 
             // Operator processing.
