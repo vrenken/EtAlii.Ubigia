@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     public interface IRootContext
     {
-        Task<Root> Add(string name, RootType rootType);
+        Task<Root> Add(string rootName, RootType rootType);
         Task Remove(Guid id);
         Task<Root> Change(Guid rootId, string rootName, RootType rootType);
         Task<Root> Get(string rootName);
