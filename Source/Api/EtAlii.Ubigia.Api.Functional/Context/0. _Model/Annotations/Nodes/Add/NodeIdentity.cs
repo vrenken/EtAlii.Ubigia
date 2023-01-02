@@ -10,12 +10,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <summary>
         /// The name of the node to be added.
         /// </summary>
-        public string Name;
+        public string Name { get; init; }
 
         /// <summary>
         /// True if the real name is stored in a ExecutionScope variable.
         /// </summary>
-        public bool IsVariable;
+        public bool IsVariable { get; init; }
 
         public override string ToString()
         {
