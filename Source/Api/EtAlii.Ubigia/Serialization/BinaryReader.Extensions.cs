@@ -43,6 +43,8 @@ namespace EtAlii.Ubigia
 
         }
 
+#pragma warning disable S4144 // Disable Sonarqube warning "Methods should not have identical implementations"
+// Reason is that we really want two generic methods, one for processing classes and one for processing structs.
 #nullable enable
         public static T? ReadOptionalReferenceType<T>(this BinaryReader reader)
             where T: class
@@ -69,6 +71,7 @@ namespace EtAlii.Ubigia
         }
 
 #nullable disable
+#pragma warning restore S4144
 
         public static T Read<T>(this BinaryReader reader)
         {
