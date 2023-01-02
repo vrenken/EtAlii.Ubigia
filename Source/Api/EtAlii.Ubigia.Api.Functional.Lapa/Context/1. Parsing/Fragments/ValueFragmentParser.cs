@@ -30,8 +30,7 @@ internal class ValueFragmentParser : IValueFragmentParser
         INodeFinder nodeFinder,
         IFragmentKeyValuePairParser keyValuePairParser,
         IRequirementParser requirementParser,
-        IAssignmentParser assignmentParser,
-        IWhitespaceParser whitespaceParser)
+        IAssignmentParser assignmentParser)
     {
         _nodeValidator = nodeValidator;
         _quotedTextParser = quotedTextParser;
