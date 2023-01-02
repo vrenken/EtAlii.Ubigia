@@ -19,7 +19,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var hasMatch = match.Any();
             var hasRest = rest.Any();
-            //var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Providers")}.AsQueryable();
             var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(root)}.AsQueryable();
 
             // We only add the isparentof separator when no match or rest is available.
