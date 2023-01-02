@@ -53,12 +53,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Cache Ubuntu build
         id: cache-ubuntu-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
@@ -77,12 +77,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Cache Windows build
         id: cache-windows-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
@@ -101,19 +101,19 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Cache Ubuntu tests
         id: cache-ubuntu-tests
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
@@ -134,19 +134,19 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows build
         id: load-cached-windows-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
           restore-keys: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
       - name: Cache Windows tests
         id: cache-windows-tests
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-windows-${{ github.run_attempt }}-${{ github.run_number }}
@@ -167,12 +167,12 @@ jobs:
 #        shell: pwsh
 #        run: ${{ env.ENVIRONMENT_SCRIPT }}
 #      - name: Checkout
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v3
 #        with:
 #          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
 #      - name: Load cached Windows tests
 #        id: load-cached-windows-tests
-#        uses: actions/cache@v2
+#        uses: actions/cache@v3
 #        with:
 #          path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
 #          key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
@@ -195,12 +195,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu tests
         id: load-cached-ubuntu-tests
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-tests-${{ github.run_attempt }}-${{ github.run_number }}
@@ -223,12 +223,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Windows build
         id: load-cached-windows-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
@@ -248,12 +248,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
@@ -277,12 +277,12 @@ jobs:
         shell: pwsh
         run: ${{ env.ENVIRONMENT_SCRIPT }}
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis - also needed by NBGV
       - name: Load cached Ubuntu build
         id: load-cached-ubuntu-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.SOURCE_FOLDER }} # We'll just cache everything. This is very fast.
           key: ${{ runner.os }}-build-${{ github.run_attempt }}-${{ github.run_number }}
