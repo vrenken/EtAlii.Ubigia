@@ -98,7 +98,7 @@ namespace EtAlii.xTechnology.Hosting
 
             _testServer = _host.GetTestServer();
             _testServer.PreserveExecutionContext = false;
-            _testServer.AllowSynchronousIO = true;
+            _testServer.AllowSynchronousIO = false;
 
             _logger.Information("Test server acquired");
 
