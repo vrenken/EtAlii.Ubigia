@@ -59,13 +59,12 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             var folder = (Folder)_inMemoryItems.Find(folderName);
             if (folder != null)
             {
-                foreach (var item in folder.Items)
-                {
-                    if (item is File && item.Name.StartsWith(prefix) && item.Name.EndsWith(postFix))
-                    {
-                        result.Add(Path.Combine(folderName, item.Name));
-                    }
-                }
+                var files = folder.Items
+                    .OfType<File>()
+                    .Where(item => item.Name.StartsWith(prefix) && item.Name.EndsWith(postFix))
+                    .Select(item => Path.Combine(folderName, item.Name))
+                    .ToArray();
+                    result.AddRange(files);
             }
             return result;
         }
@@ -76,13 +75,12 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             var folder = (Folder)_inMemoryItems.Find(folderName);
             if (folder != null)
             {
-                foreach (var item in folder.Items)
-                {
-                    if (item is Folder)
-                    {
-                        result.Add(Path.Combine(folderName, item.Name));
-                    }
-                }
+                var subFolders = folder.Items
+                    .OfType<Folder>()
+                    .Select(item => Path.Combine(folderName, item.Name))
+                    .ToArray();
+
+                result.AddRange(subFolders);
             }
             return result;
         }
