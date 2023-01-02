@@ -41,8 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     Lp.Name().Id(KeyId) |
                     QuotedTextParser.Parser.Wrap(KeyId)
                 ) +
-                separator +
-                new LpsParser(ValueId, true, TypeParsers).Maybe());
+                separator + new LpsParser(ValueId, true, TypeParsers).Maybe());
         }
     }
 }

@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var parser = await _testContext
                 .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
-            var text = @"firstname @node()";
+            var text = @"firstname = @node()";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var parser = await _testContext
                 .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
-            var text = @"lastname @node(\\)";
+            var text = @"lastname = @node(\\)";
 
             // Act.
             var node = parser.Parser.Do(text);

@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var (parser, nodeValidator) = await _testContext
                 .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
-            var text = @"Person @node(Person:Stark/Tony)
+            var text = @"Person = @node(Person:Stark/Tony)
             {
                 key1,
                 key2
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             var (parser, nodeValidator) = await _testContext
                 .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
-            var text = @"Person @node(Person:Stark/Tony)
+            var text = @"Person = @node(Person:Stark/Tony)
             {
                 ""key1"",
                 ""key2""
@@ -98,26 +98,26 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
                 .ConfigureAwait(false);
             var text = @"Data
             {
-                Person @nodes(Person:Doe/*)
+                Person = @nodes(Person:Doe/*)
                 {
-                    FirstName @node(),
-                    LastName @node(\#FamilyName),
+                    FirstName = @node(),
+                    LastName = @node(\#FamilyName),
                     NickName,
-                    Friends @nodes(/Friends/)
+                    Friends = @nodes(/Friends/)
                     {
-                        FirstName @node(),
-                        LastName @node(\#FamilyName)
+                        FirstName = @node(),
+                        LastName = @node(\#FamilyName)
                     }
                 },
-                Location @nodes(location:DE/Berlin//)
+                Location = @nodes(location:DE/Berlin//)
                 {
-                    FirstName @node(),
-                    LastName @node(\#FamilyName),
+                    FirstName = @node(),
+                    LastName = @node(\#FamilyName),
                     NickName,
-                    Friends @nodes(/Friends/)
+                    Friends = @nodes(/Friends/)
                     {
-                        FirstName @node(),
-                        LastName @node(\#FamilyName)
+                        FirstName = @node(),
+                        LastName = @node(\#FamilyName)
                     }
                 }
             }";

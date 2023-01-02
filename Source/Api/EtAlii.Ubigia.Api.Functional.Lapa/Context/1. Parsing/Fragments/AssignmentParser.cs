@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public AssignmentParser(IWhitespaceParser whitespaceParser)
         {
-            Parser = whitespaceParser.Optional + Lp.Term("<=") + whitespaceParser.Optional;
+            Parser = whitespaceParser.Optional + Lp.Char('=') + whitespaceParser.Optional;
         }
     }
 }

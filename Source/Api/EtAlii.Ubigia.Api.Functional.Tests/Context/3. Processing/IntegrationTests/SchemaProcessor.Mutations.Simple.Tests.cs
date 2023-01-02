@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
         // TODO: Change the localStorageId from being a string into a Guid.
         [Fact]
-        public async Task SchemaProcessor_Mutate_ServiceSettings()
+        public async Task SchemaProcessor_Mutate_ServiceSettings_Using_Literals()
         {
             // Arrange.
             var scope = new ExecutionScope();
@@ -173,6 +173,69 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     string Certificate = ""BaadFood"",
                                     string LocalStorageId = ""{localStorageId}""
                                }}";
+            var parseResult = _context.Parse(mutationText, scope);
+            var mutationSchema = parseResult.Schema;
+
+            var queryText = @"Settings = @node(/Data/ServiceSettings)
+                              {
+                                    AdminUsername,
+                                    AdminPassword,
+                                    Certificate,
+                                    LocalStorageId
+                              }";
+            var querySchema = _context.Parse(queryText, scope).Schema;
+
+            var processor = _testContext.CreateSchemaProcessor(_options);
+
+            // Act.
+            var mutationResults = await processor
+                .Process(mutationSchema, scope)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema, scope)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            // Assert.
+            var mutationStructure = mutationResults.Single();
+            Assert.NotNull(mutationStructure);
+            var queryStructure = queryResults.Single();
+            Assert.NotNull(queryStructure);
+
+            AssertValue("Admin1", mutationStructure, "AdminUsername");
+            AssertValue("Admin1", queryStructure, "AdminUsername");
+
+            AssertValue("1234", mutationStructure, "AdminPassword");
+            AssertValue("1234", queryStructure, "AdminPassword");
+
+            AssertValue("BaadFood", mutationStructure, "Certificate");
+            AssertValue("BaadFood", queryStructure, "Certificate");
+
+            AssertValue(localStorageId.ToString(), mutationStructure, "LocalStorageId");
+            AssertValue(localStorageId.ToString(), queryStructure, "LocalStorageId");
+        }
+
+        [Fact]
+        public async Task SchemaProcessor_Mutate_ServiceSettings_Using_Variables()
+        {
+            // Arrange.
+            var scope = new ExecutionScope();
+            var localStorageId = Guid.NewGuid();
+            scope.Variables["adminUserName"] = new ScopeVariable("Admin1", "Variable");
+            scope.Variables["adminPassword"] = new ScopeVariable("1234", "Variable");
+            scope.Variables["certificate"] = new ScopeVariable("BaadFood", "Variable");
+            scope.Variables["localStorageId"] = new ScopeVariable(localStorageId.ToString(), "Variable");
+
+            // TODO: The below root based approach should also be possible.
+            //var mutationText = $@"Settings = @node-add(Data:, ServiceSettings)
+            var mutationText = @"Settings = @node-add(/Data, ServiceSettings)
+                               {
+                                    string AdminUsername = $adminUserName,
+                                    string AdminPassword = $adminPassword,
+                                    string Certificate = $certificate,
+                                    string LocalStorageId = $localStorageId
+                               }";
             var parseResult = _context.Parse(mutationText, scope);
             var mutationSchema = parseResult.Schema;
 

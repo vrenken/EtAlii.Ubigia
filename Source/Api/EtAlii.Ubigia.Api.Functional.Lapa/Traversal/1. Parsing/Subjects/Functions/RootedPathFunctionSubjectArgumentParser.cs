@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _nodeValidator.EnsureSuccess(node, Id);
 
             var root = node.Children.Single(n => n.Id == "root").ToString();
-            var childNodes = node.Children.Single(n => n.Id == "path")?.Children ?? Array.Empty<LpNode>();
+            var childNodes = node.Children.SingleOrDefault(n => n.Id == "path")?.Children ?? Array.Empty<LpNode>();
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
             var subject = new RootedPathSubject(root, parts);

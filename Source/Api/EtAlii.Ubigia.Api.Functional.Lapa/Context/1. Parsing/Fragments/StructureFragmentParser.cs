@@ -30,7 +30,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             IValueFragmentParser valueFragmentParser,
             INodeAnnotationsParser annotationParser,
             IRequirementParser requirementParser,
-            IWhitespaceParser whitespaceParser)
+            IWhitespaceParser whitespaceParser,
+            IAssignmentParser assignmentParser)
         {
             _nodeFinder = nodeFinder;
             _quotedTextParser = quotedTextParser;
@@ -62,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var name = Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId);
 
             var parserBody = (requirementParser.Parser + name + newLineParser.OptionalMultiple +
-                             _annotationParser.Parser.Maybe()).Wrap(ChildStructureQueryHeaderId) + newLineParser.OptionalMultiple +
+                             (assignmentParser.Parser + _annotationParser.Parser).Maybe()).Wrap(ChildStructureQueryHeaderId) + newLineParser.OptionalMultiple +
                              scopedFragments;
 
             Parser = new LpsParser(Id, true, parserBody + newLineParser.OptionalMultiple);
