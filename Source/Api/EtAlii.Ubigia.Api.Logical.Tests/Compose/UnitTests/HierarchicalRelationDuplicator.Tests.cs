@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second);
 
             // Assert.
-            Assert.Equal(count, second.Children.Count());
+            Assert.Equal(count, second.Children.Length);
             Assert.Empty(second.Children2);
 
             for (var i = 0; i < count; i++)
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             // Assert.
             Assert.Empty(second.Children);
-            Assert.Equal(count, second.Children2.Count());
+            Assert.Equal(count, second.Children2.Length);
 
             for (var i = 0; i < count; i++)
             {
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second, idToExclude);
 
             // Assert.
-            Assert.Equal(count - 1, second.Children.Count());
+            Assert.Equal(count - 1, second.Children.Length);
             Assert.Empty(second.Children2);
             Assert.False(((IEditableEntry)second).Children.Contains(idToExclude));
             for (var i = 0; i < count - 1; i++)
@@ -154,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             // Assert.
             Assert.Empty(second.Children);
-            Assert.Equal(count - 1, second.Children2.Count());
+            Assert.Equal(count - 1, second.Children2.Length);
             Assert.False(((IEditableEntry)second).Children2.Contains(idToExclude));
             for (var i = 0; i < count - 1; i++)
             {
@@ -189,8 +189,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second);
 
             // Assert.
-            Assert.Equal(count, second.Children.Count());
-            Assert.Equal(count, second.Children2.Count());
+            Assert.Equal(count, second.Children.Length);
+            Assert.Equal(count, second.Children2.Length);
 
             for (var i = 0; i < count; i++)
             {
