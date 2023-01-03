@@ -1,9 +1,0 @@
-[namespace=EtAlii.Ubigia.Infrastructure.Transport]
-ServiceSettings = @node(Data:ServiceSettings)
-{
-    string AdminUsername
-    string AdminPassword
-    string Certificate
-
-    Guid LocalStorageId
-}

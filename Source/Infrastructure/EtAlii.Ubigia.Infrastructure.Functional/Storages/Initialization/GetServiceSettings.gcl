@@ -1,0 +1,10 @@
+[namespace=EtAlii.Ubigia.Infrastructure.Functional]
+GetServiceSettings = @node(Data:ServiceSettings)
+{
+    string AdminUsername,
+    string AdminPassword,
+    string Certificate,
+    string LocalStorageId,
+    bool IsOperational,
+    bool ShowSetup
+}

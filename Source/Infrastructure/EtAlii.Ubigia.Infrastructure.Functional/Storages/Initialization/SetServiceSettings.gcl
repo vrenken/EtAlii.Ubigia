@@ -1,0 +1,10 @@
+[namespace=EtAlii.Ubigia.Infrastructure.Functional]
+SetServiceSettings = @node-add(/Data, ServiceSettings)
+{
+    string AdminUsername = $adminUsername,
+    string AdminPassword = $adminPassword,
+    string Certificate = $certificate,
+    string LocalStorageId = $localStorageId,
+    bool IsOperational = $isOperational,
+    bool ShowSetup = $showSetup
+}

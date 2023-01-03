@@ -11,8 +11,22 @@
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
   </ItemGroup>
+  <ItemGroup>
+    <GclFile Include="Storages\Initialization\GetServiceSettings.gcl" />
+    <GclFile Include="Storages\Initialization\SetServiceSettings.gcl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj">
+      <PrivateAssets>all</PrivateAssets>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.props" />
+  <Import Project="..\..\Api\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.targets" />
+
 </Project>

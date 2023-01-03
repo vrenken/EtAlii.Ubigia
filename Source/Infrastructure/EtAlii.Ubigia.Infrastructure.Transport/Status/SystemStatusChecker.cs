@@ -3,29 +3,28 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public class SystemStatusChecker
     {
-        public bool DetermineIfSystemIsOperational(List<IService> services, IConfigurationRoot configurationRoot)
+        public bool DetermineIfSystemIsOperational(
+            IFunctionalContext functionalContext,
+            IConfigurationRoot configurationRoot)
         {
-            var task = Task.Run<bool>(async () =>
-            {
-                var infrastructureService = services
-                    .OfType<IInfrastructureService>()
-                    .Single();
+            ArgumentNullException.ThrowIfNull(functionalContext);
+            ArgumentNullException.ThrowIfNull(configurationRoot);
 
-                using var systemConnection = infrastructureService.Functional.Options.SystemConnectionCreationProxy.Request();
+            var task = Task.Run(async () =>
+            {
+                using var systemConnection = functionalContext.Options.SystemConnectionCreationProxy.Request();
                 var (connection, _) = await systemConnection
                     .OpenSpace(AccountName.System, SpaceName.Configuration)
                     .ConfigureAwait(false);
@@ -42,14 +41,19 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 var scope = new ExecutionScope();
 
                 var settings = await context
-                    .ProcessServiceSettings(scope)
+                    .ProcessGetServiceSettings(scope)
                     .ConfigureAwait(false);
 
-                var isOperational = true;
+                var isOperational = settings.IsOperational;
                 isOperational &= !string.IsNullOrWhiteSpace(settings.AdminUsername);
                 isOperational &= !string.IsNullOrWhiteSpace(settings.AdminPassword);
                 isOperational &= !string.IsNullOrWhiteSpace(settings.Certificate);
-                isOperational &= settings.LocalStorageId != Guid.Empty;
+                isOperational &= !string.IsNullOrWhiteSpace(settings.LocalStorageId);
+
+                if (isOperational)
+                {
+                    isOperational &= Guid.TryParse(settings.LocalStorageId, out _);
+                }
                 return isOperational;
             });
             return task.GetAwaiter().GetResult();
