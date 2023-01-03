@@ -32,8 +32,16 @@
 
             for (var i = 0; i < iterations; i++)
             {
-                actualFileStream.Read(one, 0, bytesToRead);
-                expectedFileStream.Read(two, 0, bytesToRead);
+                var oneLength = actualFileStream.Read(one, 0, bytesToRead);
+                var twoLength = expectedFileStream.Read(two, 0, bytesToRead);
+
+                // Only comparing the lengths is sufficient. If there are fewer bytes then
+                // the previous bytes are used. As these will be the same the BitConverter comparison
+                // will work as expected.
+                if (oneLength != twoLength)
+                {
+                    throw new InvalidOperationException("Incompatible number of bytes read");
+                }
 
                 if (BitConverter.ToInt64(two, 0) != BitConverter.ToInt64(one, 0))
                 {
