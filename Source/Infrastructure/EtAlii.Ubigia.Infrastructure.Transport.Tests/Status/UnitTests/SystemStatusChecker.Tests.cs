@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
-    public class SystemStatusCheckerTests
+    public class SystemStatusCheckerUnitTests
     {
         [Fact]
         public void SystemStatusChecker_Create()
@@ -20,16 +18,16 @@
         }
 
         [Fact]
-        public void SystemStatusChecker_DetermineIfSystemIsOperational()
+        public void SystemStatusChecker_Incorrect_Dependencies()
         {
             // Arrange.
             var systemStatusChecker = new SystemStatusChecker();
 
             // Act.
-            var act = new Action(() => systemStatusChecker.DetermineIfSystemIsOperational(new List<IService>(), null));
+            var act = new Action(() => systemStatusChecker.DetermineIfSystemIsOperational(null, null));
 
             // Assert.
-            Assert.Throws<InvalidOperationException>(act);
+            Assert.Throws<ArgumentNullException>(act);
         }
     }
 }
