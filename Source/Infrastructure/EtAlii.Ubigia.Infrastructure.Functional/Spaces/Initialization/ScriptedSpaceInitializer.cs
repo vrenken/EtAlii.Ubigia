@@ -36,11 +36,6 @@ internal class ScriptedSpaceInitializer : ISpaceInitializer
 
     public async Task Initialize(Space space, SpaceTemplate template)
     {
-        var storage = await _context.Storages
-            .GetLocal()
-            .ConfigureAwait(false);
-        var storageId = storage.Id;
-        var accountId = space.AccountId;
         var spaceId = space.Id;
 
         var hasRoots = await _context.Roots
