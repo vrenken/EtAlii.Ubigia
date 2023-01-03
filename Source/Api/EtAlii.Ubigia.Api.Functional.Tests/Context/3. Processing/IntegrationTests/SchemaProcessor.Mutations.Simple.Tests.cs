@@ -222,7 +222,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var localStorageId = Guid.NewGuid();
-            scope.Variables["adminUserName"] = new ScopeVariable("Admin1", "Variable");
+            scope.Variables["adminUsername"] = new ScopeVariable("Admin1", "Variable");
             scope.Variables["adminPassword"] = new ScopeVariable("1234", "Variable");
             scope.Variables["certificate"] = new ScopeVariable("BaadFood", "Variable");
             scope.Variables["localStorageId"] = new ScopeVariable(localStorageId.ToString(), "Variable");
@@ -231,7 +231,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             //var mutationText = $@"Settings = @node-add(Data:, ServiceSettings)
             var mutationText = @"Settings = @node-add(/Data, ServiceSettings)
                                {
-                                    string AdminUsername = $adminUserName,
+                                    string AdminUsername = $adminUsername,
                                     string AdminPassword = $adminPassword,
                                     string Certificate = $certificate,
                                     string LocalStorageId = $localStorageId

@@ -21,7 +21,7 @@ public partial class SchemaParserTests
         var normalPersonText = @"
         Settings = @node-add(/Data, ServiceSettings)
         {
-            string AdminUsername = $adminUserName,
+            string AdminUsername = $adminUsername,
             string AdminPassword = $adminPassword,
             string Certificate = $certificate,
             string LocalStorageId = $localStorageId
