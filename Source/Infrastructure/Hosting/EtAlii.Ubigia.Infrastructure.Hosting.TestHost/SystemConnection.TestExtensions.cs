@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public static class SystemConnectionTestExtensions

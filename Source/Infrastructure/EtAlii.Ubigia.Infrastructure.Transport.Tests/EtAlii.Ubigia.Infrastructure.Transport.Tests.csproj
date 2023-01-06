@@ -9,9 +9,6 @@
     <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SystemConnection\IntegrationTests" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\..\UnitTestSettings.cs">
       <Link>UnitTestSettings.cs</Link>
     </Compile>

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
     using EtAlii.Ubigia.Tests;
