@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System;
     using Xunit;

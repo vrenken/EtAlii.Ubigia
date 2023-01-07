@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Tests;
@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
         public async Task SystemStatusChecker_DetermineIfSystemIsOperational()
         {
             // Arrange.
-            var testContext = new TransportInfrastructureUnitTestContext();
+            var testContext = new FunctionalInfrastructureUnitTestContext();
             await testContext
                 .InitializeAsync()
                 .ConfigureAwait(false);

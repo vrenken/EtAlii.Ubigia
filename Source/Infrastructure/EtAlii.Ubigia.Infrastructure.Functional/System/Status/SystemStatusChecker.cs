@@ -1,6 +1,6 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport
+namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
     using System.Threading.Tasks;
@@ -15,6 +15,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class SystemStatusChecker
     {
+        public bool DetermineIfSetupIsNeeded()
+        {
+            return true;
+        }
+
         public bool DetermineIfSystemIsOperational(
             IFunctionalContext functionalContext,
             IConfigurationRoot configurationRoot)
