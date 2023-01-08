@@ -3,7 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using System;
-	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;using EtAlii.xTechnology.Hosting;
+	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
