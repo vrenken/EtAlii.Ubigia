@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             {
                 var previousHeadIdentifier = await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
 
-                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(storageId, spaceId, previousHeadIdentifier).ConfigureAwait(false);
+                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(previousHeadIdentifier).ConfigureAwait(false);
 
                 await _rootUpdater
                     .Update(storageId, spaceId, PositionalRoot.Head, nextHeadIdentifier)

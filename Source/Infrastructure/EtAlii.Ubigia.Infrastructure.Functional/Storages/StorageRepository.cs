@@ -10,20 +10,17 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     internal class StorageRepository :  IStorageRepository
     {
-        private readonly FunctionalContextOptions _options;
         private readonly ILogicalContext _logicalContext;
         private readonly ILocalStorageInitializer _localStorageInitializer;
         private readonly IStorageInitializer _storageInitializer;
         private readonly ILocalStorageGetter _localStorageGetter;
 
         public StorageRepository(
-            FunctionalContextOptions options,
             ILogicalContext logicalContext,
             ILocalStorageInitializer localStorageInitializer,
             IStorageInitializer storageInitializer,
             ILocalStorageGetter localStorageGetter)
         {
-            _options = options;
             _logicalContext = logicalContext;
             _localStorageInitializer = localStorageInitializer;
             _storageInitializer = storageInitializer;

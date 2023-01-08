@@ -17,7 +17,7 @@ internal class CommonInfrastructureExtension : IExtension
     {
         new InfrastructureScaffolding(_options).Register(container);
         new DataScaffolding().Register(container);
-        new ManagementScaffolding(_options).Register(container);
+        new ManagementScaffolding().Register(container);
         new SystemScaffolding().Register(container);
     }
 }
