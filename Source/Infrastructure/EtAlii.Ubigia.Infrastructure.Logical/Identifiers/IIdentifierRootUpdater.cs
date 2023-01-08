@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface IIdentifierRootUpdater
     {
-        Task Update(Guid spaceId, RootTemplate rootTemplate, Identifier id);
+        Task Update(Guid storageId, Guid spaceId, RootTemplate rootTemplate, Identifier id);
     }
 }

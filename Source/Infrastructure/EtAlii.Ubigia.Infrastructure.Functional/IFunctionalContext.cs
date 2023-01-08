@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using EtAlii.xTechnology.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Logical;
 
     public interface IFunctionalContext
     {
@@ -27,11 +28,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// All space related operations can be found here.
         /// </summary>
         ISpaceRepository Spaces { get; }
-
-        /// <summary>
-        /// All identifier related operations can be found here.
-        /// </summary>
-        IIdentifierRepository Identifiers { get; }
 
         /// <summary>
         /// All entry related operations can be found here.
@@ -62,6 +58,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// All content definition related operations can be found here.
         /// </summary>
         IContentDefinitionRepository ContentDefinition { get ; }
+
+        /// <summary>
+        /// A proxy wrapping system connection creation mechanisms.
+        /// </summary>
+        ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
+
+        ILogicalContext LogicalContext { get; }
 
         Task Start();
         Task Stop();

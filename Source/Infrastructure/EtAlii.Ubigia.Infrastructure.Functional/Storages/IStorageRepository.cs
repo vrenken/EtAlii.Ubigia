@@ -20,5 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         Task Remove(Storage item);
 
         Task<Storage> Update(Guid itemId, Storage item);
+
+        Task Initialize();
     }
 }

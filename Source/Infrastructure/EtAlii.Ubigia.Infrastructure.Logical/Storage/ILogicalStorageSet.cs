@@ -8,8 +8,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface ILogicalStorageSet
     {
-        Task<Storage> GetLocal();
-
         IAsyncEnumerable<Storage> GetAll();
 
         Task<Storage> Get(string name);
@@ -17,6 +15,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         Task<Storage> Get(Guid id);
 
         Task<Storage> Add(Storage item);
+
+        Task<Storage> AddLocalStorage(Storage item);
 
         Task Remove(Guid itemId);
 
@@ -26,8 +26,5 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         Task Start();
         Task Stop();
-
-        Func<Storage, Task> Initialized { get; set; }
-        Func<Storage, Task> Added { get; set; }
     }
 }

@@ -10,21 +10,20 @@ using EtAlii.Ubigia.Infrastructure.Logical;
 internal class DirectSpaceInitializer : ISpaceInitializer
 {
     private readonly ILogicalContext _context;
+    private readonly ILocalStorageGetter _localStorageGetter;
 
-    public DirectSpaceInitializer(ILogicalContext context)
+    public DirectSpaceInitializer(ILogicalContext context, ILocalStorageGetter localStorageGetter)
     {
         _context = context;
+        _localStorageGetter = localStorageGetter;
     }
 
     /// <inheritdoc />
     public async Task Initialize(Space space, SpaceTemplate template)
     {
-        var storage = await _context.Storages
-            .GetLocal()
-            .ConfigureAwait(false);
-        var storageId = storage.Id;
         var accountId = space.AccountId;
         var spaceId = space.Id;
+        var localStorage = _localStorageGetter.GetLocal();
 
         var hasRoots = await _context.Roots
             .GetAll(spaceId)
@@ -37,7 +36,7 @@ internal class DirectSpaceInitializer : ISpaceInitializer
         }
 
         var rootsToCreate = template.RootsToCreate;
-        var spaceIdentifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
+        var spaceIdentifier = Identifier.NewIdentifier(localStorage.Id, accountId, spaceId);
 
         var previousIdentifier = Identifier.Empty;
         var tailIdentifier = Identifier.Empty;
@@ -45,7 +44,7 @@ internal class DirectSpaceInitializer : ISpaceInitializer
         {
             var rootTemplate = rootsToCreate[i];
             var newId = Identifier.NewIdentifier(spaceIdentifier, 0, 0, (ulong)i);
-            var entry = (IEditableEntry)await _context.Entries.Prepare(spaceId, newId).ConfigureAwait(false);
+            var entry = (IEditableEntry)await _context.Entries.Prepare(newId).ConfigureAwait(false);
             entry.Type = rootTemplate.Name;
             if (i == 0)
             {
@@ -67,7 +66,7 @@ internal class DirectSpaceInitializer : ISpaceInitializer
                 Identifier = entry.Id
             };
             await _context.Roots
-                .Add(spaceId, root)
+                .Add(localStorage.Id, spaceId, root)
                 .ConfigureAwait(false);
         }
     }

@@ -21,15 +21,15 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public Task<Entry> Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid storageId, Guid spaceId)
         {
-            return _entryPreparer.Prepare(spaceId);
+            return _entryPreparer.Prepare(storageId, spaceId);
         }
 
         /// <inheritdoc />
-        public Task<Entry> Prepare(Guid spaceId, Identifier id)
+        public Task<Entry> Prepare(Identifier id)
         {
-            return _entryPreparer.Prepare(spaceId, id);
+            return _entryPreparer.Prepare(id);
         }
 
         /// <inheritdoc />

@@ -11,26 +11,26 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IIdentifierTailGetter _identifierTailGetter;
 
         public LogicalIdentifierSet(
-            IIdentifierHeadGetter identifierHeadGetter, 
+            IIdentifierHeadGetter identifierHeadGetter,
             IIdentifierTailGetter identifierTailGetter)
         {
             _identifierHeadGetter = identifierHeadGetter;
             _identifierTailGetter = identifierTailGetter;
         }
 
-        public Task<Identifier> GetTail(Guid spaceId)
+        public Task<Identifier> GetTail(Guid storageId, Guid spaceId)
         {
-            return _identifierTailGetter.Get(spaceId);
+            return _identifierTailGetter.Get(storageId, spaceId);
         }
 
-        public Task<Identifier> GetCurrentHead(Guid spaceId)
+        public Task<Identifier> GetCurrentHead(Guid storageId, Guid spaceI)
         {
-            return _identifierHeadGetter.GetCurrent(spaceId);
+            return _identifierHeadGetter.GetCurrent(storageId, spaceI);
         }
 
-        public Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId)
+        public Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid storageId, Guid spaceId)
         {
-            return _identifierHeadGetter.GetNext(spaceId);
+            return _identifierHeadGetter.GetNext(storageId, spaceId);
         }
     }
 }

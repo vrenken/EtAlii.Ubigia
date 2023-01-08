@@ -7,8 +7,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface ILogicalIdentifierSet
     {
-        Task<Identifier> GetTail(Guid spaceId);
-        Task<Identifier> GetCurrentHead(Guid spaceId);
-        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId);
+        Task<Identifier> GetTail(Guid storageId, Guid spaceId);
+        Task<Identifier> GetCurrentHead(Guid storageId, Guid spaceId);
+        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid storageId, Guid spaceId);
     }
 }

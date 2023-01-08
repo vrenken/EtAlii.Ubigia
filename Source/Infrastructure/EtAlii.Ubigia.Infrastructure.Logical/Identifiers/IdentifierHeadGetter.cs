@@ -36,12 +36,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Identifier> GetCurrent(Guid spaceId)
+        public async Task<Identifier> GetCurrent(Guid storageId, Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
-                return await GetCurrentInternal(spaceId).ConfigureAwait(false);
+                return await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
             }
             finally
             {
@@ -49,11 +49,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             }
         }
 
-        private async Task<Identifier> GetCurrentInternal(Guid spaceId)
+        private async Task<Identifier> GetCurrentInternal(Guid storageId, Guid spaceId)
         {
             if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out var headIdentifier))
             {
-                headIdentifier = await DetermineHead(spaceId).ConfigureAwait(false);
+                headIdentifier = await DetermineHead(storageId, spaceId).ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = headIdentifier;
             }
 
@@ -61,17 +61,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId)
+        public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid storageId, Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
-                var previousHeadIdentifier = await GetCurrentInternal(spaceId).ConfigureAwait(false);
+                var previousHeadIdentifier = await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
 
-                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier).ConfigureAwait(false);
+                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(storageId, spaceId, previousHeadIdentifier).ConfigureAwait(false);
 
                 await _rootUpdater
-                    .Update(spaceId, PositionalRoot.Head, nextHeadIdentifier)
+                    .Update(storageId, spaceId, PositionalRoot.Head, nextHeadIdentifier)
                     .ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
 
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             }
         }
 
-        private async Task<Identifier> DetermineHead(Guid spaceId)
+        private async Task<Identifier> DetermineHead(Guid storageId, Guid spaceId)
         {
             Identifier headIdentifier;
 
@@ -96,26 +96,24 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 if (headIdentifier == Identifier.Empty)
                 {
                     // Determine from container storage.
-                    headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
-                    await _rootUpdater.Update(spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
+                    headIdentifier = await DetermineHeadFromComponentStorage(storageId, spaceId).ConfigureAwait(false);
+                    await _rootUpdater.Update(storageId, spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
                 }
             }
             else
             {
                 // Determine from container storage.
-                headIdentifier = await DetermineHeadFromComponentStorage(spaceId).ConfigureAwait(false);
-                await _rootUpdater.Update(spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
+                headIdentifier = await DetermineHeadFromComponentStorage(storageId, spaceId).ConfigureAwait(false);
+                await _rootUpdater.Update(storageId, spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
                 _headIsInitialized = true;
             }
 
             return headIdentifier;
         }
 
-        private async Task<Identifier> DetermineHeadFromComponentStorage(Guid spaceId)
+        private async Task<Identifier> DetermineHeadFromComponentStorage(Guid storageId, Guid spaceId)
         {
             var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
-            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
-            var storageId = storage.Id;
             var accountId = space.AccountId;
 
             return await _fabric.Identifiers.GetNextIdentifierFromStorage(storageId, accountId, spaceId).ConfigureAwait(false);

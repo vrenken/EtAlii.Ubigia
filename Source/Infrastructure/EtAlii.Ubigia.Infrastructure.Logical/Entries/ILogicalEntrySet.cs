@@ -11,17 +11,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <summary>
         /// Prepare an entry for storage of information.
         /// </summary>
+        /// <param name="storageId"></param>
         /// <param name="spaceId"></param>
         /// <returns></returns>
-        Task<Entry> Prepare(Guid spaceId);
+        Task<Entry> Prepare(Guid storageId, Guid spaceId);
 
         /// <summary>
         /// Prepare an entry for storage of information.
         /// </summary>
-        /// <param name="spaceId"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Entry> Prepare(Guid spaceId, Identifier id);
+        Task<Entry> Prepare(Identifier id);
 
         /// <summary>
         /// Get the entry for the specified identifier. Only return an entry filled with the specified relations information.

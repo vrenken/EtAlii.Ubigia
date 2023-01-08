@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface IIdentifierTailGetter
     {
-        Task<Identifier> Get(Guid spaceId);
+        Task<Identifier> Get(Guid storageId, Guid spaceId);
     }
 }

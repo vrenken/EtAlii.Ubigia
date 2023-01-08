@@ -4,31 +4,37 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class StorageRepository :  IStorageRepository
     {
+        private readonly FunctionalContextOptions _options;
         private readonly ILogicalContext _logicalContext;
         private readonly ILocalStorageInitializer _localStorageInitializer;
         private readonly IStorageInitializer _storageInitializer;
+        private readonly ILocalStorageGetter _localStorageGetter;
 
-        public StorageRepository(ILogicalContext logicalContext,
+        public StorageRepository(
+            FunctionalContextOptions options,
+            ILogicalContext logicalContext,
             ILocalStorageInitializer localStorageInitializer,
-            IStorageInitializer storageInitializer)
+            IStorageInitializer storageInitializer,
+            ILocalStorageGetter localStorageGetter)
         {
+            _options = options;
             _logicalContext = logicalContext;
             _localStorageInitializer = localStorageInitializer;
             _storageInitializer = storageInitializer;
-
-            _logicalContext.Storages.Initialized = OnLocalStorageInitialized;
-            _logicalContext.Storages.Added = OnStorageAdded;
+            _localStorageGetter = localStorageGetter;
         }
 
         /// <inheritdoc />
         public Task<Storage> GetLocal()
         {
-            return _logicalContext.Storages.GetLocal();
+            var storage = _localStorageGetter.GetLocal();
+            return Task.FromResult(storage);
         }
 
         /// <inheritdoc />
@@ -56,9 +62,20 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         }
 
         /// <inheritdoc />
-        public Task<Storage> Add(Storage item)
+        public async Task<Storage> Add(Storage item)
         {
-            return _logicalContext.Storages.Add(item);
+            var storage = await _logicalContext.Storages
+                .Add(item)
+                .ConfigureAwait(false);
+
+            if (storage != null)
+            {
+                await _storageInitializer
+                    .Initialize(storage)
+                    .ConfigureAwait(false);
+            }
+
+            return storage;
         }
 
         /// <inheritdoc />
@@ -73,14 +90,33 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             return _logicalContext.Storages.Remove(item);
         }
 
-        private Task OnLocalStorageInitialized(Storage localStorage)
+        public async Task Initialize()
         {
-            return _localStorageInitializer.Initialize(localStorage);
-        }
+            // Improve this method and use a better way to decide if the local Storage needs to be added.
+            // This current test to see if the local storage has already been added is not very stable/scalable.
+            // Please find another way to determine that the local storage needs initialization.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/94
+            var items = await _logicalContext.Storages
+                .GetAll()
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
-        private Task OnStorageAdded(Storage storage)
-        {
-            return _storageInitializer.Initialize(storage);
+            var isAlreadyRegistered = items.Any(s => s.Name == _options.Name);
+            if (!isAlreadyRegistered)
+            {
+                var localStorage = await _localStorageGetter
+                    .GetLocal(items)
+                    .ConfigureAwait(false);
+
+                await _logicalContext.Storages
+                    .AddLocalStorage(localStorage)
+                    .ConfigureAwait(false);
+
+                await _localStorageInitializer
+                    .Initialize(localStorage)
+                    .ConfigureAwait(false);
+            }
         }
     }
 }

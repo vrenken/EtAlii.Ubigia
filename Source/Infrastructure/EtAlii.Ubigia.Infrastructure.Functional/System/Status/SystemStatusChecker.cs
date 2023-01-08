@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             var task = Task.Run(async () =>
             {
-                using var systemConnection = functionalContext.Options.SystemConnectionCreationProxy.Request();
+                using var systemConnection = functionalContext.SystemConnectionCreationProxy.Request();
                 var (connection, _) = await systemConnection
                     .OpenSpace(AccountName.System, SpaceName.Configuration)
                     .ConfigureAwait(false);

@@ -3,6 +3,9 @@
     <ProjectGuid>5fd5a24a-ccce-4bbc-9aa4-5725d27c90d6</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
+    <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
@@ -17,5 +20,11 @@
   <ItemGroup>
     <Folder Include="Management" />
     <Folder Include="User\Roots\IntegrationTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogicalSettings.json">
+      <BuildAction>Content</BuildAction>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

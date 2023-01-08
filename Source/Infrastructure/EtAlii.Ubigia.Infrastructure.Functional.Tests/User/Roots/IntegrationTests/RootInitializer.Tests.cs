@@ -27,6 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 	        // Arrange.
             var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
+            var localStorage = await _testContext.Functional.Storages.GetLocal().ConfigureAwait(false);
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await _testContext.Functional.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -38,13 +39,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
             var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
-                .Use(fabric)
-                .Use(_testContext.HostName, _testContext.DataAddress);
+                .Use(fabric);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
-            await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
+            await rootInitializer.Initialize(localStorage.Id, space.Id, root).ConfigureAwait(false);
 
             // Assert.
         }
@@ -55,6 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 	        // Arrange.
             var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
+            var localStorage = await _testContext.Functional.Storages.GetLocal().ConfigureAwait(false);
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await _testContext.Functional.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -66,13 +67,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
             var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
-                .Use(fabric)
-                .Use(_testContext.HostName, _testContext.DataAddress);
+                .Use(fabric);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
-            await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
+            await rootInitializer.Initialize(localStorage.Id, space.Id, root).ConfigureAwait(false);
 
             // Assert.
             var registeredRoot = await _testContext.Functional.Roots.Get(space.Id, root.Id).ConfigureAwait(false);
@@ -86,6 +86,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 	        // Arrange.
             var space = await _infrastructureTestHelper.CreateSpace(_testContext.Functional).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
+            var localStorage = await _testContext.Functional.Storages.GetLocal().ConfigureAwait(false);
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await _testContext.Functional.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -97,13 +98,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
             var logicalContextOptions = new LogicalContextOptions(_testContext.Configuration)
-                .Use(fabric)
-                .Use(_testContext.HostName, _testContext.DataAddress);
+                .Use(fabric);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
-            await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
+            await rootInitializer.Initialize(localStorage.Id, space.Id, root).ConfigureAwait(false);
 
             // Assert.
             var registeredRoot = await _testContext.Functional.Roots.Get(space.Id, root.Id).ConfigureAwait(false);

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface IEntryPreparer
     {
-        Task<Entry> Prepare(Guid spaceId);
-        Task<Entry> Prepare(Guid spaceId, Identifier id);
+        Task<Entry> Prepare(Guid storageId, Guid spaceId);
+        Task<Entry> Prepare(Identifier id);
     }
 }

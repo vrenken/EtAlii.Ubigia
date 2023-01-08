@@ -50,11 +50,13 @@
         {
             // Arrange.
             var options = new SystemConnectionOptions(null);
+            var name = "Test";
+            var storageAddress = new Uri("https://nowhere.com");
             var serviceDetails = new []
             {
                 new ServiceDetails("Test", new Uri("https://nowhere.com/management"), new Uri("https://nowhere.com/data"), new Uri("https://nowhere.com/storage"))
             };
-            var functionalContextOptions = new FunctionalContextOptions(null, null).Use("Test", serviceDetails);
+            var functionalContextOptions = new FunctionalContextOptions(null).Use(name, storageAddress, serviceDetails);
             var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null);
 
             // Act.
@@ -71,11 +73,13 @@
         {
             // Arrange.
             var options = new SystemConnectionOptions(null);
+            var name = "Test";
+            var storageAddress = new Uri("https://nowhere.com");
             var serviceDetails = new []
             {
                 new ServiceDetails("Test", new Uri("https://nowhere.com/management"), new Uri("https://nowhere.com/data"), new Uri("https://nowhere.com/storage"))
             };
-            var functionalContextOptions = new FunctionalContextOptions(null, null).Use("Test", serviceDetails);
+            var functionalContextOptions = new FunctionalContextOptions(null).Use(name, storageAddress, serviceDetails);
             var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null);
             options = options.Use(functionalContext);
 

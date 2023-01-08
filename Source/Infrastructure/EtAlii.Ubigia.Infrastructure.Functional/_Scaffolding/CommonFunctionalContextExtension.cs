@@ -1,23 +1,23 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using EtAlii.xTechnology.MicroContainer;
+
+internal class CommonInfrastructureExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly FunctionalContextOptions _options;
 
-    internal class CommonInfrastructureExtension : IExtension
+    public CommonInfrastructureExtension(FunctionalContextOptions options)
     {
-        private readonly FunctionalContextOptions _options;
+        _options = options;
+    }
 
-        public CommonInfrastructureExtension(FunctionalContextOptions options)
-        {
-            _options = options;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            new InfrastructureScaffolding(_options).Register(container);
-            new DataScaffolding().Register(container);
-            new ManagementScaffolding().Register(container);
-        }
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        new InfrastructureScaffolding(_options).Register(container);
+        new DataScaffolding().Register(container);
+        new ManagementScaffolding(_options).Register(container);
+        new SystemScaffolding().Register(container);
     }
 }

@@ -12,33 +12,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     public class LogicalStorageSet : ILogicalStorageSet
     {
         private readonly IFabricContext _fabric;
-        private readonly ILocalStorageGetter _localStorageGetter;
-        private readonly LogicalContextOptions _options;
 
         private const string Folder = "Storages";
 
         private ObservableCollection<Storage> Items { get; set; }
 
-        /// <inheritdoc />
-	    public Func<Storage, Task> Initialized { get; set; }
-
-        /// <inheritdoc />
-        public Func<Storage, Task> Added { get; set; }
-
-        public LogicalStorageSet(
-            ILocalStorageGetter localStorageGetter,
-            LogicalContextOptions options,
-            IFabricContext fabric)
+        public LogicalStorageSet(IFabricContext fabric)
         {
             _fabric = fabric;
-            _localStorageGetter = localStorageGetter;
-            _options = options;
-        }
-
-        /// <inheritdoc />
-        public Task<Storage> GetLocal()
-        {
-            return _localStorageGetter.GetLocal(Items);
         }
 
         /// <inheritdoc />
@@ -63,40 +44,26 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <inheritdoc />
         public async Task<Storage> Add(Storage item)
         {
-            item = await _fabric.Items.Add(Items, CanAddFunction, item).ConfigureAwait(false);
+            return await _fabric.Items
+                .Add(Items, CanAddFunction, item)
+                .ConfigureAwait(false);
+        }
 
-            if (item != null && Added != null)
-            {
-                await Added.Invoke(item).ConfigureAwait(false);
-            }
-            return item;
+        /// <inheritdoc />
+        public async Task<Storage> AddLocalStorage(Storage item)
+        {
+            // No check for local storage.
+            return await _fabric.Items
+                .Add(Items,  (_, _) => true, item)
+                .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task Start()
         {
-            var items = await _fabric.Items
+            Items = await _fabric.Items
                 .GetItems<Storage>(Folder)
                 .ConfigureAwait(false);
-
-            // Improve this method and use a better way to decide if the local Storage needs to be added.
-            // This current test to see if the local storage has already been added is not very stable/scalable.
-            // Please find another way to determine that the local storage needs initialization.
-            // More details can be found in the Github issue below:
-            // https://github.com/vrenken/EtAlii.Ubigia/issues/94
-            var isAlreadyRegistered = items.Any(s => s.Name == _options.Name);
-            if (!isAlreadyRegistered)
-            {
-                var storage = await _localStorageGetter.GetLocal(items).ConfigureAwait(false);
-                items.Add(storage);
-
-                if (Initialized != null)
-                {
-                    await Initialized(storage).ConfigureAwait(false);
-                }
-            }
-
-            Items = items;
         }
 
         /// <inheritdoc />

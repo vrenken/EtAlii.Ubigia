@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface ILogicalRootSet
     {
-        Task<Root> Add(Guid spaceId, Root root);
+        Task<Root> Add(Guid storageId, Guid spaceId, Root root);
 
         IAsyncEnumerable<Root> GetAll(Guid spaceId);
         Task<Root> Get(Guid spaceId, Guid rootId);

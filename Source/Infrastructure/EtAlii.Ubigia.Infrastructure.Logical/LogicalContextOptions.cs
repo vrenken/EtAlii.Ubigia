@@ -22,31 +22,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <inheritdoc/>
         IExtension[] IExtensible.Extensions { get; set; }
 
-        /// <summary>
-        /// The name of the Ubigia storage.
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// The address (schema+host) at which the storage can be found.
-        /// </summary>
-        public Uri StorageAddress { get; private set; }
-
         public LogicalContextOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-        }
-
-        /// <summary>
-        /// Set both the name and storage address that should be used by the logical context.
-        /// </summary>
-        public LogicalContextOptions Use(string name, Uri storageAddress)
-        {
-			Name = name ?? throw new ArgumentNullException(nameof(name));
-            StorageAddress = storageAddress ?? throw new ArgumentNullException(nameof(storageAddress));
             ((IExtensible)this).Extensions = Array.Empty<IExtension>();
-
-            return this;
         }
 
         /// <summary>

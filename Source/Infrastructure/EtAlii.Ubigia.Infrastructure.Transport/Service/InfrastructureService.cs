@@ -102,14 +102,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // Create logical context instance.
             var logicalContextOptions = new LogicalContextOptions(Configuration.Root)
                 .Use(fabric)
-                .Use(name, serviceDetails.StorageAddress)
                 .UseLogicalDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Create a Infrastructure instance.
-            var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
-            var infrastructureOptions = new FunctionalContextOptions(Configuration.Root, systemConnectionCreationProxy)
-                .Use(name, allServiceDetails)
+            var infrastructureOptions = new FunctionalContextOptions(Configuration.Root)
+                .Use(name, serviceDetails.StorageAddress, allServiceDetails)
                 .Use(logicalContext)
                 .UseFunctionalDiagnostics();
 

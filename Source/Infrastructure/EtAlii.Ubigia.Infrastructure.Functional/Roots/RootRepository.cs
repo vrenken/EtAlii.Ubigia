@@ -10,10 +10,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     internal class RootRepository : IRootRepository
     {
         private readonly ILogicalContext _logicalContext;
+        private readonly ILocalStorageGetter _localStorageGetter;
 
-        public RootRepository(ILogicalContext logicalContext)
+        public RootRepository(
+            ILogicalContext logicalContext,
+            ILocalStorageGetter localStorageGetter)
         {
             _logicalContext = logicalContext;
+            _localStorageGetter = localStorageGetter;
         }
 
         /// <inheritdoc />
@@ -37,7 +41,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         public Task<Root> Add(Guid spaceId, Root root)
         {
-            return _logicalContext.Roots.Add(spaceId, root);
+            var storage = _localStorageGetter.GetLocal();
+            return _logicalContext.Roots.Add(storage.Id, spaceId, root);
         }
 
         /// <inheritdoc />

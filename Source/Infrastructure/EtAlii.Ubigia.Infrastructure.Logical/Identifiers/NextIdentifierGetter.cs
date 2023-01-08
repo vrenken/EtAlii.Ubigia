@@ -20,11 +20,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Identifier> GetNext(Guid spaceId, Identifier previousHeadIdentifier)
+        public async Task<Identifier> GetNext(Guid storageId, Guid spaceId, Identifier previousHeadIdentifier)
         {
             var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
-            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
-            var storageId = storage.Id;
             var accountId = space.AccountId;
 
             return await _fabric.Identifiers

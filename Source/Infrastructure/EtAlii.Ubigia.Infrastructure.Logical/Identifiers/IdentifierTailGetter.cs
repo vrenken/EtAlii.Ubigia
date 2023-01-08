@@ -26,14 +26,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Identifier> Get(Guid spaceId)
+        public async Task<Identifier> Get(Guid storageId, Guid spaceId)
         {
             await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
                 if (!_cachedTailIdentifiers.TryGetValue(spaceId, out var tailIdentifier))
                 {
-                    tailIdentifier = await DetermineTail(spaceId).ConfigureAwait(false);
+                    tailIdentifier = await DetermineTail(storageId, spaceId).ConfigureAwait(false);
                     _cachedTailIdentifiers[spaceId] = tailIdentifier;
                 }
                 return tailIdentifier;
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             }
         }
 
-        private async Task<Identifier> DetermineTail(Guid spaceId)
+        private async Task<Identifier> DetermineTail(Guid storageId, Guid spaceId)
         {
             // load from root "Tail"
 
@@ -56,21 +56,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             if (tailIdentifier == Identifier.Empty)
             {
                 // Determine from disk.
-                tailIdentifier = await DetermineTailFromDisk(spaceId).ConfigureAwait(false);
+                tailIdentifier = await DetermineTailFromDisk(storageId, spaceId).ConfigureAwait(false);
                 await _rootUpdater
-                    .Update(spaceId, PositionalRoot.Tail, tailIdentifier)
+                    .Update(storageId, spaceId, PositionalRoot.Tail, tailIdentifier)
                     .ConfigureAwait(false);
             }
             return tailIdentifier;
         }
 
-        private async Task<Identifier> DetermineTailFromDisk(Guid spaceId)
+        private async Task<Identifier> DetermineTailFromDisk(Guid storageId, Guid spaceId)
         {
             var space = await _context.Spaces
                 .Get(spaceId)
                 .ConfigureAwait(false);
-            var storage = await _context.Storages.GetLocal().ConfigureAwait(false);
-            var storageId = storage.Id;
             var accountId = space.AccountId;
             return Identifier.Create(storageId, accountId, spaceId, 0, 0, 0);
         }

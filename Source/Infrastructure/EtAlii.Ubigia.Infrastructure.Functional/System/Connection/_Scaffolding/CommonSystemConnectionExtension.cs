@@ -24,7 +24,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 .Concat(new IScaffolding[]
                 {
                     new SystemConnectionScaffolding(_options),
-                    new SystemInfrastructureScaffolding(),
                 });
 
             foreach (var scaffolding in scaffoldings)

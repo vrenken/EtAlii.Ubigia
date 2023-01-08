@@ -10,10 +10,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     internal class EntryRepository : IEntryRepository
     {
         private readonly ILogicalContext _logicalContext;
+        private readonly ILocalStorageGetter _localStorageGetter;
 
-        public EntryRepository(ILogicalContext logicalContext)
+        public EntryRepository(
+            ILogicalContext logicalContext,
+            ILocalStorageGetter localStorageGetter)
         {
             _logicalContext = logicalContext;
+            _localStorageGetter = localStorageGetter;
         }
 
         /// <inheritdoc />
@@ -40,13 +44,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId)
         {
-            return _logicalContext.Entries.Prepare(spaceId);
+            var localStorage = _localStorageGetter.GetLocal();
+            return _logicalContext.Entries.Prepare(localStorage.Id, spaceId);
         }
 
         /// <inheritdoc />
         public Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
-            return _logicalContext.Entries.Prepare(spaceId, identifier);
+            return _logicalContext.Entries.Prepare(identifier);
         }
 
         /// <inheritdoc />

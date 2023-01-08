@@ -15,10 +15,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Entry> Prepare(Guid spaceId)
+        public async Task<Entry> Prepare(Guid storageId, Guid spaceId)
         {
             // ReSharper disable once NotAccessedVariable
-            var head = await _context.Identifiers.GetNextHead(spaceId).ConfigureAwait(false);
+            var head = await _context.Identifiers.GetNextHead(storageId, spaceId).ConfigureAwait(false);
 #pragma warning disable S1481
             // ReSharper disable once UnusedVariable
             var previousHeadIdentifier = head.PreviousHeadIdentifier; // We don't seem to wire up the head in our preparation. This feels incorrect.
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Entry> Prepare(Guid spaceId, Identifier id)
+        public async Task<Entry> Prepare(Identifier id)
         {
             var entry = Entry.NewEntry(id, Relation.None);
 

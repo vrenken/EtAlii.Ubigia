@@ -23,9 +23,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         public ISpaceRepository Spaces { get; }
 
         /// <inheritdoc />
-        public IIdentifierRepository Identifiers { get; }
-
-        /// <inheritdoc />
         public IEntryRepository Entries { get; }
 
         /// <inheritdoc />
@@ -46,7 +43,10 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         public IStorageRepository Storages { get; }
 
-        private readonly ILogicalContext _logicalContext;
+        /// <inheritdoc />
+        public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
+
+        public ILogicalContext LogicalContext { get; }
 
         // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
         // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
@@ -57,7 +57,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             FunctionalContextOptions options,
             IInformationRepository information,
             ISpaceRepository spaces,
-            IIdentifierRepository identifiers,
             IEntryRepository entries,
             IRootRepository roots,
             IAccountRepository accounts,
@@ -66,12 +65,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             IPropertiesRepository properties,
             IStorageRepository storages,
             ILogicalContext logicalContext,
-            IContextCorrelator contextCorrelator)
+            IContextCorrelator contextCorrelator,
+            ISystemConnectionCreationProxy systemConnectionCreationProxy)
 #pragma warning restore S107
         {
             ContextCorrelator = contextCorrelator;
+            SystemConnectionCreationProxy = systemConnectionCreationProxy;
             Options = options;
-            Identifiers = identifiers;
             Entries = entries;
             Roots = roots;
             Content = content;
@@ -82,21 +82,26 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             Spaces = spaces;
             Accounts = accounts;
             Storages = storages;
-            _logicalContext = logicalContext;
+            LogicalContext = logicalContext;
         }
 
-        /// <inheritdoc />
-        public virtual Task Start()
-        {
-            Options.SystemConnectionCreationProxy.Initialize(this);
 
-            return _logicalContext.Start();
+        /// <inheritdoc />
+        public virtual async Task Start()
+        {
+            await LogicalContext
+                .Start()
+                .ConfigureAwait(false);
+
+            await Storages
+                .Initialize()
+                .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public virtual Task Stop()
         {
-            return _logicalContext.Stop();
+            return LogicalContext.Stop();
         }
     }
 }

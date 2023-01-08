@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface IRootInitializer
     {
-        Task Initialize(Guid spaceId, Root root);
+        Task Initialize(Guid storageId, Guid spaceId, Root root);
     }
 }

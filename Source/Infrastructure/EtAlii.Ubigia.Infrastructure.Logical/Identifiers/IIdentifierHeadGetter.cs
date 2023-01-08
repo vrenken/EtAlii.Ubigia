@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public interface IIdentifierHeadGetter
     {
-        Task<Identifier> GetCurrent(Guid spaceId);
-        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId);
+        Task<Identifier> GetCurrent(Guid storageId, Guid spaceId);
+        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid storageId, Guid spaceId);
     }
 }

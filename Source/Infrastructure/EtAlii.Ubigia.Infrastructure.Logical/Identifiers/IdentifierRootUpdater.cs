@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _context = context;
         }
 
-        public async Task Update(Guid spaceId, RootTemplate rootTemplate, Identifier id)
+        public async Task Update(Guid storageId, Guid spaceId, RootTemplate rootTemplate, Identifier id)
         {
             var root = await _context.Roots.Get(spaceId, rootTemplate.Name).ConfigureAwait(false);
             if (root == null)
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                     Name = rootTemplate.Name.ToUpper(),
                     Identifier = id,
                 };
-                await _context.Roots.Add(spaceId, root).ConfigureAwait(false);
+                await _context.Roots.Add(storageId, spaceId, root).ConfigureAwait(false);
             }
             else
             {

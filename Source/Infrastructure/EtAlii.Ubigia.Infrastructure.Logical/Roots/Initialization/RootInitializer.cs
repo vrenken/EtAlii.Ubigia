@@ -18,11 +18,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task Initialize(Guid spaceId, Root root)
+        public async Task Initialize(Guid storageId, Guid spaceId, Root root)
         {
             if (root.Identifier == Identifier.Empty)
             {
-                var entry = (IEditableEntry)await _entries.Prepare(spaceId).ConfigureAwait(false);
+                var entry = (IEditableEntry)await _entries.Prepare(storageId, spaceId).ConfigureAwait(false);
                 entry.Type = root.Name;
 
                 //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail)

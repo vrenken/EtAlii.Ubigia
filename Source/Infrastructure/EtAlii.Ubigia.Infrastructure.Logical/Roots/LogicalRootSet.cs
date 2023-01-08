@@ -19,13 +19,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public async Task<Root> Add(Guid spaceId, Root root)
+        public async Task<Root> Add(Guid storageId, Guid spaceId, Root root)
         {
             root = await _fabricContext.Roots.Add(spaceId, root).ConfigureAwait(false);
             var isAdded = root != null;
             if (isAdded)
             {
-                await _rootInitializer.Initialize(spaceId, root).ConfigureAwait(false);
+                await _rootInitializer.Initialize(storageId, spaceId, root).ConfigureAwait(false);
             }
             return root;
         }

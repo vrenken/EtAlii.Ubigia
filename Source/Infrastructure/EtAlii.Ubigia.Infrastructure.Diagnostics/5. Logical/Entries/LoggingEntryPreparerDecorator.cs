@@ -17,16 +17,16 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _entryPreparer = entryPreparer;
         }
 
-        public Task<Entry> Prepare(Guid spaceId, Identifier id)
+        public Task<Entry> Prepare(Identifier id)
         {
-            _logger.Verbose("Preparing entry for space: {SpaceId} (Id: {Identifier})", spaceId, id);
-            return _entryPreparer.Prepare(spaceId);
+            _logger.Verbose("Preparing entry for storage {StorageId} and  space {SpaceId} (Id: {Identifier})", id.Storage, id.Space, id);
+            return _entryPreparer.Prepare(id.Storage, id.Space);
         }
 
-        public Task<Entry> Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid storageId, Guid spaceId)
         {
-            _logger.Verbose("Preparing entry for space: {SpaceId}", spaceId);
-            return _entryPreparer.Prepare(spaceId);
+            _logger.Verbose("Preparing entry for storage {StorageId} and  space {SpaceId}", storageId, spaceId);
+            return _entryPreparer.Prepare(storageId, spaceId);
         }
     }
 }

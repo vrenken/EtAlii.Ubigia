@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Logical;
     using Serilog;
     using EtAlii.xTechnology.Threading;
 
@@ -27,9 +28,6 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public ISpaceRepository Spaces => _decoree.Spaces;
 
         /// <inheritdoc />
-        public IIdentifierRepository Identifiers => _decoree.Identifiers;
-
-        /// <inheritdoc />
         public IEntryRepository Entries => _decoree.Entries;
 
         /// <inheritdoc />
@@ -46,6 +44,11 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
         /// <inheritdoc />
         public IContentDefinitionRepository ContentDefinition => _decoree.ContentDefinition;
+
+        /// <inheritdoc />
+        public ISystemConnectionCreationProxy SystemConnectionCreationProxy => _decoree.SystemConnectionCreationProxy;
+
+        public ILogicalContext LogicalContext => _decoree.LogicalContext;
 
         private readonly ILogger _logger = Log.ForContext<IFunctionalContext>();
 
