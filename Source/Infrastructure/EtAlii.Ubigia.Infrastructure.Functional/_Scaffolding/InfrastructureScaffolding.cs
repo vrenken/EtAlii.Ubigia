@@ -44,7 +44,12 @@ internal class InfrastructureScaffolding : IScaffolding
         container.Register<IContextCorrelator, ContextCorrelator>();
         container.Register(() => _options.ConfigurationRoot);
         container.Register(() => _options.Logical);
-        container.Register<ILocalStorageGetter>(() => new LocalStorageGetter(_options));
+        container.Register<ILocalStorageGetter>(services =>
+        {
+            var logicalContext = services.GetInstance<ILogicalContext>();
+            var localStorageInitializer = services.GetInstance<ILocalStorageInitializer>();
+            return new LocalStorageGetter(_options, logicalContext, localStorageInitializer);
+        });
     }
 
     private IFunctionalContext CreateFunctionalContext(IServiceCollection services)
@@ -61,8 +66,9 @@ internal class InfrastructureScaffolding : IScaffolding
         var logicalContext = services.GetInstance<ILogicalContext>();
         var contextCorrelator = services.GetInstance<IContextCorrelator>();
         var systemConnectionCreationProxy = services.GetInstance<ISystemConnectionCreationProxy>();
+        var localStorageGetter = services.GetInstance<ILocalStorageGetter>();
 
-        var functionalContext = new FunctionalContext(_options, information, spaces, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator, systemConnectionCreationProxy);
+        var functionalContext = new FunctionalContext(_options, information, spaces, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator, systemConnectionCreationProxy, localStorageGetter);
 
         systemConnectionCreationProxy.Initialize(functionalContext);
 

@@ -4,25 +4,21 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class StorageRepository :  IStorageRepository
     {
         private readonly ILogicalContext _logicalContext;
-        private readonly ILocalStorageInitializer _localStorageInitializer;
         private readonly IStorageInitializer _storageInitializer;
         private readonly ILocalStorageGetter _localStorageGetter;
 
         public StorageRepository(
             ILogicalContext logicalContext,
-            ILocalStorageInitializer localStorageInitializer,
             IStorageInitializer storageInitializer,
             ILocalStorageGetter localStorageGetter)
         {
             _logicalContext = logicalContext;
-            _localStorageInitializer = localStorageInitializer;
             _storageInitializer = storageInitializer;
             _localStorageGetter = localStorageGetter;
         }
@@ -85,35 +81,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         public Task Remove(Storage item)
         {
             return _logicalContext.Storages.Remove(item);
-        }
-
-        public async Task Initialize()
-        {
-            // Improve this method and use a better way to decide if the local Storage needs to be added.
-            // This current test to see if the local storage has already been added is not very stable/scalable.
-            // Please find another way to determine that the local storage needs initialization.
-            // More details can be found in the Github issue below:
-            // https://github.com/vrenken/EtAlii.Ubigia/issues/94
-
-            var localStorage = _localStorageGetter
-                .GetLocal();
-
-            var items = await _logicalContext.Storages
-                .GetAll()
-                .ToArrayAsync()
-                .ConfigureAwait(false);
-
-            var isAlreadyRegistered = items.Any(s => s.Name == localStorage.Name);
-            if (!isAlreadyRegistered)
-            {
-                await _logicalContext.Storages
-                    .AddLocalStorage(localStorage)
-                    .ConfigureAwait(false);
-
-                await _localStorageInitializer
-                    .Initialize(localStorage)
-                    .ConfigureAwait(false);
-            }
         }
     }
 }

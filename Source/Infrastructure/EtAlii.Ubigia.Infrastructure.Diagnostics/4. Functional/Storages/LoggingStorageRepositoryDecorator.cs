@@ -124,16 +124,5 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
             return item;
         }
-
-        public async Task Initialize()
-        {
-            _logger.Information("Initializing storage repository");
-            var start = Environment.TickCount;
-
-            await _repository.Initialize().ConfigureAwait(false);
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Initialized storage repository (Duration: {Duration}ms)", duration);
-        }
     }
 }

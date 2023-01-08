@@ -57,7 +57,7 @@
                 new ServiceDetails("Test", new Uri("https://nowhere.com/management"), new Uri("https://nowhere.com/data"), new Uri("https://nowhere.com/storage"))
             };
             var functionalContextOptions = new FunctionalContextOptions(null).Use(name, storageAddress, serviceDetails);
-            var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null);
+            var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
             // Act.
             options = options.Use(functionalContext);
@@ -80,7 +80,7 @@
                 new ServiceDetails("Test", new Uri("https://nowhere.com/management"), new Uri("https://nowhere.com/data"), new Uri("https://nowhere.com/storage"))
             };
             var functionalContextOptions = new FunctionalContextOptions(null).Use(name, storageAddress, serviceDetails);
-            var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null);
+            var functionalContext = new FunctionalContext(functionalContextOptions, null, null, null, null, null, null, null, null, null, null, null, null, null);
             options = options.Use(functionalContext);
 
             // Act.

@@ -48,6 +48,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         public ILogicalContext LogicalContext { get; }
 
+        private readonly ILocalStorageGetter _localStorageGetter;
+
         // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
         // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
         // specified by SonarQube. The current setup here is already some kind of facade that hides away many infrastructure specific variations. Therefore refactoring to facades won't work.
@@ -66,7 +68,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             IStorageRepository storages,
             ILogicalContext logicalContext,
             IContextCorrelator contextCorrelator,
-            ISystemConnectionCreationProxy systemConnectionCreationProxy)
+            ISystemConnectionCreationProxy systemConnectionCreationProxy,
+            ILocalStorageGetter localStorageGetter)
 #pragma warning restore S107
         {
             ContextCorrelator = contextCorrelator;
@@ -83,6 +86,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             Accounts = accounts;
             Storages = storages;
             LogicalContext = logicalContext;
+
+            _localStorageGetter = localStorageGetter;
         }
 
 
@@ -93,7 +98,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 .Start()
                 .ConfigureAwait(false);
 
-            await Storages
+            await _localStorageGetter
                 .Initialize()
                 .ConfigureAwait(false);
         }
