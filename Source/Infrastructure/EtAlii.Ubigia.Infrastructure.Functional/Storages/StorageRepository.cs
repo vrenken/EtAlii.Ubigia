@@ -97,18 +97,18 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             // Please find another way to determine that the local storage needs initialization.
             // More details can be found in the Github issue below:
             // https://github.com/vrenken/EtAlii.Ubigia/issues/94
+
+            var localStorage = _localStorageGetter
+                .GetLocal();
+
             var items = await _logicalContext.Storages
                 .GetAll()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            var isAlreadyRegistered = items.Any(s => s.Name == _options.Name);
+            var isAlreadyRegistered = items.Any(s => s.Name == localStorage.Name);
             if (!isAlreadyRegistered)
             {
-                var localStorage = await _localStorageGetter
-                    .GetLocal(items)
-                    .ConfigureAwait(false);
-
                 await _logicalContext.Storages
                     .AddLocalStorage(localStorage)
                     .ConfigureAwait(false);
