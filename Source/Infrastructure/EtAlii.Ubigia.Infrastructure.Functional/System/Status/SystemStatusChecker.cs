@@ -15,6 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public class SystemStatusChecker
     {
+
         public bool DetermineIfSetupIsNeeded()
         {
             return true;

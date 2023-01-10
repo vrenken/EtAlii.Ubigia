@@ -13,24 +13,16 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Serilog;
 
     // TODO: These classes and dependencies should be moved to EtAlii.Ubigia.Infrastructure.Transport.Portal
-    public abstract class PortalServiceBase<TPortalService> : INetworkService
+    public abstract class PortalServiceBase<TPortalService> : NetworkServiceBase<TPortalService>
         where TPortalService: INetworkService
     {
-        /// <inheritdoc />
-        public ServiceConfiguration Configuration { get; }
-
-        private readonly ILogger _logger = Log.ForContext<TPortalService>();
-
-        protected PortalServiceBase(ServiceConfiguration configuration)
+        protected PortalServiceBase(ServiceConfiguration configuration) : base(configuration)
         {
-            Configuration = configuration;
-            _logger.Information("Instantiated {ServiceName}", nameof(TPortalService));
         }
 
-        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        public override void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
         {
             services
                 .AddMvc()
@@ -65,7 +57,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // services.ConfigureOptions(typeof(UIConfigureOptions))
         }
 
-        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        public override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // The environment.ApplicationName needs to be set as the StaticWebAssetsLoader.UseStaticWebAssets relies on it.
             // Weird but true.
