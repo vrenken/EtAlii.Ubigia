@@ -1,21 +1,20 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
+namespace EtAlii.Ubigia.Infrastructure.Functional.Tests;
+
+using Xunit;
+
+public class SystemSpaceDataClientTests
 {
-    using Xunit;
-
-    public class SystemSpaceDataClientTests
+    [Fact]
+    public void SystemSpaceDataClient_Create()
     {
-        [Fact]
-        public void SystemSpaceDataClient_Create()
-        {
-            // Arrange.
+        // Arrange.
 
-            // Act.
-            var client = new SystemSpaceDataClient(null);
+        // Act.
+        var client = new SystemSpaceDataClient(null);
 
-            // Assert.
-            Assert.NotNull(client);
-        }
+        // Assert.
+        Assert.NotNull(client);
     }
 }

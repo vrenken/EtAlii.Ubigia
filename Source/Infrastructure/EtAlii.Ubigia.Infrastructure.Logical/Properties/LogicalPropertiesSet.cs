@@ -1,26 +1,25 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Logical
+namespace EtAlii.Ubigia.Infrastructure.Logical;
+
+using EtAlii.Ubigia.Infrastructure.Fabric;
+
+public class LogicalPropertiesSet : ILogicalPropertiesSet
 {
-    using EtAlii.Ubigia.Infrastructure.Fabric;
+    private readonly IFabricContext _fabricContext;
 
-    public class LogicalPropertiesSet : ILogicalPropertiesSet
+    public LogicalPropertiesSet(IFabricContext fabricContext)
     {
-        private readonly IFabricContext _fabricContext;
+        _fabricContext = fabricContext;
+    }
 
-        public LogicalPropertiesSet(IFabricContext fabricContext)
-        {
-            _fabricContext = fabricContext;
-        }
+    public PropertyDictionary Get(in Identifier identifier)
+    {
+        return _fabricContext.Properties.Get(identifier);
+    }
 
-        public PropertyDictionary Get(in Identifier identifier)
-        {
-            return _fabricContext.Properties.Get(identifier);
-        }
-
-        public void Store(in Identifier identifier, PropertyDictionary properties)
-        {
-            _fabricContext.Properties.Store(identifier, properties);
-        }
+    public void Store(in Identifier identifier, PropertyDictionary properties)
+    {
+        _fabricContext.Properties.Store(identifier, properties);
     }
 }

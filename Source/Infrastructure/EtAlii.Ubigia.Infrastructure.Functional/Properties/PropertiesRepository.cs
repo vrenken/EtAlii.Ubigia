@@ -1,56 +1,55 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using EtAlii.Ubigia.Infrastructure.Logical;
+
+internal class PropertiesRepository : IPropertiesRepository
 {
-    using System;
-    using EtAlii.Ubigia.Infrastructure.Logical;
+    private readonly ILogicalContext _logicalContext;
 
-    internal class PropertiesRepository : IPropertiesRepository
+    public PropertiesRepository(ILogicalContext logicalContext)
     {
-        private readonly ILogicalContext _logicalContext;
+        _logicalContext = logicalContext;
+    }
 
-        public PropertiesRepository(ILogicalContext logicalContext)
+    public void Store(in Identifier identifier, PropertyDictionary properties)
+    {
+        if (identifier == Identifier.Empty)
         {
-            _logicalContext = logicalContext;
+            throw new PropertiesRepositoryException("No identifier specified");
         }
 
-        public void Store(in Identifier identifier, PropertyDictionary properties)
+        if (properties == null)
         {
-            if (identifier == Identifier.Empty)
-            {
-                throw new PropertiesRepositoryException("No identifier specified");
-            }
-
-            if (properties == null)
-            {
-                throw new PropertiesRepositoryException("No properties specified");
-            }
-
-            try
-            {
-                _logicalContext.Properties.Store(identifier, properties);
-            }
-            catch (Exception e)
-            {
-                throw new PropertiesRepositoryException("Unable to store properties for the specified identifier", e);
-            }
+            throw new PropertiesRepositoryException("No properties specified");
         }
 
-        public PropertyDictionary Get(in Identifier identifier)
+        try
         {
-            if (identifier == Identifier.Empty)
-            {
-                throw new PropertiesRepositoryException("No identifier specified");
-            }
+            _logicalContext.Properties.Store(identifier, properties);
+        }
+        catch (Exception e)
+        {
+            throw new PropertiesRepositoryException("Unable to store properties for the specified identifier", e);
+        }
+    }
 
-            try
-            {
-                return _logicalContext.Properties.Get(identifier);
-            }
-            catch (Exception e)
-            {
-                throw new PropertiesRepositoryException("Unable to get properties for the specified identifier", e);
-            }
+    public PropertyDictionary Get(in Identifier identifier)
+    {
+        if (identifier == Identifier.Empty)
+        {
+            throw new PropertiesRepositoryException("No identifier specified");
+        }
+
+        try
+        {
+            return _logicalContext.Properties.Get(identifier);
+        }
+        catch (Exception e)
+        {
+            throw new PropertiesRepositoryException("Unable to get properties for the specified identifier", e);
         }
     }
 }

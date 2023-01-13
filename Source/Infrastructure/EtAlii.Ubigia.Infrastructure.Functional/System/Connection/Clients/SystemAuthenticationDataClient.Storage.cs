@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal partial class SystemAuthenticationDataClient
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-
-    internal partial class SystemAuthenticationDataClient
+    /// <inheritdoc />
+    public Task<Storage> GetConnectedStorage(ISpaceConnection connection)
     {
-        /// <inheritdoc />
-        public Task<Storage> GetConnectedStorage(ISpaceConnection connection)
+        if (connection.Storage != null)
         {
-            if (connection.Storage != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
-            }
-
-            return _functionalContext.Storages.GetLocal();
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
         }
+
+        return _functionalContext.Storages.GetLocal();
     }
 }

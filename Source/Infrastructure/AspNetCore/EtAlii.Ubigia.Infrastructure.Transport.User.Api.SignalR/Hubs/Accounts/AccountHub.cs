@@ -1,45 +1,44 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Infrastructure.Functional;
+using Microsoft.AspNetCore.SignalR;
+
+public class AccountHub : HubBase
 {
-	using System;
-	using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-	using Microsoft.AspNetCore.SignalR;
+    private readonly IAccountRepository _items;
+    private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-	public class AccountHub : HubBase
+    public AccountHub(
+        IAccountRepository items,
+        ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
+        IAuthenticationTokenConverter authenticationTokenConverter)
+        : base(authenticationTokenVerifier)
     {
-        private readonly IAccountRepository _items;
-		private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
+        _items = items;
+        _authenticationTokenConverter = authenticationTokenConverter;
+    }
 
-		public AccountHub(
-            IAccountRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
-			IAuthenticationTokenConverter authenticationTokenConverter)
-            : base(authenticationTokenVerifier)
+    public async Task<Account> GetForAuthenticationToken()
+    {
+        Account response;
+        try
         {
-            _items = items;
-			_authenticationTokenConverter = authenticationTokenConverter;
-		}
+            var httpContext = Context.GetHttpContext();
+            httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
+            var authenticationTokenAsString = stringValues.Single();
+            var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
-		public async Task<Account> GetForAuthenticationToken()
-		{
-			Account response;
-			try
-			{
-				var httpContext = Context.GetHttpContext();
-				httpContext!.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
-				var authenticationTokenAsString = stringValues.Single();
-				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
-
-				response = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
-			}
-			catch (Exception e)
-			{
-				throw new InvalidOperationException("Unable to serve a Account GET client request", e);
-			}
-			return response;
-		}
+            response = await _items.Get(authenticationToken.Name).ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException("Unable to serve a Account GET client request", e);
+        }
+        return response;
     }
 }

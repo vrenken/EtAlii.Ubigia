@@ -1,48 +1,47 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 // ReSharper disable once CheckNamespace
-namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Serilog;
+
+internal class LoggingEntryStorerDecorator : IEntryStorer
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Serilog;
+    private readonly ILogger _logger = Log.ForContext<IEntryStorer>();
+    private readonly IEntryStorer _decoree;
 
-    internal class LoggingEntryStorerDecorator : IEntryStorer
+    public LoggingEntryStorerDecorator(IEntryStorer decoree)
     {
-        private readonly ILogger _logger = Log.ForContext<IEntryStorer>();
-        private readonly IEntryStorer _decoree;
+        _decoree = decoree;
+    }
 
-        public LoggingEntryStorerDecorator(IEntryStorer decoree)
-        {
-            _decoree = decoree;
-        }
+    public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
+    {
+        var entryId = entry.Id.ToTimeString();
+        _logger.Verbose("Storing entry: {EntryId}", entryId);
 
-        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(IEditableEntry entry)
-        {
-            var entryId = entry.Id.ToTimeString();
-            _logger.Verbose("Storing entry: {EntryId}", entryId);
+        var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
 
-            var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
+        _logger
+            .ForContext("StoredComponents", storedComponents)
+            .Verbose("Components stored for entry {EntryId}", entryId);
 
-            _logger
-                .ForContext("StoredComponents", storedComponents)
-                .Verbose("Components stored for entry {EntryId}", entryId);
+        return (e, storedComponents);
+    }
 
-            return (e, storedComponents);
-        }
+    public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
+    {
+        var entryId = entry.Id.ToTimeString();
+        _logger.Verbose("Storing entry: {EntryId}", entryId);
 
-        public async Task<(Entry e, IEnumerable<IComponent> storedComponents)> Store(Entry entry)
-        {
-            var entryId = entry.Id.ToTimeString();
-            _logger.Verbose("Storing entry: {EntryId}", entryId);
+        var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
 
-            var (e, storedComponents) = await _decoree.Store(entry).ConfigureAwait(false);
+        _logger
+            .ForContext("StoredComponents", storedComponents)
+            .Verbose("Components stored for entry {EntryId}", entryId);
 
-            _logger
-                .ForContext("StoredComponents", storedComponents)
-                .Verbose("Components stored for entry {EntryId}", entryId);
-
-            return (e, storedComponents);
-        }
+        return (e, storedComponents);
     }
 }

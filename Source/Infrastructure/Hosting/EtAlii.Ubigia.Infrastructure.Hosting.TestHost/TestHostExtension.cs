@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class TestHostExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class TestHostExtension : IExtension
+    public TestHostExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public TestHostExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Infrastructure:Hosting:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        var scaffoldings = new IScaffolding[]
         {
-            _configurationRoot = configurationRoot;
-        }
+            new TestHostScaffolding(),
+            new TestHostProfilingScaffolding(options),
+            new TestHostLoggingScaffolding(options),
+            new TestHostDebuggingScaffolding(options),
+        };
 
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var options = _configurationRoot
-                .GetSection("Infrastructure:Hosting:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new TestHostScaffolding(),
-                new TestHostProfilingScaffolding(options),
-                new TestHostLoggingScaffolding(options),
-                new TestHostDebuggingScaffolding(options),
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            scaffolding.Register(container);
         }
     }
 }

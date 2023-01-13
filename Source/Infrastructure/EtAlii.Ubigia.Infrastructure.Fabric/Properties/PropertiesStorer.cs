@@ -1,26 +1,25 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using EtAlii.Ubigia.Persistence;
+
+internal class PropertiesStorer : IPropertiesStorer
 {
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class PropertiesStorer : IPropertiesStorer
+    public PropertiesStorer(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public PropertiesStorer(IStorage storage)
+    public void Store(in Identifier identifier, PropertyDictionary properties)
+    {
+        if (identifier == Identifier.Empty)
         {
-            _storage = storage;
+            throw new ContentFabricException("No identifier was specified");
         }
-
-        public void Store(in Identifier identifier, PropertyDictionary properties)
-        {
-            if (identifier == Identifier.Empty)
-            {
-                throw new ContentFabricException("No identifier was specified");
-            }
-            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            _storage.Properties.Store(containerId, properties);
-        }
+        var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
+        _storage.Properties.Store(containerId, properties);
     }
 }

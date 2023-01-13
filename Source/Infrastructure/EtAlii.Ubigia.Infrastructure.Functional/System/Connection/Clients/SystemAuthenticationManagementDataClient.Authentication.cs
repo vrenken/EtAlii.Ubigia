@@ -1,64 +1,63 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal partial class SystemAuthenticationManagementDataClient
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    private string _authenticationToken;
 
-    internal partial class SystemAuthenticationManagementDataClient
+    public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
     {
-        private string _authenticationToken;
+        var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName,
 
-        public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
+        if (!string.IsNullOrWhiteSpace(authenticationToken))
         {
-            var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName,
+            _authenticationToken = authenticationToken;
+        }
+        else
+        {
+            var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+            throw new UnauthorizedInfrastructureOperationException(message);
+        }
+    }
 
-            if (!string.IsNullOrWhiteSpace(authenticationToken))
-            {
-                _authenticationToken = authenticationToken;
-            }
-            else
-            {
-                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
-                throw new UnauthorizedInfrastructureOperationException(message);
-            }
+    public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
+    {
+        var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName,
+
+        if (!string.IsNullOrWhiteSpace(authenticationToken))
+        {
+            _authenticationToken = authenticationToken;
+        }
+        else
+        {
+            var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
+            throw new UnauthorizedInfrastructureOperationException(message);
+        }
+    }
+
+    private Task<string> GetAuthenticationToken(
+        //string accountName,
+        string password)
+    {
+        string authenticationToken;
+        if (password == null && _authenticationToken != null)
+        {
+            authenticationToken = _authenticationToken;
+        }
+        else
+        {
+            authenticationToken = "System_" + Guid.NewGuid().ToString().Replace("-", "");
         }
 
-        public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
+        if (string.IsNullOrWhiteSpace(authenticationToken))
         {
-            var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName,
-
-            if (!string.IsNullOrWhiteSpace(authenticationToken))
-            {
-                _authenticationToken = authenticationToken;
-            }
-            else
-            {
-                var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
-                throw new UnauthorizedInfrastructureOperationException(message);
-            }
+            throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
         }
-
-        private Task<string> GetAuthenticationToken(
-            //string accountName,
-            string password)
-        {
-            string authenticationToken;
-            if (password == null && _authenticationToken != null)
-            {
-                authenticationToken = _authenticationToken;
-            }
-            else
-            {
-                authenticationToken = "System_" + Guid.NewGuid().ToString().Replace("-", "");
-            }
-
-            if (string.IsNullOrWhiteSpace(authenticationToken))
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
-            }
-            return Task.FromResult(authenticationToken);
-        }
+        return Task.FromResult(authenticationToken);
     }
 }

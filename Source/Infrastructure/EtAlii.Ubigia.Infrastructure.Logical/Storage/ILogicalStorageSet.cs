@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Logical
+namespace EtAlii.Ubigia.Infrastructure.Logical;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public interface ILogicalStorageSet
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    IAsyncEnumerable<Storage> GetAll();
 
-    public interface ILogicalStorageSet
-    {
-        IAsyncEnumerable<Storage> GetAll();
+    Task<Storage> Get(string name);
 
-        Task<Storage> Get(string name);
+    Task<Storage> Get(Guid id);
 
-        Task<Storage> Get(Guid id);
+    Task<Storage> Add(Storage item);
 
-        Task<Storage> Add(Storage item);
+    Task<Storage> AddLocalStorage(Storage item);
 
-        Task<Storage> AddLocalStorage(Storage item);
+    Task Remove(Guid itemId);
 
-        Task Remove(Guid itemId);
+    Task Remove(Storage itemToRemove);
 
-        Task Remove(Storage itemToRemove);
+    Task<Storage> Update(Guid itemId, Storage updatedItem);
 
-        Task<Storage> Update(Guid itemId, Storage updatedItem);
-
-        Task Start();
-        Task Stop();
-    }
+    Task Start();
+    Task Stop();
 }

@@ -1,63 +1,62 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest;
+
+using System;
+using EtAlii.Ubigia.Api.Transport.Rest;
+using EtAlii.Ubigia.Infrastructure.Functional;
+using EtAlii.Ubigia.Infrastructure.Transport.Rest;
+using Microsoft.AspNetCore.Mvc;
+
+[RequiresAuthenticationToken(Role.User)]
+[Route(RelativeDataUri.Properties)]
+public class PropertiesController : RestController
 {
-    using System;
-    using EtAlii.Ubigia.Api.Transport.Rest;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
-    using Microsoft.AspNetCore.Mvc;
+    private readonly IPropertiesRepository _properties;
 
-    [RequiresAuthenticationToken(Role.User)]
-    [Route(RelativeDataUri.Properties)]
-    public class PropertiesController : RestController
+    public PropertiesController(IPropertiesRepository properties)
     {
-        private readonly IPropertiesRepository _properties;
+        _properties = properties;
+    }
 
-        public PropertiesController(IPropertiesRepository properties)
+    [HttpGet]
+    public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
+    {
+        IActionResult response;
+        try
         {
-            _properties = properties;
+            var properties = _properties.Get(entryId);
+            response = Ok(properties);
         }
-
-        [HttpGet]
-        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
+        catch (Exception ex)
         {
-            IActionResult response;
-            try
-            {
-                var properties = _properties.Get(entryId);
-                response = Ok(properties);
-            }
-            catch (Exception ex)
-            {
-                response = BadRequest(ex.Message);
-            }
-            return response;
+            response = BadRequest(ex.Message);
         }
+        return response;
+    }
 
-        /// <summary>
-        /// Post a new contentdefinition for the specified content.
-        /// </summary>
-        /// <param name="entryId"></param>
-        /// <param name="properties"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)
+    /// <summary>
+    /// Post a new contentdefinition for the specified content.
+    /// </summary>
+    /// <param name="entryId"></param>
+    /// <param name="properties"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)
+    {
+        IActionResult response;
+        try
         {
-            IActionResult response;
-            try
-            {
-                // Store the content.
-                _properties.Store(entryId, properties);
+            // Store the content.
+            _properties.Store(entryId, properties);
 
-                // Create the response.
-                response = Ok();
-            }
-            catch (Exception ex)
-            {
-                response = BadRequest(ex.Message);
-            }
-            return response;
+            // Create the response.
+            response = Ok();
         }
+        catch (Exception ex)
+        {
+            response = BadRequest(ex.Message);
+        }
+        return response;
     }
 }

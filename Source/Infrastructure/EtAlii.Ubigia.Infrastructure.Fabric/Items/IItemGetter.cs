@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+
+public interface IItemGetter
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
+    IAsyncEnumerable<T> GetAll<T>(IList<T> items)
+        where T : class, IIdentifiable;
 
-    public interface IItemGetter
-    {
-        IAsyncEnumerable<T> GetAll<T>(IList<T> items)
-            where T : class, IIdentifiable;
+    Task<T> Get<T>(IList<T> items, Guid id)
+        where T : class, IIdentifiable;
 
-        Task<T> Get<T>(IList<T> items, Guid id)
-            where T : class, IIdentifiable;
-
-        Task<ObservableCollection<T>> GetItems<T>(string folder)
-            where T : class, IIdentifiable;
-    }
+    Task<ObservableCollection<T>> GetItems<T>(string folder)
+        where T : class, IIdentifiable;
 }

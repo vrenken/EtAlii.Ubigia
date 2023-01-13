@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public class SystemConnectionCreationProxy : ISystemConnectionCreationProxy
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private IFunctionalContext _functionalContext;
 
-    public class SystemConnectionCreationProxy : ISystemConnectionCreationProxy
+    public ISystemConnection Request()
     {
-        private IFunctionalContext _functionalContext;
+        // This Options.ConfigurationRoot refers to the host configuration root.
+        // In order to use it for the system connection it should have the entries needed by the API subsystems.
+        var systemConnectionOptions = new SystemConnectionOptions(_functionalContext.Options.ConfigurationRoot)
+            .Use(_functionalContext);
+        return Factory.Create<ISystemConnection>(systemConnectionOptions);
+    }
 
-        public ISystemConnection Request()
-        {
-            // This Options.ConfigurationRoot refers to the host configuration root.
-            // In order to use it for the system connection it should have the entries needed by the API subsystems.
-            var systemConnectionOptions = new SystemConnectionOptions(_functionalContext.Options.ConfigurationRoot)
-                .Use(_functionalContext);
-            return Factory.Create<ISystemConnection>(systemConnectionOptions);
-        }
-
-        void ISystemConnectionCreationProxy.Initialize(IFunctionalContext functionalContext)
-        {
-            _functionalContext = functionalContext;
-        }
+    void ISystemConnectionCreationProxy.Initialize(IFunctionalContext functionalContext)
+    {
+        _functionalContext = functionalContext;
     }
 }

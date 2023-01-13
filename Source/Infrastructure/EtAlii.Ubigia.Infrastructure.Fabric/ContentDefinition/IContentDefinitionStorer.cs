@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
-{
-    using System.Threading.Tasks;
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
 
-    public interface IContentDefinitionStorer
-    {
-        Task Store(in Identifier identifier, ContentDefinition contentDefinition);
-    }
+using System.Threading.Tasks;
+
+public interface IContentDefinitionStorer
+{
+    Task Store(in Identifier identifier, ContentDefinition contentDefinition);
 }

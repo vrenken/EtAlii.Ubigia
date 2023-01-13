@@ -1,122 +1,121 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Logical
+namespace EtAlii.Ubigia.Infrastructure.Logical;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Infrastructure.Fabric;
+
+public class IdentifierHeadGetter : IIdentifierHeadGetter
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
+    private readonly INextIdentifierGetter _nextIdentifierGetter;
+    private readonly IIdentifierGetLocker _getLocker;
+    private readonly IIdentifierRootUpdater _rootUpdater;
 
-    public class IdentifierHeadGetter : IIdentifierHeadGetter
+    private readonly ILogicalContext _context;
+    private readonly IFabricContext _fabric;
+
+    private readonly Dictionary<Guid, Identifier> _cachedHeadIdentifiers;
+
+    private bool _headIsInitialized;
+
+    public IdentifierHeadGetter(
+        INextIdentifierGetter nextIdentifierGetter,
+        IIdentifierGetLocker getLocker,
+        IIdentifierRootUpdater rootUpdater,
+        ILogicalContext context,
+        IFabricContext fabric)
     {
-        private readonly INextIdentifierGetter _nextIdentifierGetter;
-        private readonly IIdentifierGetLocker _getLocker;
-        private readonly IIdentifierRootUpdater _rootUpdater;
+        _nextIdentifierGetter = nextIdentifierGetter;
+        _getLocker = getLocker;
+        _rootUpdater = rootUpdater;
+        _context = context;
+        _fabric = fabric;
+        _cachedHeadIdentifiers = new Dictionary<Guid, Identifier>();
+    }
 
-        private readonly ILogicalContext _context;
-        private readonly IFabricContext _fabric;
-
-        private readonly Dictionary<Guid, Identifier> _cachedHeadIdentifiers;
-
-        private bool _headIsInitialized;
-
-        public IdentifierHeadGetter(
-            INextIdentifierGetter nextIdentifierGetter,
-            IIdentifierGetLocker getLocker,
-            IIdentifierRootUpdater rootUpdater,
-            ILogicalContext context,
-            IFabricContext fabric)
+    /// <inheritdoc />
+    public async Task<Identifier> GetCurrent(Guid storageId, Guid spaceId)
+    {
+        await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
+        try
         {
-            _nextIdentifierGetter = nextIdentifierGetter;
-            _getLocker = getLocker;
-            _rootUpdater = rootUpdater;
-            _context = context;
-            _fabric = fabric;
-            _cachedHeadIdentifiers = new Dictionary<Guid, Identifier>();
+            return await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
+        }
+        finally
+        {
+            _getLocker.LockObject.Release();
+        }
+    }
+
+    private async Task<Identifier> GetCurrentInternal(Guid storageId, Guid spaceId)
+    {
+        if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out var headIdentifier))
+        {
+            headIdentifier = await DetermineHead(storageId, spaceId).ConfigureAwait(false);
+            _cachedHeadIdentifiers[spaceId] = headIdentifier;
         }
 
-        /// <inheritdoc />
-        public async Task<Identifier> GetCurrent(Guid storageId, Guid spaceId)
+        return headIdentifier;
+    }
+
+    /// <inheritdoc />
+    public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid storageId, Guid spaceId)
+    {
+        await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
+        try
         {
-            await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
-            try
-            {
-                return await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
-            }
-            finally
-            {
-                _getLocker.LockObject.Release();
-            }
+            var previousHeadIdentifier = await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
+
+            var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(previousHeadIdentifier).ConfigureAwait(false);
+
+            await _rootUpdater
+                .Update(storageId, spaceId, PositionalRoot.Head, nextHeadIdentifier)
+                .ConfigureAwait(false);
+            _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
+
+            return (NextHeadIdentifier: nextHeadIdentifier, PreviousHeadIdentifier: previousHeadIdentifier);
         }
-
-        private async Task<Identifier> GetCurrentInternal(Guid storageId, Guid spaceId)
+        finally
         {
-            if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out var headIdentifier))
-            {
-                headIdentifier = await DetermineHead(storageId, spaceId).ConfigureAwait(false);
-                _cachedHeadIdentifiers[spaceId] = headIdentifier;
-            }
-
-            return headIdentifier;
+            _getLocker.LockObject.Release();
         }
+    }
 
-        /// <inheritdoc />
-        public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid storageId, Guid spaceId)
+    private async Task<Identifier> DetermineHead(Guid storageId, Guid spaceId)
+    {
+        Identifier headIdentifier;
+
+        if (_headIsInitialized)
         {
-            await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
-            try
-            {
-                var previousHeadIdentifier = await GetCurrentInternal(storageId, spaceId).ConfigureAwait(false);
+            // load from root "Head"
+            var root = await _context.Roots.Get(spaceId, PositionalRoot.Head.Name).ConfigureAwait(false);
+            headIdentifier = root?.Identifier ?? Identifier.Empty;
 
-                var nextHeadIdentifier = await _nextIdentifierGetter.GetNext(previousHeadIdentifier).ConfigureAwait(false);
-
-                await _rootUpdater
-                    .Update(storageId, spaceId, PositionalRoot.Head, nextHeadIdentifier)
-                    .ConfigureAwait(false);
-                _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
-
-                return (NextHeadIdentifier: nextHeadIdentifier, PreviousHeadIdentifier: previousHeadIdentifier);
-            }
-            finally
-            {
-                _getLocker.LockObject.Release();
-            }
-        }
-
-        private async Task<Identifier> DetermineHead(Guid storageId, Guid spaceId)
-        {
-            Identifier headIdentifier;
-
-            if (_headIsInitialized)
-            {
-                // load from root "Head"
-                var root = await _context.Roots.Get(spaceId, PositionalRoot.Head.Name).ConfigureAwait(false);
-                headIdentifier = root?.Identifier ?? Identifier.Empty;
-
-                if (headIdentifier == Identifier.Empty)
-                {
-                    // Determine from container storage.
-                    headIdentifier = await DetermineHeadFromComponentStorage(storageId, spaceId).ConfigureAwait(false);
-                    await _rootUpdater.Update(storageId, spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
-                }
-            }
-            else
+            if (headIdentifier == Identifier.Empty)
             {
                 // Determine from container storage.
                 headIdentifier = await DetermineHeadFromComponentStorage(storageId, spaceId).ConfigureAwait(false);
                 await _rootUpdater.Update(storageId, spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
-                _headIsInitialized = true;
             }
-
-            return headIdentifier;
         }
-
-        private async Task<Identifier> DetermineHeadFromComponentStorage(Guid storageId, Guid spaceId)
+        else
         {
-            var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
-            var accountId = space.AccountId;
-
-            return await _fabric.Identifiers.GetNextIdentifierFromStorage(storageId, accountId, spaceId).ConfigureAwait(false);
+            // Determine from container storage.
+            headIdentifier = await DetermineHeadFromComponentStorage(storageId, spaceId).ConfigureAwait(false);
+            await _rootUpdater.Update(storageId, spaceId, PositionalRoot.Head, headIdentifier).ConfigureAwait(false);
+            _headIsInitialized = true;
         }
+
+        return headIdentifier;
+    }
+
+    private async Task<Identifier> DetermineHeadFromComponentStorage(Guid storageId, Guid spaceId)
+    {
+        var space = await _context.Spaces.Get(spaceId).ConfigureAwait(false);
+        var accountId = space.AccountId;
+
+        return await _fabric.Identifiers.GetNextIdentifierFromStorage(storageId, accountId, spaceId).ConfigureAwait(false);
     }
 }

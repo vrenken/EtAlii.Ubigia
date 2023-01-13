@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using EtAlii.xTechnology.MicroContainer;
+
+internal class FabricContextScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly FabricContextOptions _options;
 
-    internal class FabricContextScaffolding : IScaffolding
+    public FabricContextScaffolding(FabricContextOptions options)
     {
-        private readonly FabricContextOptions _options;
+        _options = options;
+    }
 
-        public FabricContextScaffolding(FabricContextOptions options)
-        {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            container.Register<IFabricContext, FabricContext>();
-            container.Register(() => _options.Storage);
-            container.Register(() => _options.ConfigurationRoot);
-        }
+    public void Register(IRegisterOnlyContainer container)
+    {
+        container.Register<IFabricContext, FabricContext>();
+        container.Register(() => _options.Storage);
+        container.Register(() => _options.ConfigurationRoot);
     }
 }

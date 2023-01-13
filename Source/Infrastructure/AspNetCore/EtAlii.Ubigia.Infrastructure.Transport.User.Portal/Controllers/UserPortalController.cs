@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal
-{
-    using Microsoft.AspNetCore.Mvc;
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal;
 
-    public abstract class UserPortalController : Controller
-    {
-    }
+using Microsoft.AspNetCore.Mvc;
+
+public abstract class UserPortalController : Controller
+{
 }

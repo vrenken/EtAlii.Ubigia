@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence;
+
+internal class ContentDefinitionGetter : IContentDefinitionGetter
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class ContentDefinitionGetter : IContentDefinitionGetter
+    public ContentDefinitionGetter(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public ContentDefinitionGetter(IStorage storage)
-        {
-            _storage = storage;
-        }
-
-        /// <inheritdoc />
-        public async Task<ContentDefinition> Get(Identifier identifier)
-        {
-            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            var contentDefinition = await _storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
-            return contentDefinition;
-        }
+    /// <inheritdoc />
+    public async Task<ContentDefinition> Get(Identifier identifier)
+    {
+        var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
+        var contentDefinition = await _storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
+        return contentDefinition;
     }
 }

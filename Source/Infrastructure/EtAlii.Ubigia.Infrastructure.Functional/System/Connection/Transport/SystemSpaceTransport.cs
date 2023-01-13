@@ -1,49 +1,48 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+using EtAlii.xTechnology.MicroContainer;
+
+public class SystemSpaceTransport : ISystemSpaceTransport
 {
-	using System;
-	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.MicroContainer;
+    public bool IsConnected { get; private set; }
 
-    public class SystemSpaceTransport : ISystemSpaceTransport
+    private readonly IFunctionalContext _functionalContext;
+
+    public Uri Address { get; }
+
+    public SystemSpaceTransport(Uri address, IFunctionalContext functionalContext)
     {
-        public bool IsConnected { get; private set; }
+        Address = address;
+        _functionalContext = functionalContext;
+    }
 
-        private readonly IFunctionalContext _functionalContext;
+    public SystemSpaceTransport(Uri address)
+    {
+        Address = address;
+    }
 
-        public Uri Address { get; }
+    public Task Start()
+    {
+        IsConnected = true;
+        return Task.CompletedTask;
+    }
 
-        public SystemSpaceTransport(Uri address, IFunctionalContext functionalContext)
+    public Task Stop()
+    {
+        IsConnected = false;
+        return Task.CompletedTask;
+    }
+
+    IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
+    {
+        return new IScaffolding[]
         {
-            Address = address;
-            _functionalContext = functionalContext;
-        }
-
-        public SystemSpaceTransport(Uri address)
-        {
-            Address = address;
-        }
-
-        public Task Start()
-        {
-            IsConnected = true;
-            return Task.CompletedTask;
-        }
-
-        public Task Stop()
-        {
-            IsConnected = false;
-            return Task.CompletedTask;
-        }
-
-        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
-        {
-            return new IScaffolding[]
-            {
-                new SystemClientsScaffolding(_functionalContext, spaceConnectionOptions)
-            };
-        }
+            new SystemClientsScaffolding(_functionalContext, spaceConnectionOptions)
+        };
     }
 }

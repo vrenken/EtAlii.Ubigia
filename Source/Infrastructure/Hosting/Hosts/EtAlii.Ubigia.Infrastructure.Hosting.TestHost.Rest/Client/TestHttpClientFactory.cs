@@ -1,56 +1,55 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest;
+
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using EtAlii.Ubigia.Api.Transport.Rest;
+using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.Rest.IHttpClientFactory;
+using EtAlii.xTechnology.Threading;
+
+internal class TestHttpClientFactory : IHttpClientFactory
 {
-    using System;
-    using System.Net;
-	using System.Net.Http;
-    using System.Text;
-    using EtAlii.Ubigia.Api.Transport.Rest;
-    using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.Rest.IHttpClientFactory;
-    using EtAlii.xTechnology.Threading;
+    private readonly IInfrastructureHostTestContext _testContext;
+    private readonly IContextCorrelator _contextCorrelator;
 
-	internal class TestHttpClientFactory : IHttpClientFactory
-	{
-		private readonly IInfrastructureHostTestContext _testContext;
-        private readonly IContextCorrelator _contextCorrelator;
+    public TestHttpClientFactory(
+        IInfrastructureHostTestContext testContext,
+        IContextCorrelator contextCorrelator)
+    {
+        _testContext = testContext;
+        _contextCorrelator = contextCorrelator;
+    }
 
-        public TestHttpClientFactory(
-            IInfrastructureHostTestContext testContext,
-            IContextCorrelator contextCorrelator)
+    public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken, Uri address)
+    {
+        var client  = _testContext.CreateClient();
+
+        if (credentials != null)
         {
-            _testContext = testContext;
-            _contextCorrelator = contextCorrelator;
+            var credential = credentials.GetCredential(address, "Basic-Authentication");
+            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credential!.UserName + ":" + credential.Password));
+            client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
         }
 
-        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken, Uri address)
+        client.DefaultRequestHeaders.Add("Host-Identifier", hostIdentifier);
+        client.DefaultRequestHeaders.Add("Authentication-Token", authenticationToken);
+
+        // Set the Accept header for BSON.
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(MediaType.Bson);
+
+        // Apply all correlation ID's as http headers for the current request.
+        foreach (var correlationId in Correlation.AllIds)
         {
-            var client  = _testContext.CreateClient();
-
-            if (credentials != null)
+            if (_contextCorrelator.TryGetValue(correlationId, out var correlationIdValue))
             {
-                var credential = credentials.GetCredential(address, "Basic-Authentication");
-                var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credential!.UserName + ":" + credential.Password));
-                client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
+                client.DefaultRequestHeaders.Add(correlationId, correlationIdValue);
             }
-
-            client.DefaultRequestHeaders.Add("Host-Identifier", hostIdentifier);
-            client.DefaultRequestHeaders.Add("Authentication-Token", authenticationToken);
-
-	        // Set the Accept header for BSON.
-	        client.DefaultRequestHeaders.Accept.Clear();
-			client.DefaultRequestHeaders.Accept.Add(MediaType.Bson);
-
-            // Apply all correlation ID's as http headers for the current request.
-            foreach (var correlationId in Correlation.AllIds)
-            {
-                if (_contextCorrelator.TryGetValue(correlationId, out var correlationIdValue))
-                {
-                    client.DefaultRequestHeaders.Add(correlationId, correlationIdValue);
-                }
-            }
-
-			return client;
         }
+
+        return client;
     }
 }

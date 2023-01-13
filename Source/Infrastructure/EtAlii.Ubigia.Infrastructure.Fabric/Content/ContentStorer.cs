@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence;
+
+internal class ContentStorer : IContentStorer
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class ContentStorer : IContentStorer
+    public ContentStorer(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public ContentStorer(IStorage storage)
+    /// <inheritdoc />
+    public Task Store(in Identifier identifier, Content content)
+    {
+        if (identifier == Identifier.Empty)
         {
-            _storage = storage;
+            throw new ContentFabricException("No identifier was specified");
         }
+        var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
+        _storage.Blobs.Store(containerId, content);
 
-        /// <inheritdoc />
-        public Task Store(in Identifier identifier, Content content)
-        {
-            if (identifier == Identifier.Empty)
-            {
-                throw new ContentFabricException("No identifier was specified");
-            }
-            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            _storage.Blobs.Store(containerId, content);
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

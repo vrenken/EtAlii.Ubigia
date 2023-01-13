@@ -1,26 +1,25 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics;
+
+using EtAlii.Ubigia.Infrastructure.Functional;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class FunctionalDebuggingScaffolding : IScaffolding
 {
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class FunctionalDebuggingScaffolding : IScaffolding
+    public FunctionalDebuggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public FunctionalDebuggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectDebugging) // debugging is enabled
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectDebugging) // debugging is enabled
-            {
-                container.RegisterDecorator<IEntryRepository, DebuggingEntryRepositoryDecorator>();
-            }
+            container.RegisterDecorator<IEntryRepository, DebuggingEntryRepositoryDecorator>();
         }
     }
 }

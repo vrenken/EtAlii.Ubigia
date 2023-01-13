@@ -1,72 +1,71 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Infrastructure.Functional;
+
+public class ContentDefinitionHub : HubBase
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+    private readonly IContentDefinitionRepository _items;
 
-    public class ContentDefinitionHub : HubBase
+    public ContentDefinitionHub(
+        IContentDefinitionRepository items,
+        ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        : base(authenticationTokenVerifier)
     {
-        private readonly IContentDefinitionRepository _items;
+        _items = items;
+    }
 
-        public ContentDefinitionHub(
-            IContentDefinitionRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
-            : base(authenticationTokenVerifier)
+    public async Task<ContentDefinition> Get(Identifier entryId)
+    {
+        ContentDefinition response;
+        try
         {
-            _items = items;
+            response = await _items
+                .Get(entryId)
+                .ConfigureAwait(false);
         }
-
-        public async Task<ContentDefinition> Get(Identifier entryId)
+        catch (Exception e)
         {
-            ContentDefinition response;
-            try
-            {
-                response = await _items
-                    .Get(entryId)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a ContentDefinition GET client request", e);
-            }
-            return response;
+            throw new InvalidOperationException("Unable to serve a ContentDefinition GET client request", e);
         }
+        return response;
+    }
 
-        // Post a new ContentDefinition for the specified entry.
-        public async Task Post(Identifier entryId, ContentDefinition contentDefinition)
+    // Post a new ContentDefinition for the specified entry.
+    public async Task Post(Identifier entryId, ContentDefinition contentDefinition)
+    {
+        try
         {
-            try
-            {
-                // Store the ContentDefinition.
-                await _items.Store(entryId, contentDefinition).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
-            }
+            // Store the ContentDefinition.
+            await _items.Store(entryId, contentDefinition).ConfigureAwait(false);
         }
-
-        // Post a new ContentDefinitionPart for the specified entry.
-        public async Task PostPart(Identifier entryId, ulong contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
+        catch (Exception e)
         {
-            try
-            {
-                if (contentDefinitionPartId != contentDefinitionPart.Id)
-                {
-                    throw new InvalidOperationException("ContentDefinitionPartId does not match");
-                }
+            throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
+        }
+    }
 
-                // Store the ContentDefinition.
-                await _items
-                    .Store(entryId, contentDefinitionPart)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
+    // Post a new ContentDefinitionPart for the specified entry.
+    public async Task PostPart(Identifier entryId, ulong contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
+    {
+        try
+        {
+            if (contentDefinitionPartId != contentDefinitionPart.Id)
             {
-                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
+                throw new InvalidOperationException("ContentDefinitionPartId does not match");
             }
+
+            // Store the ContentDefinition.
+            await _items
+                .Store(entryId, contentDefinitionPart)
+                .ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric.InMemory
-{
-    using EtAlii.xTechnology.Hosting;
+namespace EtAlii.Ubigia.Infrastructure.Fabric.InMemory;
 
-    public class StorageServiceFactory : IServiceFactory
-    {
-        public IService Create(ServiceConfiguration configuration) => new StorageService(configuration);
-    }
+using EtAlii.xTechnology.Hosting;
+
+public class StorageServiceFactory : IServiceFactory
+{
+    public IService Create(ServiceConfiguration configuration) => new StorageService(configuration);
 }

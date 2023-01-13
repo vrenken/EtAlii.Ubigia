@@ -1,83 +1,82 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence;
+
+internal class ItemGetter : IItemGetter
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class ItemGetter : IItemGetter
+    public ItemGetter(IStorage storage)
     {
-        private readonly IStorage _storage;
-
-        public ItemGetter(IStorage storage)
-        {
-            _storage = storage;
-        }
-
-        /// <inheritdoc />
-        public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
-            where T : class, IIdentifiable
-        {
-            return items.ToAsyncEnumerable();
-        }
-
-        /// <inheritdoc />
-        public Task<T> Get<T>(IList<T> items, Guid id)
-            where T : class, IIdentifiable
-        {
-            if (id == Guid.Empty)
-            {
-                throw new ArgumentException("No item ID specified");
-            }
-
-            var item = items.SingleOrDefault(item => item.Id == id);
-            return Task.FromResult(item);
-        }
-
-        /// <inheritdoc />
-        public async Task<ObservableCollection<T>> GetItems<T>(string folder)
-            where T : class, IIdentifiable
-        {
-            var items = new ObservableCollection<T>();
-
-            var containerId = _storage.ContainerProvider.ForItems(folder);
-            var itemIds = _storage.Items.Get(containerId);
-            foreach (var itemId in itemIds)
-            {
-                var item = await _storage.Items.Retrieve<T>(itemId, containerId).ConfigureAwait(false);
-                items.Add(item);
-            }
-
-            items.CollectionChanged += (_, e) => OnItemsChanged<T>(e, folder);
-
-            return items;
-        }
-
-        private void OnItemsChanged<T>(NotifyCollectionChangedEventArgs e, string folder) // object sender,
-            where T : class, IIdentifiable
-        {
-            var containerId = _storage.ContainerProvider.ForItems(folder);
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (T item in e.NewItems!)
-                    {
-                        _storage.Items.Store(item, item.Id, containerId);
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (T item in e.OldItems!)
-                    {
-                        _storage.Items.Remove(item.Id, containerId);
-                    }
-                    break;
-            }
-        }
-
+        _storage = storage;
     }
+
+    /// <inheritdoc />
+    public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
+        where T : class, IIdentifiable
+    {
+        return items.ToAsyncEnumerable();
+    }
+
+    /// <inheritdoc />
+    public Task<T> Get<T>(IList<T> items, Guid id)
+        where T : class, IIdentifiable
+    {
+        if (id == Guid.Empty)
+        {
+            throw new ArgumentException("No item ID specified");
+        }
+
+        var item = items.SingleOrDefault(item => item.Id == id);
+        return Task.FromResult(item);
+    }
+
+    /// <inheritdoc />
+    public async Task<ObservableCollection<T>> GetItems<T>(string folder)
+        where T : class, IIdentifiable
+    {
+        var items = new ObservableCollection<T>();
+
+        var containerId = _storage.ContainerProvider.ForItems(folder);
+        var itemIds = _storage.Items.Get(containerId);
+        foreach (var itemId in itemIds)
+        {
+            var item = await _storage.Items.Retrieve<T>(itemId, containerId).ConfigureAwait(false);
+            items.Add(item);
+        }
+
+        items.CollectionChanged += (_, e) => OnItemsChanged<T>(e, folder);
+
+        return items;
+    }
+
+    private void OnItemsChanged<T>(NotifyCollectionChangedEventArgs e, string folder) // object sender,
+        where T : class, IIdentifiable
+    {
+        var containerId = _storage.ContainerProvider.ForItems(folder);
+        switch (e.Action)
+        {
+            case NotifyCollectionChangedAction.Add:
+                foreach (T item in e.NewItems!)
+                {
+                    _storage.Items.Store(item, item.Id, containerId);
+                }
+                break;
+            case NotifyCollectionChangedAction.Remove:
+                foreach (T item in e.OldItems!)
+                {
+                    _storage.Items.Remove(item.Id, containerId);
+                }
+                break;
+        }
+    }
+
 }

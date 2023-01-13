@@ -1,24 +1,23 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public interface ISpaceRepository
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    Task<Space> Get(Guid accountId, string spaceName);
+    Task<Space> Get(Guid itemId);
 
-    public interface ISpaceRepository
-    {
-        Task<Space> Get(Guid accountId, string spaceName);
-        Task<Space> Get(Guid itemId);
+    IAsyncEnumerable<Space> GetAll(Guid accountId);
+    IAsyncEnumerable<Space> GetAll();
 
-        IAsyncEnumerable<Space> GetAll(Guid accountId);
-        IAsyncEnumerable<Space> GetAll();
+    Task<Space> Add(Space item, SpaceTemplate template);
 
-        Task<Space> Add(Space item, SpaceTemplate template);
+    Task Remove(Guid itemId);
+    Task Remove(Space item);
 
-        Task Remove(Guid itemId);
-        Task Remove(Space item);
-
-        Task<Space> Update(Guid itemId, Space item);
-    }
+    Task<Space> Update(Guid itemId, Space item);
 }

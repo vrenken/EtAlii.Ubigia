@@ -1,12 +1,11 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
-{
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using global::Grpc.Core;
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc;
 
-    public interface IUserStorageServiceDefinitionFactory
-    {
-        ServerServiceDefinition Create(IFunctionalContext functionalContext, IAccountAuthenticationInterceptor accountAuthenticationInterceptor);
-    }
+using EtAlii.Ubigia.Infrastructure.Functional;
+using global::Grpc.Core;
+
+public interface IUserStorageServiceDefinitionFactory
+{
+    ServerServiceDefinition Create(IFunctionalContext functionalContext, IAccountAuthenticationInterceptor accountAuthenticationInterceptor);
 }

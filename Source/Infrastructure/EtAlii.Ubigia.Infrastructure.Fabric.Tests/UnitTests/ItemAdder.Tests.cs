@@ -1,140 +1,139 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Xunit;
+using EtAlii.Ubigia.Tests;
+
+[CorrelateUnitTests]
+public sealed class ItemAdderTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
-    using Xunit;
-    using EtAlii.Ubigia.Tests;
-
-    [CorrelateUnitTests]
-    public sealed class ItemAdderTests
+    [Fact]
+    public async Task ItemAdder_Add()
     {
-        [Fact]
-        public async Task ItemAdder_Add()
+        var itemAdder = new ItemAdder();
+
+        var firstId = Guid.NewGuid();
+        var secondId = Guid.NewGuid();
+        var thirdId = Guid.NewGuid();
+
+        var items = new List<IIdentifiable>(new IIdentifiable[]
         {
-            var itemAdder = new ItemAdder();
+            new Space { Id = firstId },
+            new Space { Id = secondId },
+            new Space { Id = thirdId },
+        });
 
-            var firstId = Guid.NewGuid();
-            var secondId = Guid.NewGuid();
-            var thirdId = Guid.NewGuid();
+        var item = await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
 
-            var items = new List<IIdentifiable>(new IIdentifiable[]
-            {
-                new Space { Id = firstId },
-                new Space { Id = secondId },
-                new Space { Id = thirdId },
-            });
+        Assert.Equal("Test", item.Name);
+    }
 
-            var item = await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
-
-            Assert.Equal("Test", item.Name);
-        }
-
-        [Fact]
-        public void ItemAdder_Add_Already_Existing()
+    [Fact]
+    public void ItemAdder_Add_Already_Existing()
+    {
+        // Arrange.
+        var itemAdder = new ItemAdder();
+        var firstId = Guid.NewGuid();
+        var secondId = Guid.NewGuid();
+        var thirdId = Guid.NewGuid();
+        var items = new List<IIdentifiable>(new IIdentifiable[]
         {
-            // Arrange.
-            var itemAdder = new ItemAdder();
-            var firstId = Guid.NewGuid();
-            var secondId = Guid.NewGuid();
-            var thirdId = Guid.NewGuid();
-            var items = new List<IIdentifiable>(new IIdentifiable[]
-            {
-                new Space { Id = firstId },
-                new Space { Id = secondId, Name = "Test" },
-                new Space { Id = thirdId },
-            });
+            new Space { Id = firstId },
+            new Space { Id = secondId, Name = "Test" },
+            new Space { Id = thirdId },
+        });
 
-            // Act.
-            var act = new Func<Task>(async () =>
-            {
-                await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
-            });
-
-            // Assert.
-            Assert.ThrowsAsync<InvalidOperationException>(act);
-        }
-
-        [Fact]
-        public void ItemAdder_Add_With_ID_Assigned()
+        // Act.
+        var act = new Func<Task>(async () =>
         {
-            // Arrange.
-            var itemAdder = new ItemAdder();
-            var firstId = Guid.NewGuid();
-            var secondId = Guid.NewGuid();
-            var thirdId = Guid.NewGuid();
-            var fourthId = Guid.NewGuid();
-            var items = new List<IIdentifiable>(new IIdentifiable[]
-            {
-                new Space { Id = firstId },
-                new Space { Id = secondId },
-                new Space { Id = thirdId },
-            });
+            await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
+        });
 
-            // Act.
-            var act = new Func<Task>(async () =>
-            {
-                await itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" }).ConfigureAwait(false);
-            });
+        // Assert.
+        Assert.ThrowsAsync<InvalidOperationException>(act);
+    }
 
-            // Assert.
-            Assert.ThrowsAsync<InvalidOperationException>(act);
-        }
-
-        [Fact]
-        public void ItemAdder_Add_No_Item()
+    [Fact]
+    public void ItemAdder_Add_With_ID_Assigned()
+    {
+        // Arrange.
+        var itemAdder = new ItemAdder();
+        var firstId = Guid.NewGuid();
+        var secondId = Guid.NewGuid();
+        var thirdId = Guid.NewGuid();
+        var fourthId = Guid.NewGuid();
+        var items = new List<IIdentifiable>(new IIdentifiable[]
         {
-            // Arrange.
-            var itemAdder = new ItemAdder();
-            var firstId = Guid.NewGuid();
-            var secondId = Guid.NewGuid();
-            var thirdId = Guid.NewGuid();
+            new Space { Id = firstId },
+            new Space { Id = secondId },
+            new Space { Id = thirdId },
+        });
 
-            var items = new List<IIdentifiable>(new IIdentifiable[]
-            {
-                new Space { Id = firstId },
-                new Space { Id = secondId },
-                new Space { Id = thirdId },
-            });
-
-            // Act.
-            var act = new Func<Task>(async () =>
-            {
-                await itemAdder.Add(items, null).ConfigureAwait(false);
-            });
-
-            // Assert.
-            Assert.ThrowsAsync<ArgumentNullException>(act);
-        }
-
-        [Fact]
-        public void ItemAdder_Add_With_Error()
+        // Act.
+        var act = new Func<Task>(async () =>
         {
-            // Arrange.
-            var itemAdder = new ItemAdder();
-            var firstId = Guid.NewGuid();
-            var secondId = Guid.NewGuid();
-            var thirdId = Guid.NewGuid();
+            await itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" }).ConfigureAwait(false);
+        });
 
-            var items = new ObservableCollection<IIdentifiable>(new IIdentifiable[]
-            {
-                new Space { Id = firstId },
-                new Space { Id = secondId },
-                new Space { Id = thirdId },
-            });
-            items.CollectionChanged += (_, _) => throw new ApplicationException();
+        // Assert.
+        Assert.ThrowsAsync<InvalidOperationException>(act);
+    }
 
-            // Act.
-            var act = new Func<Task>(async () =>
-            {
-                await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
-            });
+    [Fact]
+    public void ItemAdder_Add_No_Item()
+    {
+        // Arrange.
+        var itemAdder = new ItemAdder();
+        var firstId = Guid.NewGuid();
+        var secondId = Guid.NewGuid();
+        var thirdId = Guid.NewGuid();
 
-            // Assert.
-            Assert.ThrowsAsync<ApplicationException>(act);
-        }
+        var items = new List<IIdentifiable>(new IIdentifiable[]
+        {
+            new Space { Id = firstId },
+            new Space { Id = secondId },
+            new Space { Id = thirdId },
+        });
+
+        // Act.
+        var act = new Func<Task>(async () =>
+        {
+            await itemAdder.Add(items, null).ConfigureAwait(false);
+        });
+
+        // Assert.
+        Assert.ThrowsAsync<ArgumentNullException>(act);
+    }
+
+    [Fact]
+    public void ItemAdder_Add_With_Error()
+    {
+        // Arrange.
+        var itemAdder = new ItemAdder();
+        var firstId = Guid.NewGuid();
+        var secondId = Guid.NewGuid();
+        var thirdId = Guid.NewGuid();
+
+        var items = new ObservableCollection<IIdentifiable>(new IIdentifiable[]
+        {
+            new Space { Id = firstId },
+            new Space { Id = secondId },
+            new Space { Id = thirdId },
+        });
+        items.CollectionChanged += (_, _) => throw new ApplicationException();
+
+        // Act.
+        var act = new Func<Task>(async () =>
+        {
+            await itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" }).ConfigureAwait(false);
+        });
+
+        // Assert.
+        Assert.ThrowsAsync<ApplicationException>(act);
     }
 }

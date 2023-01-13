@@ -1,41 +1,40 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using EtAlii.Ubigia.Api.Transport;
+using EtAlii.xTechnology.MicroContainer;
+
+public class SystemConnectionScaffolding : IScaffolding
 {
-    using System;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly SystemConnectionOptions _options;
 
-    public class SystemConnectionScaffolding : IScaffolding
+    public SystemConnectionScaffolding(SystemConnectionOptions options)
     {
-        private readonly SystemConnectionOptions _options;
+        _options = options;
+    }
 
-        public SystemConnectionScaffolding(SystemConnectionOptions options)
+    /// <inheritdoc />
+    public void Register(IRegisterOnlyContainer container)
+    {
+        var factoryMethod = _options.FactoryExtension ?? CreateSystemConnection;
+        container.Register(factoryMethod);
+    }
+
+    private ISystemConnection CreateSystemConnection()
+    {
+        var hasTransportProvider = _options.TransportProvider != null;
+        if (!hasTransportProvider)
         {
-            _options = options;
+            throw new InvalidInfrastructureOperationException("Error creating system connection: No TransportProvider provided.");
         }
 
-        /// <inheritdoc />
-        public void Register(IRegisterOnlyContainer container)
+        if (_options.ServiceDetails == null)
         {
-            var factoryMethod = _options.FactoryExtension ?? CreateSystemConnection;
-            container.Register(factoryMethod);
+            throw new NotSupportedException("The service details are required to construct a SystemConnection instance");
         }
 
-        private ISystemConnection CreateSystemConnection()
-        {
-            var hasTransportProvider = _options.TransportProvider != null;
-            if (!hasTransportProvider)
-            {
-                throw new InvalidInfrastructureOperationException("Error creating system connection: No TransportProvider provided.");
-            }
-
-            if (_options.ServiceDetails == null)
-            {
-                throw new NotSupportedException("The service details are required to construct a SystemConnection instance");
-            }
-
-            return new SystemConnection(_options);
-        }
+        return new SystemConnection(_options);
     }
 }

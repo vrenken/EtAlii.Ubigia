@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal;
+
+public partial class NavMenu
 {
-    public partial class NavMenu
+    protected override void OnInitialized()
     {
-        protected override void OnInitialized()
-        {
-            // Initialize the NavMenu.
-        }
+        // Initialize the NavMenu.
     }
 }

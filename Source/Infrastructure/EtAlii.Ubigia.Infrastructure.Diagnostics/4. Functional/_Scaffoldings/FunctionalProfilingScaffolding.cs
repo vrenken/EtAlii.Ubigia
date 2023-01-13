@@ -1,32 +1,31 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class FunctionalProfilingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class FunctionalProfilingScaffolding : IScaffolding
+    public FunctionalProfilingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public FunctionalProfilingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectProfiling) // profiling is enabled
         {
-            _options = options;
-        }
+            container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+            container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectProfiling) // profiling is enabled
-            {
-                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
-
-                //container.RegisterDecorator<IEntryRepository, ProfilingEntryRepositoryDecorator>()
-                //container.RegisterDecorator<IIdentifierRepository, ProfilingIdentifierRepositoryDecorator>()
-                //container.RegisterDecorator<IStorageRepository, ProfilingStorageRepositoryDecorator>()
-                //container.RegisterDecorator<IAccountRepository, ProfilingAccountRepositoryDecorator>()
-                //container.RegisterDecorator<ISpaceRepository, ProfilingSpaceRepositoryDecorator>()
-            }
+            //container.RegisterDecorator<IEntryRepository, ProfilingEntryRepositoryDecorator>()
+            //container.RegisterDecorator<IIdentifierRepository, ProfilingIdentifierRepositoryDecorator>()
+            //container.RegisterDecorator<IStorageRepository, ProfilingStorageRepositoryDecorator>()
+            //container.RegisterDecorator<IAccountRepository, ProfilingAccountRepositoryDecorator>()
+            //container.RegisterDecorator<ISpaceRepository, ProfilingSpaceRepositoryDecorator>()
         }
     }
 }

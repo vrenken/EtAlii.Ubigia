@@ -1,81 +1,80 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal class SystemRootDataClient : SystemSpaceClientBase, IRootDataClient
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    private readonly IFunctionalContext _functionalContext;
 
-    internal class SystemRootDataClient : SystemSpaceClientBase, IRootDataClient
+    public SystemRootDataClient(IFunctionalContext functionalContext)
     {
-        private readonly IFunctionalContext _functionalContext;
+        _functionalContext = functionalContext;
+    }
 
-        public SystemRootDataClient(IFunctionalContext functionalContext)
+    /// <inheritdoc />
+    public async Task<Root> Add(string name, RootType rootType)
+    {
+        var root = new Root
         {
-            _functionalContext = functionalContext;
-        }
+            Name = name,
+            Type = rootType,
+        };
+        var result = await _functionalContext.Roots
+            .Add(Connection.Space.Id, root)
+            .ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public async Task<Root> Add(string name, RootType rootType)
+        return result;
+    }
+
+    /// <inheritdoc />
+    public Task Remove(Guid id)
+    {
+        return _functionalContext.Roots.Remove(Connection.Space.Id, id);
+    }
+
+    /// <inheritdoc />
+    public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
+    {
+        var root = new Root
         {
-            var root = new Root
-            {
-                Name = name,
-                Type = rootType,
-            };
-            var result = await _functionalContext.Roots
-                .Add(Connection.Space.Id, root)
-                .ConfigureAwait(false);
+            Id = rootId,
+            Name = rootName,
+            Type = rootType
+        };
 
-            return result;
-        }
+        var result = await _functionalContext.Roots
+            .Update(Connection.Space.Id, rootId, root)
+            .ConfigureAwait(false);
+        return result;
+    }
 
-        /// <inheritdoc />
-        public Task Remove(Guid id)
-        {
-            return _functionalContext.Roots.Remove(Connection.Space.Id, id);
-        }
+    /// <inheritdoc />
+    public async Task<Root> Get(string rootName)
+    {
+        var result = await _functionalContext.Roots
+            .Get(Connection.Space.Id, rootName)
+            .ConfigureAwait(false);
+        return result;
+    }
 
-        /// <inheritdoc />
-        public async Task<Root> Change(Guid rootId, string rootName, RootType rootType)
-        {
-            var root = new Root
-            {
-                Id = rootId,
-                Name = rootName,
-                Type = rootType
-            };
+    /// <inheritdoc />
+    public async Task<Root> Get(Guid rootId)
+    {
+        var result = await _functionalContext.Roots
+            .Get(Connection.Space.Id, rootId)
+            .ConfigureAwait(false);
+        return result;
+    }
 
-            var result = await _functionalContext.Roots
-                .Update(Connection.Space.Id, rootId, root)
-                .ConfigureAwait(false);
-            return result;
-        }
-
-        /// <inheritdoc />
-        public async Task<Root> Get(string rootName)
-        {
-            var result = await _functionalContext.Roots
-                .Get(Connection.Space.Id, rootName)
-                .ConfigureAwait(false);
-            return result;
-        }
-
-        /// <inheritdoc />
-        public async Task<Root> Get(Guid rootId)
-        {
-            var result = await _functionalContext.Roots
-                .Get(Connection.Space.Id, rootId)
-                .ConfigureAwait(false);
-            return result;
-        }
-
-        /// <inheritdoc />
-        public IAsyncEnumerable<Root> GetAll()
-        {
-            return _functionalContext.Roots
-                .GetAll(Connection.Space.Id);
-        }
+    /// <inheritdoc />
+    public IAsyncEnumerable<Root> GetAll()
+    {
+        return _functionalContext.Roots
+            .GetAll(Connection.Space.Id);
     }
 }

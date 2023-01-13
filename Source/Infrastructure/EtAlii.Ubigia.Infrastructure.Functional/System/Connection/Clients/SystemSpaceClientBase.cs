@@ -1,24 +1,23 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal abstract class SystemSpaceClientBase
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    protected ISpaceConnection Connection { get; private set; }
 
-    internal abstract class SystemSpaceClientBase
+    public virtual Task Connect(ISpaceConnection spaceConnection)
     {
-        protected ISpaceConnection Connection { get; private set; }
+        Connection = spaceConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(ISpaceConnection spaceConnection)
-        {
-            Connection = spaceConnection;
-            return Task.CompletedTask;
-        }
-
-        public virtual Task Disconnect()
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect()
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

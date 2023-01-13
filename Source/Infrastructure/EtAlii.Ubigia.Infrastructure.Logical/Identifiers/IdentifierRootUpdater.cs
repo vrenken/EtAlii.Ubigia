@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Logical
+namespace EtAlii.Ubigia.Infrastructure.Logical;
+
+using System;
+using System.Threading.Tasks;
+
+public class IdentifierRootUpdater : IIdentifierRootUpdater
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly ILogicalContext _context;
 
-    public class IdentifierRootUpdater : IIdentifierRootUpdater
+    public IdentifierRootUpdater(ILogicalContext context)
     {
-        private readonly ILogicalContext _context;
+        _context = context;
+    }
 
-        public IdentifierRootUpdater(ILogicalContext context)
+    public async Task Update(Guid storageId, Guid spaceId, RootTemplate rootTemplate, Identifier id)
+    {
+        var root = await _context.Roots.Get(spaceId, rootTemplate.Name).ConfigureAwait(false);
+        if (root == null)
         {
-            _context = context;
+            // QUESTION: Should this be possible?
+            root = new Root
+            {
+                // RCI2022: We want to make roots case insensitive.
+                Name = rootTemplate.Name.ToUpper(),
+                Identifier = id,
+            };
+            await _context.Roots.Add(storageId, spaceId, root).ConfigureAwait(false);
         }
-
-        public async Task Update(Guid storageId, Guid spaceId, RootTemplate rootTemplate, Identifier id)
+        else
         {
-            var root = await _context.Roots.Get(spaceId, rootTemplate.Name).ConfigureAwait(false);
-            if (root == null)
-            {
-                // QUESTION: Should this be possible?
-                root = new Root
-                {
-                    // RCI2022: We want to make roots case insensitive.
-                    Name = rootTemplate.Name.ToUpper(),
-                    Identifier = id,
-                };
-                await _context.Roots.Add(storageId, spaceId, root).ConfigureAwait(false);
-            }
-            else
-            {
-                root.Identifier = id;
-                await _context.Roots.Update(spaceId, root.Id, root).ConfigureAwait(false);
-            }
+            root.Identifier = id;
+            await _context.Roots.Update(spaceId, root.Id, root).ConfigureAwait(false);
         }
     }
 }

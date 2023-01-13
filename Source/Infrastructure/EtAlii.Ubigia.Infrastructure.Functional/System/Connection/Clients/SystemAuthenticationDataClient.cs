@@ -1,27 +1,26 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    private readonly IFunctionalContext _functionalContext;
 
-    internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
+    public SystemAuthenticationDataClient(IFunctionalContext functionalContext)
     {
-        private readonly IFunctionalContext _functionalContext;
+        _functionalContext = functionalContext;
+    }
 
-        public SystemAuthenticationDataClient(IFunctionalContext functionalContext)
-        {
-            _functionalContext = functionalContext;
-        }
+    public Task Connect(ISpaceConnection spaceConnection)
+    {
+        return Task.CompletedTask;
+    }
 
-        public Task Connect(ISpaceConnection spaceConnection)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task Disconnect()
-        {
-            return Task.CompletedTask;
-        }
+    public Task Disconnect()
+    {
+        return Task.CompletedTask;
     }
 }

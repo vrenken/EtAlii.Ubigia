@@ -1,33 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics;
+
+using EtAlii.Ubigia.Infrastructure.Logical;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class LogicalContextDiagnosticsExtension : IExtension
 {
-    using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class LogicalContextDiagnosticsExtension : IExtension
+    public LogicalContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public LogicalContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
+    /// <inheritdoc />
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Infrastructure:Logical:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options.InjectLogging)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        /// <inheritdoc />
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Infrastructure:Logical:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options.InjectLogging)
-            {
-                // Logical.
-                container.RegisterDecorator<IEntryPreparer, LoggingEntryPreparerDecorator>();
-            }
+            // Logical.
+            container.RegisterDecorator<IEntryPreparer, LoggingEntryPreparerDecorator>();
         }
     }
 }

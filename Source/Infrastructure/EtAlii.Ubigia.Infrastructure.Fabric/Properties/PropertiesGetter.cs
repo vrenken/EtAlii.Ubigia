@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using EtAlii.Ubigia.Persistence;
+
+internal class PropertiesGetter : IPropertiesGetter
 {
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class PropertiesGetter : IPropertiesGetter
+    public PropertiesGetter(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public PropertiesGetter(IStorage storage)
-        {
-            _storage = storage;
-        }
-
-        public PropertyDictionary Get(in Identifier identifier)
-        {
-            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            var properties = _storage.Properties.Retrieve(containerId);
-            return properties;
-        }
+    public PropertyDictionary Get(in Identifier identifier)
+    {
+        var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
+        var properties = _storage.Properties.Retrieve(containerId);
+        return properties;
     }
 }

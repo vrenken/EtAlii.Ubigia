@@ -1,102 +1,101 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Infrastructure.Functional;
+
+public class ContentHub : HubBase
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+    private readonly IContentRepository _items;
 
-    public class ContentHub : HubBase
+    public ContentHub(
+        IContentRepository items,
+        ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        : base(authenticationTokenVerifier)
     {
-        private readonly IContentRepository _items;
+        _items = items;
+    }
 
-        public ContentHub(
-            IContentRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
-            : base(authenticationTokenVerifier)
+    public async Task<Content> Get(Identifier entryId)
+    {
+        Content response;
+        try
         {
-            _items = items;
+            response = await _items
+                .Get(entryId)
+                .ConfigureAwait(false);
         }
-
-        public async Task<Content> Get(Identifier entryId)
+        catch (Exception e)
         {
-            Content response;
-            try
-            {
-                response = await _items
-                    .Get(entryId)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a content GET client request", e);
-            }
-            return response;
+            throw new InvalidOperationException("Unable to serve a content GET client request", e);
         }
+        return response;
+    }
 
-        public async Task<ContentPart> GetPart(Identifier entryId, ulong contentPartId)
+    public async Task<ContentPart> GetPart(Identifier entryId, ulong contentPartId)
+    {
+        ContentPart response;
+        try
         {
-            ContentPart response;
-            try
-            {
-                response = await _items
-                    .Get(entryId, contentPartId)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Content part GET client request", e);
-            }
-            return response;
+            response = await _items
+                .Get(entryId, contentPartId)
+                .ConfigureAwait(false);
         }
-
-        /// <summary>
-        /// Post a new ContentDefinition for the specified content.
-        /// </summary>
-        /// <param name="entryId"></param>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public async Task Post(Identifier entryId, Content content)
+        catch (Exception e)
         {
-            try
-            {
-                // Store the content.
-                await _items
-                    .Store(entryId, content)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Content POST client request", e);
-            }
+            throw new InvalidOperationException("Unable to serve a Content part GET client request", e);
         }
+        return response;
+    }
 
-        /// <summary>
-        /// Post a new contentPart for the specified content.
-        /// </summary>
-        /// <param name="entryId"></param>
-        /// <param name="contentPartId"></param>
-        /// <param name="contentPart"></param>
-        /// <returns></returns>
-        public async Task PostPart(Identifier entryId, ulong contentPartId, ContentPart contentPart)
+    /// <summary>
+    /// Post a new ContentDefinition for the specified content.
+    /// </summary>
+    /// <param name="entryId"></param>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    public async Task Post(Identifier entryId, Content content)
+    {
+        try
         {
-            try
+            // Store the content.
+            await _items
+                .Store(entryId, content)
+                .ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException("Unable to serve a Content POST client request", e);
+        }
+    }
+
+    /// <summary>
+    /// Post a new contentPart for the specified content.
+    /// </summary>
+    /// <param name="entryId"></param>
+    /// <param name="contentPartId"></param>
+    /// <param name="contentPart"></param>
+    /// <returns></returns>
+    public async Task PostPart(Identifier entryId, ulong contentPartId, ContentPart contentPart)
+    {
+        try
+        {
+            if (contentPartId != contentPart.Id)
             {
-                if (contentPartId != contentPart.Id)
-                {
-                    throw new InvalidOperationException("ContentPartId does not match");
-                }
+                throw new InvalidOperationException("ContentPartId does not match");
+            }
 
 
-                // Store the content.
-                await _items
-                    .Store(entryId, contentPart)
-                    .ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Content part POST client request", e);
-            }
+            // Store the content.
+            await _items
+                .Store(entryId, contentPart)
+                .ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException("Unable to serve a Content part POST client request", e);
         }
     }
 }

@@ -1,116 +1,115 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.Tests
+namespace EtAlii.Ubigia.Infrastructure.Transport.Tests;
+
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Infrastructure.Fabric;
+using EtAlii.Ubigia.Infrastructure.Functional;
+using EtAlii.Ubigia.Infrastructure.Hosting;
+using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+using EtAlii.Ubigia.Infrastructure.Transport;
+using EtAlii.Ubigia.Persistence;
+using EtAlii.Ubigia.Tests;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.Hosting;
+using EtAlii.xTechnology.Hosting.Diagnostics;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+using Xunit;
+
+public class TransportInfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
 {
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.Ubigia.Infrastructure.Transport;
-    using EtAlii.Ubigia.Persistence;
-    using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
-    using EtAlii.xTechnology.Hosting.Diagnostics;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Hosting;
-    using Serilog;
-    using Xunit;
+    private readonly ILogger _logger = Log.ForContext<TransportInfrastructureUnitTestContext>();
 
-    public class TransportInfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
+    public IFunctionalContext Functional { get; private set; }
+
+    public IStorage Storage { get; private set; }
+
+    public string HostName { get; private set; }
+    public Uri DataAddress { get; private set; }
+
+    private const string ConfigurationFile = "FunctionalSettings.json";
+    private IHost _host;
+
+    public IConfigurationRoot Configuration { get; private set; }
+    public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
+    public TestContentFactory TestContentFactory { get; }
+    public TestPropertiesFactory TestPropertiesFactory { get; }
+    public ContentComparer ContentComparer { get; }
+    public ByteArrayComparer ByteArrayComparer { get; }
+    public PropertyDictionaryComparer PropertyDictionaryComparer { get; }
+
+    public TransportInfrastructureUnitTestContext()
     {
-        private readonly ILogger _logger = Log.ForContext<TransportInfrastructureUnitTestContext>();
+        TestContentDefinitionFactory = new TestContentDefinitionFactory();
+        TestContentFactory = new TestContentFactory();
+        TestPropertiesFactory = new TestPropertiesFactory();
+        ByteArrayComparer = new ByteArrayComparer();
+        ContentComparer = new ContentComparer(ByteArrayComparer);
+        PropertyDictionaryComparer = new PropertyDictionaryComparer();
+    }
 
-        public IFunctionalContext Functional { get; private set; }
+    public async Task InitializeAsync()
+    {
+        _logger.Information("Starting host {HostName}", GetType().Name);
 
-        public IStorage Storage { get; private set; }
+        var details = await new ConfigurationDetailsParser()
+            .ParseForTesting(ConfigurationFile, new PortRange())
+            .ConfigureAwait(false);
 
-        public string HostName { get; private set; }
-        public Uri DataAddress { get; private set; }
+        Configuration = new ConfigurationBuilder()
+            .AddConfigurationDetails(details)
+            .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
+            .Build();
 
-        private const string ConfigurationFile = "FunctionalSettings.json";
-        private IHost _host;
+        var hostBuilder = Host
+            .CreateDefaultBuilder();
 
-        public IConfigurationRoot Configuration { get; private set; }
-        public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        public TestContentFactory TestContentFactory { get; }
-        public TestPropertiesFactory TestPropertiesFactory { get; }
-        public ContentComparer ContentComparer { get; }
-        public ByteArrayComparer ByteArrayComparer { get; }
-        public PropertyDictionaryComparer PropertyDictionaryComparer { get; }
-
-        public TransportInfrastructureUnitTestContext()
+        // I know, ugly patch, but it works. And it's better than making all global unit test systems trying to phone home...
+        if (Environment.MachineName == "FRACTAL")
         {
-            TestContentDefinitionFactory = new TestContentDefinitionFactory();
-            TestContentFactory = new TestContentFactory();
-            TestPropertiesFactory = new TestPropertiesFactory();
-            ByteArrayComparer = new ByteArrayComparer();
-            ContentComparer = new ContentComparer(ByteArrayComparer);
-            PropertyDictionaryComparer = new PropertyDictionaryComparer();
+            hostBuilder = hostBuilder.UseHostLogging(Configuration, Assembly.GetEntryAssembly());
         }
 
-        public async Task InitializeAsync()
+        _host = hostBuilder
+            .UseHostTestServices<InfrastructureHostServicesFactory>(Configuration, out var services)
+            .Build();
+
+        await _host
+            .StartAsync()
+            .ConfigureAwait(false);
+
+        _logger.Information("Started host {HostName}", GetType().Name);
+
+        Functional = services.OfType<IInfrastructureService>().Single().Functional;
+        HostName = Functional.Options.Name;
+        DataAddress = Functional.Options.ServiceDetails.First().DataAddress;
+
+        Storage = services.OfType<IStorageService>().Single().Storage;
+    }
+
+    public async Task DisposeAsync()
+    {
+        _logger.Information("Stopping host {HostName}", GetType().Name);
+
+        if (_host != null)
         {
-            _logger.Information("Starting host {HostName}", GetType().Name);
-
-            var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(ConfigurationFile, new PortRange())
-                .ConfigureAwait(false);
-
-            Configuration = new ConfigurationBuilder()
-                .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
-                .Build();
-
-            var hostBuilder = Host
-                .CreateDefaultBuilder();
-
-            // I know, ugly patch, but it works. And it's better than making all global unit test systems trying to phone home...
-            if (Environment.MachineName == "FRACTAL")
-            {
-                hostBuilder = hostBuilder.UseHostLogging(Configuration, Assembly.GetEntryAssembly());
-            }
-
-            _host = hostBuilder
-                .UseHostTestServices<InfrastructureHostServicesFactory>(Configuration, out var services)
-                .Build();
-
             await _host
-                .StartAsync()
+                .StopAsync()
                 .ConfigureAwait(false);
-
-            _logger.Information("Started host {HostName}", GetType().Name);
-
-            Functional = services.OfType<IInfrastructureService>().Single().Functional;
-            HostName = Functional.Options.Name;
-            DataAddress = Functional.Options.ServiceDetails.First().DataAddress;
-
-            Storage = services.OfType<IStorageService>().Single().Storage;
+            _host.Dispose();
+            _host = null;
         }
 
-        public async Task DisposeAsync()
-        {
-            _logger.Information("Stopping host {HostName}", GetType().Name);
+        _logger.Information("Stopped host {HostName}", GetType().Name);
 
-            if (_host != null)
-            {
-                await _host
-                    .StopAsync()
-                    .ConfigureAwait(false);
-                _host.Dispose();
-                _host = null;
-            }
-
-            _logger.Information("Stopped host {HostName}", GetType().Name);
-
-            Functional = null;
-            HostName = null;
-            DataAddress = null;
-            Storage = null;
-        }
+        Functional = null;
+        HostName = null;
+        DataAddress = null;
+        Storage = null;
     }
 }

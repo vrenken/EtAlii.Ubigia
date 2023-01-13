@@ -1,52 +1,51 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal sealed class SystemInformationDataClient : SystemStorageClientBase, IInformationDataClient
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    private readonly IFunctionalContext _functionalContext;
 
-    internal sealed class SystemInformationDataClient : SystemStorageClientBase, IInformationDataClient
+    public SystemInformationDataClient(IFunctionalContext functionalContext)
     {
-        private readonly IFunctionalContext _functionalContext;
+        _functionalContext = functionalContext;
+    }
 
-        public SystemInformationDataClient(IFunctionalContext functionalContext)
+    public Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
+    {
+        if (connection.Storage != null)
         {
-            _functionalContext = functionalContext;
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
         }
 
-        public Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
-        {
-            if (connection.Storage != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
-            }
+        return _functionalContext.Storages.GetLocal();
+    }
 
-            return _functionalContext.Storages.GetLocal();
+    /// <inheritdoc />
+    public Task<Storage> GetConnectedStorage(IStorageConnection connection)
+    {
+        if (connection.Storage != null)
+        {
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
         }
 
-        /// <inheritdoc />
-        public Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        return _functionalContext.Storages.GetLocal();
+    }
+
+    /// <inheritdoc />
+    public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
+    {
+        var serviceDetails = _functionalContext.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the connectivity details with.
+
+        var result = new ConnectivityDetails
         {
-            if (connection.Storage != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
-            }
-
-            return _functionalContext.Storages.GetLocal();
-        }
-
-        /// <inheritdoc />
-        public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
-        {
-            var serviceDetails = _functionalContext.Options.ServiceDetails.First(); // We'll take the first ServiceDetails to build the connectivity details with.
-
-            var result = new ConnectivityDetails
-            {
-                ManagementAddress = serviceDetails.ManagementAddress.ToString(),
-                DataAddress = serviceDetails.DataAddress.ToString(),
-            };
-            return Task.FromResult(result);
-        }
+            ManagementAddress = serviceDetails.ManagementAddress.ToString(),
+            DataAddress = serviceDetails.DataAddress.ToString(),
+        };
+        return Task.FromResult(result);
     }
 }

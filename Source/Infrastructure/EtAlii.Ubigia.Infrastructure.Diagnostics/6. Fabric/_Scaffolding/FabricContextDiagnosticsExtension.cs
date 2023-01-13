@@ -1,36 +1,35 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 // ReSharper disable once CheckNamespace
-namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class FabricContextDiagnosticsExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class FabricContextDiagnosticsExtension : IExtension
+    public FabricContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public FabricContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Infrastructure:Fabric:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        var scaffoldings = new IScaffolding[]
         {
-            _configurationRoot = configurationRoot;
-        }
+            new FabricContextLoggingScaffolding(options),
+        };
 
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var options = _configurationRoot
-                .GetSection("Infrastructure:Fabric:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new FabricContextLoggingScaffolding(options),
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            scaffolding.Register(container);
         }
     }
 }

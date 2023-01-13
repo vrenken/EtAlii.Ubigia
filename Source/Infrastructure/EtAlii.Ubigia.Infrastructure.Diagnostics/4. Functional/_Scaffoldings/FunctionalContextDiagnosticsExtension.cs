@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class FunctionalContextDiagnosticsExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class FunctionalContextDiagnosticsExtension : IExtension
+    public FunctionalContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public FunctionalContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
+    /// <inheritdoc />
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Infrastructure:Functional:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        var scaffoldings = new IScaffolding[]
         {
-            _configurationRoot = configurationRoot;
-        }
+            new FunctionalDebuggingScaffolding(options),
+            new FunctionalLoggingScaffolding(options),
+            new FunctionalProfilingScaffolding(options),
+        };
 
-        /// <inheritdoc />
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var options = _configurationRoot
-                .GetSection("Infrastructure:Functional:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new FunctionalDebuggingScaffolding(options),
-                new FunctionalLoggingScaffolding(options),
-                new FunctionalProfilingScaffolding(options),
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            scaffolding.Register(container);
         }
     }
 }

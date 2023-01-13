@@ -1,40 +1,39 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence;
+
+internal class RootRemover : IRootRemover
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class RootRemover : IRootRemover
+    public RootRemover(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public RootRemover(IStorage storage)
+    /// <inheritdoc />
+    public Task Remove(Guid spaceId, Guid rootId)
+    {
+        var containerId = _storage.ContainerProvider.ForRoots(spaceId);
+
+        var hasItem = _storage.Items.Has(rootId, containerId);
+        if (!hasItem)
         {
-            _storage = storage;
+            throw new InvalidOperationException("No item found");
         }
 
-        /// <inheritdoc />
-        public Task Remove(Guid spaceId, Guid rootId)
-        {
-            var containerId = _storage.ContainerProvider.ForRoots(spaceId);
+        _storage.Items.Remove(rootId, containerId);
 
-            var hasItem = _storage.Items.Has(rootId, containerId);
-            if (!hasItem)
-            {
-                throw new InvalidOperationException("No item found");
-            }
+        return Task.CompletedTask;
+    }
 
-            _storage.Items.Remove(rootId, containerId);
-
-            return Task.CompletedTask;
-        }
-
-        /// <inheritdoc />
-        public Task Remove(Guid spaceId, Root root)
-        {
-            return Remove(spaceId, root.Id);
-        }
+    /// <inheritdoc />
+    public Task Remove(Guid spaceId, Root root)
+    {
+        return Remove(spaceId, root.Id);
     }
 }

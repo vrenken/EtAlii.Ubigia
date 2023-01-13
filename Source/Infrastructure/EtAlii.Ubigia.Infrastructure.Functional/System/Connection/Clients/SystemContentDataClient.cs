@@ -1,16 +1,15 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using EtAlii.Ubigia.Api.Transport;
+
+internal partial class SystemContentDataClient : SystemSpaceClientBase, IContentDataClient
 {
-    using EtAlii.Ubigia.Api.Transport;
+    private readonly IFunctionalContext _functionalContext;
 
-    internal partial class SystemContentDataClient : SystemSpaceClientBase, IContentDataClient
+    public SystemContentDataClient(IFunctionalContext functionalContext)
     {
-        private readonly IFunctionalContext _functionalContext;
-
-        public SystemContentDataClient(IFunctionalContext functionalContext)
-        {
-            _functionalContext = functionalContext;
-        }
+        _functionalContext = functionalContext;
     }
 }

@@ -1,6 +1,5 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal;
+
+public partial class MainLayout
 {
-    public partial class MainLayout
-    {
-    }
 }

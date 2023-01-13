@@ -1,24 +1,23 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Functional
+namespace EtAlii.Ubigia.Infrastructure.Functional;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport;
+
+internal abstract class SystemStorageClientBase
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    protected IStorageConnection Connection { get; private set; }
 
-    internal abstract class SystemStorageClientBase
+    public virtual Task Connect(IStorageConnection storageConnection)
     {
-        protected IStorageConnection Connection { get; private set; }
+        Connection = storageConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(IStorageConnection storageConnection)
-        {
-            Connection = storageConnection;
-            return Task.CompletedTask;
-        }
-
-        public virtual Task Disconnect(IStorageConnection storageConnection)
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect(IStorageConnection storageConnection)
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

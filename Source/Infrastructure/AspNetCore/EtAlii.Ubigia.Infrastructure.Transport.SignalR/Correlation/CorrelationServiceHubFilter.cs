@@ -2,60 +2,59 @@
 
 #nullable enable
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using EtAlii.xTechnology.Threading;
+using Microsoft.AspNetCore.SignalR;
+using System.Collections.Generic;
+using EtAlii.xTechnology.Diagnostics;
+
+public class CorrelationServiceHubFilter : IHubFilter
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.xTechnology.Threading;
-    using Microsoft.AspNetCore.SignalR;
-    using System.Collections.Generic;
-    using EtAlii.xTechnology.Diagnostics;
+    private readonly IContextCorrelator _contextCorrelator;
 
-    public class CorrelationServiceHubFilter : IHubFilter
+    public CorrelationServiceHubFilter(IContextCorrelator contextCorrelator)
     {
-        private readonly IContextCorrelator _contextCorrelator;
+        _contextCorrelator = contextCorrelator;
+    }
 
-        public CorrelationServiceHubFilter(IContextCorrelator contextCorrelator)
+    /// <summary>
+    /// Allows handling of all Hub method invocations.
+    /// </summary>
+    /// <param name="invocationContext">The context for the method invocation that holds all the important information about the invoke.</param>
+    /// <param name="next">The next filter to run, and for the final one, the Hub invocation.</param>
+    /// <returns>Returns the result of the Hub method invoke.</returns>
+    public ValueTask<object?> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object?>> next)
+    {
+        using var disposables = BeginCorrelation(invocationContext.Context.Items);
+        return next(invocationContext);
+    }
+
+    private IDisposable BeginCorrelation(IDictionary<object, object?> items)
+    {
+        var correlations = new List<IDisposable>();
+
+        var keys = items.Keys.ToArray();
+        foreach (var keyObject in keys)
         {
-            _contextCorrelator = contextCorrelator;
-        }
+            var valueObject = items[keyObject];
 
-        /// <summary>
-        /// Allows handling of all Hub method invocations.
-        /// </summary>
-        /// <param name="invocationContext">The context for the method invocation that holds all the important information about the invoke.</param>
-        /// <param name="next">The next filter to run, and for the final one, the Hub invocation.</param>
-        /// <returns>Returns the result of the Hub method invoke.</returns>
-        public ValueTask<object?> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object?>> next)
-        {
-            using var disposables = BeginCorrelation(invocationContext.Context.Items);
-            return next(invocationContext);
-        }
-
-        private IDisposable BeginCorrelation(IDictionary<object, object?> items)
-        {
-            var correlations = new List<IDisposable>();
-
-            var keys = items.Keys.ToArray();
-            foreach (var keyObject in keys)
+            if (keyObject is not string key || valueObject is not string value)
             {
-                var valueObject = items[keyObject];
-
-                if (keyObject is not string key || valueObject is not string value)
-                {
-                    continue;
-                }
-
-                var correlationId = Correlation.AllIds.FirstOrDefault(correlationId => string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase));
-                if (correlationId != null)
-                {
-                    items.Remove(key);
-                    var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
-                    correlations.Add(correlation);
-                }
+                continue;
             }
-            return new CompositeDisposable(correlations);
+
+            var correlationId = Correlation.AllIds.FirstOrDefault(correlationId => string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase));
+            if (correlationId != null)
+            {
+                items.Remove(key);
+                var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                correlations.Add(correlation);
+            }
         }
+        return new CompositeDisposable(correlations);
     }
 }

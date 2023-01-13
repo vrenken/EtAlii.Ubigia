@@ -1,45 +1,44 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Fabric
+namespace EtAlii.Ubigia.Infrastructure.Fabric;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence;
+
+internal class ItemUpdater : IItemUpdater
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence;
+    private readonly IStorage _storage;
 
-    internal class ItemUpdater : IItemUpdater
+    public ItemUpdater(IStorage storage)
     {
-        private readonly IStorage _storage;
+        _storage = storage;
+    }
 
-        public ItemUpdater(IStorage storage)
+    /// <inheritdoc />
+    public Task<T> Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
+        where T : class, IIdentifiable
+    {
+        if (itemId == Guid.Empty)
         {
-            _storage = storage;
+            throw new ArgumentException("No item ID specified");
+        }
+        if (updatedItem == null)
+        {
+            throw new ArgumentNullException(nameof(updatedItem), "No item specified");
         }
 
-        /// <inheritdoc />
-        public Task<T> Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
-            where T : class, IIdentifiable
-        {
-            if (itemId == Guid.Empty)
-            {
-                throw new ArgumentException("No item ID specified");
-            }
-            if (updatedItem == null)
-            {
-                throw new ArgumentNullException(nameof(updatedItem), "No item specified");
-            }
+        var itemToUpdate = items.SingleOrDefault(item => item.Id == itemId);
+        var index = items.IndexOf(itemToUpdate);
 
-            var itemToUpdate = items.SingleOrDefault(item => item.Id == itemId);
-            var index = items.IndexOf(itemToUpdate);
+        updatedItem = updateFunction(itemToUpdate, updatedItem);
 
-            updatedItem = updateFunction(itemToUpdate, updatedItem);
+        var containerId = _storage.ContainerProvider.ForItems(folder);
+        _storage.Items.Store(updatedItem, updatedItem.Id, containerId);
 
-            var containerId = _storage.ContainerProvider.ForItems(folder);
-            _storage.Items.Store(updatedItem, updatedItem.Id, containerId);
-
-            items[index] = updatedItem;
-            return Task.FromResult(updatedItem);
-        }
+        items[index] = updatedItem;
+        return Task.FromResult(updatedItem);
     }
 }

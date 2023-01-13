@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+public class TestHostLoggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    public class TestHostLoggingScaffolding : IScaffolding
+    public TestHostLoggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public TestHostLoggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectLogging) // logging is enabled.
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectLogging) // logging is enabled.
-            {
-                //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton)
-            }
+            //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton)
         }
     }
 }

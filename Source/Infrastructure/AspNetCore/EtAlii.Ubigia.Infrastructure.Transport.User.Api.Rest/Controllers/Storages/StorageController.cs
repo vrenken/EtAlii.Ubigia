@@ -1,41 +1,40 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
+namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport.Rest;
+using EtAlii.Ubigia.Infrastructure.Functional;
+using EtAlii.Ubigia.Infrastructure.Transport.Rest;
+using Microsoft.AspNetCore.Mvc;
+
+[RequiresAuthenticationToken(Role.User)]
+[Route(RelativeDataUri.Storages)]
+public class StorageController : RestController
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Rest;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
-    using Microsoft.AspNetCore.Mvc;
+    private readonly IStorageRepository _items;
 
-    [RequiresAuthenticationToken(Role.User)]
-    [Route(RelativeDataUri.Storages)]
-    public class StorageController : RestController
+    public StorageController(IStorageRepository items)
     {
-        private readonly IStorageRepository _items;
+        _items = items;
+    }
 
-        public StorageController(IStorageRepository items)
+    //[AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> GetLocal([RequiredFromQuery]string local)
+    {
+        IActionResult response;
+        try
         {
-            _items = items;
+            var storage = await _items.GetLocal().ConfigureAwait(false);
+            response = Ok(storage);
         }
-
-	    //[AllowAnonymous]
-        [HttpGet]
-        public async Task<IActionResult> GetLocal([RequiredFromQuery]string local)
+        catch (Exception ex)
         {
-            IActionResult response;
-            try
-            {
-                var storage = await _items.GetLocal().ConfigureAwait(false);
-                response = Ok(storage);
-            }
-            catch (Exception ex)
-            {
-                //Logger.Critical("Unable to serve a Storage GET client request", ex)
-                response = BadRequest(ex.Message);
-            }
-            return response;
+            //Logger.Critical("Unable to serve a Storage GET client request", ex)
+            response = BadRequest(ex.Message);
         }
+        return response;
     }
 }

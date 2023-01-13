@@ -1,28 +1,27 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
+namespace EtAlii.Ubigia.Infrastructure.Transport.Rest;
+
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+
+public class RequiredFromQueryActionConstraint : IActionConstraint
 {
-    using Microsoft.AspNetCore.Mvc.ActionConstraints;
+    private readonly string _parameter;
 
-    public class RequiredFromQueryActionConstraint : IActionConstraint
+    public RequiredFromQueryActionConstraint(string parameter)
     {
-        private readonly string _parameter;
+        _parameter = parameter;
+    }
 
-        public RequiredFromQueryActionConstraint(string parameter)
+    public int Order => 999;
+
+    public bool Accept(ActionConstraintContext context)
+    {
+        if (!context.RouteContext.HttpContext.Request.Query.ContainsKey(_parameter))
         {
-            _parameter = parameter;
+            return false;
         }
 
-        public int Order => 999;
-
-        public bool Accept(ActionConstraintContext context)
-        {
-            if (!context.RouteContext.HttpContext.Request.Query.ContainsKey(_parameter))
-            {
-                return false;
-            }
-
-            return true;
-        }
+        return true;
     }
 }
