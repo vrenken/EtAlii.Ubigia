@@ -1,28 +1,27 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using System.Threading.Tasks;
+
+internal class RestPropertiesDataClient : RestClientBase, IPropertiesDataClient<IRestSpaceTransport>
 {
-    using System.Threading.Tasks;
-
-    internal class RestPropertiesDataClient : RestClientBase, IPropertiesDataClient<IRestSpaceTransport>
+    public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
     {
-        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
-        {
-            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
-            await Connection.Client.Post(address, properties).ConfigureAwait(false);
-            PropertiesHelper.SetStored(properties, true);
-        }
+        var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
+        await Connection.Client.Post(address, properties).ConfigureAwait(false);
+        PropertiesHelper.SetStored(properties, true);
+    }
 
-        public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
+    public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
+    {
+        var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
+        var result = await Connection.Client.Get<PropertyDictionary>(address).ConfigureAwait(false);
+        if (result != null)
         {
-            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Properties, UriParameter.EntryId, identifier.ToString());
-            var result = await Connection.Client.Get<PropertyDictionary>(address).ConfigureAwait(false);
-            if (result != null)
-            {
-                PropertiesHelper.SetStored(result, true);
-                // properties.Stored is not serialized in the PropertyDictionaryConverter.
-            }
-            return result;
+            PropertiesHelper.SetStored(result, true);
+            // properties.Stored is not serialized in the PropertyDictionaryConverter.
         }
+        return result;
     }
 }

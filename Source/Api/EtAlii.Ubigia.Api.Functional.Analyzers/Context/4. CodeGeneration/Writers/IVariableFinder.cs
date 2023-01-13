@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+public interface IVariableFinder
 {
-    public interface IVariableFinder
-    {
-        string[] FindVariables(Schema schema);
-    }
+    string[] FindVariables(Schema schema);
 }

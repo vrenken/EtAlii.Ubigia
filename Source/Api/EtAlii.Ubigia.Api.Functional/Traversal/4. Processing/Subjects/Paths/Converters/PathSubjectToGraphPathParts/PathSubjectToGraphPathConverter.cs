@@ -1,108 +1,107 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class PathSubjectToGraphPathConverter : IPathSubjectToGraphPathConverter
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    private readonly IConstantPathSubjectPartToGraphPathPartsConverter _constantPathSubjectPartToGraphPathPartsConverter;
+    private readonly IIdentifierPathSubjectPartToGraphPathPartsConverter _identifierPathSubjectPartToGraphPathPartsConverter;
+    private readonly IVariablePathSubjectPartToGraphPathPartsConverter _variablePathSubjectPartToGraphPathPartsConverter;
+    private readonly IAllParentsPathSubjectPartToGraphPathPartsConverter _allParentsPathSubjectPartToGraphPathPartsConverter;
+    private readonly IParentPathSubjectPartToGraphPathPartsConverter _parentPathSubjectPartToGraphPathPartsConverter;
+    private readonly IAllChildrenPathSubjectPartToGraphPathPartsConverter _allChildrenPathSubjectPartToGraphPathPartsConverter;
+    private readonly IChildrenPathSubjectPartToGraphPathPartsConverter _childrenPathSubjectPartToGraphPathPartsConverter;
+    private readonly IAllDowndatesPathSubjectPartToGraphPathPartsConverter _allDowndatesPathSubjectPartToGraphPathPartsConverter;
+    private readonly IDowndatePathSubjectPartToGraphPathPartsConverter _downdatePathSubjectPartToGraphPathPartsConverter;
+    private readonly IAllUpdatesPathSubjectPartToGraphPathPartsConverter _allUpdatesPathSubjectPartToGraphPathPartsConverter;
+    private readonly IUpdatesPathSubjectPartToGraphPathPartsConverter _updatesPathSubjectPartToGraphPathPartsConverter;
+    private readonly IWildcardPathSubjectPartToGraphPathPartsConverter _wildcardPathSubjectPartToGraphPathPartsConverter;
+    private readonly ITaggedPathSubjectPartToGraphPathPartsConverter _taggedPathSubjectPartToGraphPathPartsConverter;
+    private readonly ITraversingWildcardPathSubjectPartToGraphPathPartsConverter _traversingWildcardPathSubjectPartToGraphPathPartsConverter;
+    private readonly IConditionalPathSubjectPartToGraphPathPartsConverter _conditionalPathSubjectPartToGraphPathPartsConverter;
 
-    internal class PathSubjectToGraphPathConverter : IPathSubjectToGraphPathConverter
-    {
-        private readonly IConstantPathSubjectPartToGraphPathPartsConverter _constantPathSubjectPartToGraphPathPartsConverter;
-        private readonly IIdentifierPathSubjectPartToGraphPathPartsConverter _identifierPathSubjectPartToGraphPathPartsConverter;
-        private readonly IVariablePathSubjectPartToGraphPathPartsConverter _variablePathSubjectPartToGraphPathPartsConverter;
-        private readonly IAllParentsPathSubjectPartToGraphPathPartsConverter _allParentsPathSubjectPartToGraphPathPartsConverter;
-        private readonly IParentPathSubjectPartToGraphPathPartsConverter _parentPathSubjectPartToGraphPathPartsConverter;
-        private readonly IAllChildrenPathSubjectPartToGraphPathPartsConverter _allChildrenPathSubjectPartToGraphPathPartsConverter;
-        private readonly IChildrenPathSubjectPartToGraphPathPartsConverter _childrenPathSubjectPartToGraphPathPartsConverter;
-        private readonly IAllDowndatesPathSubjectPartToGraphPathPartsConverter _allDowndatesPathSubjectPartToGraphPathPartsConverter;
-        private readonly IDowndatePathSubjectPartToGraphPathPartsConverter _downdatePathSubjectPartToGraphPathPartsConverter;
-        private readonly IAllUpdatesPathSubjectPartToGraphPathPartsConverter _allUpdatesPathSubjectPartToGraphPathPartsConverter;
-        private readonly IUpdatesPathSubjectPartToGraphPathPartsConverter _updatesPathSubjectPartToGraphPathPartsConverter;
-        private readonly IWildcardPathSubjectPartToGraphPathPartsConverter _wildcardPathSubjectPartToGraphPathPartsConverter;
-        private readonly ITaggedPathSubjectPartToGraphPathPartsConverter _taggedPathSubjectPartToGraphPathPartsConverter;
-        private readonly ITraversingWildcardPathSubjectPartToGraphPathPartsConverter _traversingWildcardPathSubjectPartToGraphPathPartsConverter;
-        private readonly IConditionalPathSubjectPartToGraphPathPartsConverter _conditionalPathSubjectPartToGraphPathPartsConverter;
-
-        // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
-        // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
-        // specified by SonarQube. The current setup here is already some kind of facade that hides away many conversion specific variations. Therefore refactoring to facades won't work.
-        // Therefore this pragma warning disable of S107.
+    // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
+    // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
+    // specified by SonarQube. The current setup here is already some kind of facade that hides away many conversion specific variations. Therefore refactoring to facades won't work.
+    // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
-        public PathSubjectToGraphPathConverter(
-            IConstantPathSubjectPartToGraphPathPartsConverter constantPathSubjectPartToGraphPathPartsConverter,
-            IIdentifierPathSubjectPartToGraphPathPartsConverter identifierPathSubjectPartToGraphPathPartsConverter,
-            IVariablePathSubjectPartToGraphPathPartsConverter variablePathSubjectPartToGraphPathPartsConverter,
-            IAllParentsPathSubjectPartToGraphPathPartsConverter allParentsPathSubjectPartToGraphPathPartsConverter,
-            IParentPathSubjectPartToGraphPathPartsConverter parentPathSubjectPartToGraphPathPartsConverter,
-            IAllChildrenPathSubjectPartToGraphPathPartsConverter allChildrenPathSubjectPartToGraphPathPartsConverter,
-            IChildrenPathSubjectPartToGraphPathPartsConverter childrenPathSubjectPartToGraphPathPartsConverter,
-            IAllDowndatesPathSubjectPartToGraphPathPartsConverter allDowndatesPathSubjectPartToGraphPathPartsConverter,
-            IDowndatePathSubjectPartToGraphPathPartsConverter downdatePathSubjectPartToGraphPathPartsConverter,
-            IAllUpdatesPathSubjectPartToGraphPathPartsConverter allUpdatesPathSubjectPartToGraphPathPartsConverter,
-            IUpdatesPathSubjectPartToGraphPathPartsConverter updatesPathSubjectPartToGraphPathPartsConverter,
-            IWildcardPathSubjectPartToGraphPathPartsConverter wildcardPathSubjectPartToGraphPathPartsConverter,
-            ITaggedPathSubjectPartToGraphPathPartsConverter taggedPathSubjectPartToGraphPathPartsConverter,
-            ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
-            IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
+    public PathSubjectToGraphPathConverter(
+        IConstantPathSubjectPartToGraphPathPartsConverter constantPathSubjectPartToGraphPathPartsConverter,
+        IIdentifierPathSubjectPartToGraphPathPartsConverter identifierPathSubjectPartToGraphPathPartsConverter,
+        IVariablePathSubjectPartToGraphPathPartsConverter variablePathSubjectPartToGraphPathPartsConverter,
+        IAllParentsPathSubjectPartToGraphPathPartsConverter allParentsPathSubjectPartToGraphPathPartsConverter,
+        IParentPathSubjectPartToGraphPathPartsConverter parentPathSubjectPartToGraphPathPartsConverter,
+        IAllChildrenPathSubjectPartToGraphPathPartsConverter allChildrenPathSubjectPartToGraphPathPartsConverter,
+        IChildrenPathSubjectPartToGraphPathPartsConverter childrenPathSubjectPartToGraphPathPartsConverter,
+        IAllDowndatesPathSubjectPartToGraphPathPartsConverter allDowndatesPathSubjectPartToGraphPathPartsConverter,
+        IDowndatePathSubjectPartToGraphPathPartsConverter downdatePathSubjectPartToGraphPathPartsConverter,
+        IAllUpdatesPathSubjectPartToGraphPathPartsConverter allUpdatesPathSubjectPartToGraphPathPartsConverter,
+        IUpdatesPathSubjectPartToGraphPathPartsConverter updatesPathSubjectPartToGraphPathPartsConverter,
+        IWildcardPathSubjectPartToGraphPathPartsConverter wildcardPathSubjectPartToGraphPathPartsConverter,
+        ITaggedPathSubjectPartToGraphPathPartsConverter taggedPathSubjectPartToGraphPathPartsConverter,
+        ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
+        IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
 #pragma warning restore S107
+    {
+        _constantPathSubjectPartToGraphPathPartsConverter = constantPathSubjectPartToGraphPathPartsConverter;
+        _identifierPathSubjectPartToGraphPathPartsConverter = identifierPathSubjectPartToGraphPathPartsConverter;
+        _variablePathSubjectPartToGraphPathPartsConverter = variablePathSubjectPartToGraphPathPartsConverter;
+        _allParentsPathSubjectPartToGraphPathPartsConverter = allParentsPathSubjectPartToGraphPathPartsConverter;
+        _parentPathSubjectPartToGraphPathPartsConverter = parentPathSubjectPartToGraphPathPartsConverter;
+        _allChildrenPathSubjectPartToGraphPathPartsConverter = allChildrenPathSubjectPartToGraphPathPartsConverter;
+        _childrenPathSubjectPartToGraphPathPartsConverter = childrenPathSubjectPartToGraphPathPartsConverter;
+        _allDowndatesPathSubjectPartToGraphPathPartsConverter = allDowndatesPathSubjectPartToGraphPathPartsConverter;
+        _downdatePathSubjectPartToGraphPathPartsConverter = downdatePathSubjectPartToGraphPathPartsConverter;
+        _allUpdatesPathSubjectPartToGraphPathPartsConverter = allUpdatesPathSubjectPartToGraphPathPartsConverter;
+        _updatesPathSubjectPartToGraphPathPartsConverter = updatesPathSubjectPartToGraphPathPartsConverter;
+        _wildcardPathSubjectPartToGraphPathPartsConverter = wildcardPathSubjectPartToGraphPathPartsConverter;
+        _taggedPathSubjectPartToGraphPathPartsConverter = taggedPathSubjectPartToGraphPathPartsConverter;
+        _traversingWildcardPathSubjectPartToGraphPathPartsConverter = traversingWildcardPathSubjectPartToGraphPathPartsConverter;
+        _conditionalPathSubjectPartToGraphPathPartsConverter = conditionalPathSubjectPartToGraphPathPartsConverter;
+
+    }
+
+    public async Task<GraphPath> Convert(PathSubject pathSubject, ExecutionScope scope)
+    {
+        var builder = new GraphPathBuilder();
+
+        //var result = new List<GraphPathPart>()
+
+        for (var i = 0; i < pathSubject.Parts.Length; i++)
         {
-            _constantPathSubjectPartToGraphPathPartsConverter = constantPathSubjectPartToGraphPathPartsConverter;
-            _identifierPathSubjectPartToGraphPathPartsConverter = identifierPathSubjectPartToGraphPathPartsConverter;
-            _variablePathSubjectPartToGraphPathPartsConverter = variablePathSubjectPartToGraphPathPartsConverter;
-            _allParentsPathSubjectPartToGraphPathPartsConverter = allParentsPathSubjectPartToGraphPathPartsConverter;
-            _parentPathSubjectPartToGraphPathPartsConverter = parentPathSubjectPartToGraphPathPartsConverter;
-            _allChildrenPathSubjectPartToGraphPathPartsConverter = allChildrenPathSubjectPartToGraphPathPartsConverter;
-            _childrenPathSubjectPartToGraphPathPartsConverter = childrenPathSubjectPartToGraphPathPartsConverter;
-            _allDowndatesPathSubjectPartToGraphPathPartsConverter = allDowndatesPathSubjectPartToGraphPathPartsConverter;
-            _downdatePathSubjectPartToGraphPathPartsConverter = downdatePathSubjectPartToGraphPathPartsConverter;
-            _allUpdatesPathSubjectPartToGraphPathPartsConverter = allUpdatesPathSubjectPartToGraphPathPartsConverter;
-            _updatesPathSubjectPartToGraphPathPartsConverter = updatesPathSubjectPartToGraphPathPartsConverter;
-            _wildcardPathSubjectPartToGraphPathPartsConverter = wildcardPathSubjectPartToGraphPathPartsConverter;
-            _taggedPathSubjectPartToGraphPathPartsConverter = taggedPathSubjectPartToGraphPathPartsConverter;
-            _traversingWildcardPathSubjectPartToGraphPathPartsConverter = traversingWildcardPathSubjectPartToGraphPathPartsConverter;
-            _conditionalPathSubjectPartToGraphPathPartsConverter = conditionalPathSubjectPartToGraphPathPartsConverter;
+            var part = pathSubject.Parts[i];
+            var previousPart = i > 0 ? pathSubject.Parts[i - 1] : null;
+            var nextPart = i < pathSubject.Parts.Length - 1 ? pathSubject.Parts[i + 1] : null;
 
-        }
-
-        public async Task<GraphPath> Convert(PathSubject pathSubject, ExecutionScope scope)
-        {
-            var builder = new GraphPathBuilder();
-
-            //var result = new List<GraphPathPart>()
-
-            for (var i = 0; i < pathSubject.Parts.Length; i++)
+            IPathSubjectPartToGraphPathPartsConverter converter = part switch
             {
-                var part = pathSubject.Parts[i];
-                var previousPart = i > 0 ? pathSubject.Parts[i - 1] : null;
-                var nextPart = i < pathSubject.Parts.Length - 1 ? pathSubject.Parts[i + 1] : null;
+                ConstantPathSubjectPart => _constantPathSubjectPartToGraphPathPartsConverter,
+                IdentifierPathSubjectPart => _identifierPathSubjectPartToGraphPathPartsConverter,
+                VariablePathSubjectPart => _variablePathSubjectPartToGraphPathPartsConverter,
+                AllParentsPathSubjectPart => _allParentsPathSubjectPartToGraphPathPartsConverter,
+                ParentPathSubjectPart => _parentPathSubjectPartToGraphPathPartsConverter,
+                AllChildrenPathSubjectPart => _allChildrenPathSubjectPartToGraphPathPartsConverter,
+                ChildrenPathSubjectPart => _childrenPathSubjectPartToGraphPathPartsConverter,
+                AllDowndatesPathSubjectPart => _allDowndatesPathSubjectPartToGraphPathPartsConverter,
+                DowndatePathSubjectPart => _downdatePathSubjectPartToGraphPathPartsConverter,
+                AllUpdatesPathSubjectPart => _allUpdatesPathSubjectPartToGraphPathPartsConverter,
+                UpdatesPathSubjectPart => _updatesPathSubjectPartToGraphPathPartsConverter,
+                TaggedPathSubjectPart => _taggedPathSubjectPartToGraphPathPartsConverter,
+                WildcardPathSubjectPart => _wildcardPathSubjectPartToGraphPathPartsConverter,
+                TraversingWildcardPathSubjectPart => _traversingWildcardPathSubjectPartToGraphPathPartsConverter,
+                ConditionalPathSubjectPart => _conditionalPathSubjectPartToGraphPathPartsConverter,
+                _ => throw new NotSupportedException($"Cannot process path subject part: {part}")
+            };
 
-                IPathSubjectPartToGraphPathPartsConverter converter = part switch
-                {
-                    ConstantPathSubjectPart => _constantPathSubjectPartToGraphPathPartsConverter,
-                    IdentifierPathSubjectPart => _identifierPathSubjectPartToGraphPathPartsConverter,
-                    VariablePathSubjectPart => _variablePathSubjectPartToGraphPathPartsConverter,
-                    AllParentsPathSubjectPart => _allParentsPathSubjectPartToGraphPathPartsConverter,
-                    ParentPathSubjectPart => _parentPathSubjectPartToGraphPathPartsConverter,
-                    AllChildrenPathSubjectPart => _allChildrenPathSubjectPartToGraphPathPartsConverter,
-                    ChildrenPathSubjectPart => _childrenPathSubjectPartToGraphPathPartsConverter,
-                    AllDowndatesPathSubjectPart => _allDowndatesPathSubjectPartToGraphPathPartsConverter,
-                    DowndatePathSubjectPart => _downdatePathSubjectPartToGraphPathPartsConverter,
-                    AllUpdatesPathSubjectPart => _allUpdatesPathSubjectPartToGraphPathPartsConverter,
-                    UpdatesPathSubjectPart => _updatesPathSubjectPartToGraphPathPartsConverter,
-                    TaggedPathSubjectPart => _taggedPathSubjectPartToGraphPathPartsConverter,
-                    WildcardPathSubjectPart => _wildcardPathSubjectPartToGraphPathPartsConverter,
-                    TraversingWildcardPathSubjectPart => _traversingWildcardPathSubjectPartToGraphPathPartsConverter,
-                    ConditionalPathSubjectPart => _conditionalPathSubjectPartToGraphPathPartsConverter,
-                    _ => throw new NotSupportedException($"Cannot process path subject part: {part}")
-                };
+            var graphPathParts = await converter.Convert(part, i, previousPart, nextPart, scope).ConfigureAwait(false);
 
-                var graphPathParts = await converter.Convert(part, i, previousPart, nextPart, scope).ConfigureAwait(false);
-
-                builder.AddRange(graphPathParts);
-            }
-
-            return builder.ToPath();
+            builder.AddRange(graphPathParts);
         }
+
+        return builder.ToPath();
     }
 }

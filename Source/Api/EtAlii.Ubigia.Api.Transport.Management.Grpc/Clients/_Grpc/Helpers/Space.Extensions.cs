@@ -1,40 +1,39 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Management.Grpc;
+
+using System.Collections.Generic;
+using System.Linq;
+
+public static class SpaceExtension
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    public static class SpaceExtension
+    public static Space ToLocal(this WireProtocol.Space space)
     {
-        public static Space ToLocal(this WireProtocol.Space space)
+        return space == null ? null : new Space
         {
-            return space == null ? null : new Space
-            {
-                Id = space.Id.ToLocal(),
-                AccountId = space.AccountId.ToLocal(),
-                Name = space.Name
-            };
-        }
+            Id = space.Id.ToLocal(),
+            AccountId = space.AccountId.ToLocal(),
+            Name = space.Name
+        };
+    }
 
-        public static IEnumerable<Space> ToLocal(this IEnumerable<WireProtocol.Space> spaces)
-        {
-            return spaces.Select(s => s.ToLocal());
-        }
+    public static IEnumerable<Space> ToLocal(this IEnumerable<WireProtocol.Space> spaces)
+    {
+        return spaces.Select(s => s.ToLocal());
+    }
 
-        public static WireProtocol.Space ToWire(this Space space)
+    public static WireProtocol.Space ToWire(this Space space)
+    {
+        return space == null ? null : new WireProtocol.Space
         {
-            return space == null ? null : new WireProtocol.Space
-            {
-                Id = space.Id.ToWire(),
-                AccountId = space.AccountId.ToWire(),
-                Name = space.Name
-            };
-        }
+            Id = space.Id.ToWire(),
+            AccountId = space.AccountId.ToWire(),
+            Name = space.Name
+        };
+    }
 
-        public static IEnumerable<WireProtocol.Space> ToWire(this IEnumerable<Space> spaces)
-        {
-            return spaces.Select(s => s.ToWire());
-        }
+    public static IEnumerable<WireProtocol.Space> ToWire(this IEnumerable<Space> spaces)
+    {
+        return spaces.Select(s => s.ToWire());
     }
 }

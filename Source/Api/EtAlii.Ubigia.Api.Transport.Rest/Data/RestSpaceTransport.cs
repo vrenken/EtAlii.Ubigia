@@ -1,26 +1,25 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using System;
+using EtAlii.xTechnology.MicroContainer;
+
+public class RestSpaceTransport : SpaceTransportBase, IRestSpaceTransport
 {
-    using System;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IRestInfrastructureClient _infrastructureClient;
 
-    public class RestSpaceTransport : SpaceTransportBase, IRestSpaceTransport
+    public RestSpaceTransport(Uri address, IRestInfrastructureClient infrastructureClient)
+        : base(address)
     {
-        private readonly IRestInfrastructureClient _infrastructureClient;
+        _infrastructureClient = infrastructureClient;
+    }
 
-        public RestSpaceTransport(Uri address, IRestInfrastructureClient infrastructureClient)
-            : base(address)
+    protected override IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions)
+    {
+        return new IScaffolding[]
         {
-            _infrastructureClient = infrastructureClient;
-        }
-
-        protected override IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions)
-        {
-            return new IScaffolding[]
-            {
-                new RestSpaceClientsScaffolding(_infrastructureClient, spaceConnectionOptions),
-            };
-        }
+            new RestSpaceClientsScaffolding(_infrastructureClient, spaceConnectionOptions),
+        };
     }
 }

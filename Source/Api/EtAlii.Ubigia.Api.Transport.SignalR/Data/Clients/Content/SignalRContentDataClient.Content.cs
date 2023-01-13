@@ -1,36 +1,35 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System.Threading.Tasks;
+
+internal partial class SignalRContentDataClient
 {
-    using System.Threading.Tasks;
-
-    internal partial class SignalRContentDataClient
+    public async Task Store(Identifier identifier, Content content)
     {
-        public async Task Store(Identifier identifier, Content content)
-        {
-            await _invoker.Invoke(_contentConnection, SignalRHub.Content, "Post", identifier, content).ConfigureAwait(false);
+        await _invoker.Invoke(_contentConnection, SignalRHub.Content, "Post", identifier, content).ConfigureAwait(false);
 
-            // Should this call be replaced by get instead?
-            // More details can be found in the Github issue below:
-            // https://github.com/vrenken/EtAlii.Ubigia/issues/80
-            Blob.SetStored(content, true);
-        }
+        // Should this call be replaced by get instead?
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/80
+        Blob.SetStored(content, true);
+    }
 
-        public async Task Store(Identifier identifier, ContentPart contentPart)
-        {
-            await _invoker.Invoke(_contentConnection, SignalRHub.Content, "PostPart", identifier, contentPart.Id, contentPart).ConfigureAwait(false);
+    public async Task Store(Identifier identifier, ContentPart contentPart)
+    {
+        await _invoker.Invoke(_contentConnection, SignalRHub.Content, "PostPart", identifier, contentPart.Id, contentPart).ConfigureAwait(false);
 
-            BlobPart.SetStored(contentPart, true);
-        }
+        BlobPart.SetStored(contentPart, true);
+    }
 
-        public async Task<Content> Retrieve(Identifier identifier)
-        {
-            return await _invoker.Invoke<Content>(_contentConnection, SignalRHub.Content, "Get", identifier).ConfigureAwait(false);
-        }
+    public async Task<Content> Retrieve(Identifier identifier)
+    {
+        return await _invoker.Invoke<Content>(_contentConnection, SignalRHub.Content, "Get", identifier).ConfigureAwait(false);
+    }
 
-        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
-        {
-            return await _invoker.Invoke<ContentPart>(_contentConnection, SignalRHub.Content, "GetPart", identifier, contentPartId).ConfigureAwait(false);
-        }
+    public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+    {
+        return await _invoker.Invoke<ContentPart>(_contentConnection, SignalRHub.Content, "GetPart", identifier, contentPartId).ConfigureAwait(false);
     }
 }

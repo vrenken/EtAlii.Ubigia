@@ -1,26 +1,25 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using System.Reflection;
+
+public class ParameterSet
 {
-    using System.Linq;
-    using System.Reflection;
+    public Parameter[] Parameters { get; }
 
-    public class ParameterSet
+    public TypeInfo[] ParameterTypeInfos { get; }
+
+    public bool RequiresInput { get; }
+
+    public ParameterSet(bool requiresInput, params Parameter[] parameters)
     {
-        public Parameter[] Parameters { get; }
+        RequiresInput = requiresInput;
+        Parameters = parameters;
 
-        public TypeInfo[] ParameterTypeInfos { get; }
-
-        public bool RequiresInput { get; }
-
-        public ParameterSet(bool requiresInput, params Parameter[] parameters)
-        {
-            RequiresInput = requiresInput;
-            Parameters = parameters;
-
-            ParameterTypeInfos = parameters
-                .Select(p => p?.Type.GetTypeInfo())
-                .ToArray();
-        }
+        ParameterTypeInfos = parameters
+            .Select(p => p?.Type.GetTypeInfo())
+            .ToArray();
     }
 }

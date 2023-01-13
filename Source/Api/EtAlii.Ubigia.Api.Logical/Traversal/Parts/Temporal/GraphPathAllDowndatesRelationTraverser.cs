@@ -1,22 +1,21 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
-{
-    using System.Collections.Generic;
-    using System.Linq;
+namespace EtAlii.Ubigia.Api.Logical;
 
-    internal sealed class GraphPathAllDowndatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllDowndatesRelationTraverser
-    {
+using System.Collections.Generic;
+using System.Linq;
+
+internal sealed class GraphPathAllDowndatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllDowndatesRelationTraverser
+{
 //        public GraphPathAllDowndatesRelationTraverser(IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser)
 //            : base(graphPathFinalRelationTraverser)
 //        [
 //        ]
 //
-        protected override IAsyncEnumerable<Identifier> GetNextRecursion(Identifier start, IPathTraversalContext context, ExecutionScope scope)
-        {
-            return context.Entries
-                .GetRelated(start, EntryRelations.Downdate, scope)
-                .Select(e => e.Id);
-        }
+    protected override IAsyncEnumerable<Identifier> GetNextRecursion(Identifier start, IPathTraversalContext context, ExecutionScope scope)
+    {
+        return context.Entries
+            .GetRelated(start, EntryRelations.Downdate, scope)
+            .Select(e => e.Id);
     }
 }

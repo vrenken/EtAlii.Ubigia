@@ -1,32 +1,31 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+internal class SequenceExecutionPlan : ISequenceExecutionPlan
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly IScriptExecutionPlan _startExecutionPlan;
 
-    internal class SequenceExecutionPlan : ISequenceExecutionPlan
+    /// <summary>
+    /// An empty SequenceExecutionPlan.
+    /// </summary>
+    public static ISequenceExecutionPlan Empty { get; } = new SequenceExecutionPlan(ScriptExecutionPlan.Empty);
+
+    public SequenceExecutionPlan(IScriptExecutionPlan startExecutionPlan)
     {
-        private readonly IScriptExecutionPlan _startExecutionPlan;
+        _startExecutionPlan = startExecutionPlan;
+    }
 
-        /// <summary>
-        /// An empty SequenceExecutionPlan.
-        /// </summary>
-        public static ISequenceExecutionPlan Empty { get; } = new SequenceExecutionPlan(ScriptExecutionPlan.Empty);
+    public Task<IObservable<object>> Execute(ExecutionScope scope)
+    {
+        return _startExecutionPlan.Execute(scope);
+    }
 
-        public SequenceExecutionPlan(IScriptExecutionPlan startExecutionPlan)
-        {
-            _startExecutionPlan = startExecutionPlan;
-        }
-
-        public Task<IObservable<object>> Execute(ExecutionScope scope)
-        {
-            return _startExecutionPlan.Execute(scope);
-        }
-
-        public override string ToString()
-        {
-            return _startExecutionPlan.ToString();
-        }
+    public override string ToString()
+    {
+        return _startExecutionPlan.ToString();
     }
 }

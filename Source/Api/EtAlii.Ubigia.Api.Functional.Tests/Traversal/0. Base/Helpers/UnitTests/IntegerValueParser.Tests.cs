@@ -1,317 +1,316 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using Xunit;
+
+public class IntegerValueParserTests : IDisposable
 {
-    using System;
-    using Xunit;
+    private IIntegerValueParser _parser;
 
-    public class IntegerValueParserTests : IDisposable
+    public IntegerValueParserTests()
     {
-        private IIntegerValueParser _parser;
+        var nodeValidator = new NodeValidator();
 
-        public IntegerValueParserTests()
+        _parser = new IntegerValueParser(nodeValidator);
+    }
+
+    public void Dispose()
+    {
+        _parser = null;
+        GC.SuppressFinalize(this);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_01()
+    {
+        // Arrange.
+        const string text = "123456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            var nodeValidator = new NodeValidator();
-
-            _parser = new IntegerValueParser(nodeValidator);
+            result = _parser.Parse(node);
         }
 
-        public void Dispose()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(123456, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_02()
+    {
+        // Arrange.
+        const string text = "-123456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            _parser = null;
-            GC.SuppressFinalize(this);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_01()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(-123456, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_03()
+    {
+        // Arrange.
+        const string text = "0";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "123456";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(123456, result);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_02()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_04()
+    {
+        // Arrange.
+        const string text = "00";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "-123456";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(-123456, result);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_03()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_05()
+    {
+        // Arrange.
+        const string text = "000";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "0";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_04()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_06()
+    {
+        // Arrange.
+        const string text = "-0";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "00";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_05()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_07()
+    {
+        // Arrange.
+        const string text = "a0";
+
+        // Act.
+        var act = new Action(() =>
         {
-            // Arrange.
-            const string text = "000";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void IntegerValueParser_Parse_06()
-        {
-            // Arrange.
-            const string text = "-0";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void IntegerValueParser_Parse_07()
-        {
-            // Arrange.
-            const string text = "a0";
-
-            // Act.
-            var act = new Action(() =>
-            {
-                var node = _parser.Parser.Do(text);
-                if (_parser.CanParse(node))
-                {
-                    _parser.Parse(node);
-                }
-            });
-
-            // Assert.
-            Assert.Throws<ScriptParserException>(act);
-        }
-
-        [Fact]
-        public void IntegerValueParser_Parse_08()
-        {
-            // Arrange.
-            const string text = ".0";
-
-            // Act.
-            var act = new Action(() =>
-            {
-                var node = _parser.Parser.Do(text);
-                if (_parser.CanParse(node))
-                {
-                    _parser.Parse(node);
-                }
-            });
-
-            // Assert.
-            Assert.Throws<ScriptParserException>(act);
-        }
-
-        [Fact]
-        public void IntegerValueParser_Parse_09()
-        {
-            // Arrange.
-            const string text = "0a";
-            int? result = 0;
-
-            // Act.
             var node = _parser.Parser.Do(text);
             if (_parser.CanParse(node))
             {
                 _parser.Parse(node);
             }
+        });
 
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
-            Assert.Equal("a", node.Rest.ToString());
-        }
+        // Assert.
+        Assert.Throws<ScriptParserException>(act);
+    }
 
-        [Fact]
-        public void IntegerValueParser_Parse_10()
+    [Fact]
+    public void IntegerValueParser_Parse_08()
+    {
+        // Arrange.
+        const string text = ".0";
+
+        // Act.
+        var act = new Action(() =>
         {
-            // Arrange.
-            const string text = "a0";
-
-            // Act.
-            var act = new Action(() =>
-            {
-                var node = _parser.Parser.Do(text);
-                if (_parser.CanParse(node))
-                {
-                    _parser.Parse(node);
-                }
-            });
-
-            // Assert.
-            Assert.Throws<ScriptParserException>(act);
-        }
-
-        [Fact]
-        public void IntegerValueParser_Parse_11()
-        {
-            // Arrange.
-            const string text = "0.";
-            int? result = null;
-            // Act.
             var node = _parser.Parser.Do(text);
             if (_parser.CanParse(node))
             {
-                result = _parser.Parse(node);
+                _parser.Parse(node);
             }
+        });
 
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(0, result);
-            Assert.Equal(".", node.Rest.ToString());
+        // Assert.
+        Assert.Throws<ScriptParserException>(act);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_09()
+    {
+        // Arrange.
+        const string text = "0a";
+        int? result = 0;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
+        {
+            _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_12()
-        {
-            // Arrange.
-            const string text = "+123456";
-            int? result = null;
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+        Assert.Equal("a", node.Rest.ToString());
+    }
 
-            // Act.
+    [Fact]
+    public void IntegerValueParser_Parse_10()
+    {
+        // Arrange.
+        const string text = "a0";
+
+        // Act.
+        var act = new Action(() =>
+        {
             var node = _parser.Parser.Do(text);
             if (_parser.CanParse(node))
             {
-                result = _parser.Parse(node);
+                _parser.Parse(node);
             }
+        });
 
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(+123456, result);
-        }
+        // Assert.
+        Assert.Throws<ScriptParserException>(act);
+    }
 
-        [Fact]
-        public void IntegerValueParser_Parse_13()
+    [Fact]
+    public void IntegerValueParser_Parse_11()
+    {
+        // Arrange.
+        const string text = "0.";
+        int? result = null;
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "123-456";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(123, result);
-            Assert.Equal("-456", node.Rest.ToString());
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_14()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(0, result);
+        Assert.Equal(".", node.Rest.ToString());
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_12()
+    {
+        // Arrange.
+        const string text = "+123456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "123+456";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(123, result);
-            Assert.Equal("+456", node.Rest.ToString());
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void IntegerValueParser_Parse_15()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(+123456, result);
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_13()
+    {
+        // Arrange.
+        const string text = "123-456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            // Arrange.
-            const string text = "123a456";
-            int? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(123, result);
-            Assert.Equal("a456", node.Rest.ToString());
+            result = _parser.Parse(node);
         }
+
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(123, result);
+        Assert.Equal("-456", node.Rest.ToString());
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_14()
+    {
+        // Arrange.
+        const string text = "123+456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
+        {
+            result = _parser.Parse(node);
+        }
+
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(123, result);
+        Assert.Equal("+456", node.Rest.ToString());
+    }
+
+    [Fact]
+    public void IntegerValueParser_Parse_15()
+    {
+        // Arrange.
+        const string text = "123a456";
+        int? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
+        {
+            result = _parser.Parse(node);
+        }
+
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(123, result);
+        Assert.Equal("a456", node.Rest.ToString());
     }
 }

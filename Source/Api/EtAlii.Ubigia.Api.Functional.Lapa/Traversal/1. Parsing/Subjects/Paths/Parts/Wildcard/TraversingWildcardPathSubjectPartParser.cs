@@ -1,48 +1,47 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class TraversingWildcardPathSubjectPartParser : ITraversingWildcardPathSubjectPartParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(TraversingWildcardPathSubjectPart);
 
-    internal sealed class TraversingWildcardPathSubjectPartParser : ITraversingWildcardPathSubjectPartParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly INodeFinder _nodeFinder;
+    private readonly IIntegerValueParser _integerValueParser;
+    private const string LimitTextId = "LimitText";
+
+    public TraversingWildcardPathSubjectPartParser(
+        INodeValidator nodeValidator,
+        INodeFinder nodeFinder,
+        IIntegerValueParser integerValueParser)
     {
-        public string Id => nameof(TraversingWildcardPathSubjectPart);
+        _nodeValidator = nodeValidator;
+        _nodeFinder = nodeFinder;
+        _integerValueParser = integerValueParser;
 
-        public LpsParser Parser { get; }
+        Parser = new LpsParser(Id, true,
+            Lp.One(c => c == '*') +
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly INodeFinder _nodeFinder;
-        private readonly IIntegerValueParser _integerValueParser;
-        private const string LimitTextId = "LimitText";
+            new LpsParser(LimitTextId, true, _integerValueParser.Parser).Maybe() +
+            Lp.One(c => c == '*'));
+    }
 
-        public TraversingWildcardPathSubjectPartParser(
-            INodeValidator nodeValidator,
-            INodeFinder nodeFinder,
-            IIntegerValueParser integerValueParser)
-        {
-            _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
-            _integerValueParser = integerValueParser;
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
 
-            Parser = new LpsParser(Id, true,
-                Lp.One(c => c == '*') +
+    public PathSubjectPart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-                new LpsParser(LimitTextId, true, _integerValueParser.Parser).Maybe() +
-                Lp.One(c => c == '*'));
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public PathSubjectPart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-
-            var integerNode = _nodeFinder.FindFirst(node, _integerValueParser.Id);
-            var limit = integerNode != null ? _integerValueParser.Parse(integerNode) : 0;
-            return new TraversingWildcardPathSubjectPart(limit);
-        }
+        var integerNode = _nodeFinder.FindFirst(node, _integerValueParser.Id);
+        var limit = integerNode != null ? _integerValueParser.Parse(integerNode) : 0;
+        return new TraversingWildcardPathSubjectPart(limit);
     }
 }

@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+using Serilog;
+
+internal class LoggingAbsolutePathSubjectProcessor : IAbsolutePathSubjectProcessor
 {
-    using System;
-    using System.Threading.Tasks;
-    using Serilog;
+    private readonly IAbsolutePathSubjectProcessor _decoree;
+    private readonly ILogger _logger = Log.ForContext<IAbsolutePathSubjectProcessor>();
 
-    internal class LoggingAbsolutePathSubjectProcessor : IAbsolutePathSubjectProcessor
+    public LoggingAbsolutePathSubjectProcessor(IAbsolutePathSubjectProcessor decoree)
     {
-        private readonly IAbsolutePathSubjectProcessor _decoree;
-        private readonly ILogger _logger = Log.ForContext<IAbsolutePathSubjectProcessor>();
+        _decoree = decoree;
+    }
 
-        public LoggingAbsolutePathSubjectProcessor(IAbsolutePathSubjectProcessor decoree)
-        {
-            _decoree = decoree;
-        }
+    public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+    {
+        _logger.Debug("Processing absolute path {$PathSubject}", subject);
+        var start = Environment.TickCount;
 
-        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
-        {
-            _logger.Debug("Processing absolute path {$PathSubject}", subject);
-            var start = Environment.TickCount;
+        await _decoree.Process(subject, scope, output).ConfigureAwait(false);
 
-            await _decoree.Process(subject, scope, output).ConfigureAwait(false);
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Debug("Processed absolute path (Duration: {Duration}ms)", duration);
-        }
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Debug("Processed absolute path (Duration: {Duration}ms)", duration);
     }
 }

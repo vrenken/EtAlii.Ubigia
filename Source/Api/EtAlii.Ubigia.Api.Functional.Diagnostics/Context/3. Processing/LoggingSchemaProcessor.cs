@@ -1,40 +1,39 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Serilog;
+
+[DebuggerStepThrough]
+internal class LoggingSchemaProcessor : ISchemaProcessor
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Threading.Tasks;
-    using Serilog;
+    private readonly ISchemaProcessor _processor;
+    private readonly ILogger _logger = Log.ForContext<ISchemaProcessor>();
 
-    [DebuggerStepThrough]
-    internal class LoggingSchemaProcessor : ISchemaProcessor
+    public LoggingSchemaProcessor(ISchemaProcessor processor)
     {
-        private readonly ISchemaProcessor _processor;
-        private readonly ILogger _logger = Log.ForContext<ISchemaProcessor>();
+        _processor = processor;
+    }
 
-        public LoggingSchemaProcessor(ISchemaProcessor processor)
+    public async IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
+    {
+        _logger.Debug("Processing query");
+        var start = Environment.TickCount;
+
+        var items = _processor
+            .Process(schema, scope)
+            .ConfigureAwait(false);
+
+        await foreach (var item in items)
         {
-            _processor = processor;
+            yield return item;
         }
 
-        public async IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
-        {
-            _logger.Debug("Processing query");
-            var start = Environment.TickCount;
-
-            var items = _processor
-                .Process(schema, scope)
-                .ConfigureAwait(false);
-
-            await foreach (var item in items)
-            {
-                yield return item;
-            }
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Debug("Processed query (Duration: {Duration}ms)", duration);
-        }
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Debug("Processed query (Duration: {Duration}ms)", duration);
     }
 }

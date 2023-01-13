@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+public class CommentExecutionPlan : IScriptExecutionPlan
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly Comment _comment;
 
-    public class CommentExecutionPlan : IScriptExecutionPlan
+    public Type OutputType { get; }
+
+    public CommentExecutionPlan(Comment comment)
     {
-        private readonly Comment _comment;
+        _comment = comment;
+        OutputType = GetType();
+    }
 
-        public Type OutputType { get; }
+    public Task<IObservable<object>> Execute(ExecutionScope scope)
+    {
+        throw new NotImplementedException();
+    }
 
-        public CommentExecutionPlan(Comment comment)
-        {
-            _comment = comment;
-            OutputType = GetType();
-        }
-
-        public Task<IObservable<object>> Execute(ExecutionScope scope)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return "[COMMENT]" + _comment + "[/COMMENT]";
-        }
+    public override string ToString()
+    {
+        return "[COMMENT]" + _comment + "[/COMMENT]";
     }
 }

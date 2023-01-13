@@ -1,31 +1,30 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using System;
+using Xunit;
+
+public class SpaceTests
 {
-    using System;
-    using Xunit;
-
-    public class SpaceTests
+    [Fact]
+    public void Space_Create()
     {
-        [Fact]
-        public void Space_Create()
+        // Arrange.
+        var id = Guid.NewGuid();
+        var accountId = Guid.NewGuid();
+        var name = "John";
+
+        // Act.
+        var space = new Space
         {
-            // Arrange.
-            var id = Guid.NewGuid();
-            var accountId = Guid.NewGuid();
-            var name = "John";
+            Id = id,
+            AccountId = accountId,
+            Name = name,
+        };
 
-            // Act.
-            var space = new Space
-            {
-                Id = id,
-                AccountId = accountId,
-                Name = name,
-            };
-
-            // Assert.
-            Assert.NotNull(space);
-            Assert.Equal(id, space.Id);
-            Assert.Equal(accountId, space.AccountId);
-            Assert.Equal(name, space.Name);
-        }
+        // Assert.
+        Assert.NotNull(space);
+        Assert.Equal(id, space.Id);
+        Assert.Equal(accountId, space.AccountId);
+        Assert.Equal(name, space.Name);
     }
 }

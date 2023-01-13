@@ -1,12 +1,11 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
-{
-    using System.CodeDom.Compiler;
-    using Serilog;
+namespace EtAlii.Ubigia.Api.Functional.Context;
 
-    public interface IStructureInstanceWriter
-    {
-        void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, string variableName);
-    }
+using System.CodeDom.Compiler;
+using Serilog;
+
+public interface IStructureInstanceWriter
+{
+    void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, string variableName);
 }

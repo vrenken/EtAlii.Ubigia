@@ -1,11 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using System;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal interface ITimePreparer
-    {
-        void Prepare(IScriptProcessingContext context, ExecutionScope scope, DateTime time);
-    }
+using System;
+
+internal interface ITimePreparer
+{
+    void Prepare(IScriptProcessingContext context, ExecutionScope scope, DateTime time);
 }

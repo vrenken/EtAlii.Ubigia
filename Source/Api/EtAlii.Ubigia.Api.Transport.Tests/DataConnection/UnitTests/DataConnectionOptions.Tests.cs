@@ -1,279 +1,278 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Tests
+namespace EtAlii.Ubigia.Api.Transport.Tests;
+
+using System;
+using System.Collections.Generic;
+using EtAlii.Ubigia.Tests;
+using Microsoft.Extensions.Configuration;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class DataConnectionOptionsTests
 {
-    using System;
-    using System.Collections.Generic;
-    using EtAlii.Ubigia.Tests;
-    using Microsoft.Extensions.Configuration;
-    using Xunit;
-
-    [CorrelateUnitTests]
-    public sealed class DataConnectionOptionsTests
+    [Fact]
+    public void DataConnectionOptions_Create()
     {
-        [Fact]
-        public void DataConnectionOptions_Create()
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
 
-            // Act.
-            var options = new DataConnectionOptions(configurationRoot);
+        // Act.
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Assert.
-            Assert.NotNull(options);
-        }
+        // Assert.
+        Assert.NotNull(options);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseTransport()
+    [Fact]
+    public void DataConnectionOptions_UseTransport()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
-            var transportProvider = new StubbedTransportProvider();
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
+        var transportProvider = new StubbedTransportProvider();
 
-            // Act.
-            options.UseTransport(transportProvider);
+        // Act.
+        options.UseTransport(transportProvider);
 
 
-            // Assert.
-            Assert.NotNull(options.TransportProvider);
-        }
+        // Assert.
+        Assert.NotNull(options.TransportProvider);
+    }
 
 
-        [Fact]
-        public void DataConnectionOptions_UseTransport_Null()
+    [Fact]
+    public void DataConnectionOptions_UseTransport_Null()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            var act = new Action(() => options.UseTransport(null));
+        // Act.
+        var act = new Action(() => options.UseTransport(null));
 
 
-            // Assert.
-            Assert.Throws<ArgumentNullException>(act);
-        }
+        // Assert.
+        Assert.Throws<ArgumentNullException>(act);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseTransport_Already_Set()
+    [Fact]
+    public void DataConnectionOptions_UseTransport_Already_Set()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
-            var transportProvider = new StubbedTransportProvider();
-            options.UseTransport(transportProvider);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
+        var transportProvider = new StubbedTransportProvider();
+        options.UseTransport(transportProvider);
 
-            // Act.
-            var act = new Action(() => options.UseTransport(null));
+        // Act.
+        var act = new Action(() => options.UseTransport(null));
 
 
-            // Assert.
-            Assert.Throws<ArgumentException>(act);
-        }
+        // Assert.
+        Assert.Throws<ArgumentException>(act);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseStubbedConnection()
+    [Fact]
+    public void DataConnectionOptions_UseStubbedConnection()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            options.UseStubbedConnection();
+        // Act.
+        options.UseStubbedConnection();
 
-            // Assert.
-            Assert.NotNull(options.TransportProvider);
-        }
+        // Assert.
+        Assert.NotNull(options.TransportProvider);
+    }
 
 
-        [Fact]
-        public void DataConnectionOptions_UseFactoryExtension()
+    [Fact]
+    public void DataConnectionOptions_UseFactoryExtension()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
-            IDataConnection FactoryExtension() => null;
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
+        IDataConnection FactoryExtension() => null;
 
-            // Act.
-            options.Use(FactoryExtension);
+        // Act.
+        options.Use(FactoryExtension);
 
-            // Assert.
-            Assert.Equal(FactoryExtension, options.FactoryExtension);
-        }
+        // Assert.
+        Assert.Equal(FactoryExtension, options.FactoryExtension);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseCredentials()
+    [Fact]
+    public void DataConnectionOptions_UseCredentials()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            options.Use("AccountName", "Space", "Password");
+        // Act.
+        options.Use("AccountName", "Space", "Password");
 
 
-            // Assert.
-            Assert.Equal("AccountName", options.AccountName);
-            Assert.Equal("Space", options.Space);
-            Assert.Equal("Password", options.Password);
-        }
+        // Assert.
+        Assert.Equal("AccountName", options.AccountName);
+        Assert.Equal("Space", options.Space);
+        Assert.Equal("Password", options.Password);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseCredentials_NoAccount()
+    [Fact]
+    public void DataConnectionOptions_UseCredentials_NoAccount()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            var act = new Action(() => options.Use(null, "Space", "Password"));
+        // Act.
+        var act = new Action(() => options.Use(null, "Space", "Password"));
 
-            // Assert.
-            Assert.Throws<ArgumentException>(act);
-        }
+        // Assert.
+        Assert.Throws<ArgumentException>(act);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseCredentials_NoSpace()
+    [Fact]
+    public void DataConnectionOptions_UseCredentials_NoSpace()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            var act = new Action(() => options.Use("AccountName", null, "Password"));
+        // Act.
+        var act = new Action(() => options.Use("AccountName", null, "Password"));
 
-            // Assert.
-            Assert.Throws<ArgumentException>(act);
-        }
+        // Assert.
+        Assert.Throws<ArgumentException>(act);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseUri()
+    [Fact]
+    public void DataConnectionOptions_UseUri()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
-            var uri = new Uri("https://SomewhereExiting.com");
-            // Act.
-            options.Use(uri);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
+        var uri = new Uri("https://SomewhereExiting.com");
+        // Act.
+        options.Use(uri);
 
-            // Assert.
-            Assert.Equal(uri, options.Address);
-        }
+        // Assert.
+        Assert.Equal(uri, options.Address);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseUri_Null()
+    [Fact]
+    public void DataConnectionOptions_UseUri_Null()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
 
-            // Act.
-            var act = new Action(() => options.Use((Uri)null));
+        // Act.
+        var act = new Action(() => options.Use((Uri)null));
 
-            // Assert.
-            Assert.Throws<ArgumentNullException>(act);
-        }
+        // Assert.
+        Assert.Throws<ArgumentNullException>(act);
+    }
 
-        [Fact]
-        public void DataConnectionOptions_UseUri_Already_Set()
+    [Fact]
+    public void DataConnectionOptions_UseUri_Already_Set()
+    {
+        // Arrange.
+        var settings = new Dictionary<string, string>
         {
-            // Arrange.
-            var settings = new Dictionary<string, string>
-            {
-                {"Service1:url", "http://somewhere"},
-                {"Service1:port", "123"}
-            };
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddInMemoryCollection(settings);
-            var configurationRoot = configurationBuilder.Build();
-            var options = new DataConnectionOptions(configurationRoot);
-            var uri = new Uri("https://SomewhereExiting.com");
-            options.Use(uri);
+            {"Service1:url", "http://somewhere"},
+            {"Service1:port", "123"}
+        };
+        var configurationBuilder = new ConfigurationBuilder();
+        configurationBuilder.AddInMemoryCollection(settings);
+        var configurationRoot = configurationBuilder.Build();
+        var options = new DataConnectionOptions(configurationRoot);
+        var uri = new Uri("https://SomewhereExiting.com");
+        options.Use(uri);
 
-            // Act.
-            var act = new Action(() => options.Use((Uri)null));
+        // Act.
+        var act = new Action(() => options.Use((Uri)null));
 
-            // Assert.
-            Assert.Throws<InvalidOperationException>(act);
-        }
+        // Assert.
+        Assert.Throws<InvalidOperationException>(act);
     }
 }

@@ -1,50 +1,49 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+internal class PathVariableExpander : IPathVariableExpander
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    private readonly IVariablePathSubjectPartToPathConverter _variablePathSubjectPartToPathConverter;
 
-    internal class PathVariableExpander : IPathVariableExpander
+    public PathVariableExpander(
+        IVariablePathSubjectPartToPathConverter variablePathSubjectPartToGraphPathPartsConverter)
     {
-        private readonly IVariablePathSubjectPartToPathConverter _variablePathSubjectPartToPathConverter;
+        _variablePathSubjectPartToPathConverter = variablePathSubjectPartToGraphPathPartsConverter;
+    }
 
-        public PathVariableExpander(
-            IVariablePathSubjectPartToPathConverter variablePathSubjectPartToGraphPathPartsConverter)
+    public async Task<PathSubjectPart[]> Expand(ExecutionScope scope, PathSubjectPart[] path)
+    {
+        var result = new List<PathSubjectPart>();
+
+        foreach (var part in path)
         {
-            _variablePathSubjectPartToPathConverter = variablePathSubjectPartToGraphPathPartsConverter;
-        }
-
-        public async Task<PathSubjectPart[]> Expand(ExecutionScope scope, PathSubjectPart[] path)
-        {
-            var result = new List<PathSubjectPart>();
-
-            foreach (var part in path)
+            if (part is VariablePathSubjectPart variablePart)
             {
-                if (part is VariablePathSubjectPart variablePart)
+                var variableName = variablePart.Name;
+                if (!scope.Variables.TryGetValue(variableName, out var variable))
                 {
-                    var variableName = variablePart.Name;
-                    if (!scope.Variables.TryGetValue(variableName, out var variable))
-                    {
-                        throw new ScriptProcessingException($"Variable {variableName} not set");
-                    }
-
-                    if (variable == null)
-                    {
-                        throw new ScriptProcessingException($"Variable {variableName} not assigned");
-                    }
-
-                    var parts = await _variablePathSubjectPartToPathConverter.Convert(variable).ConfigureAwait(false);
-                    result.AddRange(parts);
-
+                    throw new ScriptProcessingException($"Variable {variableName} not set");
                 }
-                else
+
+                if (variable == null)
                 {
-                    result.Add(part);
+                    throw new ScriptProcessingException($"Variable {variableName} not assigned");
                 }
+
+                var parts = await _variablePathSubjectPartToPathConverter.Convert(variable).ConfigureAwait(false);
+                result.AddRange(parts);
+
             }
-
-            return result.ToArray();
+            else
+            {
+                result.Add(part);
+            }
         }
+
+        return result.ToArray();
     }
 }

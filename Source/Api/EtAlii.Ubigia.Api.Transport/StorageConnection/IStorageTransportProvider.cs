@@ -1,11 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
-{
-    using System;
+namespace EtAlii.Ubigia.Api.Transport;
 
-    public interface IStorageTransportProvider : ITransportProvider
-    {
-        IStorageTransport GetStorageTransport(Uri address);
-    }
+using System;
+
+public interface IStorageTransportProvider : ITransportProvider
+{
+    IStorageTransport GetStorageTransport(Uri address);
 }

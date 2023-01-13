@@ -1,34 +1,33 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Rest
+namespace EtAlii.Ubigia.Api.Transport.Management.Rest;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport.Rest;
+
+internal abstract class RestClientBase
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Rest;
+    protected IRestStorageConnection Connection { get; private set; }
 
-    internal abstract class RestClientBase
+    public async Task Connect(IStorageConnection storageConnection)
     {
-        protected IRestStorageConnection Connection { get; private set; }
+        await Connect((IStorageConnection<IRestStorageTransport>)storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(IStorageConnection storageConnection)
-        {
-            await Connect((IStorageConnection<IRestStorageTransport>)storageConnection).ConfigureAwait(false);
-        }
+    public virtual Task Connect(IStorageConnection<IRestStorageTransport> storageConnection)
+    {
+        Connection = (IRestStorageConnection)storageConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(IStorageConnection<IRestStorageTransport> storageConnection)
-        {
-            Connection = (IRestStorageConnection)storageConnection;
-            return Task.CompletedTask;
-        }
+    public async Task Disconnect(IStorageConnection storageConnection)
+    {
+        await Connect((IStorageConnection<IRestStorageTransport>)storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
-        {
-            await Connect((IStorageConnection<IRestStorageTransport>)storageConnection).ConfigureAwait(false);
-        }
-
-        public virtual Task Disconnect(IStorageConnection<IRestStorageTransport> storageConnection)
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect(IStorageConnection<IRestStorageTransport> storageConnection)
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

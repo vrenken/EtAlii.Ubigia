@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Threading.Tasks;
+
+internal class ContentCacheStoreHandler : IContentCacheStoreHandler
 {
-    using System.Threading.Tasks;
+    private readonly IContentCacheHelper _cacheHelper;
+    private readonly IContentCacheContextProvider _contextProvider;
 
-    internal class ContentCacheStoreHandler : IContentCacheStoreHandler
+    public ContentCacheStoreHandler(
+        IContentCacheHelper cacheHelper,
+        IContentCacheContextProvider contextProvider)
     {
-        private readonly IContentCacheHelper _cacheHelper;
-        private readonly IContentCacheContextProvider _contextProvider;
+        _cacheHelper = cacheHelper;
+        _contextProvider = contextProvider;
+    }
 
-        public ContentCacheStoreHandler(
-            IContentCacheHelper cacheHelper,
-            IContentCacheContextProvider contextProvider)
+
+    public async Task Handle(Identifier identifier, Content content)
+    {
+        await _contextProvider.Context.Store(identifier, content).ConfigureAwait(false);
+
+        if (content.Summary != null && content.Summary.IsComplete)
         {
-            _cacheHelper = cacheHelper;
-            _contextProvider = contextProvider;
-        }
-
-
-        public async Task Handle(Identifier identifier, Content content)
-        {
-            await _contextProvider.Context.Store(identifier, content).ConfigureAwait(false);
-
-            if (content.Summary != null && content.Summary.IsComplete)
-            {
-                _cacheHelper.Store(identifier, content);
-            }
+            _cacheHelper.Store(identifier, content);
         }
     }
 }

@@ -1,24 +1,24 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Api;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public sealed class UbigiaClient
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public sealed class UbigiaClient
+    public static UbigiaClient Create()
     {
-        public static UbigiaClient Create()
-        {
-            var container = new Container();
-            //
-            // container.Register(() => diagnostics)
-            //
-            // container.Register<UbigiaClient>(() => new UbigiaClient())
-            // RegisterContext(container, connection, diagnostics)
-            //
-            // container.Register<IGraphContextFactory, GraphContextFactory>()
-            //
-            var client = container.GetInstance<UbigiaClient>();
+        var container = new Container();
+        //
+        // container.Register(() => diagnostics)
+        //
+        // container.Register<UbigiaClient>(() => new UbigiaClient())
+        // RegisterContext(container, connection, diagnostics)
+        //
+        // container.Register<IGraphContextFactory, GraphContextFactory>()
+        //
+        var client = container.GetInstance<UbigiaClient>();
 
-            return client;
-        }
+        return client;
+    }
 //
 //         private static void RegisterContext(Container container, IProfilingDataConnection connection, IDiagnosticsConfiguration diagnostics)
 //         [
@@ -56,5 +56,4 @@
 //             ])
 //             container.Register(() => (IProfilingGraphContext)container.GetInstance<IGraphContext>())
 //         ]
-    }
 }

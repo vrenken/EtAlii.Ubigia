@@ -1,58 +1,57 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+internal class ProfilingScriptParser : IProfilingScriptParser
 {
-    using System.Linq;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    public IProfiler Profiler { get; }
 
-    internal class ProfilingScriptParser : IProfilingScriptParser
+    private readonly IScriptParser _decoree;
+
+    public ProfilingScriptParser(
+        IScriptParser decoree,
+        IProfiler profiler)
     {
-        public IProfiler Profiler { get; }
+        _decoree = decoree;
+        Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
+    }
 
-        private readonly IScriptParser _decoree;
+    public ScriptParseResult Parse(string text, ExecutionScope scope)
+    {
+        var result = _decoree.Parse(text, scope);
 
-        public ProfilingScriptParser(
-            IScriptParser decoree,
-            IProfiler profiler)
+        var errorMessage = result.Errors
+            .Select(e => e.Message)
+            .FirstOrDefault();
+        if (errorMessage != null)
         {
-            _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
+            // Let's show an error message in the profiling view if we encountered an exception.
+            dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
+            exceptionProfile.Error = errorMessage;
+            Profiler.End(exceptionProfile);
         }
 
-        public ScriptParseResult Parse(string text, ExecutionScope scope)
+        return result;
+    }
+
+    public ScriptParseResult Parse(string[] text, ExecutionScope scope)
+    {
+        var result = _decoree.Parse(text, scope);
+
+        var errorMessage = result.Errors
+            .Select(e => e.Message)
+            .FirstOrDefault();
+        if (errorMessage != null)
         {
-            var result = _decoree.Parse(text, scope);
-
-            var errorMessage = result.Errors
-                .Select(e => e.Message)
-                .FirstOrDefault();
-            if (errorMessage != null)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
-                exceptionProfile.Error = errorMessage;
-                Profiler.End(exceptionProfile);
-            }
-
-            return result;
+            // Let's show an error message in the profiling view if we encountered an exception.
+            dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
+            exceptionProfile.Error = errorMessage;
+            Profiler.End(exceptionProfile);
         }
 
-        public ScriptParseResult Parse(string[] text, ExecutionScope scope)
-        {
-            var result = _decoree.Parse(text, scope);
-
-            var errorMessage = result.Errors
-                .Select(e => e.Message)
-                .FirstOrDefault();
-            if (errorMessage != null)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
-                exceptionProfile.Error = errorMessage;
-                Profiler.End(exceptionProfile);
-            }
-
-            return result;
-        }
+        return result;
     }
 }

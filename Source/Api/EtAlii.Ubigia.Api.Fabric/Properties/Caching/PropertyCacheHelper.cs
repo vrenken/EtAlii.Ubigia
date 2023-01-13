@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+internal class PropertyCacheHelper : IPropertyCacheHelper
 {
-    internal class PropertyCacheHelper : IPropertyCacheHelper
+    private readonly IPropertyCacheProvider _cacheProvider;
+
+    public PropertyCacheHelper(IPropertyCacheProvider cacheProvider)
     {
-        private readonly IPropertyCacheProvider _cacheProvider;
+        _cacheProvider = cacheProvider;
+    }
 
-        public PropertyCacheHelper(IPropertyCacheProvider cacheProvider)
-        {
-            _cacheProvider = cacheProvider;
-        }
+    public PropertyDictionary GetProperties(in Identifier identifier)
+    {
+        _cacheProvider.Cache.TryGetValue(identifier, out var properties);
+        return properties;
+    }
 
-        public PropertyDictionary GetProperties(in Identifier identifier)
-        {
-            _cacheProvider.Cache.TryGetValue(identifier, out var properties);
-            return properties;
-        }
-
-        public void StoreProperties(in Identifier identifier, PropertyDictionary properties)
-        {
-            _cacheProvider.Cache[identifier] = properties;
-        }
+    public void StoreProperties(in Identifier identifier, PropertyDictionary properties)
+    {
+        _cacheProvider.Cache[identifier] = properties;
     }
 }

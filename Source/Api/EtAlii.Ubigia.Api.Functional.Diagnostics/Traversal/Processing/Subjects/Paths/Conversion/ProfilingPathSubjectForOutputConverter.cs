@@ -1,31 +1,30 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+internal class ProfilingPathSubjectForOutputConverter : IPathSubjectForOutputConverter
 {
-    using System;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly IPathSubjectForOutputConverter _decoree;
+    private readonly IProfiler _profiler;
 
-    internal class ProfilingPathSubjectForOutputConverter : IPathSubjectForOutputConverter
+    public ProfilingPathSubjectForOutputConverter(
+        IPathSubjectForOutputConverter decoree,
+        IProfiler profiler)
     {
-        private readonly IPathSubjectForOutputConverter _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubjectConversion);
+    }
 
-        public ProfilingPathSubjectForOutputConverter(
-            IPathSubjectForOutputConverter decoree,
-            IProfiler profiler)
-        {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubjectConversion);
-        }
+    public void Convert(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
+    {
+        dynamic profile = _profiler.Begin("Converting path subject for output: " + pathSubject);
+        profile.PathSubject = pathSubject;
 
-        public void Convert(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
-        {
-            dynamic profile = _profiler.Begin("Converting path subject for output: " + pathSubject);
-            profile.PathSubject = pathSubject;
+        _decoree.Convert(pathSubject, scope, output);
 
-            _decoree.Convert(pathSubject, scope, output);
-
-            _profiler.End(profile);
-        }
+        _profiler.End(profile);
     }
 }

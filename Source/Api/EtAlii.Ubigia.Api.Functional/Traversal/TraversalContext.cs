@@ -1,58 +1,57 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+
+internal class TraversalContext : ITraversalContext
 {
-    using System;
-    using System.Linq;
+    private readonly IScriptProcessor _scriptProcessor;
+    private readonly IScriptParser _scriptParser;
 
-    internal class TraversalContext : ITraversalContext
+    public TraversalContext(
+        IScriptProcessor scriptProcessor,
+        IScriptParser scriptParser)
     {
-        private readonly IScriptProcessor _scriptProcessor;
-        private readonly IScriptParser _scriptParser;
+        _scriptProcessor = scriptProcessor;
+        _scriptParser = scriptParser;
+    }
 
-        public TraversalContext(
-            IScriptProcessor scriptProcessor,
-            IScriptParser scriptParser)
+    public ScriptParseResult Parse(string text, ExecutionScope scope) => _scriptParser.Parse(text, scope);
+
+    public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope) => _scriptProcessor.Process(script, scope);
+
+    public IObservable<SequenceProcessingResult> Process(string[] text, ExecutionScope scope)
+    {
+        var scriptParseResult = Parse(string.Join(Environment.NewLine, text), scope);
+
+        if (scriptParseResult.Errors.Any())
         {
-            _scriptProcessor = scriptProcessor;
-            _scriptParser = scriptParser;
+            var firstError = scriptParseResult.Errors.First();
+            throw new ScriptParserException(firstError.Message, firstError.Exception);
         }
 
-        public ScriptParseResult Parse(string text, ExecutionScope scope) => _scriptParser.Parse(text, scope);
+        return Process(scriptParseResult.Script, scope);
+    }
 
-        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope) => _scriptProcessor.Process(script, scope);
 
-        public IObservable<SequenceProcessingResult> Process(string[] text, ExecutionScope scope)
+    public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope, params object[] args)
+    {
+        text = string.Format(text, args);
+        return Process(text, scope);
+    }
+
+    public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope)
+    {
+        var scriptParseResult = Parse(text, scope);
+
+        if (scriptParseResult.Errors.Any())
         {
-            var scriptParseResult = Parse(string.Join(Environment.NewLine, text), scope);
-
-            if (scriptParseResult.Errors.Any())
-            {
-                var firstError = scriptParseResult.Errors.First();
-                throw new ScriptParserException(firstError.Message, firstError.Exception);
-            }
-
-            return Process(scriptParseResult.Script, scope);
+            var firstError = scriptParseResult.Errors.First();
+            throw new ScriptParserException(firstError.Message, firstError.Exception);
         }
 
-
-        public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope, params object[] args)
-        {
-            text = string.Format(text, args);
-            return Process(text, scope);
-        }
-
-        public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope)
-        {
-            var scriptParseResult = Parse(text, scope);
-
-            if (scriptParseResult.Errors.Any())
-            {
-                var firstError = scriptParseResult.Errors.First();
-                throw new ScriptParserException(firstError.Message, firstError.Exception);
-            }
-
-            return Process(scriptParseResult.Script, scope);
-        }
+        return Process(scriptParseResult.Script, scope);
     }
 }

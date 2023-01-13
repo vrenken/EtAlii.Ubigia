@@ -1,27 +1,26 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System.Collections.Generic;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+internal class ProfilingSchemaProcessor : IProfilingSchemaProcessor
 {
-    using System.Collections.Generic;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    public IProfiler Profiler { get; }
 
-    internal class ProfilingSchemaProcessor : IProfilingSchemaProcessor
+    private readonly ISchemaProcessor _decoree;
+
+    public ProfilingSchemaProcessor(
+        ISchemaProcessor decoree,
+        IProfiler profiler)
     {
-        public IProfiler Profiler { get; }
+        _decoree = decoree;
+        Profiler = profiler.Create(ProfilingAspects.Functional.SchemaProcessor);
+    }
 
-        private readonly ISchemaProcessor _decoree;
-
-        public ProfilingSchemaProcessor(
-            ISchemaProcessor decoree,
-            IProfiler profiler)
-        {
-            _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.SchemaProcessor);
-        }
-
-        public IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
-        {
-            return _decoree.Process(schema, scope);
-        }
+    public IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
+    {
+        return _decoree.Process(schema, scope);
     }
 }

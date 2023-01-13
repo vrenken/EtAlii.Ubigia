@@ -1,55 +1,54 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+using Moppet.Lapa;
+
+internal sealed class SequenceParser : ISequenceParser
 {
-    using System;
-    using System.Linq;
-    using Moppet.Lapa;
+    public string Id => "Sequence";
 
-    internal sealed class SequenceParser : ISequenceParser
+    private readonly ISequencePartsParser _sequencePartsParser;
+
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+
+    public SequenceParser(
+        INodeValidator nodeValidator,
+        ISequencePartsParser sequencePartsParser)
     {
-        public string Id => "Sequence";
+        _nodeValidator = nodeValidator;
+        _sequencePartsParser = sequencePartsParser;
 
-        private readonly ISequencePartsParser _sequencePartsParser;
+        Parser = new LpsParser(Id, true, _sequencePartsParser.Parser.OneOrMore());
+    }
 
-        public LpsParser Parser { get; }
+    public Sequence Parse(string text)
+    {
+        var node = Parser.Do(text);
+        return Parse(node, false);
+    }
 
-        private readonly INodeValidator _nodeValidator;
+    public Sequence Parse(LpNode node, bool restIsAllowed)
+    {
+        _nodeValidator.EnsureSuccess(node, Id, restIsAllowed);
+        var childNodes = node.Children ?? Array.Empty<LpNode>();
+        var parts = childNodes
+            .Select(childNode => _sequencePartsParser.Parse(childNode))
+            .ToList();
 
-        public SequenceParser(
-            INodeValidator nodeValidator,
-            ISequencePartsParser sequencePartsParser)
+        // if the first part of the sequence is a subject we add an additional assignment operator [<=] to output the result.
+        //if [parts.First[] is Subject]
+        if (!parts.Any(p => p is Operator) &&
+            !(parts.Count == 1 && parts.First() is Comment))
         {
-            _nodeValidator = nodeValidator;
-            _sequencePartsParser = sequencePartsParser;
-
-            Parser = new LpsParser(Id, true, _sequencePartsParser.Parser.OneOrMore());
+            parts.Insert(0, new AssignOperator());
         }
 
-        public Sequence Parse(string text)
-        {
-            var node = Parser.Do(text);
-            return Parse(node, false);
-        }
-
-        public Sequence Parse(LpNode node, bool restIsAllowed)
-        {
-            _nodeValidator.EnsureSuccess(node, Id, restIsAllowed);
-            var childNodes = node.Children ?? Array.Empty<LpNode>();
-            var parts = childNodes
-                .Select(childNode => _sequencePartsParser.Parse(childNode))
-                .ToList();
-
-            // if the first part of the sequence is a subject we add an additional assignment operator [<=] to output the result.
-            //if [parts.First[] is Subject]
-            if (!parts.Any(p => p is Operator) &&
-                !(parts.Count == 1 && parts.First() is Comment))
-            {
-                parts.Insert(0, new AssignOperator());
-            }
-
-            var sequence = new Sequence(parts.ToArray());
-            return sequence;
-        }
+        var sequence = new Sequence(parts.ToArray());
+        return sequence;
     }
 }

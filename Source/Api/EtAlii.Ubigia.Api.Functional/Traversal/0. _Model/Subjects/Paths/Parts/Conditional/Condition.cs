@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+public sealed class Condition
 {
-    public sealed class Condition
+    public string Property { get; }
+    public ConditionType Type { get; }
+    public object Value { get; }
+
+    public Condition(string property, ConditionType type, object value)
     {
-        public string Property { get; }
-        public ConditionType Type { get; }
-        public object Value { get; }
+        Property = property;
+        Type = type;
+        Value = value;
+    }
 
-        public Condition(string property, ConditionType type, object value)
-        {
-            Property = property;
-            Type = type;
-            Value = value;
-        }
-
-        public override string ToString()
-        {
-            return $"({Property} {Type} {(Value != null ? Value.ToString() : "<NULL>")})";
-        }
+    public override string ToString()
+    {
+        return $"({Property} {Type} {(Value != null ? Value.ToString() : "<NULL>")})";
     }
 }

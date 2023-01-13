@@ -1,34 +1,33 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using Xunit;
+
+public class TagComponentTests
 {
-    using Xunit;
-
-    public class TagComponentTests
+    [Fact]
+    public void TagComponent_Create()
     {
-        [Fact]
-        public void TagComponent_Create()
-        {
-            // Arrange.
+        // Arrange.
 
-            // Act.
-            var tagComponent = new TagComponent();
+        // Act.
+        var tagComponent = new TagComponent();
 
-            // Assert.
-            Assert.NotNull(tagComponent);
-            Assert.Null(tagComponent.Tag);
-        }
+        // Assert.
+        Assert.NotNull(tagComponent);
+        Assert.Null(tagComponent.Tag);
+    }
 
-        [Fact]
-        public void TagComponent_Create_With_Type()
-        {
-            // Arrange.
-            const string tag = "Test";
+    [Fact]
+    public void TagComponent_Create_With_Type()
+    {
+        // Arrange.
+        const string tag = "Test";
 
-            // Act.
-            var tagComponent = new TagComponent { Tag = tag };
+        // Act.
+        var tagComponent = new TagComponent { Tag = tag };
 
-            // Assert.
-            Assert.NotNull(tagComponent);
-            Assert.Equal(tag, tagComponent.Tag);
-        }
+        // Assert.
+        Assert.NotNull(tagComponent);
+        Assert.Equal(tag, tagComponent.Tag);
     }
 }

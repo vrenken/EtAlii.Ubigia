@@ -1,15 +1,14 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal interface IBooleanValueParser
 {
-    using Moppet.Lapa;
+    LpsParser Parser { get; }
+    string Id { get; }
 
-    internal interface IBooleanValueParser
-    {
-        LpsParser Parser { get; }
-        string Id { get; }
-
-        bool Parse(LpNode node);
-        bool CanParse(LpNode node);
-    }
+    bool Parse(LpNode node);
+    bool CanParse(LpNode node);
 }

@@ -1,35 +1,34 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Grpc;
+
+using System.Collections.Generic;
+using System.Linq;
+
+public static class StorageExtension
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    public static class StorageExtension
+    public static Storage ToLocal(this WireProtocol.Storage storage)
     {
-        public static Storage ToLocal(this WireProtocol.Storage storage)
+        return new()
         {
-            return new()
-            {
-                Id = storage.Id.ToLocal(),
-                Address = storage.Address,
-                Name = storage.Name
-            };
-        }
+            Id = storage.Id.ToLocal(),
+            Address = storage.Address,
+            Name = storage.Name
+        };
+    }
 
-        public static WireProtocol.Storage ToWire(this Storage storage)
+    public static WireProtocol.Storage ToWire(this Storage storage)
+    {
+        return new()
         {
-            return new()
-            {
-                Id = storage.Id.ToWire(),
-                Address = storage.Address,
-                Name = storage.Name
-            };
-        }
+            Id = storage.Id.ToWire(),
+            Address = storage.Address,
+            Name = storage.Name
+        };
+    }
 
-        public static IEnumerable<WireProtocol.Storage> ToWire(this IEnumerable<Storage> storages)
-        {
-            return storages.Select(s => s.ToWire());
-        }
+    public static IEnumerable<WireProtocol.Storage> ToWire(this IEnumerable<Storage> storages)
+    {
+        return storages.Select(s => s.ToWire());
     }
 }

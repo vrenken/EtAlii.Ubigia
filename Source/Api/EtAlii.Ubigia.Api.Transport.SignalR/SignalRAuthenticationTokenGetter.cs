@@ -1,88 +1,87 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+
+public sealed class SignalRAuthenticationTokenGetter : ISignalRAuthenticationTokenGetter
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Security.Cryptography;
-    using System.Threading.Tasks;
+    private readonly IHubProxyMethodInvoker _invoker;
+    private readonly string _hostIdentifier;
 
-    public sealed class SignalRAuthenticationTokenGetter : ISignalRAuthenticationTokenGetter
+
+    public SignalRAuthenticationTokenGetter(IHubProxyMethodInvoker invoker)
     {
-        private readonly IHubProxyMethodInvoker _invoker;
-        private readonly string _hostIdentifier;
+        _invoker = invoker;
+        _hostIdentifier = CreateHostIdentifier();
+    }
 
-
-        public SignalRAuthenticationTokenGetter(IHubProxyMethodInvoker invoker)
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S2068:Credentials should not be hard-coded",
+        Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
+    public async Task<string> GetAuthenticationToken(ISignalRSpaceTransport transport, string accountName, string password, string authenticationToken)
+    {
+        if (password == null && authenticationToken != null)
         {
-            _invoker = invoker;
-            _hostIdentifier = CreateHostIdentifier();
+            // These lines are needed to make the downscale from admin/system to user account based authentication tokens.
+            var connection = new HubConnectionFactory().Create(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), authenticationToken);
+            await connection.StartAsync().ConfigureAwait(false);
+            authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier).ConfigureAwait(false);
+            await connection.DisposeAsync().ConfigureAwait(false);
+        }
+        else if (password != null && authenticationToken == null)
+        {
+            var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), _hostIdentifier);
+            await connection.StartAsync().ConfigureAwait(false);
+            authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier).ConfigureAwait(false);
+            await connection.DisposeAsync().ConfigureAwait(false);
         }
 
-        [SuppressMessage(
-            category: "Sonar Code Smell",
-            checkId: "S2068:Credentials should not be hard-coded",
-            Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
-        public async Task<string> GetAuthenticationToken(ISignalRSpaceTransport transport, string accountName, string password, string authenticationToken)
+        if (string.IsNullOrWhiteSpace(authenticationToken))
         {
-            if (password == null && authenticationToken != null)
-            {
-                // These lines are needed to make the downscale from admin/system to user account based authentication tokens.
-                var connection = new HubConnectionFactory().Create(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), authenticationToken);
-                await connection.StartAsync().ConfigureAwait(false);
-                authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier).ConfigureAwait(false);
-                await connection.DisposeAsync().ConfigureAwait(false);
-            }
-            else if (password != null && authenticationToken == null)
-            {
-                var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), _hostIdentifier);
-                await connection.StartAsync().ConfigureAwait(false);
-                authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier).ConfigureAwait(false);
-                await connection.DisposeAsync().ConfigureAwait(false);
-            }
+            throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
+        }
+        return authenticationToken;
+    }
 
-            if (string.IsNullOrWhiteSpace(authenticationToken))
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
-            }
-            return authenticationToken;
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S2068:Credentials should not be hard-coded",
+        Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
+    public async Task<string> GetAuthenticationToken(ISignalRStorageTransport transport, string accountName, string password, string authenticationToken)
+    {
+        if (password == null && authenticationToken != null)
+        {
+            // These lines are needed to make the downscale from admin/system to user account based authentication tokens.
+            var connection = new HubConnectionFactory().Create(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), authenticationToken);
+            await connection.StartAsync().ConfigureAwait(false);
+            authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier).ConfigureAwait(false);
+            await connection.DisposeAsync().ConfigureAwait(false);
+        }
+        else if (password != null && authenticationToken == null)
+        {
+            var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), _hostIdentifier);
+            await connection.StartAsync().ConfigureAwait(false);
+            authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier).ConfigureAwait(false);
+            await connection.DisposeAsync().ConfigureAwait(false);
         }
 
-        [SuppressMessage(
-            category: "Sonar Code Smell",
-            checkId: "S2068:Credentials should not be hard-coded",
-            Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
-        public async Task<string> GetAuthenticationToken(ISignalRStorageTransport transport, string accountName, string password, string authenticationToken)
+        if (string.IsNullOrWhiteSpace(authenticationToken))
         {
-            if (password == null && authenticationToken != null)
-            {
-                // These lines are needed to make the downscale from admin/system to user account based authentication tokens.
-                var connection = new HubConnectionFactory().Create(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), authenticationToken);
-                await connection.StartAsync().ConfigureAwait(false);
-                authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier).ConfigureAwait(false);
-                await connection.DisposeAsync().ConfigureAwait(false);
-            }
-            else if (password != null && authenticationToken == null)
-            {
-                var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Authentication), _hostIdentifier);
-                await connection.StartAsync().ConfigureAwait(false);
-                authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier).ConfigureAwait(false);
-                await connection.DisposeAsync().ConfigureAwait(false);
-            }
-
-            if (string.IsNullOrWhiteSpace(authenticationToken))
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
-            }
-            return authenticationToken;
+            throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
         }
+        return authenticationToken;
+    }
 
-        private string CreateHostIdentifier()
-        {
-            var bytes = new byte[64];
-            using var rnd = RandomNumberGenerator.Create();
-            rnd.GetNonZeroBytes(bytes);
-            return Convert.ToBase64String(bytes);
-        }
+    private string CreateHostIdentifier()
+    {
+        var bytes = new byte[64];
+        using var rnd = RandomNumberGenerator.Create();
+        rnd.GetNonZeroBytes(bytes);
+        return Convert.ToBase64String(bytes);
     }
 }

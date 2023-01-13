@@ -1,89 +1,88 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Management.SignalR;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport.SignalR;
+using Microsoft.AspNetCore.SignalR.Client;
+
+public sealed class SignalRSpaceDataClient : ISpaceDataClient<ISignalRStorageTransport>
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
-    using Microsoft.AspNetCore.SignalR.Client;
+    private HubConnection _connection;
+    private readonly IHubProxyMethodInvoker _invoker;
 
-    public sealed class SignalRSpaceDataClient : ISpaceDataClient<ISignalRStorageTransport>
+    public SignalRSpaceDataClient(IHubProxyMethodInvoker invoker)
     {
-        private HubConnection _connection;
-        private readonly IHubProxyMethodInvoker _invoker;
+        _invoker = invoker;
+    }
 
-        public SignalRSpaceDataClient(IHubProxyMethodInvoker invoker)
+    public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+    {
+        var space = new Space
         {
-            _invoker = invoker;
-        }
+            Name = spaceName,
+            AccountId = accountId,
+        };
+        return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Post", space, template.Name).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
-        {
-            var space = new Space
-            {
-                Name = spaceName,
-                AccountId = accountId,
-            };
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Post", space, template.Name).ConfigureAwait(false);
-        }
+    public async Task Remove(Guid spaceId)
+    {
+        await _invoker.Invoke(_connection, SignalRHub.Space, "Delete", spaceId).ConfigureAwait(false);
+    }
 
-        public async Task Remove(Guid spaceId)
+    public async Task<Space> Change(Guid spaceId, string spaceName)
+    {
+        var space = new Space
         {
-            await _invoker.Invoke(_connection, SignalRHub.Space, "Delete", spaceId).ConfigureAwait(false);
-        }
+            Id = spaceId,
+            Name = spaceName,
+        };
+        return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Put", spaceId, space).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Change(Guid spaceId, string spaceName)
-        {
-            var space = new Space
-            {
-                Id = spaceId,
-                Name = spaceName,
-            };
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Put", spaceId, space).ConfigureAwait(false);
-        }
+    public async Task<Space> Get(Guid accountId, string spaceName)
+    {
+        return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "GetForAccount", accountId, spaceName).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Get(Guid accountId, string spaceName)
-        {
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "GetForAccount", accountId, spaceName).ConfigureAwait(false);
-        }
+    public async Task<Space> Get(Guid spaceId)
+    {
+        return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Get", spaceId).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Get(Guid spaceId)
+    public async IAsyncEnumerable<Space> GetAll(Guid accountId)
+    {
+        var items = _invoker
+            .Stream<Space>(_connection, SignalRHub.Space, "GetAllForAccount", accountId)
+            .ConfigureAwait(false);
+        await foreach (var item in items)
         {
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Get", spaceId).ConfigureAwait(false);
+            yield return item;
         }
+    }
 
-        public async IAsyncEnumerable<Space> GetAll(Guid accountId)
-        {
-            var items = _invoker
-                .Stream<Space>(_connection, SignalRHub.Space, "GetAllForAccount", accountId)
-                .ConfigureAwait(false);
-            await foreach (var item in items)
-            {
-                yield return item;
-            }
-        }
+    public async Task Connect(IStorageConnection storageConnection)
+    {
+        await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(IStorageConnection storageConnection)
-        {
-            await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
-        }
+    public async Task Disconnect(IStorageConnection storageConnection)
+    {
+        await Disconnect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
-        {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
-        }
+    public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+    {
+        _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Space, UriKind.Absolute));
+        await _connection.StartAsync().ConfigureAwait(false);
+    }
 
-        public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
-        {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Space, UriKind.Absolute));
-			await _connection.StartAsync().ConfigureAwait(false);
-        }
-
-        public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
-        {
-            await _connection.DisposeAsync().ConfigureAwait(false);
-            _connection = null;
-        }
+    public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+    {
+        await _connection.DisposeAsync().ConfigureAwait(false);
+        _connection = null;
     }
 }

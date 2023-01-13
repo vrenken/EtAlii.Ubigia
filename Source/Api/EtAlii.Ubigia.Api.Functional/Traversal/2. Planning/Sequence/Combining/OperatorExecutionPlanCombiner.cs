@@ -1,39 +1,38 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+internal class OperatorExecutionPlanCombiner : IOperatorExecutionPlanCombiner
 {
-    internal class OperatorExecutionPlanCombiner : IOperatorExecutionPlanCombiner
+    private readonly ISequencePartExecutionPlannerSelector _sequencePartExecutionPlannerSelector;
+    private readonly ISubjectExecutionPlanCombiner _subjectExecutionPlanCombiner;
+
+    public OperatorExecutionPlanCombiner(
+        ISequencePartExecutionPlannerSelector sequencePartExecutionPlannerSelector,
+        ISubjectExecutionPlanCombiner subjectExecutionPlanCombiner)
     {
-        private readonly ISequencePartExecutionPlannerSelector _sequencePartExecutionPlannerSelector;
-        private readonly ISubjectExecutionPlanCombiner _subjectExecutionPlanCombiner;
+        _sequencePartExecutionPlannerSelector = sequencePartExecutionPlannerSelector;
+        _subjectExecutionPlanCombiner = subjectExecutionPlanCombiner;
+    }
 
-        public OperatorExecutionPlanCombiner(
-            ISequencePartExecutionPlannerSelector sequencePartExecutionPlannerSelector,
-            ISubjectExecutionPlanCombiner subjectExecutionPlanCombiner)
+    public ISubjectExecutionPlan Combine(
+        IExecutionPlanner planner,
+        SequencePart currentPart,
+        SequencePart nextPart,
+        ISubjectExecutionPlan rightExecutionPlan,
+        out bool skipNext)
+    {
+        ISubjectExecutionPlan leftExecutionPlan = null;
+
+        if (nextPart != null)
         {
-            _sequencePartExecutionPlannerSelector = sequencePartExecutionPlannerSelector;
-            _subjectExecutionPlanCombiner = subjectExecutionPlanCombiner;
+            var nextPartExecutionPlanner = _sequencePartExecutionPlannerSelector.Select(nextPart);
+            leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out _);
         }
 
-        public ISubjectExecutionPlan Combine(
-            IExecutionPlanner planner,
-            SequencePart currentPart,
-            SequencePart nextPart,
-            ISubjectExecutionPlan rightExecutionPlan,
-            out bool skipNext)
-        {
-            ISubjectExecutionPlan leftExecutionPlan = null;
+        skipNext = true;
 
-            if (nextPart != null)
-            {
-                var nextPartExecutionPlanner = _sequencePartExecutionPlannerSelector.Select(nextPart);
-                leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out _);
-            }
-
-            skipNext = true;
-
-            var operatorExecutionPlan = (IOperatorExecutionPlan)((IOperatorExecutionPlanner)planner).Plan(currentPart, leftExecutionPlan, rightExecutionPlan);
-            return new SubjectOperatorExecutionPlan(operatorExecutionPlan);
-        }
+        var operatorExecutionPlan = (IOperatorExecutionPlan)((IOperatorExecutionPlanner)planner).Plan(currentPart, leftExecutionPlan, rightExecutionPlan);
+        return new SubjectOperatorExecutionPlan(operatorExecutionPlan);
     }
 }

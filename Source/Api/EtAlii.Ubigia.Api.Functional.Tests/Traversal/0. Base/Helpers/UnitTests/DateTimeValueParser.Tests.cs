@@ -1,62 +1,61 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using Xunit;
+
+public class DateTimeValueParserTests : IDisposable
 {
-    using System;
-    using Xunit;
+    private IDateTimeValueParser _parser;
 
-    public class DateTimeValueParserTests : IDisposable
+    public DateTimeValueParserTests()
     {
-        private IDateTimeValueParser _parser;
+        var nodeValidator = new NodeValidator();
+        _parser = new DateTimeValueParser(nodeValidator);
+    }
 
-        public DateTimeValueParserTests()
+    public void Dispose()
+    {
+        _parser = null;
+        GC.SuppressFinalize(this);
+    }
+
+    [Fact]
+    public void DateTimeValueParser_Parse_01()
+    {
+        // Arrange.
+        const string text = "2015-07-28 23:01";
+        DateTime? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            var nodeValidator = new NodeValidator();
-            _parser = new DateTimeValueParser(nodeValidator);
+            result = _parser.Parse(node);
         }
 
-        public void Dispose()
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(new DateTime(2015, 07, 28, 23, 01, 0), result);
+    }
+
+    [Fact]
+    public void DateTimeValueParser_Parse_02()
+    {
+        // Arrange.
+        const string text = "2015-07-28";
+        DateTime? result = null;
+
+        // Act.
+        var node = _parser.Parser.Do(text);
+        if (_parser.CanParse(node))
         {
-            _parser = null;
-            GC.SuppressFinalize(this);
+            result = _parser.Parse(node);
         }
 
-        [Fact]
-        public void DateTimeValueParser_Parse_01()
-        {
-            // Arrange.
-            const string text = "2015-07-28 23:01";
-            DateTime? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(new DateTime(2015, 07, 28, 23, 01, 0), result);
-        }
-
-        [Fact]
-        public void DateTimeValueParser_Parse_02()
-        {
-            // Arrange.
-            const string text = "2015-07-28";
-            DateTime? result = null;
-
-            // Act.
-            var node = _parser.Parser.Do(text);
-            if (_parser.CanParse(node))
-            {
-                result = _parser.Parse(node);
-            }
-
-            // Assert.
-            Assert.True(result.HasValue);
-            Assert.Equal(new DateTime(2015, 07, 28), result);
-        }
+        // Assert.
+        Assert.True(result.HasValue);
+        Assert.Equal(new DateTime(2015, 07, 28), result);
     }
 }

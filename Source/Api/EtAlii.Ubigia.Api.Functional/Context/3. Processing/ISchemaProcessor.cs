@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
-{
-    using System.Collections.Generic;
+namespace EtAlii.Ubigia.Api.Functional.Context;
 
-    public interface ISchemaProcessor
-    {
-        IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope);
-    }
+using System.Collections.Generic;
+
+public interface ISchemaProcessor
+{
+    IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope);
 }

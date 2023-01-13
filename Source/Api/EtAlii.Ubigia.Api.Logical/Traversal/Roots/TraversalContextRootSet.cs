@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Fabric;
+
+public sealed class TraversalContextRootSet : ITraversalContextRootSet
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
+    private readonly IFabricContext _context;
+    private readonly bool _cachingEnabled;
 
-    public sealed class TraversalContextRootSet : ITraversalContextRootSet
+    public TraversalContextRootSet(IFabricContext context)
     {
-        private readonly IFabricContext _context;
-        private readonly bool _cachingEnabled;
+        _context = context;
+        _cachingEnabled = _context.Options.CachingEnabled;
+    }
 
-        public TraversalContextRootSet(IFabricContext context)
+    public async Task<Root> Get(string name, ExecutionScope scope)
+    {
+        Root result;
+        if (_cachingEnabled)
         {
-            _context = context;
-            _cachingEnabled = _context.Options.CachingEnabled;
+            if (!scope.RootCache.TryGetValue(name, out result))
+            {
+                scope.RootCache[name] = result = await _context.Roots.Get(name).ConfigureAwait(false);
+            }
         }
-
-        public async Task<Root> Get(string name, ExecutionScope scope)
+        else
         {
-            Root result;
-            if (_cachingEnabled)
-            {
-                if (!scope.RootCache.TryGetValue(name, out result))
-                {
-                    scope.RootCache[name] = result = await _context.Roots.Get(name).ConfigureAwait(false);
-                }
-            }
-            else
-            {
-                result = await _context.Roots
-                    .Get(name)
-                    .ConfigureAwait(false);
-            }
-            return result;
+            result = await _context.Roots
+                .Get(name)
+                .ConfigureAwait(false);
         }
+        return result;
     }
 }

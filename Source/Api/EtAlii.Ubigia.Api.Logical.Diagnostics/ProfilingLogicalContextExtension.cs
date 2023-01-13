@@ -1,42 +1,41 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using EtAlii.Ubigia.Diagnostics.Profiling;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+
+public sealed class ProfilingLogicalContextExtension : IExtension
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
-    using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public sealed class ProfilingLogicalContextExtension : IExtension
+    public ProfilingLogicalContextExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public ProfilingLogicalContextExtension(IConfigurationRoot configurationRoot)
+
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Logical:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options.InjectProfiling)
         {
-            _configurationRoot = configurationRoot;
-        }
+            container.RegisterDecorator<ILogicalContext, ProfilingLogicalContext>();
 
+            container.RegisterDecorator<ILogicalRootSet, ProfilingLogicalRootSet>();
+            container.RegisterDecorator<IPropertiesManager, ProfilingPropertiesManager>();
+            container.RegisterDecorator<ILogicalNodeSet, ProfilingLogicalNodeSet>();
+            container.RegisterDecorator<IContentManager, ProfilingContentManager>();
 
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Logical:Diagnostics")
-                .Get<DiagnosticsOptions>();
+            container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
 
-            if (options.InjectProfiling)
-            {
-                container.RegisterDecorator<ILogicalContext, ProfilingLogicalContext>();
-
-                container.RegisterDecorator<ILogicalRootSet, ProfilingLogicalRootSet>();
-                container.RegisterDecorator<IPropertiesManager, ProfilingPropertiesManager>();
-                container.RegisterDecorator<ILogicalNodeSet, ProfilingLogicalNodeSet>();
-                container.RegisterDecorator<IContentManager, ProfilingContentManager>();
-
-                container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
-
-                container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Logical.Context));
-            }
+            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Logical.Context));
         }
     }
 }

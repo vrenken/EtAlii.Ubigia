@@ -1,338 +1,337 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
+    private readonly IScriptParser _parser;
 
-    [CorrelateUnitTests]
-    public sealed class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<FunctionalUnitTestContext>
+    public ScriptProcessorAssignDynamicLocationsIntegrationTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
-        private readonly IScriptParser _parser;
+        _testContext = testContext;
+        _parser = testContext.CreateScriptParser();
+    }
 
-        public ScriptProcessorAssignDynamicLocationsIntegrationTests(FunctionalUnitTestContext testContext)
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            _testContext = testContext;
-            _parser = testContext.CreateScriptParser();
-        }
+            "/Location+=Europe",
+            "/Location/Europe+=NL",
+            "/Location/Europe/NL+=Overijssel",
+            "/Location/Europe/NL/Overijssel+=Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
+        };
 
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path()
+        dynamic data = new
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location+=Europe",
-                "/Location/Europe+=NL",
-                "/Location/Europe/NL+=Overijssel",
-                "/Location/Europe/NL/Overijssel+=Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
-            };
+            StringValue = "Test1",
+            IntValue = 12,
+        };
 
-            dynamic data = new
-            {
-                StringValue = "Test1",
-                IntValue = 12,
-            };
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence  = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence  = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+        Assert.Equal("Test1", selectResult.StringValue);
+        Assert.Equal(12, selectResult.IntValue);
+        //Assert.NotEqual(addResult.Id, updateResult.Id)
+        //Assert.NotEqual(updateResult.Id, selectResult.Id)
+    }
 
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-            Assert.Equal("Test1", selectResult.StringValue);
-            Assert.Equal(12, selectResult.IntValue);
-            //Assert.NotEqual(addResult.Id, updateResult.Id)
-            //Assert.NotEqual(updateResult.Id, selectResult.Id)
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path_Empty()
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path_Empty()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location+=Europe",
-                "/Location/Europe+=NL",
-                "/Location/Europe/NL+=Overijssel",
-                "/Location/Europe/NL/Overijssel+=Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
-            };
+            "/Location+=Europe",
+            "/Location/Europe+=NL",
+            "/Location/Europe/NL+=Overijssel",
+            "/Location/Europe/NL/Overijssel+=Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
+        };
 
-            dynamic data = new
-            {
-            };
-
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced()
+        dynamic data = new
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location += Europe",
-                "/Location/Europe += NL",
-                "/Location/Europe/NL += Overijssel",
-                "/Location/Europe/NL/Overijssel += Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
-            };
+        };
 
-            dynamic data = new
-            {
-                StringValue = "Test1",
-                IntValue = 12,
-            };
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+    }
 
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-            Assert.Equal("Test1", selectResult.StringValue);
-            Assert.Equal(12, selectResult.IntValue);
-        }
-
-
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Local()
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location += Europe",
-                "/Location/Europe += NL",
-                "/Location/Europe/NL += Overijssel",
-                "/Location/Europe/NL/Overijssel += Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
-            };
+            "/Location += Europe",
+            "/Location/Europe += NL",
+            "/Location/Europe/NL += Overijssel",
+            "/Location/Europe/NL/Overijssel += Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
+        };
 
-            var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Local);
-
-            dynamic data = new
-            {
-                StringValue = "Test1",
-                IntValue = 12,
-                DateTime = dateTime,
-            };
-
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-            Assert.Equal("Test1", selectResult.StringValue);
-            Assert.Equal(12, selectResult.IntValue);
-            Assert.Equal(dateTime, selectResult.DateTime);
-            Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind);// "Kind"
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Utc()
+        dynamic data = new
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location += Europe",
-                "/Location/Europe += NL",
-                "/Location/Europe/NL += Overijssel",
-                "/Location/Europe/NL/Overijssel += Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
-            };
+            StringValue = "Test1",
+            IntValue = 12,
+        };
 
-            var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Utc);
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
-            dynamic data = new
-            {
-                StringValue = "Test1",
-                IntValue = 12,
-                DateTime = dateTime,
-            };
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+        Assert.Equal("Test1", selectResult.StringValue);
+        Assert.Equal(12, selectResult.IntValue);
+    }
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-            Assert.Equal("Test1", selectResult.StringValue);
-            Assert.Equal(12, selectResult.IntValue);
-            Assert.Equal(dateTime, selectResult.DateTime);
-            Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind); // "Kind"
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Unspecified()
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Local()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "/Location += Europe",
-                "/Location/Europe += NL",
-                "/Location/Europe/NL += Overijssel",
-                "/Location/Europe/NL/Overijssel += Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
-            };
+            "/Location += Europe",
+            "/Location/Europe += NL",
+            "/Location/Europe/NL += Overijssel",
+            "/Location/Europe/NL/Overijssel += Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
+        };
 
-            var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Unspecified);
+        var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Local);
 
-            dynamic data = new
-            {
-                StringValue = "Test1",
-                IntValue = 12,
-                DateTime = dateTime,
-            };
+        dynamic data = new
+        {
+            StringValue = "Test1",
+            IntValue = 12,
+            DateTime = dateTime,
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var updateScript = _parser.Parse(updateQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript, scope);
-            dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(updateResult);
-            Assert.NotNull(selectResult);
-            Assert.Equal("Test1", selectResult.StringValue);
-            Assert.Equal(12, selectResult.IntValue);
-            Assert.Equal(dateTime, selectResult.DateTime);
-            Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind); // "Kind"
-        }
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+        Assert.Equal("Test1", selectResult.StringValue);
+        Assert.Equal(12, selectResult.IntValue);
+        Assert.Equal(dateTime, selectResult.DateTime);
+        Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind);// "Kind"
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Utc()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
+        {
+            "/Location += Europe",
+            "/Location/Europe += NL",
+            "/Location/Europe/NL += Overijssel",
+            "/Location/Europe/NL/Overijssel += Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
+        };
+
+        var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Utc);
+
+        dynamic data = new
+        {
+            StringValue = "Test1",
+            IntValue = 12,
+            DateTime = dateTime,
+        };
+
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
+
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+        Assert.Equal("Test1", selectResult.StringValue);
+        Assert.Equal(12, selectResult.IntValue);
+        Assert.Equal(dateTime, selectResult.DateTime);
+        Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind); // "Kind"
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Unspecified()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
+        {
+            "/Location += Europe",
+            "/Location/Europe += NL",
+            "/Location/Europe/NL += Overijssel",
+            "/Location/Europe/NL/Overijssel += Enschede",
+            "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
+        };
+
+        var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Unspecified);
+
+        dynamic data = new
+        {
+            StringValue = "Test1",
+            IntValue = 12,
+            DateTime = dateTime,
+        };
+
+        var addQuery = string.Join("\r\n", addQueries);
+        var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+        var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
+
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var updateScript = _parser.Parse(updateQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+
+        scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(updateScript, scope);
+        dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
+
+        // Assert.
+        Assert.NotNull(addResult);
+        Assert.NotNull(updateResult);
+        Assert.NotNull(selectResult);
+        Assert.Equal("Test1", selectResult.StringValue);
+        Assert.Equal(12, selectResult.IntValue);
+        Assert.Equal(dateTime, selectResult.DateTime);
+        Assert.Equal(dateTime.Kind, selectResult.DateTime.Kind); // "Kind"
     }
 }

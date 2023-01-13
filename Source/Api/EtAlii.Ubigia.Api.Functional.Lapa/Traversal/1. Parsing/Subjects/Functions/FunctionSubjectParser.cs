@@ -1,76 +1,75 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+using Moppet.Lapa;
+
+internal sealed class FunctionSubjectParser : IFunctionSubjectParser
 {
-    using System;
-    using System.Linq;
-    using Moppet.Lapa;
+    public string Id => nameof(FunctionSubject);
 
-    internal sealed class FunctionSubjectParser : IFunctionSubjectParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly IFunctionSubjectArgumentsParser _functionSubjectArgumentsParser;
+    private readonly INodeFinder _nodeFinder;
+
+    private const string NameId = "Name";
+    private const string ParametersId = "Arguments";
+
+    public FunctionSubjectParser(
+        INodeValidator nodeValidator,
+        IFunctionSubjectArgumentsParser functionSubjectArgumentsParser,
+        INodeFinder nodeFinder)
     {
-        public string Id => nameof(FunctionSubject);
+        _nodeValidator = nodeValidator;
 
-        public LpsParser Parser { get; }
+        _functionSubjectArgumentsParser = functionSubjectArgumentsParser;
+        _nodeFinder = nodeFinder;
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly IFunctionSubjectArgumentsParser _functionSubjectArgumentsParser;
-        private readonly INodeFinder _nodeFinder;
+        var firstParser = Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
+        var nextParser = Lp.Char(',') + Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
 
-        private const string NameId = "Name";
-        private const string ParametersId = "Arguments";
-
-        public FunctionSubjectParser(
-            INodeValidator nodeValidator,
-            IFunctionSubjectArgumentsParser functionSubjectArgumentsParser,
-            INodeFinder nodeFinder)
-        {
-            _nodeValidator = nodeValidator;
-
-            _functionSubjectArgumentsParser = functionSubjectArgumentsParser;
-            _nodeFinder = nodeFinder;
-
-            var firstParser = Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
-            var nextParser = Lp.Char(',') + Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
-
-            Parser = new LpsParser(Id, true,
-                Lp.LetterOrDigit().OneOrMore().Id(NameId) +
-                Lp.ZeroOrMore(' ') +
+        Parser = new LpsParser(Id, true,
+            Lp.LetterOrDigit().OneOrMore().Id(NameId) +
+            Lp.ZeroOrMore(' ') +
+            (
                 (
-                    (
-                        Lp.Char('(') +
-                        firstParser.NextZeroOrMore(nextParser).Id(ParametersId) +
-                        Lp.Char(')')
-                    ) |
-                    (
-                        Lp.Char('(') +
-                        Lp.ZeroOrMore(' ') +
-                        Lp.Char(')')
-                    )
-                ));
-        }
+                    Lp.Char('(') +
+                    firstParser.NextZeroOrMore(nextParser).Id(ParametersId) +
+                    Lp.Char(')')
+                ) |
+                (
+                    Lp.Char('(') +
+                    Lp.ZeroOrMore(' ') +
+                    Lp.Char(')')
+                )
+            ));
+    }
 
-        public Subject Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, NameId).Match.ToString();
+    public Subject Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        var text = _nodeFinder.FindFirst(node, NameId).Match.ToString();
 
-            var parameterNodes = _nodeFinder.FindFirst(node, ParametersId);
+        var parameterNodes = _nodeFinder.FindFirst(node, ParametersId);
 
-            var childNodes = parameterNodes == null
-                ? Array.Empty<LpNode>()
-                : parameterNodes.Children
-                    .Where(child => child.Id != null)
-                    .ToArray();
+        var childNodes = parameterNodes == null
+            ? Array.Empty<LpNode>()
+            : parameterNodes.Children
+                .Where(child => child.Id != null)
+                .ToArray();
 
-            var parameters = childNodes.Select(childNode => _functionSubjectArgumentsParser.Parse(childNode)).ToArray();
+        var parameters = childNodes.Select(childNode => _functionSubjectArgumentsParser.Parse(childNode)).ToArray();
 
-            return new FunctionSubject(text, parameters);
-        }
+        return new FunctionSubject(text, parameters);
+    }
 
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

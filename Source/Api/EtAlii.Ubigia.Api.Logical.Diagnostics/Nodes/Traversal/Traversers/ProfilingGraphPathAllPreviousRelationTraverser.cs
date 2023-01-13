@@ -1,49 +1,48 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+public class ProfilingGraphPathAllPreviousRelationTraverser : IGraphPathAllPreviousRelationTraverser
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly IGraphPathAllPreviousRelationTraverser _decoree;
+    private readonly IProfiler _profiler;
 
-    public class ProfilingGraphPathAllPreviousRelationTraverser : IGraphPathAllPreviousRelationTraverser
+    public ProfilingGraphPathAllPreviousRelationTraverser(
+        IGraphPathAllPreviousRelationTraverser decoree,
+        IProfiler profiler)
     {
-        private readonly IGraphPathAllPreviousRelationTraverser _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Logical.Traversers);
+    }
 
-        public ProfilingGraphPathAllPreviousRelationTraverser(
-            IGraphPathAllPreviousRelationTraverser decoree,
-            IProfiler profiler)
+    public void Configure(TraversalParameters parameters)
+    {
+        dynamic profile = _profiler.Begin("Configuring relation traversing: ALL PREVIOUS");
+        profile.Part = parameters.Part;
+
+        _decoree.Configure(parameters);
+
+        _profiler.End(profile);
+    }
+
+    public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
+    {
+        dynamic profile = _profiler.Begin("Traversing relation: ALL PREVIOUS");
+        profile.Part = part;
+        profile.Start = start;
+
+        var result = _decoree
+            .Traverse(part, start, context, scope)
+            .ConfigureAwait(false);
+        await foreach (var item in result)
         {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Logical.Traversers);
+            yield return item;
         }
 
-        public void Configure(TraversalParameters parameters)
-        {
-            dynamic profile = _profiler.Begin("Configuring relation traversing: ALL PREVIOUS");
-            profile.Part = parameters.Part;
-
-            _decoree.Configure(parameters);
-
-            _profiler.End(profile);
-        }
-
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
-        {
-            dynamic profile = _profiler.Begin("Traversing relation: ALL PREVIOUS");
-            profile.Part = part;
-            profile.Start = start;
-
-            var result = _decoree
-                .Traverse(part, start, context, scope)
-                .ConfigureAwait(false);
-            await foreach (var item in result)
-            {
-                yield return item;
-            }
-
-            _profiler.End(profile);
-        }
+        _profiler.End(profile);
     }
 }

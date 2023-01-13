@@ -1,18 +1,17 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class WildcardPathSubjectPartToGraphPathPartsConverter : IWildcardPathSubjectPartToGraphPathPartsConverter
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
-
-    internal class WildcardPathSubjectPartToGraphPathPartsConverter : IWildcardPathSubjectPartToGraphPathPartsConverter
+    public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
     {
-        public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
-        {
-            var pattern = ((WildcardPathSubjectPart)pathSubjectPart).Pattern;
+        var pattern = ((WildcardPathSubjectPart)pathSubjectPart).Pattern;
 
-            var result = new GraphPathPart[] { new GraphWildcard(pattern) };
-            return Task.FromResult(result);
-        }
+        var result = new GraphPathPart[] { new GraphWildcard(pattern) };
+        return Task.FromResult(result);
     }
 }

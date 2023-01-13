@@ -1,49 +1,48 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+using EtAlii.xTechnology.Collections;
+
+internal class RecursiveRemover : IRecursiveRemover
 {
-    using System.Linq;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Collections;
+    private readonly IScriptProcessingContext _context;
 
-    internal class RecursiveRemover : IRecursiveRemover
+    public RecursiveRemover(IScriptProcessingContext context)
     {
-        private readonly IScriptProcessingContext _context;
+        _context = context;
+    }
 
-        public RecursiveRemover(IScriptProcessingContext context)
+    public async Task<RecursiveRemoveResult> Remove(Identifier parentId, ConstantPathSubjectPart part, ExecutionScope scope)
+    {
+        IEditableEntry newEntry = null;
+        var parentIdToSelect = parentId;
+
+        var outputObservable = Observable.Create<object>(outputObserver =>
         {
-            _context = context;
-        }
+            _context.Logical.Nodes.SelectMany(GraphPath.Create(parentIdToSelect, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
 
-        public async Task<RecursiveRemoveResult> Remove(Identifier parentId, ConstantPathSubjectPart part, ExecutionScope scope)
+            return Disposable.Empty;
+        });
+        var childrenWithSameName = outputObservable
+            .ToEnumerable()
+            .ToArray();
+        var childWithSameName = childrenWithSameName.FirstOrDefault();
+        if (childWithSameName != null)
         {
-            IEditableEntry newEntry = null;
-            var parentIdToSelect = parentId;
-
-            var outputObservable = Observable.Create<object>(outputObserver =>
+            if (childrenWithSameName.Multiple())
             {
-                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentIdToSelect, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
-
-                return Disposable.Empty;
-            });
-            var childrenWithSameName = outputObservable
-                .ToEnumerable()
-                .ToArray();
-            var childWithSameName = childrenWithSameName.FirstOrDefault();
-            if (childWithSameName != null)
-            {
-                if (childrenWithSameName.Multiple())
-                {
-                    var message = $"Found multiple children with the same name: {part.Name}";
-                    throw new ScriptProcessingException(message);
-                }
-                newEntry = (IEditableEntry)await _context.Logical.Nodes.Remove(parentId, part.Name, scope).ConfigureAwait(false);
+                var message = $"Found multiple children with the same name: {part.Name}";
+                throw new ScriptProcessingException(message);
             }
-
-            return new RecursiveRemoveResult(newEntry);
+            newEntry = (IEditableEntry)await _context.Logical.Nodes.Remove(parentId, part.Name, scope).ConfigureAwait(false);
         }
+
+        return new RecursiveRemoveResult(newEntry);
     }
 }

@@ -1,20 +1,19 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class TraversingWildcardPathSubjectPartToGraphPathPartsConverter : ITraversingWildcardPathSubjectPartToGraphPathPartsConverter
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    //private readonly IProcessingContext _context
 
-    internal class TraversingWildcardPathSubjectPartToGraphPathPartsConverter : ITraversingWildcardPathSubjectPartToGraphPathPartsConverter
+    public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
     {
-        //private readonly IProcessingContext _context
+        var limit = ((TraversingWildcardPathSubjectPart)pathSubjectPart).Limit;
 
-        public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
-        {
-            var limit = ((TraversingWildcardPathSubjectPart)pathSubjectPart).Limit;
-
-            var result = new GraphPathPart[] { new GraphTraversingWildcard(limit) };
-            return Task.FromResult(result);
-        }
+        var result = new GraphPathPart[] { new GraphTraversingWildcard(limit) };
+        return Task.FromResult(result);
     }
 }

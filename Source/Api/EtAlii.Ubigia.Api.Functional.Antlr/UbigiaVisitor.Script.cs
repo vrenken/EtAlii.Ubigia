@@ -1,22 +1,21 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Antlr
+namespace EtAlii.Ubigia.Api.Functional.Antlr;
+
+using System.Linq;
+using EtAlii.Ubigia.Api.Functional.Traversal;
+
+public partial class UbigiaVisitor : UbigiaParserBaseVisitor<object>
 {
-    using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
+    private const int CommentPrefixLength = 2;
 
-    public partial class UbigiaVisitor : UbigiaParserBaseVisitor<object>
+    public override object VisitScript(UbigiaParser.ScriptContext context)
     {
-        private const int CommentPrefixLength = 2;
+        var sequences = context.sequence()
+            .Select(sequenceContext => Visit(sequenceContext) as Sequence)
+            .Where(sequence => sequence != null)
+            .ToArray();
 
-        public override object VisitScript(UbigiaParser.ScriptContext context)
-        {
-            var sequences = context.sequence()
-                .Select(sequenceContext => Visit(sequenceContext) as Sequence)
-                .Where(sequence => sequence != null)
-                .ToArray();
-
-            return new Script(sequences);
-        }
+        return new Script(sequences);
     }
 }

@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class LoggingTraversalContextExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class LoggingTraversalContextExtension : IExtension
+    public LoggingTraversalContextExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public LoggingTraversalContextExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Functional:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options?.InjectLogging ?? false)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Functional:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options?.InjectLogging ?? false)
-            {
-                // Register all logging related DI mappings.
-            }
+            // Register all logging related DI mappings.
         }
     }
 }

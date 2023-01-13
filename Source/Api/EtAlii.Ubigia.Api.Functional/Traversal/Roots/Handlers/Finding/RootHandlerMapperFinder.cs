@@ -1,35 +1,34 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using System.Threading.Tasks;
+
+internal class RootHandlerMapperFinder : IRootHandlerMapperFinder
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
+    private readonly IScriptProcessingContext _processingContext;
 
-    internal class RootHandlerMapperFinder : IRootHandlerMapperFinder
+    public RootHandlerMapperFinder(
+        IScriptProcessingContext processingContext,
+        IRootHandlerMappersProvider rootHandlerMappersProvider)
     {
-        private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly IScriptProcessingContext _processingContext;
+        _processingContext = processingContext;
+        _rootHandlerMappersProvider = rootHandlerMappersProvider;
+    }
 
-        public RootHandlerMapperFinder(
-            IScriptProcessingContext processingContext,
-            IRootHandlerMappersProvider rootHandlerMappersProvider)
+    public async Task<IRootHandlerMapper> Find(string rootName)
+    {
+        var root = await _processingContext.Logical.Roots
+            .Get(rootName)
+            .ConfigureAwait(false);
+
+        var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => rhp.Type == root.Type);
+        if (rootHandlerMapper == null)
         {
-            _processingContext = processingContext;
-            _rootHandlerMappersProvider = rootHandlerMappersProvider;
+            throw new ScriptParserException($"No root handler found for root '{rootName}' with type '{root.Type}'");
         }
-
-        public async Task<IRootHandlerMapper> Find(string rootName)
-        {
-            var root = await _processingContext.Logical.Roots
-                .Get(rootName)
-                .ConfigureAwait(false);
-
-            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => rhp.Type == root.Type);
-            if (rootHandlerMapper == null)
-            {
-                throw new ScriptParserException($"No root handler found for root '{rootName}' with type '{root.Type}'");
-            }
-            return rootHandlerMapper;
-        }
+        return rootHandlerMapper;
     }
 }

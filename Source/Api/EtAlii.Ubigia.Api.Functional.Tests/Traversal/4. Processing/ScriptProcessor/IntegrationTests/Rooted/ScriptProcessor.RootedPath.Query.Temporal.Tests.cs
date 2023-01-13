@@ -1,137 +1,136 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Tests;
+using Microsoft.CSharp.RuntimeBinder;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Tests;
-    using Microsoft.CSharp.RuntimeBinder;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
+    private readonly IScriptParser _parser;
 
-    [CorrelateUnitTests]
-    public sealed class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
+    public ScriptProcessorRootedPathQueryTemporalIntegrationTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
-        private readonly IScriptParser _parser;
+        _testContext = testContext;
+        _parser = testContext.CreateScriptParser();
+    }
 
-        public ScriptProcessorRootedPathQueryTemporalIntegrationTests(FunctionalUnitTestContext testContext)
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Temporal_Downdate_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            _testContext = testContext;
-            _parser = testContext.CreateScriptParser();
-        }
+            "Person:+=Doe/John",
+            "Person:Doe/John <= { NickName: 'Joe' }",
+            "Person:Doe/John <= { NickName: 'John' }",
+        };
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Temporal_Downdate_01()
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Doe/John{";
+
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
+
+        // Assert.
+        Assert.NotNull(person);
+        Assert.Equal("Joe", person.NickName);
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Temporal_Downdate_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Doe/John",
-                "Person:Doe/John <= { NickName: 'Joe' }",
-                "Person:Doe/John <= { NickName: 'John' }",
-            };
+            "Person:+=Doe/John",
+            "Person:Doe/John <= { NickName: 'Joe' }",
+            "Person:Doe/John <= { NickName: 'Johnny' }",
+            "Person:Doe/John <= { NickName: 'John' }",
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Doe/John{";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Doe/John{{";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var history = await lastSequence.Output.ToArray();
 
-            // Assert.
-            Assert.NotNull(person);
-            Assert.Equal("Joe", person.NickName);
-        }
+        // Assert.
+        Assert.NotNull(history);
+        Assert.Equal(4, history.Length);
+        dynamic personHistory = history[0];
+        Assert.Equal("John", personHistory.NickName);
+        personHistory = history[1];
+        Assert.Equal("Johnny", personHistory.NickName);
+        personHistory = history[2];
+        Assert.Equal("Joe", personHistory.NickName);
+        personHistory = history[3];
+        Assert.Throws<RuntimeBinderException>(() => personHistory.NickName); // The first entry does not have a NickName assigned.
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Temporal_Downdate_02()
+
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Temporal_Downdate_03()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Doe/John",
-                "Person:Doe/John <= { NickName: 'Joe' }",
-                "Person:Doe/John <= { NickName: 'Johnny' }",
-                "Person:Doe/John <= { NickName: 'John' }",
-            };
+            "Person:+=Doe/John",
+            "Person:Doe/John <= { NickName: 'Joe' }",
+            "Person:Doe/John <= { NickName: 'Johnny' }",
+            "Person:Doe/John <= { NickName: 'John' }",
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Doe/John{{";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Doe/John{";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var history = await lastSequence.Output.ToArray();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(history);
-            Assert.Equal(4, history.Length);
-            dynamic personHistory = history[0];
-            Assert.Equal("John", personHistory.NickName);
-            personHistory = history[1];
-            Assert.Equal("Johnny", personHistory.NickName);
-            personHistory = history[2];
-            Assert.Equal("Joe", personHistory.NickName);
-            personHistory = history[3];
-            Assert.Throws<RuntimeBinderException>(() => personHistory.NickName); // The first entry does not have a NickName assigned.
-        }
-
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Temporal_Downdate_03()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Doe/John",
-                "Person:Doe/John <= { NickName: 'Joe' }",
-                "Person:Doe/John <= { NickName: 'Johnny' }",
-                "Person:Doe/John <= { NickName: 'John' }",
-            };
-
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Doe/John{";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(person);
-            Assert.Equal("Johnny", person.NickName);
-        }
+        // Assert.
+        Assert.NotNull(person);
+        Assert.Equal("Johnny", person.NickName);
     }
 }

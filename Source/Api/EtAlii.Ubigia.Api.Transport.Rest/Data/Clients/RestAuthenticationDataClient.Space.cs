@@ -1,35 +1,34 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using System.Threading.Tasks;
+
+public partial class RestAuthenticationDataClient
 {
-    using System.Threading.Tasks;
-
-    public partial class RestAuthenticationDataClient
+    public async Task<Space> GetSpace(ISpaceConnection connection)
     {
-        public async Task<Space> GetSpace(ISpaceConnection connection)
+        if (connection.Space != null)
         {
-            if (connection.Space != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
-            }
-
-            var space = await GetSpace(connection.Options.Space).ConfigureAwait(false);
-            if (space == null)
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
-            }
-
-            return space;
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
         }
 
-        private Task<Space> GetSpace(string spaceName)
+        var space = await GetSpace(connection.Options.Space).ConfigureAwait(false);
+        if (space == null)
         {
-	        //var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Spaces, UriParameter.AccountId, currentAccount.Id.ToString())
-	        //var spaces = await _connection.Client.Get<IEnumerable<Space>>(address)
-	        //return spaces.FirstOrDefault(s => s.Name == spaceName)
-
-	        var address = _connection.AddressFactory.Create(_connection.Transport, RelativeDataUri.Spaces, UriParameter.SpaceName, spaceName, UriParameter.AuthenticationToken);
-	        return _connection.Client.Get<Space>(address);
+            throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
         }
-	}
+
+        return space;
+    }
+
+    private Task<Space> GetSpace(string spaceName)
+    {
+        //var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Spaces, UriParameter.AccountId, currentAccount.Id.ToString())
+        //var spaces = await _connection.Client.Get<IEnumerable<Space>>(address)
+        //return spaces.FirstOrDefault(s => s.Name == spaceName)
+
+        var address = _connection.AddressFactory.Create(_connection.Transport, RelativeDataUri.Spaces, UriParameter.SpaceName, spaceName, UriParameter.AuthenticationToken);
+        return _connection.Client.Get<Space>(address);
+    }
 }

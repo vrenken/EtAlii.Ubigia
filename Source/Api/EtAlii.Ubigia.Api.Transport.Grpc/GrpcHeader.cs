@@ -1,9 +1,8 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Grpc;
+
+public static class GrpcHeader
 {
-    public static class GrpcHeader
-    {
-        public const string AuthenticationTokenHeaderKey = "x-authenticationtoken";
-    }
+    public const string AuthenticationTokenHeaderKey = "x-authenticationtoken";
 }

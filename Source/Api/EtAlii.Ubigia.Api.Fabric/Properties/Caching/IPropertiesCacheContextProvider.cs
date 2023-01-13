@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+public interface IPropertiesCacheContextProvider
 {
-    public interface IPropertiesCacheContextProvider
-    {
-        IPropertiesContext Context { get; }
-    }
+    IPropertiesContext Context { get; }
 }

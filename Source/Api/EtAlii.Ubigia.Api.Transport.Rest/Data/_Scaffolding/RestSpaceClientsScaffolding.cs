@@ -1,54 +1,53 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using EtAlii.Ubigia.Serialization;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class RestSpaceClientsScaffolding : IScaffolding
 {
-    using EtAlii.Ubigia.Serialization;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IRestInfrastructureClient _infrastructureClient;
+    private readonly SpaceConnectionOptions _options;
 
-    internal class RestSpaceClientsScaffolding : IScaffolding
+    public RestSpaceClientsScaffolding(IRestInfrastructureClient infrastructureClient, SpaceConnectionOptions options)
     {
-        private readonly IRestInfrastructureClient _infrastructureClient;
-        private readonly SpaceConnectionOptions _options;
+        _infrastructureClient = infrastructureClient;
+        _options = options;
+    }
 
-        public RestSpaceClientsScaffolding(IRestInfrastructureClient infrastructureClient, SpaceConnectionOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        container.Register<IAddressFactory, AddressFactory>();
+        container.Register<ISpaceConnection>(serviceCollection =>
         {
-            _infrastructureClient = infrastructureClient;
-            _options = options;
+            var transport = serviceCollection.GetInstance<ISpaceTransport>();
+            var roots = serviceCollection.GetInstance<IRootContext>();
+            var entries = serviceCollection.GetInstance<IEntryContext>();
+            var content = serviceCollection.GetInstance<IContentContext>();
+            var properties = serviceCollection.GetInstance<IPropertiesContext>();
+            var authentication = serviceCollection.GetInstance<IAuthenticationContext>();
+            var addressFactory = serviceCollection.GetInstance<IAddressFactory>();
+            var client = serviceCollection.GetInstance<IRestInfrastructureClient>();
+            return new RestSpaceConnection(transport, addressFactory, client, _options, roots, entries, content, properties, authentication);
+        });
+
+        container.Register<IAuthenticationDataClient, RestAuthenticationDataClient>();
+
+        container.Register<IEntryDataClient, RestEntryDataClient>();
+        container.Register<IRootDataClient, RestRootDataClient>();
+        container.Register<IContentDataClient, RestContentDataClient>();
+        container.Register<IPropertiesDataClient, RestPropertiesDataClient>();
+
+        if (_infrastructureClient != null)
+        {
+            container.Register(() => _infrastructureClient);
         }
-
-        public void Register(IRegisterOnlyContainer container)
+        else
         {
-            container.Register<IAddressFactory, AddressFactory>();
-            container.Register<ISpaceConnection>(serviceCollection =>
-            {
-                var transport = serviceCollection.GetInstance<ISpaceTransport>();
-                var roots = serviceCollection.GetInstance<IRootContext>();
-                var entries = serviceCollection.GetInstance<IEntryContext>();
-                var content = serviceCollection.GetInstance<IContentContext>();
-                var properties = serviceCollection.GetInstance<IPropertiesContext>();
-                var authentication = serviceCollection.GetInstance<IAuthenticationContext>();
-                var addressFactory = serviceCollection.GetInstance<IAddressFactory>();
-                var client = serviceCollection.GetInstance<IRestInfrastructureClient>();
-                return new RestSpaceConnection(transport, addressFactory, client, _options, roots, entries, content, properties, authentication);
-            });
-
-            container.Register<IAuthenticationDataClient, RestAuthenticationDataClient>();
-
-            container.Register<IEntryDataClient, RestEntryDataClient>();
-            container.Register<IRootDataClient, RestRootDataClient>();
-            container.Register<IContentDataClient, RestContentDataClient>();
-            container.Register<IPropertiesDataClient, RestPropertiesDataClient>();
-
-            if (_infrastructureClient != null)
-            {
-                container.Register(() => _infrastructureClient);
-            }
-            else
-            {
-                container.Register<IRestInfrastructureClient, RestInfrastructureClient>();
-                container.Register(() => Serializer.Default);
-                container.Register<IHttpClientFactory, RestHttpClientFactory>();
-            }
+            container.Register<IRestInfrastructureClient, RestInfrastructureClient>();
+            container.Register(() => Serializer.Default);
+            container.Register<IHttpClientFactory, RestHttpClientFactory>();
         }
     }
 }

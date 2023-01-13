@@ -1,55 +1,54 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR.Client;
+
+internal sealed class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
 {
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
+    private HubConnection _connection;
+    private readonly IHubProxyMethodInvoker _invoker;
 
-    internal sealed class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
+    public SignalRPropertiesDataClient(
+        IHubProxyMethodInvoker invoker)
     {
-        private HubConnection _connection;
-        private readonly IHubProxyMethodInvoker _invoker;
+        _invoker = invoker;
+    }
 
-        public SignalRPropertiesDataClient(
-            IHubProxyMethodInvoker invoker)
+
+    public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
+    {
+        await _invoker.Invoke(_connection, SignalRHub.Property, "Post", identifier, properties).ConfigureAwait(false);
+
+        PropertiesHelper.SetStored(properties, true);
+    }
+
+    public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
+    {
+        var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier).ConfigureAwait(false);
+        if (result != null)
         {
-            _invoker = invoker;
+            PropertiesHelper.SetStored(result, true);
+            // properties.Stored is not serialized in the PropertyDictionaryConverter.
         }
+        return result;
+    }
 
+    public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+    {
+        await base.Connect(spaceConnection).ConfigureAwait(false);
 
-        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
-        {
-            await _invoker.Invoke(_connection, SignalRHub.Property, "Post", identifier, properties).ConfigureAwait(false);
+        _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Property, UriKind.Absolute));
+        await _connection.StartAsync().ConfigureAwait(false);
+    }
 
-            PropertiesHelper.SetStored(properties, true);
-        }
+    public override async Task Disconnect()
+    {
+        await base.Disconnect().ConfigureAwait(false);
 
-        public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
-        {
-            var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier).ConfigureAwait(false);
-            if (result != null)
-            {
-                PropertiesHelper.SetStored(result, true);
-                // properties.Stored is not serialized in the PropertyDictionaryConverter.
-            }
-            return result;
-        }
-
-        public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
-        {
-            await base.Connect(spaceConnection).ConfigureAwait(false);
-
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Property, UriKind.Absolute));
-	        await _connection.StartAsync().ConfigureAwait(false);
-        }
-
-        public override async Task Disconnect()
-        {
-            await base.Disconnect().ConfigureAwait(false);
-
-            await _connection.DisposeAsync().ConfigureAwait(false);
-            _connection = null;
-        }
+        await _connection.DisposeAsync().ConfigureAwait(false);
+        _connection = null;
     }
 }

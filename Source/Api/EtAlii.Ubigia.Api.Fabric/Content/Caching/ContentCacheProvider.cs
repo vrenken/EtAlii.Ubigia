@@ -1,17 +1,16 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+
+internal class ContentCacheProvider : IContentCacheProvider
 {
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
+    public IDictionary<Identifier, ContentCacheEntry> Cache { get; }
 
-    internal class ContentCacheProvider : IContentCacheProvider
+    public ContentCacheProvider()
     {
-        public IDictionary<Identifier, ContentCacheEntry> Cache { get; }
-
-        public ContentCacheProvider()
-        {
-            Cache = new ConcurrentDictionary<Identifier, ContentCacheEntry>();
-        }
+        Cache = new ConcurrentDictionary<Identifier, ContentCacheEntry>();
     }
 }

@@ -1,11 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using Moppet.Lapa;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal interface INodeValidator
-    {
-        void EnsureSuccess(LpNode node, string requiredId, bool restIsAllowed = true);
-    }
+using Moppet.Lapa;
+
+internal interface INodeValidator
+{
+    void EnsureSuccess(LpNode node, string requiredId, bool restIsAllowed = true);
 }

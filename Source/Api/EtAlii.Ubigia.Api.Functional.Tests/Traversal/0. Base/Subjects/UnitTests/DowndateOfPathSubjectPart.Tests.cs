@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using Xunit;
+
+public class DowndateOfPathSubjectPartTests
 {
-    using Xunit;
 
-    public class DowndateOfPathSubjectPartTests
+    [Fact]
+    public void PreviousSubjectPart_ToString()
     {
+        // Arrange.
+        var part = new DowndatePathSubjectPart();
 
-        [Fact]
-        public void PreviousSubjectPart_ToString()
-        {
-            // Arrange.
-            var part = new DowndatePathSubjectPart();
+        // Act.
+        var result = part.ToString();
 
-            // Act.
-            var result = part.ToString();
-
-            // Assert.
-            Assert.Equal("{", result);
-        }
+        // Assert.
+        Assert.Equal("{", result);
     }
 }

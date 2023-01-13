@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management
+namespace EtAlii.Ubigia.Api.Transport.Management;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public sealed class CommonManagementConnectionExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly ManagementConnectionOptions _options;
 
-    public sealed class CommonManagementConnectionExtension : IExtension
+    public CommonManagementConnectionExtension(ManagementConnectionOptions options)
     {
-        private readonly ManagementConnectionOptions _options;
+        _options = options;
+    }
 
-        public CommonManagementConnectionExtension(ManagementConnectionOptions options)
-        {
-            _options = options;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            new ManagementConnectionScaffolding(_options).Register(container);
-        }
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        new ManagementConnectionScaffolding(_options).Register(container);
     }
 }

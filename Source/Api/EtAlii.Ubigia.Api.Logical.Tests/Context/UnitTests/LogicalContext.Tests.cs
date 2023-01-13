@@ -1,83 +1,82 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
+namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Fabric;
+using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+using Xunit;
+using EtAlii.Ubigia.Api.Logical.Diagnostics;
+using EtAlii.Ubigia.Tests;
+using EtAlii.xTechnology.MicroContainer;
+
+[CorrelateUnitTests]
+public class LogicalContextTests : IClassFixture<LogicalUnitTestContext>
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using Xunit;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly LogicalUnitTestContext _testContext;
 
-    [CorrelateUnitTests]
-    public class LogicalContextTests : IClassFixture<LogicalUnitTestContext>
+    public LogicalContextTests(LogicalUnitTestContext testContext)
     {
-        private readonly LogicalUnitTestContext _testContext;
+        _testContext = testContext;
+    }
 
-        public LogicalContextTests(LogicalUnitTestContext testContext)
-        {
-            _testContext = testContext;
-        }
+    [Fact]
+    public async Task LogicalContext_Create()
+    {
+        // Arrange.
+        var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            .UseDiagnostics()
+            .UseDataConnectionToNewSpace(_testContext, true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
 
-        [Fact]
-        public async Task LogicalContext_Create()
-        {
-            // Arrange.
-            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
-                .UseDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-
-            // Act.
+        // Act.
 #pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
-            await using var context = Factory.Create<ILogicalContext>(logicalOptions);
+        await using var context = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
-            // Assert.
-            Assert.NotNull(context);
-        }
+        // Assert.
+        Assert.NotNull(context);
+    }
 
-        [Fact]
-        public async Task LogicalContext_Dispose()
-        {
-            // Arrange.
-            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
-                .UseDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
+    [Fact]
+    public async Task LogicalContext_Dispose()
+    {
+        // Arrange.
+        var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            .UseDiagnostics()
+            .UseDataConnectionToNewSpace(_testContext, true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
 
-            // Act.
+        // Act.
 #pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+        await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
-            // Assert.
-            Assert.NotNull(logicalContext);
-        }
+        // Assert.
+        Assert.NotNull(logicalContext);
+    }
 
-        [Fact]
-        public async Task LogicalContext_Create_Check_Components()
-        {
-            // Arrange.
-            var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
-                .UseDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
+    [Fact]
+    public async Task LogicalContext_Create_Check_Components()
+    {
+        // Arrange.
+        var logicalOptions = await new FabricOptions(_testContext.ClientConfiguration)
+            .UseDiagnostics()
+            .UseDataConnectionToNewSpace(_testContext, true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
 
-            // Act.
+        // Act.
 #pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
-            await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
+        await using var logicalContext = Factory.Create<ILogicalContext>(logicalOptions);
 #pragma warning restore CA2007
 
-            // Assert.
-            Assert.NotNull(logicalContext);
-        }
+        // Assert.
+        Assert.NotNull(logicalContext);
     }
 }

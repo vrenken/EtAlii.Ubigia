@@ -1,32 +1,31 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System;
+using System.Net.Http;
+
+public sealed class SignalRTransportProvider : ITransportProvider
 {
-	using System;
-	using System.Net.Http;
+    private string _authenticationToken;
+    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
 
-	public sealed class SignalRTransportProvider : ITransportProvider
+    private SignalRTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
     {
-        private string _authenticationToken;
-	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
+        _httpMessageHandlerFactory = httpMessageHandlerFactory;
+    }
 
-        private SignalRTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
-	    {
-		    _httpMessageHandlerFactory = httpMessageHandlerFactory;
-	    }
+    public static SignalRTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
+    {
+        return new(httpMessageHandlerFactory);//new ClientHttpMessageHandler())
+    }
 
-		public static SignalRTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
-        {
-	        return new(httpMessageHandlerFactory);//new ClientHttpMessageHandler())
-        }
-
-        public ISpaceTransport GetSpaceTransport(Uri address)
-        {
-            return new SignalRSpaceTransport(
-	            address,
-	            _httpMessageHandlerFactory,
-				v => _authenticationToken = v,
-                () => _authenticationToken);
-        }
+    public ISpaceTransport GetSpaceTransport(Uri address)
+    {
+        return new SignalRSpaceTransport(
+            address,
+            _httpMessageHandlerFactory,
+            v => _authenticationToken = v,
+            () => _authenticationToken);
     }
 }

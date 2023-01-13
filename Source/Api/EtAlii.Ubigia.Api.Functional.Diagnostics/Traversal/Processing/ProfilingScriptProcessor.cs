@@ -1,27 +1,26 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+internal class ProfilingScriptProcessor : IProfilingScriptProcessor
 {
-    using System;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    public IProfiler Profiler { get; }
 
-    internal class ProfilingScriptProcessor : IProfilingScriptProcessor
+    private readonly IScriptProcessor _decoree;
+
+    public ProfilingScriptProcessor(
+        IScriptProcessor decoree,
+        IProfiler profiler)
     {
-        public IProfiler Profiler { get; }
+        _decoree = decoree;
+        Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);
+    }
 
-        private readonly IScriptProcessor _decoree;
-
-        public ProfilingScriptProcessor(
-            IScriptProcessor decoree,
-            IProfiler profiler)
-        {
-            _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);
-        }
-
-        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
-        {
-            return _decoree.Process(script, scope);
-        }
+    public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
+    {
+        return _decoree.Process(script, scope);
     }
 }

@@ -1,27 +1,26 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Collections.Generic;
+using System.Linq;
+
+public sealed class GraphIdentifiersStartNode : GraphPathPart
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    public readonly IEnumerable<Identifier> Identifiers;
 
-    public sealed class GraphIdentifiersStartNode : GraphPathPart
+    public GraphIdentifiersStartNode(IEnumerable<Identifier> identifiers)
     {
-        public readonly IEnumerable<Identifier> Identifiers;
+        Identifiers = identifiers;
+    }
 
-        public GraphIdentifiersStartNode(IEnumerable<Identifier> identifiers)
-        {
-            Identifiers = identifiers;
-        }
+    public GraphIdentifiersStartNode(in Identifier identifier)
+    {
+        Identifiers = new[] { identifier };
+    }
 
-        public GraphIdentifiersStartNode(in Identifier identifier)
-        {
-            Identifiers = new[] { identifier };
-        }
-
-        public override string ToString()
-        {
-            return Identifiers.Count() == 1 ? Identifiers.Single().ToTimeString() : "Multiple starts";
-        }
+    public override string ToString()
+    {
+        return Identifiers.Count() == 1 ? Identifiers.Single().ToTimeString() : "Multiple starts";
     }
 }

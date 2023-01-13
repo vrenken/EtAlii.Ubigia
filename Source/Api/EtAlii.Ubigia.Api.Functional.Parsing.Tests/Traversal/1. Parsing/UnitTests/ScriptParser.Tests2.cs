@@ -1,262 +1,261 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
+namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests;
+
+using System;
+using System.Linq;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Api.Functional.Traversal;
+using Xunit;
+using EtAlii.Ubigia.Tests;
+
+[CorrelateUnitTests]
+public class ScriptParserTests2 : IClassFixture<FunctionalUnitTestContext>, IDisposable
 {
-    using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using Xunit;
-    using EtAlii.Ubigia.Tests;
+    private IScriptParser _parser;
 
-    [CorrelateUnitTests]
-    public class ScriptParserTests2 : IClassFixture<FunctionalUnitTestContext>, IDisposable
+    public ScriptParserTests2(FunctionalUnitTestContext testContext)
     {
-        private IScriptParser _parser;
+        _parser = testContext.CreateScriptParser();
+    }
 
-        public ScriptParserTests2(FunctionalUnitTestContext testContext)
-        {
-            _parser = testContext.CreateScriptParser();
-        }
+    public void Dispose()
+    {
+        _parser = null;
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
-        {
-            _parser = null;
-            GC.SuppressFinalize(this);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Single_Line_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "'SingleLine'";
 
-        [Fact]
-        public void ScriptParser_Parse_Single_Line_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "'SingleLine'";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Single_Line_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'SingleLine'";
 
-        [Fact]
-        public void ScriptParser_Parse_Single_Line_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'SingleLine'";
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 1);
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 1);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines_RN_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "'First'\r\n'Second'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines_RN_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "'First'\r\n'Second'";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines_RN_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'First'\r\n/'Second'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines_RN_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'First'\r\n/'Second'";
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 2);
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 2);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines_N_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "'First'\n'Second'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines_N_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "'First'\n'Second'";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines_N_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'First'\n/'Second'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines_N_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'First'\n/'Second'";
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 2);
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 2);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Additional_Newline()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'First'\n/'Second'\r\n\r\n/'Third'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Additional_Newline()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'First'\n/'Second'\r\n\r\n/'Third'";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.Equal(3, script.Sequences.Count());
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.Equal(3, script.Sequences.Count());
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "'First'\n'Second'\r\n'Third'\r\n";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "'First'\n'Second'\r\n'Third'\r\n";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'First'\n/'Second'\r\n/'Third'\r\n";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'First'\n/'Second'\r\n/'Third'\r\n";
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 3);
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 3);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "'First'\n$second\r\n'Third'\r\n";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "'First'\n$second\r\n'Third'\r\n";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "/'First'\n$second\r\n/'Third'\r\n";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "/'First'\n$second\r\n/'Third'\r\n";
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 3);
+    }
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 3);
-        }
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "\r\n'First'\n'Second'\r\n'Third'";
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "\r\n'First'\n'Second'\r\n'Third'";
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
-
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "\r\n/'First'\n/'Second'\r\n/'Third'";
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "\r\n/'First'\n/'Second'\r\n/'Third'";
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 3);
-        }
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 3);
+    }
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "\r\n'First'\n$second\r\n'Third'";
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "\r\n'First'\n$second\r\n'Third'";
 
-            // Act.
-            var parseResult = _parser.Parse(text, scope);
-            var script = parseResult.Script;
+        // Act.
+        var parseResult = _parser.Parse(text, scope);
+        var script = parseResult.Script;
 
-            // Assert.
-            Assert.Single(parseResult.Errors);
-            Assert.Null(script);
-        }
+        // Assert.
+        Assert.Single(parseResult.Errors);
+        Assert.Null(script);
+    }
 
-        [Fact]
-        public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var text = "\r\n/'First'\n$second\r\n/'Third'";
+    [Fact]
+    public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var text = "\r\n/'First'\n$second\r\n/'Third'";
 
-            // Act.
-            var script = _parser.Parse(text, scope).Script;
+        // Act.
+        var script = _parser.Parse(text, scope).Script;
 
-            // Assert.
-            Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 3);
-        }
+        // Assert.
+        Assert.NotNull(script);
+        Assert.True(script.Sequences.Count() == 3);
     }
 }

@@ -1,39 +1,38 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class AllParentsPathSubjectPartParser : IAllParentsPathSubjectPartParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(AllParentsPathSubjectPart);
 
-    internal sealed class AllParentsPathSubjectPartParser : IAllParentsPathSubjectPartParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+
+    private const string RelationId = @"//";
+    private const string RelationDescription = @"ALL_PARENTS_OF";
+
+    public AllParentsPathSubjectPartParser(
+        INodeValidator nodeValidator,
+        IPathRelationParserBuilder pathRelationParserBuilder)
     {
-        public string Id => nameof(AllParentsPathSubjectPart);
+        _nodeValidator = nodeValidator;
 
-        public LpsParser Parser { get; }
+        var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
+        Parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser")
+    }
 
-        private readonly INodeValidator _nodeValidator;
+    public PathSubjectPart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        return new AllParentsPathSubjectPart();
+    }
 
-        private const string RelationId = @"//";
-        private const string RelationDescription = @"ALL_PARENTS_OF";
-
-        public AllParentsPathSubjectPartParser(
-            INodeValidator nodeValidator,
-            IPathRelationParserBuilder pathRelationParserBuilder)
-        {
-            _nodeValidator = nodeValidator;
-
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
-            Parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser")
-        }
-
-        public PathSubjectPart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            return new AllParentsPathSubjectPart();
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

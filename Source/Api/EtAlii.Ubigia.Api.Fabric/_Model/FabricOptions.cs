@@ -1,93 +1,92 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System;
+using System.Threading;
+using EtAlii.Ubigia.Api.Transport;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public sealed class FabricOptions : IExtensible
 {
-    using System;
-    using System.Threading;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    /// <summary>
+    /// The client configuration root that will be used to configure the fabric context.
+    /// </summary>
+    public IConfigurationRoot ConfigurationRoot { get; }
 
-    public sealed class FabricOptions : IExtensible
+    /// <summary>
+    /// The Connection that should be used to communicate with the backend.
+    /// </summary>
+    public IDataConnection Connection => _connection?.Value;
+    private Lazy<IDataConnection> _connection;
+
+    /// <summary>
+    /// Set this property to true to enable client-side caching. It makes sure that the immutable entries
+    /// and relations are kept on the client.This reduces network traffic but requires more local memory.
+    /// </summary>
+    public bool CachingEnabled {get; private set; }
+
+    /// <inheritdoc/>
+    IExtension[] IExtensible.Extensions { get; set; }
+
+    public FabricOptions(IConfigurationRoot configurationRoot)
     {
-        /// <summary>
-        /// The client configuration root that will be used to configure the fabric context.
-        /// </summary>
-        public IConfigurationRoot ConfigurationRoot { get; }
+        ConfigurationRoot = configurationRoot;
+        CachingEnabled = true;
+        ((IExtensible)this).Extensions = new IExtension[] { new CommonFabricExtension(this) };
+    }
 
-        /// <summary>
-        /// The Connection that should be used to communicate with the backend.
-        /// </summary>
-        public IDataConnection Connection => _connection?.Value;
-        private Lazy<IDataConnection> _connection;
-
-        /// <summary>
-        /// Set this property to true to enable client-side caching. It makes sure that the immutable entries
-        /// and relations are kept on the client.This reduces network traffic but requires more local memory.
-        /// </summary>
-        public bool CachingEnabled {get; private set; }
-
-        /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get; set; }
-
-        public FabricOptions(IConfigurationRoot configurationRoot)
+    /// <summary>
+    /// Set the connection that should be used when instantiating a FabricContext.
+    /// </summary>
+    /// <param name="connection"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidInfrastructureOperationException"></exception>
+    public FabricOptions Use(IDataConnection connection)
+    {
+        if (!connection.IsConnected && connection is not DataConnectionStub)
         {
-            ConfigurationRoot = configurationRoot;
-            CachingEnabled = true;
-            ((IExtensible)this).Extensions = new IExtension[] { new CommonFabricExtension(this) };
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
+        _connection = new Lazy<IDataConnection>(connection);
+        return this;
+    }
 
-        /// <summary>
-        /// Set the connection that should be used when instantiating a FabricContext.
-        /// </summary>
-        /// <param name="connection"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidInfrastructureOperationException"></exception>
-        public FabricOptions Use(IDataConnection connection)
+    /// <summary>
+    /// Set the connection options that should be used when instantiating a FabricContext.
+    /// </summary>
+    /// <param name="dataConnectionOptions"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public FabricOptions Use(DataConnectionOptions dataConnectionOptions)
+    {
+        if (dataConnectionOptions is null)
         {
-            if (!connection.IsConnected && connection is not DataConnectionStub)
+            throw new ArgumentNullException(nameof(dataConnectionOptions));
+        }
+        _connection = new Lazy<IDataConnection>(() =>
+        {
+            var dataConnection = Factory.Create<IDataConnection>(dataConnectionOptions);
+            if (!dataConnection.IsConnected)
             {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
+                var task = dataConnection.Open();
+                task.GetAwaiter().GetResult();
             }
-            _connection = new Lazy<IDataConnection>(connection);
-            return this;
-        }
 
-        /// <summary>
-        /// Set the connection options that should be used when instantiating a FabricContext.
-        /// </summary>
-        /// <param name="dataConnectionOptions"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        public FabricOptions Use(DataConnectionOptions dataConnectionOptions)
-        {
-            if (dataConnectionOptions is null)
-            {
-                throw new ArgumentNullException(nameof(dataConnectionOptions));
-            }
-            _connection = new Lazy<IDataConnection>(() =>
-            {
-                var dataConnection = Factory.Create<IDataConnection>(dataConnectionOptions);
-                if (!dataConnection.IsConnected)
-                {
-                    var task = dataConnection.Open();
-                    task.GetAwaiter().GetResult();
-                }
+            return dataConnection;
+        }, LazyThreadSafetyMode.ExecutionAndPublication);
+        return this;
+    }
 
-                return dataConnection;
-            }, LazyThreadSafetyMode.ExecutionAndPublication);
-            return this;
-        }
-
-        /// <summary>
-        /// When cachingEnabled is set to true the instantiated FabricContext is configured to use traversal caching.
-        /// </summary>
-        /// <param name="cachingEnabled"></param>
-        /// <returns></returns>
-        public FabricOptions UseCaching(bool cachingEnabled)
-        {
-            CachingEnabled = cachingEnabled;
-            return this;
-        }
+    /// <summary>
+    /// When cachingEnabled is set to true the instantiated FabricContext is configured to use traversal caching.
+    /// </summary>
+    /// <param name="cachingEnabled"></param>
+    /// <returns></returns>
+    public FabricOptions UseCaching(bool cachingEnabled)
+    {
+        CachingEnabled = cachingEnabled;
+        return this;
     }
 }

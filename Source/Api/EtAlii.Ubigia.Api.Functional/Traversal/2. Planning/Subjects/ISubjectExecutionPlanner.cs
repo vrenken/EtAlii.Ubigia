@@ -1,9 +1,8 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+internal interface ISubjectExecutionPlanner : ISequencePartExecutionPlanner
 {
-    internal interface ISubjectExecutionPlanner : ISequencePartExecutionPlanner
-    {
-        ISubjectExecutionPlan Plan(SequencePart part);
-    }
+    ISubjectExecutionPlan Plan(SequencePart part);
 }

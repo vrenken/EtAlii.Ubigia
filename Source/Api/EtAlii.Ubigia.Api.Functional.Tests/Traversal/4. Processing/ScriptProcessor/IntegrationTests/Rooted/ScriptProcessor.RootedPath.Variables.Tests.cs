@@ -1,72 +1,71 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
 {
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
+    private IScriptParser _parser;
+    private FunctionalUnitTestContext _testContext;
 
-    [CorrelateUnitTests]
-    public sealed class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
+    public async Task InitializeAsync()
     {
-        private IScriptParser _parser;
-        private FunctionalUnitTestContext _testContext;
+        _testContext = new FunctionalUnitTestContext();
+        await _testContext
+            .InitializeAsync()
+            .ConfigureAwait(false);
 
-        public async Task InitializeAsync()
+        _parser = _testContext.CreateScriptParser();
+    }
+
+    public async Task DisposeAsync()
+    {
+        await _testContext
+            .DisposeAsync()
+            .ConfigureAwait(false);
+        _testContext = null;
+        _parser = null;
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQueries = new[]
         {
-            _testContext = new FunctionalUnitTestContext();
-            await _testContext
-                .InitializeAsync()
-                .ConfigureAwait(false);
+            "Person: += Doe",
+            "Person:+=Doe/John",
+            "Person:+=Doe/Jane",
+            "Person:+=Doe/Johnny",
+            "Person:Doe# <= FamilyName",
+        };
+        var selectQuery = "Person:$lastName/$firstName";
 
-            _parser = _testContext.CreateScriptParser();
-        }
+        var addScript = _parser.Parse(addQueries, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        scope.Variables.Add("lastName", new ScopeVariable("Doe", null));
+        scope.Variables.Add("firstName", new ScopeVariable("John", null));
 
-        public async Task DisposeAsync()
-        {
-            await _testContext
-                .DisposeAsync()
-                .ConfigureAwait(false);
-            _testContext = null;
-            _parser = null;
-        }
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQueries = new[]
-            {
-                "Person: += Doe",
-                "Person:+=Doe/John",
-                "Person:+=Doe/Jane",
-                "Person:+=Doe/Johnny",
-                "Person:Doe# <= FamilyName",
-            };
-            var selectQuery = "Person:$lastName/$firstName";
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var person = await lastSequence.Output.SingleOrDefaultAsync();
 
-            var addScript = _parser.Parse(addQueries, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            scope.Variables.Add("lastName", new ScopeVariable("Doe", null));
-            scope.Variables.Add("firstName", new ScopeVariable("John", null));
-
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var person = await lastSequence.Output.SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(person);
-            Assert.Equal("John", person.ToString());
-        }
+        // Assert.
+        Assert.NotNull(person);
+        Assert.Equal("John", person.ToString());
     }
 }

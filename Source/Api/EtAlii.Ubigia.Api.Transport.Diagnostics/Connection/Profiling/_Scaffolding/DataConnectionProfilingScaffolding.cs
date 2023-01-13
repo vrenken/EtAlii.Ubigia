@@ -1,49 +1,48 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics;
+
+using EtAlii.xTechnology.MicroContainer;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+using EtAlii.xTechnology.Diagnostics;
+using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+
+
+internal class DataConnectionProfilingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
-    using EtAlii.xTechnology.Diagnostics;
-    using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+    private readonly DiagnosticsOptions _options;
 
-
-    internal class DataConnectionProfilingScaffolding : IScaffolding
+    public DataConnectionProfilingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public DataConnectionProfilingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectProfiling) // profiling is enabled
         {
-            _options = options;
-        }
+            container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+            container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectProfiling) // profiling is enabled
-            {
-                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+            container.RegisterDecorator<IDataConnection, ProfilingDataConnection>();
+            container.RegisterDecorator<IEntryDataClient, ProfilingEntryDataClient>();
 
-                container.RegisterDecorator<IDataConnection, ProfilingDataConnection>();
-                container.RegisterDecorator<IEntryDataClient, ProfilingEntryDataClient>();
+            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Transport.Connection));
 
-                container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Transport.Connection));
+            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(ProfilingEntryDataClient))
+            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(DebuggingEntryDataClient))
 
-                //container.RegisterDecorator(typeof(IEntryDataClient), typeof(ProfilingEntryDataClient))
-                //container.RegisterDecorator(typeof(IEntryDataClient), typeof(DebuggingEntryDataClient))
+            //IEntryNotificationClient
 
-                //IEntryNotificationClient
+            //IContentDataClient
+            //IContentNotificationClient
 
-                //IContentDataClient
-                //IContentNotificationClient
+            //IPropertiesDataClient
+            //IPropertiesNotificationClient
 
-                //IPropertiesDataClient
-                //IPropertiesNotificationClient
+            //IRootDataClient
+            //IRootNotificationClient
 
-                //IRootDataClient
-                //IRootNotificationClient
-
-            }
         }
     }
 }

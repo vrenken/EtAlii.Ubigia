@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class DiagnosticsManagementConnectionExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class DiagnosticsManagementConnectionExtension : IExtension
+    public DiagnosticsManagementConnectionExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public DiagnosticsManagementConnectionExtension(IConfigurationRoot configurationRoot)
+    /// <inheritdoc />
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Transport:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        var scaffoldings = new IScaffolding[]
         {
-            _configurationRoot = configurationRoot;
-        }
+            new ManagementConnectionLoggingScaffolding(options),
+            new ManagementConnectionProfilingScaffolding(options),
+            new ManagementConnectionDebuggingScaffolding(options),
+        };
 
-        /// <inheritdoc />
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var options = _configurationRoot
-                .GetSection("Api:Transport:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new ManagementConnectionLoggingScaffolding(options),
-                new ManagementConnectionProfilingScaffolding(options),
-                new ManagementConnectionDebuggingScaffolding(options),
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            scaffolding.Register(container);
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+public enum FragmentType
 {
-    public enum FragmentType
-    {
-        Query,
-        Mutation
-    }
+    Query,
+    Mutation
 }

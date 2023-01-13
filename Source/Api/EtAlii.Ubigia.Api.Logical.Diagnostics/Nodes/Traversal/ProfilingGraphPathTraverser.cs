@@ -1,46 +1,45 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+public sealed class ProfilingGraphPathTraverser : IProfilingGraphPathTraverser
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly IGraphPathTraverser _decoree;
 
-    public sealed class ProfilingGraphPathTraverser : IProfilingGraphPathTraverser
+    public IProfiler Profiler { get; }
+
+    public ProfilingGraphPathTraverser(IGraphPathTraverser decoree, IProfiler profiler)
     {
-        private readonly IGraphPathTraverser _decoree;
+        _decoree = decoree;
+        Profiler = profiler.Create(ProfilingAspects.Logical.Traversal);
+    }
 
-        public IProfiler Profiler { get; }
+    public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+    {
+        dynamic profile = Profiler.Begin("TraverseToSingle: " + identifier + " (to final: " + traverseToFinal + ")");
+        profile.Identifier = identifier.ToString();
+        profile.TraverseToFinal = traverseToFinal;
 
-        public ProfilingGraphPathTraverser(IGraphPathTraverser decoree, IProfiler profiler)
-        {
-            _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Logical.Traversal);
-        }
+        var result = await _decoree.TraverseToSingle(identifier, scope, traverseToFinal).ConfigureAwait(false);
 
-        public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
-        {
-            dynamic profile = Profiler.Begin("TraverseToSingle: " + identifier + " (to final: " + traverseToFinal + ")");
-            profile.Identifier = identifier.ToString();
-            profile.TraverseToFinal = traverseToFinal;
+        Profiler.End(profile);
 
-            var result = await _decoree.TraverseToSingle(identifier, scope, traverseToFinal).ConfigureAwait(false);
+        return result;
+    }
 
-            Profiler.End(profile);
+    public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
+    {
+        dynamic profile = Profiler.Begin("Traverse: " + traversal + " (to final: " + traverseToFinal + ")");
+        profile.Path = path.ToString();
+        profile.Traversal = traversal.ToString();
+        profile.TraverseToFinal = traverseToFinal;
 
-            return result;
-        }
+        _decoree.Traverse(path, traversal, scope, output, traverseToFinal);
 
-        public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
-        {
-            dynamic profile = Profiler.Begin("Traverse: " + traversal + " (to final: " + traverseToFinal + ")");
-            profile.Path = path.ToString();
-            profile.Traversal = traversal.ToString();
-            profile.TraverseToFinal = traverseToFinal;
-
-            _decoree.Traverse(path, traversal, scope, output, traverseToFinal);
-
-            Profiler.End(profile);
-        }
+        Profiler.End(profile);
     }
 }

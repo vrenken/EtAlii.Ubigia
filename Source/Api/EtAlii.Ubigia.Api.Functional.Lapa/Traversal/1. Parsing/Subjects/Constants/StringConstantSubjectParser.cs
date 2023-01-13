@@ -1,62 +1,61 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class StringConstantSubjectParser : IStringConstantSubjectParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(StringConstantSubject);
 
-    internal sealed class StringConstantSubjectParser : IStringConstantSubjectParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly IQuotedTextParser _quotedTextParser;
+    private readonly INodeFinder _nodeFinder;
+    private const string TextId = "Text";
+
+    public StringConstantSubjectParser(
+        INodeValidator nodeValidator,
+        INodeFinder nodeFinder,
+        IQuotedTextParser quotedTextParser,
+        IConstantHelper constantHelper)
     {
-        public string Id => nameof(StringConstantSubject);
+        _nodeValidator = nodeValidator;
+        _nodeFinder = nodeFinder;
+        _quotedTextParser = quotedTextParser;
 
-        public LpsParser Parser { get; }
+        Parser = new LpsParser
+        (
+            Id, true,
+            //Lp.Char('/').Not().Debug("Start", true) +
+            (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(TextId) |
+             //new LpsParser("Start", false, Lp.Char('/')).Not().Debug("Bracket-Start", true) +
+             _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
+            //new LpsParser(Lp.Char('/').Not().Debug("Stop", true) | Lp.End)
+            Lp.End
+        );//.Debug("StringConstantSubjectParser", true)
+    }
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly IQuotedTextParser _quotedTextParser;
-        private readonly INodeFinder _nodeFinder;
-        private const string TextId = "Text";
+    public ConstantSubject Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-        public StringConstantSubjectParser(
-            INodeValidator nodeValidator,
-            INodeFinder nodeFinder,
-            IQuotedTextParser quotedTextParser,
-            IConstantHelper constantHelper)
+        string text;
+        var quotedTextNode = _nodeFinder.FindFirst(node, _quotedTextParser.Id);
+        if (quotedTextNode != null)
         {
-            _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
-            _quotedTextParser = quotedTextParser;
-
-            Parser = new LpsParser
-                (
-                    Id, true,
-                    //Lp.Char('/').Not().Debug("Start", true) +
-                    (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(TextId) |
-                    //new LpsParser("Start", false, Lp.Char('/')).Not().Debug("Bracket-Start", true) +
-                    _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
-                    //new LpsParser(Lp.Char('/').Not().Debug("Stop", true) | Lp.End)
-                    Lp.End
-                );//.Debug("StringConstantSubjectParser", true)
+            text = _quotedTextParser.Parse(quotedTextNode);
         }
-
-        public ConstantSubject Parse(LpNode node)
+        else
         {
-            _nodeValidator.EnsureSuccess(node, Id);
-
-            string text;
-            var quotedTextNode = _nodeFinder.FindFirst(node, _quotedTextParser.Id);
-            if (quotedTextNode != null)
-            {
-                text = _quotedTextParser.Parse(quotedTextNode);
-            }
-            else
-            {
-                text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
-            }
-            return new StringConstantSubject(text);
+            text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
         }
+        return new StringConstantSubject(text);
+    }
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

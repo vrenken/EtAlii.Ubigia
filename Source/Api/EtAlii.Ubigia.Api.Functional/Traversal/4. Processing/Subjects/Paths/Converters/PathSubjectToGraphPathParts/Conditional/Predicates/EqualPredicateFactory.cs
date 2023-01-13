@@ -1,33 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using System;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class EqualPredicateFactory : IEqualPredicateFactory
+using System;
+
+internal class EqualPredicateFactory : IEqualPredicateFactory
+{
+    public Predicate<PropertyDictionary> Create(Condition condition)
     {
-        public Predicate<PropertyDictionary> Create(Condition condition)
+        return p =>
         {
-            return p =>
+            var result = false;
+            if (p.TryGetValue(condition.Property, out var propertyValue))
             {
-                var result = false;
-                if (p.TryGetValue(condition.Property, out var propertyValue))
+                if (propertyValue != null)
                 {
-                    if (propertyValue != null)
-                    {
-                        result = propertyValue.Equals(condition.Value);
-                    }
-                    else if (condition.Value != null)
-                    {
-                        result = condition.Value.Equals(null);
-                    }
-                    else if (condition.Value == null)
-                    {
-                        result = true;
-                    }
+                    result = propertyValue.Equals(condition.Value);
                 }
-                return result;
-            };
-        }
+                else if (condition.Value != null)
+                {
+                    result = condition.Value.Equals(null);
+                }
+                else if (condition.Value == null)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        };
     }
 }

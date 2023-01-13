@@ -1,84 +1,83 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+
+public sealed class GraphPathTraverser : IGraphPathTraverser
 {
-    using System;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
+    private readonly IPathTraversalContext _pathTraversalContext;
+    private readonly IBreadthFirstTraversalAlgorithm _breadthFirstTraversalAlgorithm;
+    private readonly IDepthFirstTraversalAlgorithm _depthFirstTraversalAlgorithm;
+    private readonly ITemporalGraphPathWeaver _temporalGraphPathWeaver;
 
-    public sealed class GraphPathTraverser : IGraphPathTraverser
+    public GraphPathTraverser(
+        IPathTraversalContext pathTraversalContext,
+        IBreadthFirstTraversalAlgorithm breadthFirstTraversalAlgorithm,
+        IDepthFirstTraversalAlgorithm depthFirstTraversalAlgorithm,
+        ITemporalGraphPathWeaver temporalGraphPathWeaver)
     {
-        private readonly IPathTraversalContext _pathTraversalContext;
-        private readonly IBreadthFirstTraversalAlgorithm _breadthFirstTraversalAlgorithm;
-        private readonly IDepthFirstTraversalAlgorithm _depthFirstTraversalAlgorithm;
-        private readonly ITemporalGraphPathWeaver _temporalGraphPathWeaver;
+        _pathTraversalContext = pathTraversalContext;
+        _breadthFirstTraversalAlgorithm = breadthFirstTraversalAlgorithm;
+        _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
+        _temporalGraphPathWeaver = temporalGraphPathWeaver;
+    }
 
-        public GraphPathTraverser(
-            IPathTraversalContext pathTraversalContext,
-            IBreadthFirstTraversalAlgorithm breadthFirstTraversalAlgorithm,
-            IDepthFirstTraversalAlgorithm depthFirstTraversalAlgorithm,
-            ITemporalGraphPathWeaver temporalGraphPathWeaver)
+    public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+    {
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            _pathTraversalContext = pathTraversalContext;
-            _breadthFirstTraversalAlgorithm = breadthFirstTraversalAlgorithm;
-            _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
-            _temporalGraphPathWeaver = temporalGraphPathWeaver;
+            Traverse(GraphPath.Create(identifier), Traversal.DepthFirst, scope, output, traverseToFinal);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        return await results.SingleAsync();
+    }
+
+    public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
+    {
+        if (traverseToFinal)
+        {
+            path = _temporalGraphPathWeaver.Weave(path);
         }
 
-        public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+        var innerObservable = Observable.Create<Identifier>(async innerObserver =>
         {
-            var results = Observable.Create<IReadOnlyEntry>(output =>
+            var results = traversal switch
             {
-                Traverse(GraphPath.Create(identifier), Traversal.DepthFirst, scope, output, traverseToFinal);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            return await results.SingleAsync();
-        }
+                Traversal.DepthFirst => _depthFirstTraversalAlgorithm
+                    .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
+                    .ConfigureAwait(false),
+                Traversal.BreadthFirst => _breadthFirstTraversalAlgorithm
+                    .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
+                    .ConfigureAwait(false),
+                _ => throw new InvalidOperationException($"Traversal request not understood: {traversal}")
+            };
 
-        public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
-        {
-            if (traverseToFinal)
+            await foreach (var result in results)
             {
-                path = _temporalGraphPathWeaver.Weave(path);
+                innerObserver.OnNext(result);
             }
 
-            var innerObservable = Observable.Create<Identifier>(async innerObserver =>
+            innerObserver.OnCompleted();
+
+            return Disposable.Empty;
+        });
+
+        // we do not want a cold observable. This should work out of the box as well.
+        //innerObservable = ToHotObservable(innerObservable)
+
+        innerObservable.Distinct().SubscribeAsync(
+            onError: output.OnError,
+            onCompleted: output.OnCompleted,
+            onNext: async o =>
             {
-                var results = traversal switch
-                {
-                    Traversal.DepthFirst => _depthFirstTraversalAlgorithm
-                        .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
-                        .ConfigureAwait(false),
-                    Traversal.BreadthFirst => _breadthFirstTraversalAlgorithm
-                        .Traverse(path, Identifier.Empty, _pathTraversalContext, scope)
-                        .ConfigureAwait(false),
-                    _ => throw new InvalidOperationException($"Traversal request not understood: {traversal}")
-                };
-
-                await foreach (var result in results)
-                {
-                    innerObserver.OnNext(result);
-                }
-
-                innerObserver.OnCompleted();
-
-                return Disposable.Empty;
+                var entry = await _pathTraversalContext.Entries
+                    .Get(o, scope)
+                    .ConfigureAwait(false);
+                output.OnNext(entry);
             });
-
-            // we do not want a cold observable. This should work out of the box as well.
-            //innerObservable = ToHotObservable(innerObservable)
-
-            innerObservable.Distinct().SubscribeAsync(
-                onError: output.OnError,
-                onCompleted: output.OnCompleted,
-                onNext: async o =>
-                {
-                    var entry = await _pathTraversalContext.Entries
-                        .Get(o, scope)
-                        .ConfigureAwait(false);
-                    output.OnNext(entry);
-                });
-        }
     }
 }

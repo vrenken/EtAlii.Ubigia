@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using Xunit;
+
+public class VariablePathSubjectPartTests
 {
-    using Xunit;
-
-    public class VariablePathSubjectPartTests
+    [Fact]
+    public void VariablePathSubjectPart_ToString()
     {
-        [Fact]
-        public void VariablePathSubjectPart_ToString()
-        {
-            // Arrange.
-            var part = new VariablePathSubjectPart("Test");
+        // Arrange.
+        var part = new VariablePathSubjectPart("Test");
 
-            // Act.
-            var result = part.ToString();
+        // Act.
+        var result = part.ToString();
 
-            // Assert.
-            Assert.Equal("$Test", result);
-        }
+        // Assert.
+        Assert.Equal("$Test", result);
     }
 }

@@ -1,24 +1,23 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using EtAlii.xTechnology.MicroContainer;
+
+internal class CommonLogicalExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly LogicalOptions _options;
 
-    internal class CommonLogicalExtension : IExtension
+    public CommonLogicalExtension(LogicalOptions options)
     {
-        private readonly LogicalOptions _options;
+        _options = options;
+    }
 
-        public CommonLogicalExtension(LogicalOptions options)
-        {
-            _options = options;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            new ContextScaffolding(_options).Register(container);
-            new GraphScaffolding().Register(container);
-            new TraversalScaffolding().Register(container);
-            new TraversalContextScaffolding().Register(container);
-        }
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        new ContextScaffolding(_options).Register(container);
+        new GraphScaffolding().Register(container);
+        new TraversalScaffolding().Register(container);
+        new TraversalContextScaffolding().Register(container);
     }
 }

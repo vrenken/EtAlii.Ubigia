@@ -1,27 +1,26 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Rest
+namespace EtAlii.Ubigia.Api.Transport.Management.Rest;
+
+using System;
+using EtAlii.Ubigia.Api.Transport.Rest;
+using EtAlii.xTechnology.MicroContainer;
+
+public class RestStorageTransport : StorageTransportBase, IRestStorageTransport
 {
-    using System;
-    using EtAlii.Ubigia.Api.Transport.Rest;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IRestInfrastructureClient _infrastructureClient;
 
-    public class RestStorageTransport : StorageTransportBase, IRestStorageTransport
+    public RestStorageTransport(Uri address, IRestInfrastructureClient infrastructureClient)
+        : base(address)
     {
-        private readonly IRestInfrastructureClient _infrastructureClient;
+        _infrastructureClient = infrastructureClient;
+    }
 
-        public RestStorageTransport(Uri address, IRestInfrastructureClient infrastructureClient)
-            : base(address)
+    protected override IScaffolding[] CreateScaffoldingInternal()
+    {
+        return new IScaffolding[]
         {
-            _infrastructureClient = infrastructureClient;
-        }
-
-        protected override IScaffolding[] CreateScaffoldingInternal()
-        {
-            return new IScaffolding[]
-            {
-                new RestStorageClientsScaffolding(_infrastructureClient),
-            };
-        }
+            new RestStorageClientsScaffolding(_infrastructureClient),
+        };
     }
 }

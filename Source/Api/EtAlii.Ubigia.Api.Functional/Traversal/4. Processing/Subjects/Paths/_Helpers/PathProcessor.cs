@@ -1,56 +1,55 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+internal class PathProcessor : IPathProcessor
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    public IScriptProcessingContext Context { get; }
 
-    internal class PathProcessor : IPathProcessor
+    private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
+
+    public PathProcessor(
+        IScriptProcessingContext context,
+        IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter)
     {
-        public IScriptProcessingContext Context { get; }
+        Context = context;
+        _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
+    }
 
-        private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
-
-        public PathProcessor(
-            IScriptProcessingContext context,
-            IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter)
+    public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
+    {
+        // See if the root processing in the PathProcessor can be improved.
+        // Original note: "Continue here to root processing logical implementation".
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/99
+        if (pathSubject is RootedPathSubject rootedPathSubject)
         {
-            Context = context;
-            _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
+            var parts = new List<PathSubjectPart>(rootedPathSubject.Parts);
+            var hasParts = parts.Count > 0;
+            if (hasParts)
+            {
+                parts.Insert(0, new ParentPathSubjectPart());
+            }
+            parts.Insert(0, new ConstantPathSubjectPart(rootedPathSubject.Root));
+            parts.Insert(0, new ParentPathSubjectPart());
+            pathSubject = new AbsolutePathSubject(parts.ToArray());
         }
 
-        public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
+        var graphPath = await _pathSubjectToGraphPathConverter.Convert(pathSubject, scope).ConfigureAwait(false);
+
+        try
         {
-            // See if the root processing in the PathProcessor can be improved.
-            // Original note: "Continue here to root processing logical implementation".
-            // More details can be found in the Github issue below:
-            // https://github.com/vrenken/EtAlii.Ubigia/issues/99
-            if (pathSubject is RootedPathSubject rootedPathSubject)
-            {
-                var parts = new List<PathSubjectPart>(rootedPathSubject.Parts);
-                var hasParts = parts.Count > 0;
-                if (hasParts)
-                {
-                    parts.Insert(0, new ParentPathSubjectPart());
-                }
-                parts.Insert(0, new ConstantPathSubjectPart(rootedPathSubject.Root));
-                parts.Insert(0, new ParentPathSubjectPart());
-                pathSubject = new AbsolutePathSubject(parts.ToArray());
-            }
-
-            var graphPath = await _pathSubjectToGraphPathConverter.Convert(pathSubject, scope).ConfigureAwait(false);
-
-            try
-            {
-                // Path processing should always expect multiple results. So we should always use the Nodes.SelectMany().
-                Context.Logical.Nodes.SelectMany(graphPath, scope, output);
-            }
-            catch (Exception e)
-            {
-                var message = $"Unable to process query path '{pathSubject}'";
-                throw new ScriptProcessingException(message, e);
-            }
+            // Path processing should always expect multiple results. So we should always use the Nodes.SelectMany().
+            Context.Logical.Nodes.SelectMany(graphPath, scope, output);
+        }
+        catch (Exception e)
+        {
+            var message = $"Unable to process query path '{pathSubject}'";
+            throw new ScriptProcessingException(message, e);
         }
     }
 }

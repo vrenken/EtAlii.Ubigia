@@ -1,171 +1,170 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System.Linq;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
+    private readonly IScriptParser _parser;
 
-    [CorrelateUnitTests]
-    public sealed class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<FunctionalUnitTestContext>
+    public ScriptProcessorRootedPathQueryHierarchicalIntegrationTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
-        private readonly IScriptParser _parser;
+        _testContext = testContext;
+        _parser = testContext.CreateScriptParser();
+    }
 
-        public ScriptProcessorRootedPathQueryHierarchicalIntegrationTests(FunctionalUnitTestContext testContext)
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            _testContext = testContext;
-            _parser = testContext.CreateScriptParser();
-        }
+            "Person:+=Does",
+            "Person:Does+=John",
+            "Person:Does/John <= { IsMale:true, Birthdate:1980-02-25, Weight:76.23 }"
+        };
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent()
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Does/John\\";
+
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var result = await lastSequence.Output.ToArray();
+
+        // Assert.
+        Assert.NotNull(result);
+        Assert.Single(result);
+        dynamic first = result.First();
+
+        Assert.Equal("Does", first.ToString());
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_Bool()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Does",
-                "Person:Does+=John",
-                "Person:Does/John <= { IsMale:true, Birthdate:1980-02-25, Weight:76.23 }"
-            };
+            "Person:+=Does",
+            "Person:Does+=John",
+            "Person:Does/John <= { IsMale: true, Birthdate:1980-02-25, Weight:76.23 }"
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Does/John\\";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Does/.IsMale=true\\";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var result = await lastSequence.Output.ToArray();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var result = await lastSequence.Output.ToArray();
+        // Assert.
+        Assert.NotNull(result);
+        Assert.Single(result);
+        dynamic first = result.First();
 
-            // Assert.
-            Assert.NotNull(result);
-            Assert.Single(result);
-            dynamic first = result.First();
+        Assert.Equal("Does", first.ToString());
+    }
 
-            Assert.Equal("Does", first.ToString());
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_Bool()
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_DateTime()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Does",
-                "Person:Does+=John",
-                "Person:Does/John <= { IsMale: true, Birthdate:1980-02-25, Weight:76.23 }"
-            };
+            "Person:+=Does",
+            "Person:Does+=John",
+            "Person:Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Does/.IsMale=true\\";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Does/.Birthdate=1980-02-25\\";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var result = await lastSequence.Output.ToArray();
-            // Assert.
-            Assert.NotNull(result);
-            Assert.Single(result);
-            dynamic first = result.First();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var result = await lastSequence.Output.ToArray();
 
-            Assert.Equal("Does", first.ToString());
-        }
+        // Assert.
+        Assert.NotNull(result);
+        Assert.Single(result);
+        dynamic first = result.First();
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_DateTime()
+        Assert.Equal("Does", first.ToString());
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_Float()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Does",
-                "Person:Does+=John",
-                "Person:Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
-            };
+            "Person:+=Does",
+            "Person:Does+=John",
+            "Person:Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Does/.Birthdate=1980-02-25\\";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = "Person:Does/.Weight=76.23\\";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var result = await lastSequence.Output.ToArray();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        await lastSequence.Output.ToArray();
+        lastSequence = await processor.Process(selectScript, scope);
+        var result = await lastSequence.Output.ToArray();
 
-            // Assert.
-            Assert.NotNull(result);
-            Assert.Single(result);
-            dynamic first = result.First();
+        // Assert.
+        Assert.NotNull(result);
+        Assert.Single(result);
+        dynamic first = result.First();
 
-            Assert.Equal("Does", first.ToString());
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Query_Hierarchical_Parent_Child_Parent_With_Condition_Float()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var addQueries = new[]
-            {
-                "Person:+=Does",
-                "Person:Does+=John",
-                "Person:Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
-            };
-
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = "Person:Does/.Weight=76.23\\";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript, scope);
-            var result = await lastSequence.Output.ToArray();
-
-            // Assert.
-            Assert.NotNull(result);
-            Assert.Single(result);
-            dynamic first = result.First();
-
-            Assert.Equal("Does", first.ToString());
-        }
+        Assert.Equal("Does", first.ToString());
     }
 }

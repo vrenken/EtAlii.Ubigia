@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class LoggingGraphContextExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class LoggingGraphContextExtension : IExtension
+    public LoggingGraphContextExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public LoggingGraphContextExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Functional:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options?.InjectLogging ?? false)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Functional:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options?.InjectLogging ?? false)
-            {
-                // Register all logging related DI mappings.
-            }
+            // Register all logging related DI mappings.
         }
     }
 }

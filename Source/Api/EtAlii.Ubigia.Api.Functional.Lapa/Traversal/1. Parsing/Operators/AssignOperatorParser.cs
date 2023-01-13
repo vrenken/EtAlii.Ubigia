@@ -1,33 +1,32 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class AssignOperatorParser : IAssignOperatorParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(AssignOperator);
 
-    internal sealed class AssignOperatorParser : IAssignOperatorParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+
+    public AssignOperatorParser(INodeValidator nodeValidator)
     {
-        public string Id => nameof(AssignOperator);
+        _nodeValidator = nodeValidator;
+        Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("<=") + Lp.ZeroOrMore(' '));
 
-        public LpsParser Parser { get; }
+    }
 
-        private readonly INodeValidator _nodeValidator;
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
 
-        public AssignOperatorParser(INodeValidator nodeValidator)
-        {
-            _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("<=") + Lp.ZeroOrMore(' '));
-
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public Operator Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            return new AssignOperator();
-        }
+    public Operator Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        return new AssignOperator();
     }
 }

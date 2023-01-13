@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+public class SubjectOperatorExecutionPlan : ISubjectExecutionPlan
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly IOperatorExecutionPlan _operatorExecutionPlan;
+    public Type OutputType => _operatorExecutionPlan.OutputType;
+    public Subject Subject { get; }
 
-    public class SubjectOperatorExecutionPlan : ISubjectExecutionPlan
+    public SubjectOperatorExecutionPlan(IOperatorExecutionPlan operatorExecutionPlan)
     {
-        private readonly IOperatorExecutionPlan _operatorExecutionPlan;
-        public Type OutputType => _operatorExecutionPlan.OutputType;
-        public Subject Subject { get; }
+        _operatorExecutionPlan = operatorExecutionPlan;
+        Subject = new CombinedSubject();
+    }
 
-        public SubjectOperatorExecutionPlan(IOperatorExecutionPlan operatorExecutionPlan)
-        {
-            _operatorExecutionPlan = operatorExecutionPlan;
-            Subject = new CombinedSubject();
-        }
+    public Task<IObservable<object>> Execute(ExecutionScope scope)
+    {
+        return _operatorExecutionPlan.Execute(scope);
+    }
 
-        public Task<IObservable<object>> Execute(ExecutionScope scope)
-        {
-            return _operatorExecutionPlan.Execute(scope);
-        }
-
-        public override string ToString()
-        {
-            return _operatorExecutionPlan.ToString();
-        }
+    public override string ToString()
+    {
+        return _operatorExecutionPlan.ToString();
     }
 }

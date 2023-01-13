@@ -1,32 +1,31 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Threading.Tasks;
+
+internal class GraphRenamer : IGraphRenamer
 {
-    using System.Threading.Tasks;
+    private readonly IGraphUpdater _graphUpdater;
+    private readonly IGraphPathTraverser _graphPathTraverser;
 
-    internal class GraphRenamer : IGraphRenamer
+    public GraphRenamer(
+        IGraphUpdater graphUpdater,
+        IGraphPathTraverser graphPathTraverser)
     {
-        private readonly IGraphUpdater _graphUpdater;
-        private readonly IGraphPathTraverser _graphPathTraverser;
+        _graphUpdater = graphUpdater;
+        _graphPathTraverser = graphPathTraverser;
+    }
 
-        public GraphRenamer(
-            IGraphUpdater graphUpdater,
-            IGraphPathTraverser graphPathTraverser)
+    public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
+    {
+        var result = await _graphPathTraverser.TraverseToSingle(item, scope).ConfigureAwait(false);
+
+        if (result.Type != newName)
         {
-            _graphUpdater = graphUpdater;
-            _graphPathTraverser = graphPathTraverser;
+            result = (IReadOnlyEntry)await _graphUpdater.Update(result, newName, scope).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
-        {
-            var result = await _graphPathTraverser.TraverseToSingle(item, scope).ConfigureAwait(false);
-
-            if (result.Type != newName)
-            {
-                result = (IReadOnlyEntry)await _graphUpdater.Update(result, newName, scope).ConfigureAwait(false);
-            }
-
-            return result;
-        }
+        return result;
     }
 }

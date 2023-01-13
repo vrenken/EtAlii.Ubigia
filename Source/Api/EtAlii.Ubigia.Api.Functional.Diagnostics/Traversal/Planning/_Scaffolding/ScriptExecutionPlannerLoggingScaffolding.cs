@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class ScriptExecutionPlannerLoggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class ScriptExecutionPlannerLoggingScaffolding : IScaffolding
+    public ScriptExecutionPlannerLoggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public ScriptExecutionPlannerLoggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options?.InjectLogging ?? false) // logging is enabled.
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options?.InjectLogging ?? false) // logging is enabled.
-            {
-                container.RegisterDecorator<IScriptExecutionPlanner, LoggingScriptExecutionPlanner>();
-            }
+            container.RegisterDecorator<IScriptExecutionPlanner, LoggingScriptExecutionPlanner>();
         }
     }
 }

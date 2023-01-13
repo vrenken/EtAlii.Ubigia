@@ -1,34 +1,33 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using System;
-    using System.Collections.Generic;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class LessThanPredicateFactory : ILessThanPredicateFactory
+using System;
+using System.Collections.Generic;
+
+internal class LessThanPredicateFactory : ILessThanPredicateFactory
+{
+    public Predicate<PropertyDictionary> Create(Condition condition)
     {
-        public Predicate<PropertyDictionary> Create(Condition condition)
+        return p =>
         {
-            return p =>
+            var result = false;
+            if (p.TryGetValue(condition.Property, out var propertyValue))
             {
-                var result = false;
-                if (p.TryGetValue(condition.Property, out var propertyValue))
+                if (propertyValue != null)
                 {
-                    if (propertyValue != null)
-                    {
-                        result = Comparer<object>.Default.Compare(propertyValue, condition.Value) < 0;
-                    }
-                    else if (condition.Value != null)
-                    {
-                        result = Comparer<object>.Default.Compare(condition.Value, null) < 0;
-                    }
-                    else if (condition.Value == null)
-                    {
-                        result = false;
-                    }
+                    result = Comparer<object>.Default.Compare(propertyValue, condition.Value) < 0;
                 }
-                return result;
-            };
-        }
+                else if (condition.Value != null)
+                {
+                    result = Comparer<object>.Default.Compare(condition.Value, null) < 0;
+                }
+                else if (condition.Value == null)
+                {
+                    result = false;
+                }
+            }
+            return result;
+        };
     }
 }

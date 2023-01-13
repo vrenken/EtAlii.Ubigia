@@ -1,33 +1,32 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System.Threading.Tasks;
+
+public abstract class SignalRClientBase
 {
-    using System.Threading.Tasks;
+    protected ISpaceConnection<ISignalRSpaceTransport> Connection { get; private set; }
 
-    public abstract class SignalRClientBase
+    public async Task Connect(ISpaceConnection spaceConnection)
     {
-        protected ISpaceConnection<ISignalRSpaceTransport> Connection { get; private set; }
+        await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
-        {
-            await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection).ConfigureAwait(false);
-        }
+    public virtual Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+    {
+        Connection = spaceConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
-        {
-            Connection = spaceConnection;
-            return Task.CompletedTask;
-        }
+    public async Task Disconnect(ISpaceConnection spaceConnection)
+    {
+        await Disconnect().ConfigureAwait(false);
+    }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
-        {
-            await Disconnect().ConfigureAwait(false);
-        }
-
-        public virtual Task Disconnect()
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect()
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

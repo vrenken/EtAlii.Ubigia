@@ -1,26 +1,25 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.Ubigia.Diagnostics.Profiling;
+using EtAlii.xTechnology.MicroContainer;
+
+public class ProfilingScriptParserExtension : IExtension
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IProfiler _profiler;
 
-    public class ProfilingScriptParserExtension : IExtension
+    public ProfilingScriptParserExtension(IProfiler profiler)
     {
-        private readonly IProfiler _profiler;
+        _profiler = profiler;
+    }
 
-        public ProfilingScriptParserExtension(IProfiler profiler)
-        {
-            _profiler = profiler;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            container.Register(() => _profiler);
-            container.RegisterDecorator<IScriptParser, ProfilingScriptParser>();
-            container.RegisterDecorator<IPathParser, ProfilingPathParser>();
-            container.RegisterDecorator<ISequenceParser, ProfilingSequenceParser>();
-            container.RegisterDecorator<INonRootedPathSubjectParser, ProfilingNonRootedPathSubjectParser>();
-        }
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        container.Register(() => _profiler);
+        container.RegisterDecorator<IScriptParser, ProfilingScriptParser>();
+        container.RegisterDecorator<IPathParser, ProfilingPathParser>();
+        container.RegisterDecorator<ISequenceParser, ProfilingSequenceParser>();
+        container.RegisterDecorator<INonRootedPathSubjectParser, ProfilingNonRootedPathSubjectParser>();
     }
 }

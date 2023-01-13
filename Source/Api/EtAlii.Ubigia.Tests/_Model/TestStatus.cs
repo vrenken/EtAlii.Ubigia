@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+public class TestStatus
 {
-    public class TestStatus
-    {
-        public string Message { get; set; }
-        public int Value { get; set; }
-    }
+    public string Message { get; set; }
+    public int Value { get; set; }
 }

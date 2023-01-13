@@ -1,52 +1,51 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.xTechnology.MicroContainer;
+using Serilog;
+
+public class LoggingSpaceTransport : ISpaceTransport
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.xTechnology.MicroContainer;
-    using Serilog;
+    public bool IsConnected => _transport.IsConnected;
 
-    public class LoggingSpaceTransport : ISpaceTransport
+    private readonly ISpaceTransport _transport;
+    private readonly ILogger _logger = Log.ForContext<ISpaceTransport>();
+
+    public Uri Address => _transport.Address;
+
+    public LoggingSpaceTransport(ISpaceTransport transport)
     {
-        public bool IsConnected => _transport.IsConnected;
+        _transport = transport;
+    }
 
-        private readonly ISpaceTransport _transport;
-        private readonly ILogger _logger = Log.ForContext<ISpaceTransport>();
+    public async Task Start()
+    {
+        _logger.Debug("Starting transport (Address: {Address})", Address);
+        var start = Environment.TickCount;
 
-        public Uri Address => _transport.Address;
+        await _transport.Start().ConfigureAwait(false);
 
-        public LoggingSpaceTransport(ISpaceTransport transport)
-        {
-            _transport = transport;
-        }
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Debug("Started transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
 
-        public async Task Start()
-        {
-            _logger.Debug("Starting transport (Address: {Address})", Address);
-            var start = Environment.TickCount;
+    }
 
-            await _transport.Start().ConfigureAwait(false);
+    public async Task Stop()
+    {
+        _logger.Debug("Stopping transport (Address: {Address})", Address);
+        var start = Environment.TickCount;
 
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Debug("Started transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
+        await _transport.Stop().ConfigureAwait(false);
 
-        }
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Debug("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
+    }
 
-        public async Task Stop()
-        {
-            _logger.Debug("Stopping transport (Address: {Address})", Address);
-            var start = Environment.TickCount;
-
-            await _transport.Stop().ConfigureAwait(false);
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Debug("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
-        }
-
-        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
-        {
-            return _transport.CreateScaffolding(spaceConnectionOptions);
-        }
+    IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
+    {
+        return _transport.CreateScaffolding(spaceConnectionOptions);
     }
 }

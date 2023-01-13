@@ -1,18 +1,17 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+using System.Threading.Tasks;
+
+public interface ISpaceTransportClient
 {
-    using System.Threading.Tasks;
+    Task Connect(ISpaceConnection spaceConnection);
+    Task Disconnect();
+}
 
-    public interface ISpaceTransportClient
-    {
-        Task Connect(ISpaceConnection spaceConnection);
-        Task Disconnect();
-    }
-
-    public interface ISpaceTransportClient<in TTransport> : ISpaceTransportClient
-        where TTransport: ISpaceTransport
-    {
-        Task Connect(ISpaceConnection<TTransport> spaceConnection);
-    }
+public interface ISpaceTransportClient<in TTransport> : ISpaceTransportClient
+    where TTransport: ISpaceTransport
+{
+    Task Connect(ISpaceConnection<TTransport> spaceConnection);
 }

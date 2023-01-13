@@ -1,28 +1,27 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class ManagementConnectionProfilingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class ManagementConnectionProfilingScaffolding : IScaffolding
+    public ManagementConnectionProfilingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public ManagementConnectionProfilingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectProfiling) // profiling is enabled
         {
-            _options = options;
-        }
+            container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+            container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectProfiling) // profiling is enabled
-            {
-                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
-
-                container.RegisterDecorator<IManagementConnection, ProfilingManagementConnection>();
-            }
+            container.RegisterDecorator<IManagementConnection, ProfilingManagementConnection>();
         }
     }
 }

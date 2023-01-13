@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class ScriptProcessingLoggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class ScriptProcessingLoggingScaffolding : IScaffolding
+    public ScriptProcessingLoggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public ScriptProcessingLoggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options?.InjectLogging ?? false) // logging is enabled.
         {
-            _options = options;
-        }
+            container.RegisterDecorator<IScriptProcessor, LoggingScriptProcessor>();
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options?.InjectLogging ?? false) // logging is enabled.
-            {
-                container.RegisterDecorator<IScriptProcessor, LoggingScriptProcessor>();
+            container.RegisterDecorator<IAbsolutePathSubjectProcessor, LoggingAbsolutePathSubjectProcessor>();
+            container.RegisterDecorator<IRelativePathSubjectProcessor, LoggingRelativePathSubjectProcessor>();
+            container.RegisterDecorator<IRootedPathSubjectProcessor, LoggingRootedPathSubjectProcessor>();
 
-                container.RegisterDecorator<IAbsolutePathSubjectProcessor, LoggingAbsolutePathSubjectProcessor>();
-                container.RegisterDecorator<IRelativePathSubjectProcessor, LoggingRelativePathSubjectProcessor>();
-                container.RegisterDecorator<IRootedPathSubjectProcessor, LoggingRootedPathSubjectProcessor>();
-
-                container.RegisterDecorator<IRootPathProcessor, LoggingRootPathProcessor>();
-            }
+            container.RegisterDecorator<IRootPathProcessor, LoggingRootPathProcessor>();
         }
     }
 }

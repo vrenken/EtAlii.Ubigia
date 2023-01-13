@@ -1,38 +1,37 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+// TODO: These classes should be de-duplicated.
+internal class AssignCombinedToOutputOperatorSubProcessor : IAssignCombinedToOutputOperatorSubProcessor
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly IResultConverter _resultConverter;
 
-    // TODO: These classes should be de-duplicated.
-    internal class AssignCombinedToOutputOperatorSubProcessor : IAssignCombinedToOutputOperatorSubProcessor
+    public AssignCombinedToOutputOperatorSubProcessor(IResultConverter resultConverter)
     {
-        private readonly IResultConverter _resultConverter;
+        _resultConverter = resultConverter;
+    }
 
-        public AssignCombinedToOutputOperatorSubProcessor(IResultConverter resultConverter)
-        {
-            _resultConverter = resultConverter;
-        }
-
-        public Task Assign(OperatorParameters parameters)
-        {
-            parameters.RightInput.SubscribeAsync(
-                onError: (e) => parameters.Output.OnError(e),
-                onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: async o =>
+    public Task Assign(OperatorParameters parameters)
+    {
+        parameters.RightInput.SubscribeAsync(
+            onError: (e) => parameters.Output.OnError(e),
+            onCompleted: () => parameters.Output.OnCompleted(),
+            onNext: async o =>
+            {
+                try
                 {
-                    try
-                    {
-                        await _resultConverter.Convert(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        var message = "Unable to assign items as output";
-                        parameters.Output.OnError(new InvalidOperationException(message, e));
-                    }
-                });
-            return Task.CompletedTask;
-        }
+                    await _resultConverter.Convert(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+                    var message = "Unable to assign items as output";
+                    parameters.Output.OnError(new InvalidOperationException(message, e));
+                }
+            });
+        return Task.CompletedTask;
     }
 }

@@ -1,34 +1,33 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Threading.Tasks;
+
+internal class ContentCacheRetrieveHandler : IContentCacheRetrieveHandler
 {
-    using System.Threading.Tasks;
+    private readonly IContentCacheHelper _cacheHelper;
+    private readonly IContentCacheContextProvider _contextProvider;
 
-    internal class ContentCacheRetrieveHandler : IContentCacheRetrieveHandler
+    public ContentCacheRetrieveHandler(
+        IContentCacheHelper cacheHelper,
+        IContentCacheContextProvider contextProvider)
     {
-        private readonly IContentCacheHelper _cacheHelper;
-        private readonly IContentCacheContextProvider _contextProvider;
+        _cacheHelper = cacheHelper;
+        _contextProvider = contextProvider;
+    }
 
-        public ContentCacheRetrieveHandler(
-            IContentCacheHelper cacheHelper,
-            IContentCacheContextProvider contextProvider)
+    public async Task<Content> Handle(Identifier identifier)
+    {
+        var content = _cacheHelper.Get(identifier);
+        if (content == null)
         {
-            _cacheHelper = cacheHelper;
-            _contextProvider = contextProvider;
-        }
-
-        public async Task<Content> Handle(Identifier identifier)
-        {
-            var content = _cacheHelper.Get(identifier);
-            if (content == null)
+            content = await _contextProvider.Context.Retrieve(identifier).ConfigureAwait(false);
+            if (content != null && content.Summary.IsComplete)
             {
-                content = await _contextProvider.Context.Retrieve(identifier).ConfigureAwait(false);
-                if (content != null && content.Summary.IsComplete)
-                {
-                    _cacheHelper.Store(identifier, content);
-                }
+                _cacheHelper.Store(identifier, content);
             }
-            return content;
         }
+        return content;
     }
 }

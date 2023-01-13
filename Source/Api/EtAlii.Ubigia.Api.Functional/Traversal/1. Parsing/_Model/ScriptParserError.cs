@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+
+public class ScriptParserError
 {
-    using System;
+    public Exception Exception { get; }
 
-    public class ScriptParserError
+    public string Message { get; }
+
+    public int Line { get; }
+
+    public int Column { get; }
+
+    internal ScriptParserError(Exception exception, string message, int line, int column)
     {
-        public Exception Exception { get; }
-
-        public string Message { get; }
-
-        public int Line { get; }
-
-        public int Column { get; }
-
-        internal ScriptParserError(Exception exception, string message, int line, int column)
-        {
-            Exception = exception;
-            Message = message;
-            Line = line;
-            Column = column;
-        }
+        Exception = exception;
+        Message = message;
+        Line = line;
+        Column = column;
     }
 }

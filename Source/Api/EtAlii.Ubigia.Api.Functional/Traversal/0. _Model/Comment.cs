@@ -1,19 +1,18 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+public sealed class Comment : SequencePart
 {
-    public sealed class Comment : SequencePart
+    private readonly string _text;
+
+    public Comment(string text)
     {
-        private readonly string _text;
+        _text = text;
+    }
 
-        public Comment(string text)
-        {
-            _text = text;
-        }
-
-        public override string ToString()
-        {
-            return $"--{_text}";
-        }
+    public override string ToString()
+    {
+        return $"--{_text}";
     }
 }

@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class DataConnectionDebuggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class DataConnectionDebuggingScaffolding : IScaffolding
+    public DataConnectionDebuggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public DataConnectionDebuggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectDebugging) // debugging is enabled
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectDebugging) // debugging is enabled
-            {
-                // Invoke all DI container registrations involved in debugging the DataConnection.
-            }
+            // Invoke all DI container registrations involved in debugging the DataConnection.
         }
     }
 }

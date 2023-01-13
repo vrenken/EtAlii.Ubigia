@@ -1,71 +1,70 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(WildcardPathSubjectPart);
 
-    internal sealed class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly INodeFinder _nodeFinder;
+    private const string BeforeTextId = "BeforeText";
+    private const string AfterTextId = "AfterText";
+
+    public WildcardPathSubjectPartParser(
+        INodeValidator nodeValidator,
+        IConstantHelper constantHelper,
+        INodeFinder nodeFinder)
     {
-        public string Id => nameof(WildcardPathSubjectPart);
+        _nodeValidator = nodeValidator;
+        _nodeFinder = nodeFinder;
 
-        public LpsParser Parser { get; }
+        var beforeTextParser = new LpsParser("Before", true,
+            (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(BeforeTextId)) |
+            (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\"')) |
+            (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\''))
+        ).Maybe();
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly INodeFinder _nodeFinder;
-        private const string BeforeTextId = "BeforeText";
-        private const string AfterTextId = "AfterText";
+        var afterTextParser = new LpsParser("After", true,
+            (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(AfterTextId)) |
+            (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\"')) |
+            (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\''))
+        ).Maybe();
 
-        public WildcardPathSubjectPartParser(
-            INodeValidator nodeValidator,
-            IConstantHelper constantHelper,
-            INodeFinder nodeFinder)
+        Parser = new LpsParser(Id, true,
+            beforeTextParser +
+            Lp.One(c => c == '*') +
+            afterTextParser
+        );
+    }
+
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
+
+    public PathSubjectPart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        var beforeText = GetMatch(node, BeforeTextId);
+        var afterText = GetMatch(node, AfterTextId);
+        var pattern = $"{beforeText}*{afterText}";
+        return new WildcardPathSubjectPart(pattern);
+    }
+
+    private string GetMatch(LpNode node, string id)
+    {
+        var result = string.Empty;
+
+        var matchingNode = _nodeFinder.FindFirst(node, id);
+        if (matchingNode != null)
         {
-            _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
-
-            var beforeTextParser = new LpsParser("Before", true,
-                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(BeforeTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\''))
-            ).Maybe();
-
-            var afterTextParser = new LpsParser("After", true,
-                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(AfterTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\''))
-            ).Maybe();
-
-            Parser = new LpsParser(Id, true,
-                beforeTextParser +
-                Lp.One(c => c == '*') +
-                afterTextParser
-            );
+            result = matchingNode.Match.ToString();
         }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public PathSubjectPart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            var beforeText = GetMatch(node, BeforeTextId);
-            var afterText = GetMatch(node, AfterTextId);
-            var pattern = $"{beforeText}*{afterText}";
-            return new WildcardPathSubjectPart(pattern);
-        }
-
-        private string GetMatch(LpNode node, string id)
-        {
-            var result = string.Empty;
-
-            var matchingNode = _nodeFinder.FindFirst(node, id);
-            if (matchingNode != null)
-            {
-                result = matchingNode.Match.ToString();
-            }
-            return result;
-        }
+        return result;
     }
 }

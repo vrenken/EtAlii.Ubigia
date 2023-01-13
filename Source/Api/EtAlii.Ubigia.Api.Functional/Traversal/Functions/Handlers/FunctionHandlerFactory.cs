@@ -1,19 +1,18 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+internal class FunctionHandlerFactory : IFunctionHandlerFactory
 {
-    internal class FunctionHandlerFactory : IFunctionHandlerFactory
+    public IFunctionHandler[] CreateDefaults()
     {
-        public IFunctionHandler[] CreateDefaults()
+        return new IFunctionHandler[]
         {
-            return new IFunctionHandler[]
-            {
-                new IdFunctionHandler(),
-                new RenameFunctionHandler(),
-                new CountFunctionHandler(),
-                new NewFunctionHandler(),
-                new IncludeFunctionHandler(),
-            };
-        }
+            new IdFunctionHandler(),
+            new RenameFunctionHandler(),
+            new CountFunctionHandler(),
+            new NewFunctionHandler(),
+            new IncludeFunctionHandler(),
+        };
     }
 }

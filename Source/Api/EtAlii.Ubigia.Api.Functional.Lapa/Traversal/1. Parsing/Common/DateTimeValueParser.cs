@@ -1,52 +1,51 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+using Moppet.Lapa;
+using Moppet.Lapa.Parsers;
+
+internal sealed class DateTimeValueParser : IDateTimeValueParser
 {
-    using System;
-    using System.Linq;
-    using Moppet.Lapa;
-    using Moppet.Lapa.Parsers;
+    private readonly INodeValidator _nodeValidator;
 
-    internal sealed class DateTimeValueParser : IDateTimeValueParser
+    public LpsParser Parser { get; }
+
+    string IDateTimeValueParser.Id => Id;
+    public const string Id = "DateTimeValue";
+
+    public DateTimeValueParser(INodeValidator nodeValidator)
     {
-        private readonly INodeValidator _nodeValidator;
+        _nodeValidator = nodeValidator;
+        Parser = new LpsParser(Id, true, LpDateTime.DateTime());
+    }
 
-        public LpsParser Parser { get; }
 
-        string IDateTimeValueParser.Id => Id;
-        public const string Id = "DateTimeValue";
+    public DateTime Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-        public DateTimeValueParser(INodeValidator nodeValidator)
+        var result = DateTime.MinValue;
+
+        if (!LpDateTime.TryParseDateTime(node.Children.First(), ref result))
         {
-            _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, LpDateTime.DateTime());
+            throw new ScriptParserException("Cannot parse DateTime: " + node.Match);
         }
 
+        return result;
+    }
 
-        public DateTime Parse(LpNode node)
+    public bool CanParse(LpNode node)
+    {
+        var result = DateTime.MinValue;
+
+        var success = node.Id == Id;
+        if (success)
         {
-            _nodeValidator.EnsureSuccess(node, Id);
-
-            var result = DateTime.MinValue;
-
-            if (!LpDateTime.TryParseDateTime(node.Children.First(), ref result))
-            {
-                throw new ScriptParserException("Cannot parse DateTime: " + node.Match);
-            }
-
-            return result;
+            success = LpDateTime.TryParseDateTime(node.Children.First(), ref result);
         }
-
-        public bool CanParse(LpNode node)
-        {
-            var result = DateTime.MinValue;
-
-            var success = node.Id == Id;
-            if (success)
-            {
-                success = LpDateTime.TryParseDateTime(node.Children.First(), ref result);
-            }
-            return success;
-        }
+        return success;
     }
 }

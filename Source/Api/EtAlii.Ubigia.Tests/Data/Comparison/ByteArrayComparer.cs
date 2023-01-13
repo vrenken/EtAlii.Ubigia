@@ -1,50 +1,49 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+public class ByteArrayComparer
 {
-    public class ByteArrayComparer
+    public bool AreEqual(byte[] expected, byte[] actual)
     {
-        public bool AreEqual(byte[] expected, byte[] actual)
+        if (expected.Length != actual.Length)
         {
-            if (expected.Length != actual.Length)
+            return false;
+        }
+
+        for (var i = 0; i < expected.Length; i++)
+        {
+            if (expected[i] != actual[i])
             {
                 return false;
             }
-
-            for (var i = 0; i < expected.Length; i++)
-            {
-                if (expected[i] != actual[i])
-                {
-                    return false;
-                }
-            }
-            return true;
         }
+        return true;
+    }
 
 
-        public bool AreNotEqual(byte[] first, byte[] second)
+    public bool AreNotEqual(byte[] first, byte[] second)
+    {
+        var areEqual = true;
+
+        try
         {
-            var areEqual = true;
-
-            try
+            areEqual &= first != second || (first == null && second == null);
+            if (areEqual)
             {
-                areEqual &= first != second || (first == null && second == null);
-                if (areEqual)
+                areEqual &= first.Length == second.Length;
+            }
+            if (areEqual)
+            {
+                for (var i = 0; i < first.Length; i++)
                 {
-                    areEqual &= first.Length == second.Length;
-                }
-                if (areEqual)
-                {
-                    for (var i = 0; i < first.Length; i++)
-                    {
-                        areEqual &= first[i] == second[i];
-                    }
+                    areEqual &= first[i] == second[i];
                 }
             }
-            catch
-            {
-                areEqual = false;
-            }
-
-            return !areEqual;
         }
+        catch
+        {
+            areEqual = false;
+        }
+
+        return !areEqual;
     }
 }

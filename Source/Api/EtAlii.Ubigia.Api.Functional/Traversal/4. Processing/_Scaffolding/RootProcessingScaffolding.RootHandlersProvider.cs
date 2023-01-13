@@ -1,34 +1,33 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using EtAlii.xTechnology.MicroContainer;
+
+internal partial class RootProcessingScaffolding
 {
-    using System.Linq;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
 
-    internal partial class RootProcessingScaffolding
+    private IRootHandlerMappersProvider GetRootHandlerMappersProvider(IServiceCollection services)
     {
-        private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
+        var defaultRootHandlerMappers = services.GetInstance<IRootHandlerMapperFactory>().CreateDefaults();
 
-        private IRootHandlerMappersProvider GetRootHandlerMappersProvider(IServiceCollection services)
+        var rootHandlerMappers = defaultRootHandlerMappers
+            .Concat(_rootHandlerMappersProvider.RootHandlerMappers)
+            .ToArray();
+
+        var doubles = rootHandlerMappers
+            .GroupBy(fh => fh.Type)
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToArray();
+        if (doubles.Any())
         {
-            var defaultRootHandlerMappers = services.GetInstance<IRootHandlerMapperFactory>().CreateDefaults();
-
-            var rootHandlerMappers = defaultRootHandlerMappers
-                .Concat(_rootHandlerMappersProvider.RootHandlerMappers)
-                .ToArray();
-
-            var doubles = rootHandlerMappers
-                .GroupBy(fh => fh.Type)
-                .Where(g => g.Count() > 1)
-                .Select(g => g.Key)
-                .ToArray();
-            if (doubles.Any())
-            {
-                var message = $"Double registered root handler mappers detected: {string.Join(", ", doubles)}";
-                throw new ScriptParserException(message);
-            }
-
-            return new RootHandlerMappersProvider(rootHandlerMappers);
+            var message = $"Double registered root handler mappers detected: {string.Join(", ", doubles)}";
+            throw new ScriptParserException(message);
         }
+
+        return new RootHandlerMappersProvider(rootHandlerMappers);
     }
 }

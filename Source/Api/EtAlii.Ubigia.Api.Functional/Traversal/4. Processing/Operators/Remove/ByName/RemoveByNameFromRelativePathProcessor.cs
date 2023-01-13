@@ -1,103 +1,102 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class RemoveByNameFromRelativePathProcessor : IRemoveByNameFromRelativePathProcessor
 {
-    using System;
-    using System.Linq;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    private readonly IRecursiveRemover _recursiveRemover;
+    private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
+    private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
 
-    internal class RemoveByNameFromRelativePathProcessor : IRemoveByNameFromRelativePathProcessor
+    public RemoveByNameFromRelativePathProcessor(
+        IRecursiveRemover recursiveRemover,
+        IItemToIdentifierConverter itemToIdentifierConverter,
+        IItemToPathSubjectConverter itemToPathSubjectConverter)
     {
-        private readonly IRecursiveRemover _recursiveRemover;
-        private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
-        private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
+        _recursiveRemover = recursiveRemover;
+        _itemToIdentifierConverter = itemToIdentifierConverter;
+        _itemToPathSubjectConverter = itemToPathSubjectConverter;
+    }
 
-        public RemoveByNameFromRelativePathProcessor(
-            IRecursiveRemover recursiveRemover,
-            IItemToIdentifierConverter itemToIdentifierConverter,
-            IItemToPathSubjectConverter itemToPathSubjectConverter)
+    public async Task Process(OperatorParameters parameters)
+    {
+        var pathToRemove = await GetPathToRemove(parameters).ConfigureAwait(false);
+        if (pathToRemove == null)
         {
-            _recursiveRemover = recursiveRemover;
-            _itemToIdentifierConverter = itemToIdentifierConverter;
-            _itemToPathSubjectConverter = itemToPathSubjectConverter;
+            throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
         }
 
-        public async Task Process(OperatorParameters parameters)
+        if (!pathToRemove.Parts.All(part => part is ConstantPathSubjectPart || part is ParentPathSubjectPart))
         {
-            var pathToRemove = await GetPathToRemove(parameters).ConfigureAwait(false);
-            if (pathToRemove == null)
-            {
-                throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
-            }
+            throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a constant, hierarchical path");
+        }
 
-            if (!pathToRemove.Parts.All(part => part is ConstantPathSubjectPart || part is ParentPathSubjectPart))
-            {
-                throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a constant, hierarchical path");
-            }
+        if (pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Count() > 1)
+        {
+            throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a single constant path part");
+        }
 
-            if (pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Count() > 1)
+        parameters.LeftInput.SubscribeAsync(
+            onError: parameters.Output.OnError,
+            onCompleted: parameters.Output.OnCompleted,
+            onNext: async o =>
             {
-                throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a single constant path part");
-            }
-
-            parameters.LeftInput.SubscribeAsync(
-                onError: parameters.Output.OnError,
-                onCompleted: parameters.Output.OnCompleted,
-                onNext: async o =>
+                try
                 {
-                    try
-                    {
-                        var leftId = _itemToIdentifierConverter.Convert(o);
-                        await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output).ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        var message = "Unable to remove from relative path by name";
-                        parameters.Output.OnError(new InvalidOperationException(message, e));
-                    }
-                });
+                    var leftId = _itemToIdentifierConverter.Convert(o);
+                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+                    var message = "Unable to remove from relative path by name";
+                    parameters.Output.OnError(new InvalidOperationException(message, e));
+                }
+            });
 
-            //if [leftResult = = null]
-            //[
-            //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires path to start from")
-            //]
-            //if [leftIds = = null | | !leftIds.Any[]]
-            //[
-            //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part")
-            //]
-        }
+        //if [leftResult = = null]
+        //[
+        //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires path to start from")
+        //]
+        //if [leftIds = = null | | !leftIds.Any[]]
+        //[
+        //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part")
+        //]
+    }
 
-        private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)
+    private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)
+    {
+        PathSubject pathToAdd;
+
+        if (parameters.RightSubject is PathSubject pathSubject)
         {
-            PathSubject pathToAdd;
-
-            if (parameters.RightSubject is PathSubject pathSubject)
-            {
-                pathToAdd = pathSubject;
-            }
-            else
-            {
-                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
-
-                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-            }
-
-            return pathToAdd;
+            pathToAdd = pathSubject;
         }
-
-
-        private async Task Remove(
-            ConstantPathSubjectPart pathPartToRemove,
-            Identifier id,
-            ExecutionScope scope,
-            IObserver<object> output)
+        else
         {
-            var parentId = id;
-            var removeResult = await _recursiveRemover.Remove(parentId, pathPartToRemove, scope).ConfigureAwait(false);
-            var result = new Node(removeResult.NewEntry);
-            output.OnNext(result);
+            var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+
+            _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
         }
+
+        return pathToAdd;
+    }
+
+
+    private async Task Remove(
+        ConstantPathSubjectPart pathPartToRemove,
+        Identifier id,
+        ExecutionScope scope,
+        IObserver<object> output)
+    {
+        var parentId = id;
+        var removeResult = await _recursiveRemover.Remove(parentId, pathPartToRemove, scope).ConfigureAwait(false);
+        var result = new Node(removeResult.NewEntry);
+        output.OnNext(result);
     }
 }

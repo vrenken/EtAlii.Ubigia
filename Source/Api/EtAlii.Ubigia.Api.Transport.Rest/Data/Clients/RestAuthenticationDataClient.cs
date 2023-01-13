@@ -1,28 +1,27 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using System.Threading.Tasks;
+
+public partial class RestAuthenticationDataClient : IAuthenticationDataClient
 {
-    using System.Threading.Tasks;
+    private IRestSpaceConnection _connection;
 
-    public partial class RestAuthenticationDataClient : IAuthenticationDataClient
+    public async Task Connect(ISpaceConnection spaceConnection)
     {
-        private IRestSpaceConnection _connection;
+        await Connect((IRestSpaceConnection) spaceConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
-        {
-            await Connect((IRestSpaceConnection) spaceConnection).ConfigureAwait(false);
-        }
+    private Task Connect(IRestSpaceConnection connection)
+    {
+        _connection = connection;
+        return Task.CompletedTask;
+    }
 
-        private Task Connect(IRestSpaceConnection connection)
-        {
-            _connection = connection;
-            return Task.CompletedTask;
-        }
-
-        public Task Disconnect()
-        {
-            _connection = null;
-            return Task.CompletedTask;
-        }
+    public Task Disconnect()
+    {
+        _connection = null;
+        return Task.CompletedTask;
     }
 }

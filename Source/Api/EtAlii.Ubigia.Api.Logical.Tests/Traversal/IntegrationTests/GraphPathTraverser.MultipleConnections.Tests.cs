@@ -1,446 +1,445 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Tests
+namespace EtAlii.Ubigia.Api.Logical.Tests;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical.Diagnostics;
+using Xunit;
+using EtAlii.Ubigia.Tests;
+using EtAlii.xTechnology.MicroContainer;
+
+[CorrelateUnitTests]
+public class GraphPathTraverserMultipleConnectionsTests : IClassFixture<LogicalUnitTestContext>
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using Xunit;
-    using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly LogicalUnitTestContext _testContext;
 
-    [CorrelateUnitTests]
-    public class GraphPathTraverserMultipleConnectionsTests : IClassFixture<LogicalUnitTestContext>
+    public GraphPathTraverserMultipleConnectionsTests(LogicalUnitTestContext testContext)
     {
-        private readonly LogicalUnitTestContext _testContext;
+        _testContext = testContext;
+    }
 
-        public GraphPathTraverserMultipleConnectionsTests(LogicalUnitTestContext testContext)
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Create()
+    {
+        // Arrange.
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+
+        // Act.
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+
+        // Assert.
+        Assert.NotNull(traverser);
+    }
+
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
+
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
+
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
+
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        foreach (var item in hierarchy)
         {
-            _testContext = testContext;
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Create()
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            // Arrange.
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
+            traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
 
-            // Act.
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        // Assert.
+        Assert.Single(result);
+        Assert.Equal(hierarchy[depth - 1], result.First().Type);
+    }
 
-            // Assert.
-            Assert.NotNull(traverser);
-        }
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst()
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
+
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
+
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        foreach (var item in hierarchy)
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
-
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
-
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
-
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
-
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
-
-            // Assert.
-            Assert.Single(result);
-            Assert.Equal(hierarchy[depth - 1], result.First().Type);
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst()
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
+            traverser.Traverse(path, Traversal.DepthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
 
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
+        // Assert.
+        Assert.Single(result);
+        Assert.Equal(hierarchy[depth - 1], result.First().Type);
+    }
 
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Wrong_Path()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
 
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
 
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
 
-            // Assert.
-            Assert.Single(result);
-            Assert.Equal(hierarchy[depth - 1], result.First().Type);
-        }
-
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Wrong_Path()
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        hierarchy[3] = Guid.NewGuid().ToString();
+        foreach (var item in hierarchy)
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
-
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
-
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
-
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            hierarchy[3] = Guid.NewGuid().ToString();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
-
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
-
-            // Assert.
-            Assert.Empty(result);
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Wrong_Path()
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
+            traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
 
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
+        // Assert.
+        Assert.Empty(result);
+    }
 
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Wrong_Path()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
+
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
+
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
 
 
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            hierarchy[3] = Guid.NewGuid().ToString();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
-
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
-
-            // Assert.
-            Assert.Empty(result);
-        }
-
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Too_Short()
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        hierarchy[3] = Guid.NewGuid().ToString();
+        foreach (var item in hierarchy)
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
-
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
-
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
-
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            hierarchy = hierarchy.Take(depth - 1).ToArray();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
-
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
-
-            // Assert.
-            Assert.Single(result);
-            Assert.Equal(hierarchy[depth - 2], result.First().Type);
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Too_Short()
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
+            traverser.Traverse(path, Traversal.DepthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
 
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
+        // Assert.
+        Assert.Empty(result);
+    }
 
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Too_Short()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
 
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            hierarchy = hierarchy.Take(depth - 1).ToArray();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
 
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
 
-            // Assert.
-            Assert.Single(result);
-            Assert.Equal(hierarchy[depth - 2], result.First().Type);
-        }
-
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Too_Long()
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        hierarchy = hierarchy.Take(depth - 1).ToArray();
+        foreach (var item in hierarchy)
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
-
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
-
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
-
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy)
-            {
-                Guid.NewGuid().ToString()
-            };
-            hierarchy = newHierarchy.ToArray();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
-
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
-
-            // Assert.
-            Assert.Empty(result);
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
 
-        [Fact]
-        public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Too_Long()
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
         {
-            // Arrange.
-            const int depth = 5;
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Fabric
-                .CreateFabricOptions(true)
-                .UseLogicalContext()
-                .UseDiagnostics()
-                .ConfigureAwait(false);
-            var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
-            var fabricContext = logicalOptions.FabricContext;
+            traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
 
-            var communicationsRoot = await fabricContext.Roots
-                .Get("Communication")
-                .ConfigureAwait(false);
-            var communicationsEntry = (IEditableEntry)await fabricContext.Entries
-                .Get(communicationsRoot, scope)
-                .ConfigureAwait(false);
+        // Assert.
+        Assert.Single(result);
+        Assert.Equal(hierarchy[depth - 2], result.First().Type);
+    }
 
-            var hierarchyResult = await _testContext.Fabric
-                .CreateHierarchy(fabricContext, communicationsEntry, depth)
-                .ConfigureAwait(false);
-            var hierarchy = hierarchyResult.Item2;
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Too_Short()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
 
-            var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
-            graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy)
-            {
-                Guid.NewGuid().ToString()
-            };
-            hierarchy = newHierarchy.ToArray();
-            foreach (var item in hierarchy)
-            {
-                graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Children)
-                    .Add(item);
-            }
-            var path = graphPathBuilder.ToPath();
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
 
-            // Act.
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.ToArray();
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
 
-            // Assert.
-            Assert.Empty(result);
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        hierarchy = hierarchy.Take(depth - 1).ToArray();
+        foreach (var item in hierarchy)
+        {
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
         }
+        var path = graphPathBuilder.ToPath();
+
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
+        {
+            traverser.Traverse(path, Traversal.DepthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
+
+        // Assert.
+        Assert.Single(result);
+        Assert.Equal(hierarchy[depth - 2], result.First().Type);
+    }
+
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_BreadthFirst_Too_Long()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
+
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
+
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
+
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        var newHierarchy = new List<string>(hierarchy)
+        {
+            Guid.NewGuid().ToString()
+        };
+        hierarchy = newHierarchy.ToArray();
+        foreach (var item in hierarchy)
+        {
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
+        }
+        var path = graphPathBuilder.ToPath();
+
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
+        {
+            traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
+
+        // Assert.
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public async Task GraphPathTraverser_MultipleConnections_Traverse_Time_DepthFirst_Too_Long()
+    {
+        // Arrange.
+        const int depth = 5;
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Fabric
+            .CreateFabricOptions(true)
+            .UseLogicalContext()
+            .UseDiagnostics()
+            .ConfigureAwait(false);
+        var traverser = Factory.Create<IGraphPathTraverser>(logicalOptions);
+        var fabricContext = logicalOptions.FabricContext;
+
+        var communicationsRoot = await fabricContext.Roots
+            .Get("Communication")
+            .ConfigureAwait(false);
+        var communicationsEntry = (IEditableEntry)await fabricContext.Entries
+            .Get(communicationsRoot, scope)
+            .ConfigureAwait(false);
+
+        var hierarchyResult = await _testContext.Fabric
+            .CreateHierarchy(fabricContext, communicationsEntry, depth)
+            .ConfigureAwait(false);
+        var hierarchy = hierarchyResult.Item2;
+
+        var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
+        graphPathBuilder.Add(communicationsEntry.Id);
+        var newHierarchy = new List<string>(hierarchy)
+        {
+            Guid.NewGuid().ToString()
+        };
+        hierarchy = newHierarchy.ToArray();
+        foreach (var item in hierarchy)
+        {
+            graphPathBuilder = graphPathBuilder
+                .Add(GraphRelation.Children)
+                .Add(item);
+        }
+        var path = graphPathBuilder.ToPath();
+
+        // Act.
+        var results = Observable.Create<IReadOnlyEntry>(output =>
+        {
+            traverser.Traverse(path, Traversal.DepthFirst, scope, output);
+            return Disposable.Empty;
+        }).ToHotObservable();
+        var result = await results.ToArray();
+
+        // Assert.
+        Assert.Empty(result);
     }
 }

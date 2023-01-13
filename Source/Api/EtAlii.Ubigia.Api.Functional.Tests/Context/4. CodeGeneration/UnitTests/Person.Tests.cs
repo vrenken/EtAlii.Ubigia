@@ -1,40 +1,39 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context.Tests
+namespace EtAlii.Ubigia.Api.Functional.Context.Tests;
+
+using Xunit;
+using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+using EtAlii.Ubigia.Tests;
+
+[CorrelateUnitTests]
+public class PersonTests
 {
-    using Xunit;
-    using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
-    using EtAlii.Ubigia.Tests;
-
-    [CorrelateUnitTests]
-    public class PersonTests
+    [Fact]
+    public void Person_Create()
     {
-        [Fact]
-        public void Person_Create()
-        {
-            // Arrange.
+        // Arrange.
 
-            // Act.
-            var person = new Person();
+        // Act.
+        var person = new Person();
 
-            // Assert.
-            Assert.NotNull(person);
-        }
+        // Assert.
+        Assert.NotNull(person);
+    }
 
-        [Fact]
-        public void Person_With_Properties()
-        {
-            // Arrange.
-            var person = new Person();
+    [Fact]
+    public void Person_With_Properties()
+    {
+        // Arrange.
+        var person = new Person();
 
-            // Act.
-            var firstName = person.FirstName;
-            var lastName = person.LastName;
+        // Act.
+        var firstName = person.FirstName;
+        var lastName = person.LastName;
 
-            // Assert.
-            Assert.NotNull(person);
-            Assert.Null(firstName);
-            Assert.Null(lastName);
-        }
+        // Assert.
+        Assert.NotNull(person);
+        Assert.Null(firstName);
+        Assert.Null(lastName);
     }
 }

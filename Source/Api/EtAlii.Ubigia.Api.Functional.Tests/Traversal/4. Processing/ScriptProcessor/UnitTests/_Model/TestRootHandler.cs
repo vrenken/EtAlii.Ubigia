@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+
+internal sealed class TestRootHandler : IRootHandler
 {
-    using System;
+    public PathSubjectPart[] Template { get; }
 
-    internal sealed class TestRootHandler : IRootHandler
+    public TestRootHandler(PathSubjectPart[] template)
     {
-        public PathSubjectPart[] Template { get; }
+        Template = template;
+    }
 
-        public TestRootHandler(PathSubjectPart[] template)
-        {
-            Template = template;
-        }
-
-        public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
-        {
-            throw new NotImplementedException();
-        }
+    public void Process(IScriptProcessingContext context, string root, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+    {
+        throw new NotImplementedException();
     }
 }

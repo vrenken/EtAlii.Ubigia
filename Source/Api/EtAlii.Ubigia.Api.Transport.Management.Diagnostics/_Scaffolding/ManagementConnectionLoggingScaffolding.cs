@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class ManagementConnectionLoggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class ManagementConnectionLoggingScaffolding : IScaffolding
+    public ManagementConnectionLoggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public ManagementConnectionLoggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectLogging) // logging is enabled.
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectLogging) // logging is enabled.
-            {
-                container.RegisterDecorator<IManagementConnection, LoggingManagementConnection>();
-            }
+            container.RegisterDecorator<IManagementConnection, LoggingManagementConnection>();
         }
     }
 }

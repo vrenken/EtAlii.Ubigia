@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Diagnostics;
+
+[DebuggerStepThrough]
+[DebuggerDisplay("{" + nameof(Limit) + "}")]
+public sealed class GraphTraversingWildcard : GraphPathPart
 {
-    using System.Diagnostics;
+    public readonly int Limit;
 
-    [DebuggerStepThrough]
-    [DebuggerDisplay("{" + nameof(Limit) + "}")]
-    public sealed class GraphTraversingWildcard : GraphPathPart
+    public GraphTraversingWildcard(int limit)
     {
-        public readonly int Limit;
+        Limit = limit;
+    }
 
-        public GraphTraversingWildcard(int limit)
-        {
-            Limit = limit;
-        }
-
-        public override string ToString()
-        {
-            return Limit == 0 ? "**" : $"*{Limit}*";
-        }
+    public override string ToString()
+    {
+        return Limit == 0 ? "**" : $"*{Limit}*";
     }
 }

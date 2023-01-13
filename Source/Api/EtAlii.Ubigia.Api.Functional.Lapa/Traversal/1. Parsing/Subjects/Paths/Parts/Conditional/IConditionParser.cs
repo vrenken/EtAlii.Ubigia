@@ -1,15 +1,14 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal interface IConditionParser
 {
-    using Moppet.Lapa;
+    LpsParser Parser { get; }
+    string Id { get; }
 
-    internal interface IConditionParser
-    {
-        LpsParser Parser { get; }
-        string Id { get; }
-
-        Condition Parse(LpNode node, INodeValidator nodeValidator);
-        bool CanParse(LpNode node);
-    }
+    Condition Parse(LpNode node, INodeValidator nodeValidator);
+    bool CanParse(LpNode node);
 }

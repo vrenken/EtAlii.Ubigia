@@ -1,71 +1,70 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using System.IO;
+
+public class FolderComparer
 {
-    using System.IO;
+    private readonly FileComparer _fileComparer;
 
-    public class FolderComparer
+    public FolderComparer(FileComparer fileComparer)
     {
-        private readonly FileComparer _fileComparer;
+        _fileComparer = fileComparer;
+    }
 
-        public FolderComparer(FileComparer fileComparer)
+    public bool FoldersAreEqual(string expectedFolderName, string actualFolderName)
+    {
+        if (!Directory.Exists(expectedFolderName))
         {
-            _fileComparer = fileComparer;
+            return false;
+        }
+        if(!Directory.Exists(actualFolderName))
+        {
+            return false;
         }
 
-        public bool FoldersAreEqual(string expectedFolderName, string actualFolderName)
+        var expectedSubFolders = Directory.GetDirectories(expectedFolderName);
+        var actualSubFolders = Directory.GetDirectories(actualFolderName);
+
+        if (expectedSubFolders.Length != actualSubFolders.Length)
         {
-            if (!Directory.Exists(expectedFolderName))
-            {
-                return false;
-            }
-            if(!Directory.Exists(actualFolderName))
-            {
-                return false;
-            }
-
-            var expectedSubFolders = Directory.GetDirectories(expectedFolderName);
-            var actualSubFolders = Directory.GetDirectories(actualFolderName);
-
-            if (expectedSubFolders.Length != actualSubFolders.Length)
-            {
-                return false;
-            }
-
-            for (var i = 0; i < expectedSubFolders.Length; i++)
-            {
-                var expectedSubFolder = Path.GetFileName(expectedSubFolders[i]);
-                var actualSubFolder = Path.GetFileName(actualSubFolders[i]);
-
-                if (expectedSubFolder != actualSubFolder)
-                {
-                    return false;
-                }
-
-                FoldersAreEqual(Path.Combine(expectedFolderName, expectedSubFolder), Path.Combine(actualFolderName, actualSubFolder));
-            }
-
-            var expectedFiles = Directory.GetFiles(expectedFolderName);
-            var actualFiles = Directory.GetFiles(actualFolderName);
-
-            if (expectedFiles.Length != actualFiles.Length)
-            {
-                return false;
-            }
-
-            for (var i = 0; i < expectedSubFolders.Length; i++)
-            {
-                var expectedFile = Path.GetFileName(expectedFiles[i]);
-                var actualFile = Path.GetFileName(actualFiles[i]);
-
-                if (expectedFile != actualFile)
-                {
-                    return false;
-                }
-                if(!_fileComparer.AreEqual(Path.Combine(expectedFolderName, expectedFile), Path.Combine(actualFolderName, actualFile)))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return false;
         }
+
+        for (var i = 0; i < expectedSubFolders.Length; i++)
+        {
+            var expectedSubFolder = Path.GetFileName(expectedSubFolders[i]);
+            var actualSubFolder = Path.GetFileName(actualSubFolders[i]);
+
+            if (expectedSubFolder != actualSubFolder)
+            {
+                return false;
+            }
+
+            FoldersAreEqual(Path.Combine(expectedFolderName, expectedSubFolder), Path.Combine(actualFolderName, actualSubFolder));
+        }
+
+        var expectedFiles = Directory.GetFiles(expectedFolderName);
+        var actualFiles = Directory.GetFiles(actualFolderName);
+
+        if (expectedFiles.Length != actualFiles.Length)
+        {
+            return false;
+        }
+
+        for (var i = 0; i < expectedSubFolders.Length; i++)
+        {
+            var expectedFile = Path.GetFileName(expectedFiles[i]);
+            var actualFile = Path.GetFileName(actualFiles[i]);
+
+            if (expectedFile != actualFile)
+            {
+                return false;
+            }
+            if(!_fileComparer.AreEqual(Path.Combine(expectedFolderName, expectedFile), Path.Combine(actualFolderName, actualFile)))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

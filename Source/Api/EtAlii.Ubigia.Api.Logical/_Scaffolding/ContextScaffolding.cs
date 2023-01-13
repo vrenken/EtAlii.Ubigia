@@ -1,42 +1,41 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using EtAlii.Ubigia.Api.Fabric;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class ContextScaffolding : IScaffolding
 {
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly LogicalOptions _options;
 
-    internal class ContextScaffolding : IScaffolding
+    public ContextScaffolding(LogicalOptions options)
     {
-        private readonly LogicalOptions _options;
+        _options = options;
+    }
 
-        public ContextScaffolding(LogicalOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        container.Register<ILogicalContext>(serviceCollection =>
         {
-            _options = options;
-        }
+            var nodes = serviceCollection.GetInstance<ILogicalNodeSet>();
+            var roots = serviceCollection.GetInstance<ILogicalRootSet>();
+            var content = serviceCollection.GetInstance<IContentManager>();
+            var properties = serviceCollection.GetInstance<IPropertiesManager>();
+            return new LogicalContext(_options, nodes, roots, content, properties);
+        });
+        container.Register(() => _options.ConfigurationRoot);
+        container.Register(() => _options.FabricContext);
+        container.Register<ILogicalNodeSet, LogicalNodeSet>();
+        container.Register<ILogicalRootSet, LogicalRootSet>();
 
-        public void Register(IRegisterOnlyContainer container)
+        container.Register<IPropertiesManager, PropertiesManager>();
+        container.Register<IPropertiesGetter, PropertiesGetter>();
+
+        container.Register(services =>
         {
-            container.Register<ILogicalContext>(serviceCollection =>
-            {
-                var nodes = serviceCollection.GetInstance<ILogicalNodeSet>();
-                var roots = serviceCollection.GetInstance<ILogicalRootSet>();
-                var content = serviceCollection.GetInstance<IContentManager>();
-                var properties = serviceCollection.GetInstance<IPropertiesManager>();
-                return new LogicalContext(_options, nodes, roots, content, properties);
-            });
-            container.Register(() => _options.ConfigurationRoot);
-            container.Register(() => _options.FabricContext);
-            container.Register<ILogicalNodeSet, LogicalNodeSet>();
-            container.Register<ILogicalRootSet, LogicalRootSet>();
-
-            container.Register<IPropertiesManager, PropertiesManager>();
-            container.Register<IPropertiesGetter, PropertiesGetter>();
-
-            container.Register(services =>
-            {
-                var fabric = services.GetInstance<IFabricContext>();
-                return new ContentManagerFactory().Create(fabric);
-            });
-        }
+            var fabric = services.GetInstance<IFabricContext>();
+            return new ContentManagerFactory().Create(fabric);
+        });
     }
 }

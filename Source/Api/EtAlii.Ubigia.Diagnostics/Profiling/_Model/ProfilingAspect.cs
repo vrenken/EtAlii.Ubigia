@@ -1,22 +1,21 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Diagnostics.Profiling;
+
+public sealed partial class ProfilingAspect
 {
-    public sealed partial class ProfilingAspect
+    public ProfilingLayer Layer { get; }
+
+    public string Id { get; }
+
+    public ProfilingAspect(ProfilingLayer layer, string id)
     {
-        public ProfilingLayer Layer { get; }
+        Layer = layer;
+        Id = id;
+    }
 
-        public string Id { get; }
-
-        public ProfilingAspect(ProfilingLayer layer, string id)
-        {
-            Layer = layer;
-            Id = id;
-        }
-
-        public override string ToString()
-        {
-            return $"{Layer} - {Id}";
-        }
+    public override string ToString()
+    {
+        return $"{Layer} - {Id}";
     }
 }

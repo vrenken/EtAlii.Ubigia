@@ -1,33 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public class LoggingSchemaProcessorExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public class LoggingSchemaProcessorExtension : IExtension
+    public LoggingSchemaProcessorExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public LoggingSchemaProcessorExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Functional:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options?.InjectLogging ?? false)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Functional:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options?.InjectLogging ?? false)
+            var hasProcessor = container.HasRegistration<ISchemaProcessor>();
+            if (hasProcessor)
             {
-                var hasProcessor = container.HasRegistration<ISchemaProcessor>();
-                if (hasProcessor)
-                {
-                    container.RegisterDecorator<ISchemaProcessor, LoggingSchemaProcessor>();
-                }
+                container.RegisterDecorator<ISchemaProcessor, LoggingSchemaProcessor>();
             }
         }
     }

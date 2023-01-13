@@ -1,36 +1,35 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using EtAlii.Ubigia.Api.Functional.Traversal;
+using Moppet.Lapa;
+
+internal class RequirementParser : IRequirementParser
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using Moppet.Lapa;
+    public LpsParser Parser { get; }
 
-    internal class RequirementParser : IRequirementParser
+    public string Id => nameof(Requirement);
+
+    private readonly INodeValidator _nodeValidator;
+
+    public RequirementParser(INodeValidator nodeValidator)
     {
-        public LpsParser Parser { get; }
+        _nodeValidator = nodeValidator;
+        Parser = new LpsParser(Id, true, Lp.Char('!') | Lp.Char('?')).Maybe();
+    }
 
-        public string Id => nameof(Requirement);
+    public Requirement Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-        private readonly INodeValidator _nodeValidator;
-
-        public RequirementParser(INodeValidator nodeValidator)
+        var requirement = Requirement.None;
+        var match = node.ToString();
+        return match switch
         {
-            _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.Char('!') | Lp.Char('?')).Maybe();
-        }
-
-        public Requirement Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-
-            var requirement = Requirement.None;
-            var match = node.ToString();
-            return match switch
-            {
-                "?" => Requirement.Optional,
-                "!" => Requirement.Mandatory,
-                _ => requirement
-            };
-        }
+            "?" => Requirement.Optional,
+            "!" => Requirement.Mandatory,
+            _ => requirement
+        };
     }
 }

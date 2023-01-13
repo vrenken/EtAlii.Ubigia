@@ -1,24 +1,23 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class NewLineParser : INewLineParser
 {
-    using Moppet.Lapa;
+    public LpsChain Required { get; }
 
-    internal sealed class NewLineParser : INewLineParser
+    public LpsChain Optional { get; }
+
+    public LpsParser OptionalMultiple { get; }
+
+    public NewLineParser(IWhitespaceParser whitespaceParser)
     {
-        public LpsChain Required { get; }
+        Required = whitespaceParser.Optional + Lp.OneOrMore(c => c == '\n') + whitespaceParser.Optional;
+        Optional = whitespaceParser.Optional + Lp.ZeroOrMore(c => c == '\n') + whitespaceParser.Optional;
 
-        public LpsChain Optional { get; }
-
-        public LpsParser OptionalMultiple { get; }
-
-        public NewLineParser(IWhitespaceParser whitespaceParser)
-        {
-            Required = whitespaceParser.Optional + Lp.OneOrMore(c => c == '\n') + whitespaceParser.Optional;
-            Optional = whitespaceParser.Optional + Lp.ZeroOrMore(c => c == '\n') + whitespaceParser.Optional;
-
-            OptionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n' || c == '\r' || c == '\t');
-            //_optionalMultiple = (Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ')).ZeroOrMore().Maybe()
-        }
+        OptionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n' || c == '\r' || c == '\t');
+        //_optionalMultiple = (Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ')).ZeroOrMore().Maybe()
     }
 }

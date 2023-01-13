@@ -1,26 +1,25 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+using System.Threading.Tasks;
+
+internal sealed class ContentContextStub : IContentContext
 {
-    using System.Threading.Tasks;
+    public IContentDataClient Data { get; }
 
-    internal sealed class ContentContextStub : IContentContext
+    public ContentContextStub()
     {
-        public IContentDataClient Data { get; }
+        Data = new ContentDataClientStub();
+    }
 
-        public ContentContextStub()
-        {
-            Data = new ContentDataClientStub();
-        }
+    public Task Open(ISpaceConnection spaceConnection)
+    {
+        return Task.CompletedTask;
+    }
 
-        public Task Open(ISpaceConnection spaceConnection)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task Close(ISpaceConnection spaceConnection)
-        {
-            return Task.CompletedTask;
-        }
+    public Task Close(ISpaceConnection spaceConnection)
+    {
+        return Task.CompletedTask;
     }
 }

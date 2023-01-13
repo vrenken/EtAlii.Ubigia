@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System.Threading.Tasks;
+
+internal class MutationValueProcessor : IMutationValueProcessor
 {
-    using System.Threading.Tasks;
+    private readonly IValueSetter _valueSetter;
 
-    internal class MutationValueProcessor : IMutationValueProcessor
+    public MutationValueProcessor(IValueSetter valueSetter)
     {
-        private readonly IValueSetter _valueSetter;
+        _valueSetter = valueSetter;
+    }
 
-        public MutationValueProcessor(IValueSetter valueSetter)
+    public async Task Process(
+        ValueFragment fragment,
+        ExecutionPlanResultSink executionPlanResultSink,
+        ExecutionScope scope)
+    {
+        foreach (var structure in executionPlanResultSink.Parent.Items)
         {
-            _valueSetter = valueSetter;
-        }
-
-        public async Task Process(
-            ValueFragment fragment,
-            ExecutionPlanResultSink executionPlanResultSink,
-            ExecutionScope scope)
-        {
-            foreach (var structure in executionPlanResultSink.Parent.Items)
-            {
-                var value = await _valueSetter
-                    .Set(fragment.Name, fragment.Mutation, fragment.Annotation, scope, structure)
-                    .ConfigureAwait(false);
-                structure.EditableValues.Add(value);
-            }
+            var value = await _valueSetter
+                .Set(fragment.Name, fragment.Mutation, fragment.Annotation, scope, structure)
+                .ConfigureAwait(false);
+            structure.EditableValues.Add(value);
         }
     }
 }

@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using System.Threading.Tasks;
+
+internal class RootHandlerFinder : IRootHandlerFinder
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
 
-    internal class RootHandlerFinder : IRootHandlerFinder
+    public RootHandlerFinder(IRootHandlerPathMatcher rootHandlerPathMatcher)
     {
-        private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
+        _rootHandlerPathMatcher = rootHandlerPathMatcher;
+    }
 
-        public RootHandlerFinder(IRootHandlerPathMatcher rootHandlerPathMatcher)
+    public async Task<IRootHandler> Find(ExecutionScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
+    {
+        var rootHandler = rootHandlerMapper.AllowedRootHandlers.FirstOrDefault();
+        if (rootHandler != null)
         {
-            _rootHandlerPathMatcher = rootHandlerPathMatcher;
+            var match = await _rootHandlerPathMatcher
+                .Match(scope, rootHandler, rootedPathSubject.Parts)
+                .ConfigureAwait(false);
+            return match?.RootHandler;
         }
-
-        public async Task<IRootHandler> Find(ExecutionScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
-        {
-            var rootHandler = rootHandlerMapper.AllowedRootHandlers.FirstOrDefault();
-            if (rootHandler != null)
-            {
-                var match = await _rootHandlerPathMatcher
-                    .Match(scope, rootHandler, rootedPathSubject.Parts)
-                    .ConfigureAwait(false);
-                return match?.RootHandler;
-            }
-            return null;
-        }
+        return null;
     }
 }

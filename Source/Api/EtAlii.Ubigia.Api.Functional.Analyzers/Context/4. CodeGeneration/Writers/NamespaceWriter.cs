@@ -1,48 +1,47 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System.CodeDom.Compiler;
+using Serilog;
+
+/// <inheritdoc />
+public class NamespaceWriter : INamespaceWriter
 {
-    using System.CodeDom.Compiler;
-    using Serilog;
+    private readonly IClassWriter _classWriter;
+    private readonly IGraphContextExtensionWriter _graphContextExtensionWriter;
+
+    public NamespaceWriter(
+        IClassWriter classWriter,
+        IGraphContextExtensionWriter graphContextExtensionWriter)
+    {
+        _classWriter = classWriter;
+        _graphContextExtensionWriter = graphContextExtensionWriter;
+    }
 
     /// <inheritdoc />
-    public class NamespaceWriter : INamespaceWriter
+    public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
     {
-        private readonly IClassWriter _classWriter;
-        private readonly IGraphContextExtensionWriter _graphContextExtensionWriter;
+        var @namespace = schema.Namespace ?? "EtAlii.Ubigia";
+        logger.Information("Writing namespace: {Namespace}", @namespace);
+        writer.WriteLine($"namespace {@namespace}");
+        writer.WriteLine("{");
+        writer.Indent += 1;
 
-        public NamespaceWriter(
-            IClassWriter classWriter,
-            IGraphContextExtensionWriter graphContextExtensionWriter)
-        {
-            _classWriter = classWriter;
-            _graphContextExtensionWriter = graphContextExtensionWriter;
-        }
+        writer.WriteLine($"using System;");
+        writer.WriteLine($"using System.Collections.Generic;");
+        writer.WriteLine($"using System.Threading.Tasks;");
+        writer.WriteLine($"using {typeof(ISchemaProcessor).Namespace};");
+        writer.WriteLine($"using {typeof(ScopeVariable).Namespace};");
+        writer.WriteLine();
 
-        /// <inheritdoc />
-        public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
-        {
-            var @namespace = schema.Namespace ?? "EtAlii.Ubigia";
-            logger.Information("Writing namespace: {Namespace}", @namespace);
-            writer.WriteLine($"namespace {@namespace}");
-            writer.WriteLine("{");
-            writer.Indent += 1;
+        _classWriter.Write(logger, writer, schema.Structure);
 
-            writer.WriteLine($"using System;");
-            writer.WriteLine($"using System.Collections.Generic;");
-            writer.WriteLine($"using System.Threading.Tasks;");
-            writer.WriteLine($"using {typeof(ISchemaProcessor).Namespace};");
-            writer.WriteLine($"using {typeof(ScopeVariable).Namespace};");
-            writer.WriteLine();
+        writer.WriteLine();
 
-            _classWriter.Write(logger, writer, schema.Structure);
+        _graphContextExtensionWriter.Write(logger, writer, schema);
 
-            writer.WriteLine();
-
-            _graphContextExtensionWriter.Write(logger, writer, schema);
-
-            writer.Indent -= 1;
-            writer.WriteLine("}");
-        }
+        writer.Indent -= 1;
+        writer.WriteLine("}");
     }
 }

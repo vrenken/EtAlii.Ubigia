@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Diagnostics;
+
+[DebuggerStepThrough]
+[DebuggerDisplay("{" + nameof(Pattern) + "}")]
+public sealed class GraphWildcard : GraphPathPart
 {
-    using System.Diagnostics;
+    public readonly string Pattern;
 
-    [DebuggerStepThrough]
-    [DebuggerDisplay("{" + nameof(Pattern) + "}")]
-    public sealed class GraphWildcard : GraphPathPart
+    public GraphWildcard(string pattern)
     {
-        public readonly string Pattern;
+        Pattern = pattern;
+    }
 
-        public GraphWildcard(string pattern)
-        {
-            Pattern = pattern;
-        }
-
-        public override string ToString()
-        {
-            return Pattern;
-        }
+    public override string ToString()
+    {
+        return Pattern;
     }
 }

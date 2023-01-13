@@ -1,125 +1,124 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+
+using System;
+using System.Threading.Tasks;
+using Serilog;
+
+public sealed class LoggingManagementConnection : IManagementConnection
 {
-    using System;
-    using System.Threading.Tasks;
-    using Serilog;
+    private readonly IManagementConnection _decoree;
+    private readonly ILogger _logger = Log.ForContext<IManagementConnection>();
 
-    public sealed class LoggingManagementConnection : IManagementConnection
+    /// <inheritdoc />
+    public Storage Storage => _decoree.Storage;
+
+    /// <inheritdoc />
+    public IStorageContext Storages => _decoree.Storages;
+
+    /// <inheritdoc />
+    public IAccountContext Accounts => _decoree.Accounts;
+
+    /// <inheritdoc />
+    public ISpaceContext Spaces => _decoree.Spaces;
+
+    /// <inheritdoc />
+    public bool IsConnected => _decoree.IsConnected;
+
+    /// <inheritdoc />
+    public IStorageConnectionDetails Details => _decoree.Details;
+
+    /// <inheritdoc />
+    public ManagementConnectionOptions Options => _decoree.Options;
+
+    public LoggingManagementConnection(IManagementConnection decoree)
     {
-        private readonly IManagementConnection _decoree;
-        private readonly ILogger _logger = Log.ForContext<IManagementConnection>();
+        _decoree = decoree;
+    }
 
-        /// <inheritdoc />
-        public Storage Storage => _decoree.Storage;
+    /// <inheritdoc />
+    public async Task Open()
+    {
+        var address = _decoree.Options.Address;
+        var accountName = _decoree.Options.AccountName;
 
-        /// <inheritdoc />
-        public IStorageContext Storages => _decoree.Storages;
+        _logger.Information("Opening management connection (Address: {Address} Account: {AccountName})", address, accountName);
+        var start = Environment.TickCount;
 
-        /// <inheritdoc />
-        public IAccountContext Accounts => _decoree.Accounts;
+        await _decoree.Open().ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public ISpaceContext Spaces => _decoree.Spaces;
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Information("Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
+    }
 
-        /// <inheritdoc />
-        public bool IsConnected => _decoree.IsConnected;
+    /// <inheritdoc />
+    public async Task<IDataConnection> OpenSpace(Space space)
+    {
+        var address = _decoree.Options.Address;
 
-        /// <inheritdoc />
-        public IStorageConnectionDetails Details => _decoree.Details;
+        _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, space.AccountId, space.Id);
+        var start = Environment.TickCount;
 
-        /// <inheritdoc />
-        public ManagementConnectionOptions Options => _decoree.Options;
+        var connection = await _decoree.OpenSpace(space).ConfigureAwait(false);
 
-        public LoggingManagementConnection(IManagementConnection decoree)
-        {
-            _decoree = decoree;
-        }
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, space.AccountId, space.Id, duration);
 
-        /// <inheritdoc />
-        public async Task Open()
-        {
-            var address = _decoree.Options.Address;
-            var accountName = _decoree.Options.AccountName;
+        return connection;
+    }
 
-            _logger.Information("Opening management connection (Address: {Address} Account: {AccountName})", address, accountName);
-            var start = Environment.TickCount;
+    /// <inheritdoc />
+    public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
+    {
+        var address = _decoree.Options.Address;
 
-            await _decoree.Open().ConfigureAwait(false);
+        _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, accountId, spaceId);
+        var start = Environment.TickCount;
 
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
-        }
+        var connection = await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public async Task<IDataConnection> OpenSpace(Space space)
-        {
-            var address = _decoree.Options.Address;
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, accountId, spaceId, duration);
 
-            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, space.AccountId, space.Id);
-            var start = Environment.TickCount;
+        return connection;
+    }
 
-            var connection = await _decoree.OpenSpace(space).ConfigureAwait(false);
+    /// <inheritdoc />
+    public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
+    {
+        var address = _decoree.Options.Address;
 
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, space.AccountId, space.Id, duration);
+        _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
+        var start = Environment.TickCount;
 
-            return connection;
-        }
+        var connection = await _decoree.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
-        {
-            var address = _decoree.Options.Address;
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
 
-            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, accountId, spaceId);
-            var start = Environment.TickCount;
+        return connection;
+    }
 
-            var connection = await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
+    /// <inheritdoc />
+    public async Task Close()
+    {
+        var address = _decoree.Options.Address;
+        var accountName = _decoree.Options.AccountName;
 
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, accountId, spaceId, duration);
+        _logger.Information("Closing management connection (Address: {Address} Account: {AccountName})", address, accountName);
+        var start = Environment.TickCount;
 
-            return connection;
-        }
+        await _decoree.Close().ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
-        {
-            var address = _decoree.Options.Address;
+        var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+        _logger.Information("Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
+    }
 
-            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
-            var start = Environment.TickCount;
-
-            var connection = await _decoree.OpenSpace(accountName, spaceName).ConfigureAwait(false);
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
-
-            return connection;
-        }
-
-        /// <inheritdoc />
-        public async Task Close()
-        {
-            var address = _decoree.Options.Address;
-            var accountName = _decoree.Options.AccountName;
-
-            _logger.Information("Closing management connection (Address: {Address} Account: {AccountName})", address, accountName);
-            var start = Environment.TickCount;
-
-            await _decoree.Close().ConfigureAwait(false);
-
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            await _decoree
-                .DisposeAsync()
-                .ConfigureAwait(false);
-        }
+    public async ValueTask DisposeAsync()
+    {
+        await _decoree
+            .DisposeAsync()
+            .ConfigureAwait(false);
     }
 }

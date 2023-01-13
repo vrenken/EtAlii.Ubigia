@@ -1,12 +1,11 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public interface IPathSubjectToGraphPathConverter
-    {
-        Task<GraphPath> Convert(PathSubject pathSubject, ExecutionScope scope);
-    }
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+public interface IPathSubjectToGraphPathConverter
+{
+    Task<GraphPath> Convert(PathSubject pathSubject, ExecutionScope scope);
 }

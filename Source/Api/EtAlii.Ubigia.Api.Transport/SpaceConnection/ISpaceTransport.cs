@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.xTechnology.MicroContainer;
+
+public interface ISpaceTransport
 {
-	using System;
-	using System.Threading.Tasks;
-    using EtAlii.xTechnology.MicroContainer;
+    bool IsConnected { get; }
 
-    public interface ISpaceTransport
-    {
-        bool IsConnected { get; }
+    Uri Address { get; }
 
-        Uri Address { get; }
+    Task Start();
 
-        Task Start();
+    Task Stop();
 
-        Task Stop();
-
-        IScaffolding[] CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions);
-    }
+    IScaffolding[] CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions);
 }

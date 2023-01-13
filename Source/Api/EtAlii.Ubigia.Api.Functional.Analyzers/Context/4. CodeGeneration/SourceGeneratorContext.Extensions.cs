@@ -1,33 +1,32 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System.Linq;
+using Microsoft.CodeAnalysis;
+
+internal static class SourceGeneratorContextExtensions
 {
-    using System.Linq;
-    using Microsoft.CodeAnalysis;
+    private const string SourceItemGroupMetadata = "build_metadata.AdditionalFiles.SourceItemGroup";
 
-    internal static class SourceGeneratorContextExtensions
+    public static string GetMSBuildProperty(
+        this GeneratorExecutionContext context,
+        string name,
+        string defaultValue = "")
     {
-        private const string SourceItemGroupMetadata = "build_metadata.AdditionalFiles.SourceItemGroup";
+        context.AnalyzerConfigOptions.GlobalOptions.TryGetValue($"build_property.{name}", out var value);
+        return value ?? defaultValue;
+    }
 
-        public static string GetMSBuildProperty(
-            this GeneratorExecutionContext context,
-            string name,
-            string defaultValue = "")
-        {
-            context.AnalyzerConfigOptions.GlobalOptions.TryGetValue($"build_property.{name}", out var value);
-            return value ?? defaultValue;
-        }
-
-        public static string[] GetMSBuildItems(this GeneratorExecutionContext context, string name)
-        {
-            return context
-                .AdditionalFiles
-                .Where(f => context.AnalyzerConfigOptions
-                                .GetOptions(f)
-                                .TryGetValue(SourceItemGroupMetadata, out var sourceItemGroup)
-                            && sourceItemGroup == name)
-                .Select(f => f.Path)
-                .ToArray();
-        }
+    public static string[] GetMSBuildItems(this GeneratorExecutionContext context, string name)
+    {
+        return context
+            .AdditionalFiles
+            .Where(f => context.AnalyzerConfigOptions
+                            .GetOptions(f)
+                            .TryGetValue(SourceItemGroupMetadata, out var sourceItemGroup)
+                        && sourceItemGroup == name)
+            .Select(f => f.Path)
+            .ToArray();
     }
 }

@@ -1,52 +1,51 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+
+internal class PathSubjectForOutputConverter : IPathSubjectForOutputConverter
 {
-    using System;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
+    private readonly IPathProcessor _pathProcessor;
+    private readonly IEntriesToDynamicNodesConverter _entriesToDynamicNodesConverter;
 
-    internal class PathSubjectForOutputConverter : IPathSubjectForOutputConverter
+    public PathSubjectForOutputConverter(
+        IPathProcessor pathProcessor,
+        IEntriesToDynamicNodesConverter entriesToDynamicNodesConverter)
     {
-        private readonly IPathProcessor _pathProcessor;
-        private readonly IEntriesToDynamicNodesConverter _entriesToDynamicNodesConverter;
+        _pathProcessor = pathProcessor;
+        _entriesToDynamicNodesConverter = entriesToDynamicNodesConverter;
+    }
 
-        public PathSubjectForOutputConverter(
-            IPathProcessor pathProcessor,
-            IEntriesToDynamicNodesConverter entriesToDynamicNodesConverter)
+    public void Convert(
+        PathSubject pathSubject,
+        ExecutionScope scope,
+        IObserver<object> output)
+    {
+        var outputObservable = Observable.Create<object>(async outputObserver =>
         {
-            _pathProcessor = pathProcessor;
-            _entriesToDynamicNodesConverter = entriesToDynamicNodesConverter;
-        }
+            await _pathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
-        public void Convert(
-            PathSubject pathSubject,
-            ExecutionScope scope,
-            IObserver<object> output)
-        {
-            var outputObservable = Observable.Create<object>(async outputObserver =>
+            return Disposable.Empty;
+        });
+
+        outputObservable.SubscribeAsync(
+            onError: output.OnError,
+            onCompleted: output.OnCompleted,
+            onNext: async o =>
             {
-                await _pathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
-
-                return Disposable.Empty;
-            });
-
-            outputObservable.SubscribeAsync(
-                onError: output.OnError,
-                onCompleted: output.OnCompleted,
-                onNext: async o =>
+                try
                 {
-                    try
-                    {
-                        var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope).ConfigureAwait(false);
-                        output.OnNext(entry);
-                    }
-                    catch (Exception e)
-                    {
-                        var message = "Failure converting path subject items for output";
-                        output.OnError(new InvalidOperationException(message, e));
-                    }
-                });
-        }
+                    var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope).ConfigureAwait(false);
+                    output.OnNext(entry);
+                }
+                catch (Exception e)
+                {
+                    var message = "Failure converting path subject items for output";
+                    output.OnError(new InvalidOperationException(message, e));
+                }
+            });
     }
 }

@@ -1,29 +1,28 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+
+internal class SpaceConnectionLoggingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly DiagnosticsOptions _options;
 
-    internal class SpaceConnectionLoggingScaffolding : IScaffolding
+    public SpaceConnectionLoggingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public SpaceConnectionLoggingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectLogging) // logging is enabled.
         {
-            _options = options;
-        }
+            container.RegisterDecorator<ISpaceConnection, LoggingSpaceConnection>();
+            container.RegisterDecorator<ISpaceTransport, LoggingSpaceTransport>();
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectLogging) // logging is enabled.
-            {
-                container.RegisterDecorator<ISpaceConnection, LoggingSpaceConnection>();
-                container.RegisterDecorator<ISpaceTransport, LoggingSpaceTransport>();
-
-                container.RegisterDecorator<IRootDataClient, LoggingRootDataClient>();
-                container.RegisterDecorator<IEntryDataClient, LoggingEntryDataClient>();
-            }
+            container.RegisterDecorator<IRootDataClient, LoggingRootDataClient>();
+            container.RegisterDecorator<IEntryDataClient, LoggingEntryDataClient>();
         }
     }
 }

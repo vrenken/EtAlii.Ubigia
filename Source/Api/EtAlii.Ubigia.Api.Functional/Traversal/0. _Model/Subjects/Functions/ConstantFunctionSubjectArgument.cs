@@ -1,19 +1,18 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+public sealed class ConstantFunctionSubjectArgument : FunctionSubjectArgument
 {
-    public sealed class ConstantFunctionSubjectArgument : FunctionSubjectArgument
+    public string Value { get; }
+
+    public ConstantFunctionSubjectArgument(string value)
     {
-        public string Value { get; }
+        Value = value;
+    }
 
-        public ConstantFunctionSubjectArgument(string value)
-        {
-            Value = value;
-        }
-
-        public override string ToString()
-        {
-            return $"\"{Value}\"";
-        }
+    public override string ToString()
+    {
+        return $"\"{Value}\"";
     }
 }

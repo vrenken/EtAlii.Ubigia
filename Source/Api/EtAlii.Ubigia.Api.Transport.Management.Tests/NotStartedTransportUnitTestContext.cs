@@ -1,23 +1,22 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests;
+
+using System;
+using EtAlii.Ubigia.Api.Tests;
+
+public class NotStartedTransportUnitTestContext : IDisposable
 {
-    using System;
-    using EtAlii.Ubigia.Api.Tests;
+    public ITransportTestContext Transport { get; private set; }
 
-    public class NotStartedTransportUnitTestContext : IDisposable
+    public NotStartedTransportUnitTestContext()
     {
-        public ITransportTestContext Transport { get; private set; }
+        Transport = new TransportTestContext().Create();
+    }
 
-        public NotStartedTransportUnitTestContext()
-        {
-            Transport = new TransportTestContext().Create();
-        }
-
-        public void Dispose()
-        {
-            Transport = null;
-            GC.SuppressFinalize(this);
-        }
+    public void Dispose()
+    {
+        Transport = null;
+        GC.SuppressFinalize(this);
     }
 }

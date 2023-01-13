@@ -1,39 +1,38 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.xTechnology.MicroContainer;
+
+public abstract class SpaceTransportBase : ISpaceTransport
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.xTechnology.MicroContainer;
+    public bool IsConnected { get; private set; }
 
-    public abstract class SpaceTransportBase : ISpaceTransport
+    public Uri Address { get; }
+
+    protected SpaceTransportBase(Uri address)
     {
-        public bool IsConnected { get; private set; }
+        Address = address;
+    }
 
-        public Uri Address { get; }
+    public virtual Task Start()
+    {
+        IsConnected = true;
+        return Task.CompletedTask;
+    }
 
-        protected SpaceTransportBase(Uri address)
-        {
-            Address = address;
-        }
+    public virtual Task Stop()
+    {
+        IsConnected = false;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Start()
-        {
-            IsConnected = true;
-            return Task.CompletedTask;
-        }
+    protected abstract IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions);
 
-        public virtual Task Stop()
-        {
-            IsConnected = false;
-            return Task.CompletedTask;
-        }
-
-        protected abstract IScaffolding[] CreateScaffoldingInternal(SpaceConnectionOptions spaceConnectionOptions);
-
-        IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
-        {
-            return CreateScaffoldingInternal(spaceConnectionOptions);
-        }
+    IScaffolding[] ISpaceTransport.CreateScaffolding(SpaceConnectionOptions spaceConnectionOptions)
+    {
+        return CreateScaffoldingInternal(spaceConnectionOptions);
     }
 }

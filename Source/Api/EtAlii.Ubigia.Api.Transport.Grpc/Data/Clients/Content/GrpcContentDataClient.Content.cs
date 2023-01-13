@@ -1,78 +1,77 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Grpc;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+using global::Grpc.Core;
+using Content = EtAlii.Ubigia.Content;
+using ContentPart = EtAlii.Ubigia.ContentPart;
+using Identifier = EtAlii.Ubigia.Identifier;
+
+internal partial class GrpcContentDataClient
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
-    using global::Grpc.Core;
-    using Content = EtAlii.Ubigia.Content;
-    using ContentPart = EtAlii.Ubigia.ContentPart;
-    using Identifier = EtAlii.Ubigia.Identifier;
-
-    internal partial class GrpcContentDataClient
+    public async Task Store(Identifier identifier, Content content)
     {
-        public async Task Store(Identifier identifier, Content content)
+        try
         {
-            try
-            {
-                var metadata = new Metadata { _transport.AuthenticationHeader };
-                var request = new ContentPostRequest {EntryId = identifier.ToWire(), Content = content.ToWire()};
-                await _contentClient.PostAsync(request, metadata).ConfigureAwait(false);
+            var metadata = new Metadata { _transport.AuthenticationHeader };
+            var request = new ContentPostRequest {EntryId = identifier.ToWire(), Content = content.ToWire()};
+            await _contentClient.PostAsync(request, metadata).ConfigureAwait(false);
 
-                // Should this call be replaced by get instead?
-                // More details can be found in the Github issue below:
-                // https://github.com/vrenken/EtAlii.Ubigia/issues/80
-                Blob.SetStored(content, true);
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
-            }
+            // Should this call be replaced by get instead?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/80
+            Blob.SetStored(content, true);
         }
-
-        public async Task Store(Identifier identifier, ContentPart contentPart)
+        catch (RpcException e)
         {
-            try
-            {
-                var metadata = new Metadata { _transport.AuthenticationHeader };
-                var request = new ContentPartPostRequest {EntryId = identifier.ToWire(), ContentPart = contentPart.ToWire(), ContentPartId = contentPart.Id };
-                await _contentClient.PostPartAsync(request, metadata).ConfigureAwait(false);
-                BlobPart.SetStored(contentPart, true);
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
-            }
+            throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
         }
+    }
 
-        public async Task<Content> Retrieve(Identifier identifier)
+    public async Task Store(Identifier identifier, ContentPart contentPart)
+    {
+        try
         {
-            try
-            {
-                var metadata = new Metadata { _transport.AuthenticationHeader };
-                var request = new ContentGetRequest { EntryId = identifier.ToWire() };
-                var response = await _contentClient.GetAsync(request, metadata).ConfigureAwait(false);
-                return response.Content.ToLocal();
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
-            }
+            var metadata = new Metadata { _transport.AuthenticationHeader };
+            var request = new ContentPartPostRequest {EntryId = identifier.ToWire(), ContentPart = contentPart.ToWire(), ContentPartId = contentPart.Id };
+            await _contentClient.PostPartAsync(request, metadata).ConfigureAwait(false);
+            BlobPart.SetStored(contentPart, true);
         }
-
-        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        catch (RpcException e)
         {
-            try
-            {
-                var metadata = new Metadata { _transport.AuthenticationHeader };
-                var request = new ContentPartGetRequest { EntryId = identifier.ToWire(), ContentPartId = contentPartId};
-                var response = await _contentClient.GetPartAsync(request, metadata).ConfigureAwait(false);
-                return response.ContentPart.ToLocal();
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
-            }
+            throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
+        }
+    }
+
+    public async Task<Content> Retrieve(Identifier identifier)
+    {
+        try
+        {
+            var metadata = new Metadata { _transport.AuthenticationHeader };
+            var request = new ContentGetRequest { EntryId = identifier.ToWire() };
+            var response = await _contentClient.GetAsync(request, metadata).ConfigureAwait(false);
+            return response.Content.ToLocal();
+        }
+        catch (RpcException e)
+        {
+            throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
+        }
+    }
+
+    public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+    {
+        try
+        {
+            var metadata = new Metadata { _transport.AuthenticationHeader };
+            var request = new ContentPartGetRequest { EntryId = identifier.ToWire(), ContentPartId = contentPartId};
+            var response = await _contentClient.GetPartAsync(request, metadata).ConfigureAwait(false);
+            return response.ContentPart.ToLocal();
+        }
+        catch (RpcException e)
+        {
+            throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
         }
     }
 }

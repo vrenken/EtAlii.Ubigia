@@ -1,152 +1,151 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using Xunit;
+
+public class TraversalContextFactoryFunctionHandlersTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
 
-    public class TraversalContextFactoryFunctionHandlersTests : IClassFixture<FunctionalUnitTestContext>
+    public TraversalContextFactoryFunctionHandlersTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
+        _testContext = testContext;
+    }
 
-        public TraversalContextFactoryFunctionHandlersTests(FunctionalUnitTestContext testContext)
+
+    [Fact]
+    public async Task TraversalContextFactory_Create()
+    {
+        // Arrange.
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
+    {
+        // Arrange.
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_FunctionHandler_Single()
+    {
+        // Arrange.
+        var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
+        var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
+
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(functionHandlersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_FunctionHandler_Single_Invalid()
+    {
+        // Arrange.
+        var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
+        var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
+
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(functionHandlersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var act = new Action(() =>
         {
-            _testContext = testContext;
-        }
+            _testContext.CreateComponent<ITraversalContext>(options);
+        });
 
+        // Assert.
+        Assert.Throws<InvalidOperationException>(act);
+    }
 
-        [Fact]
-        public async Task TraversalContextFactory_Create()
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple()
+    {
+        // Arrange.
+        var functionHandlers = new IFunctionHandler[]
         {
-            // Arrange.
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
+            new TestRenameFunctionHandler(),
+            new TestFormatFunctionHandler()
+        };
+        var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(functionHandlersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
 
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
+    {
+        // Arrange.
+        var functionHandlers = new IFunctionHandler[]
         {
-            // Arrange.
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
+            new TestRenameFunctionHandler(),
+            new TestRenameFunctionHandler()
+        };
+        var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(functionHandlersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
 
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_FunctionHandler_Single()
+        // Act.
+        var act = new Action(() =>
         {
-            // Arrange.
-            var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
-            var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
+            _testContext.CreateComponent<ITraversalContext>(options);
+        });
 
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(functionHandlersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
-
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_FunctionHandler_Single_Invalid()
-        {
-            // Arrange.
-            var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
-            var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(functionHandlersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.CreateComponent<ITraversalContext>(options);
-            });
-
-            // Assert.
-            Assert.Throws<InvalidOperationException>(act);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple()
-        {
-            // Arrange.
-            var functionHandlers = new IFunctionHandler[]
-            {
-                new TestRenameFunctionHandler(),
-                new TestFormatFunctionHandler()
-            };
-            var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(functionHandlersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
-
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
-        {
-            // Arrange.
-            var functionHandlers = new IFunctionHandler[]
-            {
-                new TestRenameFunctionHandler(),
-                new TestRenameFunctionHandler()
-            };
-            var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(functionHandlersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.CreateComponent<ITraversalContext>(options);
-            });
-
-            // Assert.
-            Assert.Throws<InvalidOperationException>(act);
-        }
+        // Assert.
+        Assert.Throws<InvalidOperationException>(act);
     }
 }

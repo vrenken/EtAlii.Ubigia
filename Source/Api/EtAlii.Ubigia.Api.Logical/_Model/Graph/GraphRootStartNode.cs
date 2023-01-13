@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Diagnostics;
+
+[DebuggerDisplay("{" + nameof(Root) + "}")]
+public sealed class GraphRootStartNode : GraphPathPart
 {
-    using System.Diagnostics;
+    public string Root { get; }
 
-    [DebuggerDisplay("{" + nameof(Root) + "}")]
-    public sealed class GraphRootStartNode : GraphPathPart
+    public GraphRootStartNode(string root)
     {
-        public string Root { get; }
+        Root = root;
+    }
 
-        public GraphRootStartNode(string root)
-        {
-            Root = root;
-        }
-
-        public override string ToString()
-        {
-            return Root;
-        }
+    public override string ToString()
+    {
+        return Root;
     }
 }

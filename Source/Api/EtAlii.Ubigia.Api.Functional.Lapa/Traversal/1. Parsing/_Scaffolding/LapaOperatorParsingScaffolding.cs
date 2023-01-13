@@ -1,18 +1,17 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using EtAlii.xTechnology.MicroContainer;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal sealed class LapaOperatorParsingScaffolding : IScaffolding
+using EtAlii.xTechnology.MicroContainer;
+
+internal sealed class LapaOperatorParsingScaffolding : IScaffolding
+{
+    public void Register(IRegisterOnlyContainer container)
     {
-        public void Register(IRegisterOnlyContainer container)
-        {
-            // Operators
-            container.Register<IOperatorsParser, OperatorsParser>();
-            container.Register<IAssignOperatorParser, AssignOperatorParser>();
-            container.Register<IAddOperatorParser, AddOperatorParser>();
-            container.Register<IRemoveOperatorParser, RemoveOperatorParser>();
-        }
+        // Operators
+        container.Register<IOperatorsParser, OperatorsParser>();
+        container.Register<IAssignOperatorParser, AssignOperatorParser>();
+        container.Register<IAddOperatorParser, AddOperatorParser>();
+        container.Register<IRemoveOperatorParser, RemoveOperatorParser>();
     }
 }

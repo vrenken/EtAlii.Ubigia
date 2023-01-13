@@ -1,50 +1,49 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Linq;
+using Moppet.Lapa;
+
+internal sealed class RootedPathFunctionSubjectArgumentParser : IRootedPathFunctionSubjectArgumentParser
 {
-    using System;
-    using System.Linq;
-    using Moppet.Lapa;
+    public string Id => nameof(RootedPathFunctionSubjectArgument);
 
-    internal sealed class RootedPathFunctionSubjectArgumentParser : IRootedPathFunctionSubjectArgumentParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
+
+    public RootedPathFunctionSubjectArgumentParser(
+        INodeValidator nodeValidator,
+        IConstantHelper constantHelper,
+        IPathSubjectPartsParser pathSubjectPartsParser)
     {
-        public string Id => nameof(RootedPathFunctionSubjectArgument);
+        _nodeValidator = nodeValidator;
+        _pathSubjectPartsParser = pathSubjectPartsParser;
+        Parser = new LpsParser(Id, true,
+            Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
+            Lp.Char(':') +
+            _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path")
+        );//.Debug("RootedPathFunctionSubjectArgumentParser", true)
+    }
 
-        public LpsParser Parser { get; }
+    public FunctionSubjectArgument Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
+        var root = node.Children.Single(n => n.Id == "root").ToString();
+        var childNodes = node.Children.SingleOrDefault(n => n.Id == "path")?.Children ?? Array.Empty<LpNode>();
+        var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
-        public RootedPathFunctionSubjectArgumentParser(
-            INodeValidator nodeValidator,
-            IConstantHelper constantHelper,
-            IPathSubjectPartsParser pathSubjectPartsParser)
-        {
-            _nodeValidator = nodeValidator;
-            _pathSubjectPartsParser = pathSubjectPartsParser;
-            Parser = new LpsParser(Id, true,
-                    Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
-                    Lp.Char(':') +
-                    _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path")
-                );//.Debug("RootedPathFunctionSubjectArgumentParser", true)
-        }
+        var subject = new RootedPathSubject(root, parts);
 
-        public FunctionSubjectArgument Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
+        return new RootedPathFunctionSubjectArgument(subject);
+    }
 
-            var root = node.Children.Single(n => n.Id == "root").ToString();
-            var childNodes = node.Children.SingleOrDefault(n => n.Id == "path")?.Children ?? Array.Empty<LpNode>();
-            var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
-
-            var subject = new RootedPathSubject(root, parts);
-
-            return new RootedPathFunctionSubjectArgument(subject);
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

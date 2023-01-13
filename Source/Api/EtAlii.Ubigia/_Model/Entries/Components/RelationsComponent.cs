@@ -1,23 +1,22 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.Ubigia;
+
+using System;
+using System.IO;
+
+public abstract class RelationsComponent : CompositeComponent
 {
-    using System;
-    using System.IO;
+    public Relation[] Relations { get; internal set; } = Array.Empty<Relation>();
 
-    public abstract class RelationsComponent : CompositeComponent
+
+    public override void Write(BinaryWriter writer)
     {
-        public Relation[] Relations { get; internal set; } = Array.Empty<Relation>();
+        writer.WriteMany(Relations);
+    }
 
-
-        public override void Write(BinaryWriter writer)
-        {
-            writer.WriteMany(Relations);
-        }
-
-        public override void Read(BinaryReader reader)
-        {
-            Relations = reader.ReadMany<Relation>();
-        }
+    public override void Read(BinaryReader reader)
+    {
+        Relations = reader.ReadMany<Relation>();
     }
 }

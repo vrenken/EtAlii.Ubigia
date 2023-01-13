@@ -1,35 +1,34 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Tests
+namespace EtAlii.Ubigia.Tests;
+
+using System;
+using System.Reflection;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.Threading;
+using Serilog;
+using Xunit.Sdk;
+
+/// <summary>
+/// This attribute ensures that each unit test gets a unique correlation ID assigned in the structured logging output.
+/// </summary>
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+public class CorrelateUnitTestsAttribute : BeforeAfterTestAttribute
 {
-    using System;
-    using System.Reflection;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Threading;
-    using Serilog;
-    using Xunit.Sdk;
+    private readonly ILogger _logger = Log.ForContext<CorrelateUnitTestsAttribute>();
+    private readonly IContextCorrelator _contextCorrelator = new ContextCorrelator();
+    private IDisposable _correlation;
 
-    /// <summary>
-    /// This attribute ensures that each unit test gets a unique correlation ID assigned in the structured logging output.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class CorrelateUnitTestsAttribute : BeforeAfterTestAttribute
+    public override void Before(MethodInfo methodUnderTest)
     {
-        private readonly ILogger _logger = Log.ForContext<CorrelateUnitTestsAttribute>();
-        private readonly IContextCorrelator _contextCorrelator = new ContextCorrelator();
-        private IDisposable _correlation;
+        _correlation = _contextCorrelator.BeginLoggingCorrelationScope(Correlation.UnitTestId, ShortGuid.New());
+        _logger.Verbose("Correlating Unit test: {ClassName} {MethodName}", methodUnderTest.DeclaringType!.FullName, methodUnderTest.Name);
+    }
 
-        public override void Before(MethodInfo methodUnderTest)
-        {
-            _correlation = _contextCorrelator.BeginLoggingCorrelationScope(Correlation.UnitTestId, ShortGuid.New());
-            _logger.Verbose("Correlating Unit test: {ClassName} {MethodName}", methodUnderTest.DeclaringType!.FullName, methodUnderTest.Name);
-        }
-
-        public override void After(MethodInfo methodUnderTest)
-        {
-            _logger.Verbose("Ending correlation for Unit test: {ClassName} {MethodName}", methodUnderTest.DeclaringType!.FullName, methodUnderTest.Name);
-            _correlation?.Dispose();
-            _correlation = null;
-        }
+    public override void After(MethodInfo methodUnderTest)
+    {
+        _logger.Verbose("Ending correlation for Unit test: {ClassName} {MethodName}", methodUnderTest.DeclaringType!.FullName, methodUnderTest.Name);
+        _correlation?.Dispose();
+        _correlation = null;
     }
 }

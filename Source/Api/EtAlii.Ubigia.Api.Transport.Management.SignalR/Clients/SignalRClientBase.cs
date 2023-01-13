@@ -1,34 +1,33 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Management.SignalR;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Transport.SignalR;
+
+public abstract class SignalRManagementClientBase
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
+    protected IStorageConnection<ISignalRStorageTransport> Connection { get; private set; }
 
-    public abstract class SignalRManagementClientBase
+    public async Task Connect(IStorageConnection storageConnection)
     {
-        protected IStorageConnection<ISignalRStorageTransport> Connection { get; private set; }
+        await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(IStorageConnection storageConnection)
-        {
-            await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
-        }
+    public virtual Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+    {
+        Connection = storageConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
-        {
-            Connection = storageConnection;
-            return Task.CompletedTask;
-        }
+    public async Task Disconnect(IStorageConnection storageConnection)
+    {
+        await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
+    }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
-        {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
-        }
-
-        public virtual Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

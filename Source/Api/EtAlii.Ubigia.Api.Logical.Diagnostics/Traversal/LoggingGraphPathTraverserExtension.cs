@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+public sealed class DiagnosticsGraphPathTraverserExtension : IExtension
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public sealed class DiagnosticsGraphPathTraverserExtension : IExtension
+    public DiagnosticsGraphPathTraverserExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public DiagnosticsGraphPathTraverserExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Logical:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options?.InjectLogging ?? false)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Logical:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options?.InjectLogging ?? false)
-            {
-                // Do stuff...
-            }
+            // Do stuff...
         }
     }
 }

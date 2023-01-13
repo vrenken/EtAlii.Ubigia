@@ -1,37 +1,36 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using EtAlii.Ubigia.Api.Fabric;
+using EtAlii.xTechnology.MicroContainer;
+
+public class GraphAssignerFactory : IGraphAssignerFactory
 {
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IGraphPathTraverser _graphPathTraverser;
 
-    public class GraphAssignerFactory : IGraphAssignerFactory
+    public GraphAssignerFactory(IGraphPathTraverser graphPathTraverser)
     {
-        private readonly IGraphPathTraverser _graphPathTraverser;
+        _graphPathTraverser = graphPathTraverser;
+    }
 
-        public GraphAssignerFactory(IGraphPathTraverser graphPathTraverser)
-        {
-            _graphPathTraverser = graphPathTraverser;
-        }
+    public IGraphAssigner Create(IFabricContext fabric)
+    {
+        var container = new Container();
 
-        public IGraphAssigner Create(IFabricContext fabric)
-        {
-            var container = new Container();
+        container.Register(() => fabric);
+        container.Register<IGraphAssigner, GraphAssigner>();
+        container.Register(() => _graphPathTraverser);
 
-            container.Register(() => fabric);
-            container.Register<IGraphAssigner, GraphAssigner>();
-            container.Register(() => _graphPathTraverser);
+        // Helpers:
+        container.Register<IUpdateEntryFactory, UpdateEntryFactory>();
 
-            // Helpers:
-            container.Register<IUpdateEntryFactory, UpdateEntryFactory>();
+        container.Register<IPropertiesToIdentifierAssigner, PropertiesToIdentifierAssigner>();
+        container.Register<IDynamicObjectToIdentifierAssigner, DynamicObjectToIdentifierAssigner>();
+        container.Register<INodeToIdentifierAssigner, NodeToIdentifierAssigner>();
+        container.Register<IConstantToIdentifierTagAssigner, ConstantToIdentifierTagAssigner>();
 
-            container.Register<IPropertiesToIdentifierAssigner, PropertiesToIdentifierAssigner>();
-            container.Register<IDynamicObjectToIdentifierAssigner, DynamicObjectToIdentifierAssigner>();
-            container.Register<INodeToIdentifierAssigner, NodeToIdentifierAssigner>();
-            container.Register<IConstantToIdentifierTagAssigner, ConstantToIdentifierTagAssigner>();
+        return container.GetInstance<IGraphAssigner>();
 
-            return container.GetInstance<IGraphAssigner>();
-
-        }
     }
 }

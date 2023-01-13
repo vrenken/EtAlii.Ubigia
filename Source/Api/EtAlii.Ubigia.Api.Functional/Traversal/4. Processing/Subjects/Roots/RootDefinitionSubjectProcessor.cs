@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+internal class RootDefinitionSubjectProcessor : IRootDefinitionSubjectProcessor
 {
-    using System;
-    using System.Threading.Tasks;
+    //private readonly IPathSubjectForOutputConverter _converter
 
-    internal class RootDefinitionSubjectProcessor : IRootDefinitionSubjectProcessor
+    public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
     {
-        //private readonly IPathSubjectForOutputConverter _converter
+        var rootDefinitionSubject = (RootDefinitionSubject) subject;
+        output.OnNext(rootDefinitionSubject);
+        output.OnCompleted();
 
-        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
-        {
-            var rootDefinitionSubject = (RootDefinitionSubject) subject;
-            output.OnNext(rootDefinitionSubject);
-            output.OnCompleted();
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

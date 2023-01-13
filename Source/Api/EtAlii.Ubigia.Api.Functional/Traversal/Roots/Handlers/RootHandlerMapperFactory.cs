@@ -1,22 +1,21 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+internal class RootHandlerMapperFactory : IRootHandlerMapperFactory
 {
-    internal class RootHandlerMapperFactory : IRootHandlerMapperFactory
+    public IRootHandlerMapper[] CreateDefaults()
     {
-        public IRootHandlerMapper[] CreateDefaults()
+        return new IRootHandlerMapper[]
         {
-            return new IRootHandlerMapper[]
-            {
-                new TimeRootHandlerMapper(),
-                new PersonRootHandlerMapper(),
-                new ProvidersRootHandlerMapper(),
-                new LocationRootHandlerMapper(),
-                new MediaRootHandlerMapper(),
-                new TextRootHandlerMapper(),
-                //new ObjectHandlerMapper(),
-                //new StringHandlerMapper(),
-            };
-        }
+            new TimeRootHandlerMapper(),
+            new PersonRootHandlerMapper(),
+            new ProvidersRootHandlerMapper(),
+            new LocationRootHandlerMapper(),
+            new MediaRootHandlerMapper(),
+            new TextRootHandlerMapper(),
+            //new ObjectHandlerMapper(),
+            //new StringHandlerMapper(),
+        };
     }
 }

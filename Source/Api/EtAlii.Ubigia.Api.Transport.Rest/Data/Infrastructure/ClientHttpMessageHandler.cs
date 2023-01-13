@@ -1,36 +1,35 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Rest
+namespace EtAlii.Ubigia.Api.Transport.Rest;
+
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+internal class ClientHttpMessageHandler : HttpClientHandler
 {
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
+    private readonly string _hostIdentifier;
+    private readonly string _authenticationToken;
 
-    internal class ClientHttpMessageHandler : HttpClientHandler
+    public ClientHttpMessageHandler(
+        ICredentials credentials,
+        string hostIdentifier,
+        string authenticationToken)
     {
-        private readonly string _hostIdentifier;
-        private readonly string _authenticationToken;
+        Credentials = credentials;
+        UseDefaultCredentials = Credentials == null;
+        _hostIdentifier = hostIdentifier;
+        _authenticationToken = authenticationToken;
 
-        public ClientHttpMessageHandler(
-            ICredentials credentials,
-            string hostIdentifier,
-            string authenticationToken)
-        {
-            Credentials = credentials;
-            UseDefaultCredentials = Credentials == null;
-            _hostIdentifier = hostIdentifier;
-            _authenticationToken = authenticationToken;
+        AllowAutoRedirect = true;
+        UseProxy = true;
+    }
 
-            AllowAutoRedirect = true;
-            UseProxy = true;
-        }
-
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            request.Headers.Add("Host-Identifier", _hostIdentifier);
-            request.Headers.Add("Authentication-Token", _authenticationToken);
-            return base.SendAsync(request, cancellationToken);
-        }
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        request.Headers.Add("Host-Identifier", _hostIdentifier);
+        request.Headers.Add("Authentication-Token", _authenticationToken);
+        return base.SendAsync(request, cancellationToken);
     }
 }

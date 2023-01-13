@@ -1,61 +1,60 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.Ubigia.Diagnostics.Profiling;
+using Moppet.Lapa;
+
+internal sealed class ProfilingSequenceParser : ISequenceParser
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
-    using Moppet.Lapa;
+    private readonly ISequenceParser _decoree;
+    private readonly IProfiler _profiler;
 
-    internal sealed class ProfilingSequenceParser : ISequenceParser
+    public ProfilingSequenceParser(
+        ISequenceParser decoree,
+        IProfiler profiler)
     {
-        private readonly ISequenceParser _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Functional.ScriptSequenceParser);
+    }
 
-        public ProfilingSequenceParser(
-            ISequenceParser decoree,
-            IProfiler profiler)
+    public string Id => _decoree.Id;
+    public LpsParser Parser => _decoree.Parser;
+
+    public Sequence Parse(LpNode node, bool restIsAllowed)
+    {
+        var text = node.Match.ToString();
+        dynamic profile = _profiler.Begin("Parsing sequence: " + text);
+        profile.Text = text;
+
+        // We need to ensure that the profiler is always ended, even if sequence parsing encounters any exceptions.
+        try
         {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptSequenceParser);
+            var result = _decoree.Parse(node, restIsAllowed);
+            profile.Result = result;
+            return result;
         }
-
-        public string Id => _decoree.Id;
-        public LpsParser Parser => _decoree.Parser;
-
-        public Sequence Parse(LpNode node, bool restIsAllowed)
+        finally
         {
-            var text = node.Match.ToString();
-            dynamic profile = _profiler.Begin("Parsing sequence: " + text);
-            profile.Text = text;
-
-            // We need to ensure that the profiler is always ended, even if sequence parsing encounters any exceptions.
-            try
-            {
-                var result = _decoree.Parse(node, restIsAllowed);
-                profile.Result = result;
-                return result;
-            }
-            finally
-            {
-                _profiler.End(profile);
-            }
+            _profiler.End(profile);
         }
+    }
 
-        public Sequence Parse(string text)
+    public Sequence Parse(string text)
+    {
+        dynamic profile = _profiler.Begin("Parsing sequence: " + text);
+        profile.Text = text;
+
+        // We need to ensure that the profiler is always ended, even if sequence parsing encounters any exceptions.
+        try
         {
-            dynamic profile = _profiler.Begin("Parsing sequence: " + text);
-            profile.Text = text;
-
-            // We need to ensure that the profiler is always ended, even if sequence parsing encounters any exceptions.
-            try
-            {
-                var result = _decoree.Parse(text);
-                profile.Result = result;
-                return result;
-            }
-            finally
-            {
-                _profiler.End(profile);
-            }
+            var result = _decoree.Parse(text);
+            profile.Result = result;
+            return result;
+        }
+        finally
+        {
+            _profiler.End(profile);
         }
     }
 }

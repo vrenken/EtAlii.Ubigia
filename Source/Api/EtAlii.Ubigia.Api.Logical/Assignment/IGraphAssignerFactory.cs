@@ -1,11 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
-{
-    using EtAlii.Ubigia.Api.Fabric;
+namespace EtAlii.Ubigia.Api.Logical;
 
-    public interface IGraphAssignerFactory
-    {
-        IGraphAssigner Create(IFabricContext fabric);
-    }
+using EtAlii.Ubigia.Api.Fabric;
+
+public interface IGraphAssignerFactory
+{
+    IGraphAssigner Create(IFabricContext fabric);
 }

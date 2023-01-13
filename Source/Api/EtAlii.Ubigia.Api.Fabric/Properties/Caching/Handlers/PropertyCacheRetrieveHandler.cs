@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Threading.Tasks;
+
+internal class PropertyCacheRetrieveHandler : IPropertyCacheRetrieveHandler
 {
-    using System.Threading.Tasks;
+    private readonly IPropertyCacheHelper _cacheHelper;
+    private readonly IPropertiesCacheContextProvider _contextProvider;
 
-    internal class PropertyCacheRetrieveHandler : IPropertyCacheRetrieveHandler
+    public PropertyCacheRetrieveHandler(
+        IPropertyCacheHelper cacheHelper,
+        IPropertiesCacheContextProvider contextProvider)
     {
-        private readonly IPropertyCacheHelper _cacheHelper;
-        private readonly IPropertiesCacheContextProvider _contextProvider;
+        _cacheHelper = cacheHelper;
+        _contextProvider = contextProvider;
+    }
 
-        public PropertyCacheRetrieveHandler(
-            IPropertyCacheHelper cacheHelper,
-            IPropertiesCacheContextProvider contextProvider)
+    public async Task<PropertyDictionary> Handle(Identifier identifier, ExecutionScope scope)
+    {
+        var properties = _cacheHelper.GetProperties(identifier);
+        if (properties == null)
         {
-            _cacheHelper = cacheHelper;
-            _contextProvider = contextProvider;
+            properties = await _contextProvider.Context.Retrieve(identifier, scope).ConfigureAwait(false);
+            _cacheHelper.StoreProperties(identifier, properties);
         }
-
-        public async Task<PropertyDictionary> Handle(Identifier identifier, ExecutionScope scope)
-        {
-            var properties = _cacheHelper.GetProperties(identifier);
-            if (properties == null)
-            {
-                properties = await _contextProvider.Context.Retrieve(identifier, scope).ConfigureAwait(false);
-                _cacheHelper.StoreProperties(identifier, properties);
-            }
-            return properties;
-        }
+        return properties;
     }
 }

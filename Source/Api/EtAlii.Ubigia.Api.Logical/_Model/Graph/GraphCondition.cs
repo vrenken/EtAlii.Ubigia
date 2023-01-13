@@ -1,26 +1,25 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System;
+using System.Diagnostics;
+
+[DebuggerStepThrough]
+[DebuggerDisplay("{" + nameof(Description) + "}")]
+public sealed class GraphCondition : GraphPathPart
 {
-    using System;
-    using System.Diagnostics;
+    private string Description { get; }
+    public Predicate<PropertyDictionary> Predicate { get; }
 
-    [DebuggerStepThrough]
-    [DebuggerDisplay("{" + nameof(Description) + "}")]
-    public sealed class GraphCondition : GraphPathPart
+    public GraphCondition(Predicate<PropertyDictionary> predicate, string description)
     {
-        private string Description { get; }
-        public Predicate<PropertyDictionary> Predicate { get; }
+        Predicate = predicate;
+        Description = description;
+    }
 
-        public GraphCondition(Predicate<PropertyDictionary> predicate, string description)
-        {
-            Predicate = predicate;
-            Description = description;
-        }
-
-        public override string ToString()
-        {
-            return Description;
-        }
+    public override string ToString()
+    {
+        return Description;
     }
 }

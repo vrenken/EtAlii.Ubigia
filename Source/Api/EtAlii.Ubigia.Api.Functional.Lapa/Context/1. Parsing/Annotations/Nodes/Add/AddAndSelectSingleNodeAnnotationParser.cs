@@ -1,89 +1,88 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System;
+using System.Linq;
+using EtAlii.Ubigia.Api.Functional.Traversal;
+using Moppet.Lapa;
+
+internal sealed class AddAndSelectSingleNodeAnnotationParser : IAddAndSelectSingleNodeAnnotationParser
 {
-    using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using Moppet.Lapa;
+    public string Id => nameof(AddAndSelectSingleNodeAnnotation);
+    public LpsParser Parser { get; }
 
-    internal sealed class AddAndSelectSingleNodeAnnotationParser : IAddAndSelectSingleNodeAnnotationParser
+    private const string SourceId = "Source";
+    private const string NameId = "Name";
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly INodeFinder _nodeFinder;
+    private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
+    private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
+    private readonly IQuotedTextParser _quotedTextParser;
+
+    public AddAndSelectSingleNodeAnnotationParser(
+        INodeValidator nodeValidator,
+        INodeFinder nodeFinder,
+        INonRootedPathSubjectParser nonRootedPathSubjectParser,
+        IRootedPathSubjectParser rootedPathSubjectParser,
+        IWhitespaceParser whitespaceParser,
+        IQuotedTextParser quotedTextParser
+    )
     {
-        public string Id => nameof(AddAndSelectSingleNodeAnnotation);
-        public LpsParser Parser { get; }
+        _nodeValidator = nodeValidator;
+        _nodeFinder = nodeFinder;
+        _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
+        _rootedPathSubjectParser = rootedPathSubjectParser;
+        _quotedTextParser = quotedTextParser;
 
-        private const string SourceId = "Source";
-        private const string NameId = "Name";
+        // @node-add(PATH, NAME)
+        var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+        var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | _quotedTextParser.Parser);
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly INodeFinder _nodeFinder;
-        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
-        private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
-        private readonly IQuotedTextParser _quotedTextParser;
+        Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeAdd + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
+    }
 
-        public AddAndSelectSingleNodeAnnotationParser(
-            INodeValidator nodeValidator,
-            INodeFinder nodeFinder,
-            INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            IRootedPathSubjectParser rootedPathSubjectParser,
-            IWhitespaceParser whitespaceParser,
-            IQuotedTextParser quotedTextParser
-        )
+    public NodeAnnotation Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+
+        var sourceNode = _nodeFinder.FindFirst(node, SourceId);
+        var sourceChildNode = sourceNode.Children.Single();
+        var sourcePath = sourceChildNode.Id switch
         {
-            _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
-            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
-            _rootedPathSubjectParser = rootedPathSubjectParser;
-            _quotedTextParser = quotedTextParser;
+            { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(sourceChildNode),
+            { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
+            _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
+        };
 
-            // @node-add(PATH, NAME)
-            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | _quotedTextParser.Parser);
-
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeAdd + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
-        }
-
-        public NodeAnnotation Parse(LpNode node)
+        var nameNode = _nodeFinder.FindFirst(node, NameId);
+        var nameChildNode = nameNode.Children.Single();
+        var name = nameChildNode.Id switch
         {
-            _nodeValidator.EnsureSuccess(node, Id);
+            {} id when id == _quotedTextParser.Id => _quotedTextParser.Parse(nameChildNode),
+            _ => nameChildNode.Match.ToString()
+        };
 
-            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
-            var sourceChildNode = sourceNode.Children.Single();
-            var sourcePath = sourceChildNode.Id switch
-            {
-                { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(sourceChildNode),
-                { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
-                _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
-            };
+        var identity = name.StartsWith("$")
+            ? new NodeIdentity { Name = name[1..], IsVariable = true }
+            : new NodeIdentity { Name = name, IsVariable = false };
 
-            var nameNode = _nodeFinder.FindFirst(node, NameId);
-            var nameChildNode = nameNode.Children.Single();
-            var name = nameChildNode.Id switch
-            {
-                {} id when id == _quotedTextParser.Id => _quotedTextParser.Parse(nameChildNode),
-                _ => nameChildNode.Match.ToString()
-            };
+        return new AddAndSelectSingleNodeAnnotation(sourcePath, identity);
+    }
 
-            var identity = name.StartsWith("$")
-                ? new NodeIdentity { Name = name[1..], IsVariable = true }
-                : new NodeIdentity { Name = name, IsVariable = false };
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
 
-            return new AddAndSelectSingleNodeAnnotation(sourcePath, identity);
-        }
+    public void Validate(StructureFragment parent, StructureFragment self, NodeAnnotation annotation, int depth)
+    {
+        throw new NotImplementedException();
+    }
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public void Validate(StructureFragment parent, StructureFragment self, NodeAnnotation annotation, int depth)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanValidate(NodeAnnotation annotation)
-        {
-            return annotation is AddAndSelectSingleNodeAnnotation;
-        }
+    public bool CanValidate(NodeAnnotation annotation)
+    {
+        return annotation is AddAndSelectSingleNodeAnnotation;
     }
 }

@@ -1,28 +1,27 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using EtAlii.xTechnology.Threading;
+
+internal class ScriptProcessingDiagnosticsScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Threading;
+    private readonly DiagnosticsOptions _options;
 
-    internal class ScriptProcessingDiagnosticsScaffolding : IScaffolding
+    public ScriptProcessingDiagnosticsScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
+        _options = options;
+    }
 
-        public ScriptProcessingDiagnosticsScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if ((_options?.InjectDebugging ?? false) ||
+            (_options?.InjectLogging ?? false) ||
+            (_options?.InjectProfiling ?? false))
         {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if ((_options?.InjectDebugging ?? false) ||
-                (_options?.InjectLogging ?? false) ||
-                (_options?.InjectProfiling ?? false))
-            {
-                container.Register<IContextCorrelator, ContextCorrelator>();
-            }
+            container.Register<IContextCorrelator, ContextCorrelator>();
         }
     }
 }

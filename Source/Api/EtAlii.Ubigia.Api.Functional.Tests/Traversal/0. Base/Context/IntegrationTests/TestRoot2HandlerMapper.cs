@@ -1,18 +1,17 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+
+internal sealed class TestRoot2HandlerMapper : IRootHandlerMapper
 {
-    using System;
+    public RootType Type { get; } = new("TestRoot2");
 
-    internal sealed class TestRoot2HandlerMapper : IRootHandlerMapper
+    public IRootHandler[] AllowedRootHandlers { get; }
+
+    public TestRoot2HandlerMapper()
     {
-        public RootType Type { get; } = new("TestRoot2");
-
-        public IRootHandler[] AllowedRootHandlers { get; }
-
-        public TestRoot2HandlerMapper()
-        {
-            AllowedRootHandlers = Array.Empty<IRootHandler>();
-        }
+        AllowedRootHandlers = Array.Empty<IRootHandler>();
     }
 }

@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.IO;
+
+public class ContentPartQuery
 {
-    using System.IO;
+    public readonly Stream Stream;
+    public readonly Identifier Identifier;
+    public readonly Content Content;
 
-    public class ContentPartQuery
+    public ContentPartQuery(Stream stream, in Identifier identifier, Content content)
     {
-        public readonly Stream Stream;
-        public readonly Identifier Identifier;
-        public readonly Content Content;
-
-        public ContentPartQuery(Stream stream, in Identifier identifier, Content content)
-        {
-            Stream = stream;
-            Identifier = identifier;
-            Content = content;
-        }
+        Stream = stream;
+        Identifier = identifier;
+        Content = content;
     }
 }

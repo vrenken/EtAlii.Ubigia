@@ -1,18 +1,17 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System;
+using System.Threading.Tasks;
+
+public class GraphUnlinker : IGraphUnlinker
 {
-    using System;
-    using System.Threading.Tasks;
+    //private readonly IGraphChildAdder _graphChildAdder
+    //private readonly IGraphLinkAdder _graphLinkAdder
 
-    public class GraphUnlinker : IGraphUnlinker
+    public Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
     {
-        //private readonly IGraphChildAdder _graphChildAdder
-        //private readonly IGraphLinkAdder _graphLinkAdder
-
-        public Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
-        {
-            return Task.FromException<IReadOnlyEntry>(new NotImplementedException());
-        }
+        return Task.FromException<IReadOnlyEntry>(new NotImplementedException());
     }
 }

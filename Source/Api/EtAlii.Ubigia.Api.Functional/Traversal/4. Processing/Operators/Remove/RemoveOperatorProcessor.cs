@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+
+internal class RemoveOperatorProcessor : IRemoveOperatorProcessor
 {
-    using System;
-    using System.Threading.Tasks;
+    private readonly IRemoveByNameFromAbsolutePathProcessor _removeByNameFromAbsolutePathProcessor;
+    private readonly IRemoveByNameFromRelativePathProcessor _removeByNameFromRelativePathProcessor;
 
-    internal class RemoveOperatorProcessor : IRemoveOperatorProcessor
+    public RemoveOperatorProcessor(
+        IRemoveByNameFromAbsolutePathProcessor removeByNameFromAbsolutePathProcessor,
+        IRemoveByNameFromRelativePathProcessor removeByNameFromRelativePathProcessor)
     {
-        private readonly IRemoveByNameFromAbsolutePathProcessor _removeByNameFromAbsolutePathProcessor;
-        private readonly IRemoveByNameFromRelativePathProcessor _removeByNameFromRelativePathProcessor;
+        _removeByNameFromAbsolutePathProcessor = removeByNameFromAbsolutePathProcessor;
+        _removeByNameFromRelativePathProcessor = removeByNameFromRelativePathProcessor;
+    }
 
-        public RemoveOperatorProcessor(
-            IRemoveByNameFromAbsolutePathProcessor removeByNameFromAbsolutePathProcessor,
-            IRemoveByNameFromRelativePathProcessor removeByNameFromRelativePathProcessor)
+    public Task Process(OperatorParameters parameters)
+    {
+        return parameters switch
         {
-            _removeByNameFromAbsolutePathProcessor = removeByNameFromAbsolutePathProcessor;
-            _removeByNameFromRelativePathProcessor = removeByNameFromRelativePathProcessor;
-        }
-
-        public Task Process(OperatorParameters parameters)
-        {
-            return parameters switch
-            {
-                {LeftSubject: EmptySubject} => _removeByNameFromAbsolutePathProcessor.Process(parameters),
-                {LeftSubject: not EmptySubject} => _removeByNameFromRelativePathProcessor.Process(parameters),
-                _ => throw new NotSupportedException($"Cannot determine remove path processor for: {parameters?.ToString() ?? "NULL"}")
-            };
-        }
+            {LeftSubject: EmptySubject} => _removeByNameFromAbsolutePathProcessor.Process(parameters),
+            {LeftSubject: not EmptySubject} => _removeByNameFromRelativePathProcessor.Process(parameters),
+            _ => throw new NotSupportedException($"Cannot determine remove path processor for: {parameters?.ToString() ?? "NULL"}")
+        };
     }
 }

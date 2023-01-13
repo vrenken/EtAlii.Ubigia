@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+internal interface IPropertiesValueGetter
 {
-    internal interface IPropertiesValueGetter
-    {
-        Value Get(string valueName, Structure structure);
-    }
+    Value Get(string valueName, Structure structure);
 }

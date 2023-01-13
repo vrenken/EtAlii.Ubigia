@@ -1,55 +1,54 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using EtAlii.xTechnology.MicroContainer;
+
+internal sealed class TraversalScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    internal sealed class TraversalScaffolding : IScaffolding
+    public void Register(IRegisterOnlyContainer container)
     {
-        public void Register(IRegisterOnlyContainer container)
-        {
-            container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
+        container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 
-            container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
-            container.Register<IBreadthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
+        container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
+        container.Register<IBreadthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
 
-            //if [_useParallelization]
-            //[
-            //    // Parallel algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>()
-            //    container.Register<IBreadthFirstTraversalAlgorithm, ParallelBreadthFirstTraversalAlgorithm>()
-            //]
-            //else
-            //[
-            //    // Sequential algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, DepthFirstTraversalAlgorithm>()
-            //    container.Register<IBreadthFirstTraversalAlgorithm, BreadthFirstTraversalAlgorithm>()
-            //]
-            container.Register<IGraphPathNodeTraverser, GraphPathNodeTraverser>();
-            container.Register<IGraphPathIdentifiersStartNodeTraverser, GraphPathIdentifiersStartNodeTraverser>();
-            container.Register<IGraphPathRootStartNodeTraverser, GraphPathRootStartNodeTraverser>();
-            container.Register<IGraphPathAllChildrenRelationTraverser, GraphPathAllChildrenRelationTraverser>();
-            container.Register<IGraphPathChildrenRelationTraverser, GraphPathChildrenRelationTraverser>();
-            container.Register<IGraphPathAllParentsRelationTraverser, GraphPathAllParentsRelationTraverser>();
-            container.Register<IGraphPathParentRelationTraverser, GraphPathParentRelationTraverser>();
-            container.Register<IGraphPathAllNextRelationTraverser, GraphPathAllNextRelationTraverser>();
-            container.Register<IGraphPathNextRelationTraverser, GraphPathNextRelationTraverser>();
-            container.Register<IGraphPathAllPreviousRelationTraverser, GraphPathAllPreviousRelationTraverser>();
-            container.Register<IGraphPathPreviousRelationTraverser, GraphPathPreviousRelationTraverser>();
-            container.Register<IGraphPathAllUpdatesRelationTraverser, GraphPathAllUpdatesRelationTraverser>();
-            container.Register<IGraphPathUpdatesRelationTraverser, GraphPathUpdatesRelationTraverser>();
-            container.Register<IGraphPathAllDowndatesRelationTraverser, GraphPathAllDowndatesRelationTraverser>();
-            container.Register<IGraphPathDowndateRelationTraverser, GraphPathDowndateRelationTraverser>();
-            container.Register<IGraphPathFinalRelationTraverser, GraphPathFinalRelationTraverser>();
-            container.Register<IGraphPathOriginalRelationTraverser, GraphPathOriginalRelationTraverser>();
-            container.Register<IGraphPathTaggedNodeTraverser, GraphPathTaggedNodeTraverser>();
-            container.Register<IGraphPathWildcardTraverser, GraphPathWildcardTraverser>();
-            container.Register<ITraversingGraphPathWildcardTraverser, TraversingGraphPathWildcardTraverser>();
-            container.Register<IGraphPathConditionalTraverser, GraphPathConditionalTraverser>();
+        //if [_useParallelization]
+        //[
+        //    // Parallel algorithms
+        //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>()
+        //    container.Register<IBreadthFirstTraversalAlgorithm, ParallelBreadthFirstTraversalAlgorithm>()
+        //]
+        //else
+        //[
+        //    // Sequential algorithms
+        //    container.Register<IDepthFirstTraversalAlgorithm, DepthFirstTraversalAlgorithm>()
+        //    container.Register<IBreadthFirstTraversalAlgorithm, BreadthFirstTraversalAlgorithm>()
+        //]
+        container.Register<IGraphPathNodeTraverser, GraphPathNodeTraverser>();
+        container.Register<IGraphPathIdentifiersStartNodeTraverser, GraphPathIdentifiersStartNodeTraverser>();
+        container.Register<IGraphPathRootStartNodeTraverser, GraphPathRootStartNodeTraverser>();
+        container.Register<IGraphPathAllChildrenRelationTraverser, GraphPathAllChildrenRelationTraverser>();
+        container.Register<IGraphPathChildrenRelationTraverser, GraphPathChildrenRelationTraverser>();
+        container.Register<IGraphPathAllParentsRelationTraverser, GraphPathAllParentsRelationTraverser>();
+        container.Register<IGraphPathParentRelationTraverser, GraphPathParentRelationTraverser>();
+        container.Register<IGraphPathAllNextRelationTraverser, GraphPathAllNextRelationTraverser>();
+        container.Register<IGraphPathNextRelationTraverser, GraphPathNextRelationTraverser>();
+        container.Register<IGraphPathAllPreviousRelationTraverser, GraphPathAllPreviousRelationTraverser>();
+        container.Register<IGraphPathPreviousRelationTraverser, GraphPathPreviousRelationTraverser>();
+        container.Register<IGraphPathAllUpdatesRelationTraverser, GraphPathAllUpdatesRelationTraverser>();
+        container.Register<IGraphPathUpdatesRelationTraverser, GraphPathUpdatesRelationTraverser>();
+        container.Register<IGraphPathAllDowndatesRelationTraverser, GraphPathAllDowndatesRelationTraverser>();
+        container.Register<IGraphPathDowndateRelationTraverser, GraphPathDowndateRelationTraverser>();
+        container.Register<IGraphPathFinalRelationTraverser, GraphPathFinalRelationTraverser>();
+        container.Register<IGraphPathOriginalRelationTraverser, GraphPathOriginalRelationTraverser>();
+        container.Register<IGraphPathTaggedNodeTraverser, GraphPathTaggedNodeTraverser>();
+        container.Register<IGraphPathWildcardTraverser, GraphPathWildcardTraverser>();
+        container.Register<ITraversingGraphPathWildcardTraverser, TraversingGraphPathWildcardTraverser>();
+        container.Register<IGraphPathConditionalTraverser, GraphPathConditionalTraverser>();
 
-            container.Register<ITemporalGraphPathWeaver, TemporalGraphPathWeaver>();
+        container.Register<ITemporalGraphPathWeaver, TemporalGraphPathWeaver>();
 
-            container.Register<IPathTraversalContext, PathTraversalContext>();
-        }
+        container.Register<IPathTraversalContext, PathTraversalContext>();
     }
 }

@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public sealed class CommonSpaceConnectionExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly SpaceConnectionOptions _options;
 
-    public sealed class CommonSpaceConnectionExtension : IExtension
+    public CommonSpaceConnectionExtension(SpaceConnectionOptions options)
     {
-        private readonly SpaceConnectionOptions _options;
+        _options = options;
+    }
 
-        public CommonSpaceConnectionExtension(SpaceConnectionOptions options)
-        {
-            _options = options;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            new SpaceConnectionScaffolding(_options).Register(container);
-        }
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        new SpaceConnectionScaffolding(_options).Register(container);
     }
 }

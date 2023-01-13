@@ -1,37 +1,36 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.SignalR;
+
+using System.Threading.Tasks;
+
+public partial class SignalRAuthenticationDataClient
 {
-    using System.Threading.Tasks;
-
-    public partial class SignalRAuthenticationDataClient
+    /// <inheritdoc />
+    public async Task<Space> GetSpace(ISpaceConnection connection)
     {
-        /// <inheritdoc />
-        public async Task<Space> GetSpace(ISpaceConnection connection)
+        if (connection.Space != null)
         {
-            if (connection.Space != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
-            }
-
-            var space = await GetSpace(connection.Options.Space).ConfigureAwait(false);
-            if (space == null)
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
-            }
-
-            return space;
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
         }
 
-        private async Task<Space> GetSpace(string spaceName)
+        var space = await GetSpace(connection.Options.Space).ConfigureAwait(false);
+        if (space == null)
         {
-            var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName).ConfigureAwait(false);
-			if (space == null)
-			{
-				var message = $"Unable to connect to the the specified space ({spaceName})";
-				throw new UnauthorizedInfrastructureOperationException(message);
-			}
-			return space;// s.FirstOrDefault(s => s.Name == spaceName)
+            throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
         }
+
+        return space;
+    }
+
+    private async Task<Space> GetSpace(string spaceName)
+    {
+        var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName).ConfigureAwait(false);
+        if (space == null)
+        {
+            var message = $"Unable to connect to the the specified space ({spaceName})";
+            throw new UnauthorizedInfrastructureOperationException(message);
+        }
+        return space;// s.FirstOrDefault(s => s.Name == spaceName)
     }
 }

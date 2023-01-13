@@ -1,14 +1,13 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
-{
-    using EtAlii.xTechnology.MicroContainer;
+namespace EtAlii.Ubigia.Api.Fabric;
 
-    internal class RootContextScaffolding : IScaffolding
+using EtAlii.xTechnology.MicroContainer;
+
+internal class RootContextScaffolding : IScaffolding
+{
+    public void Register(IRegisterOnlyContainer container)
     {
-        public void Register(IRegisterOnlyContainer container)
-        {
-            container.Register<IRootContext, RootContext>();
-        }
+        container.Register<IRootContext, RootContext>();
     }
 }

@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+
+public sealed class Sequence
 {
-    using System.Linq;
+    public SequencePart[] Parts { get; }
 
-    public sealed class Sequence
+    public Sequence(SequencePart[] parts)
     {
-        public SequencePart[] Parts { get; }
+        Parts = parts;
+    }
 
-        public Sequence(SequencePart[] parts)
-        {
-            Parts = parts;
-        }
-
-        public override string ToString()
-        {
-            return string.Concat(Parts.Select(part => part.ToString()));
-        }
+    public override string ToString()
+    {
+        return string.Concat(Parts.Select(part => part.ToString()));
     }
 }

@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+public interface IPropertyCacheHelper
 {
-    public interface IPropertyCacheHelper
-    {
-        PropertyDictionary GetProperties(in Identifier identifier);
-        void StoreProperties(in Identifier identifier, PropertyDictionary properties);
-    }
+    PropertyDictionary GetProperties(in Identifier identifier);
+    void StoreProperties(in Identifier identifier, PropertyDictionary properties);
 }

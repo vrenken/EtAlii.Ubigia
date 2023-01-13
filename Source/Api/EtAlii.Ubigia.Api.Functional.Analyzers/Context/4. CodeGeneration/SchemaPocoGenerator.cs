@@ -1,217 +1,216 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using EtAlii.Ubigia.Api.Fabric;
+using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+using EtAlii.Ubigia.Api.Functional.Antlr;
+using EtAlii.Ubigia.Api.Logical;
+using EtAlii.Ubigia.Api.Logical.Diagnostics;
+using EtAlii.Ubigia.Api.Transport;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
+using Serilog;
+using Microsoft.Extensions.Configuration;
+
+[Generator]
+public class SchemaPocoGenerator : ISourceGenerator
 {
-    using System;
-    using System.CodeDom.Compiler;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Antlr;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.Text;
-    using Serilog;
-    using Microsoft.Extensions.Configuration;
+    private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new
+    (
+        id: "UB1001",
+        title: "GCL schema is invalid",
+        messageFormat: "GCL schema is invalid: {0}",
+        category: "Code-Gen",
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true
+    );
 
-    [Generator]
-    public class SchemaPocoGenerator : ISourceGenerator
+    private ISchemaParser _schemaParser;
+    private ILogger _logger;
+
+    private readonly INamespaceWriter _namespaceWriter;
+    private readonly IHeaderWriter _headerWriter;
+
+    public SchemaPocoGenerator()
     {
-        private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new
-        (
-            id: "UB1001",
-            title: "GCL schema is invalid",
-            messageFormat: "GCL schema is invalid: {0}",
-            category: "Code-Gen",
-            defaultSeverity: DiagnosticSeverity.Error,
-            isEnabledByDefault: true
-        );
+        var resultMapperWriter = new ResultMapperWriter();
+        var annotationCommentWriter = new AnnotationCommentWriter();
+        var propertyWriter = new ValuePropertyWriter(annotationCommentWriter);
+        var classWriter = new ClassWriter(propertyWriter, annotationCommentWriter, resultMapperWriter);
+        var variableFinder = new VariableFinder();
+        var graphContextExtensionWriter = new GraphContextExtensionWriter(variableFinder);
+        _namespaceWriter = new NamespaceWriter(classWriter, graphContextExtensionWriter);
+        _headerWriter = new HeaderWriter();
+    }
 
-        private ISchemaParser _schemaParser;
-        private ILogger _logger;
+    public void Initialize(GeneratorInitializationContext context)
+    {
+        // For this specific generator we don't have to do any further initialization.
+    }
 
-        private readonly INamespaceWriter _namespaceWriter;
-        private readonly IHeaderWriter _headerWriter;
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S5332:Using http protocol is insecure. Use https instead",
+        Justification = "Safe to do so: This code only gets enabled at the local development machine.")]
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S1075:URIs should not be hardcoded",
+        Justification = "We don't have access to a settings.json and the first attempt to create one from scratch exploded due to the limitations of Roslyn generator packages.")]
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S4792:Make sure that this logger's configuration is safe",
+        Justification = "Safe to do so: It's a hardcoded configuration, fully instantiated in code. We need to change (or even disable this), but not right now.")]
+    private void SetupLogging()
+    {
+        var loggerConfiguration = new LoggerConfiguration();
 
-        public SchemaPocoGenerator()
+        var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
+
+        loggerConfiguration.MinimumLevel.Verbose()
+            .Enrich.FromLogContext()
+            // These ones do not give elegant results during unit tests.
+            // .Enrich.WithAssemblyName()
+            // .Enrich.WithAssemblyVersion()
+            // Let's do it ourselves.
+            .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
+            .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
+            .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
+
+        // I know, ugly patch, but it works. And it's better than making all global generators try to phone home...
+        if (Environment.MachineName == "FRACTAL")
         {
-            var resultMapperWriter = new ResultMapperWriter();
-            var annotationCommentWriter = new AnnotationCommentWriter();
-            var propertyWriter = new ValuePropertyWriter(annotationCommentWriter);
-            var classWriter = new ClassWriter(propertyWriter, annotationCommentWriter, resultMapperWriter);
-            var variableFinder = new VariableFinder();
-            var graphContextExtensionWriter = new GraphContextExtensionWriter(variableFinder);
-            _namespaceWriter = new NamespaceWriter(classWriter, graphContextExtensionWriter);
-            _headerWriter = new HeaderWriter();
+            loggerConfiguration.WriteTo.Seq("http://seq.avalon:5341");
         }
 
-        public void Initialize(GeneratorInitializationContext context)
+        Log.Logger = loggerConfiguration
+            .CreateLogger();
+        _logger = Log.Logger
+            .ForContext<SchemaPocoGenerator>()
+            .ForContext("CodeGeneration", ShortGuid.New());
+
+        _logger.Information("Setting up SchemaPocoGenerator");
+
+        AppDomain.CurrentDomain.UnhandledException += (_, e) => _logger.Fatal(e.ExceptionObject as Exception, "Fatal exception while creating SchemaPocoGenerator");
+    }
+
+    private void SetupParser()
+    {
+        _logger.Information("Setting up schema parser");
+        try
         {
-            // For this specific generator we don't have to do any further initialization.
+            var configurationRoot = new ConfigurationBuilder()
+                .Build();
+
+            _logger.Debug("Configuration root {ConfigurationRoot}", configurationRoot);
+
+            // Fabric and logical and transport layers are not really needed here.
+            // We just use the parsing capabilities in the functional layer.
+
+            var functionalOptions = new DataConnectionOptions(configurationRoot) // Transport.
+                .UseStubbedConnection()
+                .UseFabricContext() // Fabric.
+                .UseDiagnostics()
+                .UseLogicalContext() // Logical.
+                .UseDiagnostics()
+                .UseFunctionalContext() // Functional.
+                .UseAntlrParsing()
+                .UseDiagnostics();
+
+            _schemaParser = Factory.Create<ISchemaParser>(functionalOptions);
         }
-
-        [SuppressMessage(
-            category: "Sonar Code Smell",
-            checkId: "S5332:Using http protocol is insecure. Use https instead",
-            Justification = "Safe to do so: This code only gets enabled at the local development machine.")]
-        [SuppressMessage(
-            category: "Sonar Code Smell",
-            checkId: "S1075:URIs should not be hardcoded",
-            Justification = "We don't have access to a settings.json and the first attempt to create one from scratch exploded due to the limitations of Roslyn generator packages.")]
-        [SuppressMessage(
-            category: "Sonar Code Smell",
-            checkId: "S4792:Make sure that this logger's configuration is safe",
-            Justification = "Safe to do so: It's a hardcoded configuration, fully instantiated in code. We need to change (or even disable this), but not right now.")]
-        private void SetupLogging()
+        catch (Exception e)
         {
-            var loggerConfiguration = new LoggerConfiguration();
-
-            var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
-
-            loggerConfiguration.MinimumLevel.Verbose()
-                .Enrich.FromLogContext()
-                // These ones do not give elegant results during unit tests.
-                // .Enrich.WithAssemblyName()
-                // .Enrich.WithAssemblyVersion()
-                // Let's do it ourselves.
-                .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
-                .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
-                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
-
-            // I know, ugly patch, but it works. And it's better than making all global generators try to phone home...
-            if (Environment.MachineName == "FRACTAL")
-            {
-                loggerConfiguration.WriteTo.Seq("http://seq.avalon:5341");
-            }
-
-            Log.Logger = loggerConfiguration
-                .CreateLogger();
-            _logger = Log.Logger
-                .ForContext<SchemaPocoGenerator>()
-                .ForContext("CodeGeneration", ShortGuid.New());
-
-            _logger.Information("Setting up SchemaPocoGenerator");
-
-            AppDomain.CurrentDomain.UnhandledException += (_, e) => _logger.Fatal(e.ExceptionObject as Exception, "Fatal exception while creating SchemaPocoGenerator");
+            _logger.Fatal(e, "Unable to setup schema parser");
         }
+    }
 
-        private void SetupParser()
+    private bool TryParseSchema(GeneratorExecutionContext context, AdditionalText file, out Schema schema)
+    {
+        try
         {
-            _logger.Information("Setting up schema parser");
-            try
+            var scope = new ExecutionScope();
+            var schemaText = file.GetText()?.ToString();
+            _logger
+                .ForContext("SchemaText", schemaText, true)
+                .Information("Parsing schema");
+            var result = _schemaParser.Parse(schemaText, scope);
+            if (result.Errors.Any())
             {
-                var configurationRoot = new ConfigurationBuilder()
-                    .Build();
-
-                _logger.Debug("Configuration root {ConfigurationRoot}", configurationRoot);
-
-                // Fabric and logical and transport layers are not really needed here.
-                // We just use the parsing capabilities in the functional layer.
-
-                var functionalOptions = new DataConnectionOptions(configurationRoot) // Transport.
-                    .UseStubbedConnection()
-                    .UseFabricContext() // Fabric.
-                    .UseDiagnostics()
-                    .UseLogicalContext() // Logical.
-                    .UseDiagnostics()
-                    .UseFunctionalContext() // Functional.
-                    .UseAntlrParsing()
-                    .UseDiagnostics();
-
-                _schemaParser = Factory.Create<ISchemaParser>(functionalOptions);
-            }
-            catch (Exception e)
-            {
-                _logger.Fatal(e, "Unable to setup schema parser");
-            }
-        }
-
-        private bool TryParseSchema(GeneratorExecutionContext context, AdditionalText file, out Schema schema)
-        {
-            try
-            {
-                var scope = new ExecutionScope();
-                var schemaText = file.GetText()?.ToString();
                 _logger
-                    .ForContext("SchemaText", schemaText, true)
-                    .Information("Parsing schema");
-                var result = _schemaParser.Parse(schemaText, scope);
-                if (result.Errors.Any())
-                {
-                    _logger
-                        .ForContext("SchemaParseErrors", result.Errors, true)
-                        .Information("Parsing schema resulted in errors");
+                    .ForContext("SchemaParseErrors", result.Errors, true)
+                    .Information("Parsing schema resulted in errors");
 
-                    foreach (var error in result.Errors)
-                    {
-                        var linePositionStart = new LinePosition(error.Line, error.Column);
-                        var linePositionEnd = new LinePosition(error.Line, error.Column);
-                        var linePositionSpan = new LinePositionSpan(linePositionStart, linePositionEnd);
-                        var textSpan = new TextSpan(error.Column, 0);
-                        var location = Location.Create(file.Path, textSpan, linePositionSpan);
-                        var diagnostic = Diagnostic.Create(_ubigiaInvalidGclSchemaRule, location, error.Message, error.Exception.StackTrace);
-                        context.ReportDiagnostic(diagnostic);
-                    }
-                }
-                else
+                foreach (var error in result.Errors)
                 {
-                    schema = result.Schema;
-                    _logger
-                        .ForContext("Schema", schema, true)
-                        .Information("Parsed schema");
-                    return true;
-
+                    var linePositionStart = new LinePosition(error.Line, error.Column);
+                    var linePositionEnd = new LinePosition(error.Line, error.Column);
+                    var linePositionSpan = new LinePositionSpan(linePositionStart, linePositionEnd);
+                    var textSpan = new TextSpan(error.Column, 0);
+                    var location = Location.Create(file.Path, textSpan, linePositionSpan);
+                    var diagnostic = Diagnostic.Create(_ubigiaInvalidGclSchemaRule, location, error.Message, error.Exception.StackTrace);
+                    context.ReportDiagnostic(diagnostic);
                 }
             }
-            catch (Exception e)
+            else
             {
-                _logger.Fatal(e, "Unable to parse schema");
-            }
+                schema = result.Schema;
+                _logger
+                    .ForContext("Schema", schema, true)
+                    .Information("Parsed schema");
+                return true;
 
-            schema = null;
-            return false;
+            }
         }
-        public void Execute(GeneratorExecutionContext context)
+        catch (Exception e)
         {
-            SetupLogging();
-            _logger.Information("Executing");
-
-            SetupParser();
-
-            var additionalFiles = context.AdditionalFiles
-                .Where(f => Path.GetExtension(f.Path) == ".gcl")
-                .ToArray();
-
-            foreach (var file in additionalFiles)
-            {
-                _logger.Information("Processing file: {FileName}", file.Path);
-                if (TryParseSchema(context, file, out var schema))
-                {
-                    var fileName = Path.GetFileNameWithoutExtension(file.Path);
-
-                    using var sourceWriter = new StringWriter();
-                    using var writer = new IndentedTextWriter(sourceWriter, "\t") {Indent = 0};
-
-                    _headerWriter.Write(writer, fileName);
-                    _namespaceWriter.Write(_logger, writer, schema);
-
-                    var targetFileName = $"{fileName}.Gcl.Generated.cs";
-                    var sourceTextString = sourceWriter.ToString();
-                    _logger
-                        .ForContext("SourceText", sourceTextString)
-                        .Information("Writing source to file: {FileName}", targetFileName);
-                    context.AddSource(targetFileName, sourceTextString);
-                }
-            }
-
-            Log.CloseAndFlush();
-            _logger = null;
+            _logger.Fatal(e, "Unable to parse schema");
         }
+
+        schema = null;
+        return false;
+    }
+    public void Execute(GeneratorExecutionContext context)
+    {
+        SetupLogging();
+        _logger.Information("Executing");
+
+        SetupParser();
+
+        var additionalFiles = context.AdditionalFiles
+            .Where(f => Path.GetExtension(f.Path) == ".gcl")
+            .ToArray();
+
+        foreach (var file in additionalFiles)
+        {
+            _logger.Information("Processing file: {FileName}", file.Path);
+            if (TryParseSchema(context, file, out var schema))
+            {
+                var fileName = Path.GetFileNameWithoutExtension(file.Path);
+
+                using var sourceWriter = new StringWriter();
+                using var writer = new IndentedTextWriter(sourceWriter, "\t") {Indent = 0};
+
+                _headerWriter.Write(writer, fileName);
+                _namespaceWriter.Write(_logger, writer, schema);
+
+                var targetFileName = $"{fileName}.Gcl.Generated.cs";
+                var sourceTextString = sourceWriter.ToString();
+                _logger
+                    .ForContext("SourceText", sourceTextString)
+                    .Information("Writing source to file: {FileName}", targetFileName);
+                context.AddSource(targetFileName, sourceTextString);
+            }
+        }
+
+        Log.CloseAndFlush();
+        _logger = null;
     }
 }

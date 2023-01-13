@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+internal interface IContentDefinitionCacheHelper
 {
-    internal interface IContentDefinitionCacheHelper
-    {
-        ContentDefinition Get(in Identifier identifier);
-        void Store(in Identifier identifier, ContentDefinition definition);
-    }
+    ContentDefinition Get(in Identifier identifier);
+    void Store(in Identifier identifier, ContentDefinition definition);
 }

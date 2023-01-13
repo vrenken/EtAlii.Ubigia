@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.Ubigia;
+
+using System.IO;
+
+public abstract class ComponentBase : IComponent, IBinarySerializable
 {
-    using System.IO;
+    /// <summary>
+    /// Returns true when the component has been stored.
+    /// </summary>
+    public bool Stored { get; internal set; }
 
-    public abstract class ComponentBase : IComponent, IBinarySerializable
-    {
-        /// <summary>
-        /// Returns true when the component has been stored.
-        /// </summary>
-        public bool Stored { get; internal set; }
+    /// <summary>
+    /// Returns the type name of the component.
+    /// </summary>
+    protected internal abstract string Name { get; }
 
-        /// <summary>
-        /// Returns the type name of the component.
-        /// </summary>
-        protected internal abstract string Name { get; }
+    /// <summary>
+    /// Apply this component to the provided entry.
+    /// Set markAsStored to true to indicate that the component has been stored on the server.
+    /// </summary>
+    /// <param name="entry"></param>
+    /// <param name="markAsStored"></param>
+    protected internal abstract void Apply(IComponentEditableEntry entry, bool markAsStored);
 
-        /// <summary>
-        /// Apply this component to the provided entry.
-        /// Set markAsStored to true to indicate that the component has been stored on the server.
-        /// </summary>
-        /// <param name="entry"></param>
-        /// <param name="markAsStored"></param>
-        protected internal abstract void Apply(IComponentEditableEntry entry, bool markAsStored);
+    public abstract void Write(BinaryWriter writer);
 
-        public abstract void Write(BinaryWriter writer);
-
-        public abstract void Read(BinaryReader reader);
-    }
+    public abstract void Read(BinaryReader reader);
 }

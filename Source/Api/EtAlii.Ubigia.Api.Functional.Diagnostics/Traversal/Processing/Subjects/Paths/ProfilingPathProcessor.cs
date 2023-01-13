@@ -1,34 +1,33 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+public class ProfilingPathProcessor : IPathProcessor
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly IPathProcessor _decoree;
+    private readonly IProfiler _profiler;
 
-    public class ProfilingPathProcessor : IPathProcessor
+    public IScriptProcessingContext Context => _decoree.Context;
+
+    public ProfilingPathProcessor(
+        IPathProcessor decoree,
+        IProfiler profiler)
     {
-        private readonly IPathProcessor _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubject);
+    }
 
-        public IScriptProcessingContext Context => _decoree.Context;
+    public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
+    {
+        dynamic profile = _profiler.Begin("Processing path subject: " + pathSubject);
+        profile.PathSubject = pathSubject;
 
-        public ProfilingPathProcessor(
-            IPathProcessor decoree,
-            IProfiler profiler)
-        {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubject);
-        }
+        await _decoree.Process(pathSubject, scope, output).ConfigureAwait(false);
 
-        public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
-        {
-            dynamic profile = _profiler.Begin("Processing path subject: " + pathSubject);
-            profile.PathSubject = pathSubject;
-
-            await _decoree.Process(pathSubject, scope, output).ConfigureAwait(false);
-
-            _profiler.End(profile);
-        }
+        _profiler.End(profile);
     }
 }

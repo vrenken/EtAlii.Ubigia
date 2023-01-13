@@ -1,152 +1,151 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using Xunit;
+
+public class TraversalContextFactoryRootHandlersTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
 
-    public class TraversalContextFactoryRootHandlersTests : IClassFixture<FunctionalUnitTestContext>
+    public TraversalContextFactoryRootHandlersTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
+        _testContext = testContext;
+    }
 
-        public TraversalContextFactoryRootHandlersTests(FunctionalUnitTestContext testContext)
+
+    [Fact]
+    public async Task TraversalContextFactory_Create()
+    {
+        // Arrange.
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_RootHandler_None()
+    {
+        // Arrange.
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_RootHandler_Single()
+    {
+        // Arrange.
+        var rootHandlerMappers = new IRootHandlerMapper[] { new TestRootHandlerMapper() };
+        var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
+
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(rootHandlerMappersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_RootHandler_Single_Invalid()
+    {
+        // Arrange.
+        var rootHandlerMappers = new IRootHandlerMapper[] { new InvalidTestRootHandlerMapper() };
+        var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
+
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(rootHandlerMappersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
+
+        // Act.
+        var act = new Action(() =>
         {
-            _testContext = testContext;
-        }
+            _testContext.CreateComponent<ITraversalContext>(options);
+        });
 
+        // Assert.
+        Assert.Throws<InvalidOperationException>(act);
+    }
 
-        [Fact]
-        public async Task TraversalContextFactory_Create()
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_RootHandler_Multiple()
+    {
+        // Arrange.
+        var rootHandlerMappers = new IRootHandlerMapper[]
         {
-            // Arrange.
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
+            new TestRootHandlerMapper(),
+            new TestRoot2HandlerMapper()
+        };
+        var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(rootHandlerMappersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
 
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
+        // Act.
+        var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_RootHandler_None()
+        // Assert.
+        Assert.NotNull(scriptContext);
+    }
+
+    [Fact]
+    public async Task TraversalContextFactory_Create_With_RootHandler_Multiple_Invalid()
+    {
+        // Arrange.
+        var rootHandlerMappers = new IRootHandlerMapper[]
         {
-            // Arrange.
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
+            new TestRootHandlerMapper(),
+            new TestRootHandlerMapper()
+        };
+        var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
+        var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            .UseTestParsing()
+            .UseDiagnostics()
+            .Use(rootHandlerMappersProvider)
+            .UseLogicalContext(_testContext, true)
+            .ConfigureAwait(false);
 
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_RootHandler_Single()
+        // Act.
+        var act = new Action(() =>
         {
-            // Arrange.
-            var rootHandlerMappers = new IRootHandlerMapper[] { new TestRootHandlerMapper() };
-            var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
+            _testContext.CreateComponent<ITraversalContext>(options);
+        });
 
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(rootHandlerMappersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
-
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_RootHandler_Single_Invalid()
-        {
-            // Arrange.
-            var rootHandlerMappers = new IRootHandlerMapper[] { new InvalidTestRootHandlerMapper() };
-            var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(rootHandlerMappersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.CreateComponent<ITraversalContext>(options);
-            });
-
-            // Assert.
-            Assert.Throws<InvalidOperationException>(act);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_RootHandler_Multiple()
-        {
-            // Arrange.
-            var rootHandlerMappers = new IRootHandlerMapper[]
-            {
-                new TestRootHandlerMapper(),
-                new TestRoot2HandlerMapper()
-            };
-            var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(rootHandlerMappersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
-
-            // Assert.
-            Assert.NotNull(scriptContext);
-        }
-
-        [Fact]
-        public async Task TraversalContextFactory_Create_With_RootHandler_Multiple_Invalid()
-        {
-            // Arrange.
-            var rootHandlerMappers = new IRootHandlerMapper[]
-            {
-                new TestRootHandlerMapper(),
-                new TestRootHandlerMapper()
-            };
-            var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDiagnostics()
-                .Use(rootHandlerMappersProvider)
-                .UseLogicalContext(_testContext, true)
-                .ConfigureAwait(false);
-
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.CreateComponent<ITraversalContext>(options);
-            });
-
-            // Assert.
-            Assert.Throws<InvalidOperationException>(act);
-        }
+        // Assert.
+        Assert.Throws<InvalidOperationException>(act);
     }
 }

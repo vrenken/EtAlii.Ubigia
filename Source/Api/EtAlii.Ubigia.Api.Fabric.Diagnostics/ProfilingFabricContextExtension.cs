@@ -1,35 +1,34 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
+namespace EtAlii.Ubigia.Api.Fabric.Diagnostics;
+
+using EtAlii.Ubigia.Diagnostics.Profiling;
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+
+public sealed class ProfilingFabricContextExtension : IExtension
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
-    using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
+    private readonly IConfigurationRoot _configurationRoot;
 
-    public sealed class ProfilingFabricContextExtension : IExtension
+    public ProfilingFabricContextExtension(IConfigurationRoot configurationRoot)
     {
-        private readonly IConfigurationRoot _configurationRoot;
+        _configurationRoot = configurationRoot;
+    }
 
-        public ProfilingFabricContextExtension(IConfigurationRoot configurationRoot)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var options = _configurationRoot
+            .GetSection("Api:Fabric:Diagnostics")
+            .Get<DiagnosticsOptions>();
+
+        if (options?.InjectProfiling ?? false)
         {
-            _configurationRoot = configurationRoot;
-        }
-
-        public void Initialize(IRegisterOnlyContainer container)
-        {
-            var options = _configurationRoot
-                .GetSection("Api:Fabric:Diagnostics")
-                .Get<DiagnosticsOptions>();
-
-            if (options?.InjectProfiling ?? false)
-            {
-                container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
-                container.RegisterDecorator<IFabricContext, ProfilingFabricContext>();
-                container.RegisterDecorator<IContentCacheHelper, ProfilingContentCacheHelper>();
-                container.RegisterDecorator<IPropertyCacheHelper, ProfilingPropertyCacheHelper>();
-            }
+            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
+            container.RegisterDecorator<IFabricContext, ProfilingFabricContext>();
+            container.RegisterDecorator<IContentCacheHelper, ProfilingContentCacheHelper>();
+            container.RegisterDecorator<IPropertyCacheHelper, ProfilingPropertyCacheHelper>();
         }
     }
 }

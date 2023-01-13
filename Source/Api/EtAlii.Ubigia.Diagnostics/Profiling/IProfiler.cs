@@ -1,26 +1,25 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Diagnostics.Profiling;
+
+using System;
+
+public interface IProfiler
 {
-    using System;
+    IProfiler Parent { get; }
+    IProfiler Previous { get; }
+    IProfilingResultStack ResultStack { get; }
 
-    public interface IProfiler
-    {
-        IProfiler Parent { get; }
-        IProfiler Previous { get; }
-        IProfilingResultStack ResultStack { get; }
+    ProfilingAspect Aspect { get; }
 
-        ProfilingAspect Aspect { get; }
+    ProfilingAspect[] Aspects { get; set; }
 
-        ProfilingAspect[] Aspects { get; set; }
+    ProfilingResult Begin(string action);
+    void End(ProfilingResult profile);
 
-        ProfilingResult Begin(string action);
-        void End(ProfilingResult profile);
+    event Action<ProfilingResult> ProfilingStarted;
+    event Action<ProfilingResult> ProfilingEnded;
 
-        event Action<ProfilingResult> ProfilingStarted;
-        event Action<ProfilingResult> ProfilingEnded;
-
-        void SetPrevious(IProfiler previous);
-        IProfiler Create(ProfilingAspect aspect);
-    }
+    void SetPrevious(IProfiler previous);
+    IProfiler Create(ProfilingAspect aspect);
 }

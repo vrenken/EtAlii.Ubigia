@@ -1,28 +1,27 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Grpc;
+
+using System.Threading.Tasks;
+
+public abstract class GrpcClientBase
 {
-    using System.Threading.Tasks;
+    protected ISpaceConnection<IGrpcSpaceTransport> Connection { get; private set; }
 
-    public abstract class GrpcClientBase
+    public async Task Connect(ISpaceConnection spaceConnection)
     {
-        protected ISpaceConnection<IGrpcSpaceTransport> Connection { get; private set; }
+        await Connect((ISpaceConnection<IGrpcSpaceTransport>)spaceConnection).ConfigureAwait(false);
+    }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
-        {
-            await Connect((ISpaceConnection<IGrpcSpaceTransport>)spaceConnection).ConfigureAwait(false);
-        }
+    public virtual Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+    {
+        Connection = spaceConnection;
+        return Task.CompletedTask;
+    }
 
-        public virtual Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
-        {
-            Connection = spaceConnection;
-            return Task.CompletedTask;
-        }
-
-        public virtual Task Disconnect()
-        {
-            Connection = null;
-            return Task.CompletedTask;
-        }
+    public virtual Task Disconnect()
+    {
+        Connection = null;
+        return Task.CompletedTask;
     }
 }

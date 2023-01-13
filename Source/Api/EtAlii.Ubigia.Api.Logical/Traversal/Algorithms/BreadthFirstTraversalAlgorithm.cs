@@ -1,68 +1,67 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+
+public sealed class BreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
 {
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
+    private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
 
-    public sealed class BreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
+    public BreadthFirstTraversalAlgorithm(IGraphPathPartTraverserSelector graphPathPartTraverserSelector)
     {
-        private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
+        _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
+    }
+    public async IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
+    {
+        IEnumerable<Identifier> currentResult = new[] { current };
 
-        public BreadthFirstTraversalAlgorithm(IGraphPathPartTraverserSelector graphPathPartTraverserSelector)
+        for (var i = 0; i < graphPath.Length; i++)
         {
-            _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
-        }
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
-        {
-            IEnumerable<Identifier> currentResult = new[] { current };
+            var currentGraphPathPart = graphPath[i];
 
-            for (var i = 0; i < graphPath.Length; i++)
+            var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart);
+
+            var iterationResult = new List<Identifier>();
+
+            var isLast = i == graphPath.Length - 1;
+            foreach (var identifier in currentResult)
             {
-                var currentGraphPathPart = graphPath[i];
+                var relatedNodes = traverser
+                    .Traverse(currentGraphPathPart, identifier, context, scope)
+                    .ConfigureAwait(false);
 
-                var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart);
-
-                var iterationResult = new List<Identifier>();
-
-                var isLast = i == graphPath.Length - 1;
-                foreach (var identifier in currentResult)
+                var results = HandleCurrentResult(relatedNodes, isLast, iterationResult)
+                    .ConfigureAwait(false);
+                await foreach (var result in results)
                 {
-                    var relatedNodes = traverser
-                        .Traverse(currentGraphPathPart, identifier, context, scope)
-                        .ConfigureAwait(false);
-
-                    var results = HandleCurrentResult(relatedNodes, isLast, iterationResult)
-                        .ConfigureAwait(false);
-                    await foreach (var result in results)
-                    {
-                        yield return result;
-                    }
-                }
-                if (!isLast)
-                {
-                    currentResult = iterationResult;
+                    yield return result;
                 }
             }
-        }
-
-        private async IAsyncEnumerable<Identifier> HandleCurrentResult(ConfiguredCancelableAsyncEnumerable<Identifier> relatedNodes, bool isLast, List<Identifier> iterationResult)
-        {
-
-            if (isLast)
+            if (!isLast)
             {
-                await foreach (var relatedNode in relatedNodes)
-                {
-                    yield return relatedNode;
-                }
+                currentResult = iterationResult;
             }
-            else
+        }
+    }
+
+    private async IAsyncEnumerable<Identifier> HandleCurrentResult(ConfiguredCancelableAsyncEnumerable<Identifier> relatedNodes, bool isLast, List<Identifier> iterationResult)
+    {
+
+        if (isLast)
+        {
+            await foreach (var relatedNode in relatedNodes)
             {
-                await foreach (var relatedNode in relatedNodes)
-                {
-                    iterationResult.Add(relatedNode);
-                }
+                yield return relatedNode;
+            }
+        }
+        else
+        {
+            await foreach (var relatedNode in relatedNodes)
+            {
+                iterationResult.Add(relatedNode);
             }
         }
     }

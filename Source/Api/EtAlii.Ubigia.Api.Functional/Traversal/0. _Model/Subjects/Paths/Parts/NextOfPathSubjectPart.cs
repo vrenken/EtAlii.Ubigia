@@ -1,12 +1,11 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+public sealed class NextOfPathSubjectPart : PathSubjectPart
 {
-    public sealed class NextOfPathSubjectPart : PathSubjectPart
+    public override string ToString()
     {
-        public override string ToString()
-        {
-            return "<";
-        }
+        return "<";
     }
 }

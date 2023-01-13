@@ -1,42 +1,41 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System;
+using EtAlii.Ubigia.Api.Fabric;
+using EtAlii.xTechnology.MicroContainer;
+using Microsoft.Extensions.Configuration;
+
+/// <summary>
+/// This are the options for a LogicalContext instance. It provides all settings and extensions
+///to facilitate configurable logical graph querying and traversal.
+/// </summary>
+public sealed class LogicalOptions : IExtensible
 {
-    using System;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
+    public IConfigurationRoot ConfigurationRoot { get; }
 
-    /// <summary>
-    /// This are the options for a LogicalContext instance. It provides all settings and extensions
-    ///to facilitate configurable logical graph querying and traversal.
-    /// </summary>
-    public sealed class LogicalOptions : IExtensible
+    public IFabricContext FabricContext => _fabricContext.Value;
+    private Lazy<IFabricContext> _fabricContext;
+
+    /// <inheritdoc/>
+    IExtension[] IExtensible.Extensions { get; set; }
+
+    public LogicalOptions(IConfigurationRoot configurationRoot)
     {
-        public IConfigurationRoot ConfigurationRoot { get; }
+        ConfigurationRoot = configurationRoot;
 
-        public IFabricContext FabricContext => _fabricContext.Value;
-        private Lazy<IFabricContext> _fabricContext;
+        ((IExtensible)this).Extensions = new IExtension[] { new CommonLogicalExtension(this) };
+    }
 
-        /// <inheritdoc/>
-        IExtension[] IExtensible.Extensions { get; set; }
-
-        public LogicalOptions(IConfigurationRoot configurationRoot)
+    public LogicalOptions UseFabricOptions(FabricOptions fabricOptions)
+    {
+        if (fabricOptions == null)
         {
-            ConfigurationRoot = configurationRoot;
-
-            ((IExtensible)this).Extensions = new IExtension[] { new CommonLogicalExtension(this) };
+            throw new ArgumentNullException(nameof(fabricOptions));
         }
 
-        public LogicalOptions UseFabricOptions(FabricOptions fabricOptions)
-        {
-            if (fabricOptions == null)
-            {
-                throw new ArgumentNullException(nameof(fabricOptions));
-            }
-
-            _fabricContext = new Lazy<IFabricContext>(() => Factory.Create<IFabricContext>(fabricOptions));
-            return this;
-        }
+        _fabricContext = new Lazy<IFabricContext>(() => Factory.Create<IFabricContext>(fabricOptions));
+        return this;
     }
 }

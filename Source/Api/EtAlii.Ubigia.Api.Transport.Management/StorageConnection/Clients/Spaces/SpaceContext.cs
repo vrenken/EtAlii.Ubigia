@@ -1,71 +1,70 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management
+namespace EtAlii.Ubigia.Api.Transport.Management;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public sealed class SpaceContext : StorageClientContextBase<ISpaceDataClient>, ISpaceContext
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    public sealed class SpaceContext : StorageClientContextBase<ISpaceDataClient>, ISpaceContext
+    public SpaceContext(
+        ISpaceDataClient data)
+        : base(data)
     {
-        public SpaceContext(
-            ISpaceDataClient data)
-            : base(data)
+    }
+    public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate spaceTemplate)
+    {
+        if (!Connection.IsConnected)
         {
-        }
-        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate spaceTemplate)
-        {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-
-            return await Data.Add(accountId, spaceName, spaceTemplate).ConfigureAwait(false);
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
 
-        public async Task Remove(Guid spaceId)
-        {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-            await Data.Remove(spaceId).ConfigureAwait(false);
-        }
+        return await Data.Add(accountId, spaceName, spaceTemplate).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Change(Guid spaceId, string spaceName)
+    public async Task Remove(Guid spaceId)
+    {
+        if (!Connection.IsConnected)
         {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-            return await Data.Change(spaceId, spaceName).ConfigureAwait(false);
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
+        await Data.Remove(spaceId).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Get(Guid accountId, string spaceName)
+    public async Task<Space> Change(Guid spaceId, string spaceName)
+    {
+        if (!Connection.IsConnected)
         {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-            return await Data.Get(accountId, spaceName).ConfigureAwait(false);
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
+        return await Data.Change(spaceId, spaceName).ConfigureAwait(false);
+    }
 
-        public async Task<Space> Get(Guid spaceId)
+    public async Task<Space> Get(Guid accountId, string spaceName)
+    {
+        if (!Connection.IsConnected)
         {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-            return await Data.Get(spaceId).ConfigureAwait(false);
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
+        return await Data.Get(accountId, spaceName).ConfigureAwait(false);
+    }
 
-        public IAsyncEnumerable<Space> GetAll(Guid accountId)
+    public async Task<Space> Get(Guid spaceId)
+    {
+        if (!Connection.IsConnected)
         {
-            if (!Connection.IsConnected)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
-            }
-            return Data.GetAll(accountId);
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
         }
+        return await Data.Get(spaceId).ConfigureAwait(false);
+    }
+
+    public IAsyncEnumerable<Space> GetAll(Guid accountId)
+    {
+        if (!Connection.IsConnected)
+        {
+            throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
+        }
+        return Data.GetAll(accountId);
     }
 }

@@ -1,64 +1,63 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class AddConstantToExistingPathProcessor : IAddConstantToExistingPathProcessor
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
+    private readonly IRecursiveAdder _recursiveAdder;
 
-    internal class AddConstantToExistingPathProcessor : IAddConstantToExistingPathProcessor
+    public AddConstantToExistingPathProcessor(
+        IItemToIdentifierConverter itemToIdentifierConverter,
+        IRecursiveAdder recursiveAdder)
     {
-        private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
-        private readonly IRecursiveAdder _recursiveAdder;
+        _itemToIdentifierConverter = itemToIdentifierConverter;
+        _recursiveAdder = recursiveAdder;
+    }
 
-        public AddConstantToExistingPathProcessor(
-            IItemToIdentifierConverter itemToIdentifierConverter,
-            IRecursiveAdder recursiveAdder)
+    private async Task Add(Identifier id, StringConstantSubject stringConstant, ExecutionScope scope, IObserver<object> output)
+    {
+        var constantPathSubjectPart = new ConstantPathSubjectPart(stringConstant.Value);
+        var parentId = id;
+        var addResult = await _recursiveAdder.Add(parentId, constantPathSubjectPart, null, scope).ConfigureAwait(false);
+        var newEntry = addResult.NewEntry;
+        var result = new Node(newEntry);
+        output.OnNext(result);
+    }
+
+
+    public Task Process(OperatorParameters parameters)
+    {
+        if (!(parameters.RightSubject is StringConstantSubject stringConstant))
         {
-            _itemToIdentifierConverter = itemToIdentifierConverter;
-            _recursiveAdder = recursiveAdder;
+            throw new ScriptProcessingException($"The {GetType().Name} requires a string constant on the right side");
         }
 
-        private async Task Add(Identifier id, StringConstantSubject stringConstant, ExecutionScope scope, IObserver<object> output)
+        if (string.IsNullOrWhiteSpace(stringConstant.Value))
         {
-            var constantPathSubjectPart = new ConstantPathSubjectPart(stringConstant.Value);
-            var parentId = id;
-            var addResult = await _recursiveAdder.Add(parentId, constantPathSubjectPart, null, scope).ConfigureAwait(false);
-            var newEntry = addResult.NewEntry;
-            var result = new Node(newEntry);
-            output.OnNext(result);
+            throw new ScriptProcessingException($"The {GetType().Name} requires a non-empty string constant on the right side");
         }
 
-
-        public Task Process(OperatorParameters parameters)
-        {
-            if (!(parameters.RightSubject is StringConstantSubject stringConstant))
+        parameters.LeftInput.SubscribeAsync(
+            onError: parameters.Output.OnError,
+            onCompleted: parameters.Output.OnCompleted,
+            onNext: async o =>
             {
-                throw new ScriptProcessingException($"The {GetType().Name} requires a string constant on the right side");
-            }
-
-            if (string.IsNullOrWhiteSpace(stringConstant.Value))
-            {
-                throw new ScriptProcessingException($"The {GetType().Name} requires a non-empty string constant on the right side");
-            }
-
-            parameters.LeftInput.SubscribeAsync(
-                onError: parameters.Output.OnError,
-                onCompleted: parameters.Output.OnCompleted,
-                onNext: async o =>
+                try
                 {
-                    try
-                    {
-                        var leftId = _itemToIdentifierConverter.Convert(o);
-                        await Add(leftId, stringConstant, parameters.Scope, parameters.Output).ConfigureAwait(false);
-                    }
-                    catch (Exception e)
-                    {
-                        var message = "Unable to add constant to existing path";
-                        parameters.Output.OnError(new InvalidOperationException(message, e));
-                    }
-                });
-            return Task.CompletedTask;
-        }
+                    var leftId = _itemToIdentifierConverter.Convert(o);
+                    await Add(leftId, stringConstant, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+                    var message = "Unable to add constant to existing path";
+                    parameters.Output.OnError(new InvalidOperationException(message, e));
+                }
+            });
+        return Task.CompletedTask;
     }
 }

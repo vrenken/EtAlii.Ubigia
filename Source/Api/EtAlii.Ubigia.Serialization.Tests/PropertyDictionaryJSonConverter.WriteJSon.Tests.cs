@@ -1,945 +1,944 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Serialization.Tests
+namespace EtAlii.Ubigia.Serialization.Tests;
+
+using System;
+using System.IO;
+using Xunit;
+using EtAlii.Ubigia.Tests;
+
+[CorrelateUnitTests]
+public class PropertyDictionaryJSonConverterWriteJSonTests
 {
-    using System;
-    using System.IO;
-    using Xunit;
-    using EtAlii.Ubigia.Tests;
-
-    [CorrelateUnitTests]
-    public class PropertyDictionaryJSonConverterWriteJSonTests
+    [Fact]
+    public void PropertyDictionaryJSonConverter_Create()
     {
-        [Fact]
-        public void PropertyDictionaryJSonConverter_Create()
+        // Arrange.
+
+        // Act.
+        var converter = new PropertyDictionaryJSonConverter();
+
+        // Assert.
+        Assert.NotNull(converter);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_CanConvert_True()
+    {
+        // Arrange.
+        var converter = new PropertyDictionaryJSonConverter();
+
+        // Act.
+        var result = converter.CanConvert(typeof(PropertyDictionary));
+
+        // Assert.
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_CanConvert_False_1()
+    {
+        // Arrange.
+        var converter = new PropertyDictionaryJSonConverter();
+
+        // Act.
+        var result = converter.CanConvert(typeof(string));
+
+        // Assert.
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_CanConvert_False_2()
+    {
+        // Arrange.
+        var converter = new PropertyDictionaryJSonConverter();
+
+        // Act.
+        var result = converter.CanConvert(null);
+
+        // Assert.
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Null()
+    {
+        // Arrange.
+
+        // Act.
+        var result = WriteJSon(null);
+
+        // Assert.
+        Assert.Equal("null", result);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Empty()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary();
+
+        // Act.
+        var result = WriteJSon(properties);
+
+        // Assert.
+        Assert.Equal("{\"d\":\"AAAAAA==\"}", result);
+    }
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_String()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
+            ["Hello"] = "World"
+        };
 
-            // Act.
-            var converter = new PropertyDictionaryJSonConverter();
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.NotNull(converter);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwEFV29ybGQ=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_CanConvert_True()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int16()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var converter = new PropertyDictionaryJSonConverter();
+            ["Hello"] = (short) 123
+        };
 
-            // Act.
-            var result = converter.CanConvert(typeof(PropertyDictionary));
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.True(result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwZ7AA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_CanConvert_False_1()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int16_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var converter = new PropertyDictionaryJSonConverter();
+            ["Hello"] = short.MaxValue
+        };
 
-            // Act.
-            var result = converter.CanConvert(typeof(string));
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.False(result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwb/fw==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_CanConvert_False_2()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int16_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var converter = new PropertyDictionaryJSonConverter();
+            ["Hello"] = short.MinValue
+        };
 
-            // Act.
-            var result = converter.CanConvert(null);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.False(result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwYAgA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Null()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int32()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
+            ["Hello"] = 123
+        };
 
-            // Act.
-            var result = WriteJSon(null);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("null", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwd7AAAA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Empty()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int32_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary();
+            ["Hello"] = int.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AAAAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwf///9/\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_String()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int32_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = "World"
-            };
+            ["Hello"] = int.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwEFV29ybGQ=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwcAAACA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int16()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int64()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (short) 123
-            };
+            ["Hello"] = (long) 123
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwZ7AA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwh7AAAAAAAAAA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int16_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int64_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = short.MaxValue
-            };
+            ["Hello"] = long.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwb/fw==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwj/////////fw==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int16_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Int64_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = short.MinValue
-            };
+            ["Hello"] = long.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwYAgA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwgAAAAAAAAAgA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int32()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt16()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = 123
-            };
+            ["Hello"] = (ushort) 1234
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwd7AAAA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwnSBA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int32_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = int.MaxValue
-            };
+            ["Hello"] = ushort.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwf///9/\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwn//w==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int32_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = int.MinValue
-            };
+            ["Hello"] = ushort.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwcAAACA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwkAAA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int64()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt32()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (long) 123
-            };
+            ["Hello"] = (uint) 1234
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwh7AAAAAAAAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwrSBAAA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int64_Max()
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = long.MaxValue
-            };
+            ["Hello"] = uint.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwj/////////fw==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwr/////\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Int64_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = long.MinValue
-            };
+            ["Hello"] = uint.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwgAAAAAAAAAgA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwoAAAAA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt16()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt64()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (ushort) 1234
-            };
+            ["Hello"] = (ulong) 1234
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwnSBA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwvSBAAAAAAAAA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = ushort.MaxValue
-            };
+            ["Hello"] = ulong.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwn//w==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwv//////////w==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = ushort.MinValue
-            };
+            ["Hello"] = ulong.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwkAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwsAAAAAAAAAAA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt32()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_None()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (uint) 1234
-            };
+            ["Hello"] = null
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwrSBAAA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwA=\"}", result);
+    }
 
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Char()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = uint.MaxValue
-            };
+            ["Hello"] = 'a'
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwr/////\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwJh\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Char_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = uint.MinValue
-            };
+            ["Hello"] = char.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwoAAAAA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwLvv78=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt64()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Char_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (ulong) 1234
-            };
+            ["Hello"] = char.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwvSBAAAAAAAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwIA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Boolean_True()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = ulong.MaxValue
-            };
+            ["Hello"] = true
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwv//////////w==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMB\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Boolean_False()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = ulong.MinValue
-            };
+            ["Hello"] = false
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwsAAAAAAAAAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_None()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_SByte()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = null
-            };
+            ["Hello"] = (sbyte) 123
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwA=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR7\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Char()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_SByte_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = 'a'
-            };
+            ["Hello"] = sbyte.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwJh\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR/\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Char_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_SByte_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = char.MaxValue
-            };
+            ["Hello"] = sbyte.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwLvv78=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwSA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Char_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Byte()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = char.MinValue
-            };
+            ["Hello"] = (byte) 123
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwIA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwV7\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Boolean_True()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Byte_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = true
-            };
+            ["Hello"] = byte.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMB\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwX/\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Boolean_False()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Byte_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = false
-            };
+            ["Hello"] = byte.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwMA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwUA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_SByte()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Single()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (sbyte) 123
-            };
+            ["Hello"] = (float) 123.456
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR7\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwx56fZC\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_SByte_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Single_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = sbyte.MaxValue
-            };
+            ["Hello"] = float.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwR/\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//39/\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_SByte_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Single_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = sbyte.MinValue
-            };
+            ["Hello"] = float.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwSA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//3//\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Byte()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Double()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (byte) 123
-            };
+            ["Hello"] = 123.456
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwV7\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw13vp8aL91eQA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Byte_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Double_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = byte.MaxValue
-            };
+            ["Hello"] = double.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwX/\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////vfw==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Byte_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Double_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = byte.MinValue
-            };
+            ["Hello"] = double.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwUA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////v/w==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Single()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Decimal()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (float) 123.456
-            };
+            ["Hello"] = (decimal) 123.456
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwx56fZC\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw5A4gEAAAAAAAAAAAAAAAMA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Single_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = float.MaxValue
-            };
+            ["Hello"] = decimal.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//39/\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAAAA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Single_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = float.MinValue
-            };
+            ["Hello"] = decimal.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbwz//3//\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAACA\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Double()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = 123.456
-            };
+            ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Local)
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw13vp8aL91eQA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8CAKmqjo+o0gg=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Double_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Utc()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = double.MaxValue
-            };
+            ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Utc)
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////vfw==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8BAKmqjo+o0gg=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Double_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Unspecified()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = double.MinValue
-            };
+            ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Unspecified)
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw3////////v/w==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAKmqjo+o0gg=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Decimal()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = (decimal) 123.456
-            };
+            ["Hello"] = DateTime.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw5A4gEAAAAAAAAAAAAAAAMA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8A/z839HUoyis=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = decimal.MaxValue
-            };
+            ["Hello"] = DateTime.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAAAA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAAAAAAAAAAA=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Min()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = decimal.MinValue
-            };
+            ["Hello"] = TimeSpan.FromSeconds(10)
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw7///////////////8AAACA\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAA4fUFAAAAAA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan_Max()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Local)
-            };
+            ["Hello"] = TimeSpan.MaxValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8CAKmqjo+o0gg=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxD/////////fw==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Utc()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan_Min()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Utc)
-            };
+            ["Hello"] = TimeSpan.MinValue
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8BAKmqjo+o0gg=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAAAAAAAAAAgA==\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Unspecified()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Guid()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Unspecified)
-            };
+            ["Hello"] = Guid.Parse("3AD36A1F-8ED6-42AA-BE7B-877F17B4DB05")
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAKmqjo+o0gg=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxEfatM61o6qQr57h38XtNsF\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Max()
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Version()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = DateTime.MaxValue
-            };
+            ["Hello"] = new Version(1, 2, 3, 4)
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8A/z839HUoyis=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxIBAAAAAgAAAAMAAAAEAAAA\"}", result);
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Min()
+    }
+
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Complex_01()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = DateTime.MinValue
-            };
+            ["Hello"] = "World",
+            ["Int32"] = 1234,
+            ["Boolean"] = true,
+            ["Null"] = null,
+            ["Int16"] = (short) 1234
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbw8AAAAAAAAAAAA=\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"BQAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQ=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan()
+
+    [Fact]
+    public void PropertyDictionaryJSonConverter_WriteJson_Complex_02()
+    {
+        // Arrange.
+        var properties = new PropertyDictionary
         {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = TimeSpan.FromSeconds(10)
-            };
+            ["Hello"] = "World",
+            ["Int32"] = 1234,
+            ["Boolean"] = true,
+            ["Null"] = null,
+            ["Int16"] = (short) 1234,
+            ["f53e71ce-68e5-48a2-a024-5ba9ad169128"] = 1175335310
+        };
 
-            // Act.
-            var result = WriteJSon(properties);
+        // Act.
+        var result = WriteJSon(properties);
 
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAA4fUFAAAAAA==\"}", result);
-        }
+        // Assert.
+        Assert.Equal("{\"d\":\"BgAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQkZjUzZTcxY2UtNjhlNS00OGEyLWEwMjQtNWJhOWFkMTY5MTI4B44xDkY=\"}", result);
+    }
 
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan_Max()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = TimeSpan.MaxValue
-            };
+    private string WriteJSon(PropertyDictionary properties)
+    {
+        var serializer = (Serializer)Serializer.Default;
+        var converter = new PropertyDictionaryJSonConverter();
 
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxD/////////fw==\"}", result);
-        }
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan_Min()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = TimeSpan.MinValue
-            };
-
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxAAAAAAAAAAgA==\"}", result);
-        }
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Guid()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = Guid.Parse("3AD36A1F-8ED6-42AA-BE7B-877F17B4DB05")
-            };
-
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxEfatM61o6qQr57h38XtNsF\"}", result);
-        }
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Version()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = new Version(1, 2, 3, 4)
-            };
-
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"AQAAAAVIZWxsbxIBAAAAAgAAAAMAAAAEAAAA\"}", result);
-
-        }
-
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Complex_01()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = "World",
-                ["Int32"] = 1234,
-                ["Boolean"] = true,
-                ["Null"] = null,
-                ["Int16"] = (short) 1234
-            };
-
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"BQAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQ=\"}", result);
-        }
-
-
-        [Fact]
-        public void PropertyDictionaryJSonConverter_WriteJson_Complex_02()
-        {
-            // Arrange.
-            var properties = new PropertyDictionary
-            {
-                ["Hello"] = "World",
-                ["Int32"] = 1234,
-                ["Boolean"] = true,
-                ["Null"] = null,
-                ["Int16"] = (short) 1234,
-                ["f53e71ce-68e5-48a2-a024-5ba9ad169128"] = 1175335310
-            };
-
-            // Act.
-            var result = WriteJSon(properties);
-
-            // Assert.
-            Assert.Equal("{\"d\":\"BgAAAAVIZWxsbwEFV29ybGQFSW50MzIH0gQAAAdCb29sZWFuAwEETnVsbAAFSW50MTYG0gQkZjUzZTcxY2UtNjhlNS00OGEyLWEwMjQtNWJhOWFkMTY5MTI4B44xDkY=\"}", result);
-        }
-
-        private string WriteJSon(PropertyDictionary properties)
-        {
-            var serializer = (Serializer)Serializer.Default;
-            var converter = new PropertyDictionaryJSonConverter();
-
-            using var textWriter = new StringWriter();
-            using var jsonWriter = new Newtonsoft.Json.JsonTextWriter(textWriter);
-            converter.WriteJson(jsonWriter, properties, serializer);
-            return textWriter.ToString();
-        }
+        using var textWriter = new StringWriter();
+        using var jsonWriter = new Newtonsoft.Json.JsonTextWriter(textWriter);
+        converter.WriteJson(jsonWriter, properties, serializer);
+        return textWriter.ToString();
     }
 }

@@ -1,53 +1,52 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+public class ProfilingGraphPathWildcardTraverser : IGraphPathWildcardTraverser
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly IGraphPathWildcardTraverser _decoree;
+    private readonly IProfiler _profiler;
 
-    public class ProfilingGraphPathWildcardTraverser : IGraphPathWildcardTraverser
+    public ProfilingGraphPathWildcardTraverser(
+        IGraphPathWildcardTraverser decoree,
+        IProfiler profiler)
     {
-        private readonly IGraphPathWildcardTraverser _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Logical.Traversers);
+    }
 
-        public ProfilingGraphPathWildcardTraverser(
-            IGraphPathWildcardTraverser decoree,
-            IProfiler profiler)
+    public void Configure(TraversalParameters parameters)
+    {
+        var pattern = ((GraphWildcard)parameters.Part).Pattern;
+
+        dynamic profile = _profiler.Begin("Configuring wildcard pattern traversing: " + pattern);
+        profile.Part = parameters.Part;
+
+        _decoree.Configure(parameters);
+
+        _profiler.End(profile);
+    }
+
+    public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
+    {
+        var pattern = ((GraphWildcard)part).Pattern;
+
+        dynamic profile = _profiler.Begin("Traversing wildcard pattern: " + pattern);
+        profile.Part = part;
+        profile.Start = start;
+
+        var result = _decoree
+            .Traverse(part, start, context, scope)
+            .ConfigureAwait(false);
+        await foreach (var item in result)
         {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Logical.Traversers);
+            yield return item;
         }
 
-        public void Configure(TraversalParameters parameters)
-        {
-            var pattern = ((GraphWildcard)parameters.Part).Pattern;
-
-            dynamic profile = _profiler.Begin("Configuring wildcard pattern traversing: " + pattern);
-            profile.Part = parameters.Part;
-
-            _decoree.Configure(parameters);
-
-            _profiler.End(profile);
-        }
-
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
-        {
-            var pattern = ((GraphWildcard)part).Pattern;
-
-            dynamic profile = _profiler.Begin("Traversing wildcard pattern: " + pattern);
-            profile.Part = part;
-            profile.Start = start;
-
-            var result = _decoree
-                .Traverse(part, start, context, scope)
-                .ConfigureAwait(false);
-            await foreach (var item in result)
-            {
-                yield return item;
-            }
-
-            _profiler.End(profile);
-        }
+        _profiler.End(profile);
     }
 }

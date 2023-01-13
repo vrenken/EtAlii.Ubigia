@@ -1,194 +1,193 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using Xunit;
+
+public class IndexesComponentCollectionTests
 {
-    using Xunit;
+    private readonly TestIdentifierFactory _testIdentifierFactory;
 
-    public class IndexesComponentCollectionTests
+    public IndexesComponentCollectionTests()
     {
-        private readonly TestIdentifierFactory _testIdentifierFactory;
+        _testIdentifierFactory = new TestIdentifierFactory();
 
-        public IndexesComponentCollectionTests()
+    }
+    [Fact]
+    public void IndexesComponentCollection_Create()
+    {
+        // Arrange.
+
+        // Act.
+        var collection = new IndexesComponentCollection();
+
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.Empty(collection);
+    }
+
+
+    [Fact]
+    public void IndexesComponentCollection_Add_Relation_Add()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
+
+        // Act.
+        collection.Add(new[] { Relation.NewRelation(identifier) }, true);
+
+        // Assert.
+        Assert.Single(collection);
+    }
+
+    [Fact]
+    public void IndexesComponentCollection_Add_Relation_Contains_Fail()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
+
+        // Act.
+
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.False(collection.Contains(identifier));
+    }
+
+    [Fact]
+    public void IndexesComponentCollection_Add_Relation_Contains_Single()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
+
+        // Act.
+        collection.Add(new[] { Relation.NewRelation(identifier) }, true);
+
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.True(collection.Contains(identifier));
+    }
+
+    [Fact]
+    public void IndexesComponentCollection_Add_Relation_Contains_Multiple()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var first = _testIdentifierFactory.Create();
+        var second = _testIdentifierFactory.Create();
+        var third = _testIdentifierFactory.Create();
+
+        // Act.
+        collection.Add(new[]
         {
-            _testIdentifierFactory = new TestIdentifierFactory();
+            Relation.NewRelation(first),
+            Relation.NewRelation(second),
+            Relation.NewRelation(third)
+        }, true);
 
-        }
-        [Fact]
-        public void IndexesComponentCollection_Create()
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.True(collection.Contains(second));
+    }
+
+    [Fact]
+    public void IndexesComponentCollection_Add_Relation_Contains_Multiple_Fail()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var first = _testIdentifierFactory.Create();
+        var second = _testIdentifierFactory.Create();
+        var third = _testIdentifierFactory.Create();
+
+        // Act.
+        collection.Add(new[]
         {
-            // Arrange.
+            Relation.NewRelation(first),
+            Relation.NewRelation(third)
+        }, true);
 
-            // Act.
-            var collection = new IndexesComponentCollection();
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.False(collection.Contains(second));
+    }
 
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.Empty(collection);
-        }
+    [Fact]
+    public void IndexesComponentCollection_Add_Identifier_Add()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
 
+        // Act.
+        collection.Add(identifier);
 
-        [Fact]
-        public void IndexesComponentCollection_Add_Relation_Add()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
+        // Assert.
+        Assert.Single(collection);
+    }
 
-            // Act.
-            collection.Add(new[] { Relation.NewRelation(identifier) }, true);
+    [Fact]
+    public void IndexesComponentCollection_Add_Identifier_Contains_Fail()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
 
-            // Assert.
-            Assert.Single(collection);
-        }
+        // Act.
 
-        [Fact]
-        public void IndexesComponentCollection_Add_Relation_Contains_Fail()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.False(collection.Contains(identifier));
+    }
 
-            // Act.
+    [Fact]
+    public void IndexesComponentCollection_Add_Identifier_Contains_Single()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var identifier = _testIdentifierFactory.Create();
 
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.False(collection.Contains(identifier));
-        }
+        // Act.
+        collection.Add(identifier);
 
-        [Fact]
-        public void IndexesComponentCollection_Add_Relation_Contains_Single()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.True(collection.Contains(identifier));
+    }
 
-            // Act.
-            collection.Add(new[] { Relation.NewRelation(identifier) }, true);
+    [Fact]
+    public void IndexesComponentCollection_Add_Identifier_Contains_Multiple()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var first = _testIdentifierFactory.Create();
+        var second = _testIdentifierFactory.Create();
+        var third = _testIdentifierFactory.Create();
 
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.True(collection.Contains(identifier));
-        }
+        // Act.
+        collection.Add(first);
+        collection.Add(second);
+        collection.Add(third);
 
-        [Fact]
-        public void IndexesComponentCollection_Add_Relation_Contains_Multiple()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var first = _testIdentifierFactory.Create();
-            var second = _testIdentifierFactory.Create();
-            var third = _testIdentifierFactory.Create();
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.True(collection.Contains(second));
+    }
 
-            // Act.
-            collection.Add(new[]
-            {
-                Relation.NewRelation(first),
-                Relation.NewRelation(second),
-                Relation.NewRelation(third)
-            }, true);
+    [Fact]
+    public void IndexesComponentCollection_Add_Identifier_Contains_Multiple_Fail()
+    {
+        // Arrange.
+        var collection = new IndexesComponentCollection();
+        var first = _testIdentifierFactory.Create();
+        var second = _testIdentifierFactory.Create();
+        var third = _testIdentifierFactory.Create();
 
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.True(collection.Contains(second));
-        }
+        // Act.
+        collection.Add(first);
+        collection.Add(third);
 
-        [Fact]
-        public void IndexesComponentCollection_Add_Relation_Contains_Multiple_Fail()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var first = _testIdentifierFactory.Create();
-            var second = _testIdentifierFactory.Create();
-            var third = _testIdentifierFactory.Create();
-
-            // Act.
-            collection.Add(new[]
-            {
-                Relation.NewRelation(first),
-                Relation.NewRelation(third)
-            }, true);
-
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.False(collection.Contains(second));
-        }
-
-        [Fact]
-        public void IndexesComponentCollection_Add_Identifier_Add()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
-
-            // Act.
-            collection.Add(identifier);
-
-            // Assert.
-            Assert.Single(collection);
-        }
-
-        [Fact]
-        public void IndexesComponentCollection_Add_Identifier_Contains_Fail()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
-
-            // Act.
-
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.False(collection.Contains(identifier));
-        }
-
-        [Fact]
-        public void IndexesComponentCollection_Add_Identifier_Contains_Single()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var identifier = _testIdentifierFactory.Create();
-
-            // Act.
-            collection.Add(identifier);
-
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.True(collection.Contains(identifier));
-        }
-
-        [Fact]
-        public void IndexesComponentCollection_Add_Identifier_Contains_Multiple()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var first = _testIdentifierFactory.Create();
-            var second = _testIdentifierFactory.Create();
-            var third = _testIdentifierFactory.Create();
-
-            // Act.
-            collection.Add(first);
-            collection.Add(second);
-            collection.Add(third);
-
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.True(collection.Contains(second));
-        }
-
-        [Fact]
-        public void IndexesComponentCollection_Add_Identifier_Contains_Multiple_Fail()
-        {
-            // Arrange.
-            var collection = new IndexesComponentCollection();
-            var first = _testIdentifierFactory.Create();
-            var second = _testIdentifierFactory.Create();
-            var third = _testIdentifierFactory.Create();
-
-            // Act.
-            collection.Add(first);
-            collection.Add(third);
-
-            // Assert.
-            Assert.NotNull(collection);
-            Assert.False(collection.Contains(second));
-        }
+        // Assert.
+        Assert.NotNull(collection);
+        Assert.False(collection.Contains(second));
     }
 }

@@ -1,41 +1,40 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Fabric;
+
+internal class ConstantToIdentifierTagAssigner : IConstantToIdentifierTagAssigner
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
+    private readonly IFabricContext _fabric;
+    private readonly IGraphPathTraverser _graphPathTraverser;
+    private readonly IUpdateEntryFactory _updateEntryFactory;
 
-    internal class ConstantToIdentifierTagAssigner : IConstantToIdentifierTagAssigner
+    public ConstantToIdentifierTagAssigner(
+        IUpdateEntryFactory updateEntryFactory,
+        IFabricContext fabric,
+        IGraphPathTraverser graphPathTraverser)
     {
-        private readonly IFabricContext _fabric;
-        private readonly IGraphPathTraverser _graphPathTraverser;
-        private readonly IUpdateEntryFactory _updateEntryFactory;
+        _updateEntryFactory = updateEntryFactory;
+        _fabric = fabric;
+        _graphPathTraverser = graphPathTraverser;
+    }
 
-        public ConstantToIdentifierTagAssigner(
-            IUpdateEntryFactory updateEntryFactory,
-            IFabricContext fabric,
-            IGraphPathTraverser graphPathTraverser)
-        {
-            _updateEntryFactory = updateEntryFactory;
-            _fabric = fabric;
-            _graphPathTraverser = graphPathTraverser;
-        }
+    public async Task<IReadOnlyEntry> Assign(string constant, Identifier id, ExecutionScope scope)
+    {
+        var latestEntry = await _graphPathTraverser
+            .TraverseToSingle(id, scope)
+            .ConfigureAwait(false);
+        id = latestEntry.Id;
 
-        public async Task<IReadOnlyEntry> Assign(string constant, Identifier id, ExecutionScope scope)
-        {
-            var latestEntry = await _graphPathTraverser
-                .TraverseToSingle(id, scope)
-                .ConfigureAwait(false);
-            id = latestEntry.Id;
+        var entry = await _fabric.Entries
+            .Get(id, scope)
+            .ConfigureAwait(false);
+        var updatedEntry = await _updateEntryFactory
+            .Create(entry, constant, scope)
+            .ConfigureAwait(false);
 
-            var entry = await _fabric.Entries
-                .Get(id, scope)
-                .ConfigureAwait(false);
-            var updatedEntry = await _updateEntryFactory
-                .Create(entry, constant, scope)
-                .ConfigureAwait(false);
-
-            return (IReadOnlyEntry)updatedEntry;
-        }
+        return (IReadOnlyEntry)updatedEntry;
     }
 }

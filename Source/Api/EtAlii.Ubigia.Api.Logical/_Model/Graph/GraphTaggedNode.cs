@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Diagnostics;
+
+[DebuggerStepThrough]
+[DebuggerDisplay("{" + nameof(Name) + "}#{" + nameof(Tag)  +"}")]
+public sealed class GraphTaggedNode : GraphPathPart
 {
-    using System.Diagnostics;
+    public readonly string Name;
+    public readonly string Tag;
 
-    [DebuggerStepThrough]
-    [DebuggerDisplay("{" + nameof(Name) + "}#{" + nameof(Tag)  +"}")]
-    public sealed class GraphTaggedNode : GraphPathPart
+    public GraphTaggedNode(string name, string tag)
     {
-        public readonly string Name;
-        public readonly string Tag;
+        Name = name;
+        Tag = tag;
+    }
 
-        public GraphTaggedNode(string name, string tag)
-        {
-            Name = name;
-            Tag = tag;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}#{Tag}";
-        }
+    public override string ToString()
+    {
+        return $"{Name}#{Tag}";
     }
 }

@@ -1,32 +1,31 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class RemoveOperatorParser : IRemoveOperatorParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(RemoveOperator);
 
-    internal sealed class RemoveOperatorParser : IRemoveOperatorParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+
+    public RemoveOperatorParser(INodeValidator nodeValidator)
     {
-        public string Id => nameof(RemoveOperator);
+        _nodeValidator = nodeValidator;
+        Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("-=") + Lp.ZeroOrMore(' '));
+    }
 
-        public LpsParser Parser { get; }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
 
-        private readonly INodeValidator _nodeValidator;
-
-        public RemoveOperatorParser(INodeValidator nodeValidator)
-        {
-            _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("-=") + Lp.ZeroOrMore(' '));
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public Operator Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            return new RemoveOperator();
-        }
+    public Operator Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        return new RemoveOperator();
     }
 }

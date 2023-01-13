@@ -1,19 +1,18 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using Moppet.Lapa;
+
+internal interface IValueAnnotationsParser
 {
-    using Moppet.Lapa;
+    string Id { get; }
 
-    internal interface IValueAnnotationsParser
-    {
-        string Id { get; }
+    LpsParser Parser { get; }
+    ValueAnnotation Parse(LpNode node);
 
-        LpsParser Parser { get; }
-        ValueAnnotation Parse(LpNode node);
+    bool CanParse(LpNode node);
 
-        bool CanParse(LpNode node);
-
-        void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth);
-        bool CanValidate(Annotation annotation);
-    }
+    void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth);
+    bool CanValidate(Annotation annotation);
 }

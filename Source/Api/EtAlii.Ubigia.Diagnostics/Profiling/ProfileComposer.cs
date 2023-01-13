@@ -1,41 +1,40 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Diagnostics.Profiling;
+
+using System.Collections.ObjectModel;
+
+public class ProfileComposer : IProfileComposer
 {
-    using System.Collections.ObjectModel;
+    public ReadOnlyObservableCollection<ProfilingResult> Results { get; }
 
-    public class ProfileComposer : IProfileComposer
+    private readonly ObservableCollection<ProfilingResult> _items;
+
+    // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
+    private readonly IProfiler[] _profilers;
+
+    public ProfileComposer(IProfiler[] profilers)
     {
-        public ReadOnlyObservableCollection<ProfilingResult> Results { get; }
+        _items = new ObservableCollection<ProfilingResult>();
+        Results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
 
-        private readonly ObservableCollection<ProfilingResult> _items;
+        _profilers = profilers;
 
-        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
-        private readonly IProfiler[] _profilers;
-
-        public ProfileComposer(IProfiler[] profilers)
+        for (var i = 0; i < _profilers.Length; i++)
         {
-            _items = new ObservableCollection<ProfilingResult>();
-            Results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
-
-            _profilers = profilers;
-
-            for (var i = 0; i < _profilers.Length; i++)
+            if (i == 0)
             {
-                if (i == 0)
-                {
-                    _profilers[i].ProfilingStarted += result => _items.Add(result);
-                }
-                else
-                {
-                    _profilers[i].SetPrevious(_profilers[i - 1]);
-                }
+                _profilers[i].ProfilingStarted += result => _items.Add(result);
+            }
+            else
+            {
+                _profilers[i].SetPrevious(_profilers[i - 1]);
             }
         }
+    }
 
-        public void Clear()
-        {
-            _items.Clear();
-        }
+    public void Clear()
+    {
+        _items.Clear();
     }
 }

@@ -1,19 +1,18 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+public sealed class WildcardPathSubjectPart : PathSubjectPart
 {
-    public sealed class WildcardPathSubjectPart : PathSubjectPart
+    public string Pattern { get; }
+
+    public WildcardPathSubjectPart(string pattern)
     {
-        public string Pattern { get; }
+        Pattern = pattern;
+    }
 
-        public WildcardPathSubjectPart(string pattern)
-        {
-            Pattern = pattern;
-        }
-
-        public override string ToString()
-        {
-            return Pattern;
-        }
+    public override string ToString()
+    {
+        return Pattern;
     }
 }

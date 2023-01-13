@@ -1,64 +1,63 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+public sealed class ObservableTraversalAlgorithm : IBreadthFirstTraversalAlgorithm, IDepthFirstTraversalAlgorithm
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
+    private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
 
-    public sealed class ObservableTraversalAlgorithm : IBreadthFirstTraversalAlgorithm, IDepthFirstTraversalAlgorithm
+    public ObservableTraversalAlgorithm(IGraphPathPartTraverserSelector graphPathPartTraverserSelector)
     {
-        private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
+        _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
+    }
+    public async IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
+    {
+        var firstInput = Observable
+            .Return(current)
+            .ToHotObservable();
+        var input = firstInput;
 
-        public ObservableTraversalAlgorithm(IGraphPathPartTraverserSelector graphPathPartTraverserSelector)
+        // We can reuse the auto reset event as it is used sequentially.
+        using var continueEvent = new AutoResetEvent(false);
+
+        for (var i = 0; i < graphPath.Length; i++)
         {
-            _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
-        }
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
-        {
-            var firstInput = Observable
-                .Return(current)
-                .ToHotObservable();
-            var input = firstInput;
+            var graphPathPart = graphPath[i];
+            var traverser = _graphPathPartTraverserSelector.Select(graphPathPart);
 
-            // We can reuse the auto reset event as it is used sequentially.
-            using var continueEvent = new AutoResetEvent(false);
+            continueEvent.Reset();
 
-            for (var i = 0; i < graphPath.Length; i++)
+            var previousOutput = Observable.Create<Identifier>(output =>
             {
-                var graphPathPart = graphPath[i];
-                var traverser = _graphPathPartTraverserSelector.Select(graphPathPart);
+                // ReSharper disable once AccessToModifiedClosure
+                var parameters = new TraversalParameters(graphPathPart, context, scope, output, input);
+                traverser.Configure(parameters);
 
-                continueEvent.Reset();
+                // ReSharper disable once AccessToDisposedClosure
+                continueEvent.Set();
 
-                var previousOutput = Observable.Create<Identifier>(output =>
+                return Disposable.Empty;
+            }).ToHotObservable();
+
+            continueEvent.WaitOne();
+
+            input = previousOutput;
+
+            if (i == graphPath.Length - 1)
+            {
+                var results = previousOutput
+                    .ToAsyncEnumerable()
+                    .ConfigureAwait(false);
+                await foreach (var result in results)
                 {
-                    // ReSharper disable once AccessToModifiedClosure
-                    var parameters = new TraversalParameters(graphPathPart, context, scope, output, input);
-                    traverser.Configure(parameters);
-
-                    // ReSharper disable once AccessToDisposedClosure
-                    continueEvent.Set();
-
-                    return Disposable.Empty;
-                }).ToHotObservable();
-
-                continueEvent.WaitOne();
-
-                input = previousOutput;
-
-                if (i == graphPath.Length - 1)
-                {
-                    var results = previousOutput
-                        .ToAsyncEnumerable()
-                        .ConfigureAwait(false);
-                    await foreach (var result in results)
-                    {
-                        yield return result;
-                    }
+                    yield return result;
                 }
             }
         }

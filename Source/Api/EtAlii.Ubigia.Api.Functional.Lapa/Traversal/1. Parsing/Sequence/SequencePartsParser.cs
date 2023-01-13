@@ -1,47 +1,46 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using Moppet.Lapa;
+
+internal sealed class SequencePartsParser : ISequencePartsParser
 {
-    using System.Linq;
-    using Moppet.Lapa;
+    public string Id => "SequenceParts";
 
-    internal sealed class SequencePartsParser : ISequencePartsParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly ISequencePartParser[] _parsers;
+
+    public SequencePartsParser(
+        IOperatorsParser operatorsParser,
+        ISubjectsParser subjectsParser,
+        ICommentParser commentParser,
+        INodeValidator nodeValidator)
     {
-        public string Id => "SequenceParts";
-
-        public LpsParser Parser { get; }
-
-        private readonly INodeValidator _nodeValidator;
-        private readonly ISequencePartParser[] _parsers;
-
-        public SequencePartsParser(
-            IOperatorsParser operatorsParser,
-            ISubjectsParser subjectsParser,
-            ICommentParser commentParser,
-            INodeValidator nodeValidator)
+        _parsers = new ISequencePartParser[]
         {
-            _parsers = new ISequencePartParser[]
-            {
-                operatorsParser,
-                subjectsParser,
-                commentParser
-            };
+            operatorsParser,
+            subjectsParser,
+            commentParser
+        };
 
-            _nodeValidator = nodeValidator;
+        _nodeValidator = nodeValidator;
 
-            var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);
-        }
+        var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
+        Parser = new LpsParser(Id, true, lpsParsers);
+    }
 
-        public SequencePart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            var childNode = node.Children.Single();
+    public SequencePart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        var childNode = node.Children.Single();
 
-            var parser = _parsers.Single(p => p.CanParse(childNode));
-            var result = parser.Parse(childNode, _nodeValidator);
+        var parser = _parsers.Single(p => p.CanParse(childNode));
+        var result = parser.Parse(childNode, _nodeValidator);
 
-            return result;
-        }
+        return result;
     }
 }

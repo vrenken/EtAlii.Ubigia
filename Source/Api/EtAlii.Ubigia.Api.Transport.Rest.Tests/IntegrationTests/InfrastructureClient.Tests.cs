@@ -2,29 +2,28 @@
 
 using EtAlii.xTechnology.Threading;
 
-namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
+namespace EtAlii.Ubigia.Api.Transport.Rest.Tests;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public class InfrastructureClientIntegrationTests
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
-
-    [CorrelateUnitTests]
-    public class InfrastructureClientIntegrationTests
+    [Fact]
+    public async Task InfrastructureClient_Get_Null()
     {
-        [Fact]
-        public async Task InfrastructureClient_Get_Null()
-        {
-            // Arrange.
-            var contextCorrelator = new ContextCorrelator();
-            var httpClientFactory = new RestHttpClientFactory(contextCorrelator);
-            var client = new RestInfrastructureClient(httpClientFactory);
+        // Arrange.
+        var contextCorrelator = new ContextCorrelator();
+        var httpClientFactory = new RestHttpClientFactory(contextCorrelator);
+        var client = new RestInfrastructureClient(httpClientFactory);
 
-            // Act.
-            var act = new Func<Task>(async () => await client.Get<TestStatus>(null).ConfigureAwait(false));
+        // Act.
+        var act = new Func<Task>(async () => await client.Get<TestStatus>(null).ConfigureAwait(false));
 
-            // Assert.
-            await Assert.ThrowsAsync<InfrastructureConnectionException>(act).ConfigureAwait(false);
-        }
+        // Assert.
+        await Assert.ThrowsAsync<InfrastructureConnectionException>(act).ConfigureAwait(false);
     }
 }

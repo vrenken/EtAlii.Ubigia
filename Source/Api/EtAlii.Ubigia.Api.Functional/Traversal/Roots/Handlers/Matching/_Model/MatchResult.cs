@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+
+internal partial class MatchResult
 {
-    using System;
+    public IRootHandler RootHandler { get; }
+    public PathSubjectPart[] Match { get; }
+    public PathSubjectPart[] Rest { get; }
 
-    internal partial class MatchResult
+    public static readonly MatchResult NoMatch = new(null, Array.Empty<PathSubjectPart>(), Array.Empty<PathSubjectPart>());
+
+    public MatchResult(IRootHandler rootHandler, PathSubjectPart[] match, PathSubjectPart[] rest)
     {
-        public IRootHandler RootHandler { get; }
-        public PathSubjectPart[] Match { get; }
-        public PathSubjectPart[] Rest { get; }
-
-        public static readonly MatchResult NoMatch = new(null, Array.Empty<PathSubjectPart>(), Array.Empty<PathSubjectPart>());
-
-        public MatchResult(IRootHandler rootHandler, PathSubjectPart[] match, PathSubjectPart[] rest)
-        {
-            RootHandler = rootHandler;
-            Match = match;
-            Rest = rest;
-        }
+        RootHandler = rootHandler;
+        Match = match;
+        Rest = rest;
     }
 }

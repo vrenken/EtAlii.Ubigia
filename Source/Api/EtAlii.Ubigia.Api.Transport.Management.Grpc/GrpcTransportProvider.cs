@@ -1,54 +1,53 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
+namespace EtAlii.Ubigia.Api.Transport.Management.Grpc;
+
+using System;
+using EtAlii.Ubigia.Api.Transport.Grpc;
+using global::Grpc.Net.Client;
+using EtAlii.xTechnology.Threading;
+
+public class GrpcStorageTransportProvider : IStorageTransportProvider
 {
-	using System;
-	using EtAlii.Ubigia.Api.Transport.Grpc;
-	using global::Grpc.Net.Client;
-    using EtAlii.xTechnology.Threading;
+    private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
+    private readonly IContextCorrelator _contextCorrelator;
 
-	public class GrpcStorageTransportProvider : IStorageTransportProvider
+    private readonly AuthenticationTokenProvider _storageAuthenticationTokenProvider;
+
+    private GrpcStorageTransportProvider(Func<Uri, GrpcChannel> grpcChannelFactory, IContextCorrelator contextCorrelator)
     {
-        private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
-        private readonly IContextCorrelator _contextCorrelator;
+        _grpcChannelFactory = grpcChannelFactory;
+        _contextCorrelator = contextCorrelator;
+        _storageAuthenticationTokenProvider = new AuthenticationTokenProvider();
+    }
 
-        private readonly AuthenticationTokenProvider _storageAuthenticationTokenProvider;
+    public ISpaceTransport GetSpaceTransport(Uri address)
+    {
+        // We always use a new authenticationTokenProvider for space based access.
+        var authenticationTokenProvider = new AuthenticationTokenProvider { AuthenticationToken = _storageAuthenticationTokenProvider.AuthenticationToken };
+        return new GrpcSpaceTransport(address, _grpcChannelFactory, authenticationTokenProvider, _contextCorrelator);
+    }
 
-		private GrpcStorageTransportProvider(Func<Uri, GrpcChannel> grpcChannelFactory, IContextCorrelator contextCorrelator)
-		{
-			_grpcChannelFactory = grpcChannelFactory;
-            _contextCorrelator = contextCorrelator;
-            _storageAuthenticationTokenProvider = new AuthenticationTokenProvider();
-		}
+    public IStorageTransport GetStorageTransport(Uri address)
+    {
+        // We always want to use the same authenticationTokenProvider for storage based access.
+        var authenticationTokenProvider = _storageAuthenticationTokenProvider;
+        return new GrpcStorageTransport(address, _grpcChannelFactory, authenticationTokenProvider, _contextCorrelator);
+    }
 
-        public ISpaceTransport GetSpaceTransport(Uri address)
+
+    public static GrpcStorageTransportProvider Create(Func<Uri, GrpcChannel> channelFactory, IContextCorrelator contextCorrelator)
+    {
+        return new(channelFactory, contextCorrelator);
+    }
+
+    public static GrpcStorageTransportProvider Create(IContextCorrelator contextCorrelator)
+    {
+        var channelFactory = new Func<Uri, GrpcChannel>(channelAddress =>
         {
-	        // We always use a new authenticationTokenProvider for space based access.
-	        var authenticationTokenProvider = new AuthenticationTokenProvider { AuthenticationToken = _storageAuthenticationTokenProvider.AuthenticationToken };
-            return new GrpcSpaceTransport(address, _grpcChannelFactory, authenticationTokenProvider, _contextCorrelator);
-        }
-
-        public IStorageTransport GetStorageTransport(Uri address)
-        {
-	        // We always want to use the same authenticationTokenProvider for storage based access.
-	        var authenticationTokenProvider = _storageAuthenticationTokenProvider;
-            return new GrpcStorageTransport(address, _grpcChannelFactory, authenticationTokenProvider, _contextCorrelator);
-        }
-
-
-	    public static GrpcStorageTransportProvider Create(Func<Uri, GrpcChannel> channelFactory, IContextCorrelator contextCorrelator)
-	    {
-		    return new(channelFactory, contextCorrelator);
-	    }
-
-	    public static GrpcStorageTransportProvider Create(IContextCorrelator contextCorrelator)
-	    {
-		    var channelFactory = new Func<Uri, GrpcChannel>(channelAddress =>
-		    {
-			    var options = new GrpcChannelOptions();
-			    return GrpcChannel.ForAddress(channelAddress, options);
-		    });
-		    return new GrpcStorageTransportProvider(channelFactory, contextCorrelator);
-	    }
+            var options = new GrpcChannelOptions();
+            return GrpcChannel.ForAddress(channelAddress, options);
+        });
+        return new GrpcStorageTransportProvider(channelFactory, contextCorrelator);
     }
 }

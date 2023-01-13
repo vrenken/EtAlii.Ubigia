@@ -1,13 +1,12 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using Moppet.Lapa;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal interface IPathSubjectPartsParser
-    {
-        string Id { get; }
-        LpsParser Parser { get; }
-        PathSubjectPart Parse(LpNode node);
-    }
+using Moppet.Lapa;
+
+internal interface IPathSubjectPartsParser
+{
+    string Id { get; }
+    LpsParser Parser { get; }
+    PathSubjectPart Parse(LpNode node);
 }

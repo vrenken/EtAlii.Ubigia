@@ -1,19 +1,18 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+
+public class Parameter
 {
-    using System;
+    public string Name { get; }
 
-    public class Parameter
+    public Type Type { get; }
+
+    public Parameter(string name, Type type)
     {
-        public string Name { get; }
-
-        public Type Type { get; }
-
-        public Parameter(string name, Type type)
-        {
-            Name = name;
-            Type = type;
-        }
+        Name = name;
+        Type = type;
     }
 }

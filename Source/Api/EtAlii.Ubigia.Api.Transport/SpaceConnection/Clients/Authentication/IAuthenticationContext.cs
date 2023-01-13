@@ -1,9 +1,8 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport
+namespace EtAlii.Ubigia.Api.Transport;
+
+public interface IAuthenticationContext : ISpaceClientContext
 {
-    public interface IAuthenticationContext : ISpaceClientContext
-    {
-        IAuthenticationDataClient Data { get; }
-    }
+    IAuthenticationDataClient Data { get; }
 }

@@ -1,18 +1,17 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using System.IO;
+
+public class TestPackage<T> : IBinarySerializable
 {
-    using System.IO;
+    public T Value { get; set; }
 
-    public class TestPackage<T> : IBinarySerializable
+    public void Write(BinaryWriter writer)
     {
-        public T Value { get; set; }
-
-        public void Write(BinaryWriter writer)
-        {
-            writer.Write<T>(Value);
-        }
-        public void Read(BinaryReader reader)
-        {
-            Value = reader.Read<T>();
-        }
+        writer.Write<T>(Value);
+    }
+    public void Read(BinaryReader reader)
+    {
+        Value = reader.Read<T>();
     }
 }

@@ -1,21 +1,20 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+
+public sealed class ConditionalPathSubjectPart : PathSubjectPart
 {
-    using System.Linq;
+    public Condition[] Conditions { get; }
 
-    public sealed class ConditionalPathSubjectPart : PathSubjectPart
+    public ConditionalPathSubjectPart(Condition[] conditions)
     {
-        public Condition[] Conditions { get; }
+        Conditions = conditions;
+    }
 
-        public ConditionalPathSubjectPart(Condition[] conditions)
-        {
-            Conditions = conditions;
-        }
-
-        public override string ToString()
-        {
-            return string.Join("&", Conditions.Select(c => c.ToString()));
-        }
+    public override string ToString()
+    {
+        return string.Join("&", Conditions.Select(c => c.ToString()));
     }
 }

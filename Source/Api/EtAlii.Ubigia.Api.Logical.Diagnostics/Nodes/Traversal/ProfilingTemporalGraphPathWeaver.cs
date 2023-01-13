@@ -1,33 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Logical.Diagnostics
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics;
+
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+public sealed class ProfilingTemporalGraphPathWeaver : ITemporalGraphPathWeaver
 {
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    private readonly ITemporalGraphPathWeaver _decoree;
+    private readonly IProfiler _profiler;
 
-    public sealed class ProfilingTemporalGraphPathWeaver : ITemporalGraphPathWeaver
+    public ProfilingTemporalGraphPathWeaver(
+        ITemporalGraphPathWeaver decoree,
+        IProfiler profiler)
     {
-        private readonly ITemporalGraphPathWeaver _decoree;
-        private readonly IProfiler _profiler;
+        _decoree = decoree;
+        _profiler = profiler.Create(ProfilingAspects.Logical.TemporalWeaver);
+    }
 
-        public ProfilingTemporalGraphPathWeaver(
-            ITemporalGraphPathWeaver decoree,
-            IProfiler profiler)
-        {
-            _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Logical.TemporalWeaver);
-        }
+    public GraphPath Weave(GraphPath path)
+    {
+        dynamic profile = _profiler.Begin("Weaving temporal graph components: " + path);
+        profile.Path = path.ToString();
 
-        public GraphPath Weave(GraphPath path)
-        {
-            dynamic profile = _profiler.Begin("Weaving temporal graph components: " + path);
-            profile.Path = path.ToString();
+        var result = _decoree.Weave(path);
 
-            var result = _decoree.Weave(path);
+        profile.Result = result.ToString();
+        _profiler.End(profile);
 
-            profile.Result = result.ToString();
-            _profiler.End(profile);
-
-            return result;
-        }
+        return result;
     }
 }

@@ -1,25 +1,24 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Diagnostics.Profiling;
+
+using System.Linq;
+
+public static partial class ProfilingAspects
 {
-    using System.Linq;
+    public static ProfilingAspect[] All { get; }
 
-    public static partial class ProfilingAspects
+    static ProfilingAspects()
     {
-        public static ProfilingAspect[] All { get; }
+        Functional = new FunctionalProfilers();
+        Logical = new LogicalProfilers();
+        Fabric = new FabricProfilers();
+        Transport = new TransportProfilers();
 
-        static ProfilingAspects()
-        {
-            Functional = new FunctionalProfilers();
-            Logical = new LogicalProfilers();
-            Fabric = new FabricProfilers();
-            Transport = new TransportProfilers();
-
-            All = Functional.All
-                .Concat(Logical.All)
-                .Concat(Fabric.All)
-                .Concat(Transport.All)
-                .ToArray();
-        }
+        All = Functional.All
+            .Concat(Logical.All)
+            .Concat(Fabric.All)
+            .Concat(Transport.All)
+            .ToArray();
     }
 }

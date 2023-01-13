@@ -1,209 +1,208 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using System;
+using System.Linq;
+using Xunit;
+
+public class EditableEntryTests
 {
-    using System;
-    using System.Linq;
-    using Xunit;
-
-    public class EditableEntryTests
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Previous()
     {
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Previous()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Previous = relation;
+        // Act.
+        ((IEditableEntry)entry).Previous = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Previous);
-            Assert.Equal(relation, ((IEditableEntry)entry).Previous);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Previous);
+        Assert.Equal(relation, ((IEditableEntry)entry).Previous);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Next()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Next()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Next = relation;
+        // Act.
+        ((IEditableEntry)entry).Next = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Next);
-            Assert.Equal(relation, ((IEditableEntry)entry).Next);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Next);
+        Assert.Equal(relation, ((IEditableEntry)entry).Next);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Downdate()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Downdate()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Downdate = relation;
+        // Act.
+        ((IEditableEntry)entry).Downdate = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Downdate);
-            Assert.Equal(relation, ((IEditableEntry)entry).Downdate);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Downdate);
+        Assert.Equal(relation, ((IEditableEntry)entry).Downdate);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Parent()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Parent()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Parent = relation;
+        // Act.
+        ((IEditableEntry)entry).Parent = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Parent);
-            Assert.Equal(relation, ((IEditableEntry)entry).Parent);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Parent);
+        Assert.Equal(relation, ((IEditableEntry)entry).Parent);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Parent2()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Parent2()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Parent2 = relation;
+        // Act.
+        ((IEditableEntry)entry).Parent2 = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Parent2);
-            Assert.Equal(relation, ((IEditableEntry)entry).Parent2);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Parent2);
+        Assert.Equal(relation, ((IEditableEntry)entry).Parent2);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Indexed()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Indexed()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var relation = Relation.Create(otherId, 2);
 
-            // Act.
-            ((IEditableEntry)entry).Indexed = relation;
+        // Act.
+        ((IEditableEntry)entry).Indexed = relation;
 
-            // Assert.
-            Assert.Equal(relation, entry.Indexed);
-            Assert.Equal(relation, ((IEditableEntry)entry).Indexed);
-        }
+        // Assert.
+        Assert.Equal(relation, entry.Indexed);
+        Assert.Equal(relation, ((IEditableEntry)entry).Indexed);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Children()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Children()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
 
-            // Act.
-            ((IEditableEntry)entry).AddChild(otherId);
+        // Act.
+        ((IEditableEntry)entry).AddChild(otherId);
 
-            // Assert.
-            Assert.Single(entry.Children);
-            Assert.Equal(otherId, entry.Children.Single().Id);
-            Assert.Equal(otherId, ((IEditableEntry)entry).Children.Single().Relations.Single().Id);
-        }
+        // Assert.
+        Assert.Single(entry.Children);
+        Assert.Equal(otherId, entry.Children.Single().Id);
+        Assert.Equal(otherId, ((IEditableEntry)entry).Children.Single().Relations.Single().Id);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Children2()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Children2()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
 
-            // Act.
-            ((IEditableEntry)entry).AddChild2(otherId);
+        // Act.
+        ((IEditableEntry)entry).AddChild2(otherId);
 
-            // Assert.
-            Assert.Single(entry.Children2);
-            Assert.Equal(otherId, entry.Children2.Single().Id);
-            Assert.Equal(otherId, ((IEditableEntry)entry).Children2.Single().Relations.Single().Id);
-        }
+        // Assert.
+        Assert.Single(entry.Children2);
+        Assert.Equal(otherId, entry.Children2.Single().Id);
+        Assert.Equal(otherId, ((IEditableEntry)entry).Children2.Single().Relations.Single().Id);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Updates()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Updates()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
 
-            // Act.
-            ((IEditableEntry)entry).AddUpdate(otherId);
+        // Act.
+        ((IEditableEntry)entry).AddUpdate(otherId);
 
-            // Assert.
-            Assert.Single(entry.Updates);
-            Assert.Equal(otherId, entry.Updates.Single().Id);
-            Assert.Equal(otherId, ((IEditableEntry)entry).Updates.Single().Relations.Single().Id);
-        }
+        // Assert.
+        Assert.Single(entry.Updates);
+        Assert.Equal(otherId, entry.Updates.Single().Id);
+        Assert.Equal(otherId, ((IEditableEntry)entry).Updates.Single().Relations.Single().Id);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Indexes()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var otherId = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Indexes()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var otherId = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
 
-            // Act.
-            ((IEditableEntry)entry).AddIndex(otherId);
+        // Act.
+        ((IEditableEntry)entry).AddIndex(otherId);
 
-            // Assert.
-            Assert.Single(entry.Indexes);
-            Assert.Equal(otherId, entry.Indexes.Single().Id);
-            Assert.Equal(otherId, ((IEditableEntry)entry).Indexes.Single().Relations.Single().Id);
-        }
+        // Assert.
+        Assert.Single(entry.Indexes);
+        Assert.Equal(otherId, entry.Indexes.Single().Id);
+        Assert.Equal(otherId, ((IEditableEntry)entry).Indexes.Single().Relations.Single().Id);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Type()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var type = Guid.NewGuid().ToString();
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Type()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var type = Guid.NewGuid().ToString();
 
-            // Act.
-            ((IEditableEntry)entry).Type = type;
+        // Act.
+        ((IEditableEntry)entry).Type = type;
 
-            // Assert.
-            Assert.Equal(type, entry.Type);
-        }
+        // Assert.
+        Assert.Equal(type, entry.Type);
+    }
 
-        [Fact]
-        public void IEditableEntry_Set_And_Get_Tag()
-        {
-            // Arrange.
-            var id = new TestIdentifierFactory().Create();
-            var entry = Entry.NewEntry(id);
-            var tag = Guid.NewGuid().ToString();
+    [Fact]
+    public void IEditableEntry_Set_And_Get_Tag()
+    {
+        // Arrange.
+        var id = new TestIdentifierFactory().Create();
+        var entry = Entry.NewEntry(id);
+        var tag = Guid.NewGuid().ToString();
 
-            // Act.
-            ((IEditableEntry)entry).Tag = tag;
+        // Act.
+        ((IEditableEntry)entry).Tag = tag;
 
-            // Assert.
-            Assert.Equal(tag, entry.Tag);
-        }
+        // Assert.
+        Assert.Equal(tag, entry.Tag);
     }
 }

@@ -1,17 +1,16 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Context;
+
+using EtAlii.Ubigia.Api.Functional.Traversal;
+using Moppet.Lapa;
+
+internal class AssignmentParser : IAssignmentParser
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using Moppet.Lapa;
+    public LpsParser Parser { get; }
 
-    internal class AssignmentParser : IAssignmentParser
+    public AssignmentParser(IWhitespaceParser whitespaceParser)
     {
-        public LpsParser Parser { get; }
-
-        public AssignmentParser(IWhitespaceParser whitespaceParser)
-        {
-            Parser = whitespaceParser.Optional + Lp.Char('=') + whitespaceParser.Optional;
-        }
+        Parser = whitespaceParser.Optional + Lp.Char('=') + whitespaceParser.Optional;
     }
 }

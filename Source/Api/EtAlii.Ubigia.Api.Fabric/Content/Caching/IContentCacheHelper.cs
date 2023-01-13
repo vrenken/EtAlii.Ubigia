@@ -1,13 +1,12 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
-{
-    internal interface IContentCacheHelper
-    {
-        Content Get(in Identifier identifier);
-        ContentPart Get(in Identifier identifier, ulong contentPartId);
+namespace EtAlii.Ubigia.Api.Fabric;
 
-        void Store(in Identifier identifier, Content content);
-        void Store(in Identifier identifier, ContentPart contentPart);
-    }
+internal interface IContentCacheHelper
+{
+    Content Get(in Identifier identifier);
+    ContentPart Get(in Identifier identifier, ulong contentPartId);
+
+    void Store(in Identifier identifier, Content content);
+    void Store(in Identifier identifier, ContentPart contentPart);
 }

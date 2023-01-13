@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Threading.Tasks;
+
+internal class ContentCacheStoreDefinitionHandler : IContentCacheStoreDefinitionHandler
 {
-    using System.Threading.Tasks;
+    private readonly IContentDefinitionCacheHelper _cacheHelper;
+    private readonly IContentCacheContextProvider _contextProvider;
 
-    internal class ContentCacheStoreDefinitionHandler : IContentCacheStoreDefinitionHandler
+    public ContentCacheStoreDefinitionHandler(
+        IContentDefinitionCacheHelper cacheHelper,
+        IContentCacheContextProvider contextProvider)
     {
-        private readonly IContentDefinitionCacheHelper _cacheHelper;
-        private readonly IContentCacheContextProvider _contextProvider;
+        _cacheHelper = cacheHelper;
+        _contextProvider = contextProvider;
+    }
 
-        public ContentCacheStoreDefinitionHandler(
-            IContentDefinitionCacheHelper cacheHelper,
-            IContentCacheContextProvider contextProvider)
+    public async Task Handle(Identifier identifier, ContentDefinition definition)
+    {
+        await _contextProvider.Context.StoreDefinition(identifier, definition).ConfigureAwait(false);
+
+        if (definition.Summary != null && definition.Summary.IsComplete)
         {
-            _cacheHelper = cacheHelper;
-            _contextProvider = contextProvider;
-        }
-
-        public async Task Handle(Identifier identifier, ContentDefinition definition)
-        {
-            await _contextProvider.Context.StoreDefinition(identifier, definition).ConfigureAwait(false);
-
-            if (definition.Summary != null && definition.Summary.IsComplete)
-            {
-                _cacheHelper.Store(identifier, definition);
-            }
+            _cacheHelper.Store(identifier, definition);
         }
     }
 }

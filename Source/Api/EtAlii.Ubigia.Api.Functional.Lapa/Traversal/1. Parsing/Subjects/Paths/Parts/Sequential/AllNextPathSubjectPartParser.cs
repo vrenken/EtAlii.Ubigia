@@ -1,40 +1,39 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class AllNextPathSubjectPartParser : IAllNextPathSubjectPartParser
 {
-    using Moppet.Lapa;
+    public string Id => nameof(AllNextPathSubjectPart);
 
-    internal sealed class AllNextPathSubjectPartParser : IAllNextPathSubjectPartParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+
+    private const string RelationId = @">>";
+    private const string RelationDescription = @"ALL_NEXT_OF";
+
+    public AllNextPathSubjectPartParser(
+        INodeValidator nodeValidator,
+        IPathRelationParserBuilder pathRelationParserBuilder)
     {
-        public string Id => nameof(AllNextPathSubjectPart);
+        _nodeValidator = nodeValidator;
 
-        public LpsParser Parser { get; }
+        var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
+        Parser = new LpsParser(Id, true, relationParser);
+    }
 
-        private readonly INodeValidator _nodeValidator;
-
-        private const string RelationId = @">>";
-        private const string RelationDescription = @"ALL_NEXT_OF";
-
-        public AllNextPathSubjectPartParser(
-            INodeValidator nodeValidator,
-            IPathRelationParserBuilder pathRelationParserBuilder)
-        {
-            _nodeValidator = nodeValidator;
-
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
-            Parser = new LpsParser(Id, true, relationParser);
-        }
-
-        public PathSubjectPart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            return new AllNextPathSubjectPart();
-        }
+    public PathSubjectPart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        return new AllNextPathSubjectPart();
+    }
 
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

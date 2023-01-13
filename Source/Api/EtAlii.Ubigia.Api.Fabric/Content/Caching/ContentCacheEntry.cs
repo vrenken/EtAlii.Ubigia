@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+using System.Collections.Generic;
+
+internal class ContentCacheEntry
 {
-    using System.Collections.Generic;
+    public ContentDefinition ContentDefinition { get; set; }
 
-    internal class ContentCacheEntry
+    public Content Content { get; set; }
+
+    public Dictionary<ulong, ContentPart> ContentParts { get; }
+
+    public ContentCacheEntry()
     {
-        public ContentDefinition ContentDefinition { get; set; }
-
-        public Content Content { get; set; }
-
-        public Dictionary<ulong, ContentPart> ContentParts { get; }
-
-        public ContentCacheEntry()
-        {
-            ContentParts = new Dictionary<ulong, ContentPart>();
-        }
+        ContentParts = new Dictionary<ulong, ContentPart>();
     }
 }

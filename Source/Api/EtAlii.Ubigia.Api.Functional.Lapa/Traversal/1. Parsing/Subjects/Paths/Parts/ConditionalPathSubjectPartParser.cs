@@ -1,53 +1,52 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System.Linq;
+using Moppet.Lapa;
+
+internal sealed class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
 {
-    using System.Linq;
-    using Moppet.Lapa;
+    public string Id => nameof(ConditionalPathSubjectPart);
 
-    internal sealed class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
+    public LpsParser Parser { get; }
+
+    private readonly INodeValidator _nodeValidator;
+    private readonly IConditionParser _conditionParser;
+    private readonly INodeFinder _nodeFinder;
+
+    public ConditionalPathSubjectPartParser(
+        INodeValidator nodeValidator,
+        IConditionParser conditionParser,
+        INewLineParser newLineParser,
+        INodeFinder nodeFinder)
     {
-        public string Id => nameof(ConditionalPathSubjectPart);
+        _nodeValidator = nodeValidator;
+        _conditionParser = conditionParser;
+        _nodeFinder = nodeFinder;
 
-        public LpsParser Parser { get; }
+        var separator = Lp.Char('&');//.Debug("Separator", true)
+        Parser = new LpsParser(Id, true,
+            Lp.One(c => c == '.') + //.Debug("Point") +
+            newLineParser.OptionalMultiple + //.Debug("NL1") +
+            Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
+        //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")))
+    }
 
-        private readonly INodeValidator _nodeValidator;
-        private readonly IConditionParser _conditionParser;
-        private readonly INodeFinder _nodeFinder;
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
+    }
 
-        public ConditionalPathSubjectPartParser(
-            INodeValidator nodeValidator,
-            IConditionParser conditionParser,
-            INewLineParser newLineParser,
-            INodeFinder nodeFinder)
-        {
-            _nodeValidator = nodeValidator;
-            _conditionParser = conditionParser;
-            _nodeFinder = nodeFinder;
+    public PathSubjectPart Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
 
-            var separator = Lp.Char('&');//.Debug("Separator", true)
-            Parser = new LpsParser(Id, true,
-                Lp.One(c => c == '.') + //.Debug("Point") +
-                newLineParser.OptionalMultiple + //.Debug("NL1") +
-                Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
-                //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")))
-        }
+        var conditions = _nodeFinder
+            .FindAll(node, _conditionParser.Id)
+            .Select(n => _conditionParser.Parse(n, _nodeValidator))
+            .ToArray();
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public PathSubjectPart Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-
-            var conditions = _nodeFinder
-                .FindAll(node, _conditionParser.Id)
-                .Select(n => _conditionParser.Parse(n, _nodeValidator))
-                .ToArray();
-
-            return new ConditionalPathSubjectPart(conditions);
-        }
+        return new ConditionalPathSubjectPart(conditions);
     }
 }

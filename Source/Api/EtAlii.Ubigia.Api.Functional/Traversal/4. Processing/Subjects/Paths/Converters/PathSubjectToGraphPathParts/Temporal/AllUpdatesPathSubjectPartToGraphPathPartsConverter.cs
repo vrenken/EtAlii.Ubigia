@@ -1,15 +1,14 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-{
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class AllUpdatesPathSubjectPartToGraphPathPartsConverter : IAllUpdatesPathSubjectPartToGraphPathPartsConverter
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Logical;
+
+internal class AllUpdatesPathSubjectPartToGraphPathPartsConverter : IAllUpdatesPathSubjectPartToGraphPathPartsConverter
+{
+    public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
     {
-        public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
-        {
-            return Task.FromResult(new GraphPathPart[] { GraphRelation.AllUpdates });
-        }
+        return Task.FromResult(new GraphPathPart[] { GraphRelation.AllUpdates });
     }
 }

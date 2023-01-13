@@ -1,85 +1,84 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using System;
+using EtAlii.Ubigia.Diagnostics.Profiling;
+
+internal class ProfilingPathParser : IProfilingPathParser
 {
-    using System;
-    using EtAlii.Ubigia.Diagnostics.Profiling;
+    public IProfiler Profiler { get; }
 
-    internal class ProfilingPathParser : IProfilingPathParser
+    private readonly IPathParser _decoree;
+
+    public ProfilingPathParser(
+        IPathParser decoree,
+        IProfiler profiler)
     {
-        public IProfiler Profiler { get; }
+        _decoree = decoree;
+        Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
+    }
 
-        private readonly IPathParser _decoree;
-
-        public ProfilingPathParser(
-            IPathParser decoree,
-            IProfiler profiler)
+    public Subject ParsePath(string text)
+    {
+        Subject result;
+        try
         {
-            _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
+            result = _decoree.ParsePath(text);
+
+        }
+        catch (Exception e)
+        {
+            // Let's show an error message in the profiling view if we encountered an exception.
+            dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
+            exceptionProfile.Error = e.Message;
+            Profiler.End(exceptionProfile);
+
+            throw;
         }
 
-        public Subject ParsePath(string text)
+        return result;
+    }
+
+    public Subject ParseNonRootedPath(string text)
+    {
+        Subject result;
+        try
         {
-            Subject result;
-            try
-            {
-                result = _decoree.ParsePath(text);
+            result = _decoree.ParseNonRootedPath(text);
 
-            }
-            catch (Exception e)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
-                exceptionProfile.Error = e.Message;
-                Profiler.End(exceptionProfile);
+        }
+        catch (Exception e)
+        {
+            // Let's show an error message in the profiling view if we encountered an exception.
+            dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
+            exceptionProfile.Error = e.Message;
+            Profiler.End(exceptionProfile);
 
-                throw;
-            }
-
-            return result;
+            throw;
         }
 
-        public Subject ParseNonRootedPath(string text)
+        return result;
+    }
+
+    public Subject ParseRootedPath(string text)
+    {
+        Subject result;
+        try
         {
-            Subject result;
-            try
-            {
-                result = _decoree.ParseNonRootedPath(text);
+            result = _decoree.ParseRootedPath(text);
 
-            }
-            catch (Exception e)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
-                exceptionProfile.Error = e.Message;
-                Profiler.End(exceptionProfile);
+        }
+        catch (Exception e)
+        {
+            // Let's show an error message in the profiling view if we encountered an exception.
+            dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
+            exceptionProfile.Error = e.Message;
+            Profiler.End(exceptionProfile);
 
-                throw;
-            }
-
-            return result;
+            throw;
         }
 
-        public Subject ParseRootedPath(string text)
-        {
-            Subject result;
-            try
-            {
-                result = _decoree.ParseRootedPath(text);
-
-            }
-            catch (Exception e)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
-                exceptionProfile.Error = e.Message;
-                Profiler.End(exceptionProfile);
-
-                throw;
-            }
-
-            return result;
-        }
+        return result;
     }
 }

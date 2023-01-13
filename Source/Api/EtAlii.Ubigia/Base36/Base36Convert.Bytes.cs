@@ -1,135 +1,134 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia
+namespace EtAlii.Ubigia;
+
+using System;
+using System.Linq;
+using System.Text;
+
+/// <summary>
+/// A class able to convert between bytes and Base36 formatted strings.
+/// </summary>
+public static partial class Base36Convert
 {
-    using System;
-    using System.Linq;
-    using System.Text;
+    private static readonly bool[]  _36AsBits = { true, false, false, true, false, false };
+
+    //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
+    //but uses all 26 English letters a-z instead of just a-f.
+    private static readonly char[] _alphabet =
+    {
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+        'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+        'w', 'x', 'y', 'z'
+    };
 
     /// <summary>
-    /// A class able to convert between bytes and Base36 formatted strings.
+    /// Convert the given Base36 encoded string into a span of bytes.
     /// </summary>
-    public static partial class Base36Convert
+    /// <param name="base36String"></param>
+    /// <returns></returns>
+    public static Span<byte> ToBytes(string base36String)
     {
-        private static readonly bool[]  _36AsBits = { true, false, false, true, false, false };
+        ReadOnlySpan<char> span = base36String.ToLower();
 
-        //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
-        //but uses all 26 English letters a-z instead of just a-f.
-        private static readonly char[] _alphabet =
+        Span<bool> bits = Array.Empty<bool>();
+
+        var charactersToIterate = span.Length;
+
+        for(var i = charactersToIterate - 1; i>=0; i--)
         {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
-            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-            'w', 'x', 'y', 'z'
-        };
-
-        /// <summary>
-        /// Convert the given Base36 encoded string into a span of bytes.
-        /// </summary>
-        /// <param name="base36String"></param>
-        /// <returns></returns>
-        public static Span<byte> ToBytes(string base36String)
-        {
-            ReadOnlySpan<char> span = base36String.ToLower();
-
-            Span<bool> bits = Array.Empty<bool>();
-
-            var charactersToIterate = span.Length;
-
-            for(var i = charactersToIterate - 1; i>=0; i--)
+            var character = span[i];
+            var characterValue = (byte)Characters.IndexOf(character);
+            var characterBits = ToBits(characterValue);
+            for (var m = 0; m < charactersToIterate - i - 1; m++)
             {
-                var character = span[i];
-                var characterValue = (byte)Characters.IndexOf(character);
-                var characterBits = ToBits(characterValue);
-                for (var m = 0; m < charactersToIterate - i - 1; m++)
-                {
-                    BitShift.Multiply(ref characterBits, _36AsBits);
-                }
-                BitShift.Add(ref bits, characterBits);
+                BitShift.Multiply(ref characterBits, _36AsBits);
             }
-
-            return ToBytes(bits);
+            BitShift.Add(ref bits, characterBits);
         }
 
-        /// <summary>
-        /// Convert the given bytes into a Base36 encoded string.
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="leastSignificantByteFirst"></param>
-        /// <returns></returns>
-        public static string ToString(byte[] bytes, bool leastSignificantByteFirst = true)
+        return ToBytes(bits);
+    }
+
+    /// <summary>
+    /// Convert the given bytes into a Base36 encoded string.
+    /// </summary>
+    /// <param name="bytes"></param>
+    /// <param name="leastSignificantByteFirst"></param>
+    /// <returns></returns>
+    public static string ToString(byte[] bytes, bool leastSignificantByteFirst = true)
+    {
+        //most .NET-produced byte arrays are "little-endian" (LSB first),
+        //but MSB-first is more natural to read bitwise left-to-right
+        //here, we can handle either way.
+        if (leastSignificantByteFirst)
         {
-            //most .NET-produced byte arrays are "little-endian" (LSB first),
-            //but MSB-first is more natural to read bitwise left-to-right
-            //here, we can handle either way.
-            if (leastSignificantByteFirst)
-            {
-                bytes = bytes.Reverse().ToArray();
-            }
-
-            var builder = new StringBuilder();
-            while (bytes.Any(b => b > 0))
-            {
-                bytes = BitShift.Divide(bytes, 36, out var mod);
-                builder.Insert(0, _alphabet[mod]);
-            }
-
-            var result = builder
-                .ToString()
-                .TrimStart('0');
-            return string.IsNullOrEmpty(result)
-                ? "0"
-                : result;
+            bytes = bytes.Reverse().ToArray();
         }
 
-        private static Span<bool> ToBits(byte value)
+        var builder = new StringBuilder();
+        while (bytes.Any(b => b > 0))
         {
-            var result = new bool[8];
-
-            var index = 7;
-            while (value > 0)
-            {
-                result[index] = (value & 0x1) == 0x1;
-                value >>= 0x1;
-                index--;
-            }
-
-            return result;
+            bytes = BitShift.Divide(bytes, 36, out var mod);
+            builder.Insert(0, _alphabet[mod]);
         }
 
-        private static Span<byte> ToBytes(ReadOnlySpan<bool> bits)
+        var result = builder
+            .ToString()
+            .TrimStart('0');
+        return string.IsNullOrEmpty(result)
+            ? "0"
+            : result;
+    }
+
+    private static Span<bool> ToBits(byte value)
+    {
+        var result = new bool[8];
+
+        var index = 7;
+        while (value > 0)
         {
-            Span<byte> result = Array.Empty<byte>();
+            result[index] = (value & 0x1) == 0x1;
+            value >>= 0x1;
+            index--;
+        }
 
-            byte currentByte = 0;
-            var bitsToIterate = bits.Length;
+        return result;
+    }
 
-            byte bitCounter = 0;
-            for (var i = bitsToIterate - 1; i >= 0; i--)
-            {
-                var currentBit = bits[i];
+    private static Span<byte> ToBytes(ReadOnlySpan<bool> bits)
+    {
+        Span<byte> result = Array.Empty<byte>();
 
-                currentByte |= currentBit ? (byte)(0x1 << bitCounter) : currentByte;
-                bitCounter++;
+        byte currentByte = 0;
+        var bitsToIterate = bits.Length;
 
-                if (bitCounter == 8)
-                {
-                    Span<byte> newResult = new byte[result.Length + 1];
-                    result.CopyTo(newResult.Slice(1));
-                    result = newResult;
-                    result[0] = currentByte;
-                    currentByte = 0;
-                    bitCounter = 0;
-                }
-            }
+        byte bitCounter = 0;
+        for (var i = bitsToIterate - 1; i >= 0; i--)
+        {
+            var currentBit = bits[i];
 
-            if (currentByte != 0)
+            currentByte |= currentBit ? (byte)(0x1 << bitCounter) : currentByte;
+            bitCounter++;
+
+            if (bitCounter == 8)
             {
                 Span<byte> newResult = new byte[result.Length + 1];
                 result.CopyTo(newResult.Slice(1));
                 result = newResult;
                 result[0] = currentByte;
+                currentByte = 0;
+                bitCounter = 0;
             }
-            return result;
         }
+
+        if (currentByte != 0)
+        {
+            Span<byte> newResult = new byte[result.Length + 1];
+            result.CopyTo(newResult.Slice(1));
+            result = newResult;
+            result[0] = currentByte;
+        }
+        return result;
     }
 }

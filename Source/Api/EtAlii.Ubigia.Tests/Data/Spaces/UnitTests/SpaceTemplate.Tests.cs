@@ -1,19 +1,18 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿namespace EtAlii.Ubigia.Tests;
+
+using Xunit;
+
+public class SpaceTemplateTests
 {
-    using Xunit;
-
-    public class SpaceTemplateTests
+    [Fact]
+    public void SpaceTemplate_Get_All()
     {
-        [Fact]
-        public void SpaceTemplate_Get_All()
-        {
-            // Arrange.
+        // Arrange.
 
-            // Act.
-            var all = SpaceTemplate.All;
+        // Act.
+        var all = SpaceTemplate.All;
 
-            // Assert.
-            Assert.NotEmpty(all);
-        }
+        // Assert.
+        Assert.NotEmpty(all);
     }
 }

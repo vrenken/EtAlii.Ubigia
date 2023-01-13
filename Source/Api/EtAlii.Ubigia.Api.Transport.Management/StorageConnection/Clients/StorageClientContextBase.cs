@@ -1,33 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Transport.Management
+namespace EtAlii.Ubigia.Api.Transport.Management;
+
+using System.Threading.Tasks;
+
+public abstract class StorageClientContextBase<TDataClient> : IStorageClientContext
+    where TDataClient: IStorageTransportClient
 {
-    using System.Threading.Tasks;
+    public TDataClient Data { get; }
 
-    public abstract class StorageClientContextBase<TDataClient> : IStorageClientContext
-        where TDataClient: IStorageTransportClient
+    protected IStorageConnection Connection { get; private set; }
+
+    protected StorageClientContextBase(TDataClient data)
     {
-        public TDataClient Data { get; }
+        Data = data;
+    }
 
-        protected IStorageConnection Connection { get; private set; }
+    public async Task Open(IStorageConnection storageConnection)
+    {
+        await Data.Connect(storageConnection).ConfigureAwait(false);
 
-        protected StorageClientContextBase(TDataClient data)
-        {
-            Data = data;
-        }
+        Connection = storageConnection;
+    }
 
-        public async Task Open(IStorageConnection storageConnection)
-        {
-            await Data.Connect(storageConnection).ConfigureAwait(false);
+    public async Task Close(IStorageConnection storageConnection)
+    {
+        await Data.Disconnect(storageConnection).ConfigureAwait(false);
 
-            Connection = storageConnection;
-        }
-
-        public async Task Close(IStorageConnection storageConnection)
-        {
-            await Data.Disconnect(storageConnection).ConfigureAwait(false);
-
-            Connection = null;
-        }
+        Connection = null;
     }
 }

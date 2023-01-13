@@ -1,47 +1,46 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Traversal;
+
+using Moppet.Lapa;
+
+internal sealed class TypeValueParser : ITypeValueParser
 {
-    using Moppet.Lapa;
+    private readonly INodeValidator _nodeValidator;
+    private readonly INodeFinder _nodeFinder;
 
-    internal sealed class TypeValueParser : ITypeValueParser
+    public LpsParser Parser { get; }
+
+    public string Id => "TypeValue";
+
+    private const string ValueId = "Value";
+
+    public TypeValueParser(
+        INodeValidator nodeValidator,
+        INodeFinder nodeFinder,
+        IConstantHelper constantHelper)
     {
-        private readonly INodeValidator _nodeValidator;
-        private readonly INodeFinder _nodeFinder;
+        _nodeValidator = nodeValidator;
+        _nodeFinder = nodeFinder;
 
-        public LpsParser Parser { get; }
-
-        public string Id => "TypeValue";
-
-        private const string ValueId = "Value";
-
-        public TypeValueParser(
-            INodeValidator nodeValidator,
-            INodeFinder nodeFinder,
-            IConstantHelper constantHelper)
-        {
-            _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
-
-            Parser = new LpsParser(Id, true,
-                new LpsParser(ValueId, true,
-                    Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)) +
-                    (Lp.Char('.') + Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
-                )
-            );//.Debug("TypeValueParser", true)
-        }
+        Parser = new LpsParser(Id, true,
+            new LpsParser(ValueId, true,
+                Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)) +
+                (Lp.Char('.') + Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
+            )
+        );//.Debug("TypeValueParser", true)
+    }
 
 
-        public string Parse(LpNode node)
-        {
-            _nodeValidator.EnsureSuccess(node, Id);
-            var type = _nodeFinder.FindFirst(node, ValueId).Match.ToString();
-            return type;
-        }
+    public string Parse(LpNode node)
+    {
+        _nodeValidator.EnsureSuccess(node, Id);
+        var type = _nodeFinder.FindFirst(node, ValueId).Match.ToString();
+        return type;
+    }
 
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
+    public bool CanParse(LpNode node)
+    {
+        return node.Id == Id;
     }
 }

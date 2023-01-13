@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia.Api.Fabric;
+
+internal class ContentDefinitionCacheHelper : IContentDefinitionCacheHelper
 {
-    internal class ContentDefinitionCacheHelper : IContentDefinitionCacheHelper
+    private readonly IContentCacheProvider _cacheProvider;
+
+    public ContentDefinitionCacheHelper(IContentCacheProvider cacheProvider)
     {
-        private readonly IContentCacheProvider _cacheProvider;
+        _cacheProvider = cacheProvider;
+    }
 
-        public ContentDefinitionCacheHelper(IContentCacheProvider cacheProvider)
-        {
-            _cacheProvider = cacheProvider;
-        }
+    public ContentDefinition Get(in Identifier identifier)
+    {
+        _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
+        return cacheEntry?.ContentDefinition;
+    }
 
-        public ContentDefinition Get(in Identifier identifier)
+    public void Store(in Identifier identifier, ContentDefinition definition)
+    {
+        if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
         {
-            _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
-            return cacheEntry?.ContentDefinition;
+            cacheEntry = new ContentCacheEntry();
+            _cacheProvider.Cache[identifier] = cacheEntry;
         }
-
-        public void Store(in Identifier identifier, ContentDefinition definition)
-        {
-            if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
-            {
-                cacheEntry = new ContentCacheEntry();
-                _cacheProvider.Cache[identifier] = cacheEntry;
-            }
-            cacheEntry.ContentDefinition = definition;
-        }
+        cacheEntry.ContentDefinition = definition;
     }
 }

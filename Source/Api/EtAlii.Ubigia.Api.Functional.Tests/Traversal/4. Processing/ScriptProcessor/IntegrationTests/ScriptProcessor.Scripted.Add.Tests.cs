@@ -1,570 +1,569 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+
+using System;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Api.Functional.Tests;
+using EtAlii.Ubigia.Api.Logical;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public sealed class ScriptProcessorScriptedAddTests : IClassFixture<FunctionalUnitTestContext>
 {
-    using System;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Tests;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
+    private readonly FunctionalUnitTestContext _testContext;
+    private readonly IScriptParser _parser;
 
-    [CorrelateUnitTests]
-    public sealed class ScriptProcessorScriptedAddTests : IClassFixture<FunctionalUnitTestContext>
+    public ScriptProcessorScriptedAddTests(FunctionalUnitTestContext testContext)
     {
-        private readonly FunctionalUnitTestContext _testContext;
-        private readonly IScriptParser _parser;
+        _testContext = testContext;
+        _parser = testContext.CreateScriptParser();
+    }
 
-        public ScriptProcessorScriptedAddTests(FunctionalUnitTestContext testContext)
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_Simple()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var continent = "Europe";
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQueries = new[]
         {
-            _testContext = testContext;
-            _parser = testContext.CreateScriptParser();
-        }
+            $"/Location+={continent}",
+            $"<= /Location/{continent}"
+        };
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_Simple()
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = $"<= /Location/{continent}";
+
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
+
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
+
+        // Assert.
+        Assert.NotNull(firstContinentEntry);
+        Assert.NotNull(secondContinentEntry);
+        Assert.Equal(((Node)firstContinentEntry).Id, ((Node)secondContinentEntry).Id);
+        Assert.Equal(continent, firstContinentEntry.ToString());
+    }
+
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_1()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var continent = "Europe";
+        var country = "NL";
+        var region = "Overijssel";
+        var city = "Enschede";
+        var location = "Helmerhoek";
+
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var continent = "Europe";
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQueries = new[]
-            {
-                $"/Location+={continent}",
-                $"<= /Location/{continent}"
-            };
+            $"/Location+={continent}",
+            $"/Location/{continent}+={country}",
+            $"/Location/{continent}/{country}+={region}",
+            $"/Location/{continent}/{country}/{region}+={city}",
+            $"<= /Location/{continent}/{country}/{region}/{city}+={location}"
+        };
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Location/{continent}";
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstContinentEntry);
-            Assert.NotNull(secondContinentEntry);
-            Assert.Equal(((Node)firstContinentEntry).Id, ((Node)secondContinentEntry).Id);
-            Assert.Equal(continent, firstContinentEntry.ToString());
-        }
+        // Assert.
+        Assert.NotNull(firstLocationEntry);
+        Assert.NotNull(secondLocationEntry);
+        Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_1()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_2()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var continent = "Europe";
-            var country = "NL";
-            var region = "Overijssel";
-            var city = "Enschede";
-            var location = "Helmerhoek";
+            "/Time+={0:yyyy}",
+            "/Time/{0:yyyy}+={0:MM}",
+            "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
+            "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+        };
 
-            var addQueries = new[]
-            {
-                $"/Location+={continent}",
-                $"/Location/{continent}+={country}",
-                $"/Location/{continent}/{country}+={region}",
-                $"/Location/{continent}/{country}/{region}+={city}",
-                $"<= /Location/{continent}/{country}/{region}/{city}+={location}"
-            };
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-            // Assert.
-            Assert.NotNull(firstLocationEntry);
-            Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_2()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_3()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}",
-                "/Time/{0:yyyy}+={0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-            };
+            "/Time+={0:yyyy}",
+            "/Time/{0:yyyy}+={0:MM}",
+            "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
+            "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}"
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_3()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_4()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}",
-                "/Time/{0:yyyy}+={0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}"
-            };
+            "/Time+={0:yyyy}",
+            "/Time/{0:yyyy}+={0:MM}",
+            "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_4()
+
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_At_Once_1()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var continent = "Europe";
+        var country = "NL";
+        var region = "Overijssel";
+        var city = "Enschede";
+        var location = "Helmerhoek";
+
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}",
-                "/Time/{0:yyyy}+={0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-            };
+            $"<= /Location+={continent}/{country}/{region}/{city}/{location}"
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstLocationEntry);
+        Assert.NotNull(secondLocationEntry);
+        Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
+    }
 
-
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_At_Once_1()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_At_Once_2()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var continent = "Europe";
-            var country = "NL";
-            var region = "Overijssel";
-            var city = "Enschede";
-            var location = "Helmerhoek";
+            "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+            "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+        };
 
-            var addQueries = new[]
-            {
-                $"<= /Location+={continent}/{country}/{region}/{city}/{location}"
-            };
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-            // Assert.
-            Assert.NotNull(firstLocationEntry);
-            Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_At_Once_2()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_At_Once_3()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-            };
+            "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+            "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_At_Once_3()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_At_Once_4()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var now = DateTime.Now;
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-            };
+            "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+            "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+        var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstMinuteEntry);
+        Assert.NotNull(secondMinuteEntry);
+        Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_At_Once_4()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_Spaced_1()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var continent = "Europe";
+        var country = "NL";
+        var region = "Overijssel";
+        var city = "Enschede";
+        var location = "Helmerhoek";
+
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var now = DateTime.Now;
-            var addQueries = new[]
-            {
-                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
-            };
+            $"/Location +={continent}",
+            $"/Location/{continent} +={country}",
+            $"/Location/{continent}/{country} +={region}",
+            $"/Location/{continent}/{country}/{region} +={city}",
+            $"<= /Location/{continent}/{country}/{region}/{city} +={location}",
+        };
 
-            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
-            var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstLocationEntry);
+        Assert.NotNull(secondLocationEntry);
+        Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
+    }
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_Spaced_1()
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Add_Spaced_2()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var continent = "Europe";
+        var country = "NL";
+        var region = "Overijssel";
+        var city = "Enschede";
+        var location = "Helmerhoek";
+
+        var addQueries = new[]
         {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var continent = "Europe";
-            var country = "NL";
-            var region = "Overijssel";
-            var city = "Enschede";
-            var location = "Helmerhoek";
+            $"/Location+= {continent}",
+            $"/Location/{continent}+= {country}",
+            $"/Location/{continent}/{country}+= {region}",
+            $"/Location/{continent}/{country}/{region}+= {city}",
+            $"<= /Location/{continent}/{country}/{region}/{city}+= {location}",
+        };
 
-            var addQueries = new[]
-            {
-                $"/Location +={continent}",
-                $"/Location/{continent} +={country}",
-                $"/Location/{continent}/{country} +={region}",
-                $"/Location/{continent}/{country}/{region} +={city}",
-                $"<= /Location/{continent}/{country}/{region}/{city} +={location}",
-            };
+        var addQuery = string.Join("\r\n", addQueries);
+        var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        // Assert.
+        Assert.NotNull(firstLocationEntry);
+        Assert.NotNull(secondLocationEntry);
+        Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
+    }
 
-            // Assert.
-            Assert.NotNull(firstLocationEntry);
-            Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
-        }
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQuery = "<= /Person+=Doe/John";
+        var selectQuery = "/Person/Doe/John";
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Add_Spaced_2()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var continent = "Europe";
-            var country = "NL";
-            var region = "Overijssel";
-            var city = "Enschede";
-            var location = "Helmerhoek";
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            var addQueries = new[]
-            {
-                $"/Location+= {continent}",
-                $"/Location/{continent}+= {country}",
-                $"/Location/{continent}/{country}+= {region}",
-                $"/Location/{continent}/{country}/{region}+= {city}",
-                $"<= /Location/{continent}/{country}/{region}/{city}+= {location}",
-            };
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
+        // Assert.
+        Assert.NotNull(firstJohnEntry);
+        Assert.NotNull(secondJohnEntry);
+        Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+    }
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_NonSpaced_01()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQuery = "+=Person/Doe/John";
+        var selectQuery = "/Person/Doe/John";
 
-            // Assert.
-            Assert.NotNull(firstLocationEntry);
-            Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
-        }
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQuery = "<= /Person+=Doe/John";
-            var selectQuery = "/Person/Doe/John";
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+        // Assert.
+        Assert.Null(firstJohnEntry);//, "First entry is not null")
+        Assert.NotNull(secondJohnEntry);//, "Second entry is null")
+        Assert.Equal("John", secondJohnEntry.ToString());
+    }
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Spaced_02()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQuery = "+= Person/Doe/John";
+        var selectQuery = "/Person/Doe/John";
 
-            // Assert.
-            Assert.NotNull(firstJohnEntry);
-            Assert.NotNull(secondJohnEntry);
-            Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-        }
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_NonSpaced_01()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQuery = "+=Person/Doe/John";
-            var selectQuery = "/Person/Doe/John";
+        // Assert.
+        Assert.Null(firstJohnEntry);//, "First entry is not null")
+        Assert.NotNull(secondJohnEntry);//, "Second entry is null")
+        Assert.Equal("John", secondJohnEntry.ToString());
+    }
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Wrong_Root()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQuery = "+=Person_Bad/Doe/John";
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null")
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null")
-            Assert.Equal("John", secondJohnEntry.ToString());
-        }
+        // Act.
+        var act = processor.Process(addScript, scope);
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Spaced_02()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQuery = "+= Person/Doe/John";
-            var selectQuery = "/Person/Doe/John";
+        // Assert.
+        await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
+    }
 
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
+    [Fact]
+    public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_Spaced()
+    {
+        // Arrange.
+        var scope = new ExecutionScope();
+        var logicalOptions = await _testContext.Logical
+            .CreateLogicalOptionsWithConnection(true)
+            .ConfigureAwait(false);
+        var addQuery = "<= /Person += Doe/John";
+        var selectQuery = "/Person/Doe/John";
 
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        var addScript = _parser.Parse(addQuery, scope).Script;
+        var selectScript = _parser.Parse(selectQuery, scope).Script;
+        var processor = _testContext.CreateScriptProcessor(logicalOptions);
 
-            // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null")
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null")
-            Assert.Equal("John", secondJohnEntry.ToString());
-        }
+        // Act.
+        var lastSequence = await processor.Process(addScript, scope);
+        dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
+        lastSequence = await processor.Process(selectScript, scope);
+        dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Wrong_Root()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQuery = "+=Person_Bad/Doe/John";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var act = processor.Process(addScript, scope);
-
-            // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_Spaced()
-        {
-            // Arrange.
-            var scope = new ExecutionScope();
-            var logicalOptions = await _testContext.Logical
-                .CreateLogicalOptionsWithConnection(true)
-                .ConfigureAwait(false);
-            var addQuery = "<= /Person += Doe/John";
-            var selectQuery = "/Person/Doe/John";
-
-            var addScript = _parser.Parse(addQuery, scope).Script;
-            var selectScript = _parser.Parse(selectQuery, scope).Script;
-            var processor = _testContext.CreateScriptProcessor(logicalOptions);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript, scope);
-            dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript, scope);
-            dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(firstJohnEntry);
-            Assert.NotNull(secondJohnEntry);
-            Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
-        }
+        // Assert.
+        Assert.NotNull(firstJohnEntry);
+        Assert.NotNull(secondJohnEntry);
+        Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
     }
 }
