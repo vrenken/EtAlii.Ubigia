@@ -2,12 +2,19 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal
 {
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
     public class SetupPortalService : PortalServiceBase<SetupPortalService>
     {
         public SetupPortalService(ServiceConfiguration configuration) : base(configuration)
         {
+        }
+
+        protected override bool ShouldActivate(IFunctionalContext functionalContext)
+        {
+            // When setup is needed we activate the setup portal.
+            return functionalContext.Status.SetupIsNeeded;
         }
     }
 }

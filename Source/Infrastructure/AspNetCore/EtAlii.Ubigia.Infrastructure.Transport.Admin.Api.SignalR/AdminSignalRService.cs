@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
@@ -13,23 +14,22 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.SignalR;
 
-    public class AdminSignalRService : INetworkService
+    public class AdminSignalRService : NetworkServiceBase<AdminSignalRService>
     {
-        public ServiceConfiguration Configuration { get; }
-
         public AdminSignalRService(ServiceConfiguration configuration)
+            : base(configuration)
         {
-            Configuration = configuration;
         }
 
         [SuppressMessage(
             category: "Sonar Code Smell",
             checkId: "S4792:Configuring loggers is security-sensitive",
             Justification = "Safe to do so here.")]
-        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        protected override void ConfigureNetworkServices(
+            IServiceCollection services,
+            IServiceProvider globalServices,
+            IFunctionalContext functionalContext)
         {
-            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
-
             services
                 .AddSingleton(functionalContext)
                 .AddSingleton(functionalContext.Storages)
@@ -58,7 +58,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
                 .AddNewtonsoftJsonProtocol(options => Serializer.Configure(options.PayloadSerializerSettings));
         }
 
-        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        protected override void ConfigureNetworkApplication(
+            IApplicationBuilder application,
+            IWebHostEnvironment environment)
         {
             application
                 .UseRouting()

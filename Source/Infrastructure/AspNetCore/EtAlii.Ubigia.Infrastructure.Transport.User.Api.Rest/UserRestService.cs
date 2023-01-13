@@ -3,7 +3,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
-	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
+    using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
@@ -11,21 +12,20 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
 
-    public class UserRestService : INetworkService
+    public class UserRestService : NetworkServiceBase<UserRestService>
     {
-        /// <inheritdoc />
-        public ServiceConfiguration Configuration { get; }
-
         private IContextCorrelator _contextCorrelator;
 
         public UserRestService(ServiceConfiguration configuration)
+            : base(configuration)
         {
-            Configuration = configuration;
         }
 
-        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        protected override void ConfigureNetworkServices(
+            IServiceCollection services,
+            IServiceProvider globalServices,
+            IFunctionalContext functionalContext)
         {
-            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
             _contextCorrelator = functionalContext.ContextCorrelator;
 
 	        services
@@ -54,7 +54,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 		        .AddTypedControllers<RestController>();
         }
 
-        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        protected override void ConfigureNetworkApplication(
+            IApplicationBuilder application,
+            IWebHostEnvironment environment)
         {
 	        application
 		        .UseRouting()

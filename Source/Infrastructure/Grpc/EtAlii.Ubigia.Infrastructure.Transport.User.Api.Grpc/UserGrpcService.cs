@@ -3,33 +3,28 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using System;
-	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
+    using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
     using Microsoft.AspNetCore.Hosting;
-    using Serilog;
     using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
-    public class UserGrpcService : INetworkService
+    public class UserGrpcService : NetworkServiceBase<UserGrpcService>
     {
-        private readonly ILogger _logger = Log.ForContext<UserGrpcService>();
-
-        /// <inheritdoc />
-        public ServiceConfiguration Configuration { get; }
-
         public UserGrpcService(ServiceConfiguration configuration)
+            : base(configuration)
         {
-            Configuration = configuration;
-            _logger.Information("Instantiated {ServiceName}", nameof(UserGrpcService));
         }
 
-	    public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        protected override void ConfigureNetworkServices(
+            IServiceCollection services,
+            IServiceProvider globalServices,
+            IFunctionalContext functionalContext)
         {
-            var functionalContext = globalServices.GetService<IInfrastructureService>()!.Functional;
-
             var container = new Container();
             new UserApiScaffolding(functionalContext).Register(container);
             new AuthenticationScaffolding().Register(container);
@@ -101,7 +96,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
                 });
         }
 
-        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        protected override void ConfigureNetworkApplication(
+            IApplicationBuilder application,
+            IWebHostEnvironment environment)
         {
             application
                 .UseRouting()
