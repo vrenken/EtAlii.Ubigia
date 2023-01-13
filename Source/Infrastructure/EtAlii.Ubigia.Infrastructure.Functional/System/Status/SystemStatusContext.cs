@@ -7,12 +7,25 @@ using System.Threading.Tasks;
 
 public class SystemStatusContext : ISystemStatusContext
 {
-    private readonly ISystemStatusChecker _systemStatusChecker;
+    /// <inheritdoc />
     public bool SetupIsNeeded { get; private set; }
+
+    /// <inheritdoc />
     public bool SystemIsOperational { get; private set; }
+
+    /// <inheritdoc />
     public DateTimeOffset StartTime { get; private set; }
+
+    /// <inheritdoc />
     public TimeSpan Uptime => DateTimeOffset.Now - StartTime;
+
+    /// <inheritdoc />
     public DateTimeOffset FirstStartTime { get; private set; }
+
+    /// <inheritdoc />
+    public TimeSpan TotalUptime { get; private set; }
+
+    private readonly ISystemStatusChecker _systemStatusChecker;
 
     public SystemStatusContext(ISystemStatusChecker systemStatusChecker)
     {
