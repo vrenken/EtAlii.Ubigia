@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using Blazorise;
     using Blazorise.Bootstrap5;
     using Blazorise.Icons.FontAwesome;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -22,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         {
         }
 
-        public override void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        protected override void ConfigureNetworkServices(IServiceCollection services, IServiceProvider globalServices, IFunctionalContext functionalContext)
         {
             services
                 .AddMvc()
@@ -57,11 +58,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // services.ConfigureOptions(typeof(UIConfigureOptions))
         }
 
-        public override void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        protected override void ConfigureNetworkApplication(IApplicationBuilder application, IWebHostEnvironment environment)
         {
             // The environment.ApplicationName needs to be set as the StaticWebAssetsLoader.UseStaticWebAssets relies on it.
             // Weird but true.
-            environment.ApplicationName = typeof(TPortalService).Assembly.GetName().Name;
+            environment.ApplicationName = typeof(TPortalService).Assembly.GetName()!.Name;
             StaticWebAssetsLoader.UseStaticWebAssets(environment, Configuration.Section);
 
             if (environment.IsDevelopment())

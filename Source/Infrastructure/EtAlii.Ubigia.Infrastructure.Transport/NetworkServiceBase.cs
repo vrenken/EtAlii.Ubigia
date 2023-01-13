@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         public ServiceConfiguration Configuration { get; }
 
         protected readonly ILogger Logger = Log.ForContext<TNetworkService>();
+        private IFunctionalContext _functionalContext;
+        private bool _shouldActivate;
 
         protected NetworkServiceBase(ServiceConfiguration configuration)
         {
@@ -24,8 +27,38 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             Logger.Information("Instantiated {ServiceName}", nameof(TNetworkService));
         }
 
-        public abstract void ConfigureServices(IServiceCollection services, IServiceProvider globalServices);
 
-        public abstract void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment);
+        protected virtual bool ShouldActivate(IFunctionalContext functionalContext)
+        {
+            // Default implementation is that all network services get disabled when
+            // the system is not yet in a good state.
+            // The setup portal on the other hand will be activated only when the .
+
+            // return true;
+            return functionalContext.Status.SystemIsOperational;
+        }
+
+        protected abstract void ConfigureNetworkServices(IServiceCollection services, IServiceProvider globalServices, IFunctionalContext functionalContext);
+
+        public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
+        {
+            _functionalContext = globalServices.GetService<IInfrastructureService>().Functional;
+            _shouldActivate = ShouldActivate(_functionalContext);
+
+            if (_shouldActivate)
+            {
+                ConfigureNetworkServices(services, globalServices, _functionalContext);
+            }
+        }
+
+        public void ConfigureApplication(IApplicationBuilder application, IWebHostEnvironment environment)
+        {
+            if (_shouldActivate)
+            {
+                ConfigureNetworkApplication(application, environment);
+            }
+        }
+
+        protected abstract void ConfigureNetworkApplication(IApplicationBuilder application, IWebHostEnvironment environment);
     }
 }
