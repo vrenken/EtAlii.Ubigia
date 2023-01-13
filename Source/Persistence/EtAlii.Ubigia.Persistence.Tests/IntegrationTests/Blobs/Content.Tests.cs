@@ -1,89 +1,88 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Tests
+namespace EtAlii.Ubigia.Persistence.Tests;
+
+using System;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Tests;
+using Xunit;
+
+[CorrelateUnitTests]
+public class ContentTests : IAsyncLifetime
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
+    private StorageUnitTestContext _testContext;
 
-    [CorrelateUnitTests]
-    public class ContentTests : IAsyncLifetime
+    public async Task InitializeAsync()
     {
-        private StorageUnitTestContext _testContext;
+        _testContext = new StorageUnitTestContext();
+        await _testContext
+            .InitializeAsync()
+            .ConfigureAwait(false);
+    }
 
-        public async Task InitializeAsync()
-        {
-            _testContext = new StorageUnitTestContext();
-            await _testContext
-                .InitializeAsync()
-                .ConfigureAwait(false);
-        }
+    public async Task DisposeAsync()
+    {
+        await _testContext
+            .DisposeAsync()
+            .ConfigureAwait(false);
+        _testContext = null;
+    }
 
-        public async Task DisposeAsync()
-        {
-            await _testContext
-                .DisposeAsync()
-                .ConfigureAwait(false);
-            _testContext = null;
-        }
+    [Fact]
+    public void Content_Store()
+    {
+        // Arrange.
+        var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
+        var content = _testContext.Content.Create();
 
-        [Fact]
-        public void Content_Store()
-        {
-            // Arrange.
-            var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.Content.Create();
+        // Act.
+        _testContext.Storage.Blobs.Store(containerId, content);
 
-            // Act.
-            _testContext.Storage.Blobs.Store(containerId, content);
+        // Assert.
+        Assert.True(content.Stored);
+    }
 
-            // Assert.
-            Assert.True(content.Stored);
-        }
+    [Fact]
+    public async Task Content_Store_And_Retrieve_Check_Parts()
+    {
+        // Arrange.
+        var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
+        var content = _testContext.Content.Create();
 
-        [Fact]
-        public async Task Content_Store_And_Retrieve_Check_Parts()
-        {
-            // Arrange.
-            var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.Content.Create();
+        // Act.
+        _testContext.Storage.Blobs.Store(containerId, content);
+        var retrievedContent = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
-            // Act.
-            _testContext.Storage.Blobs.Store(containerId, content);
-            var retrievedContent = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
+        // Assert.
+        AssertData.AreEqual(content, retrievedContent, false);
+    }
 
-            // Assert.
-            AssertData.AreEqual(content, retrievedContent, false);
-        }
+    [Fact]
+    public void Content_Store_Twice()
+    {
+        // Arrange.
+        var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
+        var first = _testContext.Content.Create();
+        var second = _testContext.Content.Create();
+        _testContext.Storage.Blobs.Store(containerId, first);
 
-        [Fact]
-        public void Content_Store_Twice()
-        {
-            // Arrange.
-            var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = _testContext.Content.Create();
-            var second = _testContext.Content.Create();
-            _testContext.Storage.Blobs.Store(containerId, first);
+        // Act.
+        var act = new Action(() => _testContext.Storage.Blobs.Store(containerId, second));
 
-            // Act.
-            var act = new Action(() => _testContext.Storage.Blobs.Store(containerId, second));
+        // Assert.
+        Assert.Throws<BlobStorageException>(act);
+    }
 
-            // Assert.
-            Assert.Throws<BlobStorageException>(act);
-        }
+    [Fact]
+    public async Task Content_Retrieve_None_Existing()
+    {
+        // Arrange.
+        var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
-        [Fact]
-        public async Task Content_Retrieve_None_Existing()
-        {
-            // Arrange.
-            var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
+        // Act.
+        var content = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
-            // Act.
-            var content = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
-
-            // Assert.
-            Assert.Null(content);
-        }
+        // Assert.
+        Assert.Null(content);
     }
 }

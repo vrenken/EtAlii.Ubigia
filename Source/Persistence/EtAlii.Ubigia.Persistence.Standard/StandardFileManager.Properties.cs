@@ -1,50 +1,49 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Standard
+namespace EtAlii.Ubigia.Persistence.Standard;
+
+using System.IO;
+
+internal partial class StandardFileManager
 {
-    using System.IO;
-
-    internal partial class StandardFileManager
+    public void SaveToFile(string path, PropertyDictionary item)
     {
-        public void SaveToFile(string path, PropertyDictionary item)
+        // Ensure that the requested folder exists.
+        var folder = _pathBuilder.GetDirectoryName(path);
+        _folderManager.Create(folder);
+
+        var temporaryFileName = Path.ChangeExtension(path, ".tmp");
+        var backupFileName = Path.ChangeExtension(path, ".bak");
+
+        _serializer.Serialize(temporaryFileName, item);
+
+        var shouldReplace = File.Exists(path);
+        if (shouldReplace)
         {
-            // Ensure that the requested folder exists.
-            var folder = _pathBuilder.GetDirectoryName(path);
-            _folderManager.Create(folder);
+            File.Move(path, backupFileName);
+            File.Move(temporaryFileName, path);
+            File.Delete(backupFileName);
+        }
+        else
+        {
+            File.Copy(temporaryFileName, path, false);
+            File.Delete(temporaryFileName);
+        }
+    }
 
-            var temporaryFileName = Path.ChangeExtension(path, ".tmp");
-            var backupFileName = Path.ChangeExtension(path, ".bak");
+    public PropertyDictionary LoadFromFile(string path)
+    {
+        PropertyDictionary item = null;
 
-            _serializer.Serialize(temporaryFileName, item);
+        // Ensure that the requested folder exists.
+        var folder = _pathBuilder.GetDirectoryName(path);
+        _folderManager.Create(folder);
 
-            var shouldReplace = File.Exists(path);
-            if (shouldReplace)
-            {
-	            File.Move(path, backupFileName);
-	            File.Move(temporaryFileName, path);
-	            File.Delete(backupFileName);
-            }
-            else
-            {
-	            File.Copy(temporaryFileName, path, false);
-	            File.Delete(temporaryFileName);
-            }
+        if (File.Exists(path))
+        {
+            item = _serializer.Deserialize(path);
         }
 
-        public PropertyDictionary LoadFromFile(string path)
-        {
-            PropertyDictionary item = null;
-
-            // Ensure that the requested folder exists.
-            var folder = _pathBuilder.GetDirectoryName(path);
-            _folderManager.Create(folder);
-
-            if (File.Exists(path))
-            {
-                item = _serializer.Deserialize(path);
-            }
-
-            return item;
-        }
+        return item;
     }
 }

@@ -1,31 +1,30 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Portable
+namespace EtAlii.Ubigia.Persistence.Portable;
+
+using EtAlii.xTechnology.MicroContainer;
+using PCLStorage;
+
+
+public class PortableStorageExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
-    using PCLStorage;
+    private readonly IFolder _localStorage;
 
-
-    public class PortableStorageExtension : IExtension
+    public PortableStorageExtension(IFolder localStorage)
     {
-        private readonly IFolder _localStorage;
+        _localStorage = localStorage;
+    }
 
-        public PortableStorageExtension(IFolder localStorage)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var scaffoldings = new IScaffolding[]
         {
-            _localStorage = localStorage;
-        }
+            new PortableFactoryScaffolding(_localStorage),
+        };
 
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var scaffoldings = new IScaffolding[]
-            {
-                new PortableFactoryScaffolding(_localStorage),
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            scaffolding.Register(container);
         }
     }
 }

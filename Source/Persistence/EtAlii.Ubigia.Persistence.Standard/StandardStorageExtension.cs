@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Standard
+namespace EtAlii.Ubigia.Persistence.Standard;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public class StandardStorageExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly string _baseFolder;
 
-    public class StandardStorageExtension : IExtension
+    public StandardStorageExtension(string baseFolder)
     {
-        private readonly string _baseFolder;
+        _baseFolder = baseFolder;
+    }
 
-        public StandardStorageExtension(string baseFolder)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var scaffoldings = new IScaffolding[]
         {
-            _baseFolder = baseFolder;
-        }
+            new StandardFactoryScaffolding()
+        };
 
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var scaffoldings = new IScaffolding[]
-            {
-                new StandardFactoryScaffolding()
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            container.RegisterInitializer<IPathBuilder>(pb => ((StandardPathBuilder)pb).Initialize(_baseFolder));
+            scaffolding.Register(container);
         }
+        container.RegisterInitializer<IPathBuilder>(pb => ((StandardPathBuilder)pb).Initialize(_baseFolder));
     }
 }

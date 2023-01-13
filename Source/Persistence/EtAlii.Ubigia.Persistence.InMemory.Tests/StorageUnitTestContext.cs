@@ -1,66 +1,65 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Tests
+namespace EtAlii.Ubigia.Persistence.Tests;
+
+using System.IO;
+using System.Threading.Tasks;
+using EtAlii.Ubigia.Persistence.InMemory;
+
+public class StorageUnitTestContext : StorageUnitTestContextBase
 {
-    using System.IO;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Persistence.InMemory;
+    public InMemoryStorage Storage { get; private set; }
 
-    public class StorageUnitTestContext : StorageUnitTestContextBase
+    public override async Task InitializeAsync()
     {
-        public InMemoryStorage Storage { get; private set; }
+        await base
+            .InitializeAsync()
+            .ConfigureAwait(false);
 
-        public override async Task InitializeAsync()
+        Storage = CreateStorage();
+
+        var folder = Storage.PathBuilder.BaseFolder;
+        if (Storage.FolderManager.Exists(folder))
         {
-            await base
-                .InitializeAsync()
-                .ConfigureAwait(false);
-
-            Storage = CreateStorage();
-
-            var folder = Storage.PathBuilder.BaseFolder;
-            if (Storage.FolderManager.Exists(folder))
-            {
-                ((IFolderManager)Storage.FolderManager).Delete(folder);
-            }
+            ((IFolderManager)Storage.FolderManager).Delete(folder);
         }
+    }
 
-        public override async Task DisposeAsync()
+    public override async Task DisposeAsync()
+    {
+        await base
+            .DisposeAsync()
+            .ConfigureAwait(false);
+
+        // Cleanup
+        Storage = null;
+    }
+
+    private InMemoryStorage CreateStorage()
+    {
+        var options = new StorageOptions(HostConfiguration)
+            .Use(UnitTestSettings.StorageName)
+            .UseStorageDiagnostics()
+            .UseInMemoryStorage();
+
+        return (InMemoryStorage)new StorageFactory().Create(options);
+    }
+
+    public void DeleteFileWhenNeeded(string fileName)
+    {
+        if (Storage.InMemoryItems.Exists(fileName))
         {
-            await base
-                .DisposeAsync()
-                .ConfigureAwait(false);
-
-            // Cleanup
-            Storage = null;
+            Storage.InMemoryItems.Delete(fileName);
         }
+    }
 
-        private InMemoryStorage CreateStorage()
-        {
-            var options = new StorageOptions(HostConfiguration)
-                .Use(UnitTestSettings.StorageName)
-                .UseStorageDiagnostics()
-                .UseInMemoryStorage();
+    public IStorageSerializer CreateSerializer(IItemSerializer itemSerializer, IPropertiesSerializer propertiesSerializer)
+    {
+        return new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
+    }
 
-            return (InMemoryStorage)new StorageFactory().Create(options);
-        }
-
-        public void DeleteFileWhenNeeded(string fileName)
-        {
-            if (Storage.InMemoryItems.Exists(fileName))
-            {
-                Storage.InMemoryItems.Delete(fileName);
-            }
-        }
-
-        public IStorageSerializer CreateSerializer(IItemSerializer itemSerializer, IPropertiesSerializer propertiesSerializer)
-        {
-            return new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
-        }
-
-        public string GetExpectedDirectoryName(ContainerIdentifier containerIdentifier)
-        {
-            return Path.GetDirectoryName(Path.Combine(containerIdentifier.Paths));
-        }
+    public string GetExpectedDirectoryName(ContainerIdentifier containerIdentifier)
+    {
+        return Path.GetDirectoryName(Path.Combine(containerIdentifier.Paths));
     }
 }

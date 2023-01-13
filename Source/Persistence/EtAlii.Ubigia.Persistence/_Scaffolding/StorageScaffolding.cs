@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public class StorageScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly IStorageOptions _options;
 
-    public class StorageScaffolding : IScaffolding
+    public StorageScaffolding(IStorageOptions options)
     {
-        private readonly IStorageOptions _options;
+        _options = options;
+    }
 
-        public StorageScaffolding(IStorageOptions options)
-        {
-            _options = options;
-        }
-
-        public void Register(IRegisterOnlyContainer container)
-        {
-            container.Register(() => _options);
-            container.Register(() => _options.ConfigurationRoot);
-        }
+    public void Register(IRegisterOnlyContainer container)
+    {
+        container.Register(() => _options);
+        container.Register(() => _options.ConfigurationRoot);
     }
 }

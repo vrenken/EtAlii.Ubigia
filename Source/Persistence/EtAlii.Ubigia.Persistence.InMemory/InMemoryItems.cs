@@ -1,93 +1,92 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.InMemory
+namespace EtAlii.Ubigia.Persistence.InMemory;
+
+using System;
+using System.IO;
+using System.Linq;
+
+public class InMemoryItems : IInMemoryItems
 {
-    using System;
-    using System.IO;
-    using System.Linq;
+    private readonly Folder _items;
 
-    public class InMemoryItems : IInMemoryItems
+    private readonly char _separatorChar;
+
+    public InMemoryItems()
     {
-        private readonly Folder _items;
+        _separatorChar = Path.DirectorySeparatorChar;
 
-        private readonly char _separatorChar;
+        _items = new Folder("Root");
+    }
 
-        public InMemoryItems()
+    public Item Find(string path)
+    {
+        return Find(path, _items);
+    }
+
+    public Item Find(string path, Folder folder)
+    {
+        var result = default(Item);
+
+        path = path.Trim(_separatorChar);
+
+        if (string.IsNullOrEmpty(path))
         {
-            _separatorChar = Path.DirectorySeparatorChar;
-
-            _items = new Folder("Root");
+            result = folder;
         }
-
-        public Item Find(string path)
+        else
         {
-            return Find(path, _items);
-        }
-
-        public Item Find(string path, Folder folder)
-        {
-            var result = default(Item);
-
-            path = path.Trim(_separatorChar);
-
-            if (string.IsNullOrEmpty(path))
+            var items = path.Split(_separatorChar);
+            var subItemName = items.First();
+            if (items.Length > 1)
             {
-                result = folder;
+                if (folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
+                {
+                    var subPath = string.Join(_separatorChar, items.Skip(1));
+                    result = Find(subPath, subFolder);
+                }
+            }
+            else if (items.Length == 1)
+            {
+                result = folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0);
             }
             else
             {
-                var items = path.Split(_separatorChar);
-                var subItemName = items.First();
-                if (items.Length > 1)
-                {
-                    if (folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
-                    {
-                        var subPath = string.Join(_separatorChar, items.Skip(1));
-                        result = Find(subPath, subFolder);
-                    }
-                }
-                else if (items.Length == 1)
-                {
-                    result = folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0);
-                }
-                else
-                {
-                    result = folder;
-                }
+                result = folder;
             }
-            return result;
         }
+        return result;
+    }
 
-        public bool Exists(string path)
-        {
-            return Find(path) != null;
-        }
+    public bool Exists(string path)
+    {
+        return Find(path) != null;
+    }
 
-        public void Move(string sourcePath, string targetPath)
-        {
-            var sourceFolderName = Path.GetDirectoryName(sourcePath);
-            var sourceFileName = Path.GetFileName(sourcePath);
-            var sourceFolder = (Folder)Find(sourceFolderName);
+    public void Move(string sourcePath, string targetPath)
+    {
+        var sourceFolderName = Path.GetDirectoryName(sourcePath);
+        var sourceFileName = Path.GetFileName(sourcePath);
+        var sourceFolder = (Folder)Find(sourceFolderName);
 
-            var targetFolderName = Path.GetDirectoryName(targetPath);
-            var targetFileName = Path.GetFileName(targetPath);
-            var targetFolder = (Folder)Find(targetFolderName);
+        var targetFolderName = Path.GetDirectoryName(targetPath);
+        var targetFileName = Path.GetFileName(targetPath);
+        var targetFolder = (Folder)Find(targetFolderName);
 
-            var sourceFile = (File)sourceFolder.Items.Single(i => string.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
-            var targetFile = new File(targetFileName) {Content = sourceFile.Content};
+        var sourceFile = (File)sourceFolder.Items.Single(i => string.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
+        var targetFile = new File(targetFileName) {Content = sourceFile.Content};
 
-            sourceFolder.Items.Remove(sourceFile);
-            targetFolder.Items.Add(targetFile);
-        }
+        sourceFolder.Items.Remove(sourceFile);
+        targetFolder.Items.Add(targetFile);
+    }
 
-        public void Delete(string path)
-        {
-            var folderName = Path.GetDirectoryName(path);
-            var itemName = Path.GetFileName(path);
-            var folder = (Folder)Find(folderName);
+    public void Delete(string path)
+    {
+        var folderName = Path.GetDirectoryName(path);
+        var itemName = Path.GetFileName(path);
+        var folder = (Folder)Find(folderName);
 
-            var item = folder.Items.Single(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0);
-            folder.Items.Remove(item);
-        }
+        var item = folder.Items.Single(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0);
+        folder.Items.Remove(item);
     }
 }

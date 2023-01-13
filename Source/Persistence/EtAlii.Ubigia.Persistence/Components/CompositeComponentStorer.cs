@@ -1,51 +1,50 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using System;
+
+internal class CompositeComponentStorer : ICompositeComponentStorer
 {
-    using System;
+    private readonly IPathBuilder _pathBuilder;
+    private readonly INextCompositeComponentIdAlgorithm _nextCompositeComponentIdAlgorithm;
+    private readonly IImmutableFolderManager _folderManager;
 
-    internal class CompositeComponentStorer : ICompositeComponentStorer
+    public CompositeComponentStorer(
+        IImmutableFolderManager folderManager,
+        IPathBuilder pathBuilder,
+        INextCompositeComponentIdAlgorithm nextCompositeComponentIdAlgorithm)
     {
-        private readonly IPathBuilder _pathBuilder;
-        private readonly INextCompositeComponentIdAlgorithm _nextCompositeComponentIdAlgorithm;
-        private readonly IImmutableFolderManager _folderManager;
+        _folderManager = folderManager;
+        _pathBuilder = pathBuilder;
+        _nextCompositeComponentIdAlgorithm = nextCompositeComponentIdAlgorithm;
+    }
 
-        public CompositeComponentStorer(
-            IImmutableFolderManager folderManager,
-            IPathBuilder pathBuilder,
-            INextCompositeComponentIdAlgorithm nextCompositeComponentIdAlgorithm)
+
+    public void Store(ContainerIdentifier container, CompositeComponent component)
+    {
+        var componentName = ComponentHelper.GetName(component);
+
+        container = ContainerIdentifier.Combine(container, componentName);
+
+        if (component.Id != 0)
         {
-            _folderManager = folderManager;
-            _pathBuilder = pathBuilder;
-            _nextCompositeComponentIdAlgorithm = nextCompositeComponentIdAlgorithm;
+            throw new InvalidOperationException("Unable to store composite component: Id already assigned");
         }
 
+        var compositeComponentId = _nextCompositeComponentIdAlgorithm.Create(container);
 
-        public void Store(ContainerIdentifier container, CompositeComponent component)
-        {
-            var componentName = ComponentHelper.GetName(component);
+        var folder = _pathBuilder.GetFolder(container);
 
-            container = ContainerIdentifier.Combine(container, componentName);
+        //var format = "Storing Composite component (Id:[2]) component to: [1]"
+        //_logger.Verbose[format, componentName, folder, compositeComponentId]
 
-            if (component.Id != 0)
-            {
-                throw new InvalidOperationException("Unable to store composite component: Id already assigned");
-            }
+        _folderManager.Create(folder);
 
-            var compositeComponentId = _nextCompositeComponentIdAlgorithm.Create(container);
+        ComponentHelper.SetStored(component, false);
+        _folderManager.SaveToFolder(component, compositeComponentId.ToString(), folder);
+        ComponentHelper.SetStored(component, true);
 
-            var folder = _pathBuilder.GetFolder(container);
-
-            //var format = "Storing Composite component (Id:[2]) component to: [1]"
-            //_logger.Verbose[format, componentName, folder, compositeComponentId]
-
-            _folderManager.Create(folder);
-
-            ComponentHelper.SetStored(component, false);
-            _folderManager.SaveToFolder(component, compositeComponentId.ToString(), folder);
-            ComponentHelper.SetStored(component, true);
-
-            ComponentHelper.SetId(component, compositeComponentId);
-        }
+        ComponentHelper.SetId(component, compositeComponentId);
     }
 }

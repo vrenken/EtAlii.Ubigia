@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+internal interface ILatestEntryGetter
 {
-    internal interface ILatestEntryGetter
-    {
-        string GetLatestEntry(string folder, ulong delta);
-    }
+    string GetLatestEntry(string folder, ulong delta);
 }

@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using System.Threading.Tasks;
+
+internal class LoggingBlobRetriever : IBlobRetriever
 {
-    using System.Threading.Tasks;
+    private readonly IBlobRetriever _blobRetriever;
 
-    internal class LoggingBlobRetriever : IBlobRetriever
+    public LoggingBlobRetriever(IBlobRetriever blobRetriever)
     {
-        private readonly IBlobRetriever _blobRetriever;
+        _blobRetriever = blobRetriever;
+    }
 
-        public LoggingBlobRetriever(IBlobRetriever blobRetriever)
-        {
-            _blobRetriever = blobRetriever;
-        }
-
-        public Task<T> Retrieve<T>(ContainerIdentifier container)
-            where T : Blob
-        {
-            return _blobRetriever.Retrieve<T>(container);
-        }
+    public Task<T> Retrieve<T>(ContainerIdentifier container)
+        where T : Blob
+    {
+        return _blobRetriever.Retrieve<T>(container);
     }
 }

@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Ntfs
+namespace EtAlii.Ubigia.Persistence.Ntfs;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public class NtfsStorageExtension : IExtension
 {
-    using EtAlii.xTechnology.MicroContainer;
+    private readonly string _baseFolder;
 
-    public class NtfsStorageExtension : IExtension
+    public NtfsStorageExtension(string baseFolder)
     {
-        private readonly string _baseFolder;
+        _baseFolder = baseFolder;
+    }
 
-        public NtfsStorageExtension(string baseFolder)
+    public void Initialize(IRegisterOnlyContainer container)
+    {
+        var scaffoldings = new IScaffolding[]
         {
-            _baseFolder = baseFolder;
-        }
+            new NtfsFactoryScaffolding()
+        };
 
-        public void Initialize(IRegisterOnlyContainer container)
+        foreach (var scaffolding in scaffoldings)
         {
-            var scaffoldings = new IScaffolding[]
-            {
-                new NtfsFactoryScaffolding()
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            container.RegisterInitializer<IPathBuilder>(pb => ((NtfsPathBuilder)pb).Initialize(_baseFolder));
+            scaffolding.Register(container);
         }
+        container.RegisterInitializer<IPathBuilder>(pb => ((NtfsPathBuilder)pb).Initialize(_baseFolder));
     }
 }

@@ -1,32 +1,31 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using Serilog;
+
+internal class LoggingBlobStorer : IBlobStorer
 {
-    using Serilog;
+    private readonly IBlobStorer _decoree;
+    private readonly IPathBuilder _pathBuilder;
+    private readonly ILogger _logger = Log.ForContext<IBlobStorer>();
 
-    internal class LoggingBlobStorer : IBlobStorer
+    public LoggingBlobStorer(
+        IBlobStorer decoree,
+        IPathBuilder pathBuilder)
     {
-        private readonly IBlobStorer _decoree;
-        private readonly IPathBuilder _pathBuilder;
-        private readonly ILogger _logger = Log.ForContext<IBlobStorer>();
+        _decoree = decoree;
+        _pathBuilder = pathBuilder;
+    }
 
-        public LoggingBlobStorer(
-            IBlobStorer decoree,
-            IPathBuilder pathBuilder)
-        {
-            _decoree = decoree;
-            _pathBuilder = pathBuilder;
-        }
+    public void Store(ContainerIdentifier container, Blob blob)
+    {
+        var blobName = Blob.GetName(blob);
+        var logContainer = ContainerIdentifier.Combine(container, blobName);
+        var folder = _pathBuilder.GetFolder(logContainer);
 
-        public void Store(ContainerIdentifier container, Blob blob)
-        {
-            var blobName = Blob.GetName(blob);
-            var logContainer = ContainerIdentifier.Combine(container, blobName);
-            var folder = _pathBuilder.GetFolder(logContainer);
+        _logger.Verbose("Storing {BlobName} blob in: {Folder}", blobName, folder);
 
-            _logger.Verbose("Storing {BlobName} blob in: {Folder}", blobName, folder);
-
-            _decoree.Store(container, blob);
-        }
+        _decoree.Store(container, blob);
     }
 }

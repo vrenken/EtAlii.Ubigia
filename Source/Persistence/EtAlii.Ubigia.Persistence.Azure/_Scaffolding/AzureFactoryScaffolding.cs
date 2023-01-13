@@ -1,22 +1,21 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Azure
+namespace EtAlii.Ubigia.Persistence.Azure;
+
+using EtAlii.xTechnology.MicroContainer;
+
+public class AzureFactoryScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public class AzureFactoryScaffolding : IScaffolding
+    public void Register(IRegisterOnlyContainer container)
     {
-        public void Register(IRegisterOnlyContainer container)
-        {
-            container.Register<IStorageSerializer, AzureStorageSerializer>();
-            container.RegisterDecorator<IStorageSerializer, LockingStorageSerializer>(); // We need file level locking.
-            container.Register<IFolderManager, AzureFolderManager>();
-            container.Register<IFileManager, AzureFileManager>();
-            container.Register<IPathBuilder, AzurePathBuilder>();
-            container.Register<IContainerProvider, DefaultContainerProvider>();
+        container.Register<IStorageSerializer, AzureStorageSerializer>();
+        container.RegisterDecorator<IStorageSerializer, LockingStorageSerializer>(); // We need file level locking.
+        container.Register<IFolderManager, AzureFolderManager>();
+        container.Register<IFileManager, AzureFileManager>();
+        container.Register<IPathBuilder, AzurePathBuilder>();
+        container.Register<IContainerProvider, DefaultContainerProvider>();
 
-            container.Register<IItemSerializer, ItemSerializer>();
-            container.Register<IPropertiesSerializer, PropertiesSerializer>();
-        }
+        container.Register<IItemSerializer, ItemSerializer>();
+        container.Register<IPropertiesSerializer, PropertiesSerializer>();
     }
 }

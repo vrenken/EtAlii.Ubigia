@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.MicroContainer;
+using Serilog;
+
+internal class PersistenceProfilingScaffolding : IScaffolding
 {
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
-    using Serilog;
+    private readonly DiagnosticsOptions _options;
+    private readonly ILogger _logger = Log.ForContext<PersistenceProfilingScaffolding>();
 
-    internal class PersistenceProfilingScaffolding : IScaffolding
+    internal PersistenceProfilingScaffolding(DiagnosticsOptions options)
     {
-        private readonly DiagnosticsOptions _options;
-        private readonly ILogger _logger = Log.ForContext<PersistenceProfilingScaffolding>();
+        _options = options;
+    }
 
-        internal PersistenceProfilingScaffolding(DiagnosticsOptions options)
+    public void Register(IRegisterOnlyContainer container)
+    {
+        if (_options.InjectProfiling)
         {
-            _options = options;
-        }
+            _logger.Verbose("Injecting persistence profiling decorators");
 
-        public void Register(IRegisterOnlyContainer container)
-        {
-            if (_options.InjectProfiling)
-            {
-                _logger.Verbose("Injecting persistence profiling decorators");
-
-                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
-            }
+            container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+            container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
         }
     }
 }

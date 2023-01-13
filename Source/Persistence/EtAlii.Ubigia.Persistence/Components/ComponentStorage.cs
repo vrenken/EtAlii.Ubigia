@@ -1,159 +1,158 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence
+namespace EtAlii.Ubigia.Persistence;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+internal class ComponentStorage : IComponentStorage
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    private readonly IComponentStorer _componentStorer;
+    private readonly ICompositeComponentStorer _compositeComponentStorer;
+    private readonly IComponentRetriever _componentRetriever;
+    private readonly INextContainerIdentifierAlgorithm _nextContainerIdentifierAlgorithm;
+    private readonly IContainerCreator _containerCreator;
 
-    internal class ComponentStorage : IComponentStorage
+    public ComponentStorage(
+        IComponentStorer componentStorer,
+        ICompositeComponentStorer compositeComponentStorer,
+        IComponentRetriever componentRetriever,
+        INextContainerIdentifierAlgorithm nextContainerIdentifierAlgorithm,
+        IContainerCreator containerCreator)
     {
-        private readonly IComponentStorer _componentStorer;
-        private readonly ICompositeComponentStorer _compositeComponentStorer;
-        private readonly IComponentRetriever _componentRetriever;
-        private readonly INextContainerIdentifierAlgorithm _nextContainerIdentifierAlgorithm;
-        private readonly IContainerCreator _containerCreator;
+        _componentStorer = componentStorer;
+        _compositeComponentStorer = compositeComponentStorer;
+        _componentRetriever = componentRetriever;
+        _nextContainerIdentifierAlgorithm = nextContainerIdentifierAlgorithm;
+        _containerCreator = containerCreator;
+    }
 
-        public ComponentStorage(
-            IComponentStorer componentStorer,
-            ICompositeComponentStorer compositeComponentStorer,
-            IComponentRetriever componentRetriever,
-            INextContainerIdentifierAlgorithm nextContainerIdentifierAlgorithm,
-            IContainerCreator containerCreator)
+    /// <inheritdoc />
+    public ContainerIdentifier GetNextContainer(ContainerIdentifier container)
+    {
+        if (container == ContainerIdentifier.Empty)
         {
-            _componentStorer = componentStorer;
-            _compositeComponentStorer = compositeComponentStorer;
-            _componentRetriever = componentRetriever;
-            _nextContainerIdentifierAlgorithm = nextContainerIdentifierAlgorithm;
-            _containerCreator = containerCreator;
+            throw new StorageException("No current container specified");
         }
 
-        /// <inheritdoc />
-        public ContainerIdentifier GetNextContainer(ContainerIdentifier container)
+        try
         {
-            if (container == ContainerIdentifier.Empty)
-            {
-                throw new StorageException("No current container specified");
-            }
+            var nextContainerIdentifier = _nextContainerIdentifierAlgorithm.Create(container);
+            _containerCreator.Create(nextContainerIdentifier);
+            return nextContainerIdentifier;
+        }
+        catch (Exception e)
+        {
+            throw new StorageException("Unable get the next container", e);
+        }
+    }
 
+    /// <inheritdoc />
+    public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
+        where T : CompositeComponent
+    {
+        if (container == ContainerIdentifier.Empty)
+        {
+            throw new StorageException("No container specified");
+        }
+
+        // The structure below might seem weird.
+        // But it is not possible to combine a try-catch with the yield needed
+        // enumerating an IAsyncEnumerable.
+        // The only way to solve this is using the enumerator.
+        var enumerator = _componentRetriever
+            .RetrieveAll<T>(container)
+            .GetAsyncEnumerator();
+        var hasResult = true;
+        while (hasResult)
+        {
+            T item;
             try
             {
-                var nextContainerIdentifier = _nextContainerIdentifierAlgorithm.Create(container);
-                _containerCreator.Create(nextContainerIdentifier);
-                return nextContainerIdentifier;
-            }
-            catch (Exception e)
-            {
-                throw new StorageException("Unable get the next container", e);
-            }
-        }
-
-        /// <inheritdoc />
-        public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
-            where T : CompositeComponent
-        {
-            if (container == ContainerIdentifier.Empty)
-            {
-                throw new StorageException("No container specified");
-            }
-
-            // The structure below might seem weird.
-            // But it is not possible to combine a try-catch with the yield needed
-            // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator.
-            var enumerator = _componentRetriever
-                .RetrieveAll<T>(container)
-                .GetAsyncEnumerator();
-            var hasResult = true;
-            while (hasResult)
-            {
-                T item;
-                try
-                {
-                    hasResult = await enumerator
-                        .MoveNextAsync()
-                        .ConfigureAwait(false);
-                    item = hasResult ? enumerator.Current : null;
-                }
-                catch (Exception e)
-                {
-                    throw new StorageException("Unable to retrieve components from the specified container", e);
-                }
-
-                if (item != null)
-                {
-                    yield return item;
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        public async Task<T> Retrieve<T>(ContainerIdentifier container)
-            where T : NonCompositeComponent
-        {
-            if (container == ContainerIdentifier.Empty)
-            {
-                throw new StorageException("No container specified");
-            }
-
-            try
-            {
-                return await _componentRetriever.Retrieve<T>(container).ConfigureAwait(false);
+                hasResult = await enumerator
+                    .MoveNextAsync()
+                    .ConfigureAwait(false);
+                item = hasResult ? enumerator.Current : null;
             }
             catch (Exception e)
             {
                 throw new StorageException("Unable to retrieve components from the specified container", e);
             }
+
+            if (item != null)
+            {
+                yield return item;
+            }
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<T> Retrieve<T>(ContainerIdentifier container)
+        where T : NonCompositeComponent
+    {
+        if (container == ContainerIdentifier.Empty)
+        {
+            throw new StorageException("No container specified");
         }
 
-        /// <inheritdoc />
-        public Task StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
-            where T : class, IComponent
+        try
         {
-            if (container == ContainerIdentifier.Empty)
-            {
-                throw new StorageException("No container specified");
-            }
+            return await _componentRetriever.Retrieve<T>(container).ConfigureAwait(false);
+        }
+        catch (Exception e)
+        {
+            throw new StorageException("Unable to retrieve components from the specified container", e);
+        }
+    }
 
-            try
-            {
-                foreach (var component in components)
-                {
-                    Store(container, component);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new StorageException("Unable to store components in the specified container", e);
-            }
-
-            return Task.CompletedTask;
+    /// <inheritdoc />
+    public Task StoreAll<T>(ContainerIdentifier container, IEnumerable<T> components)
+        where T : class, IComponent
+    {
+        if (container == ContainerIdentifier.Empty)
+        {
+            throw new StorageException("No container specified");
         }
 
-        /// <inheritdoc />
-        public void Store<T>(ContainerIdentifier container, T component)
-            where T : class, IComponent
+        try
         {
-            if (container == ContainerIdentifier.Empty)
+            foreach (var component in components)
             {
-                throw new StorageException("No container specified");
+                Store(container, component);
             }
+        }
+        catch (Exception e)
+        {
+            throw new StorageException("Unable to store components in the specified container", e);
+        }
 
-            try
+        return Task.CompletedTask;
+    }
+
+    /// <inheritdoc />
+    public void Store<T>(ContainerIdentifier container, T component)
+        where T : class, IComponent
+    {
+        if (container == ContainerIdentifier.Empty)
+        {
+            throw new StorageException("No container specified");
+        }
+
+        try
+        {
+            if (component is CompositeComponent compositeComponent)
             {
-                if (component is CompositeComponent compositeComponent)
-                {
-                    _compositeComponentStorer.Store(container, compositeComponent);
-                }
-                else
-                {
-                    _componentStorer.Store(container, component);
-                }
+                _compositeComponentStorer.Store(container, compositeComponent);
             }
-            catch (Exception e)
+            else
             {
-                throw new StorageException("Unable to store component in the specified container", e);
+                _componentStorer.Store(container, component);
             }
+        }
+        catch (Exception e)
+        {
+            throw new StorageException("Unable to store component in the specified container", e);
         }
     }
 }

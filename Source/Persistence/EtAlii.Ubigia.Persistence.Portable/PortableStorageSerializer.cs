@@ -1,112 +1,111 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Portable
+namespace EtAlii.Ubigia.Persistence.Portable;
+
+using System.Linq;
+using System.Threading.Tasks;
+using PCLStorage;
+
+public class PortableStorageSerializer : IStorageSerializer
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using PCLStorage;
+    private readonly IItemSerializer _itemSerializer;
+    private readonly IPropertiesSerializer _propertiesSerializer;
+    private readonly IFolder _storage;
 
-    public class PortableStorageSerializer : IStorageSerializer
+    public string FileNameFormat { get; } = "{0}.bin";
+
+    public PortableStorageSerializer(
+        IItemSerializer itemSerializer,
+        IPropertiesSerializer propertiesSerializer,
+        IFolder storage)
     {
-        private readonly IItemSerializer _itemSerializer;
-        private readonly IPropertiesSerializer _propertiesSerializer;
-        private readonly IFolder _storage;
+        _itemSerializer = itemSerializer;
+        _propertiesSerializer = propertiesSerializer;
+        _storage = storage;
+    }
 
-        public string FileNameFormat { get; } = "{0}.bin";
+    public void Serialize<T>(string fileName, T item)
+        where T: class
+    {
+        var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
+        fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
+        parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
+        var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
-        public PortableStorageSerializer(
-            IItemSerializer itemSerializer,
-            IPropertiesSerializer propertiesSerializer,
-            IFolder storage)
-        {
-            _itemSerializer = itemSerializer;
-            _propertiesSerializer = propertiesSerializer;
-            _storage = storage;
-        }
+        var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
+        createFolderTask.Wait();
+        var folder = createFolderTask.Result;
 
-        public void Serialize<T>(string fileName, T item)
-            where T: class
-        {
-            var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
-            fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
-            parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+        var createFileTask = folder.CreateFileAsync(fileName, CreationCollisionOption.FailIfExists);
+        createFileTask.Wait();
 
-            var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
-            createFolderTask.Wait();
-            var folder = createFolderTask.Result;
+        var openFileTask = createFileTask.Result.OpenAsync(FileAccess.ReadAndWrite);
+        openFileTask.Wait();
 
-            var createFileTask = folder.CreateFileAsync(fileName, CreationCollisionOption.FailIfExists);
-            createFileTask.Wait();
+        using var stream = openFileTask.Result;
 
-            var openFileTask = createFileTask.Result.OpenAsync(FileAccess.ReadAndWrite);
-            openFileTask.Wait();
+        _itemSerializer.Serialize(stream, item);
+    }
 
-            using var stream = openFileTask.Result;
+    public void Serialize(string fileName, PropertyDictionary item)
+    {
+        var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
+        fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
+        parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
+        var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
-            _itemSerializer.Serialize(stream, item);
-        }
+        var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
+        createFolderTask.Wait();
+        var folder = createFolderTask.Result;
 
-        public void Serialize(string fileName, PropertyDictionary item)
-        {
-            var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
-            fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
-            parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+        var createFileTask = folder.CreateFileAsync(fileName, CreationCollisionOption.FailIfExists);
+        createFileTask.Wait();
 
-            var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
-            createFolderTask.Wait();
-            var folder = createFolderTask.Result;
+        var openFileTask = createFileTask.Result.OpenAsync(FileAccess.ReadAndWrite);
+        openFileTask.Wait();
 
-            var createFileTask = folder.CreateFileAsync(fileName, CreationCollisionOption.FailIfExists);
-            createFileTask.Wait();
+        using var stream = openFileTask.Result;
 
-            var openFileTask = createFileTask.Result.OpenAsync(FileAccess.ReadAndWrite);
-            openFileTask.Wait();
+        _propertiesSerializer.Serialize(stream, item);
+    }
 
-            using var stream = openFileTask.Result;
+    public async Task<T> Deserialize<T>(string fileName)
+        where T : class
+    {
+        var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
+        fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
+        parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
+        var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
-            _propertiesSerializer.Serialize(stream, item);
-        }
-
-        public async Task<T> Deserialize<T>(string fileName)
-            where T : class
-        {
-            var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
-            fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
-            parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
-
-            var folder = await _storage.GetFolderAsync(folderName).ConfigureAwait(false);
-            var file = await folder.GetFileAsync(fileName).ConfigureAwait(false);
+        var folder = await _storage.GetFolderAsync(folderName).ConfigureAwait(false);
+        var file = await folder.GetFileAsync(fileName).ConfigureAwait(false);
 #pragma warning disable CA2007 // REMOVE WHEN .NET 6 IS STABLE
-            await using var stream = await file.OpenAsync(FileAccess.Read).ConfigureAwait(false);
+        await using var stream = await file.OpenAsync(FileAccess.Read).ConfigureAwait(false);
 #pragma warning restore CA2007
 
-            return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
-        }
-
-        public PropertyDictionary Deserialize(string fileName)
-        {
-            var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
-            fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
-            parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
-
-            var getFolderTask = _storage.GetFolderAsync(folderName);
-            getFolderTask.Wait();
-            var folder = getFolderTask.Result;
-
-            var getFileTask = folder.GetFileAsync(fileName);
-            getFileTask.Wait();
-
-            var openFileTask = getFileTask.Result.OpenAsync(FileAccess.Read);
-            openFileTask.Wait();
-
-            using var stream = openFileTask.Result;
-
-            return _propertiesSerializer.Deserialize(stream);
-        }
-
+        return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
     }
+
+    public PropertyDictionary Deserialize(string fileName)
+    {
+        var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
+        fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
+        parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
+        var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+
+        var getFolderTask = _storage.GetFolderAsync(folderName);
+        getFolderTask.Wait();
+        var folder = getFolderTask.Result;
+
+        var getFileTask = folder.GetFileAsync(fileName);
+        getFileTask.Wait();
+
+        var openFileTask = getFileTask.Result.OpenAsync(FileAccess.Read);
+        openFileTask.Wait();
+
+        using var stream = openFileTask.Result;
+
+        return _propertiesSerializer.Deserialize(stream);
+    }
+
 }
