@@ -19,7 +19,7 @@ namespace EtAlii.xTechnology.Hosting
             try
             {
                 var configurationSection = configurationRoot.GetSection(configurationSectionName);
-                if (configurationSection != null && ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out var serviceConfiguration))
+                if (ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out var serviceConfiguration))
                 {
                     var service = new ServiceFactory().Create(serviceConfiguration);
                     services.Add(service);
