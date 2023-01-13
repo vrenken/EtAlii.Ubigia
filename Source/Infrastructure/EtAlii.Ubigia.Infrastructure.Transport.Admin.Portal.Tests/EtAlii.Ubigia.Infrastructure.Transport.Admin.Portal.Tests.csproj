@@ -10,10 +10,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IntegrationTests" />
+    <Folder Include="UnitTests" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" />
