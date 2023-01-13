@@ -32,6 +32,5 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 
             return services.ToArray();
         }
-
     }
 }
