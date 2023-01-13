@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
-            if (pathMatch.HasValue && pathMatch.Value.EndsWith("/", StringComparison.Ordinal))
+            if (pathMatch.HasValue && pathMatch.Value!.EndsWith("/", StringComparison.Ordinal))
             {
                 throw new ArgumentException("The path must not end with a '/'", nameof(pathMatch));
             }
