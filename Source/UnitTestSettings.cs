@@ -35,7 +35,7 @@ internal static class TestModuleInitializer
         DiagnosticsOptions.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 
-    private static string DiagnosticsSettingsJson =
+    private const string DiagnosticsSettingsJson =
     @"{
         ""Serilog"": {
             ""MinimumLevel"": {
