@@ -1,37 +1,36 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Threading
+namespace EtAlii.xTechnology.Threading;
+
+using System;
+using System.Collections.Generic;
+
+public sealed class CompositeDisposable : IDisposable
 {
-    using System;
-    using System.Collections.Generic;
-
-    public sealed class CompositeDisposable : IDisposable
+    private readonly IEnumerable<IDisposable> _disposables;
+    public CompositeDisposable(IEnumerable<IDisposable> disposables)
     {
-        private readonly IEnumerable<IDisposable> _disposables;
-        public CompositeDisposable(IEnumerable<IDisposable> disposables)
-        {
-            _disposables = disposables;
-        }
+        _disposables = disposables;
+    }
 
-        private void Dispose(bool disposing)
+    private void Dispose(bool disposing)
+    {
+        if (disposing)
         {
-            if (disposing)
+            foreach (var disposable in _disposables)
             {
-                foreach (var disposable in _disposables)
-                {
-                    disposable.Dispose();
-                }
+                disposable.Dispose();
             }
         }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        ~CompositeDisposable()
-        {
-            Dispose(false);
-        }
+    ~CompositeDisposable()
+    {
+        Dispose(false);
     }
 }

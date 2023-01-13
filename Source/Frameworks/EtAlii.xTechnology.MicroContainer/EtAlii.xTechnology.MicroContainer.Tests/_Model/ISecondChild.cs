@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.MicroContainer.Tests
+namespace EtAlii.xTechnology.MicroContainer.Tests;
+
+public interface ISecondChild
 {
-    public interface ISecondChild
-    {
-        IParent Parent { get; }
-    }
+    IParent Parent { get; }
 }

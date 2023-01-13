@@ -1,14 +1,13 @@
-namespace EtAlii.xTechnology.Hosting
-{
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Configuration.Json;
+namespace EtAlii.xTechnology.Hosting;
 
-    public class ExpandedJsonConfigurationSource : JsonConfigurationSource
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+
+public class ExpandedJsonConfigurationSource : JsonConfigurationSource
+{
+    public override IConfigurationProvider Build(IConfigurationBuilder builder)
     {
-        public override IConfigurationProvider Build(IConfigurationBuilder builder)
-        {
-            EnsureDefaults(builder);
-            return new ExpandedJsonConfigurationProvider(this);
-        }
+        EnsureDefaults(builder);
+        return new ExpandedJsonConfigurationProvider(this);
     }
 }

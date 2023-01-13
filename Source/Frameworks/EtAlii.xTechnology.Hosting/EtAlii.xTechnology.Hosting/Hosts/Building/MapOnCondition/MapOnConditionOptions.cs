@@ -1,34 +1,33 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting
+namespace EtAlii.xTechnology.Hosting;
+
+using System;
+using Microsoft.AspNetCore.Http;
+
+/// <summary>
+/// Options for the <see cref="MapOnConditionMiddleware"/>.
+/// </summary>
+public class MapOnConditionOptions
 {
-    using System;
-    using Microsoft.AspNetCore.Http;
+    private Func<HttpContext, bool> _predicate;
 
     /// <summary>
-    /// Options for the <see cref="MapOnConditionMiddleware"/>.
+    /// The user callback that determines if the branch should be taken.
     /// </summary>
-    public class MapOnConditionOptions
+    public Func<HttpContext, bool> Predicate
     {
-        private Func<HttpContext, bool> _predicate;
-
-        /// <summary>
-        /// The user callback that determines if the branch should be taken.
-        /// </summary>
-        public Func<HttpContext, bool> Predicate
-        {
-            get => _predicate;
-            set => _predicate = value ?? throw new ArgumentNullException(nameof(value));
-        }
-
-        /// <summary>
-        /// The branch taken for a positive match.
-        /// </summary>
-        public RequestDelegate Branch { get; set; }
-        
-        /// <summary>
-        /// The path to match.
-        /// </summary>
-        public PathString PathMatch { get; set; }
+        get => _predicate;
+        set => _predicate = value ?? throw new ArgumentNullException(nameof(value));
     }
+
+    /// <summary>
+    /// The branch taken for a positive match.
+    /// </summary>
+    public RequestDelegate Branch { get; set; }
+
+    /// <summary>
+    /// The path to match.
+    /// </summary>
+    public PathString PathMatch { get; set; }
 }

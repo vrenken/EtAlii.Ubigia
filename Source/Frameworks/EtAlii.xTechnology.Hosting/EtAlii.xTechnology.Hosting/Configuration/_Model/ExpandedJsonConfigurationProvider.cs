@@ -1,21 +1,20 @@
-namespace EtAlii.xTechnology.Hosting
+namespace EtAlii.xTechnology.Hosting;
+
+using System;
+using System.Linq;
+using Microsoft.Extensions.Configuration.Json;
+
+public class ExpandedJsonConfigurationProvider : JsonConfigurationProvider
 {
-    using System;
-    using System.Linq;
-    using Microsoft.Extensions.Configuration.Json;
+    public ExpandedJsonConfigurationProvider(ExpandedJsonConfigurationSource source)
+        : base(source) { }
 
-    public class ExpandedJsonConfigurationProvider : JsonConfigurationProvider
+    public override void Load()
     {
-        public ExpandedJsonConfigurationProvider(ExpandedJsonConfigurationSource source)
-            : base(source) { }
-
-        public override void Load()
-        {
-            base.Load();
-            Data = Data.ToDictionary(
-                x => x.Key,
-                x => Environment.ExpandEnvironmentVariables(x.Value),
-                StringComparer.OrdinalIgnoreCase);
-        }
+        base.Load();
+        Data = Data.ToDictionary(
+            x => x.Key,
+            x => Environment.ExpandEnvironmentVariables(x.Value),
+            StringComparer.OrdinalIgnoreCase);
     }
 }

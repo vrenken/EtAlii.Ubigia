@@ -1,14 +1,13 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.MicroContainer.Tests
+namespace EtAlii.xTechnology.MicroContainer.Tests;
+
+public class SecondParent : ISecondParent
 {
-    public class SecondParent : ISecondParent
+    public object Instance { get; }
+
+    public SecondParent()
     {
-        public object Instance { get; }
-        
-        public SecondParent()
-        {
-            Instance = new object();
-        }
+        Instance = new object();
     }
 }

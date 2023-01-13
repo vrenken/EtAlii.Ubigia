@@ -1,48 +1,47 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Tests.Local
+namespace EtAlii.xTechnology.Hosting.Tests.Local;
+
+using System.Threading.Tasks;
+using EtAlii.xTechnology.Diagnostics;
+using Microsoft.Extensions.Configuration;
+
+using Xunit;
+
+public class ConfigurationBuilderTests
 {
-    using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
-    using Microsoft.Extensions.Configuration;
-
-    using Xunit;
-
-    public class ConfigurationBuilderTests
+    [Theory, ClassData(typeof(ConfigurationFiles))]
+    public async Task ConfigurationBuilder_Build(string configurationFile)
     {
-        [Theory, ClassData(typeof(ConfigurationFiles))]
-        public async Task ConfigurationBuilder_Build(string configurationFile)
-        {
-            // Arrange.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
+        // Arrange.
+        var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
-            var configurationBuilder = new ConfigurationBuilder()
-                .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsOptions.ConfigurationRoot); // For testing we'll override the configured logging et.
+        var configurationBuilder = new ConfigurationBuilder()
+            .AddConfigurationDetails(details)
+            .AddConfiguration(DiagnosticsOptions.ConfigurationRoot); // For testing we'll override the configured logging et.
 
-            // Act.
-            var configuration = configurationBuilder.Build();
+        // Act.
+        var configuration = configurationBuilder.Build();
 
-            // Assert.
-            Assert.NotNull(configuration);
-        }
+        // Assert.
+        Assert.NotNull(configuration);
+    }
 
-        [Fact]
-        public async Task ConfigurationBuilder_ExpandEnvironmentVariablesInJson()
-        {
-            // Arrange.
-            var details = await new ConfigurationDetailsParser()
-                .ParseForTesting(ConfigurationFiles.HostSettingsSystems2VariantGrpc, UnitTestSettings.NetworkPortRange)
-                .ConfigureAwait(false);
+    [Fact]
+    public async Task ConfigurationBuilder_ExpandEnvironmentVariablesInJson()
+    {
+        // Arrange.
+        var details = await new ConfigurationDetailsParser()
+            .ParseForTesting(ConfigurationFiles.HostSettingsSystems2VariantGrpc, UnitTestSettings.NetworkPortRange)
+            .ConfigureAwait(false);
 
-            // Act.
-            var configurationRoot = new ConfigurationBuilder()
-                .AddConfigurationDetails(details)
-                .ExpandEnvironmentVariablesInJson()
-                .Build();
+        // Act.
+        var configurationRoot = new ConfigurationBuilder()
+            .AddConfigurationDetails(details)
+            .ExpandEnvironmentVariablesInJson()
+            .Build();
 
-            // Assert.
-            Assert.NotNull(configurationRoot);
-        }
+        // Assert.
+        Assert.NotNull(configurationRoot);
     }
 }

@@ -1,30 +1,29 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Tests.Local
+namespace EtAlii.xTechnology.Hosting.Tests.Local;
+
+using System.Threading.Tasks;
+using Xunit;
+
+public class UnitTestContext<TLocalHostTestContext> : IAsyncLifetime
+    where TLocalHostTestContext : LocalHostTestContext, new()
 {
-    using System.Threading.Tasks;
-    using Xunit;
+    public LocalHostTestContext Host { get; private set; }
 
-    public class UnitTestContext<TLocalHostTestContext> : IAsyncLifetime
-        where TLocalHostTestContext : LocalHostTestContext, new()
+    public async Task InitializeAsync()
     {
-        public LocalHostTestContext Host { get; private set; }
+        Host = new TLocalHostTestContext();
+        await Host
+            .Start(UnitTestSettings.NetworkPortRange)
+            .ConfigureAwait(false);
+    }
 
-        public async Task InitializeAsync()
-        {
-            Host = new TLocalHostTestContext();
-            await Host
-                .Start(UnitTestSettings.NetworkPortRange)
-                .ConfigureAwait(false);
-        }
+    public async Task DisposeAsync()
+    {
+        await Host
+            .Stop()
+            .ConfigureAwait(false);
 
-        public async Task DisposeAsync()
-        {
-            await Host
-                .Stop()
-                .ConfigureAwait(false);
-
-            Host = null;
-        }
+        Host = null;
     }
 }

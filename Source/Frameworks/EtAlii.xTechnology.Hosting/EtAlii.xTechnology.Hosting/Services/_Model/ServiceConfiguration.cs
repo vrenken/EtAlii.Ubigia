@@ -1,48 +1,47 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting
+namespace EtAlii.xTechnology.Hosting;
+
+using System;
+using Microsoft.Extensions.Configuration;
+using Serilog;
+
+public class ServiceConfiguration
 {
-    using System;
-    using Microsoft.Extensions.Configuration;
-    using Serilog;
+    public IConfigurationSection Section { get; private set; }
+    public IConfigurationRoot Root { get; private set; }
 
-    public class ServiceConfiguration
+    public string Factory { get; init; }
+    public string IpAddress { get; init; }
+    public uint Port { get; init; }
+    public string Path { get; init; }
+
+    public static bool TryCreate(
+        IConfigurationSection configurationSection,
+        IConfigurationRoot configurationRoot,
+        out ServiceConfiguration configuration)
     {
-        public IConfigurationSection Section { get; private set; }
-        public IConfigurationRoot Root { get; private set; }
+        var log = Log.ForContext<ServiceConfiguration>();
 
-        public string Factory { get; init; }
-        public string IpAddress { get; init; }
-        public uint Port { get; init; }
-        public string Path { get; init; }
-
-        public static bool TryCreate(
-            IConfigurationSection configurationSection,
-            IConfigurationRoot configurationRoot,
-            out ServiceConfiguration configuration)
+        log.Verbose("Trying to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
+        try
         {
-            var log = Log.ForContext<ServiceConfiguration>();
-
-            log.Verbose("Trying to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
-            try
+            configuration = configurationSection.Get<ServiceConfiguration>();
+            if (configuration != null)
             {
-                configuration = configurationSection.Get<ServiceConfiguration>();
-                if (configuration != null)
-                {
-                    configuration.Section = configurationSection;
-                    configuration.Root = configurationRoot;
-                    log.Verbose("Created ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
-                    return true;
-                }
-                log.Verbose("Unable to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
-                return false;
+                configuration.Section = configurationSection;
+                configuration.Root = configurationRoot;
+                log.Verbose("Created ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
+                return true;
             }
-            catch (InvalidOperationException e)
-            {
-                log.Error(e, "Error creating ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
-                configuration = null;
-                return false;
-            }
+            log.Verbose("Unable to create ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
+            return false;
+        }
+        catch (InvalidOperationException e)
+        {
+            log.Error(e, "Error creating ServiceConfiguration for {ConfigurationSectionPath}", configurationSection.Path);
+            configuration = null;
+            return false;
         }
     }
 }

@@ -1,16 +1,15 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.MicroContainer
+namespace EtAlii.xTechnology.MicroContainer;
+
+/// <summary>
+/// Use this interface to define an extension that can be used by configuration/factory subsystem implementations.
+/// </summary>
+public interface IExtension
 {
     /// <summary>
-    /// Use this interface to define an extension that can be used by configuration/factory subsystem implementations.
+    /// Initialize the Extension by adding the corresponding registrations to the specified container.
     /// </summary>
-    public interface IExtension
-    {
-        /// <summary>
-        /// Initialize the Extension by adding the corresponding registrations to the specified container.
-        /// </summary>
-        /// <param name="container"></param>
-        void Initialize(IRegisterOnlyContainer container);
-    }
+    /// <param name="container"></param>
+    void Initialize(IRegisterOnlyContainer container);
 }

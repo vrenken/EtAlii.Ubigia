@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
+namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore;
+
+public class InfrastructureServiceFactory : IServiceFactory
 {
-    public class InfrastructureServiceFactory : IServiceFactory
-    {
-        public IService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration);
-    }
+    public IService Create(ServiceConfiguration configuration) => new InfrastructureService(configuration);
 }

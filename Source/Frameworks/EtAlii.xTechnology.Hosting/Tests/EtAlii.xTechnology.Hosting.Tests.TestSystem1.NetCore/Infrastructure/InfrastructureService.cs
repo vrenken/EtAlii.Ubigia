@@ -1,25 +1,24 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
+namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;using Microsoft.Extensions.Hosting;
+
+public class InfrastructureService : BackgroundService, IBackgroundService
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.DependencyInjection;using Microsoft.Extensions.Hosting;
+    public ServiceConfiguration Configuration { get; }
 
-    public class InfrastructureService : BackgroundService, IBackgroundService
+    public InfrastructureService(ServiceConfiguration configuration)
     {
-        public ServiceConfiguration Configuration { get; }
-
-        public InfrastructureService(ServiceConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public void ConfigureServices(IServiceCollection serviceCollection, IService[] services)
-        {
-            // For testing we don't have anything related to the services to configure.
-        }
-
-        protected override Task ExecuteAsync(CancellationToken stoppingToken) => Task.CompletedTask;
+        Configuration = configuration;
     }
+
+    public void ConfigureServices(IServiceCollection serviceCollection, IService[] services)
+    {
+        // For testing we don't have anything related to the services to configure.
+    }
+
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) => Task.CompletedTask;
 }

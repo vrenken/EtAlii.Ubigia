@@ -1,30 +1,29 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.xTechnology.Hosting.Service.Rest
-{
-    using System.Linq;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Controllers;
-    using Microsoft.Extensions.DependencyInjection;
+namespace EtAlii.xTechnology.Hosting.Service.Rest;
 
-    public static class MvcBuilderAddTypedControllersExtension
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.DependencyInjection;
+
+public static class MvcBuilderAddTypedControllersExtension
+{
+    public static IMvcBuilder AddTypedControllers<TController>(this IMvcBuilder mvcBuilder)
+        where TController : ControllerBase
     {
-        public static IMvcBuilder AddTypedControllers<TController>(this IMvcBuilder mvcBuilder)
-            where TController : ControllerBase
-        {
-            return mvcBuilder
-                .AddApplicationPart(typeof(TController).Assembly)
-                .ConfigureApplicationPartManager(manager =>
+        return mvcBuilder
+            .AddApplicationPart(typeof(TController).Assembly)
+            .ConfigureApplicationPartManager(manager =>
+            {
+                var originalControllerFeatureProvider = manager.FeatureProviders
+                    .OfType<ControllerFeatureProvider>()
+                    .SingleOrDefault(c => c is not ITypedControllerFeatureProvider);
+                if (originalControllerFeatureProvider != null)
                 {
-                    var originalControllerFeatureProvider = manager.FeatureProviders
-                        .OfType<ControllerFeatureProvider>()
-                        .SingleOrDefault(c => c is not ITypedControllerFeatureProvider);
-                    if (originalControllerFeatureProvider != null)
-                    {
-                        manager.FeatureProviders.Remove(originalControllerFeatureProvider);
-                    }
-                    manager.FeatureProviders.Add(new TypedControllerFeatureProvider<TController>());
-                });
-        }
+                    manager.FeatureProviders.Remove(originalControllerFeatureProvider);
+                }
+                manager.FeatureProviders.Add(new TypedControllerFeatureProvider<TController>());
+            });
     }
 }
