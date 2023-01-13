@@ -1,6 +1,6 @@
 # Introduction
 Ubigia is a philosophy and corresponding family of technologies and applications with as aim to better facilitate information ownership, exchange and entanglement.
-It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems. One of the aims is to make contextutal information traversal a possibility. 
+It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems. One of the aims is to make contextutal information traversal a possibility.
 
 ## Status
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=dockerhub%20image&logo=docker&logoColor=white)
@@ -34,8 +34,9 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
    - TODO: Add some getting started guides.
 3. People interested in the architecture, implementation, how Ubigia works and everything related should check out the "How stuff works" set of pages.
    - Architecture & Design choices
-     - [Ubigia Graph Traversal Language](Documentation/Architecture/GraphTraversalLanguage.md)
-     - [Ubigia Graph Context Language](Documentation/Architecture/Gcl.Introduction.md)
+     - [Ubigia Graph Traversal Language - Part 1](Documentation/Architecture/GraphTraversalLanguage.md)
+     - [Ubigia Graph Traversal Language - Part 2](Documentation/Architecture/Gtl/Introduction.md)
+     - [Ubigia Graph Context Language](Documentation/Architecture/Gcl/Introduction.md)
      - [Identifiers](Documentation/Architecture/Identifiers.md)
      - [Tips & tricks](Documentation/TipsTricks.md)
    - Installation process
