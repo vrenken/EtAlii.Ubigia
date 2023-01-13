@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using Xunit;
 
     public class SystemStatusCheckerUnitTests
@@ -12,6 +13,7 @@
 
             // Act.
             var systemStatusChecker = new SystemStatusChecker();
+            ((ISystemStatusChecker)systemStatusChecker).Initialize(null);
 
             // Assert.
             Assert.NotNull(systemStatusChecker);
@@ -22,12 +24,13 @@
         {
             // Arrange.
             var systemStatusChecker = new SystemStatusChecker();
+            ((ISystemStatusChecker)systemStatusChecker).Initialize(null);
 
             // Act.
-            var act = new Action(() => systemStatusChecker.DetermineIfSystemIsOperational(null, null));
+            var act = new Func<Task>(async () => await systemStatusChecker.DetermineIfSystemIsOperational().ConfigureAwait(false));
 
             // Assert.
-            Assert.Throws<ArgumentNullException>(act);
+            Assert.ThrowsAsync<NullReferenceException>(act);
         }
     }
 }

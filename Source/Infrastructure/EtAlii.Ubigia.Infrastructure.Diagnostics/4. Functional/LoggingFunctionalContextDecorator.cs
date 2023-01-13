@@ -48,7 +48,11 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         /// <inheritdoc />
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy => _decoree.SystemConnectionCreationProxy;
 
+        /// <inheritdoc />
         public ILogicalContext LogicalContext => _decoree.LogicalContext;
+
+        /// <inheritdoc />
+        public ISystemStatusContext Status => _decoree.Status;
 
         private readonly ILogger _logger = Log.ForContext<IFunctionalContext>();
 

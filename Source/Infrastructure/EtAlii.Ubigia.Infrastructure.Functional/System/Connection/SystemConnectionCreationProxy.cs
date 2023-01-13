@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             return Factory.Create<ISystemConnection>(systemConnectionOptions);
         }
 
-        public void Initialize(IFunctionalContext functionalContext)
+        void ISystemConnectionCreationProxy.Initialize(IFunctionalContext functionalContext)
         {
             _functionalContext = functionalContext;
         }

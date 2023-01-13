@@ -67,10 +67,13 @@ internal class InfrastructureScaffolding : IScaffolding
         var contextCorrelator = services.GetInstance<IContextCorrelator>();
         var systemConnectionCreationProxy = services.GetInstance<ISystemConnectionCreationProxy>();
         var localStorageGetter = services.GetInstance<ILocalStorageGetter>();
+        var systemStatusContext = services.GetInstance<ISystemStatusContext>();
+        var systemStatusChecker = services.GetInstance<ISystemStatusChecker>();
 
-        var functionalContext = new FunctionalContext(_options, information, spaces, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator, systemConnectionCreationProxy, localStorageGetter);
+        var functionalContext = new FunctionalContext(_options, information, spaces, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator, systemConnectionCreationProxy, localStorageGetter, systemStatusContext);
 
         systemConnectionCreationProxy.Initialize(functionalContext);
+        systemStatusChecker.Initialize(functionalContext);
 
         return functionalContext;
     }

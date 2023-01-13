@@ -66,6 +66,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         ILogicalContext LogicalContext { get; }
 
+        /// <summary>
+        /// All system status related operations and values can be found here.
+        /// </summary>
+        ISystemStatusContext Status { get; }
+
         Task Start();
         Task Stop();
     }

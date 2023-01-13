@@ -9,5 +9,7 @@ internal class SystemScaffolding : IScaffolding
     public void Register(IRegisterOnlyContainer container)
     {
         container.Register<ISystemConnectionCreationProxy, SystemConnectionCreationProxy>();
+        container.Register<ISystemStatusContext, SystemStatusContext>();
+        container.Register<ISystemStatusChecker, SystemStatusChecker>();
     }
 }

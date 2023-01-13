@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.xTechnology.Threading;
 
 #pragma warning disable CA1724
-    public class FunctionalContext : IFunctionalContext
+    public sealed class FunctionalContext : IFunctionalContext
 #pragma warning restore CA1724
     {
         /// <inheritdoc />
@@ -46,7 +46,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
 
+        /// <inheritdoc />
         public ILogicalContext LogicalContext { get; }
+
+        /// <inheritdoc />
+        public ISystemStatusContext Status { get; }
 
         private readonly ILocalStorageGetter _localStorageGetter;
 
@@ -69,7 +73,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             ILogicalContext logicalContext,
             IContextCorrelator contextCorrelator,
             ISystemConnectionCreationProxy systemConnectionCreationProxy,
-            ILocalStorageGetter localStorageGetter)
+            ILocalStorageGetter localStorageGetter,
+            ISystemStatusContext systemStatusContext)
 #pragma warning restore S107
         {
             ContextCorrelator = contextCorrelator;
@@ -87,12 +92,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             Storages = storages;
             LogicalContext = logicalContext;
 
+            Status = systemStatusContext;
+
             _localStorageGetter = localStorageGetter;
         }
 
 
         /// <inheritdoc />
-        public virtual async Task Start()
+        public async Task Start()
         {
             await LogicalContext
                 .Start()
@@ -101,10 +108,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             await _localStorageGetter
                 .Initialize()
                 .ConfigureAwait(false);
+
+            await Status
+                .Update()
+                .ConfigureAwait(false);
+
         }
 
         /// <inheritdoc />
-        public virtual Task Stop()
+        public Task Stop()
         {
             return LogicalContext.Stop();
         }

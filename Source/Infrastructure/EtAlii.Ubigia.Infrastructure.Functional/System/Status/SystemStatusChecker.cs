@@ -11,58 +11,54 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
 
-    public class SystemStatusChecker
+    public class SystemStatusChecker : ISystemStatusChecker
     {
+        private IFunctionalContext _functionalContext;
 
-        public bool DetermineIfSetupIsNeeded()
+        public Task<bool> DetermineIfSetupIsNeeded()
         {
-            return true;
+            return Task.FromResult(false);
         }
 
-        public bool DetermineIfSystemIsOperational(
-            IFunctionalContext functionalContext,
-            IConfigurationRoot configurationRoot)
+        public async Task<bool> DetermineIfSystemIsOperational()
         {
-            ArgumentNullException.ThrowIfNull(functionalContext);
-            ArgumentNullException.ThrowIfNull(configurationRoot);
+            using var systemConnection = _functionalContext.SystemConnectionCreationProxy.Request();
+            var (connection, _) = await systemConnection
+                .OpenSpace(AccountName.System, SpaceName.Configuration)
+                .ConfigureAwait(false);
 
-            var task = Task.Run(async () =>
+            var options = new FabricOptions(_functionalContext.Options.ConfigurationRoot)
+                .Use(connection)
+                .UseLogicalContext()
+                .UseFunctionalContext()
+                .UseAntlrParsing()
+                .UseDiagnostics();
+
+            var context = Factory.Create<IGraphContext>(options);
+
+            var scope = new ExecutionScope();
+
+            var settings = await context
+                .ProcessGetServiceSettings(scope)
+                .ConfigureAwait(false);
+
+            var isOperational = settings.IsOperational;
+            isOperational &= !string.IsNullOrWhiteSpace(settings.AdminUsername);
+            isOperational &= !string.IsNullOrWhiteSpace(settings.AdminPassword);
+            isOperational &= !string.IsNullOrWhiteSpace(settings.Certificate);
+            isOperational &= !string.IsNullOrWhiteSpace(settings.LocalStorageId);
+
+            if (isOperational)
             {
-                using var systemConnection = functionalContext.SystemConnectionCreationProxy.Request();
-                var (connection, _) = await systemConnection
-                    .OpenSpace(AccountName.System, SpaceName.Configuration)
-                    .ConfigureAwait(false);
+                isOperational &= Guid.TryParse(settings.LocalStorageId, out _);
+            }
+            return isOperational;
+        }
 
-                var options = new FabricOptions(configurationRoot)
-                    .Use(connection)
-                    .UseLogicalContext()
-                    .UseFunctionalContext()
-                    .UseAntlrParsing()
-                    .UseDiagnostics();
-
-                var context = Factory.Create<IGraphContext>(options);
-
-                var scope = new ExecutionScope();
-
-                var settings = await context
-                    .ProcessGetServiceSettings(scope)
-                    .ConfigureAwait(false);
-
-                var isOperational = settings.IsOperational;
-                isOperational &= !string.IsNullOrWhiteSpace(settings.AdminUsername);
-                isOperational &= !string.IsNullOrWhiteSpace(settings.AdminPassword);
-                isOperational &= !string.IsNullOrWhiteSpace(settings.Certificate);
-                isOperational &= !string.IsNullOrWhiteSpace(settings.LocalStorageId);
-
-                if (isOperational)
-                {
-                    isOperational &= Guid.TryParse(settings.LocalStorageId, out _);
-                }
-                return isOperational;
-            });
-            return task.GetAwaiter().GetResult();
+        void ISystemStatusChecker.Initialize(IFunctionalContext functionalContext)
+        {
+            _functionalContext = functionalContext;
         }
     }
 }

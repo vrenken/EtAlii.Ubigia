@@ -17,12 +17,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional.Tests
                 .ConfigureAwait(false);
 
             var systemStatusChecker = new SystemStatusChecker();
+            ((ISystemStatusChecker)systemStatusChecker).Initialize(testContext.Functional);
             bool result;
 
             // Act.
             try
             {
-                result = systemStatusChecker.DetermineIfSystemIsOperational(testContext.Functional, testContext.Configuration);
+                result = await systemStatusChecker
+                    .DetermineIfSystemIsOperational()
+                    .ConfigureAwait(false);
             }
             finally
             {
