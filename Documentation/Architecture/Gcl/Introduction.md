@@ -23,8 +23,8 @@ which makes the CRUD activities of the Ubigia system complete.
    - Implementation
 4. Usage
 5. Additional examples
-   - [0. Introduction - Compact - v2](<Examples/0. - Introduction - compact - v2.md>)
-   - [0. Introduction - Elaborate - v2](<Examples/0. - Introduction - elaborate - v2.md>)
+   - [0. Introduction - Compact - v2](<Examples/0. - Basics - compact - v2.md>)
+   - [0. Introduction - Elaborate - v2](<Examples/0. - Basics - elaborate - v2.md>)
    - [1. Queries](<Examples/1. - Queries.md>)
    - [2. Nodes - Compact - v2](<Examples/2. - Nodes - compact - v2.md>)
    - [2. Nodes - Elaborate - v2](<Examples/2. - Nodes - elaborate - v2.md>)
@@ -42,7 +42,7 @@ which makes the CRUD activities of the Ubigia system complete.
    - [8. Typed results](<Examples/8. - Typed results.md>)
 6. Tips 'n tricks
 
-More reasoning about the GCL and its formal specification can be found [here](Gcl.Specification.md).
+More reasoning about the GCL and its formal specification can be found [here](Specification.md).
 
 
 

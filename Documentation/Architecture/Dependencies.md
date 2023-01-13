@@ -18,7 +18,6 @@ Below is the list of components on which Ubigia relies. Some of them are crucial
 | Serilog.*                                 | https://github.com/serilog                                                | Apache-2.0        |
 | Newtonsoft.Json.*                         | https://github.com/JamesNK/Newtonsoft.Json                                | MIT               |
 | Coverlet.Collector                        | https://github.com/coverlet-coverage/coverlet                             | MIT               |
-| Nuke Build                                | https://github.com/nuke-build                                             | MIT               |
 | Polly                                     | https://github.com/App-vNext/Polly                                        | BSD-3-Clause      |
 | Slow-Cheetah                              | https://github.com/Microsoft/slow-cheetah                                 | MIT               |
 | JetBrains DotMemoryUnit                   | https://www.jetbrains.com/dotmemory/unit/                                 | [JetBrains license](https://www.jetbrains.com/legal/docs/toolbox/user.html) |
@@ -27,7 +26,6 @@ Below is the list of components on which Ubigia relies. Some of them are crucial
 | GraphQL                                   | https://github.com/graphql                                                | MIT               |
 | HardCodet.NotifyIcon.Wpf.NetCore  	    | https://github.com/hardcodet/wpf-notifyicon  	                            | CPOL 	            |
 | DockerizedTesting                         | https://www.nuget.org/packages/DockerizedTesting/1.2.1/license            | Apache-2.0        |
-| Re.Linq                                   | https://github.com/re-motion/Relinq                                       | Apache-2.0        |
 | Moppet.Lapa                               | https://www.nuget.org/packages/Moppet.Lapa/                               | MS-PL             |
 
 

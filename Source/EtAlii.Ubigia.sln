@@ -380,7 +380,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
 	ProjectSection(SolutionItems) = preProject
 		..\Documentation\Architecture\Dependencies.md = ..\Documentation\Architecture\Dependencies.md
-		..\Documentation\Architecture\GraphTraversalLanguage.md = ..\Documentation\Architecture\GraphTraversalLanguage.md
 		..\Documentation\Architecture\Identifiers.md = ..\Documentation\Architecture\Identifiers.md
 		..\Documentation\Architecture\System.Overview.puml = ..\Documentation\Architecture\System.Overview.puml
 	EndProjectSection
@@ -482,6 +481,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gtl", "Gtl", "{5C40A6DA-2FC
 	ProjectSection(SolutionItems) = preProject
 		..\Documentation\Architecture\Gtl\Introduction.md = ..\Documentation\Architecture\Gtl\Introduction.md
 		..\Documentation\Architecture\Gtl\Specification.md = ..\Documentation\Architecture\Gtl\Specification.md
+		..\Documentation\Architecture\Gtl\GraphTraversalLanguage.md = ..\Documentation\Architecture\Gtl\GraphTraversalLanguage.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{A8076F2F-B39A-44D2-87AD-1573864C2199}"

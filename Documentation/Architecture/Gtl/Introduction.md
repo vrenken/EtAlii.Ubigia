@@ -17,7 +17,7 @@ TODO
    - Functions
    - Variables
 3. Additional examples
-   - [0. Introduction](<Examples/0. - Introduction.md>)
+   - [0. Introduction](<Examples/0. - Basics.md>)
    - [1. Queries](<Examples/1. - Queries.md>)
    - [2. Operators](<Examples/2. - Operators.md>)
    - [3. Variables](<Examples/3. - Variables.md>)
