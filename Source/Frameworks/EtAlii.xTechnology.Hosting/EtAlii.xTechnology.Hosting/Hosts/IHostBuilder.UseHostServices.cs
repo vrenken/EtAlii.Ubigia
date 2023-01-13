@@ -63,7 +63,6 @@ namespace EtAlii.xTechnology.Hosting
                 };
 
                 logger.Information("Configured network service {ServiceName}: {Location}", service.GetType().Name, uriBuilder.ToString());
-
             }
         }
         public static void ConfigureHostConfiguration(this IHostBuilder _, IConfigurationBuilder builder, IConfigurationRoot configurationRoot)
