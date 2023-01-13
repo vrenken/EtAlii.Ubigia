@@ -26,7 +26,7 @@
 
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 
-    <LangVersion>10</LangVersion>
+    <LangVersion>11</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
     <NoWarn>$(NoWarn);CA1822</NoWarn> <!-- [CA1822] Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. -->
