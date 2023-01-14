@@ -11,7 +11,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true         # Disable sending usage data to Microsoft
   DOTNET_VERSION: 7.0.102
   DOTNET_VERSION_SHORT: 7.0
-  SONAR_SCANNER_VERSION: 5.5.3
+  SONAR_SCANNER_VERSION: 5.10.0
   IMAGE_NAME: ubigia/storage
   SOURCE_FOLDER: ./Source
   CONFIGURATION: Release
