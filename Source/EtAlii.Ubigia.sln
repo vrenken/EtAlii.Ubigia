@@ -65,13 +65,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.Diagnostics", "Api\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj", "{457136D3-D76E-4451-9B85-389B1F1D0F69}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Transport", "2. Transport", "{3A638E29-D29C-44C9-B95E-C253B578F8E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Transport", "3. Transport", "{3A638E29-D29C-44C9-B95E-C253B578F8E1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Functional", "3. Functional", "{6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Functional", "4. Functional", "{6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Logical", "4. Logical", "{C2240B8D-4BF7-405F-B11C-CBD11EE5E4AE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Logical", "5. Logical", "{C2240B8D-4BF7-405F-B11C-CBD11EE5E4AE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Fabric", "5. Fabric", "{43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Fabric", "6. Fabric", "{43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj", "{F830994B-391F-465A-AB3A-9E1FBDACBE8C}"
 EndProject
