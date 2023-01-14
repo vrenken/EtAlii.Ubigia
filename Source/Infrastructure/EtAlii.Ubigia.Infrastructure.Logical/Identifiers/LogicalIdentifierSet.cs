@@ -23,9 +23,9 @@ public class LogicalIdentifierSet : ILogicalIdentifierSet
         return _identifierTailGetter.Get(storageId, spaceId);
     }
 
-    public Task<Identifier> GetCurrentHead(Guid storageId, Guid spaceI)
+    public Task<Identifier> GetCurrentHead(Guid storageId, Guid spaceId)
     {
-        return _identifierHeadGetter.GetCurrent(storageId, spaceI);
+        return _identifierHeadGetter.GetCurrent(storageId, spaceId);
     }
 
     public Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid storageId, Guid spaceId)
