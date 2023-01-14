@@ -18,7 +18,6 @@ public abstract class NetworkServiceBase<TNetworkService> : INetworkService
     public ServiceConfiguration Configuration { get; }
 
     protected readonly ILogger Logger = Log.ForContext<TNetworkService>();
-    private IFunctionalContext _functionalContext;
     private bool _shouldActivate;
 
     protected NetworkServiceBase(ServiceConfiguration configuration)
@@ -42,12 +41,12 @@ public abstract class NetworkServiceBase<TNetworkService> : INetworkService
 
     public void ConfigureServices(IServiceCollection services, IServiceProvider globalServices)
     {
-        _functionalContext = globalServices.GetService<IInfrastructureService>().Functional;
-        _shouldActivate = ShouldActivate(_functionalContext);
+        var functionalContext = globalServices.GetService<IInfrastructureService>().Functional;
+        _shouldActivate = ShouldActivate(functionalContext);
 
         if (_shouldActivate)
         {
-            ConfigureNetworkServices(services, globalServices, _functionalContext);
+            ConfigureNetworkServices(services, globalServices, functionalContext);
         }
     }
 
