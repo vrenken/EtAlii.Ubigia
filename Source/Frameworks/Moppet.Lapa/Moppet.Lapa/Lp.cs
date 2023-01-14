@@ -377,8 +377,12 @@ public static partial class Lp
     internal static IEnumerable<LpNode> Next(this IEnumerable<LpNode> prevResults, LpmParser nextParser)
     {
         foreach (var l in prevResults)
-        foreach (var r in nextParser.Do(l.Rest))
-            yield return LpNode.Concat(l, r);
+        {
+            foreach (var r in nextParser.Do(l.Rest))
+            {
+                yield return LpNode.Concat(l, r);
+            }
+        }
     }
 
     /// <summary>
