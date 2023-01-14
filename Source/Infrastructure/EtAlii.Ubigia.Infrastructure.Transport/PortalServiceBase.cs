@@ -62,7 +62,7 @@ public abstract class PortalServiceBase<TPortalService> : NetworkServiceBase<TPo
     {
         // The environment.ApplicationName needs to be set as the StaticWebAssetsLoader.UseStaticWebAssets relies on it.
         // Weird but true.
-        environment.ApplicationName = typeof(TPortalService).Assembly.GetName()!.Name;
+        environment.ApplicationName = typeof(TPortalService).Assembly.GetName().Name!;
         StaticWebAssetsLoader.UseStaticWebAssets(environment, Configuration.Section);
 
         if (environment.IsDevelopment())
