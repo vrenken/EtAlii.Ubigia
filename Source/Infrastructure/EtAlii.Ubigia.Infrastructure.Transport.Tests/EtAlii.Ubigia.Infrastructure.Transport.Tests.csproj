@@ -6,7 +6,7 @@
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional.Tests\EtAlii.Ubigia.Infrastructure.Functional.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
-    <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\UnitTestSettings.cs">

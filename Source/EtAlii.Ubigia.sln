@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47801A27-6239-4B4D-8377-B864C2EF23B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost.csproj", "{0E450672-7393-4F26-A920-997DCB2CDC02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost", "Infrastructure\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost.csproj", "{0E450672-7393-4F26-A920-997DCB2CDC02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Hosting", "1. Hosting", "{E715DBF2-CDBF-4521-908F-4806A66891E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{3E79D874-64FA-4A29-8E83-825E1F32ACB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\tAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{3E79D874-64FA-4A29-8E83-825E1F32ACB2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D6148CAE-B71D-4B81-B1DA-AD57E5585A88}"
 EndProject
@@ -85,9 +85,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Management.Tests", "Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.shproj", "{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest.csproj", "{B71AB436-2904-48ED-99E1-877F096468F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest.csproj", "{B71AB436-2904-48ED-99E1-877F096468F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{E9979ADB-6EA4-463E-A148-C5FD66A7212C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{E9979ADB-6EA4-463E-A148-C5FD66A7212C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Portal", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj", "{844B4D36-CC45-41E7-BFE6-F3BAD94E73CB}"
 EndProject
@@ -117,7 +117,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{47D6FB52-B2D1-43CA-A6D4-4AC086DDC8A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests.csproj", "{71FE90E4-5080-4181-AFDD-6A31BEBC2A65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests.csproj", "{71FE90E4-5080-4181-AFDD-6A31BEBC2A65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Rest", "Api\EtAlii.Ubigia.Api.Transport.Rest\EtAlii.Ubigia.Api.Transport.Rest.csproj", "{EF86703D-3523-4AFE-817F-76279E6EDBE9}"
 EndProject
@@ -133,15 +133,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{F39C0D13-A684-474D-B2EC-A97DE1D89080}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj", "{920D4F04-07A0-455F-AE93-D921BF6F73AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj", "{920D4F04-07A0-455F-AE93-D921BF6F73AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Grpc", "Infrastructure\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc.csproj", "{CA117DD1-215E-4974-8F93-C66A1003940B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Grpc", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc.csproj", "{CA117DD1-215E-4974-8F93-C66A1003940B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc", "Infrastructure\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj", "{8F34BAEA-91CA-4031-B345-8E79EF9E9C5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj", "{8F34BAEA-91CA-4031-B345-8E79EF9E9C5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc", "Infrastructure\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj", "{AC4B87F2-6A13-4CED-895A-F68B6CF557C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj", "{AC4B87F2-6A13-4CED-895A-F68B6CF557C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FAA3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests.csproj", "{789ADE58-7CEC-4040-902C-B1B7230FAA3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{388BAEAA-1DAB-430D-9730-4EDA363AF56F}"
 EndProject
@@ -149,7 +149,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89F4CC52
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Functional.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Functional.Tests\EtAlii.Ubigia.Infrastructure.Functional.Tests.csproj", "{12BFE8E1-B1D7-4F16-BFE6-F97503AA483C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj", "{73723C36-7C9E-4C82-A5D1-2CC627FAB6F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj", "{73723C36-7C9E-4C82-A5D1-2CC627FAB6F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Logical.SignalR.Tests", "Api\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj", "{7F3505C3-584F-4549-BE37-C639B3732AFE}"
 EndProject
@@ -198,9 +198,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Logical.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Rest.Tests", "Api\EtAlii.Ubigia.Api.Functional.Rest.Tests\EtAlii.Ubigia.Api.Functional.Rest.Tests.csproj", "{AD2A6CA0-2D82-465B-A10F-39865C8156ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.csproj", "{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.csproj", "{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.DockerHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost.csproj", "{3C764E54-0A6E-4FCD-85B4-E407283BB802}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.DockerHost", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost.csproj", "{3C764E54-0A6E-4FCD-85B4-E407283BB802}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia", "Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj", "{4C26A6CC-CC52-40BB-9BEA-793F450BB5E7}"
 EndProject
@@ -398,9 +398,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 		..\.github\workflows\default.yml = ..\.github\workflows\default.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Parsing.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.shproj", "{45B10AB1-0493-4BFA-8E63-5714D36C37D4}"
 EndProject

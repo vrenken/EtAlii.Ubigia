@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <ProjectGuid>ca117dd1-215e-4974-8f93-c66a1003940b</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Service.Grpc\EtAlii.xTechnology.Hosting.Service.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
+  </ItemGroup>
+</Project>

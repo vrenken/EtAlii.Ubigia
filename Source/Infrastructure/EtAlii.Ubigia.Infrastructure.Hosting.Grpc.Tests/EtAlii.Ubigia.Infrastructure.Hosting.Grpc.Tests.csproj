@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>789ade58-7cec-4040-902c-b1b7230faa3e</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

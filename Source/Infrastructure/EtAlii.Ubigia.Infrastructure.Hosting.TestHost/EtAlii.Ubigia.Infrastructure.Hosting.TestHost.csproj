@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>73723c36-7c9e-4c82-a5d1-2cc627fab6f2</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Security.Principal" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+  </ItemGroup>
+</Project>

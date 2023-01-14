@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
-    <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />

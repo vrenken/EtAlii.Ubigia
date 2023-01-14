@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <ProjectGuid>0e450672-7393-4f26-a920-997dcb2cdc02</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Clients\Content\LocalContentDataClient.Content.cs" />
+    <Compile Remove="Clients\Content\LocalContentDataClient.ContentDefinition.cs" />
+    <Compile Remove="Clients\Content\LocalContentDataClient.cs" />
+    <Compile Remove="Clients\Content\LocalContentNotificationClient.cs" />
+    <Compile Remove="Clients\Entries\LocalEntryDataClient.cs" />
+    <Compile Remove="Clients\Entries\LocalEntryNotificationClient.cs" />
+    <Compile Remove="Clients\LocalDataClientBase.cs" />
+    <Compile Remove="Clients\LocalNotificationClientBase.cs" />
+    <Compile Remove="Clients\Roots\LocalRootDataClient.cs" />
+    <Compile Remove="Clients\Roots\LocalRootNotificationClient.cs" />
+    <Compile Remove="DataConnectionFactory.Extensions.cs" />
+    <Compile Remove="IDataConnection.Extensions.cs" />
+    <Compile Remove="ILocalDataConnection.cs" />
+    <Compile Remove="LocalDataConnection.cs" />
+    <Compile Remove="LocalInfrastructure.cs" />
+    <Compile Remove="Transports\LocalDataTransport.cs" />
+    <Compile Remove="Transports\LocalNotificationTransport.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Clients\Content\LocalContentDataClient.Content.cs" />
+    <None Include="Clients\Content\LocalContentDataClient.ContentDefinition.cs" />
+    <None Include="Clients\Content\LocalContentDataClient.cs" />
+    <None Include="Clients\Content\LocalContentNotificationClient.cs" />
+    <None Include="Clients\Entries\LocalEntryDataClient.cs" />
+    <None Include="Clients\Entries\LocalEntryNotificationClient.cs" />
+    <None Include="Clients\LocalDataClientBase.cs" />
+    <None Include="Clients\LocalNotificationClientBase.cs" />
+    <None Include="Clients\Roots\LocalRootDataClient.cs" />
+    <None Include="Clients\Roots\LocalRootNotificationClient.cs" />
+    <None Include="DataConnectionFactory.Extensions.cs" />
+    <None Include="IDataConnection.Extensions.cs" />
+    <None Include="ILocalDataConnection.cs" />
+    <None Include="LocalDataConnection.cs" />
+    <None Include="LocalInfrastructure.cs" />
+    <None Include="Transports\LocalDataTransport.cs" />
+    <None Include="Transports\LocalNotificationTransport.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
+  </ItemGroup>
+
+</Project>
