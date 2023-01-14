@@ -34,10 +34,12 @@ public class AdminPortalServiceTests
         Assert.NotNull(service);
     }
 
-    [Fact]
-    public async Task AdminPortalService_ConfigureServices()
+    private void CreateApplicationServices(
+        out IBackgroundService storageService,
+        out IBackgroundService infrastructureService,
+        out IService[] applicationServices,
+        out INetworkService service)
     {
-        // Arrange.
         var configurationRoot = new ConfigurationBuilder()
             .AddJsonFile("HostSettings.json")
             .ExpandEnvironmentVariablesInJson()
@@ -45,17 +47,43 @@ public class AdminPortalServiceTests
 
         var configurationSection = configurationRoot.GetSection("Management-Portal");
         ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out var configuration);
-        var service = new AdminPortalService(configuration);
+        service = new AdminPortalService(configuration);
 
         configurationSection = configurationRoot.GetSection("Storage");
         ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out configuration);
-        var storageService = new StorageServiceFactory().Create(configuration);
+        storageService = (IBackgroundService)new StorageServiceFactory().Create(configuration);
 
         configurationSection = configurationRoot.GetSection("Infrastructure");
         ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out configuration);
-        var infrastructureService = new InfrastructureServiceFactory().Create(configuration);
+        infrastructureService = (IBackgroundService)new InfrastructureServiceFactory().Create(configuration);
 
-        var applicationServices = new[] { storageService, infrastructureService, service };
+        applicationServices = new IService[] { storageService, infrastructureService, service };
+
+    }
+    private void ConfigureServices(
+        IServiceCollection services,
+        IService[] applicationServices,
+        IBackgroundService storageService,
+        IBackgroundService infrastructureService)
+    {
+        storageService.ConfigureServices(services, applicationServices);
+        storageService.StartAsync(CancellationToken.None).ConfigureAwait(false);
+        services.AddSingleton(storageService);
+
+        infrastructureService.ConfigureServices(services, applicationServices);
+        infrastructureService.StartAsync(CancellationToken.None).ConfigureAwait(false);
+        services.AddSingleton(infrastructureService);
+    }
+
+    [Fact]
+    public async Task AdminPortalService_ConfigureServices()
+    {
+        // Arrange.
+        CreateApplicationServices(
+            out var storageService,
+            out var infrastructureService,
+            out var applicationServices,
+            out var service);
 
         // Act.
         var host = Host
@@ -64,13 +92,7 @@ public class AdminPortalServiceTests
                 .UseTestServer()
                 .ConfigureServices((_, services) =>
                 {
-                    ((IBackgroundService)storageService).ConfigureServices(services, applicationServices);
-                    ((IHostedService)storageService).StartAsync(CancellationToken.None).ConfigureAwait(false);
-                    services.AddSingleton(storageService);
-
-                    ((IBackgroundService)infrastructureService).ConfigureServices(services, applicationServices);
-                    ((IHostedService)infrastructureService).StartAsync(CancellationToken.None).ConfigureAwait(false);
-                    services.AddSingleton(infrastructureService);
+                    ConfigureServices(services, applicationServices, storageService, infrastructureService);
                 })
                 .Configure(builder => builder.Isolate(_ => { }, services => service.ConfigureServices(services, builder.ApplicationServices))))
             .Build();
@@ -87,24 +109,11 @@ public class AdminPortalServiceTests
     public async Task AdminPortalService_ConfigureApplication()
     {
         // Arrange.
-        var configurationRoot = new ConfigurationBuilder()
-            .AddJsonFile("HostSettings.json")
-            .ExpandEnvironmentVariablesInJson()
-            .Build();
-
-        var configurationSection = configurationRoot.GetSection("Management-Portal");
-        ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out var configuration);
-        var service = new AdminPortalService(configuration);
-
-        configurationSection = configurationRoot.GetSection("Storage");
-        ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out configuration);
-        var storageService = new StorageServiceFactory().Create(configuration);
-
-        configurationSection = configurationRoot.GetSection("Infrastructure");
-        ServiceConfiguration.TryCreate(configurationSection, configurationRoot, out configuration);
-        var infrastructureService = new InfrastructureServiceFactory().Create(configuration);
-
-        var applicationServices = new[] { storageService, infrastructureService, service };
+        CreateApplicationServices(
+            out var storageService,
+            out var infrastructureService,
+            out var applicationServices,
+            out var service);
 
         // Act.
         var hostBuilder = Host
@@ -117,13 +126,7 @@ public class AdminPortalServiceTests
                     .UseTestServer()
                     .ConfigureServices((_, services) =>
                     {
-                        ((IBackgroundService)storageService).ConfigureServices(services, applicationServices);
-                        ((IHostedService)storageService).StartAsync(CancellationToken.None).ConfigureAwait(false);
-                        services.AddSingleton(storageService);
-
-                        ((IBackgroundService)infrastructureService).ConfigureServices(services, applicationServices);
-                        ((IHostedService)infrastructureService).StartAsync(CancellationToken.None).ConfigureAwait(false);
-                        services.AddSingleton(infrastructureService);
+                        ConfigureServices(services, applicationServices, storageService, infrastructureService);
                     })
                     .Configure((context, application) => application.IsolatedMapOnCondition(context.HostingEnvironment, service));
             })
