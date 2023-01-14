@@ -9,8 +9,8 @@
     <ProjectReference Include="..\..\..\..\Persistence\EtAlii.Ubigia.Persistence.InMemory\EtAlii.Ubigia.Persistence.InMemory.csproj" />
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />

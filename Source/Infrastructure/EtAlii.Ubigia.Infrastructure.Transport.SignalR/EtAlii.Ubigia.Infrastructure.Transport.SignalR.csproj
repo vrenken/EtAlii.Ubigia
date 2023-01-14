@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Owin" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" />
     <PackageReference Include="System.Memory" />
-    <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Service.SignalR\EtAlii.xTechnology.Hosting.Service.SignalR.csproj" />
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Service.SignalR\EtAlii.xTechnology.Hosting.Service.SignalR.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>
 </Project>

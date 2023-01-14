@@ -40,13 +40,13 @@
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
 
     <!-- SignalR -->
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
 
     <!-- Rest -->
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
 
     <!-- Admin -->
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
