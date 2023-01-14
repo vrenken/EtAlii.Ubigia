@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>0e450672-7393-4f26-a920-997dcb2cdc02</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
