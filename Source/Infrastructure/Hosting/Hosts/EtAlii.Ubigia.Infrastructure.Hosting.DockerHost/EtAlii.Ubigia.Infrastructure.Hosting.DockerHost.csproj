@@ -64,10 +64,10 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
 
     <!-- Admin -->
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
 
     <!-- User -->
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj">
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </ProjectReference>
 

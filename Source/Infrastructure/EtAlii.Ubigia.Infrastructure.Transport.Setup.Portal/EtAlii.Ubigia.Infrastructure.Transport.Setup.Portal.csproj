@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <ProjectGuid>df76eede-a505-49f0-8e2c-14a4da4488f1</ProjectGuid>
+    <ProjectGuid>cb9ab38d-5114-40ce-84fd-6bd6dece6f8e</ProjectGuid>
 
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
@@ -23,7 +23,7 @@
 
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
 
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
 
   </ItemGroup>
 
@@ -41,25 +41,18 @@
     <Compile Update="Shared\NavMenu.cs">
       <DependentUpon>NavMenu.razor</DependentUpon>
     </Compile>
-
-    <Compile Update="Pages\Dashboard.cs">
-      <DependentUpon>Dashboard.razor</DependentUpon>
-    </Compile>
     <Compile Update="Shared\Error.cs">
       <DependentUpon>Error.cshtml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Accounts\Add.cs">
-      <DependentUpon>Add.razor</DependentUpon>
+    <Compile Update="Pages\Dashboard.cs">
+      <DependentUpon>Dashboard.razor</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Accounts\Edit.cs">
-      <DependentUpon>Edit.razor</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Accounts\List.cs">
-      <DependentUpon>List.razor</DependentUpon>
-    </Compile>
+    <Compile Remove="WebHostEnvironment.UseStaticWebAssets.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Storage" />
+    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\Add.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\Edit.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\List.razor" />
   </ItemGroup>
 </Project>

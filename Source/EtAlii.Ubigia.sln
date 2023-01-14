@@ -89,9 +89,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{E9979ADB-6EA4-463E-A148-C5FD66A7212C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Portal", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj", "{844B4D36-CC45-41E7-BFE6-F3BAD94E73CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Portal", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj", "{844B4D36-CC45-41E7-BFE6-F3BAD94E73CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj", "{DF76EEDE-A505-49F0-8E2C-14A4DA4488F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj", "{DF76EEDE-A505-49F0-8E2C-14A4DA4488F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.SignalR", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj", "{8131BAC6-52A8-4EF0-9CBB-522025FE161F}"
 EndProject
@@ -458,7 +458,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9F76DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal.csproj", "{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal\EtAlii.Ubigia.Infrastructure.Transport.Setup.Portal.csproj", "{CB9AB38D-5114-40CE-84FD-6BD6DECE6F8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1CE369AA-5F47-4E40-8E85-D849B289A3A8}"
 EndProject
