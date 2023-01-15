@@ -23,7 +23,7 @@ public abstract class NetworkServiceBase<TNetworkService> : INetworkService
     protected NetworkServiceBase(ServiceConfiguration configuration)
     {
         Configuration = configuration;
-        Logger.Information("Instantiated {ServiceName}", nameof(TNetworkService));
+        Logger.Information("Instantiated {ServiceName}", typeof(TNetworkService).Name);
     }
 
 
