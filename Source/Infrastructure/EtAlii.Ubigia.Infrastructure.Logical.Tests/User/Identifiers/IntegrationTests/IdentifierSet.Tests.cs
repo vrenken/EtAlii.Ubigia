@@ -8,12 +8,12 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class IdentifierSetTests : IClassFixture<LogicalInfrastructureUnitTestContext>
+public class IdentifierSetTests : IClassFixture<LogicalUnitTestContext>
 {
-    private readonly LogicalInfrastructureUnitTestContext _testContext;
+    private readonly LogicalUnitTestContext _testContext;
     private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-    public IdentifierSetTests(LogicalInfrastructureUnitTestContext testContext)
+    public IdentifierSetTests(LogicalUnitTestContext testContext)
     {
         _testContext = testContext;
     }

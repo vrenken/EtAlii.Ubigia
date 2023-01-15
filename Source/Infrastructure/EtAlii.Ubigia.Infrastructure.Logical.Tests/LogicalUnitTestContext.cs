@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using EtAlii.Ubigia.Infrastructure.Fabric;
 using EtAlii.Ubigia.Infrastructure.Functional;
 using EtAlii.Ubigia.Infrastructure.Hosting;
-using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 using EtAlii.Ubigia.Infrastructure.Logical;
 using EtAlii.Ubigia.Infrastructure.Transport;
 using EtAlii.Ubigia.Persistence;
@@ -22,9 +21,9 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Xunit;
 
-public class LogicalInfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
+public class LogicalUnitTestContext : IAsyncLifetime
 {
-    private readonly ILogger _logger = Log.ForContext<LogicalInfrastructureUnitTestContext>();
+    private readonly ILogger _logger = Log.ForContext<LogicalUnitTestContext>();
 
     public ILogicalContext Logical { get; private set; }
     public IFunctionalContext Functional { get; private set; }
@@ -45,7 +44,7 @@ public class LogicalInfrastructureUnitTestContext : InfrastructureUnitTestContex
     public ByteArrayComparer ByteArrayComparer { get; }
     public PropertyDictionaryComparer PropertyDictionaryComparer { get; }
 
-    public LogicalInfrastructureUnitTestContext()
+    public LogicalUnitTestContext()
     {
         TestContentDefinitionFactory = new TestContentDefinitionFactory();
         TestContentFactory = new TestContentFactory();
