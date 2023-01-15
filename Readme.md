@@ -6,7 +6,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/ubigia/storage?color=blue&label=dockerhub%20image&logo=docker&logoColor=white)
 ![Nuget.org package](https://img.shields.io/nuget/v/EtAlii.Ubigia?label=nuget%20package&logo=nuget)
 ![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia?color=blue)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vrenken/etalii.ubigia/Default%20workflow?label=CI%20build&logo=github) <br/>
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/vrenken/etalii.ubigia/.github/workflows/default.yml?label=CI%20build&logo=github) <br/>
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=bugs)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=code_smells)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=coverage)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
