@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <ProjectGuid>cb9ab38d-5114-40ce-84fd-6bd6dece6f8e</ProjectGuid>
+    <ProjectGuid>844b4d36-cc45-41e7-bfe6-f3bad94e73cb</ProjectGuid>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
@@ -27,18 +27,36 @@
     <Compile Update="Shared\NavMenu.cs">
       <DependentUpon>NavMenu.razor</DependentUpon>
     </Compile>
-    <Compile Update="Shared\Error.cs">
-      <DependentUpon>Error.cshtml</DependentUpon>
-    </Compile>
+
     <Compile Update="Pages\Dashboard.cs">
       <DependentUpon>Dashboard.razor</DependentUpon>
     </Compile>
-    <Compile Remove="WebHostEnvironment.UseStaticWebAssets.cs" />
+    <Compile Update="Shared\Error.cs">
+      <DependentUpon>Error.cshtml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Accounts\Add.cs">
+      <DependentUpon>Add.razor</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Accounts\Edit.cs">
+      <DependentUpon>Edit.razor</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Accounts\List.cs">
+      <DependentUpon>List.razor</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\Add.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\Edit.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\List.razor" />
+    <AdditionalFiles Include="Pages\Accounts\Add.razor" />
+    <AdditionalFiles Include="Pages\Accounts\Edit.razor" />
+    <AdditionalFiles Include="Pages\Accounts\List.razor" />
+    <AdditionalFiles Include="Pages\Dashboard.razor" />
+    <AdditionalFiles Include="Shared\Error.cshtml" />
+    <AdditionalFiles Include="Shared\MainLayout.razor" />
+    <AdditionalFiles Include="Shared\NavMenu.razor" />
+    <AdditionalFiles Include="Shared\_Host.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Storage" />
   </ItemGroup>
 </Project>

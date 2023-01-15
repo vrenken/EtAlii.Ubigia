@@ -47,6 +47,5 @@
 
   <ItemGroup>
     <Folder Include="Pages\Storage" />
-    <Folder Include="Properties" />
   </ItemGroup>
 </Project>

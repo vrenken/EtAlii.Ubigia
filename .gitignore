@@ -9,6 +9,9 @@
 *.userosscache
 *.sln.docstates
 
+# The user portal assembly should be included.
+!*.portal.user
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
