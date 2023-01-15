@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <IsPortalProject Condition="$(MSBuildProjectName.EndsWith('.Portal'))">true</IsPortalProject>
+    <IsPortalProject Condition="$(MSBuildProjectName.Contains('.Portal.'))">true</IsPortalProject>
     <IsUbigiaTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">true</IsUbigiaTestProject>
     <IsAnalyzerProject Condition="$(MSBuildProjectName.EndsWith('.Analyzers'))">true</IsAnalyzerProject>
     <IsUbigiaApplication>false</IsUbigiaApplication>

@@ -11,9 +11,9 @@
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport.Rest\EtAlii.Ubigia.Api.Transport.Rest.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Admin\EtAlii.Ubigia.Infrastructure.Portal.Admin.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.User\EtAlii.Ubigia.Infrastructure.Portal.User.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />

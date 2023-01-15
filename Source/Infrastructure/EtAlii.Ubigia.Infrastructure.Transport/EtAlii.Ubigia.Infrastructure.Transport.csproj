@@ -8,9 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />
-    <!-- All portal related stuff should be moved to its own project. -->
-    <PackageReference Include="Blazorise.Bootstrap5" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,75 @@
+﻿@namespace EtAlii.Ubigia.Infrastructure.Portal.Setup
+
+@* @inject AlgorithmManager _algorithmManager *@
+
+<LayoutSiderContent>
+    <Bar
+        Breakpoint="Breakpoint.Desktop"
+        NavigationBreakpoint="Breakpoint.Tablet"
+        ThemeContrast="ThemeContrast.Dark"
+        Mode="BarMode.VerticalInline"
+        CollapseMode="BarCollapseMode.Small">
+        <BarToggler />
+        <BarBrand>
+            <BarItem>
+                <BarLink To="">
+                    @* <BarIcon IconName="@("fa-magic")" /> *@
+                </BarLink>
+            </BarItem>
+        </BarBrand>
+        <BarMenu>
+            <BarStart>
+                <BarItem>
+                    <BarLink To="">
+                        <BarIcon IconName="IconName.Dashboard" />
+                        Dashboard
+                    </BarLink>
+                </BarItem>
+
+                <BarItem>
+                    <BarLink To="/Dashboard2">
+                        <BarIcon IconName="@("fa-chart-line")"/>
+                        One-off
+                    </BarLink>
+                </BarItem>
+
+                <BarItem>
+                    <BarLink To="/">
+                        <BarIcon IconName="@("fa-chart-bar")" />
+                        Simple
+                    </BarLink>
+                </BarItem>
+
+                <BarItem>
+                    <BarLink To="/Dashboard2">
+                        <BarIcon IconName="@("fa-infinity")"/>
+                        Circular
+                    </BarLink>
+                </BarItem>
+
+                <BarItem>
+                    <BarLink To="/">
+                        <BarIcon IconName="@("fa-dice")"/>
+                        Edge
+                    </BarLink>
+                </BarItem>
+
+                <BarItem>
+                    <BarLink To="/Dashboard2">
+                        <BarIcon IconName="@("fa-flask")" />
+                        Experimental
+                    </BarLink>
+                </BarItem>
+
+            </BarStart>
+            <BarEnd>
+                <BarItem>
+                    <BarLink To="/settings">
+                        <BarIcon IconName="@("fa-cog")" />
+                        Settings
+                    </BarLink>
+                </BarItem>
+            </BarEnd>
+        </BarMenu>
+    </Bar>
+</LayoutSiderContent>

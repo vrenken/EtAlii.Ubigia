@@ -17,6 +17,7 @@ public class InfrastructureHostServicesFactory : HostServicesFactoryBase
         TryAddService(services, configurationRoot, "Infrastructure");
 
         // Core user network services.
+        TryAddService(services, configurationRoot, "User-Portal");
         TryAddService(services, configurationRoot, "User-Api-Grpc");
         TryAddService(services, configurationRoot, "User-Api-SignalR");
         TryAddService(services, configurationRoot, "User-Api-Rest");

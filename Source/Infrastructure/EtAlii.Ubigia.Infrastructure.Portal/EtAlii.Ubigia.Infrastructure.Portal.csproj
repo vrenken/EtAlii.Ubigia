@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>0f665d4f-6864-4fcd-a2f3-b133944a27b4</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Blazorise.Charts" />
+    <PackageReference Include="Blazorise.Charts.Streaming" />
+    <PackageReference Include="Blazorise.Components" />
+    <PackageReference Include="Blazorise.Animate" />
+    <PackageReference Include="Blazorise.DataGrid" />
+    <PackageReference Include="Blazorise.Sidebar" />
+    <PackageReference Include="Blazorise.Snackbar" />
+    <PackageReference Include="Blazorise.Bootstrap5" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" />
+
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
+  </ItemGroup>
+
+</Project>

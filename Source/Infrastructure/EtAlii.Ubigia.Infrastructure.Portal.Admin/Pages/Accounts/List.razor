@@ -1,0 +1,29 @@
+﻿@page "/Accounts"
+
+@namespace EtAlii.Ubigia.Infrastructure.Portal.Admin.Accounts
+
+<Row>
+    <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+        <Table Striped="true" Hoverable="true" Borderless="true">
+            <TableHeader>
+                <TableRow>
+                    <TableHeaderCell>#</TableHeaderCell>
+                    <TableHeaderCell>Name</TableHeaderCell>
+                    <TableHeaderCell>Spaces</TableHeaderCell>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                @foreach(var account in _accounts)
+                {
+                    <TableRow>
+                        <TableRowHeader @onclick="@(() => OnEditAccount(account))">@account.Index</TableRowHeader>
+                        <TableRowCell @onclick="@(() => OnEditAccount(account))">@account.Name</TableRowCell>
+                        <TableRowCell @onclick="@(() => OnEditAccount(account))"><Badge Color="Color.Primary" Pill> @account.Spaces</Badge></TableRowCell>
+                    </TableRow>
+                }
+            </TableBody>
+        </Table>
+        <Button Color="Color.Primary" Size="Size.Small" @onclick="OnAddAccount">Add</Button>
+
+    </Column>
+</Row>

@@ -1,0 +1,38 @@
+﻿@page "/Accounts/Edit"
+
+@namespace EtAlii.Ubigia.Infrastructure.Portal.Admin.Accounts
+
+<Fields>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <FieldLabel>Name</FieldLabel>
+                <TextEdit  @bind-Text="@_accountName" />
+            </Field>
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <FieldLabel>Password</FieldLabel>
+                @* ReSharper disable once Html.AttributeValueNotResolved *@
+                <TextEdit Role="TextRole.Password" @bind-Text="@_accountPassword">
+                    <FieldHelp>Password strength: <Text TextColor="TextColor.Danger">weak</Text></FieldHelp>
+                </TextEdit>
+            </Field>
+        </Column>
+    </Row>
+    <Row>
+        <Column ColumnSize="DefaultLayout.ItemDashboardColumnWidth">
+            <Field>
+                <Button @onclick="OnSavePressed" Color="Color.Primary" PreventDefaultOnSubmit>Save</Button>
+            </Field>
+            <Field>
+                <Button @onclick="OnCancelPressed" Color="Color.Secondary" PreventDefaultOnSubmit>Cancel</Button>
+            </Field>
+            <Field>
+                <Button @onclick="OnDeletePressed" Color="Color.Warning" PreventDefaultOnSubmit>Delete</Button>
+            </Field>
+        </Column>
+    </Row>
+</Fields>

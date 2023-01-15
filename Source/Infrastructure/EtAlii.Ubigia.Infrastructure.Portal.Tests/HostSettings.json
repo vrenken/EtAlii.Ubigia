@@ -1,0 +1,139 @@
+﻿{
+    "Api": {
+        "Transport": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Functional": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Logical": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Fabric": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        }
+    },
+
+    "Logging": {
+        "LogLevel": {
+            "Default": "Warning"
+        }
+    },
+
+    "Serilog": {
+        "MinimumLevel": {
+            "Default": "Verbose",
+            "Override": {
+                "Microsoft": "Information",
+                "Microsoft.AspNetCore": "Information",
+                "Microsoft.AspNetCore.SignalR": "Information",
+                "Microsoft.AspNetCore.Http.Connections": "Information"
+            }
+        },
+        "WriteTo": [
+            {
+                "Name": "Async",
+                "Args": {
+                    "configure": [
+                        {
+                            "Name": "Console",
+                            "Args": {
+                                "restrictedToMinimumLevel": "Information",
+                                "outputTemplate": "{Level:u3}{Timestamp: [HH:mm:ss]}: {Message}{NewLine}"
+                            }
+                        },
+                        {
+                            "Name": "Seq",
+                            "Args": {
+                                "#COMMENT1": "// If you want to have a local Seq centralized logging instance please start a local seq instance in docker using the commandline below",
+                                "#COMMENT2": "// docker run --name seq -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest",
+                                "#COMMENT3": "// It can then be accessed using the following URL:",
+                                "#COMMENT4": "// http://127.0.0.1:5341",
+                                "#COMMENT5": "// If your Seq logging instance runs on another machine you can use the following",
+                                "#COMMENT6": "// commandline in an elevated PowerShell console to forward the local port to another system:",
+                                "#COMMENT7": "// netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=5341 connectaddress=OTHERIP connectport=5341",
+                                "serverUrl": "http://seq.avalon:5341",
+                                "restrictedToMinimumLevel": "Verbose"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+
+    "Host": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
+    },
+    "Storage": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Fabric.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Fabric.InMemory",
+        "Name": "Debug storage",
+        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}",
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
+    },
+    "Infrastructure": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+        "Name": "Debug storage",
+        "Address": "https://{{HOST:StorageHost@127.0.0.1}}",
+        "Fabric": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Functional": {
+            "Setup": {
+                "DefaultSystemAccountName": "System",
+                "DefaultSystemAccountPassword": "system123",
+                "DefaultAdministratorAccountName": "Administrator",
+                "DefaultAdministratorAccountPassword": "administrator123"
+            },
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        }
+    },
+
+    "Management-Portal": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Portal.Admin.AdminPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Portal.Admin",
+        "IpAddress": "127.0.0.1",
+        "Port": "80",
+        "Path": ""
+    },
+
+    "Persistence": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
+    }
+}
+

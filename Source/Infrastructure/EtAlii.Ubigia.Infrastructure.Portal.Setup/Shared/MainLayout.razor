@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+@namespace EtAlii.Ubigia.Infrastructure.Portal.Setup
+
+<Layout Sider="false" >
+    @* <LayoutSider> *@
+    @*     <NavMenu/> *@
+    @* </LayoutSider> *@
+    <Layout>
+        <LayoutHeader Fixed="true">
+            <Bar
+                Breakpoint="Breakpoint.Desktop" Background="Background.Primary"
+                ThemeContrast="ThemeContrast.Light">
+                <BarBrand>
+                    <BarItem>
+                        <BarLink To="">
+                            <BarIcon IconName="@("bi bi-hexagon")" />
+                            Ubigia - Setup
+                        </BarLink>
+                    </BarItem>
+                </BarBrand>
+                <BarEnd>
+                    <BarItem>
+                        <BarLink To="https://github.com/vrenken/EtAlii.Ubigia">
+                            <BarIcon IconName="@("bi bi-github")" Style="color:white"/>
+                        </BarLink>
+                    </BarItem>
+                </BarEnd>
+            </Bar>
+        </LayoutHeader>
+        <LayoutContent Padding="Padding.Is4.OnX">
+            @Body
+        </LayoutContent>
+    </Layout>
+</Layout>

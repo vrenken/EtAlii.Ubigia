@@ -46,8 +46,9 @@
     </PackageReference>
 
     <!-- Shared -->
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.DockerHost\EtAlii.xTechnology.Hosting.DockerHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.Standard\EtAlii.Ubigia.Infrastructure.Fabric.Standard.csproj" />
 
@@ -56,6 +57,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
 
     <!-- SignalR -->
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
 
@@ -64,13 +66,11 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
 
     <!-- Admin -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Admin\EtAlii.Ubigia.Infrastructure.Portal.Admin.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Setup\EtAlii.Ubigia.Infrastructure.Portal.Setup.csproj" />
 
     <!-- User -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Portal\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.csproj">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </ProjectReference>
-
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.User\EtAlii.Ubigia.Infrastructure.Portal.User.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
 
   </ItemGroup>
