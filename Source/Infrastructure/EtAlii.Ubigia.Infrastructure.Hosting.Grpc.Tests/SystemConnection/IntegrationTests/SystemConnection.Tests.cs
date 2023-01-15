@@ -15,13 +15,14 @@ using EtAlii.Ubigia.Api.Logical.Diagnostics;
 using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 using Xunit;
 using EtAlii.Ubigia.Tests;
+using EtAlii.xTechnology.MicroContainer;
 
 [CorrelateUnitTests]
-public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
+public class SystemConnectionTests : IClassFixture<HostingUnitTestContext>
 {
-    private readonly InfrastructureUnitTestContext _testContext;
+    private readonly HostingUnitTestContext _testContext;
 
-    public SystemConnectionTests(InfrastructureUnitTestContext testContext)
+    public SystemConnectionTests(HostingUnitTestContext testContext)
     {
         _testContext = testContext;
     }
@@ -121,7 +122,7 @@ public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext
             .UseDiagnostics()
             .ConfigureAwait(false);
 
-        var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
+        var context = Factory.Create<ITraversalContext>(functionalOptions);
 
         var addQueries = new[]
         {
@@ -171,7 +172,7 @@ public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext
             .UseDiagnostics()
             .ConfigureAwait(false);
 
-        var context = _testContext.CreateComponent<ITraversalContext>(functionalOptions);
+        var context = Factory.Create<ITraversalContext>(functionalOptions);
 
         var selectQuery = "<= /Person";
 

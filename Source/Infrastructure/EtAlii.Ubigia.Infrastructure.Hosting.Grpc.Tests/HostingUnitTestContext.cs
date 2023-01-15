@@ -8,7 +8,7 @@ using EtAlii.Ubigia.Tests;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-public class InfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
+public class HostingUnitTestContext : IAsyncLifetime
 {
     public IConfigurationRoot ClientConfiguration => Host.ClientConfiguration;
     public IConfigurationRoot HostConfiguration => Host.HostConfiguration;
@@ -20,7 +20,7 @@ public class InfrastructureUnitTestContext : InfrastructureUnitTestContextBase, 
     public ByteArrayComparer ByteArrayComparer { get; }
     public PropertyDictionaryComparer PropertyDictionaryComparer { get; }
 
-    public InfrastructureUnitTestContext()
+    public HostingUnitTestContext()
     {
         TestContentDefinitionFactory = new TestContentDefinitionFactory();
         TestContentFactory = new TestContentFactory();

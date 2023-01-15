@@ -15,11 +15,11 @@ using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.W
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
+public class InfrastructureAuthenticationTests : IClassFixture<HostingUnitTestContext>
 {
-    private readonly InfrastructureUnitTestContext _testContext;
+    private readonly HostingUnitTestContext _testContext;
 
-    public InfrastructureAuthenticationTests(InfrastructureUnitTestContext testContext)
+    public InfrastructureAuthenticationTests(HostingUnitTestContext testContext)
     {
         _testContext = testContext;
     }

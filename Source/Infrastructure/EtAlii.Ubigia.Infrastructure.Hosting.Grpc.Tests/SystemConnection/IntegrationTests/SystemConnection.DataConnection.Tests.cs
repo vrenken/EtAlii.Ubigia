@@ -10,15 +10,15 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
+public class SystemConnectionDataConnectionTests : IClassFixture<HostingUnitTestContext>, IAsyncLifetime
 {
-    private readonly InfrastructureUnitTestContext _testContext;
+    private readonly HostingUnitTestContext _testContext;
     private string _accountName;
     private string _password;
     private string[] _spaceNames;
     private ISystemConnection _systemConnection;
 
-    public SystemConnectionDataConnectionTests(InfrastructureUnitTestContext testContext)
+    public SystemConnectionDataConnectionTests(HostingUnitTestContext testContext)
     {
         _testContext = testContext;
     }

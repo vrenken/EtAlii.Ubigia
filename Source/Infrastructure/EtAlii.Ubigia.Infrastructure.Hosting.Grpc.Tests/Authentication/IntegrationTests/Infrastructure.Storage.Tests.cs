@@ -21,14 +21,14 @@ using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProt
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
+public class InfrastructureStorageTests : IClassFixture<HostingUnitTestContext>
 {
 #if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == true // No need to run these slow tests on the local machine constantly.
         private readonly TimeSpan _delay = TimeSpan.FromMilliseconds(50000);
 #endif
-    private readonly InfrastructureUnitTestContext _testContext;
+    private readonly HostingUnitTestContext _testContext;
 
-    public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
+    public InfrastructureStorageTests(HostingUnitTestContext testContext)
     {
         _testContext = testContext;
     }
