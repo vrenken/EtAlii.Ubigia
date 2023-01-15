@@ -11,14 +11,14 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class EntryRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
+public class EntryRepositoryTests : IClassFixture<FunctionalUnitTestContext>
 {
-    private readonly FunctionalInfrastructureUnitTestContext _testContext;
+    private readonly FunctionalUnitTestContext _testContext;
     private const int Count = 10;
 
     private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-    public EntryRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
+    public EntryRepositoryTests(FunctionalUnitTestContext testContext)
     {
         _testContext = testContext;
     }

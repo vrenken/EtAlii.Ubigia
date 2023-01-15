@@ -11,7 +11,7 @@ public class SystemStatusCheckerIntegrationTests
     public async Task SystemStatusChecker_DetermineIfSystemIsOperational()
     {
         // Arrange.
-        var testContext = new FunctionalInfrastructureUnitTestContext();
+        var testContext = new FunctionalUnitTestContext();
         await testContext
             .InitializeAsync()
             .ConfigureAwait(false);

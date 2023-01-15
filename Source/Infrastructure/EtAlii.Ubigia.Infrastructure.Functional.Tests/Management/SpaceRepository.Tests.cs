@@ -10,12 +10,12 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public sealed class SpaceRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
+public sealed class SpaceRepositoryTests : IClassFixture<FunctionalUnitTestContext>
 {
-    private readonly FunctionalInfrastructureUnitTestContext _testContext;
+    private readonly FunctionalUnitTestContext _testContext;
     private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-    public SpaceRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
+    public SpaceRepositoryTests(FunctionalUnitTestContext testContext)
     {
         _testContext = testContext;
     }

@@ -8,12 +8,12 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public sealed class PropertiesRepositoryTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
+public sealed class PropertiesRepositoryTests : IClassFixture<FunctionalUnitTestContext>
 {
-    private readonly FunctionalInfrastructureUnitTestContext _testContext;
+    private readonly FunctionalUnitTestContext _testContext;
     private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
-    public PropertiesRepositoryTests(FunctionalInfrastructureUnitTestContext testContext)
+    public PropertiesRepositoryTests(FunctionalUnitTestContext testContext)
     {
         _testContext = testContext;
     }

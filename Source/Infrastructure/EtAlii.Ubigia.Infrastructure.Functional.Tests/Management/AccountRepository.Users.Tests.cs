@@ -9,11 +9,11 @@ using Xunit;
 using EtAlii.Ubigia.Tests;
 
 [CorrelateUnitTests]
-public class AccountRepositoryUserTests : IClassFixture<FunctionalInfrastructureUnitTestContext>
+public class AccountRepositoryUserTests : IClassFixture<FunctionalUnitTestContext>
 {
-    private readonly FunctionalInfrastructureUnitTestContext _testContext;
+    private readonly FunctionalUnitTestContext _testContext;
 
-    public AccountRepositoryUserTests(FunctionalInfrastructureUnitTestContext testContext)
+    public AccountRepositoryUserTests(FunctionalUnitTestContext testContext)
     {
         _testContext = testContext;
     }
