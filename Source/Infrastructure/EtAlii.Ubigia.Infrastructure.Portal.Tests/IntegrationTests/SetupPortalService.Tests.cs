@@ -7,17 +7,17 @@ using Microsoft.Extensions.Configuration;
 using Xunit;
 
 
-public class AdminPortalServiceTests : IClassFixture<PortalUnitTestContext>
+public class SetupPortalServiceTests : IClassFixture<PortalUnitTestContext>
 {
     private readonly PortalUnitTestContext _testContext;
 
-    public AdminPortalServiceTests(PortalUnitTestContext testContext)
+    public SetupPortalServiceTests(PortalUnitTestContext testContext)
     {
         _testContext = testContext;
     }
 
     [Fact]
-    public void AdminPortalService_Create()
+    public void SetupPortalService_Create()
     {
         // Arrange.
         var configurationRoot = new ConfigurationBuilder()
@@ -36,17 +36,17 @@ public class AdminPortalServiceTests : IClassFixture<PortalUnitTestContext>
     }
 
     [Fact]
-    public async Task AdminPortalService_ConfigureServices()
+    public async Task SetupPortalService_ConfigureServices()
     {
         // Arrange.
         var services = new ServiceInstancesBuilder()
             .AddStorage(out var storageService)
             .AddInfrastructure(out var infrastructureService)
-            .AddAdminPortal(out var adminPortalService)
+            .AddUserPortal(out var setupPortalService)
             .ToServices();
 
         // Act.
-        var host = _testContext.RunForConfigureServices(services, storageService, infrastructureService, adminPortalService);
+        var host = _testContext.RunForConfigureServices(services, storageService, infrastructureService, setupPortalService);
         await host.StartAsync().ConfigureAwait(false);
 
         // Assert.
@@ -57,17 +57,17 @@ public class AdminPortalServiceTests : IClassFixture<PortalUnitTestContext>
     }
 
     [Fact]
-    public async Task AdminPortalService_ConfigureApplication()
+    public async Task SetupPortalService_ConfigureApplication()
     {
         // Arrange.
         var services = new ServiceInstancesBuilder()
             .AddStorage(out var storageService)
             .AddInfrastructure(out var infrastructureService)
-            .AddAdminPortal(out var adminPortalService)
+            .AddUserPortal(out var setupPortalService)
             .ToServices();
 
         // Act.
-        var host = _testContext.RunForConfigureApplication(services, storageService, infrastructureService, adminPortalService);
+        var host = _testContext.RunForConfigureApplication(services, storageService, infrastructureService, setupPortalService);
         await host.StartAsync().ConfigureAwait(false);
 
         // Assert.

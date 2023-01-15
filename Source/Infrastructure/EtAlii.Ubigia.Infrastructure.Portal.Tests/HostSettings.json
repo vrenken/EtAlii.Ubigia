@@ -121,10 +121,22 @@
         }
     },
 
+    "Setup-Portal": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Portal.Setup.SetupPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Portal.Setup",
+        "IpAddress": "127.0.0.1",
+        "Port": "80",
+        "Path": ""
+    },
     "Management-Portal": {
         "Factory": "EtAlii.Ubigia.Infrastructure.Portal.Admin.AdminPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Portal.Admin",
         "IpAddress": "127.0.0.1",
-        "Port": "80",
+        "Port": "81",
+        "Path": ""
+    },
+    "User-Portal": {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Portal.User.UserPortalServiceFactory, EtAlii.Ubigia.Infrastructure.Portal.User",
+        "IpAddress": "127.0.0.1",
+        "Port": "82",
         "Path": ""
     },
 

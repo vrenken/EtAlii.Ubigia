@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Admin\EtAlii.Ubigia.Infrastructure.Portal.Admin.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.User\EtAlii.Ubigia.Infrastructure.Portal.User.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" />
