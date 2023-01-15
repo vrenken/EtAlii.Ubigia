@@ -8,7 +8,7 @@ using EtAlii.Ubigia.Tests;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-public class InfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
+public class InfrastructureUnitTestContext : IAsyncLifetime
 {
     public IConfigurationRoot HostConfiguration => Host.HostConfiguration;
     public IConfigurationRoot ClientConfiguration => Host.ClientConfiguration;
