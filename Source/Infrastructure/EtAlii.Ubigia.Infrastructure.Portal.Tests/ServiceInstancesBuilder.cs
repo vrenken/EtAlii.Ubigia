@@ -7,15 +7,19 @@ using System.Collections.Generic;
 using EtAlii.Ubigia.Infrastructure.Fabric;
 using EtAlii.Ubigia.Infrastructure.Fabric.InMemory;
 using EtAlii.Ubigia.Infrastructure.Portal.Admin;
+using EtAlii.Ubigia.Infrastructure.Portal.Setup;
 using EtAlii.Ubigia.Infrastructure.Portal.User;
 using EtAlii.Ubigia.Infrastructure.Transport;
 using EtAlii.xTechnology.Hosting;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 
 public class ServiceInstancesBuilder
 {
     private readonly List<IService> _services = new();
     private readonly IConfigurationRoot _configurationRoot;
+
+    private readonly ILogger _logger = Log.ForContext<ServiceInstancesBuilder>();
 
     public ServiceInstancesBuilder()
     {
@@ -33,6 +37,8 @@ public class ServiceInstancesBuilder
 
     public ServiceInstancesBuilder AddUserPortal(out INetworkService service) => AddService("User-Portal", configuration => new UserPortalService(configuration), out service);
 
+    public ServiceInstancesBuilder AddSetupPortal(out INetworkService service) => AddService("Setup-Portal", configuration => new SetupPortalService(configuration), out service);
+
     private ServiceInstancesBuilder AddService<TService>(string sectionKey, Func<ServiceConfiguration, IService> serviceFactory, out TService service)
         where TService: IService
     {
@@ -40,8 +46,15 @@ public class ServiceInstancesBuilder
         ServiceConfiguration.TryCreate(configurationSection, _configurationRoot, out var configuration);
         service = (TService)serviceFactory(configuration);
         _services.Add(service);
+
+        _logger.Information("Added {ServiceName} service to ServiceInstancesBuilder", service.GetType().Name);
+
         return this;
     }
 
-    public IService[] ToServices() => _services.ToArray();
+    public IService[] ToServices(out IConfigurationRoot configurationRoot)
+    {
+        configurationRoot = _configurationRoot;
+        return _services.ToArray();
+    }
 }
