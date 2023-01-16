@@ -10,15 +10,21 @@ using Serilog;
 
 public static partial class HostBuilderAddHostTestServicesExtensions
 {
-    public static IHostBuilder UseHostTestServices<THostServicesFactory>(
+    /// <summary>
+    /// Use existing test services with the hostbuilder.
+    /// </summary>
+    /// <param name="hostBuilder"></param>
+    /// <param name="configurationRoot"></param>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    public static IHostBuilder UseExistingHostTestServices(
         this IHostBuilder hostBuilder,
         IConfigurationRoot configurationRoot,
-        out IService[] services)
-        where THostServicesFactory : IHostServicesFactory, new()
+        IService[] services)
     {
         var logger = Log.ForContext(typeof(HostBuilderAddHostTestServicesExtensions));
 
-        var servicesFactory = new THostServicesFactory();
+        var servicesFactory = new ExistingHostServicesFactory(services);
         services = servicesFactory.Create(configurationRoot);
 
         logger.Information("Found {ServicesCount} services", services.Length);
