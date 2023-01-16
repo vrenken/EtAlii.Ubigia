@@ -13,9 +13,12 @@
     <Folder Include="UnitTests" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Admin\EtAlii.Ubigia.Infrastructure.Portal.Admin.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.User\EtAlii.Ubigia.Infrastructure.Portal.User.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Portal.Setup\EtAlii.Ubigia.Infrastructure.Portal.Setup.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric.InMemory\EtAlii.Ubigia.Infrastructure.Fabric.InMemory.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" />
