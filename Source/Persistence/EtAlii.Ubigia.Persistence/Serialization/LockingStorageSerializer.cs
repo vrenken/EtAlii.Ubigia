@@ -2,14 +2,17 @@
 
 namespace EtAlii.Ubigia.Persistence;
 
-using System.Collections.Concurrent;
-using System.Threading;
 using System.Threading.Tasks;
+using AsyncKeyedLock;
 
 public class LockingStorageSerializer : IStorageSerializer
 {
     private readonly IStorageSerializer _decoree;
-    private readonly ConcurrentDictionary<string, SemaphoreSlim> _lockObjects = new();
+    private readonly AsyncKeyedLocker<string> _asyncKeyedLocker = new(o =>
+    {
+        o.PoolSize = 20;
+        o.PoolInitialFill = 1;
+    });
 
     public LockingStorageSerializer(IStorageSerializer decoree)
     {
@@ -22,65 +25,37 @@ public class LockingStorageSerializer : IStorageSerializer
     public void Serialize<T>(string fileName, T item)
         where T : class
     {
-        var lockObject = _lockObjects.GetOrAdd(fileName, _ => new SemaphoreSlim(1, 1));
-        lockObject.Wait();
-        try
+        using (_asyncKeyedLocker.Lock(fileName))
         {
             _decoree.Serialize(fileName, item);
-        }
-        finally
-        {
-            _lockObjects.TryRemove(fileName, out _);
-            lockObject.Release();
         }
     }
 
 
     public void Serialize(string fileName, PropertyDictionary item)
     {
-        var lockObject = _lockObjects.GetOrAdd(fileName, _ => new SemaphoreSlim(1, 1));
-        lockObject.Wait();
-        try
+        using (_asyncKeyedLocker.Lock(fileName))
         {
             _decoree.Serialize(fileName, item);
-        }
-        finally
-        {
-            _lockObjects.TryRemove(fileName, out _);
-            lockObject.Release();
         }
     }
 
     public async Task<T> Deserialize<T>(string fileName)
         where T : class
     {
-        var lockObject = _lockObjects.GetOrAdd(fileName, _ => new SemaphoreSlim(1, 1));
-        await lockObject.WaitAsync().ConfigureAwait(false);
-        try
+        using (await _asyncKeyedLocker.LockAsync(fileName).ConfigureAwait(false))
         {
             var result = await _decoree.Deserialize<T>(fileName).ConfigureAwait(false);
             return result;
-        }
-        finally
-        {
-            _lockObjects.TryRemove(fileName, out _);
-            lockObject.Release();
         }
     }
 
     public PropertyDictionary Deserialize(string fileName)
     {
-        var lockObject = _lockObjects.GetOrAdd(fileName, _ => new SemaphoreSlim(1, 1));
-        lockObject.Wait();
-        try
+        using (_asyncKeyedLocker.Lock(fileName))
         {
             var result = _decoree.Deserialize(fileName);
             return result;
-        }
-        finally
-        {
-            _lockObjects.TryRemove(fileName, out _);
-            lockObject.Release();
         }
     }
 }
