@@ -34,7 +34,7 @@ public sealed class FabricOptions : IExtensible
     {
         ConfigurationRoot = configurationRoot;
         CachingEnabled = true;
-        ((IExtensible)this).Extensions = new IExtension[] { new CommonFabricExtension(this) };
+        ((IExtensible)this).Extensions = new IExtension[] { new FabricContextExtension(this) };
     }
 
     /// <summary>

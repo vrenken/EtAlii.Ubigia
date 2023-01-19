@@ -50,7 +50,7 @@ public sealed class DataConnectionOptions : IExtensible
     public DataConnectionOptions(IConfigurationRoot configurationRoot)
     {
         ConfigurationRoot = configurationRoot;
-        ((IExtensible)this).Extensions = new IExtension[] { new CommonDataConnectionExtension(this) };
+        ((IExtensible)this).Extensions = new IExtension[] { new DataConnectionExtension(this) };
     }
 
     /// <summary>

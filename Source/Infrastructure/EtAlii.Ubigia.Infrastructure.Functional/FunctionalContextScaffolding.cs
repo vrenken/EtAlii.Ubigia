@@ -8,18 +8,18 @@ using EtAlii.Ubigia.Infrastructure.Logical;
 using EtAlii.xTechnology.MicroContainer;
 using EtAlii.xTechnology.Threading;
 
-internal class InfrastructureScaffolding : IScaffolding
+internal class FunctionalContextScaffolding : IScaffolding
 {
-    private readonly FunctionalContextOptions _options;
+     private readonly FunctionalContextOptions _options;
 
-    public InfrastructureScaffolding(FunctionalContextOptions options)
-    {
-        _options = options;
-    }
+     public FunctionalContextScaffolding(FunctionalContextOptions options)
+     {
+         _options = options;
+     }
 
-    /// <inheritdoc />
     public void Register(IRegisterOnlyContainer container)
     {
+        // Infrastructure
         if (string.IsNullOrWhiteSpace(_options.Name))
         {
             throw new NotSupportedException("The name is required to construct a Infrastructure instance");
@@ -50,7 +50,34 @@ internal class InfrastructureScaffolding : IScaffolding
             var localStorageInitializer = services.GetInstance<ILocalStorageInitializer>();
             return new LocalStorageGetter(_options, logicalContext, localStorageInitializer);
         });
+
+        // System
+        container.Register<ISystemConnectionCreationProxy, SystemConnectionCreationProxy>();
+        container.Register<ISystemStatusContext, SystemStatusContext>();
+        container.Register<ISystemStatusChecker, SystemStatusChecker>();
+
+        // Data
+        container.Register<IInformationRepository, InformationRepository>();
+
+        container.Register<IRootRepository, RootRepository>();
+        container.Register<IEntryRepository, EntryRepository>();
+        container.Register<IContentRepository, ContentRepository>();
+        container.Register<IContentDefinitionRepository, ContentDefinitionRepository>();
+        container.Register<IPropertiesRepository, PropertiesRepository>();
+
+        container.Register<IAccountInitializer, AccountInitializer>();
+        container.Register<ISpaceInitializer, DirectSpaceInitializer>();
+        // container.Register<ISpaceInitializer, ScriptedSpaceInitializer>();
+
+        // Management
+        container.Register<IStorageInitializer, StorageInitializer>();
+        container.Register<ILocalStorageInitializer, LocalStorageInitializer>();
+
+        container.Register<IStorageRepository, StorageRepository>();
+        container.Register<IAccountRepository, AccountRepository>();
+        container.Register<ISpaceRepository, SpaceRepository>();
     }
+
 
     private IFunctionalContext CreateFunctionalContext(IServiceCollection services)
     {

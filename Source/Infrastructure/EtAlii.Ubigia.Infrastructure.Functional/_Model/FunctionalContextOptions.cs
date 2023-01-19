@@ -47,7 +47,7 @@ public class FunctionalContextOptions : IExtensible
 
         ((IExtensible)this).Extensions = new IExtension[]
         {
-            new CommonInfrastructureExtension(this)
+            new FunctionalContextExtension(this)
         };
     }
 

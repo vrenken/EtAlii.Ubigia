@@ -4,20 +4,17 @@ namespace EtAlii.Ubigia.Infrastructure.Functional;
 
 using EtAlii.xTechnology.MicroContainer;
 
-internal class CommonInfrastructureExtension : IExtension
+internal class FunctionalContextExtension : IExtension
 {
     private readonly FunctionalContextOptions _options;
 
-    public CommonInfrastructureExtension(FunctionalContextOptions options)
+    public FunctionalContextExtension(FunctionalContextOptions options)
     {
         _options = options;
     }
 
     public void Initialize(IRegisterOnlyContainer container)
     {
-        new InfrastructureScaffolding(_options).Register(container);
-        new DataScaffolding().Register(container);
-        new ManagementScaffolding().Register(container);
-        new SystemScaffolding().Register(container);
+        new FunctionalContextScaffolding(_options).Register(container);
     }
 }

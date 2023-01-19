@@ -2,13 +2,49 @@
 
 namespace EtAlii.Ubigia.Api.Logical;
 
+using EtAlii.Ubigia.Api.Fabric;
 using EtAlii.xTechnology.MicroContainer;
 
-internal sealed class TraversalScaffolding : IScaffolding
+internal class LogicalContextScaffolding : IScaffolding
 {
+    private readonly LogicalOptions _options;
+
+    public LogicalContextScaffolding(LogicalOptions options)
+    {
+        _options = options;
+    }
+
     public void Register(IRegisterOnlyContainer container)
     {
-        container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
+        container.Register<ILogicalContext>(serviceCollection =>
+        {
+            var nodes = serviceCollection.GetInstance<ILogicalNodeSet>();
+            var roots = serviceCollection.GetInstance<ILogicalRootSet>();
+            var content = serviceCollection.GetInstance<IContentManager>();
+            var properties = serviceCollection.GetInstance<IPropertiesManager>();
+            return new LogicalContext(_options, nodes, roots, content, properties);
+        });
+        container.Register(() => _options.ConfigurationRoot);
+        container.Register(() => _options.FabricContext);
+        container.Register<ILogicalNodeSet, LogicalNodeSet>();
+        container.Register<ILogicalRootSet, LogicalRootSet>();
+
+        container.Register<IPropertiesManager, PropertiesManager>();
+        container.Register<IPropertiesGetter, PropertiesGetter>();
+
+        container.Register(services =>
+        {
+            var fabric = services.GetInstance<IFabricContext>();
+            return new ContentManagerFactory().Create(fabric);
+        });
+
+        // Traversal context
+        container.Register<ITraversalContextEntrySet, TraversalContextEntrySet>();
+        container.Register<ITraversalContextPropertySet, TraversalContextPropertySet>();
+        container.Register<ITraversalContextRootSet, TraversalContextRootSet>();
+
+        // Traversal
+            container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 
         container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
         container.Register<IBreadthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
@@ -50,5 +86,11 @@ internal sealed class TraversalScaffolding : IScaffolding
         container.Register<ITemporalGraphPathWeaver, TemporalGraphPathWeaver>();
 
         container.Register<IPathTraversalContext, PathTraversalContext>();
+
+        // Graphs
+        container.Register<IGraphPathBuilder, GraphPathBuilder>();
+        container.Register<IGraphComposerFactory, GraphComposerFactory>();
+        container.Register<IGraphAssignerFactory, GraphAssignerFactory>();
+        container.Register<IGraphPathTraverser, GraphPathTraverser>();
     }
 }

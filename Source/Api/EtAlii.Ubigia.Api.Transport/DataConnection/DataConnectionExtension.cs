@@ -4,11 +4,11 @@ namespace EtAlii.Ubigia.Api.Transport;
 
 using EtAlii.xTechnology.MicroContainer;
 
-public class CommonDataConnectionExtension : IExtension
+public class DataConnectionExtension : IExtension
 {
     private readonly DataConnectionOptions _options;
 
-    public CommonDataConnectionExtension(DataConnectionOptions options)
+    public DataConnectionExtension(DataConnectionOptions options)
     {
         _options = options;
     }

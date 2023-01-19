@@ -15,9 +15,6 @@ internal class CommonLogicalExtension : IExtension
 
     public void Initialize(IRegisterOnlyContainer container)
     {
-        new ContextScaffolding(_options).Register(container);
-        new GraphScaffolding().Register(container);
-        new TraversalScaffolding().Register(container);
-        new TraversalContextScaffolding().Register(container);
+        new LogicalContextScaffolding(_options).Register(container);
     }
 }
