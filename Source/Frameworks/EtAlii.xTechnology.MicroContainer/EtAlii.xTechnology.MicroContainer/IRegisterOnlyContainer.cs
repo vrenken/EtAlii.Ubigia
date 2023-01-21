@@ -76,7 +76,7 @@ public interface IRegisterOnlyContainer
     /// <exception cref="InvalidOperationException">In case the decorator type has already been registered, does not have a service instance constructor parameter or when the service type is not an interface.</exception>
     void RegisterDecorator<TService, TDecorator>()
         where TService : class
-        where TDecorator : TService;
+        where TDecorator : class, TService;
 
     bool HasRegistration<TService>()
         where TService : class;
