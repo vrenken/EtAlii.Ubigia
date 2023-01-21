@@ -54,7 +54,14 @@ internal class FunctionalContextScaffolding : IScaffolding
         // System
         container.Register<ISystemConnectionCreationProxy, SystemConnectionCreationProxy>();
         container.Register<ISystemStatusContext, SystemStatusContext>();
-        container.Register<ISystemStatusChecker, SystemStatusChecker>();
+        if (_options.SystemStatusChecker != null)
+        {
+            container.Register(_ => _options.SystemStatusChecker);
+        }
+        else
+        {
+            container.Register<ISystemStatusChecker, SystemStatusChecker>();
+        }
 
         // Data
         container.Register<IInformationRepository, InformationRepository>();

@@ -27,6 +27,11 @@ public class FunctionalContextOptions : IExtensible
     IExtension[] IExtensible.Extensions { get; set; }
 
     /// <summary>
+    /// An alternative <see cref="ISystemStatusChecker"/>, else null
+    /// </summary>
+    public ISystemStatusChecker SystemStatusChecker { get; set; }
+
+    /// <summary>
     /// The name of the infrastructure.
     /// </summary>
     public string Name { get; private set; }
@@ -76,6 +81,17 @@ public class FunctionalContextOptions : IExtensible
 
         Name = name;
         ServiceDetails = serviceDetails;
+        return this;
+    }
+
+    /// <summary>
+    /// Configure an alternative <see cref="ISystemStatusChecker"/> to use in the FunctionalContext.
+    /// </summary>
+    /// <param name="systemStatusChecker"></param>
+    /// <returns></returns>
+    public FunctionalContextOptions Use(ISystemStatusChecker systemStatusChecker)
+    {
+        SystemStatusChecker = systemStatusChecker;
         return this;
     }
 

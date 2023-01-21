@@ -16,12 +16,23 @@ public class SystemStatusChecker : ISystemStatusChecker
 {
     private IFunctionalContext _functionalContext;
 
-    public Task<bool> DetermineIfSetupIsNeeded()
+    public async Task<SystemStatus> DetermineSystemStatus()
     {
-        return Task.FromResult(false);
+        var setupIsNeeded = false;
+        if (setupIsNeeded)
+        {
+            return SystemStatus.SetupIsNeeded;
+        }
+        var systemIsOperational = await DetermineIfSystemIsOperational().ConfigureAwait(false);
+        if (!systemIsOperational)
+        {
+            return SystemStatus.SystemIsNonOperational;
+        }
+
+        return SystemStatus.SystemIsOperational;
     }
 
-    public async Task<bool> DetermineIfSystemIsOperational()
+    private async Task<bool> DetermineIfSystemIsOperational()
     {
         using var systemConnection = _functionalContext.SystemConnectionCreationProxy.Request();
         var (connection, _) = await systemConnection

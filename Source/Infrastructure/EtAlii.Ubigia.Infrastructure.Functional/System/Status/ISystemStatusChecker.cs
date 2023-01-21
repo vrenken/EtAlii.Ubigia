@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 public interface ISystemStatusChecker
 {
-    Task<bool> DetermineIfSetupIsNeeded();
-    Task<bool> DetermineIfSystemIsOperational();
+    Task<SystemStatus> DetermineSystemStatus();
 
     void Initialize(IFunctionalContext functionalContext);
 }

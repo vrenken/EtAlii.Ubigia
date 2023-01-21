@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 public interface ISystemStatusContext
 {
     /// <summary>
-    /// Returns true if some prerequisite is missing and the system really needs to be setup accordingly.
+    /// Returns the status of the whole system.
     /// </summary>
-    bool SetupIsNeeded { get; }
-
-    /// <summary>
-    /// Returns true if the system can function. That is, setup or maintenance can still be needed,
-    /// but the system nevertheless is able to deliver content through its APIs.
-    /// </summary>
-    bool SystemIsOperational { get; }
+    SystemStatus Status { get; }
 
     /// <summary>
     /// The last time the system has been started.
