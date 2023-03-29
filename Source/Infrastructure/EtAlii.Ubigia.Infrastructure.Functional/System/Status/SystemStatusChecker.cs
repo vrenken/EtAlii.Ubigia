@@ -9,7 +9,6 @@ using EtAlii.Ubigia.Api.Functional;
 using EtAlii.Ubigia.Api.Functional.Antlr;
 using EtAlii.Ubigia.Api.Functional.Context;
 using EtAlii.Ubigia.Api.Logical;
-using EtAlii.Ubigia.Infrastructure.Functional;
 using EtAlii.xTechnology.MicroContainer;
 
 public class SystemStatusChecker : ISystemStatusChecker
