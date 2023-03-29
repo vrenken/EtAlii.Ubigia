@@ -12,6 +12,7 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <WarningsAsErrors>$(WarningsAsErrors);RS0016;RS0017;RS0022;RS0024;RS0025;RS0026;RS0027</WarningsAsErrors>
+    <Description>Ubigia API functional layer Roslyn analyzers assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />

@@ -4,6 +4,7 @@
     <ProjectGuid>72ed4245-bb90-4384-8a8e-518cc0e62673</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure functional layer base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Lapa\EtAlii.Ubigia.Api.Functional.Lapa.csproj" />
