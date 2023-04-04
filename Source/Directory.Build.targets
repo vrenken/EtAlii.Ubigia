@@ -37,8 +37,10 @@
     </Content>
   </ItemGroup>
 
-  <!-- We want any project that is not a test, portal or analyzer project to use nugetizer assistance when creating packages. -->
-  <ItemGroup Condition="'$(IsUbigiaTestProject)' != 'true' AND '$(IsPortalProject)' != 'true'"> <!--  AND '$(IsAnalyzerProject)' != 'true' -->
+  <!-- We want any project that is not a test or portal project to use nugetizer assistance when creating packages.
+       The analyzer project currently requires nugetizer -->
+  <ItemGroup Condition="'$(IsUbigiaTestProject)' != 'true' AND '$(IsPortalProject)' != 'true'">
+<!--  <ItemGroup Condition="'$(IsUbigiaTestProject)' != 'true' AND '$(IsPortalProject)' != 'true' AND '$(IsAnalyzerProject)' != 'true'">-->
     <PackageReference Include="NuGetizer" Label="NuGetizer (.targets)" >
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
