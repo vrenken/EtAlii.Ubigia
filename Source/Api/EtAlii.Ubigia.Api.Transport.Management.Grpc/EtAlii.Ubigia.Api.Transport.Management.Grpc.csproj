@@ -6,6 +6,7 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API transport layer management gRPC assembly</Description>
   </PropertyGroup>
 
   <ItemGroup>

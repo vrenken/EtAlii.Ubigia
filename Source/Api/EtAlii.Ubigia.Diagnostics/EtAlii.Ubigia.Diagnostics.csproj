@@ -8,6 +8,7 @@
     <ProjectGuid>fea8b5c7-799c-45d1-9659-6708809b0c7c</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API layer diagnostics assembly</Description>
   </PropertyGroup>
 
   <ItemGroup>

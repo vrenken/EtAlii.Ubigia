@@ -5,6 +5,7 @@
     <ProjectGuid>0f665d4f-6864-4fcd-a2f3-b133944a27b4</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure portal layer base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Blazorise.Charts" />

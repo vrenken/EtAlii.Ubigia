@@ -7,7 +7,6 @@
     <PackageReleaseNotes>Migrated to .NET Standard 1.0</PackageReleaseNotes>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
-
     <!-- The MicroContainer project has already been nullable-ed. -->
     <Nullable>enable</Nullable>
   </PropertyGroup>
