@@ -4,6 +4,7 @@
     <ProjectGuid>6bc9343a-8ef1-4ae5-8f6d-5c67132615dc</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure transport layer REST assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />

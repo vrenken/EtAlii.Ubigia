@@ -12,6 +12,7 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <WarningsAsErrors>$(WarningsAsErrors);RS0016;RS0017;RS0022;RS0024;RS0025;RS0026;RS0027</WarningsAsErrors>
+    <Description>Ubigia API functional layer Roslyn analyzers assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
@@ -62,6 +63,9 @@
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" PrivateAssets="all">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" PrivateAssets="all">
@@ -115,6 +119,7 @@
       <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_PeriodicBatching)\lib\netstandard2.0\Serilog.Sinks.PeriodicBatching.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Formatting_Compact)\lib\netstandard2.0\Serilog.Formatting.Compact.dll" IncludeRuntimeDependency="false" />
 
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration)\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration_Binder)\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll" IncludeRuntimeDependency="false" />

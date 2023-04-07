@@ -4,6 +4,7 @@
     <ProjectGuid>1a8ebc3e-54d9-44d6-b1c9-94614e0ad0eb</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure fabric layer base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj" />

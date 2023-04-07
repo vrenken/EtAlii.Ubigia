@@ -5,6 +5,7 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API fabric layer diagnostics assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />

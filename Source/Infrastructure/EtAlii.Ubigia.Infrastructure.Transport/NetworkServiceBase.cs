@@ -31,10 +31,8 @@ public abstract class NetworkServiceBase<TNetworkService> : INetworkService
     {
         // Default implementation is that all network services get disabled when
         // the system is not yet in a good state.
-        // The setup portal on the other hand will be activated only when the .
-
-        // return true;
-        return functionalContext.Status.SystemIsOperational;
+        // The setup portal on the other hand will be activated only when the system requires some mandatory settings to be changed.
+        return functionalContext.Status.Status == SystemStatus.SystemIsOperational;
     }
 
     protected abstract void ConfigureNetworkServices(IServiceCollection services, IServiceProvider globalServices, IFunctionalContext functionalContext);

@@ -6,6 +6,7 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Antlr</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API functional layer Antlr parsing assembly</Description>
   </PropertyGroup>
 
   <!-- Below is a small patch to make sure the ANTLR4 code generation works as expected on the Github actions build server.

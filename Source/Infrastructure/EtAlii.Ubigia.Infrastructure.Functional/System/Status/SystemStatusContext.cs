@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 public class SystemStatusContext : ISystemStatusContext
 {
     /// <inheritdoc />
-    public bool SetupIsNeeded { get; private set; }
-
-    /// <inheritdoc />
-    public bool SystemIsOperational { get; private set; }
+    public SystemStatus Status { get; private set; }
 
     /// <inheritdoc />
     public DateTimeOffset StartTime { get; private set; }
@@ -34,7 +31,6 @@ public class SystemStatusContext : ISystemStatusContext
 
     public async Task Update()
     {
-        SetupIsNeeded = await _systemStatusChecker.DetermineIfSetupIsNeeded().ConfigureAwait(false);
-        SystemIsOperational = await _systemStatusChecker.DetermineIfSystemIsOperational().ConfigureAwait(false);
+        Status = await _systemStatusChecker.DetermineSystemStatus().ConfigureAwait(false);
     }
 }

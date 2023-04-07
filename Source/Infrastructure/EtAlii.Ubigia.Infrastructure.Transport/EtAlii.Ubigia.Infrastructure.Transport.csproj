@@ -5,6 +5,7 @@
     <ProjectGuid>f830994b-391f-465a-ab3a-9e1fbdacbe8c</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure transport base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />

@@ -6,6 +6,7 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API functional layer diagnostics assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />

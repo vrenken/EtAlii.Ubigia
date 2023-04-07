@@ -4,6 +4,7 @@
     <ProjectGuid>b1b7e0d9-18bc-4f1d-8a5e-92fe19aeae06</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia serialization standardization</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />

@@ -7,6 +7,7 @@
     <ProjectGuid>b8feca34-e106-46e0-8457-99f5f1e901a6</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API layer base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj" />

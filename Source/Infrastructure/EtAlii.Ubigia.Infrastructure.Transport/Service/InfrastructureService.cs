@@ -21,6 +21,8 @@ using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceColl
 
 public class InfrastructureService : IInfrastructureService
 {
+    private ISystemStatusChecker _alternativeSystemStatusChecker;
+
     /// <inheritdoc />
     public ServiceConfiguration Configuration { get; }
 
@@ -34,6 +36,11 @@ public class InfrastructureService : IInfrastructureService
     public InfrastructureService(ServiceConfiguration configuration)
     {
         Configuration = configuration;
+    }
+
+    public void SetAlternativeSystemStatusChecker(ISystemStatusChecker alternativeSystemStatusChecker)
+    {
+        _alternativeSystemStatusChecker = alternativeSystemStatusChecker;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -105,12 +112,13 @@ public class InfrastructureService : IInfrastructureService
             .UseLogicalDiagnostics();
         var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
-        // Create a Infrastructure instance.
-        var infrastructureOptions = new FunctionalContextOptions(Configuration.Root)
+        // Create a functional context instance.
+        var functionalContextOptions = new FunctionalContextOptions(Configuration.Root)
             .Use(name, serviceDetails.StorageAddress, allServiceDetails)
             .Use(logicalContext)
+            .Use(_alternativeSystemStatusChecker)
             .UseFunctionalDiagnostics();
 
-        return Factory.Create<IFunctionalContext>(infrastructureOptions);
+        return Factory.Create<IFunctionalContext>(functionalContextOptions);
     }
 }

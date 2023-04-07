@@ -4,6 +4,7 @@
     <ProjectGuid>8f34baea-91ca-4031-b345-8e79ef9e9c5f</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure transport layer admin gRPC assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />

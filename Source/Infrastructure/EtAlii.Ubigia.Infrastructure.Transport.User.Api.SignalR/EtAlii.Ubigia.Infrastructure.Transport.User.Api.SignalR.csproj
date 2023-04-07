@@ -4,6 +4,7 @@
     <ProjectGuid>8ef4bd6b-8629-4c0d-a513-3a58d736e25a</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure transport layer SignalR assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" />

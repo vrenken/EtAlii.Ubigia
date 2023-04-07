@@ -50,13 +50,10 @@
     <AdditionalFiles Include="Pages\Accounts\Edit.razor" />
     <AdditionalFiles Include="Pages\Accounts\List.razor" />
     <AdditionalFiles Include="Pages\Dashboard.razor" />
+    <AdditionalFiles Include="Pages\Storage\Dashboard2.razor" />
     <AdditionalFiles Include="Shared\Error.cshtml" />
     <AdditionalFiles Include="Shared\MainLayout.razor" />
     <AdditionalFiles Include="Shared\NavMenu.razor" />
     <AdditionalFiles Include="Shared\_Host.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Storage" />
   </ItemGroup>
 </Project>

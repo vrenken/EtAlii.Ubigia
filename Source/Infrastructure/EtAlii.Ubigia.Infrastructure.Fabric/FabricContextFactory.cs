@@ -18,13 +18,6 @@ public class FabricContextFactory : Factory<IFabricContext, FabricContextOptions
         return new IScaffolding[]
         {
             new FabricContextScaffolding(options),
-            new ItemsScaffolding(),
-            new IdentifiersScaffolding(),
-            new ContentScaffolding(),
-            new ContentDefinitionScaffolding(),
-            new RootsScaffolding(),
-            new PropertiesScaffolding(),
-            new EntryScaffolding(),
         };
     }
 }

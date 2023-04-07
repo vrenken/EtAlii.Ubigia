@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-public static class HostBuilderAddHostTestServicesExtensions
+public static partial class HostBuilderAddHostTestServicesExtensions
 {
     public static IHostBuilder UseHostTestServices<THostServicesFactory>(
         this IHostBuilder hostBuilder,

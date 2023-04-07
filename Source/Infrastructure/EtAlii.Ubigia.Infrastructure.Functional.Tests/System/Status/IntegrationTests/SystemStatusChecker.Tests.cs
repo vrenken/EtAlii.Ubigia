@@ -8,7 +8,7 @@ using Xunit;
 public class SystemStatusCheckerIntegrationTests
 {
     [Fact]
-    public async Task SystemStatusChecker_DetermineIfSystemIsOperational()
+    public async Task SystemStatusChecker_DetermineSystemStatus()
     {
         // Arrange.
         var testContext = new FunctionalUnitTestContext();
@@ -18,13 +18,13 @@ public class SystemStatusCheckerIntegrationTests
 
         var systemStatusChecker = new SystemStatusChecker();
         ((ISystemStatusChecker)systemStatusChecker).Initialize(testContext.Functional);
-        bool result;
+        SystemStatus result;
 
         // Act.
         try
         {
             result = await systemStatusChecker
-                .DetermineIfSystemIsOperational()
+                .DetermineSystemStatus()
                 .ConfigureAwait(false);
         }
         finally
@@ -36,6 +36,6 @@ public class SystemStatusCheckerIntegrationTests
 
         // Assert.
         Assert.NotNull(systemStatusChecker);
-        Assert.True(result);
+        Assert.Equal(SystemStatus.SystemIsOperational ,result);
     }
 }

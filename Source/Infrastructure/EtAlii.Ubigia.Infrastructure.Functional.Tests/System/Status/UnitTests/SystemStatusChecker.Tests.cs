@@ -27,7 +27,7 @@ public class SystemStatusCheckerUnitTests
         ((ISystemStatusChecker)systemStatusChecker).Initialize(null);
 
         // Act.
-        var act = new Func<Task>(async () => await systemStatusChecker.DetermineIfSystemIsOperational().ConfigureAwait(false));
+        var act = new Func<Task>(async () => await systemStatusChecker.DetermineSystemStatus().ConfigureAwait(false));
 
         // Assert.
         Assert.ThrowsAsync<NullReferenceException>(act);

@@ -6,6 +6,7 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API transport layer REST assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" />

@@ -4,6 +4,7 @@
     <ProjectGuid>a70337c3-bc86-4355-bf5b-3552dfe4dfc3</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia infrastructure base assembly</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />

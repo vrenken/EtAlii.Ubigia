@@ -6,6 +6,7 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+    <Description>Ubigia API functional layer Lapa parsing assembly</Description>
   </PropertyGroup>
 
   <ItemGroup>
