@@ -80,7 +80,7 @@ internal class RenameFunctionHandler : IFunctionHandler
             (_,_,_) => throw new ScriptProcessingException("Unable to convert name input for Rename function processing")
         };
 
-        if (!(argumentSet.Arguments[0] is IObservable<object> input))
+        if (argumentSet.Arguments[0] is not IObservable<object> input)
         {
             throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
         }

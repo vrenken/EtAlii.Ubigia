@@ -70,7 +70,7 @@ public class PayloadMediaTypeInputFormatter : InputFormatter
 
         // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
         var dictionaryType = _openDictionaryType.MakeGenericType(typeof(string), type);
-        if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
+        if (ReadFromStreamInternal(dictionaryType, readStream) is not IDictionary dictionary)
         {
             // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
             // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)

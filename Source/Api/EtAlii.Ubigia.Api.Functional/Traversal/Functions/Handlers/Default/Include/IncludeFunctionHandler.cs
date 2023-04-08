@@ -86,9 +86,9 @@ internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
         ExecutionScope scope,
         IObserver<object> output)
     {
-        if (!(argumentSet.Arguments[0] is PathSubject pathSubject))
+        if (argumentSet.Arguments[0] is not PathSubject pathSubject)
         {
-            if (!(argumentSet.Arguments[0] is IObservable<object> argumentInput))
+            if (argumentSet.Arguments[0] is not IObservable<object> argumentInput)
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
             }

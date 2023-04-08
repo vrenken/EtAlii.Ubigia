@@ -544,7 +544,7 @@ public class HashesTestContext
 
     public void TestKey(IHash aHash)
     {
-        if (!(aHash is IHashWithKey hashWithKey))
+        if (aHash is not IHashWithKey hashWithKey)
             return;
 
         var keyLength = hashWithKey.KeyLength ?? 251;

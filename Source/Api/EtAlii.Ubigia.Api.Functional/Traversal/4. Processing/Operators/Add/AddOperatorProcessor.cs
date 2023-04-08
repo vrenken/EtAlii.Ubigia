@@ -46,14 +46,14 @@ internal class AddOperatorProcessor : IAddOperatorProcessor
     {
         return parameters switch
         {
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject => _addVariableToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is VariableSubject => _addVariableToExistingPathProcessor.Process(parameters),
             {LeftSubject: EmptySubject, RightSubject: VariableSubject} => _addVariableAsNewPathProcessor.Process(parameters),
             {LeftSubject: EmptySubject} => _addByNameAsNewPathProcessor.Process(parameters),
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is RootedPathSubject => _addRootedPathToExistingPathProcessor.Process(parameters),
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is RelativePathSubject => _addRelativePathToExistingPathProcessor.Process(parameters),
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is AbsolutePathSubject => _addAbsolutePathToExistingPathProcessor.Process(parameters),
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is StringConstantSubject => _addConstantToExistingPathProcessor.Process(parameters),
-            { } p when !(p.LeftSubject is EmptySubject) && p.RightSubject is FunctionSubject => _addFunctionToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is RootedPathSubject => _addRootedPathToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is RelativePathSubject => _addRelativePathToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is AbsolutePathSubject => _addAbsolutePathToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is StringConstantSubject => _addConstantToExistingPathProcessor.Process(parameters),
+            { } p when p.LeftSubject is not EmptySubject && p.RightSubject is FunctionSubject => _addFunctionToExistingPathProcessor.Process(parameters),
             _ => throw new NotSupportedException($"Cannot determine add path processor for: {parameters?.ToString() ?? "NULL"}")
         };
     }

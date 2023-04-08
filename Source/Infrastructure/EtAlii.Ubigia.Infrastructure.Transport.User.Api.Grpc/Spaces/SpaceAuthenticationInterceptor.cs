@@ -19,7 +19,7 @@ public class SpaceAuthenticationInterceptor : Interceptor, ISpaceAuthenticationI
 
     private void EnsureUserIsAuthenticated(Metadata headers)
     {
-        if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is { } authenticationTokenHeader)) return;
+        if (headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is not { } authenticationTokenHeader) return;
 
         var authenticationToken = authenticationTokenHeader.Value;
         _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
