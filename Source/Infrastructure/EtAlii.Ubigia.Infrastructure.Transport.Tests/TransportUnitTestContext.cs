@@ -75,7 +75,7 @@ public class TransportUnitTestContext : IAsyncLifetime
         }
 
         _host = hostBuilder
-            .UseHostTestServices<InfrastructureHostServicesFactory>(Configuration, out var services)
+            .UseServicesFactoryOnTestHost<InfrastructureHostServicesFactory>(Configuration, out var services)
             .Build();
 
         await _host

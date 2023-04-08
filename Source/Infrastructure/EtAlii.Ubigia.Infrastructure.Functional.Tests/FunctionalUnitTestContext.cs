@@ -74,7 +74,7 @@ public class FunctionalUnitTestContext : IAsyncLifetime
         }
 
         _host = hostBuilder
-            .UseHostTestServices<InfrastructureHostServicesFactory>(Configuration, out var services)
+            .UseServicesFactoryOnTestHost<InfrastructureHostServicesFactory>(Configuration, out var services)
             .Build();
 
         await _host

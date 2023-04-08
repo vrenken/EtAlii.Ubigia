@@ -16,17 +16,14 @@ using Microsoft.AspNetCore.Http;
 /// </summary>
 public class MapOnConditionMiddleware
 {
-    private readonly RequestDelegate _next;
     private readonly MapOnConditionOptions _options;
 
     /// <summary>
     /// Creates a new instance of <see cref="MapWhenMiddleware"/>.
     /// </summary>
-    /// <param name="next">The delegate representing the next middleware in the request pipeline.</param>
     /// <param name="options">The middleware options.</param>
-    public MapOnConditionMiddleware(RequestDelegate next, MapOnConditionOptions options)
+    public MapOnConditionMiddleware(MapOnConditionOptions options)
     {
-        _next = next ?? throw new ArgumentNullException(nameof(next));
         _options = options ?? throw new ArgumentNullException(nameof(options));
     }
 
@@ -34,16 +31,16 @@ public class MapOnConditionMiddleware
     /// Executes the middleware.
     /// </summary>
     /// <param name="context">The <see cref="HttpContext"/> for the current request.</param>
+    /// <param name="next">The delegate representing the next middleware in the request pipeline.</param>
     /// <returns>A task that represents the execution of this middleware.</returns>
-    public async Task Invoke(HttpContext context)
+    public async Task Invoke(HttpContext context, RequestDelegate next)
     {
         if (context == null)
         {
             throw new ArgumentNullException(nameof(context));
         }
 
-        if (_options.Predicate(context) &&
-            context.Request.Path.StartsWithSegments(_options.PathMatch, out var matchedPath, out var remainingPath))
+        if (_options.Predicate(context) && context.Request.Path.StartsWithSegments(_options.PathMatch, out var matchedPath, out var remainingPath))
         {
             // Update the path
             var path = context.Request.Path;
@@ -63,7 +60,7 @@ public class MapOnConditionMiddleware
         }
         else
         {
-            await _next(context).ConfigureAwait(false);
+            await next(context).ConfigureAwait(false);
         }
     }
 }

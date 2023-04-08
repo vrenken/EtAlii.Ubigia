@@ -89,7 +89,7 @@ public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTe
         }
 
         _host = hostBuilder
-            .UseHostTestServices<THostServicesFactory>(HostConfiguration, out var services)
+            .UseServicesFactoryOnTestHost<THostServicesFactory>(HostConfiguration, out var services)
             .Build();
 
         await _host
@@ -133,9 +133,21 @@ public abstract class HostTestContextBase<THost, THostServicesFactory> : IHostTe
         Host = null;
     }
 
-    public HttpMessageHandler CreateHandler() => _testServer.CreateHandler();
+    public HttpMessageHandler CreateHandler()
+    {
+        _logger.Debug("Creating HttpMessageHandler for test server on {Url}", _testServer.BaseAddress);
+        return _testServer.CreateHandler();
+    }
 
-    public HttpClient CreateClient() => _testServer.CreateClient();
+    public HttpClient CreateClient()
+    {
+        _logger.Debug("Creating HttpClient for test server on {Url}", _testServer.BaseAddress);
+        return _testServer.CreateClient();
+    }
 
-    public WebSocketClient CreateWebSocketClient() => _testServer.CreateWebSocketClient();
+    public WebSocketClient CreateWebSocketClient()
+    {
+        _logger.Debug("Creating WebSocketClient for test server on {Url}", _testServer.BaseAddress);
+        return _testServer.CreateWebSocketClient();
+    }
 }

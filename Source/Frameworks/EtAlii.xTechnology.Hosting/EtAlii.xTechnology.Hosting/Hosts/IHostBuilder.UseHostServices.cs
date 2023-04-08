@@ -45,7 +45,12 @@ public static class HostBuilderAddHostServicesExtensions
             });
     }
 
-    public static void ConfigureApplication(this IHostBuilder _, ILogger logger, IService[] services, WebHostBuilderContext context, IApplicationBuilder application)
+    public static void ConfigureApplication(
+        this IHostBuilder _,
+        ILogger logger,
+        IService[] services,
+        WebHostBuilderContext context,
+        IApplicationBuilder application)
     {
         // Each network service gets instantiated in its own isolated environment.
         // The only subsystems that services can share.
