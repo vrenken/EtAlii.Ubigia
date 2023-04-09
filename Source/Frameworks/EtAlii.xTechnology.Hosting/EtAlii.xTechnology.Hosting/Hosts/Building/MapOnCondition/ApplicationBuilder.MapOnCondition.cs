@@ -55,6 +55,7 @@ public static class MapWhenExtensions
             Branch = branch,
             PathMatch = pathMatch,
         };
-        return application.Use(next => new MapOnConditionMiddleware(next, options).Invoke);
+        var middleware = new MapOnConditionMiddleware(options);
+        return application.Use((context, next) => middleware.Invoke(context, next));
     }
 }

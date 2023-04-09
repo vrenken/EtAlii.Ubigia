@@ -23,13 +23,13 @@ public class LpParserAttrs<TDerived> //: ICloneable
     /// <summary>
     /// Truth is, if you want to wrap the node (the result returned by the parser), if it has a non-zero identifier.
     /// </summary>
-    public bool WrapNode { get => _wrapNode; protected set => _wrapNode = value; }
+    public bool WrapNode { get => _wrapNode; protected init => _wrapNode = value; }
     private bool _wrapNode;
 
     /// <summary>
     /// Identifier.
     /// </summary>
-    public string Identifier { get => _identifier; protected set => _identifier = value; }
+    public string Identifier { get => _identifier; protected init => _identifier = value; }
     private string _identifier;
 
 
@@ -149,10 +149,12 @@ public class LpBaseParser<TResult, TDerived> : LpParserAttrs<TDerived>
     public bool Recurse
     {
         get => Stack != null;
-        set
+        init
         {
             if (Stack != null)
+            {
                 throw new ArgumentException("The 'Recurse' property already initialized.");
+            }
             Stack = value ? new LinkedList<LpText>() : null;
         }
     }
@@ -161,14 +163,18 @@ public class LpBaseParser<TResult, TDerived> : LpParserAttrs<TDerived>
     /// Typed object cloning.
     /// </summary>
     /// <returns>Branch.</returns>
-    public override TDerived  Copy()
+    public override TDerived Copy()
     {
         if (_parser == null)
         {
             if (Identifier != null)
+            {
                 throw new NullReferenceException($"The parser named '{Identifier}' has not been initialized completely.");
+            }
             else
+            {
                 throw new NullReferenceException("The 'Parser' property has not been initialized.");
+            }
         }
         LpBaseParser<TResult, TDerived> c = base.Copy();
         c._parser = _parser;

@@ -78,8 +78,8 @@ internal class PathCorrecter : IPathCorrecter
             {
                 var last = path.Parts.Last();
                 var first = relativePathSubject.Parts.First();
-                if (!(first is ParentPathSubjectPart) && !(first is ChildrenPathSubjectPart) &&
-                    !(last is ParentPathSubjectPart) && !(last is ChildrenPathSubjectPart))
+                if (first is not ParentPathSubjectPart && first is not ChildrenPathSubjectPart &&
+                    last is not ParentPathSubjectPart && last is not ChildrenPathSubjectPart)
                 {
                     // If no separator is given we assume a parent 2 child relation is requested.
                     //correctedParts.Add(new AllUpdatesPathSubjectPart())
@@ -91,7 +91,7 @@ internal class PathCorrecter : IPathCorrecter
         else
         {
             var last2 = path.Parts.Last();
-            if (!(last2 is ParentPathSubjectPart) && !(last2 is ChildrenPathSubjectPart))
+            if (last2 is not ParentPathSubjectPart && last2 is not ChildrenPathSubjectPart)
             {
                 // If no separator is given we assume a parent 2 child relation is requested.
                 correctedParts.Add(new ParentPathSubjectPart());

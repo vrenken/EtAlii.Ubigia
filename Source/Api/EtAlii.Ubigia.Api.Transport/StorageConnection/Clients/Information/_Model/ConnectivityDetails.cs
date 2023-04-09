@@ -10,10 +10,10 @@ public sealed class ConnectivityDetails
     /// <summary>
     /// The transport specific management API address to which the client is connected.
     /// </summary>
-    public string ManagementAddress { get; set; }
+    public string ManagementAddress { get; init; }
 
     /// <summary>
     /// The transport specific data API address to which the client is connected.
     /// </summary>
-    public string DataAddress { get; set; }
+    public string DataAddress { get; init; }
 }

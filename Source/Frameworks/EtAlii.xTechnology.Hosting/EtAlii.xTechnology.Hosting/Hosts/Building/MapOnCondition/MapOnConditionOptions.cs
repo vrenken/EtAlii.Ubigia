@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 /// </summary>
 public class MapOnConditionOptions
 {
-    private Func<HttpContext, bool> _predicate;
+    private readonly Func<HttpContext, bool> _predicate;
 
     /// <summary>
     /// The user callback that determines if the branch should be taken.
@@ -18,16 +18,16 @@ public class MapOnConditionOptions
     public Func<HttpContext, bool> Predicate
     {
         get => _predicate;
-        set => _predicate = value ?? throw new ArgumentNullException(nameof(value));
+        init => _predicate = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     /// <summary>
     /// The branch taken for a positive match.
     /// </summary>
-    public RequestDelegate Branch { get; set; }
+    public RequestDelegate Branch { get; init; }
 
     /// <summary>
     /// The path to match.
     /// </summary>
-    public PathString PathMatch { get; set; }
+    public PathString PathMatch { get; init; }
 }

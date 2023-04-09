@@ -53,7 +53,7 @@ internal class IdFunctionHandler : FunctionHandlerBase, IFunctionHandler
 
     private void ProcessByArgument(IFunctionContext context, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output) // , ParameterSet parameterSet
     {
-        if (!(argumentSet.Arguments[0] is IObservable<object> input))
+        if (argumentSet.Arguments[0] is not IObservable<object> input)
         {
             throw new ScriptProcessingException("Unable to convert arguments for Id function processing");
         }

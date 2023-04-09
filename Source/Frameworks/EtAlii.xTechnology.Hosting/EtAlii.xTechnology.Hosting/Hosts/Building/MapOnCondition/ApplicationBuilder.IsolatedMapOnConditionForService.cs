@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.xTechnology.Hosting;
 
@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Serilog;
 using Predicate = System.Func<Microsoft.AspNetCore.Http.HttpContext, bool>;
 
 /// <summary>
@@ -31,6 +32,8 @@ public static class ApplicationBuilderIsolatedMapWhenExtensions
         IWebHostEnvironment environment,
         INetworkService service)
     {
+        var logger = Log.ForContext(typeof(ApplicationBuilderIsolatedMapWhenExtensions));
+
         var ipAddress = service.Configuration.IpAddress;
         var port = service.Configuration.Port;
         var whenPredicate = new Func<HttpContext, bool>(context =>
@@ -45,6 +48,10 @@ public static class ApplicationBuilderIsolatedMapWhenExtensions
             return hostsAreEqual && portsAreEqual;
         });
 
-        return application.Isolate(builder => builder.MapOnCondition(environment, service.Configuration.Path, whenPredicate, service.ConfigureApplication), services => service.ConfigureServices(services, application.ApplicationServices));
+        logger.Debug("Isolating map on condition for {NetworkService} using {IpAddress}:{Port}", service.GetType().Name, ipAddress, port);
+
+        return application.Isolate(
+            builder =>  builder.MapOnCondition(environment, service.Configuration.Path, whenPredicate, service.ConfigureApplication),
+            services => service.ConfigureServices(services, application.ApplicationServices));
     }
 }
