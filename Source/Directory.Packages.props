@@ -53,7 +53,7 @@
     <PackageVersion Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.30" />
     <PackageVersion Include="Nerdbank.GitVersioning" Version="3.6.128" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageVersion Include="NuGetizer" Version="1.0.1" />
+    <PackageVersion Include="NuGetizer" Version="1.0.4" />
     <PackageVersion Include="Polly" Version="7.2.3" />
     <PackageVersion Include="PCLStorage.Standard" Version="1.0.0" />
     <PackageVersion Include="Serilog" Version="2.12.0" />
