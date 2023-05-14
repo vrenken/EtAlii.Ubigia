@@ -65,7 +65,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" PrivateAssets="all">
+    <PackageReference Update="Microsoft.Bcl.AsyncInterfaces" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" PrivateAssets="all">

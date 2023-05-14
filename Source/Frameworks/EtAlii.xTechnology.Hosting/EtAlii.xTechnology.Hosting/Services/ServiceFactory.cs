@@ -21,7 +21,7 @@ public class ServiceFactory
             throw new InvalidOperationException($"Unable to instantiate factory: {factoryTypeName}");
         }
 
-        if (!(Activator.CreateInstance(type) is IServiceFactory factory))
+        if (Activator.CreateInstance(type) is not IServiceFactory factory)
         {
             throw new InvalidOperationException($"Unable to activate factory: {factoryTypeName}");
         }
