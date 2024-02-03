@@ -3,7 +3,7 @@
     <PackageVersion Include="AltCover" Version="8.6.45" />
     <PackageVersion Include="Antlr4.Runtime.Standard" Version="4.12.0" />
     <PackageVersion Include="Antlr4BuildTasks" Version="12.2.0" />
-    <PackageVersion Include="AsyncKeyedLock" Version="6.2.1" />
+    <PackageVersion Include="AsyncKeyedLock" Version="6.3.4" />
     <PackageVersion Include="Blazorise.Animate" Version="1.2.3" />
     <PackageVersion Include="Blazorise.Bootstrap5" Version="1.2.3" />
     <PackageVersion Include="Blazorise.Charts" Version="1.2.3" />
