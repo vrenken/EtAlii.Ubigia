@@ -18,4 +18,8 @@
     <Folder Include="Serialization\Items" />
     <Folder Include="Serialization\Properties" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AsyncKeyedLock" />
+  </ItemGroup>
 </Project>
